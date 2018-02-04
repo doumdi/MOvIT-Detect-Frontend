@@ -1,6 +1,10 @@
 # MOvIT-Detect-Frontend
 
-## ReactJS
+## Table des matières
+
+* [1. ReactJS](#1-reactjs)
+
+# 1. ReactJS
 
 Pour la partie front-end du projet, nous avons décidé d'utiliser le framework ReactJS. Vous retrouverez un résumé de qu'est-ce qu'est React et pourquoi nous l'avons utilisé ci-dessous.
 
