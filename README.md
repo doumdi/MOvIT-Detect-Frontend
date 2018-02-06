@@ -2,9 +2,18 @@
 
 ## Table des matières
 
-* [1. ReactJS](#1-reactjs)
+* [1. Anciennes fonctionnalités](#1-anciennes-fonctionnalités)
+* [2. ReactJS](#2-reactjs)
 
-# 1. ReactJS
+# 1. Anciennes fonctionnalités
+
+Le premier mandat que nous devons accomplir est de réusiner le code tout en maintenant les fonctionnalités actuelles en places. Voici la liste de ces fonctionnalités.
+
+* Gérer les routes de la page web au niveau du serveur Node.js
+* Supporter chaque vues (Configuration, dayGraph, Home, monthGraph, Notifications, Objectives, Parameters, Peripheriques, Real_time_data, Recommandation, Results, Simulateur)
+* Écouter sur le port 8080
+
+# 2. ReactJS
 
 Pour la partie front-end du projet, nous avons décidé d'utiliser le framework ReactJS. Vous retrouverez un résumé de qu'est-ce qu'est React et pourquoi nous l'avons utilisé ci-dessous.
 
