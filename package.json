@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "build": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
-    "lint":"eslint *.js",
-    "test": "jest"
+    "lint": "eslint *.js scripts/**",
+    "test": "jest",
+    "precommit": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -50,6 +51,7 @@
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^6.8.0",
+    "husky": "^0.14.3",
     "jest": "^22.2.1",
     "react-test-renderer": "^16.2.0",
     "react-transform-hmr": "^1.0.4",
