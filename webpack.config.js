@@ -74,5 +74,9 @@ module.exports = {
         include: path.join(__dirname, 'src')
       }
     ]
-  }
+  },
+  node: {
+    fs: "empty",
+    child_process: "empty"
+ }
 };
