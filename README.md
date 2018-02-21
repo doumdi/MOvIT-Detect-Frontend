@@ -4,7 +4,6 @@
 
 * [1. Anciennes fonctionnalités](#1-anciennes-fonctionnalités)
 * [2. ReactJS](#2-reactjs)
-* [3. Test]
 
 # 1. Anciennes fonctionnalités
 
