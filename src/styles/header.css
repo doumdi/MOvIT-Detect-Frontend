@@ -1,0 +1,26 @@
+.navbar {background: #2D9D5F;margin:0px}
+.navbar .container-fluid{width: 90%;}
+#wrapper-router{
+    padding: 35px 2% 0 5%
+}
+.navbar, .navbar * {border-radius: 0}
+.navbar-brand img {
+    margin-top:2px
+}
+.navbar-brand,
+.navbar-text,
+.navbar-nav li a {
+    line-height: 52px;
+    height: 52px;
+    padding-top: 0;
+    margin-top:0;
+    margin-bottom: 0;
+    font-size:16px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.navbar a{color:white;}
+.navbar a:hover{color: #2D9D5F;}
+.navbar a:focus{color: #2D9D5F;}
+.navbar-header a:hover{color: white;}
+.navbar-header a:focus{color: white;}
+.username {color: white;}

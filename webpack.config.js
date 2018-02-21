@@ -49,9 +49,9 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/dev-server',
-    './scripts/index'
+    './src/index'
   ],
   output: {
     path: __dirname,
@@ -71,8 +71,12 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'scripts')
+        include: path.join(__dirname, 'src')
       }
     ]
+  },
+  node: {
+    fs: 'empty',
+    child_process: 'empty'
   }
 };
