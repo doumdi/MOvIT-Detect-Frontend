@@ -50,7 +50,7 @@ export default class Goal extends Component {
          if(Math.round(this.state.angle * 100 / 180) < 40){
             angleClass = "progress-bar progress-bar-danger";
          }else if (Math.round(this.state.angle * 100 / 180) >= 80){
-            angleClass = "progress-bar progress-bar-success"; 
+            angleClass = "progress-bar progress-bar-success";
          }
         return (
             <div style={style.content}>
@@ -94,8 +94,8 @@ export default class Goal extends Component {
                         <div className="progress">
                             <div className="progress-bar progress-bar-info" role="progressbar"
                             aria-valuenow="60"
-                            aria-valuemin="0" 
-                            aria-valuemax="100" 
+                            aria-valuemin="0"
+                            aria-valuemax="100"
                             style={{width: '60%'}}>
                                 <span className="sr-only">60% Complete</span>
                             </div>
@@ -107,8 +107,8 @@ export default class Goal extends Component {
                         <div className="progress">
                             <div className="progress-bar  progress-bar-danger" role="progressbar"
                             aria-valuenow="20"
-                            aria-valuemin="0" 
-                            aria-valuemax="100" 
+                            aria-valuemin="0"
+                            aria-valuemax="100"
                             style={{width: '20%'}}>
                                 <span className="sr-only">40% Complete</span>
                             </div>
@@ -120,8 +120,8 @@ export default class Goal extends Component {
                         <div className="progress">
                             <div className={angleClass} role="progressbar"
                             aria-valuenow={this.state.angle}
-                            aria-valuemin="0" 
-                            aria-valuemax="180" 
+                            aria-valuemin="0"
+                            aria-valuemax="180"
                             style={angleStyle}>
                                 {anglePercent}
                             </div>

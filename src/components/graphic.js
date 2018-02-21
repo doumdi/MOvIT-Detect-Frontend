@@ -38,7 +38,7 @@ export default class Graphic extends Component {
             {key: 'Rested', value: 200, color: '#dce7c5'},
             {key: 'Other', value: 50, color: '#e3a51a'}
         ]
-            
+
 
         return (
             <div style={style}>
