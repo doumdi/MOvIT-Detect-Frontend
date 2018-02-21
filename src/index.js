@@ -3,6 +3,6 @@ import { render } from 'react-dom';
 import Layout from './layout';
 
 render(
- <Layout/>,
+  <Layout />,
   document.getElementById('root')
 );
