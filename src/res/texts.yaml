@@ -1,3 +1,18 @@
+home:
+  FR: Accueil
+  EN: Home
 preferences:
-  fr: Préférences
-  en: Preference
+  FR: Préférences
+  EN: Preferences
+
+graphics:
+  FR: Graphiques
+  EN: Graphics
+
+recommendations:
+  FR: Recommendations
+  EN: Recommendations
+
+goals:
+  FR: Buts
+  EN: Goals

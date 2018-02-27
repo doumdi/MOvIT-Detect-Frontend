@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { LineChart, AreaChart, PieChart } from 'react-easy-chart';
+import { T } from '../index'
+import { connect } from 'react-redux'; 
 
-export default class Graphic extends Component {
+class Graphic extends Component {
   render() {
     const style = {
       marginBottom: '20vh',
@@ -37,7 +39,7 @@ export default class Graphic extends Component {
     return (
       <div style={style}>
         <div style={style.content}>
-          <h1>Graphics</h1>
+          <h1>{T.translate("graphics."+ this.props.language)}</h1>
         </div>
         <div className="col-sm-5">
           <LineChart
@@ -107,3 +109,9 @@ export default class Graphic extends Component {
     );
   }
 }
+function mapStateToProps (state) {
+  return {
+    language: state.applicationReducer.language
+  }
+}
+export default connect(mapStateToProps)(Graphic)
