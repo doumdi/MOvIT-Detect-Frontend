@@ -159,8 +159,8 @@ export default class Recommendation extends Component {
           </div>
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="improveComfortCheck" label="Improve compfort" onChange={(e) => this.setState({ improveComfortChecked: e.checked })} checked={this.state.improveComfortChecked} />
-              <label htmlFor="improveComfortCheck">Improve compfort</label>
+              <Checkbox inputId="improveComfortCheck" label="Improve comfort" onChange={(e) => this.setState({ improveComfortChecked: e.checked })} checked={this.state.improveComfortChecked} />
+              <label htmlFor="improveComfortCheck">Improve comfort</label>
             </div>
             {this.state.improveComfortChecked
             ?
