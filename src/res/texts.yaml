@@ -16,3 +16,7 @@ recommendations:
 goals:
   FR: Buts
   EN: Goals
+
+configurations:
+  FR: Configurations
+  EN: Configurations

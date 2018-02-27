@@ -48,6 +48,7 @@ class Header extends Component {
               <li> <Link to="preference" style={style.link}>{T.translate("preferences."+ this.props.language)}</Link> </li>
               <li> <Link to="recommendations" style={style.link}>{T.translate("recommendations."+ this.props.language)}</Link> </li>
               <li> <Link to="goals" style={style.link}>{T.translate("goals."+ this.props.language)}</Link> </li>
+              <li> <Link to="configurations" style={style.link}>{T.translate("configurations."+ this.props.language)}</Link> </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
              <li onClick={this.props.changeLanguage}><a>{this.props.language == FR ? EN : FR}</a></li>
