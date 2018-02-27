@@ -41,6 +41,7 @@ export default class Header extends Component {
               <li> <Link to="preference" style={style.link}>Preference</Link> </li>
               <li> <Link to="recommendations" style={style.link}>Recommendations</Link> </li>
               <li> <Link to="goals" style={style.link}>Goals</Link> </li>
+              <li> <Link to="configurations" style={style.link}>Configurations</Link> </li>
             </ul>
           </div>
         </nav>

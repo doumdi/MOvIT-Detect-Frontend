@@ -55,7 +55,7 @@ export default class Goal extends Component {
     }
     return (
       <div style={style.content}>
-        <h1>Goals</h1>
+        <legend className="text-center header"><h2>Goals</h2></legend>
         <div className="row">
           <div className="col-sm-4" style={style.bar}>
             <span>Frequency</span>

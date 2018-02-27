@@ -4,7 +4,7 @@
   "description": "Boilerplate for kick starting a React Project with ES6 (Babel) and Hot reloader using Webpack.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm i && node server.js",
     "build": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
     "lint": "eslint *.js scripts/**",
     "test": "jest",
@@ -33,7 +33,6 @@
     "primereact": "^1.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-rangeslider": "^2.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2"
   },

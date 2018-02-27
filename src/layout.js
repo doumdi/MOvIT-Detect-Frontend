@@ -8,6 +8,7 @@ import Graphic from './components/graphic';
 import Home from './components/home';
 import Goal from './components/goal';
 import Recommendation from './components/recommendation';
+import Configuration from './components/configuration';
 
 export default class Layout extends Component {
   render() {
@@ -21,6 +22,7 @@ export default class Layout extends Component {
             <Route path="/preference" component={Preference} />
             <Route path="/recommendations" component={Recommendation} />
             <Route path="/goals" component={Goal} />
+            <Route path="/configurations" component={Configuration} />
           </Switch>
 
           <Footer />
