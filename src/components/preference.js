@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
+import T from 'i18n-react';
 
+
+T.setTexts( require('../res/texts.yaml'));
 export default class Preference extends Component {
   render() {
     const style = {
@@ -8,11 +12,11 @@ export default class Preference extends Component {
         textAlign: 'center'
       }
     };
-
+    
     return (
       <div style={style}>
         <div className="jumbotron" style={style.content}>
-          <h1>Preference</h1>
+          <h1>{T.translate("preferences.fr" , { context: "context", val: 1})}</h1>
           <h2>Change your preferences for the MovIT-Plus application</h2>
         </div>
       </div>

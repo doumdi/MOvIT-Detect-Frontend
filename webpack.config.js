@@ -51,7 +51,8 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/dev-server',
-    './src/index'
+    './src/index',
+    './src/components/preference.js',
   ],
   output: {
     path: __dirname,
@@ -72,7 +73,10 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
-      }
+      },
+      {
+        test: /\.ya?ml$/,
+        loader: 'json-loader!yaml-loader' }
     ]
   },
   node: {
