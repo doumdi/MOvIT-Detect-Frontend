@@ -82,7 +82,7 @@ configurations:
     FR: Angle maximal de bascule
     EN: Maximum tilt angle
   weight:
-    FR: Poid du patient
+    FR: Poids du patient
     EN: Patient weight 
 
 
