@@ -72,7 +72,10 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
-      }
+      },
+      {
+        test: /\.ya?ml$/,
+        loader: 'json-loader!yaml-loader' }
     ]
   },
   node: {

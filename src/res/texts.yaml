@@ -1,0 +1,91 @@
+home:
+  FR: Accueil
+  EN: Home
+preferences:
+  FR: Préférences
+  EN: Preferences
+
+graphics:
+  FR: Graphiques
+  EN: Graphics
+
+recommendations:
+  FR: Recommendations
+  EN: Recommendations
+  reduceWeight: 
+    FR: Réduire la pression sur le siège
+    EN: Reduce weight
+  reduceSwelling:
+    FR: Réduire l'enflure aux membres inférieurs
+    EN: Reduce swelling 
+  frequency:
+    FR: Fréquence de bascule
+    EN: Tilt frequency
+  duration:
+    FR: Durée de bascule
+    EN: Tilt duration
+  angle: 
+    FR: Angle de bascule
+    EN: Tilt angle
+  slidingMoving: 
+    FR: Réduire le glissement lors des déplacements
+    EN: Reduce sliding while moving
+  slidingRest:
+    FR: Réduire le glissement au repos
+    EN: Reduce sliding at rest
+  pain:
+    FR: Réduire la douleur
+    EN: Reduce the pain
+    recommendation:
+      FR: Recommendations pour réduire la douleur
+      EN: Recommendations for reducing pain
+  rest:
+    FR: Permettre le repos
+    EN: Allowing rest
+    recommendation:
+      FR: Recommendations pour le repos
+      EN: Recommendations for allowing rest
+  transfer:
+    FR: Faciliter les transferts
+    EN: Ease transfers
+    recommendation:
+      FR: Recommendations pour faciliter le transport
+      EN: Recommendations to ease transfers
+  comfort: 
+    FR: Améliorer le confort
+    EN: Improve comfort
+    recommendation:
+      FR: Recommendations pour améliorer le confort
+      EN: ecommendations to improve comfort
+  other:
+    FR: Autre
+    EN: Other
+    recommendation:
+      FR: Autres recommendations
+      EN: Other recommendations
+
+
+goals:
+  FR: Objectifs
+  EN: Goals
+
+configurations:
+  FR: Configurations
+  EN: Configurations
+  name:
+    FR: Nom du patient
+    EN: Patient Name
+  telask:
+    FR: Identifiant TelAsk
+    EN: TelAsk ID
+  maxTilt:
+    FR: Angle maximal de bascule
+    EN: Maximum tilt angle
+  weight:
+    FR: Poids du patient
+    EN: Patient weight 
+
+
+save:
+  FR: Sauvegarder
+  EN: Save

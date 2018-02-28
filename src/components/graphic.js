@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { LineChart, AreaChart, PieChart } from 'react-easy-chart';
+import { T } from '../index'
+import { connect } from 'react-redux'; 
 import { Chart } from 'primereact/components/chart/Chart';
 import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 
-export default class Graphic extends Component {
+class Graphic extends Component {
 
   constructor() {
     super();
@@ -117,10 +120,11 @@ export default class Graphic extends Component {
     return (
       <div>
         <div style={style.content}>
-          <legend className="text-center header"><h2>Graphic</h2></legend>
+          <h1>{T.translate("graphics."+ this.props.language)}</h1>
           <span>Date: </span>
           <Calendar value={this.state.date} onChange={(e) => this.setState({ date: e.value })} />
           <Dropdown value={this.state.period} options={periods} onChange={this.onPeriodChange} style={{ width: '150px', marginLeft: '15px' }} placeholder="Select a period" />
+
         </div>
         <div className="content-section implementation">
           <span className="col-sm-3" />
@@ -132,3 +136,9 @@ export default class Graphic extends Component {
     );
   }
 }
+function mapStateToProps (state) {
+  return {
+    language: state.applicationReducer.language
+  }
+}
+export default connect(mapStateToProps)(Graphic)

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Slider from 'react-rangeslider';
+import { T } from '../index'
+import { connect } from 'react-redux'; 
 
-export default class Goal extends Component {
+class Goal extends Component {
 
   constructor(props, context) {
     super(props, context);
@@ -55,7 +57,7 @@ export default class Goal extends Component {
     }
     return (
       <div style={style.content}>
-        <legend className="text-center header"><h2>Goals</h2></legend>
+        <h1>{T.translate("goals."+ this.props.language)}</h1>
         <div className="row">
           <div className="col-sm-4" style={style.bar}>
             <span>Frequency</span>
@@ -139,3 +141,9 @@ export default class Goal extends Component {
     );
   }
 }
+function mapStateToProps (state) {
+  return {
+    language: state.applicationReducer.language
+  }
+}
+export default connect(mapStateToProps)(Goal)
