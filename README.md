@@ -2,10 +2,81 @@
 
 ## Table des matières
 
-* [1. Anciennes fonctionnalités](#1-anciennes-fonctionnalités)
-* [2. ReactJS](#2-reactjs)
+* [1. Getting Started](#1-getting-started)
+* [2. Anciennes fonctionnalités](#2-anciennes-fonctionnalités)
+* [3. ReactJS](#3-reactjs)
 
-# 1. Anciennes fonctionnalités
+# 1. Getting Started
+
+## 1.1 Rouler le programme
+
+Pour commencer à développer pour le projet, commencez par vous assurer que vous êtes sur la branch develop
+
+```
+git checkout develop
+```
+
+Puis, pour partir le projet, simplement rouler la commande suivante
+
+```
+npm start
+```
+
+La commande installe tous les packages npm manquants et part le serveur sur le port 3000.
+
+## 1.2 Créer sa première branche
+
+Basez votre branche sur develop. Par la suite, créer votre branche en suivant une des nomenclatures suivantes.
+
+```
+feature/<JIRA>
+bug/<JIRA>
+```
+
+Évidemment, changer <JIRA> par le nom de la tâche associé. Par exemple:
+
+```
+feature/MOVIT-149
+bug/MOVIT-149
+```
+
+Le fait d'y aller avec cette nomenclature va changer en temps réel le status de la tâche dans JIRA. Également, c'est beaucoup plus clair pour les code reviews.
+
+## 1.3 Faire son premier commit
+
+Avant de faire votre commit, assurez-vous que les règles de linting sont respectés et que les tests passent.
+
+```
+npm run lint
+npm test
+```
+
+Si vous ne le faite pas, les propriétaires des répertoires le verront directement dans GitHub. Pour vous assurez de voir les erreurs de linting en temps réel, des extensions ESLint sont disponibles avec la majorité des IDE pour le développement web.
+
+Une fois que le tout est fait, assurez-vous d'être à jour avec la branche develop
+
+```
+git pull origin develop
+```
+
+Puis, assurez-vous de mettre tous les fichiers non-désirables dans le .gitignore, puis ajouter les et créer votre commit.
+
+```
+git add .
+git commit -m "Message quelconque de commit"
+```
+
+Évidemment, changer le message pour le message approprié. À ce moment, le linter passe et si jamais il échoue, le commit n'est pas créé. Corrigez les erreurs, puis réessayer.
+
+Une fois le tout fait, pousser vos changements dans github
+
+```
+git push origin feature/<JIRA>
+```
+
+À partir de ce moment, aller dans Github et créez votre pull request. Une fois votre pull request créé, la tâche dans JIRA tombera dans le status *In Review*.
+
+# 2. Anciennes fonctionnalités
 
 Le premier mandat que nous devons accomplir est de réusiner le code tout en maintenant les fonctionnalités actuelles en places. Voici la liste de ces fonctionnalités.
 
@@ -13,7 +84,7 @@ Le premier mandat que nous devons accomplir est de réusiner le code tout en mai
 * Supporter chaque vues (Configuration, dayGraph, Home, monthGraph, Notifications, Objectives, Parameters, Peripheriques, Real_time_data, Recommandation, Results, Simulateur)
 * Écouter sur le port 8080
 
-# 2. ReactJS
+# 3. ReactJS
 
 Pour la partie front-end du projet, nous avons décidé d'utiliser le framework ReactJS. Vous retrouverez un résumé de qu'est-ce qu'est React et pourquoi nous l'avons utilisé ci-dessous.
 
