@@ -44,14 +44,14 @@ class Header extends Component {
               <Link to="" style={style.title}>MovIT-Plus</Link>
             </div>
             <ul className="nav navbar-nav">
-              <li> <Link to="graphic" style={style.link}>{T.translate("graphics."+ this.props.language)}</Link> </li>
-              <li> <Link to="preference" style={style.link}>{T.translate("preferences."+ this.props.language)}</Link> </li>
-              <li> <Link to="recommendations" style={style.link}>{T.translate("recommendations."+ this.props.language)}</Link> </li>
-              <li> <Link to="goals" style={style.link}>{T.translate("goals."+ this.props.language)}</Link> </li>
-              <li> <Link to="configurations" style={style.link}>{T.translate("configurations."+ this.props.language)}</Link> </li>
+              <li> <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link> </li>
+              <li> <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link> </li>
+              <li> <Link to="recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link> </li>
+              <li> <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link> </li>
+              <li> <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link> </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-             <li onClick={this.props.changeLanguage}><a>{this.props.language == FR ? EN : FR}</a></li>
+              <li onClick={this.props.changeLanguage}><a>{this.props.language == FR ? EN : FR}</a></li>
             </ul>
           </div>
         </nav>
@@ -59,16 +59,16 @@ class Header extends Component {
     );
   }
 }
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language
-  }
+  };
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-   changeLanguage: ApplicationActions.changeLanguage
-  }, dispatch)
+    changeLanguage: ApplicationActions.changeLanguage
+  }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
