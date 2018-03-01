@@ -50,8 +50,10 @@ class Configuration extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-12 text-center">
-            <button type="submit" className="btn btn-primary btn-lg">{T.translate("save."+ this.props.language)}</button>
+          <div className="col-sm-9 text-right">
+            <button type="submit" className="btn btn-lg">{T.translate(`cancel.${this.props.language}`)}</button>
+            &nbsp;
+            <button type="submit" className="btn btn-lg">{T.translate(`save.${this.props.language}`)}</button>
           </div>
         </div>
       </div>

@@ -5,6 +5,36 @@ preferences:
   FR: Préférences
   EN: Preferences
 
+parameters:
+  FR: Paramètres
+  EN: Parameters
+  dataAgreement:
+    FR: J'accepte de passer mes données d'utilisation 
+    EN: J'accepte de transmettre mes données d'utilisation à mon établissement de santé
+  lightAgreement:
+    FR: Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer
+    EN: I want the light on my chair to light up to remind me to tip
+  notificationAgreement:
+    FR: Je souhaite avoir une notification quand un rapport est disponible
+    EN: I wish to receive a notification when a report is available
+  doNotDisturb:
+    FR: Ne pas me le rappeler pour
+    EN: Do not remind me for
+
+time:
+  min:
+    FR: min
+    EN: min
+  hours:
+    FR: heures
+    EN: hours
+  week:
+    FR: semaine
+    EN: week
+  month:
+    FR: month
+    EN: mois
+
 graphics:
   FR: Graphiques
   EN: Graphics
@@ -68,6 +98,15 @@ recommendations:
 goals:
   FR: Objectifs
   EN: Goals
+  tiltFrequency:
+    FR: Fréquence de bascule
+    EN: Tilt frequency 
+  tiltLength:
+    FR: Durée de bascule
+    EN: Tilt length
+  tiltAngle:
+    FR: Angle de bascule
+    EN: Tilt angle
 
 configurations:
   FR: Configurations
@@ -89,3 +128,7 @@ configurations:
 save:
   FR: Sauvegarder
   EN: Save
+
+cancel:
+  FR: Annuler
+  EN: Cancel  
