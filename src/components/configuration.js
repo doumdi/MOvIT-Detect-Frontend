@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { T } from '../index'
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
+import { T } from '../index';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
@@ -20,33 +20,33 @@ class Configuration extends Component {
       <div>
         <div className="col-md-12">
           <div className="form-horizontal">
-            <legend className="text-center header"><h2>{T.translate("configurations."+ this.props.language)}</h2></legend>
+            <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
 
             <div className="form-group">
               <span className="col-md-1 col-md-offset-2 text-center" style={style.icon}><i className="fa fa-user" /></span>
               <div className="col-md-6">
-                <input type="text" placeholder={T.translate("configurations.name."+ this.props.language)} className="form-control" />
+                <input type="text" placeholder={T.translate(`configurations.name.${this.props.language}`)} className="form-control" />
               </div>
             </div>
 
             <div className="form-group">
               <span className="col-md-1 col-md-offset-2 text-center" style={style.icon}><i className="fa fa-id-card" /></span>
               <div className="col-md-6">
-                <input type="text" placeholder={T.translate("configurations.telask."+ this.props.language)} className="form-control" />
+                <input type="text" placeholder={T.translate(`configurations.telask.${this.props.language}`)} className="form-control" />
               </div>
             </div>
 
             <div className="form-group">
               <span className="col-md-1 col-md-offset-2 text-center" style={style.icon}><i className="fa fa-wheelchair" /></span>
               <div className="col-md-6">
-                <input type="text" placeholder={T.translate("configurations.maxTilt."+ this.props.language)} className="form-control" />
+                <input type="text" placeholder={T.translate(`configurations.maxTilt.${this.props.language}`)} className="form-control" />
               </div>
             </div>
 
             <div className="form-group">
               <span className="col-md-1 col-md-offset-2 text-center" style={style.icon}><i className="fa fa-balance-scale" /></span>
               <div className="col-md-6">
-                <input type="text" placeholder={T.translate("configurations.weight."+ this.props.language)} className="form-control" />
+                <input type="text" placeholder={T.translate(`configurations.weight.${this.props.language}`)} className="form-control" />
               </div>
             </div>
           </div>
@@ -60,9 +60,9 @@ class Configuration extends Component {
     );
   }
 }
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language
-  }
+  };
 }
-export default connect(mapStateToProps)(Configuration)
+export default connect(mapStateToProps)(Configuration);
