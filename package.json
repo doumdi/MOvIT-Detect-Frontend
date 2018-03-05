@@ -34,6 +34,7 @@
     "json-loader": "^0.5.7",
     "primereact": "^1.4.1",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-easy-chart": "^1.0.0",
     "react-rangeslider": "^2.2.0",

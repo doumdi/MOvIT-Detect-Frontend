@@ -93,6 +93,9 @@ recommendations:
     recommendation:
       FR: Autres recommendations
       EN: Other recommendations
+  angleRecommandation:
+    FR: Basculez à un angle de
+    EN: Tilt at an angle of
 
 
 goals:
@@ -131,4 +134,21 @@ save:
 
 cancel:
   FR: Annuler
-  EN: Cancel  
+  EN: Cancel
+
+welcome:
+  FR: Bienvenue à MoVit, un projet de AgeWell
+  EN: Welcome to MoVit, an AgeWell project
+  chooseProfile:
+    FR: Choisissez votre profile
+    EN: Choose your profile
+
+patient:
+  FR: Patient
+  EN: Patient
+clinician:
+  FR: Clinicien
+  EN: Clinician
+personnal:
+  FR: Personnel
+  EN: Personnal
