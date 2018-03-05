@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux'; 
-import { ApplicationActions, FR, EN} from '../redux/applicationReducer' 
-import { bindActionCreators } from 'redux'
-import { T } from '../index'
-class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
+import { connect } from 'react-redux';
+import { ApplicationActions, FR, EN } from '../redux/applicationReducer';
+import { T } from '../index';
 
+class Header extends Component {
 
   render() {
     const style = {
@@ -51,7 +48,9 @@ class Header extends Component {
               <li> <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link> </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li onClick={this.props.changeLanguage}><a>{this.props.language == FR ? EN : FR}</a></li>
+              <li onClick={this.props.changeLanguage}>
+                <a>{this.props.language === FR ? EN : FR}</a>
+              </li>
             </ul>
           </div>
         </nav>

@@ -9,7 +9,7 @@ parameters:
   FR: Paramètres
   EN: Parameters
   dataAgreement:
-    FR: J'accepte de passer mes données d'utilisation 
+    FR: J'accepte de passer mes données d'utilisation
     EN: J'accepte de transmettre mes données d'utilisation à mon établissement de santé
   lightAgreement:
     FR: Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer
@@ -42,22 +42,22 @@ graphics:
 recommendations:
   FR: Recommendations
   EN: Recommendations
-  reduceWeight: 
+  reduceWeight:
     FR: Réduire la pression sur le siège
     EN: Reduce weight
   reduceSwelling:
     FR: Réduire l'enflure aux membres inférieurs
-    EN: Reduce swelling 
+    EN: Reduce swelling
   frequency:
     FR: Fréquence de bascule
     EN: Tilt frequency
   duration:
     FR: Durée de bascule
     EN: Tilt duration
-  angle: 
+  angle:
     FR: Angle de bascule
     EN: Tilt angle
-  slidingMoving: 
+  slidingMoving:
     FR: Réduire le glissement lors des déplacements
     EN: Reduce sliding while moving
   slidingRest:
@@ -81,7 +81,7 @@ recommendations:
     recommendation:
       FR: Recommendations pour faciliter le transport
       EN: Recommendations to ease transfers
-  comfort: 
+  comfort:
     FR: Améliorer le confort
     EN: Improve comfort
     recommendation:
@@ -100,7 +100,7 @@ goals:
   EN: Goals
   tiltFrequency:
     FR: Fréquence de bascule
-    EN: Tilt frequency 
+    EN: Tilt frequency
   tiltLength:
     FR: Durée de bascule
     EN: Tilt length
@@ -122,8 +122,7 @@ configurations:
     EN: Maximum tilt angle
   weight:
     FR: Poids du patient
-    EN: Patient weight 
-
+    EN: Patient weight
 
 save:
   FR: Sauvegarder
@@ -131,4 +130,17 @@ save:
 
 cancel:
   FR: Annuler
-  EN: Cancel  
+  EN: Cancel
+
+welcome:
+  FR: Bienvenue à MoVit, un projet de AgeWell
+  EN: Welcome to MoVit, an AgeWell project
+  chooseProfile:
+    FR: Choisissez votre profile
+    EN: Choose your profile
+  patient:
+    FR: Patient
+    EN: Patient
+  clinician:
+    FR: Clinicien
+    EN: Clinician
