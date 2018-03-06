@@ -41,13 +41,13 @@ class Home extends Component {
         <div className="col-sm-2" />
         <div className="col-sm-4">
           <button onClick={() => this.setProfile('patient')} style={style.profileButton}>
-            <h2>{T.translate(`welcome.patient.${this.props.language}`)}</h2>
+            <h2>{T.translate(`patient.${this.props.language}`)}</h2>
             <i className="fa fa-user" style={style.icons} />
           </button>
         </div>
         <div className="col-sm-4" >
           <button onClick={() => this.setProfile('patient')} style={style.profileButton} >
-            <h2>{T.translate(`welcome.clinician.${this.props.language}`)}</h2>
+            <h2>{T.translate(`clinician.${this.props.language}`)}</h2>
             <i className="fa fa-user-md" style={style.icons} />
           </button>
         </div>

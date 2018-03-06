@@ -93,6 +93,9 @@ recommendations:
     recommendation:
       FR: Autres recommendations
       EN: Other recommendations
+  angleRecommandation:
+    FR: Basculez à un angle de
+    EN: Tilt at an angle of
 
 
 goals:
@@ -138,9 +141,13 @@ welcome:
   chooseProfile:
     FR: Choisissez votre profile
     EN: Choose your profile
-  patient:
-    FR: Patient
-    EN: Patient
-  clinician:
-    FR: Clinicien
-    EN: Clinician
+
+patient:
+  FR: Patient
+  EN: Patient
+clinician:
+  FR: Clinicien
+  EN: Clinician
+personnal:
+  FR: Personnel
+  EN: Personnal
