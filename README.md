@@ -8,13 +8,79 @@
 
 # 1. Getting Started
 
-## 1.1 Rouler le programme
+## 1.1 Pré-requis
 
-Pour commencer à développer pour le projet, commencez par vous assurer que vous êtes sur la branch develop
+Les prérequis pour rouler le projet:
+
+* Un Terminal
+* Git
+* Node.js
+
+### 1.1.1 Mac OS
+
+##### Terminal
+
+Par défaut, l'application Terminal est installée sur Mac OS. Ce pré-requis ne devrait donc pas poser de problème.
+
+##### Git
+
+Vous pouvez installer Git à partir du Terminal. Pour ce faire, ouvrez le terminal et entrez la commande suivante:
+
+```
+git --version
+```
+
+Si git est déjà installé, votre version sera affichée. Sinon, un message vous alertera afin de l'installer. Vous pourrez donc suivre les instructions pour se faire. Les options par défaut vont fonctionner.
+
+Si vous préférez l'installer autrement, vous pouvez visiter le lien suivant: http://git-scm.com/download/mac
+
+##### Node.js
+
+Afin d'installer Node.js, vous devez d'abord installer Homebrew
+
+```
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Maintenant que Homebrew a été installé, vous pouvez installer Node.js
+
+```
+brew install node
+```
+
+Afin de vous assurer que le tout a bien été installé, écrivez les commandes suivantes. Elles devraient vous donner des numéros de version.
+
+```
+node -v
+npm -v
+```
+
+## 1.2 Télécharger le programme
+
+Afin de télécharger le programme, il est possible de cloner le répertoire avec le protocol HTTPS. Ouvrez l'application terminal et exécuter la ligne suivante.
+
+```
+git clone https://github.com/AustinDidierTran/MOvIT-Detect-Frontend.git
+```
+
+Le terminal vous demandera alors votre identifiant et votre mot de passe Github afin de lui permettre de vous identifier et de vous autoriser à copier le code.
+
+Une fois le code cloné, vous pouvez y accéder avec la commande suivante. Vous devrez exécuté cette commande à chaque ouverture du terminal pour vous diriger dans le code.
+
+```
+cd MOvIT-Detect-Frontend
+```
+
+## 1.3 Rouler le programme
+
+Pour commencer à développer pour le projet, commencez par vous assurer que vous êtes sur la branch develop.
 
 ```
 git checkout develop
 ```
+
+Si cette commande provoque des erreurs, assurez-vous d'être dans le projet. 
+
 
 Puis, pour partir le projet, simplement rouler la commande suivante
 
@@ -24,7 +90,15 @@ npm start
 
 La commande installe tous les packages npm manquants et part le serveur sur le port 3000.
 
-## 1.2 Créer sa première branche
+## 1.4 Mettre à jour sa version
+
+Afin de mettre à jour sa version, il suffit d'aller chercher les changements.
+
+```
+git pull origin develop
+```
+
+## 1.5 Créer sa première branche
 
 Basez votre branche sur develop. Par la suite, créer votre branche en suivant une des nomenclatures suivantes.
 
@@ -42,7 +116,7 @@ bug/MOVIT-149
 
 Le fait d'y aller avec cette nomenclature va changer en temps réel le status de la tâche dans JIRA. Également, c'est beaucoup plus clair pour les code reviews.
 
-## 1.3 Faire son premier commit
+## 1.6 Faire son premier commit
 
 Avant de faire votre commit, assurez-vous que les règles de linting sont respectés et que les tests passent.
 
