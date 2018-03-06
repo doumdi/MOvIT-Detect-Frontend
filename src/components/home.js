@@ -4,11 +4,33 @@ import { T } from '../index';
 
 
 class Home extends Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      profile: null
+    };
+  }
+
+  setProfile(profileName) {
+    this.setState({ profile: profileName });
+    this.props.history.push('/graphic');
+  }
+
   render() {
     const style = {
-      height: '80vh',
       content: {
         textAlign: 'center'
+      },
+      icons: {
+        fontSize: '20em'
+      },
+      pageTop: {
+        marginBottom: '2em'
+      },
+      profileButton: {
+        backgroundColor: 'transparent',
+        border: 0
       }
     };
 
