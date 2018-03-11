@@ -49,7 +49,7 @@ class Header extends Component {
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li onClick={this.props.changeLanguage}>
-                <a>{this.props.language === FR ? EN : FR}</a>
+                <a>{this.props.language}</a>
               </li>
             </ul>
           </div>

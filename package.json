@@ -9,7 +9,7 @@
     "lint": "eslint *.js scripts/**",
     "test": "jest",
     "precommit": "npm run lint",
-    "prepush":"jest"
+    "prepush": "jest"
   },
   "repository": {
     "type": "git",

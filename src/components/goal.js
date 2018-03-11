@@ -12,24 +12,7 @@ class Goal extends Component {
       modifieGoal: false,
       tiltFrequency: 0,
       tiltLength: 0,
-      tiltAngle: 0,
-      tiltFrequencyRec: 0,
-      tiltLengthRec: 0,
-      tiltAngleRec: 0,
-      reduceMovingSliding: true,
-      movingSlidingAngle: 0,
-      reduceRestSliding: true,
-      restSlidingAngle: 0,
-      reducePainChecked: true,
-      reducePainRec: null,
-      allowRestChecked: true,
-      allowRestRec: null,
-      easeTransfersChecked: true,
-      easeTransfersRec: null,
-      improveComfortChecked: true,
-      improveComfortRec: null,
-      otherChecked: false,
-      otherRec: null
+      tiltAngle: 0
     };
   }
 
@@ -82,15 +65,15 @@ class Goal extends Component {
               <h4 style={style.center}>{T.translate(`clinician.${this.props.language}`)}</h4>
               <div className="col-sm-12">
                 <span className="col-sm-6" style={style.bold}>{T.translate(`goals.tiltFrequency.${this.props.language}`)}</span>
-                <span className="col-sm-6" style={style.bold}>{this.state.tiltFrequencyRec} {T.translate(`time.min.${this.props.language}`)}</span>
+                <span className="col-sm-6" style={style.bold}>{this.props.tiltFrequency} {T.translate(`time.min.${this.props.language}`)}</span>
               </div>
               <div className="col-sm-12">
                 <span className="col-sm-6" style={style.bold}>{T.translate(`goals.tiltLength.${this.props.language}`)}</span>
-                <span className="col-sm-6" style={style.bold}>{this.state.tiltLengthRec} {T.translate(`time.min.${this.props.language}`)} </span>
+                <span className="col-sm-6" style={style.bold}>{this.props.tiltLength} {T.translate(`time.min.${this.props.language}`)} </span>
               </div>
               <div className="col-sm-12">
                 <span className="col-sm-6" style={style.bold}>{T.translate(`goals.tiltAngle.${this.props.language}`)}</span>
-                <span className="col-sm-6" style={style.bold}>{this.state.tiltAngleRec} &deg; </span>
+                <span className="col-sm-6" style={style.bold}>{this.props.tiltAngle} &deg; </span>
               </div>
             </div>
 
@@ -152,80 +135,80 @@ class Goal extends Component {
           <div className="col-sm-2" />
           <div className="col-sm-8">
             <PanelGroup accordion id="accordion-uncontrolled-example">
-              {this.state.reduceMovingSliding
+              {this.props.reduceSlidingMoving
                 &&
                 <Panel eventKey="1">
                   <Panel.Heading>
                     <Panel.Title toggle><i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingMoving.${this.props.language}`)}</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.state.movingSlidingAngle} &deg;
+                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleMoving} &deg;
                   </Panel.Body>
                 </Panel>
               }
-              {this.state.reduceRestSliding
+              {this.props.reduceSlidingRest
                 &&
                 <Panel eventKey="2">
                   <Panel.Heading>
                     <Panel.Title toggle><i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingRest.${this.props.language}`)}</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.state.restSlidingAngle} &deg;
+                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleRest} &deg;
                   </Panel.Body>
                 </Panel>
               }
-              {this.state.reducePainChecked
+              {this.props.reducePain
                 &&
                 <Panel eventKey="3">
                   <Panel.Heading>
                     <Panel.Title toggle><i className="fa fa-chevron-down" /> {T.translate(`recommendations.pain.${this.props.language}`)}</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    {this.state.reducePainRec}
+                    {this.props.painRecommendation}
                   </Panel.Body>
                 </Panel>
               }
-              {this.state.allowRestChecked
+              {this.props.allowRest
                 &&
                 <Panel eventKey="4">
                   <Panel.Heading>
                     <Panel.Title toggle><i className="fa fa-chevron-down" /> {T.translate(`recommendations.rest.${this.props.language}`)}</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    {this.state.allowRestRec}
+                    {this.props.restRecommendation}
                   </Panel.Body>
                 </Panel>
               }
-              {this.state.easeTransfersChecked
+              {this.props.easeTransfers
               &&
               <Panel eventKey="5">
                 <Panel.Heading>
                   <Panel.Title toggle><i className="fa fa-chevron-down" /> {T.translate(`recommendations.transfer.${this.props.language}`)}</Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.state.easeTransfersRec}
+                  {this.props.transferRecommendation}
                 </Panel.Body>
               </Panel>
               }
-              {this.state.improveComfortChecked
+              {this.props.improveComfort
               &&
               <Panel eventKey="6">
                 <Panel.Heading>
                   <Panel.Title toggle><i className="fa fa-chevron-down" /> {T.translate(`recommendations.comfort.${this.props.language}`)}</Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.state.improveComfortRec}
+                  {this.props.comfortRecommendation}
                 </Panel.Body>
               </Panel>
               }
-              {this.state.otherChecked
+              {this.props.other
               &&
               <Panel eventKey="5">
                 <Panel.Heading>
                   <Panel.Title toggle><i className="fa fa-chevron-down" /> {T.translate(`recommendations.other.${this.props.language}`)}</Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.state.otherRec}
+                  {this.props.otherRecommendations}
                 </Panel.Body>
               </Panel>
               }
@@ -239,7 +222,27 @@ class Goal extends Component {
 }
 function mapStateToProps(state) {
   return {
-    language: state.applicationReducer.language
+    language: state.applicationReducer.language,
+    reduceWeight: state.applicationReducer.reduceWeight,
+    reduceSwelling: state.applicationReducer.reduceSwelling,
+    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving,
+    reduceSlidingRest: state.applicationReducer.reduceSlidingRest,
+    reducePain: state.applicationReducer.reducePain,
+    allowRest: state.applicationReducer.allowRest,
+    easeTransfers: state.applicationReducer.easeTransfers,
+    improveComfort: state.applicationReducer.improveComfort,
+    other:state.applicationReducer.other,
+    tiltFrequency: state.applicationReducer.tiltFrequency,
+    tiltLength: state.applicationReducer.tiltLength,
+    tiltAngle: state.applicationReducer.tiltAngle,
+    tiltAngleMoving: state.applicationReducer.tiltAngleMoving,
+    tiltAngleRest: state.applicationReducer.tiltAngleRest,
+    painRecommendation: state.applicationReducer.painRecommendation,
+    restRecommendation: state.applicationReducer.restRecommendation,
+    transferRecommendation: state.applicationReducer.transferRecommendation,
+    comfortRecommendation: state.applicationReducer.comfortRecommendation,
+    otherRecommendations: state.applicationReducer.otherRecommendations
   };
 }
+
 export default connect(mapStateToProps)(Goal);
