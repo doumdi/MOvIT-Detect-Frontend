@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Chart } from 'primereact/components/chart/Chart';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import { T } from '../index';
 
-class dailyResults extends Component {
+class DailyResults extends Component {
   constructor() {
     super();
     this.state = {
@@ -19,7 +20,7 @@ class dailyResults extends Component {
         'text-align': 'center'
       },
       bottom: {
-        'padding-bottom': '400px'
+        'paddingBottom': '400px'
       },
     };
 
@@ -90,4 +91,10 @@ class dailyResults extends Component {
   }
 }
 
-export default dailyResults;
+function mapStateToProps(state) {
+  return {
+    language: state.applicationReducer.language
+  };
+}
+
+export default connect(mapStateToProps)(DailyResults);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ApplicationActions, FR, EN } from '../redux/applicationReducer';
+import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 class Header extends Component {

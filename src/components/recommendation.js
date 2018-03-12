@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { InputText } from 'primereact/components/inputtext/InputText';
 import { Slider } from 'primereact/components/slider/Slider';
-import { ApplicationActions  } from '../redux/applicationReducer';
+import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 class Recommendation extends Component {

@@ -1,46 +1,46 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const LANGUAGE = 'LANGUAGE'
-export const FR = 'FR'
-export const EN = 'EN'
-export const REDUCE_WEIGHT = 'REDUCE_WEIGHT'
-export const REDUCE_SWELLING = 'REDUCE_SWELLING'
-export const REDUCE_SLIDING_MOVING = 'REDUCE_SLIDING_MOVING'
-export const REDUCE_SLIDING_REST = 'REDUCE_SLIDING_REST'
-export const REDUCE_PAIN = 'REDUCE_PAIN'
-export const ALLOW_REST = 'ALLOW_REST'
-export const EASE_TRANSFERS = 'EASE_TRANSFERS'
-export const IMPROVE_COMFORT = 'IMPROVE_COMFORT'
-export const OTHER = 'OTHER'
-export const TILT_FREQUENCY = 'TILT_FREQUENCY'
-export const TILT_LENGTH = 'TILT_LENGTH'
-export const TILT_ANGLE = 'TILT_ANGLE'
-export const TILT_ANGLE_MOVING = 'TILT_ANGLE_MOVING'
-export const TILT_ANGLE_REST = 'TILT_ANGLE_REST'
-export const REDUCE_PAIN_RECOMMENDATION = 'REDUCE_PAIN_RECOMMENDATION'
-export const ALLOW_REST_RECOMMENDATION = 'ALLOW_REST_RECOMMENDATION'
-export const EASE_TRANSFERS_RECOMMENDATION= 'EASE_TRANSFERS_RECOMMENDATION'
-export const IMPROVE_COMFORT_RECOMMENDATION = 'IMPROVE_COMFORT_RECOMMENDATION'
-export const OTHER_RECOMMENDATION = 'OTHER_RECOMMENDATION'
+export const LANGUAGE = 'LANGUAGE';
+export const FR = 'FR';
+export const EN = 'EN';
+export const REDUCE_WEIGHT = 'REDUCE_WEIGHT';
+export const REDUCE_SWELLING = 'REDUCE_SWELLING';
+export const REDUCE_SLIDING_MOVING = 'REDUCE_SLIDING_MOVING';
+export const REDUCE_SLIDING_REST = 'REDUCE_SLIDING_REST';
+export const REDUCE_PAIN = 'REDUCE_PAIN';
+export const ALLOW_REST = 'ALLOW_REST';
+export const EASE_TRANSFERS = 'EASE_TRANSFERS';
+export const IMPROVE_COMFORT = 'IMPROVE_COMFORT';
+export const OTHER = 'OTHER';
+export const TILT_FREQUENCY = 'TILT_FREQUENCY';
+export const TILT_LENGTH = 'TILT_LENGTH';
+export const TILT_ANGLE = 'TILT_ANGLE';
+export const TILT_ANGLE_MOVING = 'TILT_ANGLE_MOVING';
+export const TILT_ANGLE_REST = 'TILT_ANGLE_REST';
+export const REDUCE_PAIN_RECOMMENDATION = 'REDUCE_PAIN_RECOMMENDATION';
+export const ALLOW_REST_RECOMMENDATION = 'ALLOW_REST_RECOMMENDATION';
+export const EASE_TRANSFERS_RECOMMENDATION = 'EASE_TRANSFERS_RECOMMENDATION';
+export const IMPROVE_COMFORT_RECOMMENDATION = 'IMPROVE_COMFORT_RECOMMENDATION';
+export const OTHER_RECOMMENDATION = 'OTHER_RECOMMENDATION';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-function changeLanguage () {
+function changeLanguage() {
   return {
-    type : LANGUAGE
-  }
+    type: LANGUAGE
+  };
 }
 //-------------- CHECKBOX --------------
-function changeReduceWeight(){
+function changeReduceWeight() {
   return {
-    type : REDUCE_WEIGHT
-  }
+    type: REDUCE_WEIGHT
+  };
 }
-function changeReduceSwelling(){
+function changeReduceSwelling() {
   return {
-    type : REDUCE_SWELLING
+    type: REDUCE_SWELLING
   }
 }
 function changeReduceSlidingMoving(){
@@ -178,15 +178,15 @@ const ACTION_HANDLERS = {
   [ALLOW_REST]: (state, action) => ({...state, allowRest: state.allowRest == true ? false : true}),
   [EASE_TRANSFERS]: (state, action) => ({...state, easeTransfers: state.easeTransfers == true ? false : true}),
   [IMPROVE_COMFORT]: (state, action) => ({...state, improveComfort: state.improveComfort == true ? false : true}),
-  [OTHER]: (state, action) => ({...state, other: state.other == true ? false : true}),  
-  [TILT_FREQUENCY]: (state, action) => ({...state, tiltFrequency : action.tiltFrequency}),  
+  [OTHER]: (state, action) => ({...state, other: state.other == true ? false : true}),
+  [TILT_FREQUENCY]: (state, action) => ({...state, tiltFrequency : action.tiltFrequency}),
   [TILT_LENGTH]: (state, action) => ({...state, tiltLength : action.tiltLength}),
   [TILT_ANGLE]: (state, action) => ({...state, tiltAngle : action.tiltAngle}),
   [TILT_ANGLE_MOVING]: (state, action) => ({...state, tiltAngleMoving : action.tiltAngleMoving}),
-  [TILT_ANGLE_REST]: (state, action) => ({...state, tiltAngleRest : action.tiltAngleRest}),  
-  [REDUCE_PAIN_RECOMMENDATION]: (state, action) => ({...state, painRecommendation : action.painRecommendation}),  
-  [ALLOW_REST_RECOMMENDATION]: (state, action) => ({...state, restRecommendation : action.restRecommendation}),  
-  [EASE_TRANSFERS_RECOMMENDATION]: (state, action) => ({...state, transferRecommendation : action.transferRecommendation}),  
+  [TILT_ANGLE_REST]: (state, action) => ({...state, tiltAngleRest : action.tiltAngleRest}),
+  [REDUCE_PAIN_RECOMMENDATION]: (state, action) => ({...state, painRecommendation : action.painRecommendation}),
+  [ALLOW_REST_RECOMMENDATION]: (state, action) => ({...state, restRecommendation : action.restRecommendation}),
+  [EASE_TRANSFERS_RECOMMENDATION]: (state, action) => ({...state, transferRecommendation : action.transferRecommendation}),
   [IMPROVE_COMFORT_RECOMMENDATION]: (state, action) => ({...state, comfortRecommendation : action.comfortRecommendation}),
   [OTHER_RECOMMENDATION]: (state, action) => ({...state, otherRecommendations : action.otherRecommendations})
 }

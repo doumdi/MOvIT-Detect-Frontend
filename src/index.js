@@ -9,11 +9,11 @@ import store from './redux/store';
 
 T.setTexts(require('./res/texts.yaml'));
 
+export { T };
+
 render(
   <Provider store={store} >
     <Layout />
   </Provider>,
   document.getElementById('root')
 );
-
-export default { T };

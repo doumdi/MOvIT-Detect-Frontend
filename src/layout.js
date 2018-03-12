@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './views/header';
-// import Footer from './views/footer';
+import Footer from './views/footer';
 import Graphic from './components/graphic';
 import Home from './components/home';
 import Goal from './components/goal';
@@ -25,7 +25,7 @@ export default class Layout extends Component {
             <Route path="/configurations" component={Configuration} />
           </Switch>
 
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     );
