@@ -142,10 +142,10 @@ cancel:
   EN: Cancel
 
 welcome:
-  FR: Bienvenue à MoVit, un projet de AgeWell
-  EN: Welcome to MoVit, an AgeWell project
+  FR: Bienvenue sur la plateforme MOvIT+
+  EN: Welcome to the MOvIT+ platform
   chooseProfile:
-    FR: Choisissez votre profile
+    FR: Choisissez votre profil
     EN: Choose your profile
 
 user:
