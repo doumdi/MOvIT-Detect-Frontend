@@ -1,35 +1,17 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { InputText } from 'primereact/components/inputtext/InputText';
 import { Slider } from 'primereact/components/slider/Slider';
+import { ApplicationActions  } from '../redux/applicationReducer';
 import { T } from '../index';
 
 class Recommendation extends Component {
-  constructor() {
-    super();
-    this.state = {
-      reduceWeight: true,
-      reduceSwelling: true,
-      tiltFrequency: 0,
-      tiltLength: 0,
-      tiltAngle: 0,
-      reduceMovingSliding: false,
-      movingSlidingAngle: 0,
-      reduceRestSliding: false,
-      restSlidingAngle: 0,
-      reducePainChecked: false,
-      reducePainRec: null,
-      allowRestChecked: false,
-      allowRestRec: null,
-      easeTransfersChecked: false,
-      easeTransfersRec: null,
-      improveComfortChecked: false,
-      improveComfortRec: null,
-      otherChecked: false,
-      otherRec: null
-    };
+  constructor(props) {
+    super(props);
   }
+
   render() {
     const style = {
       height: '80vh',
@@ -51,140 +33,142 @@ class Recommendation extends Component {
         <div className="col-sm-2" />
         <div className="col-sm-8">
           <div className="col-sm-12">
-            <Checkbox inputId="reduceWeightCheck" label="Reduce weight" onChange={(e) => this.setState({ reduceWeight: e.checked })} checked={this.state.reduceWeight} />
+            <Checkbox inputId="reduceWeightCheck" label="Reduce weight" onChange={this.props.changeReduceWeight} checked={this.props.reduceWeight} />
             <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
           </div>
           <div className="col-sm-12" >
-            <Checkbox inputId="reduceSwellingCheck" label="Reduce swelling" onChange={(e) => this.setState({ reduceSwelling: e.checked })} checked={this.state.reduceSwelling} />
+            <Checkbox inputId="reduceSwellingCheck" label="Reduce swelling" onChange={this.props.changeReduceSwelling} checked={this.props.reduceSwelling} />
             <label htmlFor="reduceSwellingCheck">{T.translate(`recommendations.reduceSwelling.${this.props.language}`)}</label>
           </div>
-          {this.state.reduceSwelling
+          {this.props.reduceSwelling
             ?
               <div>
                 <div className="col-sm-12">
                   <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.frequency.${this.props.language}`)}</span>
-                  <Slider className="col-sm-6" min={0} max={180} onChange={(e) => this.setState({ tiltFrequency: e.value })} step={5} />
-                  <span className="col-sm-2" style={style.bold}>{this.state.tiltFrequency} min </span>
+                  <Slider className="col-sm-6" min={0} max={180} onChange={(e) => this.props.changeTiltFrequency(e.value)} step={5} />
+                  <span className="col-sm-2" style={style.bold}>{this.props.tiltFrequency} min </span>
                 </div>
                 <div className="col-sm-12">
                   <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.duration.${this.props.language}`)}</span>
-                  <Slider className="col-sm-6" min={0} max={30} onChange={(e) => this.setState({ tiltLength: e.value })} />
-                  <span className="col-sm-2" style={style.bold}>{this.state.tiltLength} min </span>
+                  <Slider className="col-sm-6" min={0} max={30} onChange={(e) => this.props.changeTiltLength(e.value)} />
+                  <span className="col-sm-2" style={style.bold}>{this.props.tiltLength} min </span>
                 </div>
                 <div className="col-sm-12">
                   <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                  <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.setState({ tiltAngle: e.value })} />
-                  <span className="col-sm-2" style={style.bold}>{this.state.tiltAngle} &deg; </span>
+                  <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.props.changeTiltAngle(e.value)} />
+                  <span className="col-sm-2" style={style.bold}>{this.props.tiltAngle} &deg; </span>
                 </div>
               </div>
             : null}
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="reduceMovingSlideCheck" label="Reduce sliding while moving" onChange={(e) => this.setState({ reduceMovingSliding: e.checked })} checked={this.state.reduceMovingSliding} />
+              <Checkbox inputId="reduceMovingSlideCheck" label="Reduce sliding while moving" onChange={this.props.changeReduceSlidingMoving} checked={this.props.reduceSlidingMoving} />
               <label htmlFor="reduceMovingSlideCheck">{T.translate(`recommendations.slidingMoving.${this.props.language}`)}</label>
             </div>
           </div>
-          {this.state.reduceMovingSliding
+          {this.props.reduceSlidingMoving
             ?
               <div className="col-sm-12">
                 <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.setState({ movingSlidingAngle: e.value })} />
-                <span className="col-sm-2" style={style.bold}>{this.state.movingSlidingAngle} &deg; </span>
+                <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.props.changeTiltAngleMoving(e.value)}  />
+                <span className="col-sm-2" style={style.bold}>{this.props.tiltAngleMoving} &deg; </span>
               </div>
             : null}
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="reduceRestSlideCheck" label="Reduce sliding at rest" onChange={(e) => this.setState({ reduceRestSliding: e.checked })} checked={this.state.reduceRestSliding} />
+              <Checkbox inputId="reduceRestSlideCheck" label="Reduce sliding at rest" onChange={this.props.changeReduceSlidingRest} checked={this.props.reduceSlidingRest} />
               <label htmlFor="reduceRestSlideCheck">{T.translate(`recommendations.slidingRest.${this.props.language}`)}</label>
             </div>
           </div>
-          {this.state.reduceRestSliding
+          {this.props.reduceSlidingRest
             ?
               <div className="col-sm-12">
                 <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.setState({ restSlidingAngle: e.value })} />
-                <span className="col-sm-2" style={style.bold}>{this.state.restSlidingAngle} &deg; </span>
+                <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.props.changeTiltAngleRest(e.value)}  />
+                <span className="col-sm-2" style={style.bold}>{this.props.tiltAngleRest} &deg; </span>
               </div>
             : null}
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="reducePainCheck" label="Reduce the pain" onChange={(e) => this.setState({ reducePainChecked: e.checked })} checked={this.state.reducePainChecked} />
+              <Checkbox inputId="reducePainCheck" label="Reduce the pain" onChange={this.props.changeReducePain} checked={this.props.reducePain} />
               <label htmlFor="reducePainCheck">{T.translate(`recommendations.pain.${this.props.language}`)}</label>
             </div>
-            {this.state.reducePainChecked
+            {this.props.reducePain
             ?
               <div className="col-sm-8" style={style.input}>
                 <InputText
                   id="reducePainRec" type="text" className="form-control"
                   placeholder={T.translate(`recommendations.pain.recommendation.${this.props.language}`)}
-                  onChange={(e) => this.setState({ reducePainRec: e.value })}
-                  value={this.state.reducePainRec}
+                  onChange={(e) => this.props.reducePainRecommendation(e.target.value)}
+                  value={this.props.painRecommendation}
                 />
               </div>
             : null}
           </div>
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="allowRestCheck" label="Allowing rest" onChange={(e) => this.setState({ allowRestChecked: e.checked })} checked={this.state.allowRestChecked} />
+              <Checkbox inputId="allowRestCheck" label="Allowing rest" onChange={this.props.changeAllowRest} checked={this.props.allowRest} />
               <label htmlFor="allowRestCheck">{T.translate(`recommendations.rest.${this.props.language}`)}</label>
             </div>
-            {this.state.allowRestChecked
+            {this.props.allowRest
             ?
               <div className="col-sm-8" style={style.input}>
                 <InputText
                   id="allowRestRec" type="text" className="form-control"
                   placeholder={T.translate(`recommendations.rest.recommendation.${this.props.language}`)}
-                  onChange={(e) => this.setState({ allowRestRec: e.value })}
-                  value={this.state.allowRestRec}
+                  onChange={(e) =>this.props.allowRestRecommendation(e.target.value)}
+                  value={this.props.restRecommendation}
                 />
               </div>
             : null}
           </div>
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="easeTransfersCheck" label="Ease transfers" onChange={(e) => this.setState({ easeTransfersChecked: e.checked })} checked={this.state.easeTransfersChecked} />
+              <Checkbox inputId="easeTransfersCheck" label="Ease transfers" onChange={this.props.changeEaseTransfers} checked={this.props.easeTransfers} />
               <label htmlFor="easeTransfersCheck">{T.translate(`recommendations.transfer.${this.props.language}`)}</label>
             </div>
-            {this.state.easeTransfersChecked
+            {this.props.easeTransfers
             ?
               <div className="col-sm-8" style={style.input}>
                 <InputText
                   id="easeTransfersRec" type="text" className="form-control"
                   placeholder={T.translate(`recommendations.transfer.recommendation.${this.props.language}`)}
-                  onChange={(e) => this.setState({ easeTransfersRec: e.value })}
-                  value={this.state.easeTransfersRec}
+                  onChange={(e) => this.props.easeTransfersRecommendation(e.target.value)}
+                  value={this.props.transferRecommendation}
                 />
               </div>
             : null}
           </div>
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="improveComfortCheck" label="Improve comfort" onChange={(e) => this.setState({ improveComfortChecked: e.checked })} checked={this.state.improveComfortChecked} />
+              <Checkbox inputId="improveComfortCheck" label="Improve comfort" onChange={this.props.changeImproveComfort} checked={this.props.improveComfort} />
               <label htmlFor="improveComfortCheck">{T.translate(`recommendations.comfort.${this.props.language}`)}</label>
             </div>
-            {this.state.improveComfortChecked
+            {this.props.improveComfort
             ?
               <div className="col-sm-8" style={style.input}>
                 <InputText
                   id="improveComfortRec" type="text" className="form-control"
                   placeholder={T.translate(`recommendations.comfort.recommendation.${this.props.language}`)}
-                  onChange={(e) => this.setState({ improveComfortRec: e.value })}
-                  value={this.state.improveComfortRec}
+                  onChange={(e) => this.props.improveComfortRecommendation(e.target.value)}
+                  value={this.props.comfortRecommendation}
                 />
               </div>
             : null}
           </div>
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="otherCheck" label="Other" onChange={(e) => this.setState({ otherChecked: e.checked })} checked={this.state.otherChecked} />
+              <Checkbox inputId="otherCheck" label="Other" onChange={this.props.changeOther} checked={this.props.other} />
               <label htmlFor="otherCheck">{T.translate(`recommendations.other.${this.props.language}`)}</label>
             </div>
-            {this.state.otherChecked
+            {this.props.other
             ?
               <div className="col-sm-8" style={style.input}>
-                <InputText
+              <InputText
                   id="otherRec" type="text" className="form-control"
-                  placeholder={T.translate(`recommendations.other.recommendation.${this.props.language}`)} onChange={(e) => this.setState({ otherRec: e.value })} value={this.state.otherRec}
+                  placeholder={T.translate(`recommendations.other.recommendation.${this.props.language}`)}
+                  onChange={(e) => this.props.otherRecommendation(e.target.value)}
+                  value={this.props.otherRecommendations}
                 />
               </div>
             : null}
@@ -201,7 +185,49 @@ class Recommendation extends Component {
 }
 function mapStateToProps(state) {
   return {
-    language: state.applicationReducer.language
+    language: state.applicationReducer.language,
+    reduceWeight: state.applicationReducer.reduceWeight,
+    reduceSwelling: state.applicationReducer.reduceSwelling,
+    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving,
+    reduceSlidingRest: state.applicationReducer.reduceSlidingRest,
+    reducePain: state.applicationReducer.reducePain,
+    allowRest: state.applicationReducer.allowRest,
+    easeTransfers: state.applicationReducer.easeTransfers,
+    improveComfort: state.applicationReducer.improveComfort,
+    other:state.applicationReducer.other,
+    tiltFrequency: state.applicationReducer.tiltFrequency,
+    tiltLength: state.applicationReducer.tiltLength,
+    tiltAngle: state.applicationReducer.tiltAngle,
+    tiltAngleMoving: state.applicationReducer.tiltAngleMoving,
+    tiltAngleRest: state.applicationReducer.tiltAngleRest,
+    painRecommendation: state.applicationReducer.painRecommendation,
+    restRecommendation: state.applicationReducer.restRecommendation,
+    transferRecommendation: state.applicationReducer.transferRecommendation,
+    comfortRecommendation: state.applicationReducer.comfortRecommendation,
+    otherRecommendations: state.applicationReducer.otherRecommendations,
   };
 }
-export default connect(mapStateToProps)(Recommendation);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    changeReduceWeight: ApplicationActions.changeReduceWeight,
+    changeReduceSwelling: ApplicationActions.changeReduceSwelling,
+    changeReduceSlidingMoving: ApplicationActions.changeReduceSlidingMoving,
+    changeReduceSlidingRest: ApplicationActions.changeReduceSlidingRest,
+    changeReducePain: ApplicationActions.changeReducePain,
+    changeAllowRest: ApplicationActions.changeAllowRest,
+    changeEaseTransfers: ApplicationActions.changeEaseTransfers,
+    changeImproveComfort: ApplicationActions.changeImproveComfort,
+    changeOther: ApplicationActions.changeOther,
+    changeTiltFrequency: ApplicationActions.changeTiltFrequency,
+    changeTiltLength : ApplicationActions.changeTiltLength,
+    changeTiltAngle: ApplicationActions.changeTiltAngle,
+    changeTiltAngleMoving: ApplicationActions.changeTiltAngleMoving,
+    changeTiltAngleRest: ApplicationActions.changeTiltAngleRest,
+    reducePainRecommendation: ApplicationActions.reducePainRecommendation,
+    allowRestRecommendation: ApplicationActions.allowRestRecommendation,
+    easeTransfersRecommendation: ApplicationActions.easeTransfersRecommendation,
+    improveComfortRecommendation: ApplicationActions.improveComfortRecommendation,
+    otherRecommendation: ApplicationActions.otherRecommendation
+  }, dispatch);
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Recommendation);
