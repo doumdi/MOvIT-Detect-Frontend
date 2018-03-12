@@ -34,6 +34,7 @@
     "react/prefer-stateless-function": "off",
     "linebreak-style": "off",
     "no-console": "off",
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "max-len": [2, { "code": 140 }],
   }
 }
