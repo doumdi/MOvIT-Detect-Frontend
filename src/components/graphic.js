@@ -47,7 +47,13 @@ class Graphic extends Component {
           <h1>{T.translate(`graphics.${this.props.language}`)}</h1>
           <span>Date: </span>
           <Calendar value={this.state.date} onChange={(e) => this.setState({ date: e.value })} />
-          <Dropdown value={this.state.period} options={periods} onChange={this.onPeriodChange} style={{ width: '150px', marginLeft: '15px' }} placeholder="Select a period" />
+          <Dropdown
+            value={this.state.period}
+            options={periods}
+            onChange={this.onPeriodChange}
+            style={{ width: '150px', marginLeft: '15px' }}
+            placeholder="Select a period"
+          />
 
         </div>
         <div className="content-section implementation">
@@ -57,7 +63,8 @@ class Graphic extends Component {
       </div>
     );
   }
-};
+}
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language

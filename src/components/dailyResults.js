@@ -17,10 +17,10 @@ class DailyResults extends Component {
   render() {
     const style = {
       center: {
-        'text-align': 'center'
+        textAlign: 'center'
       },
       bottom: {
-        'paddingBottom': '400px'
+        paddingBottom: '400px'
       },
     };
 
