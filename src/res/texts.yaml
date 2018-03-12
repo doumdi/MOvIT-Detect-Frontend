@@ -121,8 +121,8 @@ configurations:
   FR: Configurations
   EN: Configurations
   name:
-    FR: Nom du patient
-    EN: Patient Name
+    FR: Nom de l'usager
+    EN: User's Name
   telask:
     FR: Identifiant TelAsk
     EN: TelAsk ID
@@ -130,8 +130,8 @@ configurations:
     FR: Angle maximal de bascule
     EN: Maximum tilt angle
   weight:
-    FR: Poids du patient
-    EN: Patient weight
+    FR: Poids de l'usager
+    EN: User's weight
 
 save:
   FR: Sauvegarder
@@ -148,9 +148,9 @@ welcome:
     FR: Choisissez votre profile
     EN: Choose your profile
 
-patient:
-  FR: Patient
-  EN: Patient
+user:
+  FR: Usager
+  EN: User
 clinician:
   FR: Clinicien
   EN: Clinician

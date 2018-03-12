@@ -30,7 +30,8 @@ class Header extends Component {
         marginTop: 0,
         marginBottom: 0,
         fontSize: '16px',
-        fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif'
+        fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+        cursor: 'pointer'
       }
     };
     return (
@@ -41,15 +42,30 @@ class Header extends Component {
               <Link to="" style={style.title}>MovIT-Plus</Link>
             </div>
             <ul className="nav navbar-nav">
-              <li> <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link> </li>
-              <li> <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link> </li>
-              <li> <Link to="recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link> </li>
-              <li> <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link> </li>
-              <li> <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link> </li>
+              {this.props.profile
+                &&
+                <li> <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link> </li>
+              }
+              {this.props.profile === 'user'
+                &&
+                <li> <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link> </li>
+              }
+              {this.props.profile === 'clinician'
+                &&
+                <li> <Link to="recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link> </li>
+              }
+              {this.props.profile
+                &&
+                <li> <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link> </li>
+              }
+              {this.props.profile === 'clinician'
+                &&
+                <li> <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link> </li>
+              }
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li onClick={this.props.changeLanguage}>
-                <a>{this.props.language}</a>
+                <a style={style.link}>{this.props.language}</a>
               </li>
             </ul>
           </div>
@@ -60,7 +76,8 @@ class Header extends Component {
 }
 function mapStateToProps(state) {
   return {
-    language: state.applicationReducer.language
+    language: state.applicationReducer.language,
+    profile: state.applicationReducer.profile
   };
 }
 

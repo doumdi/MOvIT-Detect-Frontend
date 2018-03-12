@@ -23,6 +23,7 @@ export const ALLOW_REST_RECOMMENDATION = 'ALLOW_REST_RECOMMENDATION';
 export const EASE_TRANSFERS_RECOMMENDATION = 'EASE_TRANSFERS_RECOMMENDATION';
 export const IMPROVE_COMFORT_RECOMMENDATION = 'IMPROVE_COMFORT_RECOMMENDATION';
 export const OTHER_RECOMMENDATION = 'OTHER_RECOMMENDATION';
+export const PROFILE = 'PROFILE';
 
 // ------------------------------------
 // Actions
@@ -32,6 +33,14 @@ function changeLanguage() {
     type: LANGUAGE
   };
 }
+
+function changeProfile(profileName) {
+  return {
+    type: PROFILE,
+    profile: profileName
+  };
+}
+
 // -------------- CHECKBOX --------------
 function changeReduceWeight() {
   return {
@@ -78,73 +87,74 @@ function changeOther() {
     type: OTHER
   };
 }
-
 // -------------- SLIDERS --------------
-function changeTiltFrequency(tiltFrequency) {
+
+function changeTiltFrequency(tiltFreq) {
   return {
     type: TILT_FREQUENCY,
-    tiltFrequency
+    tiltFrequency: tiltFreq
   };
 }
-function changeTiltLength(tiltLength) {
+function changeTiltLength(tiltLen) {
   return {
     type: TILT_LENGTH,
-    tiltLength
+    tiltLength: tiltLen
   };
 }
-function changeTiltAngle(tiltAngle) {
+function changeTiltAngle(tiltAng) {
   return {
     type: TILT_ANGLE,
-    tiltAngle
+    tiltAngle: tiltAng
   };
 }
-function changeTiltAngleMoving(tiltAngleMoving) {
+function changeTiltAngleMoving(tiltAngMoving) {
   return {
     type: TILT_ANGLE_MOVING,
-    tiltAngleMoving
+    tiltAngleMoving: tiltAngMoving
   };
 }
-function changeTiltAngleRest(tiltAngleRest) {
+function changeTiltAngleRest(tiltAngRest) {
   return {
     type: TILT_ANGLE_REST,
-    tiltAngleRest
+    tiltAngleRest: tiltAngRest
   };
 }
 
 // -------------- TEXT --------------
 
-function reducePainRecommendation(painRecommendation) {
+function reducePainRecommendation(painRec) {
   return {
     type: REDUCE_PAIN_RECOMMENDATION,
-    painRecommendation
+    painRecommendation: painRec
   };
 }
-function allowRestRecommendation(restRecommendation) {
+function allowRestRecommendation(restRec) {
   return {
     type: ALLOW_REST_RECOMMENDATION,
-    restRecommendation
+    restRecommendation: restRec
   };
 }
-function easeTransfersRecommendation(transferRecommendation) {
+function easeTransfersRecommendation(transferRec) {
   return {
     type: EASE_TRANSFERS_RECOMMENDATION,
-    transferRecommendation
+    transferRecommendation: transferRec
   };
 }
-function improveComfortRecommendation(comfortRecommendation) {
+function improveComfortRecommendation(comfortRec) {
   return {
     type: IMPROVE_COMFORT_RECOMMENDATION,
-    comfortRecommendation
+    comfortRecommendation: comfortRec
   };
 }
-function otherRecommendation(otherRecommendations) {
+function otherRecommendation(otherRec) {
   return {
     type: OTHER_RECOMMENDATION,
-    otherRecommendations
+    otherRecommendations: otherRec
   };
 }
 export const ApplicationActions = {
   changeLanguage,
+  changeProfile,
   changeReduceWeight,
   changeReduceSwelling,
   changeReduceSlidingMoving,
@@ -169,26 +179,68 @@ export const ApplicationActions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [LANGUAGE]: (state) => ({ ...state, language: state.language === FR ? EN : FR }),
-  [REDUCE_WEIGHT]: (state) => ({ ...state, reduceWeight: !state.reduceWeight }),
-  [REDUCE_SWELLING]: (state) => ({ ...state, reduceSwelling: !state.reduceSwelling }),
-  [REDUCE_SLIDING_MOVING]: (state) => ({ ...state, reduceSlidingMoving: !state.reduceSlidingMoving }),
-  [REDUCE_SLIDING_REST]: (state) => ({ ...state, reduceSlidingRest: !state.reduceSlidingRest }),
-  [REDUCE_PAIN]: (state) => ({ ...state, reducePain: !state.reducePain }),
-  [ALLOW_REST]: (state) => ({ ...state, allowRest: !state.allowRest }),
-  [EASE_TRANSFERS]: (state) => ({ ...state, easeTransfers: !state.easeTransfers }),
-  [IMPROVE_COMFORT]: (state) => ({ ...state, improveComfort: !state.improveComfort }),
-  [OTHER]: (state) => ({ ...state, other: !state.other }),
-  [TILT_FREQUENCY]: (state, action) => ({ ...state, tiltFrequency: action.tiltFrequency }),
-  [TILT_LENGTH]: (state, action) => ({ ...state, tiltLength: action.tiltLength }),
-  [TILT_ANGLE]: (state, action) => ({ ...state, tiltAngle: action.tiltAngle }),
-  [TILT_ANGLE_MOVING]: (state, action) => ({ ...state, tiltAngleMoving: action.tiltAngleMoving }),
-  [TILT_ANGLE_REST]: (state, action) => ({ ...state, tiltAngleRest: action.tiltAngleRest }),
-  [REDUCE_PAIN_RECOMMENDATION]: (state, action) => ({ ...state, painRecommendation: action.painRecommendation }),
-  [ALLOW_REST_RECOMMENDATION]: (state, action) => ({ ...state, restRecommendation: action.restRecommendation }),
-  [EASE_TRANSFERS_RECOMMENDATION]: (state, action) => ({ ...state, transferRecommendation: action.transferRecommendation }),
-  [IMPROVE_COMFORT_RECOMMENDATION]: (state, action) => ({ ...state, comfortRecommendation: action.comfortRecommendation }),
-  [OTHER_RECOMMENDATION]: (state, action) => ({ ...state, otherRecommendations: action.otherRecommendations })
+  [LANGUAGE]: (state) => (
+    { ...state, language: state.language === FR ? EN : FR }
+  ),
+  [PROFILE]: (state, action) => (
+    { ...state, profile: action.profile }
+  ),
+  [REDUCE_WEIGHT]: (state) => (
+    { ...state, reduceWeight: !state.reduceWeight }
+  ),
+  [REDUCE_SWELLING]: (state) => (
+    { ...state, reduceSwelling: !state.reduceSwelling }
+  ),
+  [REDUCE_SLIDING_MOVING]: (state) => (
+    { ...state, reduceSlidingMoving: !state.reduceSlidingMoving }
+  ),
+  [REDUCE_SLIDING_REST]: (state) => (
+    { ...state, reduceSlidingRest: !state.reduceSlidingRest }
+  ),
+  [REDUCE_PAIN]: (state) => (
+    { ...state, reducePain: !state.reducePain }
+  ),
+  [ALLOW_REST]: (state) => (
+    { ...state, allowRest: !state.allowRest }
+  ),
+  [EASE_TRANSFERS]: (state) => (
+    { ...state, easeTransfers: !state.easeTransfers }
+  ),
+  [IMPROVE_COMFORT]: (state) => (
+    { ...state, improveComfort: !state.improveComfort }
+  ),
+  [OTHER]: (state) => (
+    { ...state, other: !state.other }),
+  [TILT_FREQUENCY]: (state, action) => (
+    { ...state, tiltFrequency: action.tiltFrequency }
+  ),
+  [TILT_LENGTH]: (state, action) => (
+    { ...state, tiltLength: action.tiltLength }
+  ),
+  [TILT_ANGLE]: (state, action) => (
+    { ...state, tiltAngle: action.tiltAngle }
+  ),
+  [TILT_ANGLE_MOVING]: (state, action) => (
+    { ...state, tiltAngleMoving: action.tiltAngleMoving }
+  ),
+  [TILT_ANGLE_REST]: (state, action) => (
+    { ...state, tiltAngleRest: action.tiltAngleRest }
+  ),
+  [REDUCE_PAIN_RECOMMENDATION]: (state, action) => (
+    { ...state, painRecommendation: action.painRecommendation }
+  ),
+  [ALLOW_REST_RECOMMENDATION]: (state, action) => (
+    { ...state, restRecommendation: action.restRecommendation }
+  ),
+  [EASE_TRANSFERS_RECOMMENDATION]: (state, action) => (
+    { ...state, transferRecommendation: action.transferRecommendation }
+  ),
+  [IMPROVE_COMFORT_RECOMMENDATION]: (state, action) => (
+    { ...state, comfortRecommendation: action.comfortRecommendation }
+  ),
+  [OTHER_RECOMMENDATION]: (state, action) => (
+    { ...state, otherRecommendations: action.otherRecommendations }
+  )
 };
 
 // ------------------------------------
@@ -197,6 +249,7 @@ const ACTION_HANDLERS = {
 
 export const initApplication = {
   language: 'FR',
+  profile: '',
   reduceWeight: true,
   reduceSwelling: true,
   reduceSlidingMoving: false,
@@ -217,7 +270,6 @@ export const initApplication = {
   comfortRecommendation: '',
   otherRecommendations: ''
 };
-
 export default function applicationReducer(state = initApplication, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;

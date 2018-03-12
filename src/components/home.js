@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 
@@ -13,7 +15,7 @@ class Home extends Component {
   }
 
   setProfile(profileName) {
-    this.setState({ profile: profileName });
+    this.props.changeProfile(profileName);
     this.props.history.push('/graphic');
   }
 
@@ -40,13 +42,13 @@ class Home extends Component {
         <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>
         <div className="col-sm-2" />
         <div className="col-sm-4">
-          <button onClick={() => this.setProfile('patient')} style={style.profileButton}>
-            <h2>{T.translate(`patient.${this.props.language}`)}</h2>
+          <button onClick={() => this.setProfile('user')} style={style.profileButton}>
+            <h2>{T.translate(`user.${this.props.language}`)}</h2>
             <i className="fa fa-user" style={style.icons} />
           </button>
         </div>
         <div className="col-sm-4" >
-          <button onClick={() => this.setProfile('patient')} style={style.profileButton} >
+          <button onClick={() => this.setProfile('clinician')} style={style.profileButton} >
             <h2>{T.translate(`clinician.${this.props.language}`)}</h2>
             <i className="fa fa-user-md" style={style.icons} />
           </button>
@@ -57,7 +59,15 @@ class Home extends Component {
 }
 function mapStateToProps(state) {
   return {
-    language: state.applicationReducer.language
+    language: state.applicationReducer.language,
+    profile: state.applicationReducer.profile
   };
 }
-export default connect(mapStateToProps)(Home);
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    changeProfile: ApplicationActions.changeProfile
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
