@@ -151,3 +151,38 @@ clinician:
 personnal:
   FR: Personnel
   EN: Personnal
+
+dailyResults:
+  FR: Mes résultats quotidiens
+  EN: My daily results
+  howDo:
+    FR: Comment j'utilise ma bascule en général?
+    EN: How do I use my wheelchair in general
+  angleDistribution:
+    FR: Distribution des angles de bascule au cours de la journée
+    EN: Distribution of tilt angles during the day
+  pressure:
+    FR: Libérer la pression sur le siège/Réduire l'enflure aux jambes
+    EN: Release pressure under the seat / Reduce swelling of the legs
+  travel:
+    FR: Faciliter vos déplacements
+    EN: Making your travel easier
+  rest:
+    FR: Réduire le glissement au repos
+    EN: Reduce sliding at rest
+  personal:
+    FR: Objectif personnel
+    EN: Personal Goal
+    description:
+      FR: Vous avez atteint 50,00% de votre objectif personnel. Ressentez-vous le besoin de modifier votre objectif personnel?
+      EN: You have reached 50.00% of your personnal goal. Do you feel the need to change your personnal goal?
+  recommended:
+    FR: Objectif recommandé
+    EN: Recommended Goal
+    description:
+      FR: Vous avez atteint 30,00% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!
+      EN: You have reached 30.00% of your recommended goal. Don’t get discouraged! You can do it!
+
+monthlyResults:
+  FR: Mes résultats mensuels
+  EN: My monthly results
