@@ -83,14 +83,17 @@ class Goal extends Component {
                 <h4 style={style.center}>{T.translate(`personnal.${this.props.language}`)}</h4>
               </div>
               <div className="col-sm-1" >
-                <button style={style.modifieButton} onClick={() => this.toggleEditing()}>
-                  {this.state.modifieGoal
-                  ?
-                    <i className="fa fa-check" style={style.icons} />
-                  :
-                    <i className="fa fa-edit" style={style.icons} />
-                  }
-                </button>
+                {this.props.profile === 'user'
+                  &&
+                  <button style={style.modifieButton} onClick={() => this.toggleEditing()}>
+                    {this.state.modifieGoal
+                    ?
+                      <i className="fa fa-check" style={style.icons} />
+                    :
+                      <i className="fa fa-edit" style={style.icons} />
+                    }
+                  </button>
+                }
               </div>
               {this.state.modifieGoal
               ?
@@ -223,6 +226,7 @@ class Goal extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    profile: state.applicationReducer.profile,
     reduceWeight: state.applicationReducer.reduceWeight,
     reduceSwelling: state.applicationReducer.reduceSwelling,
     reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving,
@@ -231,7 +235,7 @@ function mapStateToProps(state) {
     allowRest: state.applicationReducer.allowRest,
     easeTransfers: state.applicationReducer.easeTransfers,
     improveComfort: state.applicationReducer.improveComfort,
-    other:state.applicationReducer.other,
+    other: state.applicationReducer.other,
     tiltFrequency: state.applicationReducer.tiltFrequency,
     tiltLength: state.applicationReducer.tiltLength,
     tiltAngle: state.applicationReducer.tiltAngle,

@@ -42,7 +42,7 @@ class Header extends Component {
               <Link to="" style={style.title}>MovIT-Plus</Link>
             </div>
             <ul className="nav navbar-nav">
-              {this.props.profile !== ''
+              {this.props.profile
                 &&
                 <li> <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link> </li>
               }
@@ -54,7 +54,7 @@ class Header extends Component {
                 &&
                 <li> <Link to="recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link> </li>
               }
-              {this.props.profile === 'user'
+              {this.props.profile
                 &&
                 <li> <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link> </li>
               }
