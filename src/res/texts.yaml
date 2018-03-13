@@ -7,19 +7,28 @@ preferences:
 
 parameters:
   FR: Paramètres
-  EN: Parameters
+  EN: Settings
   dataAgreement:
     FR: J'accepte de passer mes données d'utilisation
-    EN: J'accepte de transmettre mes données d'utilisation à mon établissement de santé
+    EN: I agree to transmit my usage data to my health facility
   lightAgreement:
     FR: Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer
     EN: I want the light on my chair to light up to remind me to tip
   notificationAgreement:
     FR: Je souhaite avoir une notification quand un rapport est disponible
-    EN: I wish to receive a notification when a report is available
+    EN: I want to receive a notification when a report is available
   doNotDisturb:
     FR: Ne pas me le rappeler pour
     EN: Do not remind me for
+  doNotSend:
+    FR: Ne pas transmettre pendant
+    EN: Do not send for
+  doNotLightUp:
+    FR: Ne pas allumer pendant
+    EN: Do not light up for
+  doNotReceive:
+    FR: Ne pas recevoir pendant
+    EN: Do not receive for
 
 time:
   min:
@@ -32,8 +41,8 @@ time:
     FR: semaine
     EN: week
   month:
-    FR: month
-    EN: mois
+    FR: mois
+    EN: month
 
 graphics:
   FR: Graphiques
