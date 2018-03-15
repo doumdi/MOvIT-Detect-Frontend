@@ -12,8 +12,17 @@ class Goal extends Component {
       modifieGoal: false,
       tiltFrequency: 0,
       tiltLength: 0,
-      tiltAngle: 0
+      tiltAngle: 0,
+      maxSliderAngle: 90
     };
+
+    this.setMaxAngle();
+  }
+
+  setMaxAngle() {
+    if (this.props.maxAngle) {
+      this.state.maxSliderAngle = this.props.maxAngle;
+    }
   }
 
   toggleEditing() {
@@ -62,7 +71,7 @@ class Goal extends Component {
           <div className="col-sm-2" />
           <div className="col-sm-8">
             <div className="col-sm-6" style={style.container}>
-              <h4 style={style.center}>{T.translate(`clinician.${this.props.language}`)}</h4>
+              <h4 style={style.center}>{T.translate(`goals.RecommendedGoals.${this.props.language}`)}</h4>
               <div className="col-sm-12">
                 <span className="col-sm-6" style={style.bold}>{T.translate(`goals.tiltFrequency.${this.props.language}`)}</span>
                 <span className="col-sm-6" style={style.bold}>{this.props.tiltFrequency} {T.translate(`time.min.${this.props.language}`)}</span>
@@ -80,7 +89,7 @@ class Goal extends Component {
             <div className="col-sm-6" style={style.container}>
               <div className="col-sm-2" />
               <div className="col-sm-9">
-                <h4 style={style.center}>{T.translate(`personnal.${this.props.language}`)}</h4>
+                <h4 style={style.center}>{T.translate(`goals.personalGoals.${this.props.language}`)}</h4>
               </div>
               <div className="col-sm-1" >
                 {this.props.profile === 'user'
@@ -110,7 +119,7 @@ class Goal extends Component {
                   </div>
                   <div className="col-sm-12">
                     <span className="col-sm-4" style={style.bold}>{T.translate(`goals.tiltAngle.${this.props.language}`)}</span>
-                    <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.setState({ tiltAngle: e.value })} />
+                    <Slider className="col-sm-6" min={0} max={this.state.maxSliderAngle} onChange={(e) => this.setState({ tiltAngle: e.value })} />
                     <span className="col-sm-2" style={style.bold}>{this.state.tiltAngle} &deg; </span>
                   </div>
                 </div>
@@ -245,7 +254,8 @@ function mapStateToProps(state) {
     restRecommendation: state.applicationReducer.restRecommendation,
     transferRecommendation: state.applicationReducer.transferRecommendation,
     comfortRecommendation: state.applicationReducer.comfortRecommendation,
-    otherRecommendations: state.applicationReducer.otherRecommendations
+    otherRecommendations: state.applicationReducer.otherRecommendations,
+    maxAngle: state.applicationReducer.maxAngle
   };
 }
 

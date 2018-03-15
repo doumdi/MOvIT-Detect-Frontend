@@ -4,6 +4,10 @@
 export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';
 export const EN = 'EN';
+export const USER_NAME = 'USER_NAME';
+export const USER_ID = 'USER_ID';
+export const USER_WEIGHT = 'USER_WEIGHT';
+export const MAX_ANGLE = 'MAX_ANGLE';
 export const REDUCE_WEIGHT = 'REDUCE_WEIGHT';
 export const REDUCE_SWELLING = 'REDUCE_SWELLING';
 export const REDUCE_SLIDING_MOVING = 'REDUCE_SLIDING_MOVING';
@@ -122,6 +126,31 @@ function changeTiltAngleRest(tiltAngRest) {
 
 // -------------- TEXT --------------
 
+function changeUserName(name) {
+  return {
+    type: USER_NAME,
+    userName: name
+  };
+}
+function changeUserID(id) {
+  return {
+    type: USER_ID,
+    userID: id
+  };
+}
+function changeUserWeight(weight) {
+  return {
+    type: USER_WEIGHT,
+    userWeight: weight
+  };
+}
+function changeMaxAngle(angle) {
+  return {
+    type: MAX_ANGLE,
+    maxAngle: angle
+  };
+}
+
 function reducePainRecommendation(painRec) {
   return {
     type: REDUCE_PAIN_RECOMMENDATION,
@@ -155,6 +184,10 @@ function otherRecommendation(otherRec) {
 export const ApplicationActions = {
   changeLanguage,
   changeProfile,
+  changeUserName,
+  changeUserID,
+  changeUserWeight,
+  changeMaxAngle,
   changeReduceWeight,
   changeReduceSwelling,
   changeReduceSlidingMoving,
@@ -184,6 +217,18 @@ const ACTION_HANDLERS = {
   ),
   [PROFILE]: (state, action) => (
     { ...state, profile: action.profile }
+  ),
+  [USER_NAME]: (state, action) => (
+    { ...state, userName: action.userName }
+  ),
+  [USER_ID]: (state, action) => (
+    { ...state, userID: action.userID }
+  ),
+  [USER_WEIGHT]: (state, action) => (
+    { ...state, userWeight: action.userWeight }
+  ),
+  [MAX_ANGLE]: (state, action) => (
+    { ...state, maxAngle: action.maxAngle }
   ),
   [REDUCE_WEIGHT]: (state) => (
     { ...state, reduceWeight: !state.reduceWeight }
@@ -250,6 +295,10 @@ const ACTION_HANDLERS = {
 export const initApplication = {
   language: 'FR',
   profile: '',
+  userName: '',
+  userID: '',
+  maxAngle: 0,
+  userWeight: 0,
   reduceWeight: true,
   reduceSwelling: true,
   reduceSlidingMoving: false,
