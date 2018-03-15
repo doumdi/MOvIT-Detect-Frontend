@@ -25,7 +25,7 @@ class MonthlyResults extends Component {
       ],
       datasets: [
         {
-          label: '0',
+          label: T.translate(`monthlyResults.tiltDistribution.zero.${this.props.language}`),
           backgroundColor: 'red',
           borderColor: 'red',
           data: [
@@ -38,7 +38,7 @@ class MonthlyResults extends Component {
           ]
         },
         {
-          label: '0-15',
+          label: T.translate(`monthlyResults.tiltDistribution.fifteen.${this.props.language}`),
           backgroundColor: 'green',
           borderColor: 'green',
           data: [
@@ -51,7 +51,7 @@ class MonthlyResults extends Component {
           ]
         },
         {
-          label: '15-30',
+          label: T.translate(`monthlyResults.tiltDistribution.thirty.${this.props.language}`),
           backgroundColor: 'blue',
           borderColor: 'blue',
           data: [
@@ -64,7 +64,7 @@ class MonthlyResults extends Component {
           ]
         },
         {
-          label: '30-45',
+          label: T.translate(`monthlyResults.tiltDistribution.fortyfive.${this.props.language}`),
           backgroundColor: 'orange',
           borderColor: 'orange',
           data: [
@@ -77,7 +77,7 @@ class MonthlyResults extends Component {
           ]
         },
         {
-          label: '45-180',
+          label: T.translate(`monthlyResults.tiltDistribution.more.${this.props.language}`),
           backgroundColor: 'purple',
           borderColor: 'purple',
           data: [
@@ -224,7 +224,7 @@ class MonthlyResults extends Component {
         <h4>{T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}</h4>
         <Chart type="line" data={personalTiltData} />
         <hr />
-        <h4>{T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}</h4>
+        <h4>{T.translate(`monthlyResults.pressure.recommended.${this.props.language}`)}</h4>
         <Chart type="line" data={personalTiltData} />
         <hr />
         <h2 style={style.center}>{T.translate(`monthlyResults.travel.${this.props.language}`)}</h2>

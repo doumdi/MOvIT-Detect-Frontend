@@ -26,11 +26,11 @@ class DailyResults extends Component {
 
     const data = {
       labels: [
-        '0',
-        '0-15',
-        '15-30',
-        '30-45',
-        '45-180',
+        T.translate(`dailyResults.angleDistribution.zero.${this.props.language}`),
+        T.translate(`dailyResults.angleDistribution.fifteen.${this.props.language}`),
+        T.translate(`dailyResults.angleDistribution.thirty.${this.props.language}`),
+        T.translate(`dailyResults.angleDistribution.fortyfive.${this.props.language}`),
+        T.translate(`dailyResults.angleDistribution.more.${this.props.language}`)
       ],
       datasets: [
         {
