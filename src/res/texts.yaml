@@ -45,8 +45,8 @@ time:
     EN: month
 
 graphics:
-  FR: Graphiques
-  EN: Graphics
+  FR: Résultats
+  EN: Results
   day:
     FR: jour
     EN: day
@@ -55,7 +55,7 @@ graphics:
     EN: month
 
 recommendations:
-  FR: Recommendations
+  FR: Recommandations
   EN: Recommendations
   reduceWeight:
     FR: Réduire la pression sur le siège
@@ -82,31 +82,31 @@ recommendations:
     FR: Réduire la douleur
     EN: Reduce the pain
     recommendation:
-      FR: Recommendations pour réduire la douleur
+      FR: Recommandations pour réduire la douleur
       EN: Recommendations for reducing pain
   rest:
     FR: Permettre le repos
     EN: Allowing rest
     recommendation:
-      FR: Recommendations pour le repos
+      FR: Recommandations pour le repos
       EN: Recommendations for allowing rest
   transfer:
     FR: Faciliter les transferts
     EN: Ease transfers
     recommendation:
-      FR: Recommendations pour faciliter le transport
+      FR: Recommandations pour faciliter le transport
       EN: Recommendations to ease transfers
   comfort:
     FR: Améliorer le confort
     EN: Improve comfort
     recommendation:
-      FR: Recommendations pour améliorer le confort
+      FR: Recommandations pour améliorer le confort
       EN: ecommendations to improve comfort
   other:
     FR: Autre
     EN: Other
     recommendation:
-      FR: Autres recommendations
+      FR: Autres recommandations
       EN: Other recommendations
   angleRecommandation:
     FR: Basculez à un angle de
@@ -130,17 +130,17 @@ configurations:
   FR: Configurations
   EN: Configurations
   name:
-    FR: Nom de l'usager
-    EN: User's Name
+    FR: Nom complet de l'usager
+    EN: User's full name
   telask:
-    FR: Identifiant TelAsk
-    EN: TelAsk ID
+    FR: Identifiant TelASK
+    EN: TelASK ID
   maxTilt:
     FR: Angle maximal de bascule
     EN: Maximum tilt angle
   weight:
-    FR: Poids de l'usager
-    EN: User's weight
+    FR: Poids de l'usager (kg)
+    EN: User's weight (kg)
 
 save:
   FR: Sauvegarder
@@ -156,6 +156,12 @@ welcome:
   chooseProfile:
     FR: Choisissez votre profil
     EN: Choose your profile
+  loginMessage:
+    FR: Vous êtes connecté en tant que
+    EN: You connected as a
+  logout:
+    FR: Déconnecter
+    EN: Logout
 
 user:
   FR: Usager
