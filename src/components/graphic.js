@@ -40,13 +40,35 @@ class Graphic extends Component {
     ];
 
     const Results = this.state.period === 'day' ? DailyResults : MonthlyResults;
+    const title = this.state.period === 'day' ?
+    T.translate(`dailyResults.${this.props.language}`) :
+    T.translate(`monthlyResults.${this.props.language}`);
+
+    const locale = {
+      FR: {
+        firstDayOfWeek: 1,
+        dayNames: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+        dayNamesShort: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+        monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+        monthNamesShort: ['jan', 'fév', 'mar', 'avr', 'mai', 'jui', 'jul', 'aoû', 'sep', 'oct', 'nov', 'déc']
+      },
+      EN: {
+        firstDayOfWeek: 1,
+        dayNames: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+        dayNamesShort: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+        dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+        monthNames: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
+        monthNamesShort: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+      }
+    };
 
     return (
       <div>
         <div style={style.content}>
-          <h1>{T.translate(`graphics.${this.props.language}`)}</h1>
+          <h1>{title}</h1>
           <span>Date: </span>
-          <Calendar value={this.state.date} onChange={(e) => this.setState({ date: e.value })} />
+          <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={(e) => this.setState({ date: e.value })} />
           <Dropdown
             value={this.state.period}
             options={periods}

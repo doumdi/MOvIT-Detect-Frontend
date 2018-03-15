@@ -211,9 +211,7 @@ class MonthlyResults extends Component {
 
     return (
       <div className="container">
-        <h1 style={style.center}>{T.translate(`monthlyResults.${this.props.language}`)}</h1>
-        <hr />
-        <h1 style={style.center}>{T.translate(`monthlyResults.howDo.${this.props.language}`)}</h1>
+        <h2 style={style.center}>{T.translate(`monthlyResults.howDo.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>
         <Chart type="bar" data={tiltData} />
@@ -221,7 +219,7 @@ class MonthlyResults extends Component {
         <h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>
         <Chart type="bar" data={wheelChairData} />
         <hr />
-        <h1 style={style.center}>{T.translate(`monthlyResults.pressure.${this.props.language}`)}</h1>
+        <h2 style={style.center}>{T.translate(`monthlyResults.pressure.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}</h4>
         <Chart type="line" data={personalTiltData} />
@@ -229,12 +227,12 @@ class MonthlyResults extends Component {
         <h4>{T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}</h4>
         <Chart type="line" data={personalTiltData} />
         <hr />
-        <h1 style={style.center}>{T.translate(`monthlyResults.travel.${this.props.language}`)}</h1>
+        <h2 style={style.center}>{T.translate(`monthlyResults.travel.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.travel.success.${this.props.language}`)}</h4>
         <Chart type="line" data={travelData} />
         <hr />
-        <h1 style={style.center}>{T.translate(`monthlyResults.rest.${this.props.language}`)}</h1>
+        <h2 style={style.center}>{T.translate(`monthlyResults.rest.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.rest.success.${this.props.language}`)}</h4>
         <Chart type="line" data={restData} />
