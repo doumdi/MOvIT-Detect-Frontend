@@ -114,8 +114,14 @@ recommendations:
 
 
 goals:
-  FR: Objectifs
-  EN: Goals
+  FR: Objectifs de bascule
+  EN: Tilt goals
+  personalGoals:
+    FR: Objectifs personnels
+    EN: Personnal goals
+  RecommendedGoals:
+    FR: Objectifs recommandés
+    EN: Recommended goals
   tiltFrequency:
     FR: Fréquence de bascule
     EN: Tilt frequency
