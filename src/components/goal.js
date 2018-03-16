@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Slider } from 'primereact/components/slider/Slider';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { Panel, PanelGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -69,9 +70,12 @@ class Goal extends Component {
     };
     return (
       <div>
-        <legend className="text-center header"><h2>{T.translate(`goals.${this.props.language}`)}</h2></legend>
-
-        <h2 style={style.center} >{T.translate(`recommendations.${this.props.language}`)}</h2>
+        <legend className="text-center header">
+          <h2>
+            {T.translate(`goals.${this.props.language}`)} &nbsp;
+            <i id="titleInfo" className="fa fa-info-circle" />
+          </h2>
+        </legend>
         <div className="row" style={style.bottom}>
           <div className="col-sm-2" />
           <div className="col-sm-8">
@@ -118,7 +122,10 @@ class Goal extends Component {
                         <div className="col-sm-6" style={style.container}>
                           <div className="col-sm-2" />
                           <div className="col-sm-9">
-                            <h4 style={style.center}>{T.translate(`goals.personalGoals.${this.props.language}`)}</h4>
+                            <h4 style={style.center}>
+                              {T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp;
+                              <i id="personalGoalInfo" className="fa fa-info-circle" />
+                            </h4>
                           </div>
                           <div className="col-sm-1" >
                             {this.props.profile === 'user'
@@ -311,8 +318,16 @@ class Goal extends Component {
             </PanelGroup>
           </div>
         </div>
-
+        <Tooltip
+          for="#titleInfo"
+          title={T.translate(`toolTip.goals.${this.props.language}`)}
+        />
+        <Tooltip
+          for="#personalGoalInfo"
+          title={T.translate(`toolTip.personalGoal.${this.props.language}`)}
+        />
       </div>
+
     );
   }
 }

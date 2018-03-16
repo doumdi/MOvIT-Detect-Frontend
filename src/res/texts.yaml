@@ -258,3 +258,10 @@ monthlyResults:
     successRate:
       FR: Taux de succès
       EN: Success Rate
+toolTip:
+  goals:
+    FR: Sur cette page se retrouve l’ensemble des objectifs que vous pouvez atteindre en vous servant de la bascule de votre fauteuil roulant. Ils ont tous été sélectionnés et personnalisés par votre ergothérapeute en fonction de votre condition de santé. Afin d’atteindre vos objectifs, n’oubliez pas de porter attention aux consignes en bas de chaque objectif.
+    EN: On this page, you will find all your wheelchair tilt goals. They have all been selected and personalized by your occupational therapist according to your health condition. In order to achieve your goals, be sure to pay attention to the instructions at the bottom of each goal.
+  personalGoal:
+    FR: Peut-être trouvez-vous l’objectif recommandé trop difficile ou facile à atteindre ? Dans ce cas, créez votre propre objectif selon vos préférences! Tout comme votre objectif recommandé, vous aurez accès à des résultats qui tiennent compte de votre objectif personnel. De plus, la lumière installée sur votre fauteuil roulant s’allumera en fonction de votre objectif personnel pour vous rappeler de basculer dans le cas où vous auriez oublié de le faire.
+    EN: Perhaps you find the recommended goal too difficult or easy to achieve. In this case, create your own goal according to your preferences! Just like your recommended goal, you will have access to your personal goal results. Additionally, the light installed on your wheelchair will light up according to your personal goal to remind you to tilt in case you have forgotten to do so.
