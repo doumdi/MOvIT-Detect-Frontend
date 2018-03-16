@@ -9,13 +9,13 @@ parameters:
   FR: Paramètres
   EN: Settings
   dataAgreement:
-    FR: J'accepte de passer mes données d'utilisation
+    FR: J’accepte que mes données d’utilisation soient transmises à mon établissement de santé
     EN: I agree to transmit my usage data to my health facility
   lightAgreement:
     FR: Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer
     EN: I want the light on my chair to light up to remind me to tip
   notificationAgreement:
-    FR: Je souhaite avoir une notification quand un rapport est disponible
+    FR: Je souhaite recevoir une notification lorsqu’un rapport est disponible
     EN: I want to receive a notification when a report is available
   doNotDisturb:
     FR: Ne pas me le rappeler pour
@@ -117,11 +117,11 @@ goals:
   FR: Objectifs de bascule
   EN: Tilt goals
   personalGoals:
-    FR: Objectifs personnels
-    EN: Personnal goals
+    FR: Objectif personnel
+    EN: Personnal goal
   RecommendedGoals:
-    FR: Objectifs recommandés
-    EN: Recommended goals
+    FR: Objectif recommandé
+    EN: Recommended goal
   tiltFrequency:
     FR: Fréquence de bascule
     EN: Tilt frequency
