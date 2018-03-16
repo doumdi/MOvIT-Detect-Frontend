@@ -53,16 +53,7 @@ class Recommendation extends Component {
             />
             <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
           </div>
-          <div className="col-sm-12" >
-            <Checkbox
-              inputId="reduceSwellingCheck"
-              label="Reduce swelling"
-              onChange={this.props.changeReduceSwelling}
-              checked={this.props.reduceSwelling}
-            />
-            <label htmlFor="reduceSwellingCheck">{T.translate(`recommendations.reduceSwelling.${this.props.language}`)}</label>
-          </div>
-          {this.props.reduceSwelling
+          {this.props.reduceWeight
             ?
               <div>
                 <div className="col-sm-12">
@@ -82,6 +73,16 @@ class Recommendation extends Component {
                 </div>
               </div>
             : null}
+          <div className="col-sm-12" >
+            <Checkbox
+              inputId="reduceSwellingCheck"
+              label="Reduce swelling"
+              onChange={this.props.changeReduceSwelling}
+              checked={this.props.reduceSwelling}
+            />
+            <label htmlFor="reduceSwellingCheck">{T.translate(`recommendations.reduceSwelling.${this.props.language}`)}</label>
+          </div>
+
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
               <Checkbox
