@@ -4,6 +4,11 @@
 export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';
 export const EN = 'EN';
+export const PROFILE = 'PROFILE';
+export const USER_NAME = 'USER_NAME';
+export const USER_ID = 'USER_ID';
+export const USER_WEIGHT = 'USER_WEIGHT';
+export const MAX_ANGLE = 'MAX_ANGLE';
 export const REDUCE_WEIGHT = 'REDUCE_WEIGHT';
 export const REDUCE_SWELLING = 'REDUCE_SWELLING';
 export const REDUCE_SLIDING_MOVING = 'REDUCE_SLIDING_MOVING';
@@ -23,7 +28,16 @@ export const ALLOW_REST_RECOMMENDATION = 'ALLOW_REST_RECOMMENDATION';
 export const EASE_TRANSFERS_RECOMMENDATION = 'EASE_TRANSFERS_RECOMMENDATION';
 export const IMPROVE_COMFORT_RECOMMENDATION = 'IMPROVE_COMFORT_RECOMMENDATION';
 export const OTHER_RECOMMENDATION = 'OTHER_RECOMMENDATION';
-export const PROFILE = 'PROFILE';
+export const TILT_FREQUENCY_GOAL = 'TILT_FREQUENCY_GOAL';
+export const TILT_LENGTH_GOAL = 'TILT_LENGTH_GOAL';
+export const TILT_ANGLE_GOAL = 'TILT_ANGLE_GOAL';
+export const DATA_AGREEMENT = 'DATA_AGREEMENT';
+export const LIGHT_AGREEMENT = 'LIGHT_AGREEMENT';
+export const NOTIFICATION_AGREEMENT = 'NOTIFICATION_AGREEMENT';
+export const DATA_DISAGREE_PERDIOD = 'DATA_DISAGREE_PERDIOD';
+export const LIGHT_DISAGREE_PERDIOD = 'LIGHT_DISAGREE_PERDIOD';
+export const NOTIFICATION_DISAGREE_PERDIOD = 'NOTIFICATION_DISAGREE_PERDIOD';
+
 
 // ------------------------------------
 // Actions
@@ -87,6 +101,22 @@ function changeOther() {
     type: OTHER
   };
 }
+function changeDataAgreement() {
+  return {
+    type: DATA_AGREEMENT
+  };
+}
+function changeLightAgreement() {
+  return {
+    type: LIGHT_AGREEMENT
+  };
+}
+function changeNotificationAgreement() {
+  return {
+    type: NOTIFICATION_AGREEMENT
+  };
+}
+
 // -------------- SLIDERS --------------
 
 function changeTiltFrequency(tiltFreq) {
@@ -119,8 +149,51 @@ function changeTiltAngleRest(tiltAngRest) {
     tiltAngleRest: tiltAngRest
   };
 }
+function changeTiltFrequencyGoal(tiltFreq) {
+  return {
+    type: TILT_FREQUENCY_GOAL,
+    tiltFrequencyGoal: tiltFreq
+  };
+}
+function changeTiltLengthGoal(tiltLen) {
+  return {
+    type: TILT_LENGTH_GOAL,
+    tiltLengthGoal: tiltLen
+  };
+}
+function changeTiltAngleGoal(tiltAng) {
+  return {
+    type: TILT_ANGLE_GOAL,
+    tiltAngleGoal: tiltAng
+  };
+}
 
 // -------------- TEXT --------------
+
+function changeUserName(name) {
+  return {
+    type: USER_NAME,
+    userName: name
+  };
+}
+function changeUserID(id) {
+  return {
+    type: USER_ID,
+    userID: id
+  };
+}
+function changeUserWeight(weight) {
+  return {
+    type: USER_WEIGHT,
+    userWeight: weight
+  };
+}
+function changeMaxAngle(angle) {
+  return {
+    type: MAX_ANGLE,
+    maxAngle: angle
+  };
+}
 
 function reducePainRecommendation(painRec) {
   return {
@@ -152,9 +225,32 @@ function otherRecommendation(otherRec) {
     otherRecommendations: otherRec
   };
 }
+function changeDataDisagreePeriod(period) {
+  return {
+    type: DATA_DISAGREE_PERDIOD,
+    dataDisagreePeriod: period
+  };
+}
+function changeLightDisagreePeriod(period) {
+  return {
+    type: LIGHT_DISAGREE_PERDIOD,
+    lightDisagreePeriod: period
+  };
+}
+function changeNotificationDisagreePeriod(period) {
+  return {
+    type: NOTIFICATION_DISAGREE_PERDIOD,
+    notificationDisagreePeriod: period
+  };
+}
+
 export const ApplicationActions = {
   changeLanguage,
   changeProfile,
+  changeUserName,
+  changeUserID,
+  changeUserWeight,
+  changeMaxAngle,
   changeReduceWeight,
   changeReduceSwelling,
   changeReduceSlidingMoving,
@@ -173,7 +269,16 @@ export const ApplicationActions = {
   allowRestRecommendation,
   easeTransfersRecommendation,
   improveComfortRecommendation,
-  otherRecommendation
+  otherRecommendation,
+  changeTiltFrequencyGoal,
+  changeTiltLengthGoal,
+  changeTiltAngleGoal,
+  changeDataAgreement,
+  changeLightAgreement,
+  changeNotificationAgreement,
+  changeDataDisagreePeriod,
+  changeLightDisagreePeriod,
+  changeNotificationDisagreePeriod,
 };
 // ------------------------------------
 // Action Handlers
@@ -184,6 +289,18 @@ const ACTION_HANDLERS = {
   ),
   [PROFILE]: (state, action) => (
     { ...state, profile: action.profile }
+  ),
+  [USER_NAME]: (state, action) => (
+    { ...state, userName: action.userName }
+  ),
+  [USER_ID]: (state, action) => (
+    { ...state, userID: action.userID }
+  ),
+  [USER_WEIGHT]: (state, action) => (
+    { ...state, userWeight: action.userWeight }
+  ),
+  [MAX_ANGLE]: (state, action) => (
+    { ...state, maxAngle: action.maxAngle }
   ),
   [REDUCE_WEIGHT]: (state) => (
     { ...state, reduceWeight: !state.reduceWeight }
@@ -240,7 +357,34 @@ const ACTION_HANDLERS = {
   ),
   [OTHER_RECOMMENDATION]: (state, action) => (
     { ...state, otherRecommendations: action.otherRecommendations }
-  )
+  ),
+  [TILT_FREQUENCY_GOAL]: (state, action) => (
+    { ...state, tiltFrequencyGoal: action.tiltFrequencyGoal }
+  ),
+  [TILT_LENGTH_GOAL]: (state, action) => (
+    { ...state, tiltLengthGoal: action.tiltLengthGoal }
+  ),
+  [TILT_ANGLE_GOAL]: (state, action) => (
+    { ...state, tiltAngleGoal: action.tiltAngleGoal }
+  ),
+  [DATA_AGREEMENT]: (state) => (
+    { ...state, dataAgreement: !state.dataAgreement }
+  ),
+  [LIGHT_AGREEMENT]: (state) => (
+    { ...state, lightAgreement: !state.lightAgreement }
+  ),
+  [NOTIFICATION_AGREEMENT]: (state) => (
+    { ...state, notificationAgreement: !state.notificationAgreement }
+  ),
+  [DATA_DISAGREE_PERDIOD]: (state, action) => (
+    { ...state, dataDisagreePeriod: action.dataDisagreePeriod }
+  ),
+  [LIGHT_DISAGREE_PERDIOD]: (state, action) => (
+    { ...state, lightDisagreePeriod: action.lightDisagreePeriod }
+  ),
+  [NOTIFICATION_DISAGREE_PERDIOD]: (state, action) => (
+    { ...state, notificationDisagreePeriod: action.notificationDisagreePeriod }
+  ),
 };
 
 // ------------------------------------
@@ -250,6 +394,10 @@ const ACTION_HANDLERS = {
 export const initApplication = {
   language: 'FR',
   profile: '',
+  userName: '',
+  userID: '',
+  maxAngle: 0,
+  userWeight: 0,
   reduceWeight: true,
   reduceSwelling: true,
   reduceSlidingMoving: false,
@@ -268,7 +416,16 @@ export const initApplication = {
   restRecommendation: '',
   transferRecommendation: '',
   comfortRecommendation: '',
-  otherRecommendations: ''
+  otherRecommendations: '',
+  tiltFrequencyGoal: 0,
+  tiltLengthGoal: 0,
+  tiltAngleGoal: 0,
+  dataAgreement: true,
+  lightAgreement: true,
+  notificationAgreement: true,
+  dataDisagreePeriod: null,
+  lightDisagreePeriod: null,
+  notificationDisagreePeriod: null
 };
 export default function applicationReducer(state = initApplication, action) {
   const handler = ACTION_HANDLERS[action.type];

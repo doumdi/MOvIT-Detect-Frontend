@@ -9,13 +9,13 @@ parameters:
   FR: Paramètres
   EN: Settings
   dataAgreement:
-    FR: J'accepte de passer mes données d'utilisation
+    FR: J’accepte que mes données d’utilisation soient transmises à mon établissement de santé
     EN: I agree to transmit my usage data to my health facility
   lightAgreement:
     FR: Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer
     EN: I want the light on my chair to light up to remind me to tip
   notificationAgreement:
-    FR: Je souhaite avoir une notification quand un rapport est disponible
+    FR: Je souhaite recevoir une notification lorsqu’un rapport est disponible
     EN: I want to receive a notification when a report is available
   doNotDisturb:
     FR: Ne pas me le rappeler pour
@@ -45,8 +45,8 @@ time:
     EN: month
 
 graphics:
-  FR: Graphiques
-  EN: Graphics
+  FR: Résultats
+  EN: Results
   day:
     FR: jour
     EN: day
@@ -55,7 +55,7 @@ graphics:
     EN: month
 
 recommendations:
-  FR: Recommendations
+  FR: Recommandations
   EN: Recommendations
   reduceWeight:
     FR: Réduire la pression sur le siège
@@ -82,31 +82,31 @@ recommendations:
     FR: Réduire la douleur
     EN: Reduce the pain
     recommendation:
-      FR: Recommendations pour réduire la douleur
+      FR: Recommandations pour réduire la douleur
       EN: Recommendations for reducing pain
   rest:
     FR: Permettre le repos
     EN: Allowing rest
     recommendation:
-      FR: Recommendations pour le repos
+      FR: Recommandations pour le repos
       EN: Recommendations for allowing rest
   transfer:
     FR: Faciliter les transferts
     EN: Ease transfers
     recommendation:
-      FR: Recommendations pour faciliter le transport
+      FR: Recommandations pour faciliter le transport
       EN: Recommendations to ease transfers
   comfort:
     FR: Améliorer le confort
     EN: Improve comfort
     recommendation:
-      FR: Recommendations pour améliorer le confort
+      FR: Recommandations pour améliorer le confort
       EN: ecommendations to improve comfort
   other:
     FR: Autre
     EN: Other
     recommendation:
-      FR: Autres recommendations
+      FR: Autres recommandations
       EN: Other recommendations
   angleRecommandation:
     FR: Basculez à un angle de
@@ -114,8 +114,14 @@ recommendations:
 
 
 goals:
-  FR: Objectifs
-  EN: Goals
+  FR: Objectifs de bascule
+  EN: Tilt goals
+  personalGoals:
+    FR: Objectif personnel
+    EN: Personnal goal
+  RecommendedGoals:
+    FR: Objectif recommandé
+    EN: Recommended goal
   tiltFrequency:
     FR: Fréquence de bascule
     EN: Tilt frequency
@@ -130,17 +136,17 @@ configurations:
   FR: Configurations
   EN: Configurations
   name:
-    FR: Nom de l'usager
-    EN: User's Name
+    FR: Nom complet de l'usager
+    EN: User's full name
   telask:
-    FR: Identifiant TelAsk
-    EN: TelAsk ID
+    FR: Identifiant TelASK
+    EN: TelASK ID
   maxTilt:
     FR: Angle maximal de bascule
     EN: Maximum tilt angle
   weight:
-    FR: Poids de l'usager
-    EN: User's weight
+    FR: Poids de l'usager (kg)
+    EN: User's weight (kg)
 
 save:
   FR: Sauvegarder
@@ -156,6 +162,12 @@ welcome:
   chooseProfile:
     FR: Choisissez votre profil
     EN: Choose your profile
+  loginMessage:
+    FR: Vous êtes connecté en tant que
+    EN: You connected as a
+  logout:
+    FR: Déconnecter
+    EN: Logout
 
 user:
   FR: Usager
@@ -174,11 +186,26 @@ dailyResults:
     FR: Comment j'utilise ma bascule en général?
     EN: How do I use my wheelchair in general
   angleDistribution:
-    FR: Distribution des angles de bascule au cours de la journée
-    EN: Distribution of tilt angles during the day
+    FR: Distribution des angles de bascule au cours de la journée en minutes
+    EN: Distribution of tilt angles during the day in minutes
+    zero:
+      FR: Moins de 0°
+      EN: Less than 0°
+    fifteen:
+      FR: 0° à 15°
+      EN: 0° to 15°
+    thirty:
+      FR: 15° à 30°
+      EN: 15° to 30°
+    fortyfive:
+      FR: 30° à 45°
+      EN: 30° to 45°
+    more:
+      FR: 45° et plus
+      EN: 45° and more
   pressure:
-    FR: Libérer la pression sur le siège/Réduire l'enflure aux jambes
-    EN: Release pressure under the seat / Reduce swelling of the legs
+    FR: Libérer la pression sur le siège
+    EN: Release pressure under the seat
   travel:
     FR: Faciliter vos déplacements
     EN: Making your travel easier
@@ -189,14 +216,14 @@ dailyResults:
     FR: Objectif personnel
     EN: Personal Goal
     description:
-      FR: Vous avez atteint 50,00% de votre objectif personnel. Ressentez-vous le besoin de modifier votre objectif personnel?
-      EN: You have reached 50.00% of your personnal goal. Do you feel the need to change your personnal goal?
+      FR: Vous avez atteint {percent}% de votre objectif personnel. Ressentez-vous le besoin de modifier votre objectif personnel?
+      EN: You have reached {percent}% of your personnal goal. Do you feel the need to change your personnal goal?
   recommended:
     FR: Objectif recommandé
     EN: Recommended Goal
     description:
-      FR: Vous avez atteint 30,00% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!
-      EN: You have reached 30.00% of your recommended goal. Don’t get discouraged! You can do it!
+      FR: Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!
+      EN: You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!
 
 monthlyResults:
   FR: Mes résultats mensuels
@@ -205,8 +232,23 @@ monthlyResults:
     FR: Comment j'utilise ma bascule en général?
     EN: How do I use my wheelchair in general
   tiltDistribution:
-    FR: Distribution des angles de bascule au cours du mois
-    EN: Distribution of tilt angles during the month
+    FR: Distribution des angles de bascule au cours du mois en minutes
+    EN: Distribution of tilt angles during the month in minutes
+    zero:
+      FR: Moins de 0°
+      EN: Less than 0°
+    fifteen:
+      FR: 0° à 15°
+      EN: 0° to 15°
+    thirty:
+      FR: 15° à 30°
+      EN: 15° to 30°
+    fortyfive:
+      FR: 30° à 45°
+      EN: 30° to 45°
+    more:
+      FR: 45° et plus
+      EN: 45° and more
   wheelChair:
     FR: Temps passé au fauteuil au cours du mois
     EN: Time spent on the wheelchair during the month
@@ -214,14 +256,14 @@ monthlyResults:
     FR: Temps passé en heures
     EN: Time spent in hours
   pressure:
-    FR: Libérer la pression sur le siège/Réduire l'enflure aux jambes
-    EN: Release pressure under the seat / Reduce swelling of the legs
+    FR: Libérer la pression sur le siège
+    EN: Release pressure under the seat
     personal:
-      FR: "Objectif personnel: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
-      EN: "Personal goal: comparison between the number of tilts made during the month and the goal to be achieved"
+      FR: "~Objectif personnel~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
+      EN: "~Personal goal~: comparison between the number of tilts made during the month and the goal to be achieved"
     recommended:
-      FR: "Objectif recommandé: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
-      EN: "Recommended goal: comparison between the number of tilts made during the month and the goal to be achieved"
+      FR: "~Objectif recommandé~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
+      EN: "~Recommended goal~: comparison between the number of tilts made during the month and the goal to be achieved"
     tiltMade:
       FR: Nombre de bascules réalisées
       EN: Number of tilts made
@@ -232,17 +274,24 @@ monthlyResults:
     FR: Faciliter vos déplacements
     EN: Making your travel easier
     success:
-      FR: Taux de réussite de l’objectif recommandé au cours du mois.
-      EN: Success rate for the recommend goal of the month
+      FR: Taux de réussite de l’objectif recommandé au cours du mois en pourcentage (%)
+      EN: Success rate for the recommend goal of the month in percent (%)
     successRate:
-      FR: Taux de succès
+      FR: Taux de réussite
       EN: Success Rate
   rest:
     FR: Réduire le glissement au repos
     EN: Reduce sliding at rest
     success:
-      FR: Taux de réussite de l’objectif recommandé au cours du mois.
-      EN: Success rate for the recommend goal of the month
+      FR: Taux de réussite de l’objectif recommandé au cours du mois en pourcentage (%)
+      EN: Success rate for the recommend goal of the month in percent (%)
     successRate:
-      FR: Taux de succès
+      FR: Taux de réussite
       EN: Success Rate
+toolTip:
+  goals:
+    FR: Sur cette page se retrouve l’ensemble des objectifs que vous pouvez atteindre en vous servant de la bascule de votre fauteuil roulant. Ils ont tous été sélectionnés et personnalisés par votre ergothérapeute en fonction de votre condition de santé. Afin d’atteindre vos objectifs, n’oubliez pas de porter attention aux consignes en bas de chaque objectif.
+    EN: On this page, you will find all your wheelchair tilt goals. They have all been selected and personalized by your occupational therapist according to your health condition. In order to achieve your goals, be sure to pay attention to the instructions at the bottom of each goal.
+  personalGoal:
+    FR: Peut-être trouvez-vous l’objectif recommandé trop difficile ou facile à atteindre ? Dans ce cas, créez votre propre objectif selon vos préférences! Tout comme votre objectif recommandé, vous aurez accès à des résultats qui tiennent compte de votre objectif personnel. De plus, la lumière installée sur votre fauteuil roulant s’allumera en fonction de votre objectif personnel pour vous rappeler de basculer dans le cas où vous auriez oublié de le faire.
+    EN: Perhaps you find the recommended goal too difficult or easy to achieve. In this case, create your own goal according to your preferences! Just like your recommended goal, you will have access to your personal goal results. Additionally, the light installed on your wheelchair will light up according to your personal goal to remind you to tilt in case you have forgotten to do so.

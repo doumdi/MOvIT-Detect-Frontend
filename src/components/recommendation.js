@@ -8,6 +8,22 @@ import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 class Recommendation extends Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      maxSliderAngle: 90
+    };
+
+    this.setMaxAngle();
+  }
+
+  setMaxAngle() {
+    if (this.props.maxAngle) {
+      this.state.maxSliderAngle = this.props.maxAngle;
+    }
+  }
+
   render() {
     const style = {
       height: '80vh',
@@ -37,16 +53,7 @@ class Recommendation extends Component {
             />
             <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
           </div>
-          <div className="col-sm-12" >
-            <Checkbox
-              inputId="reduceSwellingCheck"
-              label="Reduce swelling"
-              onChange={this.props.changeReduceSwelling}
-              checked={this.props.reduceSwelling}
-            />
-            <label htmlFor="reduceSwellingCheck">{T.translate(`recommendations.reduceSwelling.${this.props.language}`)}</label>
-          </div>
-          {this.props.reduceSwelling
+          {this.props.reduceWeight
             ?
               <div>
                 <div className="col-sm-12">
@@ -61,11 +68,21 @@ class Recommendation extends Component {
                 </div>
                 <div className="col-sm-12">
                   <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                  <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.props.changeTiltAngle(e.value)} />
+                  <Slider className="col-sm-6" min={0} max={this.state.maxSliderAngle} onChange={(e) => this.props.changeTiltAngle(e.value)} />
                   <span className="col-sm-2" style={style.bold}>{this.props.tiltAngle} &deg; </span>
                 </div>
               </div>
             : null}
+          <div className="col-sm-12" >
+            <Checkbox
+              inputId="reduceSwellingCheck"
+              label="Reduce swelling"
+              onChange={this.props.changeReduceSwelling}
+              checked={this.props.reduceSwelling}
+            />
+            <label htmlFor="reduceSwellingCheck">{T.translate(`recommendations.reduceSwelling.${this.props.language}`)}</label>
+          </div>
+
           <div className="col-sm-12">
             <div className="col-sm-4" style={style.stickLeft}>
               <Checkbox
@@ -81,7 +98,7 @@ class Recommendation extends Component {
             ?
               <div className="col-sm-12">
                 <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.props.changeTiltAngleMoving(e.value)} />
+                <Slider className="col-sm-6" min={0} max={this.state.maxSliderAngle} onChange={(e) => this.props.changeTiltAngleMoving(e.value)} />
                 <span className="col-sm-2" style={style.bold}>{this.props.tiltAngleMoving} &deg; </span>
               </div>
             : null}
@@ -100,7 +117,7 @@ class Recommendation extends Component {
             ?
               <div className="col-sm-12">
                 <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.props.changeTiltAngleRest(e.value)} />
+                <Slider className="col-sm-6" min={0} max={this.state.maxSliderAngle} onChange={(e) => this.props.changeTiltAngleRest(e.value)} />
                 <span className="col-sm-2" style={style.bold}>{this.props.tiltAngleRest} &deg; </span>
               </div>
             : null}
@@ -240,6 +257,7 @@ function mapStateToProps(state) {
     transferRecommendation: state.applicationReducer.transferRecommendation,
     comfortRecommendation: state.applicationReducer.comfortRecommendation,
     otherRecommendations: state.applicationReducer.otherRecommendations,
+    maxAngle: state.applicationReducer.maxAngle
   };
 }
 function mapDispatchToProps(dispatch) {

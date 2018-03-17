@@ -18,6 +18,7 @@ export default class Layout extends Component {
           <Header />
           <Switch>
             <Route exact="true" path="/" component={Home} />
+            <Route path="/home" component={Home} />
             <Route path="/graphic" component={Graphic} />
             <Route path="/parameter" component={Parameters} />
             <Route path="/recommendations" component={Recommendation} />

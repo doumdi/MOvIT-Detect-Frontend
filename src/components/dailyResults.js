@@ -26,11 +26,11 @@ class DailyResults extends Component {
 
     const data = {
       labels: [
-        '0',
-        '0-15',
-        '15-30',
-        '30-45',
-        '45-180',
+        T.translate(`dailyResults.angleDistribution.zero.${this.props.language}`),
+        T.translate(`dailyResults.angleDistribution.fifteen.${this.props.language}`),
+        T.translate(`dailyResults.angleDistribution.thirty.${this.props.language}`),
+        T.translate(`dailyResults.angleDistribution.fortyfive.${this.props.language}`),
+        T.translate(`dailyResults.angleDistribution.more.${this.props.language}`)
       ],
       datasets: [
         {
@@ -55,36 +55,34 @@ class DailyResults extends Component {
 
     return (
       <div className="container">
-        <h1 style={style.center}>{T.translate(`dailyResults.${this.props.language}`)}</h1>
-        <hr />
-        <h1 style={style.center}>{T.translate(`dailyResults.howDo.${this.props.language}`)}</h1>
+        <h2 style={style.center}>{T.translate(`dailyResults.howDo.${this.props.language}`)}</h2>
         <br />
         <h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>
         <hr />
         <Chart type="pie" data={data} />
         <hr />
-        <h1 style={style.center}>{T.translate(`dailyResults.pressure.${this.props.language}`)}</h1>
+        <h2 style={style.center}>{T.translate(`dailyResults.pressure.${this.props.language}`)}</h2>
         <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>
         <ProgressBar value={this.state.value1} />
-        <p style={style.center}>{T.translate(`dailyResults.personal.description.${this.props.language}`)}</p>
+        <p style={style.center}>{T.translate(`dailyResults.personal.description.${this.props.language}`, { percent: this.state.value1 })}</p>
 
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
         <ProgressBar value={this.state.value2} />
-        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`)}</p>
+        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
 
         <hr />
-        <h1 style={style.center}>{T.translate(`dailyResults.travel.${this.props.language}`)}</h1>
+        <h2 style={style.center}>{T.translate(`dailyResults.travel.${this.props.language}`)}</h2>
 
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
         <ProgressBar value={this.state.value2} />
-        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`)}</p>
+        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
 
         <hr />
-        <h1 style={style.center}>{T.translate(`dailyResults.rest.${this.props.language}`)}</h1>
+        <h2 style={style.center}>{T.translate(`dailyResults.rest.${this.props.language}`)}</h2>
 
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
         <ProgressBar value={this.state.value2} />
-        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`)}</p>
+        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
         <div style={style.bottom} />
       </div>
     );
