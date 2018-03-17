@@ -7,10 +7,10 @@ class MonthlyResults extends Component {
   render() {
     const style = {
       center: {
-        'text-align': 'center'
+        textAlign: 'center'
       },
       bottom: {
-        'padding-bottom': '400px'
+        paddingBottom: '400px'
       },
     };
 
@@ -130,6 +130,7 @@ class MonthlyResults extends Component {
       datasets: [
         {
           label: T.translate(`monthlyResults.pressure.tiltMade.${this.props.language}`),
+          lineTension: 0,
           data: [
             36, 40, 27, 38, 42,
             55, 40, 28, 32, 26,
@@ -143,6 +144,7 @@ class MonthlyResults extends Component {
         },
         {
           label: T.translate(`monthlyResults.pressure.tiltGoal.${this.props.language}`),
+          lineTension: 0,
           data: [
             26, 28, 31, 32, 8,
             34, 36, 30, 21, 24,
@@ -151,7 +153,7 @@ class MonthlyResults extends Component {
             0, 26, 30, 21, 24,
             36, 40, 27, 38, 42,
           ],
-          fill: true,
+          fill: false,
           borderColor: 'blue'
         }
       ],
@@ -169,6 +171,7 @@ class MonthlyResults extends Component {
       datasets: [
         {
           label: T.translate(`monthlyResults.travel.successRate.${this.props.language}`),
+          lineTension: 0,
           data: [
             36, 40, 27, 38, 42,
             55, 40, 28, 32, 26,
@@ -195,6 +198,7 @@ class MonthlyResults extends Component {
       datasets: [
         {
           label: T.translate(`monthlyResults.travel.successRate.${this.props.language}`),
+          lineTension: 0,
           data: [
             36, 40, 27, 38, 42,
             55, 40, 28, 32, 26,
