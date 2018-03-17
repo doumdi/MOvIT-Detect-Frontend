@@ -64,25 +64,25 @@ class DailyResults extends Component {
         <h2 style={style.center}>{T.translate(`dailyResults.pressure.${this.props.language}`)}</h2>
         <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>
         <ProgressBar value={this.state.value1} />
-        <p style={style.center}>{T.translate(`dailyResults.personal.description.${this.props.language}`)}</p>
+        <p style={style.center}>{T.translate(`dailyResults.personal.description.${this.props.language}`, { percent: this.state.value1 })}</p>
 
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
         <ProgressBar value={this.state.value2} />
-        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`)}</p>
+        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
 
         <hr />
         <h2 style={style.center}>{T.translate(`dailyResults.travel.${this.props.language}`)}</h2>
 
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
         <ProgressBar value={this.state.value2} />
-        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`)}</p>
+        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
 
         <hr />
         <h2 style={style.center}>{T.translate(`dailyResults.rest.${this.props.language}`)}</h2>
 
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
         <ProgressBar value={this.state.value2} />
-        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`)}</p>
+        <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
         <div style={style.bottom} />
       </div>
     );
