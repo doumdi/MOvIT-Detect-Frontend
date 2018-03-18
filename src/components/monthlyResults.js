@@ -7,10 +7,10 @@ class MonthlyResults extends Component {
   render() {
     const style = {
       center: {
-        'text-align': 'center'
+        textAlign: 'center'
       },
       bottom: {
-        'padding-bottom': '400px'
+        paddingBottom: '400px'
       },
     };
 
@@ -130,6 +130,7 @@ class MonthlyResults extends Component {
       datasets: [
         {
           label: T.translate(`monthlyResults.pressure.tiltMade.${this.props.language}`),
+          lineTension: 0,
           data: [
             36, 40, 27, 38, 42,
             55, 40, 28, 32, 26,
@@ -143,6 +144,7 @@ class MonthlyResults extends Component {
         },
         {
           label: T.translate(`monthlyResults.pressure.tiltGoal.${this.props.language}`),
+          lineTension: 0,
           data: [
             26, 28, 31, 32, 8,
             34, 36, 30, 21, 24,
@@ -151,7 +153,7 @@ class MonthlyResults extends Component {
             0, 26, 30, 21, 24,
             36, 40, 27, 38, 42,
           ],
-          fill: true,
+          fill: false,
           borderColor: 'blue'
         }
       ],
@@ -169,6 +171,7 @@ class MonthlyResults extends Component {
       datasets: [
         {
           label: T.translate(`monthlyResults.travel.successRate.${this.props.language}`),
+          lineTension: 0,
           data: [
             36, 40, 27, 38, 42,
             55, 40, 28, 32, 26,
@@ -195,6 +198,7 @@ class MonthlyResults extends Component {
       datasets: [
         {
           label: T.translate(`monthlyResults.travel.successRate.${this.props.language}`),
+          lineTension: 0,
           data: [
             36, 40, 27, 38, 42,
             55, 40, 28, 32, 26,
@@ -209,15 +213,87 @@ class MonthlyResults extends Component {
       ],
     };
 
+    const minOptions = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            callback: (value) => `${value} min`
+          }
+        }]
+      },
+      tooltips: {
+        callbacks: {
+          label: (tooltipItem, data) => {
+            let label = data.datasets[tooltipItem.datasetIndex].label || '';
+            if (label) {
+              label += ': ';
+            }
+            label += Math.round(tooltipItem.yLabel * 100) / 100;
+            label += ' min';
+            return label;
+          }
+        }
+      }
+    };
+
+    const hourOptions = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            callback: (value) => `${value} h`
+          }
+        }]
+      },
+      tooltips: {
+        callbacks: {
+          label: (tooltipItem, data) => {
+            let label = data.datasets[tooltipItem.datasetIndex].label || '';
+            if (label) {
+              label += ': ';
+            }
+            label += Math.round(tooltipItem.yLabel * 100) / 100;
+            label += ' h';
+            return label;
+          }
+        }
+      }
+    };
+
+    const percentOptions = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            callback: (value) => `${value}%`
+          }
+        }]
+      },
+      tooltips: {
+        callbacks: {
+          label: (tooltipItem, data) => {
+            let label = data.datasets[tooltipItem.datasetIndex].label || '';
+            if (label) {
+              label += ': ';
+            }
+            label += Math.round(tooltipItem.yLabel * 100) / 100;
+            label += '%';
+            return label;
+          }
+        }
+      },
+      legend: {
+        onClick: null
+      }
+    };
+
     return (
       <div className="container">
         <h2 style={style.center}>{T.translate(`monthlyResults.howDo.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>
-        <Chart type="bar" data={tiltData} />
+        <Chart type="bar" data={tiltData} options={minOptions} />
         <hr />
         <h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>
-        <Chart type="bar" data={wheelChairData} />
+        <Chart type="bar" data={wheelChairData} options={hourOptions} />
         <hr />
         <h2 style={style.center}>{T.translate(`monthlyResults.pressure.${this.props.language}`)}</h2>
         <hr />
@@ -230,12 +306,12 @@ class MonthlyResults extends Component {
         <h2 style={style.center}>{T.translate(`monthlyResults.travel.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.travel.success.${this.props.language}`)}</h4>
-        <Chart type="line" data={travelData} />
+        <Chart type="line" data={travelData} options={percentOptions} />
         <hr />
         <h2 style={style.center}>{T.translate(`monthlyResults.rest.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.rest.success.${this.props.language}`)}</h4>
-        <Chart type="line" data={restData} />
+        <Chart type="line" data={restData} options={percentOptions} />
         <div style={style.bottom} />
       </div>
     );

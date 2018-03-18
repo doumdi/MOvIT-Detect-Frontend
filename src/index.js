@@ -1,4 +1,4 @@
-import T from 'i18n-react';
+import { MDText } from 'i18n-react';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -7,7 +7,9 @@ import { Provider } from 'react-redux';
 import Layout from './layout';
 import store from './redux/store';
 
-T.setTexts(require('./res/texts.yaml'));
+const texts = require('./res/texts.yaml');
+
+const T = new MDText(texts, { MDFlavor: 1 });
 
 export { T };
 
