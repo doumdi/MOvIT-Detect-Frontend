@@ -18,12 +18,16 @@ export const ALLOW_REST = 'ALLOW_REST';
 export const EASE_TRANSFERS = 'EASE_TRANSFERS';
 export const IMPROVE_COMFORT = 'IMPROVE_COMFORT';
 export const OTHER = 'OTHER';
-export const TILT_FREQUENCY = 'TILT_FREQUENCY';
-export const TILT_LENGTH = 'TILT_LENGTH';
-export const TILT_ANGLE = 'TILT_ANGLE';
+export const TILT_FREQUENCY_WEIGHT = 'TILT_FREQUENCY_WEIGHT';
+export const TILT_FREQUENCY_SWELLING = 'TILT_FREQUENCY_SWELLING';
+export const TILT_LENGTH_WEIGHT = 'TILT_LENGTH_WEIGHT';
+export const TILT_LENGTH_SWELLING = 'TILT_LENGTH_SWELLING';
+export const TILT_ANGLE_WEIGHT = 'TILT_ANGLE_WEIGHT';
+export const TILT_ANGLE_SWELLING = 'TILT_ANGLE_SWELLING';
 export const TILT_ANGLE_MOVING = 'TILT_ANGLE_MOVING';
 export const TILT_ANGLE_REST = 'TILT_ANGLE_REST';
 export const REDUCE_PAIN_RECOMMENDATION = 'REDUCE_PAIN_RECOMMENDATION';
+export const REDUCE_SWELLING_RECOMMENDATION = 'REDUCE_SWELLING_RECOMMENDATION';
 export const ALLOW_REST_RECOMMENDATION = 'ALLOW_REST_RECOMMENDATION';
 export const EASE_TRANSFERS_RECOMMENDATION = 'EASE_TRANSFERS_RECOMMENDATION';
 export const IMPROVE_COMFORT_RECOMMENDATION = 'IMPROVE_COMFORT_RECOMMENDATION';
@@ -119,22 +123,22 @@ function changeNotificationAgreement() {
 
 // -------------- SLIDERS --------------
 
-function changeTiltFrequency(tiltFreq) {
+function changeTiltFrequencyWeight(tiltFreq) {
   return {
-    type: TILT_FREQUENCY,
-    tiltFrequency: tiltFreq
+    type: TILT_FREQUENCY_WEIGHT,
+    tiltFrequencyWeight: tiltFreq
   };
 }
-function changeTiltLength(tiltLen) {
+function changeTiltLengthWeight(tiltLen) {
   return {
-    type: TILT_LENGTH,
-    tiltLength: tiltLen
+    type: TILT_LENGTH_WEIGHT,
+    tiltLengthWeight: tiltLen
   };
 }
-function changeTiltAngle(tiltAng) {
+function changeTiltAngleWeight(tiltAng) {
   return {
-    type: TILT_ANGLE,
-    tiltAngle: tiltAng
+    type: TILT_ANGLE_WEIGHT,
+    tiltAngleWeight: tiltAng
   };
 }
 function changeTiltAngleMoving(tiltAngMoving) {
@@ -201,6 +205,12 @@ function reducePainRecommendation(painRec) {
     painRecommendation: painRec
   };
 }
+function reduceSwellingRecommendation(swellingRec) {
+  return {
+    type: REDUCE_SWELLING_RECOMMENDATION,
+    swellingRecommendation: swellingRec
+  };
+}
 function allowRestRecommendation(restRec) {
   return {
     type: ALLOW_REST_RECOMMENDATION,
@@ -260,12 +270,13 @@ export const ApplicationActions = {
   changeEaseTransfers,
   changeImproveComfort,
   changeOther,
-  changeTiltFrequency,
-  changeTiltLength,
-  changeTiltAngle,
+  changeTiltFrequencyWeight,
+  changeTiltLengthWeight,
+  changeTiltAngleWeight,
   changeTiltAngleMoving,
   changeTiltAngleRest,
   reducePainRecommendation,
+  reduceSwellingRecommendation,
   allowRestRecommendation,
   easeTransfersRecommendation,
   improveComfortRecommendation,
@@ -328,14 +339,14 @@ const ACTION_HANDLERS = {
   ),
   [OTHER]: (state) => (
     { ...state, other: !state.other }),
-  [TILT_FREQUENCY]: (state, action) => (
-    { ...state, tiltFrequency: action.tiltFrequency }
+  [TILT_FREQUENCY_WEIGHT]: (state, action) => (
+    { ...state, tiltFrequencyWeight: action.tiltFrequencyWeight }
   ),
-  [TILT_LENGTH]: (state, action) => (
-    { ...state, tiltLength: action.tiltLength }
+  [TILT_LENGTH_WEIGHT]: (state, action) => (
+    { ...state, tiltLengthWeight: action.tiltLengthWeight }
   ),
-  [TILT_ANGLE]: (state, action) => (
-    { ...state, tiltAngle: action.tiltAngle }
+  [TILT_ANGLE_WEIGHT]: (state, action) => (
+    { ...state, tiltAngleWeight: action.tiltAngleWeight }
   ),
   [TILT_ANGLE_MOVING]: (state, action) => (
     { ...state, tiltAngleMoving: action.tiltAngleMoving }
@@ -345,6 +356,9 @@ const ACTION_HANDLERS = {
   ),
   [REDUCE_PAIN_RECOMMENDATION]: (state, action) => (
     { ...state, painRecommendation: action.painRecommendation }
+  ),
+  [REDUCE_SWELLING_RECOMMENDATION]: (state, action) => (
+    { ...state, swellingRecommendation: action.swellingRecommendation }
   ),
   [ALLOW_REST_RECOMMENDATION]: (state, action) => (
     { ...state, restRecommendation: action.restRecommendation }
@@ -407,16 +421,11 @@ export const initApplication = {
   easeTransfers: false,
   improveComfort: false,
   other: false,
-  tiltFrequency: 0,
-  tiltLength: 0,
-  tiltAngle: 0,
+  tiltFrequencyWeight: 0,
+  tiltLengthWeight: 0,
+  tiltAngleWeight: 0,
   tiltAngleMoving: 0,
   tiltAngleRest: 0,
-  painRecommendation: '',
-  restRecommendation: '',
-  transferRecommendation: '',
-  comfortRecommendation: '',
-  otherRecommendations: '',
   tiltFrequencyGoal: 0,
   tiltLengthGoal: 0,
   tiltAngleGoal: 0,

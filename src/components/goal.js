@@ -226,7 +226,7 @@ class Goal extends Component {
               }
               {this.props.reduceSlidingMoving
                 &&
-                <Panel eventKey="1">
+                <Panel eventKey="2">
                   <Panel.Heading>
                     <Panel.Title toggle>
                       <i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingMoving.${this.props.language}`)}
@@ -239,7 +239,7 @@ class Goal extends Component {
               }
               {this.props.reduceSlidingRest
                 &&
-                <Panel eventKey="2">
+                <Panel eventKey="3">
                   <Panel.Heading>
                     <Panel.Title toggle>
                       <i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingRest.${this.props.language}`)}
@@ -252,66 +252,76 @@ class Goal extends Component {
               }
               {this.props.reducePain
                 &&
-                <Panel eventKey="3">
+                <Panel eventKey="4">
                   <Panel.Heading>
                     <Panel.Title toggle>
                       <i className="fa fa-chevron-down" /> {T.translate(`recommendations.pain.${this.props.language}`)}
                     </Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    {this.props.painRecommendation}
+                    {this.props.painRecommendation === undefined ?
+                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                      this.props.painRecommendation}
                   </Panel.Body>
                 </Panel>
               }
               {this.props.allowRest
                 &&
-                <Panel eventKey="4">
+                <Panel eventKey="5">
                   <Panel.Heading>
                     <Panel.Title toggle>
                       <i className="fa fa-chevron-down" /> {T.translate(`recommendations.rest.${this.props.language}`)}
                     </Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    {this.props.restRecommendation}
+                    {this.props.restRecommendation === undefined ?
+                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                      this.props.restRecommendation}
                   </Panel.Body>
                 </Panel>
               }
               {this.props.easeTransfers
               &&
-              <Panel eventKey="5">
+              <Panel eventKey="6">
                 <Panel.Heading>
                   <Panel.Title toggle>
                     <i className="fa fa-chevron-down" /> {T.translate(`recommendations.transfer.${this.props.language}`)}
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.transferRecommendation}
+                  {this.props.transferRecommendation === undefined ?
+                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                      this.props.transferRecommendation}
                 </Panel.Body>
               </Panel>
               }
               {this.props.improveComfort
               &&
-              <Panel eventKey="6">
+              <Panel eventKey="7">
                 <Panel.Heading>
                   <Panel.Title toggle>
                     <i className="fa fa-chevron-down" /> {T.translate(`recommendations.comfort.${this.props.language}`)}
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.comfortRecommendation}
+                  {this.props.comfortRecommendation === undefined ?
+                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                      this.props.comfortRecommendation}
                 </Panel.Body>
               </Panel>
               }
               {this.props.other
               &&
-              <Panel eventKey="5">
+              <Panel eventKey="8">
                 <Panel.Heading>
                   <Panel.Title toggle>
                     <i className="fa fa-chevron-down" /> {T.translate(`recommendations.other.${this.props.language}`)}
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.otherRecommendations}
+                  {this.props.otherRecommendations === undefined ?
+                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                      this.props.otherRecommendations}
                 </Panel.Body>
               </Panel>
               }
@@ -344,9 +354,9 @@ function mapStateToProps(state) {
     easeTransfers: state.applicationReducer.easeTransfers,
     improveComfort: state.applicationReducer.improveComfort,
     other: state.applicationReducer.other,
-    tiltFrequency: state.applicationReducer.tiltFrequency,
-    tiltLength: state.applicationReducer.tiltLength,
-    tiltAngle: state.applicationReducer.tiltAngle,
+    tiltFrequencyWeight: state.applicationReducer.tiltFrequencyWeight,
+    tiltLengthWeight: state.applicationReducer.tiltLengthWeight,
+    tiltAngleWeight: state.applicationReducer.tiltAngleWeight,
     tiltAngleMoving: state.applicationReducer.tiltAngleMoving,
     tiltAngleRest: state.applicationReducer.tiltAngleRest,
     painRecommendation: state.applicationReducer.painRecommendation,

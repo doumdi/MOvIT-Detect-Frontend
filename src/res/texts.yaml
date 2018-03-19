@@ -57,6 +57,12 @@ graphics:
 recommendations:
   FR: Recommandations
   EN: Recommendations
+  tiltAsNeeded:
+    FR: Basculez au besoin
+    EN: Tilt as needed
+  recommendationsText:
+    FR: "Veuillez sélectionner la ou les cibles d’usage de la bascule recommandée(s) pour l’usager:"
+    EN: "Please select the goal(s) for the recommend use of the tilt :"
   reduceWeight:
     FR: Réduire la pression sur le siège
     EN: Reduce weight
