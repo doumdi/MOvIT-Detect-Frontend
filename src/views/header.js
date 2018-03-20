@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
+
 class Header extends Component {
+
+  logout() {
+    this.props.changeProfile('');
+  }
 
   render() {
     const style = {
@@ -39,16 +44,12 @@ class Header extends Component {
         <nav className="navbar-inverse" style={style.navbar}>
           <div className="container-fluid" style={style.containerfluid}>
             <div className="navbar-header">
-              <Link to="" style={style.title}>MovIT-Plus</Link>
+              <Link to="home" style={style.title}>MOvIT+</Link>
             </div>
             <ul className="nav navbar-nav">
-              {this.props.profile
+              {this.props.profile === 'clinician'
                 &&
-                <li> <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link> </li>
-              }
-              {this.props.profile === 'user'
-                &&
-                <li> <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link> </li>
+                <li> <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link> </li>
               }
               {this.props.profile === 'clinician'
                 &&
@@ -58,15 +59,33 @@ class Header extends Component {
                 &&
                 <li> <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link> </li>
               }
-              {this.props.profile === 'clinician'
+              {this.props.profile
                 &&
-                <li> <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link> </li>
+                <li> <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link> </li>
+              }
+              {this.props.profile === 'user'
+                &&
+                <li> <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link> </li>
               }
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li onClick={this.props.changeLanguage}>
-                <a style={style.link}>{this.props.language}</a>
+                {this.props.language === 'FR'
+                ?
+                  <a style={style.link}>EN</a>
+                :
+                  <a style={style.link}>FR</a>
+                }
               </li>
+              {this.props.profile
+                &&
+                <li onClick={() => this.logout()}>
+                  <Link to="home" style={style.link}>
+                    {T.translate(`welcome.logout.${this.props.language}`)}  &nbsp;
+                    <i className="fa fa-sign-out" />
+                  </Link>
+                </li>
+              }
             </ul>
           </div>
         </nav>
@@ -83,7 +102,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeLanguage: ApplicationActions.changeLanguage
+    changeLanguage: ApplicationActions.changeLanguage,
+    changeProfile: ApplicationActions.changeProfile
   }, dispatch);
 }
 
