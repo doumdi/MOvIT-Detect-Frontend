@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { InputText } from 'primereact/components/inputtext/InputText';
 import { Slider } from 'primereact/components/slider/Slider';
@@ -39,6 +40,10 @@ class Recommendation extends Component {
       },
       bold: {
         fontWeight: 'bold'
+      },
+      linkNoStyle: {
+        textDecoration: 'none',
+        color: '#333'
       }
     };
 
@@ -272,14 +277,25 @@ class Recommendation extends Component {
             </div>
             {this.props.other
             ?
-              <div className="col-sm-7" style={style.input}>
-                <InputText
-                  id="otherRec" type="text" className="form-control"
-                  onChange={(e) => this.props.otherRecommendation(e.target.value)}
-                  value={this.props.otherRecommendations === undefined ?
-                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.otherRecommendations}
-                />
+              <div>
+                <div className="col-sm-7" style={style.input}>
+                  <InputText
+                    id="otherRec" type="text" className="form-control"
+                    onChange={(e) => this.props.otherRecommendationTitle(e.target.value)}
+                    value={this.props.otherRecommendationsTitle === undefined ?
+                      T.translate(`recommendations.otherTitle.${this.props.language}`) :
+                      this.props.otherRecommendationsTitle}
+                  />
+                </div>
+                <div className="col-sm-7 col-sm-offset-4" style={style.input}>
+                  <InputText
+                    id="otherRec" type="text" className="form-control"
+                    onChange={(e) => this.props.otherRecommendation(e.target.value)}
+                    value={this.props.otherRecommendations === undefined ?
+                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                      this.props.otherRecommendations}
+                  />
+                </div>
               </div>
             : null}
           </div>
@@ -288,7 +304,11 @@ class Recommendation extends Component {
           <div className="col-sm-10 text-right">
             <button type="submit" className="btn btn-lg">{T.translate(`cancel.${this.props.language}`)}</button>
             &nbsp;
-            <button type="submit" className="btn btn-lg">{T.translate(`save.${this.props.language}`)}</button>
+            <Link to="goals" style={style.linkNoStyle}>
+              <button className="btn btn-lg">
+                {T.translate(`save.${this.props.language}`)}
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -318,6 +338,7 @@ function mapStateToProps(state) {
     transferRecommendation: state.applicationReducer.transferRecommendation,
     comfortRecommendation: state.applicationReducer.comfortRecommendation,
     otherRecommendations: state.applicationReducer.otherRecommendations,
+    otherRecommendationsTitle: state.applicationReducer.otherRecommendationsTitle,
     maxAngle: state.applicationReducer.maxAngle
   };
 }
@@ -342,7 +363,8 @@ function mapDispatchToProps(dispatch) {
     allowRestRecommendation: ApplicationActions.allowRestRecommendation,
     easeTransfersRecommendation: ApplicationActions.easeTransfersRecommendation,
     improveComfortRecommendation: ApplicationActions.improveComfortRecommendation,
-    otherRecommendation: ApplicationActions.otherRecommendation
+    otherRecommendation: ApplicationActions.otherRecommendation,
+    otherRecommendationTitle: ApplicationActions.otherRecommendationTitle
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);

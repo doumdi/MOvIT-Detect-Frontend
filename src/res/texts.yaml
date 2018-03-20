@@ -60,6 +60,9 @@ recommendations:
   tiltAsNeeded:
     FR: Basculez au besoin
     EN: Tilt as needed
+  otherTitle:
+    FR: Indiquez ici le titre de la cible que vous voulez transmettre à l’usager
+    EN: Indicate here the title of the target that you want to transmit to the user
   recommendationsText:
     FR: "Veuillez sélectionner la ou les cibles d’usage de la bascule recommandée(s) pour l’usager:"
     EN: "Please select the goal(s) for the recommend use of the tilt :"
@@ -137,6 +140,12 @@ goals:
   tiltAngle:
     FR: Angle de bascule
     EN: Tilt angle
+  reduceSlidingMoving:
+    FR: pendant vos déplacements pour éviter de glisser
+    EN: while moving to avoid sliding
+  reduceSlidingRest:
+    FR: lorsque vous êtes immobile pour éviter de glisser
+    EN: while at rest to avoid sliding
 
 configurations:
   FR: Configurations

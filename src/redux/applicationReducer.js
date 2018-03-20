@@ -32,6 +32,7 @@ export const ALLOW_REST_RECOMMENDATION = 'ALLOW_REST_RECOMMENDATION';
 export const EASE_TRANSFERS_RECOMMENDATION = 'EASE_TRANSFERS_RECOMMENDATION';
 export const IMPROVE_COMFORT_RECOMMENDATION = 'IMPROVE_COMFORT_RECOMMENDATION';
 export const OTHER_RECOMMENDATION = 'OTHER_RECOMMENDATION';
+export const OTHER_RECOMMENDATION_TITLE = 'OTHER_RECOMMENDATION_TITLE';
 export const TILT_FREQUENCY_GOAL = 'TILT_FREQUENCY_GOAL';
 export const TILT_LENGTH_GOAL = 'TILT_LENGTH_GOAL';
 export const TILT_ANGLE_GOAL = 'TILT_ANGLE_GOAL';
@@ -235,6 +236,12 @@ function otherRecommendation(otherRec) {
     otherRecommendations: otherRec
   };
 }
+function otherRecommendationTitle(otherRec) {
+  return {
+    type: OTHER_RECOMMENDATION_TITLE,
+    otherRecommendationsTitle: otherRec
+  };
+}
 function changeDataDisagreePeriod(period) {
   return {
     type: DATA_DISAGREE_PERDIOD,
@@ -281,6 +288,7 @@ export const ApplicationActions = {
   easeTransfersRecommendation,
   improveComfortRecommendation,
   otherRecommendation,
+  otherRecommendationTitle,
   changeTiltFrequencyGoal,
   changeTiltLengthGoal,
   changeTiltAngleGoal,
@@ -371,6 +379,9 @@ const ACTION_HANDLERS = {
   ),
   [OTHER_RECOMMENDATION]: (state, action) => (
     { ...state, otherRecommendations: action.otherRecommendations }
+  ),
+  [OTHER_RECOMMENDATION_TITLE]: (state, action) => (
+    { ...state, otherRecommendationsTitle: action.otherRecommendationsTitle }
   ),
   [TILT_FREQUENCY_GOAL]: (state, action) => (
     { ...state, tiltFrequencyGoal: action.tiltFrequencyGoal }

@@ -233,7 +233,7 @@ class Goal extends Component {
                     </Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleMoving} &deg;
+                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleMoving} &deg; {T.translate(`goals.reduceSlidingMoving.${this.props.language}`)}
                   </Panel.Body>
                 </Panel>
               }
@@ -246,7 +246,7 @@ class Goal extends Component {
                     </Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleRest} &deg;
+                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleRest} &deg; {T.translate(`goals.reduceSlidingRest.${this.props.language}`)}
                   </Panel.Body>
                 </Panel>
               }
@@ -315,7 +315,9 @@ class Goal extends Component {
               <Panel eventKey="8">
                 <Panel.Heading>
                   <Panel.Title toggle>
-                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.other.${this.props.language}`)}
+                    <i className="fa fa-chevron-down" /> {this.props.otherRecommendationsTitle === undefined ?
+                      T.translate(`recommendations.otherTitle.${this.props.language}`) :
+                      this.props.otherRecommendationsTitle}
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
@@ -364,6 +366,7 @@ function mapStateToProps(state) {
     transferRecommendation: state.applicationReducer.transferRecommendation,
     comfortRecommendation: state.applicationReducer.comfortRecommendation,
     otherRecommendations: state.applicationReducer.otherRecommendations,
+    otherRecommendationsTitle: state.applicationReducer.otherRecommendationsTitle,
     maxAngle: state.applicationReducer.maxAngle,
     tiltFrequencyGoal: state.applicationReducer.tiltFrequencyGoal,
     tiltLengthGoal: state.applicationReducer.tiltLengthGoal,
