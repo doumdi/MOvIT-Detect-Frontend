@@ -146,6 +146,9 @@ goals:
   reduceSlidingRest:
     FR: lorsque vous êtes immobile pour éviter de glisser
     EN: while at rest to avoid sliding
+  reduceSwelling:
+    FR: Libérer l'enflure aux membres inférieurs
+    EN: Release swelling 
 
 configurations:
   FR: Configurations

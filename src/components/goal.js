@@ -224,6 +224,21 @@ class Goal extends Component {
                   </Panel.Body>
                 </Panel>
               }
+              {this.props.reduceSwelling
+                &&
+                <Panel eventKey="2">
+                  <Panel.Heading>
+                    <Panel.Title toggle>
+                      <i className="fa fa-chevron-down" /> {T.translate(`goals.reduceSwelling.${this.props.language}`)}
+                    </Panel.Title>
+                  </Panel.Heading>
+                  <Panel.Body collapsible>
+                    {this.props.swellingRecommendation === undefined ?
+                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                      this.props.swellingRecommendation}
+                  </Panel.Body>
+                </Panel>
+              }
               {this.props.reduceSlidingMoving
                 &&
                 <Panel eventKey="2">
@@ -365,6 +380,7 @@ function mapStateToProps(state) {
     restRecommendation: state.applicationReducer.restRecommendation,
     transferRecommendation: state.applicationReducer.transferRecommendation,
     comfortRecommendation: state.applicationReducer.comfortRecommendation,
+    swellingRecommendation: state.applicationReducer.swellingRecommendation,
     otherRecommendations: state.applicationReducer.otherRecommendations,
     otherRecommendationsTitle: state.applicationReducer.otherRecommendationsTitle,
     maxAngle: state.applicationReducer.maxAngle,
