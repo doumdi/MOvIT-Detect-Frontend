@@ -97,9 +97,16 @@ class Recommendation extends Component {
           {this.props.reduceSlidingMoving
             ?
               <div className="col-sm-12">
-                <span className="col-sm-4" style={style.bold}>{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                <Slider className="col-sm-6" min={0} max={this.state.maxSliderAngle} onChange={(e) => this.props.changeTiltAngleMoving(e.value)} />
-                <span className="col-sm-2" style={style.bold}>{this.props.tiltAngleMoving} &deg; </span>
+                <div className="col-sm-4">
+                  <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
+                </div>
+                <Slider
+                  className="col-sm-6"
+                  min={0} max={90}
+                  onChange={(e) => this.props.changeTiltAngleMoving(e.value)}
+                  value={this.props.tiltAngleMoving}
+                />
+                <span className="col-sm-2">{this.props.tiltAngleMoving} &deg; </span>
               </div>
             : null}
           <div className="col-sm-12">
