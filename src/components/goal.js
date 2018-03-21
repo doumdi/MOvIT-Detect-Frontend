@@ -66,6 +66,14 @@ class Goal extends Component {
       chair: {
         textAlign: 'center',
         marginTop: '1em'
+      },
+      panels: {
+        marginBottom: '0px',
+      },
+      panelGroup: {
+        height: '80em',
+        maxHeight: '150em',
+        overflowY: 'auto'
       }
     };
     return (
@@ -76,272 +84,269 @@ class Goal extends Component {
             <i id="titleInfo" className="fa fa-info-circle" />
           </h2>
         </legend>
-        <div className="row" style={style.bottom}>
+        <div className="row" style={style.panelGroup}>
           <div className="col-sm-2" />
           <div className="col-sm-8">
-            <PanelGroup accordion id="accordion-uncontrolled-example">
-              {this.props.reduceWeight
-                &&
-                <Panel eventKey="1">
-                  <Panel.Heading>
-                    <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.reduceWeight.${this.props.language}`)}
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Body collapsible>
-                    <div className="row">
-                      <div className="col-sm-12">
-                        <div className="col-sm-6" style={style.container}>
-                          <h4 style={style.center}>{T.translate(`goals.RecommendedGoals.${this.props.language}`)}</h4>
-                          <div className="col-sm-12">
-                            <span className="col-sm-6" style={style.bold}>
-                              {T.translate(`goals.tiltFrequency.${this.props.language}`)}
-                            </span>
-                            <span className="col-sm-6" style={style.bold}>
-                              {this.props.tiltFrequency} {T.translate(`time.min.${this.props.language}`)}
-                            </span>
-                          </div>
-                          <div className="col-sm-12">
-                            <span className="col-sm-6" style={style.bold}>
-                              {T.translate(`goals.tiltLength.${this.props.language}`)}
-                            </span>
-                            <span className="col-sm-6" style={style.bold}>
-                              {this.props.tiltLength} {T.translate(`time.min.${this.props.language}`)}
-                            </span>
-                          </div>
-                          <div className="col-sm-12">
-                            <span className="col-sm-6" style={style.bold}>
-                              {T.translate(`goals.tiltAngle.${this.props.language}`)}
-                            </span>
-                            <span className="col-sm-6" style={style.bold}>
-                              {this.props.tiltAngle} &deg;
-                            </span>
-                          </div>
+            {this.props.reduceWeight
+              &&
+              <Panel style={style.panels}>
+                <Panel.Heading>
+                  <Panel.Title toggle>
+                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                  </Panel.Title>
+                </Panel.Heading>
+                <Panel.Body collapsible>
+                  <div className="row">
+                    <div className="col-sm-12">
+                      <div className="col-sm-6" style={style.container}>
+                        <h4 style={style.center}>{T.translate(`goals.RecommendedGoals.${this.props.language}`)}</h4>
+                        <div className="col-sm-12">
+                          <span className="col-sm-6" style={style.bold}>
+                            {T.translate(`goals.tiltFrequency.${this.props.language}`)}
+                          </span>
+                          <span className="col-sm-6" style={style.bold}>
+                            {this.props.tiltFrequencyWeight} {T.translate(`time.min.${this.props.language}`)}
+                          </span>
                         </div>
+                        <div className="col-sm-12">
+                          <span className="col-sm-6" style={style.bold}>
+                            {T.translate(`goals.tiltLength.${this.props.language}`)}
+                          </span>
+                          <span className="col-sm-6" style={style.bold}>
+                            {this.props.tiltLengthWeight} {T.translate(`time.min.${this.props.language}`)}
+                          </span>
+                        </div>
+                        <div className="col-sm-12">
+                          <span className="col-sm-6" style={style.bold}>
+                            {T.translate(`goals.tiltAngle.${this.props.language}`)}
+                          </span>
+                          <span className="col-sm-6" style={style.bold}>
+                            {this.props.tiltAngleWeight} &deg;
+                          </span>
+                        </div>
+                      </div>
 
-                        <div className="col-sm-6" style={style.container}>
-                          <div className="col-sm-2" />
-                          <div className="col-sm-9">
-                            <h4 style={style.center}>
-                              {T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp;
-                              <i id="personalGoalInfo" className="fa fa-info-circle" />
-                            </h4>
-                          </div>
-                          <div className="col-sm-1" >
-                            {this.props.profile === 'user'
-                              &&
-                              <button style={style.modifieButton} onClick={() => this.toggleEditing()}>
-                                {this.state.modifieGoal
-                                ?
-                                  <i className="fa fa-check" style={style.icons} />
-                                :
-                                  <i className="fa fa-edit" style={style.icons} />
-                                }
-                              </button>
-                            }
-                          </div>
-                          {this.state.modifieGoal
-                          ?
-                            <div>
-                              <div className="col-sm-12">
-                                <span className="col-sm-4" style={style.bold}>
-                                  {T.translate(`goals.tiltFrequency.${this.props.language}`)}
-                                </span>
-                                <div className="col-sm-1" />
-                                <Slider
-                                  className="col-sm-5" min={0} max={180}
-                                  onChange={(e) => this.props.changeTiltFrequencyGoal(e.value)} step={5}
-                                  value={this.props.tiltFrequencyGoal}
-                                />
-                                <span className="col-sm-2" style={style.bold}>
-                                  {this.props.tiltFrequencyGoal} {T.translate(`time.min.${this.props.language}`)}
-                                </span>
-                              </div>
-                              <div className="col-sm-12">
-                                <span className="col-sm-4" style={style.bold}>
-                                  {T.translate(`goals.tiltLength.${this.props.language}`)}
-                                </span>
-                                <div className="col-sm-1" />
-                                <Slider
-                                  className="col-sm-5" min={0} max={30}
-                                  onChange={(e) => this.props.changeTiltLengthGoal(e.value)}
-                                  value={this.props.tiltLengthGoal}
-                                />
-                                <span className="col-sm-2" style={style.bold}>
-                                  {this.props.tiltLengthGoal} {T.translate(`time.min.${this.props.language}`)}
-                                </span>
-                              </div>
-                              <div className="col-sm-12">
-                                <span className="col-sm-4" style={style.bold}>{T.translate(`goals.tiltAngle.${this.props.language}`)}</span>
-                                <div className="col-sm-1" />
-                                <Slider
-                                  className="col-sm-5" min={0} max={this.state.maxSliderAngle}
-                                  onChange={(e) => this.props.changeTiltAngleGoal(e.value)}
-                                  value={this.props.tiltAngleGoal}
-                                />
-                                <span className="col-sm-2" style={style.bold}>
-                                  {this.props.tiltAngleGoal} &deg;
-                                </span>
-                              </div>
-                            </div>
-                          :
-                            <div>
-                              <div className="col-sm-12">
-                                <span className="col-sm-6" style={style.bold}>
-                                  {T.translate(`goals.tiltFrequency.${this.props.language}`)}
-                                </span>
-                                <span className="col-sm-6" style={style.bold}>
-                                  {this.props.tiltFrequencyGoal} {T.translate(`time.min.${this.props.language}`)}
-                                </span>
-                              </div>
-                              <div className="col-sm-12">
-                                <span className="col-sm-6" style={style.bold}>
-                                  {T.translate(`goals.tiltLength.${this.props.language}`)}
-                                </span>
-                                <span className="col-sm-6" style={style.bold}>
-                                  {this.props.tiltLengthGoal} {T.translate(`time.min.${this.props.language}`)}
-                                </span>
-                              </div>
-                              <div className="col-sm-12">
-                                <span className="col-sm-6" style={style.bold}>
-                                  {T.translate(`goals.tiltAngle.${this.props.language}`)}
-                                </span>
-                                <span className="col-sm-6" style={style.bold}>
-                                  {this.props.tiltAngleGoal} &deg;
-                                </span>
-                              </div>
-                            </div>
+                      <div className="col-sm-6" style={style.container}>
+                        <div className="col-sm-2" />
+                        <div className="col-sm-9">
+                          <h4 style={style.center}>
+                            {T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp;
+                            <i id="personalGoalInfo" className="fa fa-info-circle" />
+                          </h4>
+                        </div>
+                        <div className="col-sm-1" >
+                          {this.props.profile === 'user'
+                            &&
+                            <button style={style.modifieButton} onClick={() => this.toggleEditing()}>
+                              {this.state.modifieGoal
+                              ?
+                                <i className="fa fa-check" style={style.icons} />
+                              :
+                                <i className="fa fa-edit" style={style.icons} />
+                              }
+                            </button>
                           }
-                          <div className="col-sm-12" style={style.chair}>
-                            <div className="col-sm-4" />
-                            <div className="col-sm-4" >
-                              <img src={require('../res/images/chair.png')} width="50" height="50" style={{ transform: `rotate(-${this.props.tiltAngleGoal}deg)` }} />
+                        </div>
+                        {this.state.modifieGoal
+                        ?
+                          <div>
+                            <div className="col-sm-12">
+                              <span className="col-sm-4" style={style.bold}>
+                                {T.translate(`goals.tiltFrequency.${this.props.language}`)}
+                              </span>
+                              <div className="col-sm-1" />
+                              <Slider
+                                className="col-sm-5" min={0} max={180}
+                                onChange={(e) => this.props.changeTiltFrequencyGoal(e.value)} step={5}
+                                value={this.props.tiltFrequencyGoal}
+                              />
+                              <span className="col-sm-2" style={style.bold}>
+                                {this.props.tiltFrequencyGoal} {T.translate(`time.min.${this.props.language}`)}
+                              </span>
                             </div>
+                            <div className="col-sm-12">
+                              <span className="col-sm-4" style={style.bold}>
+                                {T.translate(`goals.tiltLength.${this.props.language}`)}
+                              </span>
+                              <div className="col-sm-1" />
+                              <Slider
+                                className="col-sm-5" min={0} max={30}
+                                onChange={(e) => this.props.changeTiltLengthGoal(e.value)}
+                                value={this.props.tiltLengthGoal}
+                              />
+                              <span className="col-sm-2" style={style.bold}>
+                                {this.props.tiltLengthGoal} {T.translate(`time.min.${this.props.language}`)}
+                              </span>
+                            </div>
+                            <div className="col-sm-12">
+                              <span className="col-sm-4" style={style.bold}>{T.translate(`goals.tiltAngle.${this.props.language}`)}</span>
+                              <div className="col-sm-1" />
+                              <Slider
+                                className="col-sm-5" min={0} max={this.state.maxSliderAngle}
+                                onChange={(e) => this.props.changeTiltAngleGoal(e.value)}
+                                value={this.props.tiltAngleGoal}
+                              />
+                              <span className="col-sm-2" style={style.bold}>
+                                {this.props.tiltAngleGoal} &deg;
+                              </span>
+                            </div>
+                          </div>
+                        :
+                          <div>
+                            <div className="col-sm-12">
+                              <span className="col-sm-6" style={style.bold}>
+                                {T.translate(`goals.tiltFrequency.${this.props.language}`)}
+                              </span>
+                              <span className="col-sm-6" style={style.bold}>
+                                {this.props.tiltFrequencyGoal} {T.translate(`time.min.${this.props.language}`)}
+                              </span>
+                            </div>
+                            <div className="col-sm-12">
+                              <span className="col-sm-6" style={style.bold}>
+                                {T.translate(`goals.tiltLength.${this.props.language}`)}
+                              </span>
+                              <span className="col-sm-6" style={style.bold}>
+                                {this.props.tiltLengthGoal} {T.translate(`time.min.${this.props.language}`)}
+                              </span>
+                            </div>
+                            <div className="col-sm-12">
+                              <span className="col-sm-6" style={style.bold}>
+                                {T.translate(`goals.tiltAngle.${this.props.language}`)}
+                              </span>
+                              <span className="col-sm-6" style={style.bold}>
+                                {this.props.tiltAngleGoal} &deg;
+                              </span>
+                            </div>
+                          </div>
+                        }
+                        <div className="col-sm-12" style={style.chair}>
+                          <div className="col-sm-4" />
+                          <div className="col-sm-4" >
+                            <img src={require('../res/images/chair.png')} width="50" height="50" style={{ transform: `rotate(-${this.props.tiltAngleGoal}deg)` }} />
                           </div>
                         </div>
                       </div>
                     </div>
-                  </Panel.Body>
-                </Panel>
-              }
-
-              {this.props.reduceSwelling
-                &&
-                <Panel eventKey="2">
-                  <Panel.Heading>
-                    <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingRest.${this.props.language}`)}
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Body collapsible>
-                    {this.props.swellingRecommendation === undefined ?
-                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                      this.props.swellingRecommendation}
-                  </Panel.Body>
-                </Panel>
-              }
-              {this.props.reduceSlidingMoving
-                &&
-                <Panel eventKey="2">
-                  <Panel.Heading>
-                    <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingMoving.${this.props.language}`)}
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Body collapsible>
-                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleMoving} &deg; {T.translate(`goals.reduceSlidingMoving.${this.props.language}`)}
-                  </Panel.Body>
-                </Panel>
-              }
-              {this.props.reduceSlidingRest
-                &&
-                <Panel eventKey="3">
-                  <Panel.Heading>
-                    <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.pain.${this.props.language}`)}
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Body collapsible>
-                    {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleRest} &deg; {T.translate(`goals.reduceSlidingRest.${this.props.language}`)}
-                  </Panel.Body>
-                </Panel>
-              }
-              {this.props.reducePain
-                &&
-                <Panel eventKey="4">
-                  <Panel.Heading>
-                    <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.rest.${this.props.language}`)}
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Body collapsible>
-                    {this.props.painRecommendation === undefined ?
-                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                      this.props.painRecommendation}
-                  </Panel.Body>
-                </Panel>
-              }
-              {this.props.allowRest
-                &&
-                <Panel eventKey="5">
-                  <Panel.Heading>
-                    <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.rest.${this.props.language}`)}
-                    </Panel.Title>
-                  </Panel.Heading>
-                  <Panel.Body collapsible>
-                    {this.props.restRecommendation === undefined ?
-                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                      this.props.restRecommendation}
-                  </Panel.Body>
-                </Panel>
-              }
-              {this.props.easeTransfers
+                  </div>
+                </Panel.Body>
+              </Panel>
+            }
+            {this.props.reduceSlidingMoving
               &&
-              <Panel eventKey="6">
+              <Panel style={style.panels}>
                 <Panel.Heading>
                   <Panel.Title toggle>
-                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.transfer.${this.props.language}`)}
+                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingMoving.${this.props.language}`)}
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.transferRecommendation === undefined ?
-                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                      this.props.transferRecommendation}
+                  {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleMoving} &deg; {T.translate(`goals.reduceSlidingMoving.${this.props.language}`)}
                 </Panel.Body>
               </Panel>
-              }
-              {this.props.improveComfort
+            }
+            {this.props.reduceSlidingRest
               &&
-              <Panel eventKey="7">
+              <Panel style={style.panels}>
                 <Panel.Heading>
                   <Panel.Title toggle>
-                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.comfort.${this.props.language}`)}
+                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingRest.${this.props.language}`)}
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.comfortRecommendation === undefined ?
-                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                      this.props.comfortRecommendation}
+                  {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleRest} &deg; {T.translate(`goals.reduceSlidingRest.${this.props.language}`)}
                 </Panel.Body>
               </Panel>
-              }
-              {this.props.other
+            }
+            {this.props.reduceSwelling
               &&
-              <Panel eventKey="8">
+              <Panel style={style.panels}>
                 <Panel.Heading>
                   <Panel.Title toggle>
-                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.other.${this.props.language}`)}
+                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.reduceSwelling.${this.props.language}`)}
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.otherRecommendations === undefined ?
-                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                      this.props.otherRecommendations}
+                  {this.props.swellingRecommendation === undefined ?
+                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                    this.props.swellingRecommendation}
                 </Panel.Body>
               </Panel>
-              }
-            </PanelGroup>
+            }
+            {this.props.reducePain
+              &&
+              <Panel style={style.panels}>
+                <Panel.Heading>
+                  <Panel.Title toggle>
+                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.pain.${this.props.language}`)}
+                  </Panel.Title>
+                </Panel.Heading>
+                <Panel.Body collapsible>
+                  {this.props.painRecommendation === undefined ?
+                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                    this.props.painRecommendation}
+                </Panel.Body>
+              </Panel>
+            }
+            {this.props.allowRest
+              &&
+              <Panel style={style.panels}>
+                <Panel.Heading>
+                  <Panel.Title toggle>
+                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.rest.${this.props.language}`)}
+                  </Panel.Title>
+                </Panel.Heading>
+                <Panel.Body collapsible>
+                  {this.props.restRecommendation === undefined ?
+                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                    this.props.restRecommendation}
+                </Panel.Body>
+              </Panel>
+            }
+            {this.props.easeTransfers
+            &&
+            <Panel style={style.panels}>
+              <Panel.Heading>
+                <Panel.Title toggle>
+                  <i className="fa fa-chevron-down" /> {T.translate(`recommendations.transfer.${this.props.language}`)}
+                </Panel.Title>
+              </Panel.Heading>
+              <Panel.Body collapsible>
+                {this.props.transferRecommendation === undefined ?
+                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                    this.props.transferRecommendation}
+              </Panel.Body>
+            </Panel>
+            }
+            {this.props.improveComfort
+            &&
+            <Panel style={style.panels}>
+              <Panel.Heading>
+                <Panel.Title toggle>
+                  <i className="fa fa-chevron-down" /> {T.translate(`recommendations.comfort.${this.props.language}`)}
+                </Panel.Title>
+              </Panel.Heading>
+              <Panel.Body collapsible>
+                {this.props.comfortRecommendation === undefined ?
+                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                    this.props.comfortRecommendation}
+              </Panel.Body>
+            </Panel>
+            }
+            {this.props.other
+            &&
+            <Panel style={style.panels}>
+              <Panel.Heading>
+                <Panel.Title toggle>
+                  <i className="fa fa-chevron-down" /> {T.translate(`recommendations.other.${this.props.language}`)}
+                </Panel.Title>
+              </Panel.Heading>
+              <Panel.Body collapsible>
+                {this.props.otherRecommendations === undefined ?
+                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
+                    this.props.otherRecommendations}
+              </Panel.Body>
+            </Panel>
+            }
           </div>
         </div>
         <Tooltip
@@ -375,6 +380,7 @@ function mapStateToProps(state) {
     tiltAngleWeight: state.applicationReducer.tiltAngleWeight,
     tiltAngleMoving: state.applicationReducer.tiltAngleMoving,
     tiltAngleRest: state.applicationReducer.tiltAngleRest,
+    swellingRecommendation: state.applicationReducer.swellingRecommendation,
     painRecommendation: state.applicationReducer.painRecommendation,
     restRecommendation: state.applicationReducer.restRecommendation,
     transferRecommendation: state.applicationReducer.transferRecommendation,

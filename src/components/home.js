@@ -17,7 +17,7 @@ class Home extends Component {
   setProfile(profileName) {
     this.props.changeProfile(profileName);
     if (profileName === 'user') {
-      this.props.history.push('/graphic');
+      this.props.history.push('/goals');
     } else {
       this.props.history.push('/configurations');
     }

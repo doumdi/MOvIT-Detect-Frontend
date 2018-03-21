@@ -25,6 +25,21 @@ class Recommendation extends Component {
     }
   }
 
+  changeFrequencyGoal(value) {
+    this.props.changeTiltFrequencyWeight(value);
+    this.props.changeTiltFrequencyGoal(value);
+  }
+
+  changeLengthGoal(value) {
+    this.props.changeTiltLengthWeight(value);
+    this.props.changeTiltLengthGoal(value);
+  }
+
+  changeAngleGoal(value) {
+    this.props.changeTiltAngleWeight(value);
+    this.props.changeTiltAngleGoal(value);
+  }
+
   render() {
     const style = {
       height: '80vh',
@@ -74,7 +89,7 @@ class Recommendation extends Component {
                     min={0}
                     max={180}
                     value={this.props.tiltFrequencyWeight}
-                    onChange={(e) => this.props.changeTiltFrequencyWeight(e.value)} step={5}
+                    onChange={(e) => this.changeFrequencyGoal(e.value)} step={5}
                   />
                   <span className="col-sm-2">{this.props.tiltFrequencyWeight} min </span>
                 </div>
@@ -87,7 +102,7 @@ class Recommendation extends Component {
                     min={0}
                     max={30}
                     value={this.props.tiltLengthWeight}
-                    onChange={(e) => this.props.changeTiltLengthWeight(e.value)}
+                    onChange={(e) => this.changeLengthGoal(e.value)}
                   />
                   <span className="col-sm-2" >{this.props.tiltLengthWeight} min </span>
                 </div>
@@ -100,7 +115,7 @@ class Recommendation extends Component {
                     min={0}
                     max={this.state.maxSliderAngle}
                     value={this.props.tiltAngleWeight}
-                    onChange={(e) => this.props.changeTiltAngleWeight(e.value)}
+                    onChange={(e) => this.changeAngleGoal(e.value)}
                   />
                   <span className="col-sm-2">{this.props.tiltAngleWeight} &deg; </span>
                 </div>
@@ -343,7 +358,10 @@ function mapStateToProps(state) {
     comfortRecommendation: state.applicationReducer.comfortRecommendation,
     otherRecommendations: state.applicationReducer.otherRecommendations,
     otherRecommendationsTitle: state.applicationReducer.otherRecommendationsTitle,
-    maxAngle: state.applicationReducer.maxAngle
+    maxAngle: state.applicationReducer.maxAngle,
+    tiltFrequencyGoal: state.applicationReducer.tiltFrequencyGoal,
+    tiltLengthGoal: state.applicationReducer.tiltLengthGoal,
+    tiltAngleGoal: state.applicationReducer.tiltAngleGoal
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -368,7 +386,10 @@ function mapDispatchToProps(dispatch) {
     easeTransfersRecommendation: ApplicationActions.easeTransfersRecommendation,
     improveComfortRecommendation: ApplicationActions.improveComfortRecommendation,
     otherRecommendation: ApplicationActions.otherRecommendation,
-    otherRecommendationTitle: ApplicationActions.otherRecommendationTitle
+    otherRecommendationTitle: ApplicationActions.otherRecommendationTitle,
+    changeTiltFrequencyGoal: ApplicationActions.changeTiltFrequencyGoal,
+    changeTiltLengthGoal: ApplicationActions.changeTiltLengthGoal,
+    changeTiltAngleGoal: ApplicationActions.changeTiltAngleGoal
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);
