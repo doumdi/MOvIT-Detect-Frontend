@@ -98,7 +98,7 @@ class Recommendation extends Component {
                   <Slider
                     className="col-sm-6"
                     min={0}
-                    max={90}
+                    max={this.state.maxSliderAngle}
                     value={this.props.tiltAngleWeight}
                     onChange={(e) => this.props.changeTiltAngleWeight(e.value)}
                   />
@@ -106,9 +106,8 @@ class Recommendation extends Component {
                 </div>
               </div>
             : null}
-
-          <div className="col-sm-12" style={style.spacingTop}>
-            <div className="col-sm-5" style={style.stickLeft}>
+          <div className="col-sm-12">
+            <div className="col-sm-4" style={style.stickLeft}>
               <Checkbox
                 inputId="reduceMovingSlideCheck"
                 label="Reduce sliding while moving"
@@ -124,7 +123,12 @@ class Recommendation extends Component {
                 <div className="col-sm-4">
                   <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
                 </div>
-                <Slider className="col-sm-6" min={0} max={90} onChange={(e) => this.props.changeTiltAngleMoving(e.value)} />
+                <Slider
+                  className="col-sm-6"
+                  min={0} max={this.state.maxSliderAngle}
+                  onChange={(e) => this.props.changeTiltAngleMoving(e.value)}
+                  value={this.props.tiltAngleMoving}
+                />
                 <span className="col-sm-2">{this.props.tiltAngleMoving} &deg; </span>
               </div>
             : null}
@@ -148,7 +152,7 @@ class Recommendation extends Component {
                 <Slider
                   className="col-sm-6"
                   min={0}
-                  max={90}
+                  max={this.state.maxSliderAngle}
                   value={this.props.tiltAngleRest}
                   onChange={(e) => this.props.changeTiltAngleRest(e.value)}
                 />

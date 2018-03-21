@@ -64,8 +64,8 @@ recommendations:
     FR: Indiquez ici le titre de la cible que vous voulez transmettre à l’usager
     EN: Indicate here the title of the target that you want to transmit to the user
   recommendationsText:
-    FR: "Veuillez sélectionner la ou les cibles d’usage de la bascule recommandée(s) pour l’usager:"
-    EN: "Please select the goal(s) for the recommend use of the tilt :"
+    FR: "Veuillez sélectionner la ou les cibles d’usage de la bascule destinée(s) à l’usager. Veuillez également personnaliser chacune des cibles sélectionnées aux besoins de l’usager en y saisissant vos recommandations."
+    EN: "Please select the goal(s) for the recommend use of the tilt. Please personalise every selected goal for the user's need by entering you recommendations"
   reduceWeight:
     FR: Réduire la pression sur le siège
     EN: Reduce weight

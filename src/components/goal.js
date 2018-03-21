@@ -224,12 +224,13 @@ class Goal extends Component {
                   </Panel.Body>
                 </Panel>
               }
+
               {this.props.reduceSwelling
                 &&
                 <Panel eventKey="2">
                   <Panel.Heading>
                     <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`goals.reduceSwelling.${this.props.language}`)}
+                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingRest.${this.props.language}`)}
                     </Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
@@ -257,7 +258,7 @@ class Goal extends Component {
                 <Panel eventKey="3">
                   <Panel.Heading>
                     <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.slidingRest.${this.props.language}`)}
+                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.pain.${this.props.language}`)}
                     </Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
@@ -270,7 +271,7 @@ class Goal extends Component {
                 <Panel eventKey="4">
                   <Panel.Heading>
                     <Panel.Title toggle>
-                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.pain.${this.props.language}`)}
+                      <i className="fa fa-chevron-down" /> {T.translate(`recommendations.rest.${this.props.language}`)}
                     </Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
@@ -330,9 +331,7 @@ class Goal extends Component {
               <Panel eventKey="8">
                 <Panel.Heading>
                   <Panel.Title toggle>
-                    <i className="fa fa-chevron-down" /> {this.props.otherRecommendationsTitle === undefined ?
-                      T.translate(`recommendations.otherTitle.${this.props.language}`) :
-                      this.props.otherRecommendationsTitle}
+                    <i className="fa fa-chevron-down" /> {T.translate(`recommendations.other.${this.props.language}`)}
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
@@ -380,9 +379,7 @@ function mapStateToProps(state) {
     restRecommendation: state.applicationReducer.restRecommendation,
     transferRecommendation: state.applicationReducer.transferRecommendation,
     comfortRecommendation: state.applicationReducer.comfortRecommendation,
-    swellingRecommendation: state.applicationReducer.swellingRecommendation,
     otherRecommendations: state.applicationReducer.otherRecommendations,
-    otherRecommendationsTitle: state.applicationReducer.otherRecommendationsTitle,
     maxAngle: state.applicationReducer.maxAngle,
     tiltFrequencyGoal: state.applicationReducer.tiltFrequencyGoal,
     tiltLengthGoal: state.applicationReducer.tiltLengthGoal,

@@ -16,7 +16,11 @@ class Home extends Component {
 
   setProfile(profileName) {
     this.props.changeProfile(profileName);
-    this.props.history.push('/graphic');
+    if (profileName === 'user') {
+      this.props.history.push('/graphic');
+    } else {
+      this.props.history.push('/configurations');
+    }
   }
 
   render() {
