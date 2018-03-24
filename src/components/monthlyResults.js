@@ -213,29 +213,6 @@ class MonthlyResults extends Component {
       ],
     };
 
-    const minOptions = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            callback: (value) => `${value} min`
-          }
-        }]
-      },
-      tooltips: {
-        callbacks: {
-          label: (tooltipItem, data) => {
-            let label = data.datasets[tooltipItem.datasetIndex].label || '';
-            if (label) {
-              label += ': ';
-            }
-            label += Math.round(tooltipItem.yLabel * 100) / 100;
-            label += ' min';
-            return label;
-          }
-        }
-      }
-    };
-
     const hourOptions = {
       scales: {
         yAxes: [{
@@ -256,6 +233,9 @@ class MonthlyResults extends Component {
             return label;
           }
         }
+      },
+      legend: {
+        onClick: null
       }
     };
 
@@ -285,12 +265,35 @@ class MonthlyResults extends Component {
       }
     };
 
+    const percentOptions2 = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            callback: (value) => `${value}%`
+          }
+        }]
+      },
+      tooltips: {
+        callbacks: {
+          label: (tooltipItem, data) => {
+            let label = data.datasets[tooltipItem.datasetIndex].label || '';
+            if (label) {
+              label += ': ';
+            }
+            label += Math.round(tooltipItem.yLabel * 100) / 100;
+            label += '%';
+            return label;
+          }
+        }
+      }
+    };
+
     return (
       <div className="container">
         <h2 style={style.center}>{T.translate(`monthlyResults.howDo.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>
-        <Chart type="bar" data={tiltData} options={minOptions} />
+        <Chart type="bar" data={tiltData} options={percentOptions2} />
         <hr />
         <h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>
         <Chart type="bar" data={wheelChairData} options={hourOptions} />

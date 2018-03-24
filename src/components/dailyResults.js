@@ -53,13 +53,30 @@ class DailyResults extends Component {
       ]
     };
 
+    const minOptions = {
+      tooltips: {
+        callbacks: {
+          label: (tooltipItem, data) => {
+            console.log(tooltipItem, data);
+            let label = data.datasets[0].data[tooltipItem.datasetIndex] || '';
+            if (label) {
+              label += ': ';
+            }
+            label += Math.round(tooltipItem.yLabel * 100) / 100;
+            label += ' min';
+            return label;
+          }
+        }
+      },
+    };
+
     return (
       <div className="container">
         <h2 style={style.center}>{T.translate(`dailyResults.howDo.${this.props.language}`)}</h2>
         <br />
         <h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>
         <hr />
-        <Chart type="pie" data={data} />
+        <Chart type="pie" data={data} options={minOptions} />
         <hr />
         <h2 style={style.center}>{T.translate(`dailyResults.pressure.${this.props.language}`)}</h2>
         <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>
