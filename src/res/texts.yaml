@@ -148,7 +148,7 @@ goals:
     EN: while at rest to avoid sliding
   reduceSwelling:
     FR: Libérer l'enflure aux membres inférieurs
-    EN: Release swelling 
+    EN: Release swelling
 
 configurations:
   FR: Configurations
@@ -204,8 +204,8 @@ dailyResults:
     FR: Comment j'utilise ma bascule en général?
     EN: How do I use my wheelchair in general
   angleDistribution:
-    FR: Distribution des angles de bascule au cours de la journée en minutes
-    EN: Distribution of tilt angles during the day in minutes
+    FR: Distribution des angles de bascule au cours de la journée
+    EN: Distribution of tilt angles during the day
     zero:
       FR: Moins de 0°
       EN: Less than 0°
@@ -250,8 +250,8 @@ monthlyResults:
     FR: Comment j'utilise ma bascule en général?
     EN: How do I use my wheelchair in general
   tiltDistribution:
-    FR: Distribution des angles de bascule au cours du mois en minutes
-    EN: Distribution of tilt angles during the month in minutes
+    FR: Distribution des angles de bascule au cours du mois
+    EN: Distribution of tilt angles during the month
     zero:
       FR: Moins de 0°
       EN: Less than 0°
@@ -292,8 +292,8 @@ monthlyResults:
     FR: Faciliter vos déplacements
     EN: Making your travel easier
     success:
-      FR: Taux de réussite de l’objectif recommandé au cours du mois en pourcentage (%)
-      EN: Success rate for the recommend goal of the month in percent (%)
+      FR: Taux de réussite de l’objectif recommandé au cours du mois
+      EN: Success rate for the recommend goal of the month
     successRate:
       FR: Taux de réussite
       EN: Success Rate
@@ -301,8 +301,8 @@ monthlyResults:
     FR: Réduire le glissement au repos
     EN: Reduce sliding at rest
     success:
-      FR: Taux de réussite de l’objectif recommandé au cours du mois en pourcentage (%)
-      EN: Success rate for the recommend goal of the month in percent (%)
+      FR: Taux de réussite de l’objectif recommandé au cours du mois
+      EN: Success rate for the recommend goal of the month
     successRate:
       FR: Taux de réussite
       EN: Success Rate
