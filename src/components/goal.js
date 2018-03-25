@@ -14,6 +14,12 @@ class Goal extends Component {
     this.state = {
       modifieGoal: false,
       maxSliderAngle: 90,
+      swellingRecommendation: props.swellingRecommendation,
+      painRecommendation: props.painRecommendation,
+      restRecommendation: props.restRecommendation,
+      transferRecommendation: props.transferRecommendation,
+      comfortRecommendation: props.comfortRecommendation,
+      otherRecommendations: props.otherRecommendations
     };
 
     this.setMaxAngle();
@@ -267,9 +273,9 @@ class Goal extends Component {
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.swellingRecommendation === undefined ?
+                  {this.state.swellingRecommendation === undefined ?
                     T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.swellingRecommendation}
+                    this.state.swellingRecommendation}
                 </Panel.Body>
               </Panel>
             }
@@ -282,9 +288,9 @@ class Goal extends Component {
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.painRecommendation === undefined ?
+                  {this.state.painRecommendation === undefined ?
                     T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.painRecommendation}
+                    this.state.painRecommendation}
                 </Panel.Body>
               </Panel>
             }
@@ -312,9 +318,9 @@ class Goal extends Component {
                 </Panel.Title>
               </Panel.Heading>
               <Panel.Body collapsible>
-                {this.props.transferRecommendation === undefined ?
+                {this.state.transferRecommendation === undefined ?
                     T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.transferRecommendation}
+                    this.state.transferRecommendation}
               </Panel.Body>
             </Panel>
             }
@@ -327,9 +333,9 @@ class Goal extends Component {
                 </Panel.Title>
               </Panel.Heading>
               <Panel.Body collapsible>
-                {this.props.comfortRecommendation === undefined ?
+                {this.state.comfortRecommendation === undefined ?
                     T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.comfortRecommendation}
+                    this.state.comfortRecommendation}
               </Panel.Body>
             </Panel>
             }
