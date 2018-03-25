@@ -56,13 +56,12 @@ class DailyResults extends Component {
     const minOptions = {
       tooltips: {
         callbacks: {
-          label: (tooltipItem, data) => {
-            console.log(tooltipItem, data);
-            let label = data.datasets[0].data[tooltipItem.datasetIndex] || '';
+          label: (tooltipItem, labelData) => {
+            let label = labelData.labels[tooltipItem.index] || '';
             if (label) {
               label += ': ';
             }
-            label += Math.round(tooltipItem.yLabel * 100) / 100;
+            label += Math.round(labelData.datasets[0].data[tooltipItem.index] * 100) / 100;
             label += ' min';
             return label;
           }

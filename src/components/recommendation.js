@@ -63,11 +63,10 @@ class Recommendation extends Component {
     };
 
     return (
-      <div style={style}>
+      <div style={style} className="container">
         <center><h2>{T.translate(`recommendations.${this.props.language}`)}</h2></center>
         <legend className="text-center header"><h4>{T.translate(`recommendations.recommendationsText.${this.props.language}`)}</h4></legend>
-        <div className="col-sm-2" />
-        <div className="col-sm-8">
+        <div className="col-sm-12">
           <div className="col-sm-12">
             <Checkbox
               inputId="reduceWeightCheck"
@@ -190,9 +189,8 @@ class Recommendation extends Component {
                 <InputText
                   id="reduceSwellingRec" type="text" className="form-control"
                   onChange={(e) => this.props.reduceSwellingRecommendation(e.target.value)}
-                  value={this.props.swellingRecommendation === undefined ?
-                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.swellingRecommendation}
+                  value={this.props.swellingRecommendation}
+                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
               </div>
             : null}
@@ -212,11 +210,9 @@ class Recommendation extends Component {
               <div className="col-sm-7" style={style.input}>
                 <InputText
                   id="reducePainRec" type="text" className="form-control"
-                  placeholder={T.translate(`recommendations.pain.recommendation.${this.props.language}`)}
+                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                   onChange={(e) => this.props.reducePainRecommendation(e.target.value)}
-                  value={this.props.painRecommendation === undefined ?
-                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.painRecommendation}
+                  value={this.props.painRecommendation}
                 />
               </div>
             : null}
@@ -237,9 +233,8 @@ class Recommendation extends Component {
                 <InputText
                   id="allowRestRec" type="text" className="form-control"
                   onChange={(e) => this.props.allowRestRecommendation(e.target.value)}
-                  value={this.props.restRecommendation === undefined ?
-                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.restRecommendation}
+                  value={this.props.restRecommendation}
+                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
               </div>
             : null}
@@ -260,9 +255,8 @@ class Recommendation extends Component {
                 <InputText
                   id="easeTransfersRec" type="text" className="form-control"
                   onChange={(e) => this.props.easeTransfersRecommendation(e.target.value)}
-                  value={this.props.transferRecommendation === undefined ?
-                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.transferRecommendation}
+                  value={this.props.transferRecommendation}
+                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
               </div>
             : null}
@@ -282,9 +276,8 @@ class Recommendation extends Component {
                 <InputText
                   id="improveComfortRec" type="text" className="form-control"
                   onChange={(e) => this.props.improveComfortRecommendation(e.target.value)}
-                  value={this.props.comfortRecommendation === undefined ?
-                    T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.comfortRecommendation}
+                  value={this.props.comfortRecommendation}
+                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
               </div>
             : null}
@@ -301,9 +294,8 @@ class Recommendation extends Component {
                   <InputText
                     id="otherRec" type="text" className="form-control"
                     onChange={(e) => this.props.otherRecommendationTitle(e.target.value)}
-                    value={this.props.otherRecommendationsTitle === undefined ?
-                      T.translate(`recommendations.otherTitle.${this.props.language}`) :
-                      this.props.otherRecommendationsTitle}
+                    value={this.props.otherRecommendationsTitle}
+                    placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
                   />
                 </div>
                 <div className="col-sm-7 col-sm-offset-4" style={style.input}>

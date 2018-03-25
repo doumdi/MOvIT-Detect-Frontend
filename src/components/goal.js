@@ -13,7 +13,7 @@ class Goal extends Component {
     super(props, context);
     this.state = {
       modifieGoal: false,
-      maxSliderAngle: 90
+      maxSliderAngle: 90,
     };
 
     this.setMaxAngle();
@@ -76,6 +76,7 @@ class Goal extends Component {
         overflowY: 'auto'
       }
     };
+
     return (
       <div>
         <legend className="text-center header">
@@ -296,9 +297,9 @@ class Goal extends Component {
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {this.props.restRecommendation === undefined ?
+                  {this.state.restRecommendation === undefined ?
                     T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                    this.props.restRecommendation}
+                    this.state.restRecommendation}
                 </Panel.Body>
               </Panel>
             }
