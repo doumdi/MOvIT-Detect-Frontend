@@ -297,24 +297,38 @@ class MonthlyResults extends Component {
         <hr />
         <h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>
         <Chart type="bar" data={wheelChairData} options={hourOptions} />
-        <hr />
-        <h2 style={style.center}>{T.translate(`monthlyResults.pressure.${this.props.language}`)}</h2>
-        <hr />
-        <h4>{T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}</h4>
-        <Chart type="line" data={personalTiltData} />
-        <hr />
-        <h4>{T.translate(`monthlyResults.pressure.recommended.${this.props.language}`)}</h4>
-        <Chart type="line" data={personalTiltData} />
-        <hr />
-        <h2 style={style.center}>{T.translate(`monthlyResults.travel.${this.props.language}`)}</h2>
-        <hr />
-        <h4>{T.translate(`monthlyResults.travel.success.${this.props.language}`)}</h4>
-        <Chart type="line" data={travelData} options={percentOptions} />
-        <hr />
-        <h2 style={style.center}>{T.translate(`monthlyResults.rest.${this.props.language}`)}</h2>
-        <hr />
-        <h4>{T.translate(`monthlyResults.rest.success.${this.props.language}`)}</h4>
-        <Chart type="line" data={restData} options={percentOptions} />
+        {this.props.reduceWeight &&
+          <div>
+            <hr />
+            <h2 style={style.center}>{T.translate(`monthlyResults.pressure.${this.props.language}`)}</h2>
+            <hr />
+            <h4>{T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}</h4>
+            <Chart type="line" data={personalTiltData} />
+            <hr />
+            <h4>{T.translate(`monthlyResults.pressure.recommended.${this.props.language}`)}</h4>
+            <Chart type="line" data={personalTiltData} />
+          </div>
+        }
+        {
+          this.props.reduceSlidingMoving &&
+          <div>
+            <hr />
+            <h2 style={style.center}>{T.translate(`monthlyResults.travel.${this.props.language}`)}</h2>
+            <hr />
+            <h4>{T.translate(`monthlyResults.travel.success.${this.props.language}`)}</h4>
+            <Chart type="line" data={travelData} options={percentOptions} />
+          </div>
+        }
+        {
+          this.props.reduceSlidingRest &&
+          <div>
+            <hr />
+            <h2 style={style.center}>{T.translate(`monthlyResults.rest.${this.props.language}`)}</h2>
+            <hr />
+            <h4>{T.translate(`monthlyResults.rest.success.${this.props.language}`)}</h4>
+            <Chart type="line" data={restData} options={percentOptions} />
+          </div>
+        }
         <div style={style.bottom} />
       </div>
     );
@@ -323,7 +337,10 @@ class MonthlyResults extends Component {
 
 function mapStateToProps(state) {
   return {
-    language: state.applicationReducer.language
+    language: state.applicationReducer.language,
+    reduceWeight: state.applicationReducer.reduceWeight,
+    reduceSlidingRest: state.applicationReducer.reduceSlidingRest,
+    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving
   };
 }
 
