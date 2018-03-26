@@ -294,18 +294,16 @@ class Recommendation extends Component {
                   <InputText
                     id="otherRec" type="text" className="form-control"
                     onChange={(e) => this.props.otherRecommendationTitle(e.target.value)}
-                    value={this.props.otherRecommendationsTitle === undefined ?
-                      T.translate(`recommendations.otherTitle.${this.props.language}`) :
-                      this.props.otherRecommendationsTitle}
+                    placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
+                    value={this.props.otherRecommendationsTitle}
                   />
                 </div>
                 <div className="col-sm-7 col-sm-offset-4" style={style.input}>
                   <InputText
                     id="otherRec" type="text" className="form-control"
                     onChange={(e) => this.props.otherRecommendation(e.target.value)}
-                    value={this.props.otherRecommendations === undefined ?
-                      T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
-                      this.props.otherRecommendations}
+                    placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
+                    value={this.props.otherRecommendations}
                   />
                 </div>
               </div>
