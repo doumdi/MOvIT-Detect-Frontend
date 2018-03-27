@@ -15,7 +15,7 @@ class Graphic extends Component {
       month: 2,
       period: 'day'
     };
-
+    this.setDefaultDate();
     this.onPeriodChange = this.onPeriodChange.bind(this);
   }
 
@@ -25,6 +25,12 @@ class Graphic extends Component {
 
   onMonthChange(e) {
     this.setState({ month: e.value });
+  }
+
+  setDefaultDate() {
+    const date = new Date();
+    date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
+    this.state.date = date;
   }
 
   render() {
@@ -129,7 +135,7 @@ class Graphic extends Component {
         </div>
         <div className="content-section implementation">
           <span className="col-sm-3" />
-          <Results language={this.props.language} />
+          <Results language={this.props.language} date={this.state.date} />
         </div>
       </div>
     );

@@ -7,23 +7,30 @@ import { T } from '../index';
 import { URL } from '../redux/applicationReducer';
 
 class DailyResults extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       value1: 50,
       value2: 30,
       dayData: [],
+      date: props.date,
       data: null,
       loading: true
     };
-    this.getDayData();
+    this.getDayData(this.state.date);
   }
 
-  getDayData() {
-    const date = new Date();
-    date.setUTCHours(0, 0, 0, 0);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.date !== this.state.date) {
+      this.setState({ date: nextProps.date });
+      this.getDayData(nextProps.date);
+    }
+  }
 
-    axios.get(`${URL}oneDay?Offset=0,Day=${+date}`)
+  getDayData(date) {
+    this.setState({ loading: true });
+    console.log(+date);
+    axios.get(`${URL}oneDay?Day=${+date}`)
       .then(response => { this.state.dayData = response.data; this.loadData(); });
   }
 
