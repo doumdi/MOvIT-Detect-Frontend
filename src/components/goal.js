@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Slider } from 'primereact/components/slider/Slider';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import { Panel, PanelGroup } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ApplicationActions } from '../redux/applicationReducer';

@@ -1,6 +1,7 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
+export const URL = 'http://localhost:1880/';
 export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';
 export const EN = 'EN';

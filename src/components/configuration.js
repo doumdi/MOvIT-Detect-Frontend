@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
+import Notification from './notification';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
@@ -20,6 +21,9 @@ class Configuration extends Component {
       icon: {
         paddingTop: '6px',
         fontSize: 'large'
+      },
+      notifs: {
+        marginTop: '1em'
       }
     };
 
@@ -79,6 +83,7 @@ class Configuration extends Component {
             <button onClick={() => this.save()} className="btn btn-lg">{T.translate(`save.${this.props.language}`)}</button>
           </div>
         </div>
+        <Notification />
       </div>
     );
   }
