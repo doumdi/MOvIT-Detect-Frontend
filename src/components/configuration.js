@@ -5,12 +5,9 @@ import PropTypes from 'prop-types';
 import { ConfigurationActions } from '../redux/configurationReducer';
 import { T } from '../index';
 import Notification from './notification';
-<<<<<<< HEAD
 import LogoText from './logoText';
 import LogoNumber from './logoNumber';
 import SubmitButtons from './submitButtons';
-=======
->>>>>>> Generate day data and notification
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
@@ -29,26 +26,9 @@ class Configuration extends Component {
   save() {
     this.props.history.push('/recommendations');
   }
-<<<<<<< HEAD
   cancel() {
     console.log('clear all fields');
   }
-=======
-  render() {
-    const style = {
-      content: {
-        textAlign: 'center',
-        paddingBottom: '5vh'
-      },
-      icon: {
-        paddingTop: '6px',
-        fontSize: 'large'
-      },
-      notifs: {
-        marginTop: '1em'
-      }
-    };
->>>>>>> Generate day data and notification
 
   render() {
     return (
@@ -85,13 +65,10 @@ class Configuration extends Component {
           </div>
 
         </div>
-<<<<<<< HEAD
         <SubmitButtons
           onSave={this.save.bind(this)}
           onCancel={this.cancel}
         />
-=======
->>>>>>> Generate day data and notification
         <Notification />
       </div>
     );
