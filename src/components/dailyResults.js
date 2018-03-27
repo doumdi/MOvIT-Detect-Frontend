@@ -85,6 +85,19 @@ class DailyResults extends Component {
       },
     };
 
+    this.setState({ loading: false });
+  }
+
+  render() {
+    const style = {
+      center: {
+        textAlign: 'center'
+      },
+      bottom: {
+        paddingBottom: '400px'
+      },
+    };
+
     const minOptions = {
       tooltips: {
         callbacks: {
