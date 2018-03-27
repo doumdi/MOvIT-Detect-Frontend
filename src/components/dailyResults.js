@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Chart } from 'primereact/components/chart/Chart';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import { T } from '../index';
+import { URL } from '../redux/applicationReducer';
 
 class DailyResults extends Component {
   constructor() {
@@ -22,7 +23,7 @@ class DailyResults extends Component {
     const date = new Date();
     date.setUTCHours(0, 0, 0, 0);
 
-    axios.get(`https://private-f2484-movitplus.apiary-mock.com/oneDay?Offset=0,Day=${+date}`)
+    axios.get(`${URL}oneDay?Offset=0,Day=${+date}`)
       .then(response => { this.state.dayData = response.data; this.loadData(); });
   }
 
