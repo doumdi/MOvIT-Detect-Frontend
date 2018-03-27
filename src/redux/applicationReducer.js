@@ -1,7 +1,11 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
+<<<<<<< HEAD
 export const URL = 'http://private-b13547-movitplus.apiary-mock.com/';
+=======
+export const URL = 'https://private-f2484-movitplus.apiary-mock.com/';
+>>>>>>> Generate day data and notification
 export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';
 export const EN = 'EN';
