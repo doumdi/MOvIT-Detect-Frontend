@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import axios from 'axios';
 import { Chart } from 'primereact/components/chart/Chart';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import { T } from '../index';
@@ -11,20 +11,24 @@ class DailyResults extends Component {
     this.state = {
       value1: 50,
       value2: 30,
+      dayData: [],
+      data: null,
+      loading: true
     };
+    this.getDayData();
   }
 
-  render() {
-    const style = {
-      center: {
-        textAlign: 'center'
-      },
-      bottom: {
-        paddingBottom: '400px'
-      },
-    };
+  getDayData() {
+    const date = new Date();
+    date.setUTCHours(0, 0, 0, 0);
 
-    const data = {
+    axios.get(`https://private-f2484-movitplus.apiary-mock.com/oneDay?Offset=0,Day=${+date}`)
+      .then(response => { this.state.dayData = response.data; this.loadData(); });
+  }
+
+  loadData() {
+    console.log(this.state.dayData);
+    this.state.data = {
       labels: [
         T.translate(`dailyResults.angleDistribution.zero.${this.props.language}`),
         T.translate(`dailyResults.angleDistribution.fifteen.${this.props.language}`),
@@ -34,7 +38,7 @@ class DailyResults extends Component {
       ],
       datasets: [
         {
-          data: [300, 50, 100, 200, 50],
+          data: this.state.dayData,
           backgroundColor: [
             'red',
             'green',
@@ -53,6 +57,19 @@ class DailyResults extends Component {
       ]
     };
 
+    this.setState({ loading: false });
+  }
+
+  render() {
+    const style = {
+      center: {
+        textAlign: 'center'
+      },
+      bottom: {
+        paddingBottom: '400px'
+      },
+    };
+
     const minOptions = {
       tooltips: {
         callbacks: {
@@ -68,14 +85,15 @@ class DailyResults extends Component {
         }
       },
     };
-
     return (
       <div className="container">
         <h2 style={style.center}>{T.translate(`dailyResults.howDo.${this.props.language}`)}</h2>
         <br />
         <h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>
         <hr />
-        <Chart type="pie" data={data} options={minOptions} />
+        {!this.state.loading &&
+          <Chart type="pie" data={this.state.data} options={minOptions} />
+        }
         {this.props.reduceWeight &&
           <div>
             <hr />
