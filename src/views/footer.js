@@ -8,9 +8,9 @@ export default class Footer extends Component {
         padding: '3vh',
         textAlign: 'center',
         height: '8vh',
-        color: 'white'
+        color: 'white',
       },
-      color: 'white'
+      color: 'white',
     };
 
     return (

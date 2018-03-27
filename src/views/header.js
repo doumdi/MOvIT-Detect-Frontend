@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 
 class Header extends Component {
-
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+    changeProfile: PropTypes.func,
+    profile: PropTypes.string,
+    changeLanguage: PropTypes.func,
+  }
   logout() {
     this.props.changeProfile('');
   }
@@ -25,7 +31,7 @@ class Header extends Component {
         marginBottom: 0,
         fontWeight: 'bold',
         fontSize: '24px',
-        fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif'
+        fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
       },
       link: {
         color: 'white',
@@ -36,8 +42,13 @@ class Header extends Component {
         marginBottom: 0,
         fontSize: '16px',
         fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
-        cursor: 'pointer'
-      }
+        cursor: 'pointer',
+      },
+      button: {
+        backgroundColor: 'transparent',
+        border: 'none',
+        outline: 'none',
+      },
     };
     return (
       <div>
@@ -69,22 +80,26 @@ class Header extends Component {
               }
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              <li onClick={this.props.changeLanguage}>
-                {this.props.language === 'FR'
-                ?
-                  <a style={style.link}>EN</a>
-                :
-                  <a style={style.link}>FR</a>
-                }
+              <li>
+                <button className="btn" onClick={this.props.changeLanguage} style={style.button}>
+                  {this.props.language === 'FR'
+                    ?
+                      <a style={style.link}>EN</a>
+                    :
+                      <a style={style.link}>FR</a>
+                    }
+                </button>
               </li>
               {this.props.profile
-                &&
-                <li onClick={() => this.logout()}>
+              &&
+              <li>
+                <button className="btn" onClick={() => this.logout()} style={style.button}>
                   <Link to="home" style={style.link}>
                     {T.translate(`welcome.logout.${this.props.language}`)}  &nbsp;
                     <i className="fa fa-sign-out" />
                   </Link>
-                </li>
+                </button>
+              </li>
               }
             </ul>
           </div>
@@ -96,14 +111,14 @@ class Header extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    profile: state.applicationReducer.profile
+    profile: state.applicationReducer.profile,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     changeLanguage: ApplicationActions.changeLanguage,
-    changeProfile: ApplicationActions.changeProfile
+    changeProfile: ApplicationActions.changeProfile,
   }, dispatch);
 }
 

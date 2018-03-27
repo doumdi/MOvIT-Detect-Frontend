@@ -50,76 +50,76 @@ export const NOTIFICATION_DISAGREE_PERDIOD = 'NOTIFICATION_DISAGREE_PERDIOD';
 // ------------------------------------
 function changeLanguage() {
   return {
-    type: LANGUAGE
+    type: LANGUAGE,
   };
 }
 
 function changeProfile(profileName) {
   return {
     type: PROFILE,
-    profile: profileName
+    profile: profileName,
   };
 }
 
 // -------------- CHECKBOX --------------
 function changeReduceWeight() {
   return {
-    type: REDUCE_WEIGHT
+    type: REDUCE_WEIGHT,
   };
 }
 function changeReduceSwelling() {
   return {
-    type: REDUCE_SWELLING
+    type: REDUCE_SWELLING,
   };
 }
 function changeReduceSlidingMoving() {
   return {
-    type: REDUCE_SLIDING_MOVING
+    type: REDUCE_SLIDING_MOVING,
   };
 }
 function changeReduceSlidingRest() {
   return {
-    type: REDUCE_SLIDING_REST
+    type: REDUCE_SLIDING_REST,
   };
 }
 function changeReducePain() {
   return {
-    type: REDUCE_PAIN
+    type: REDUCE_PAIN,
   };
 }
 function changeAllowRest() {
   return {
-    type: ALLOW_REST
+    type: ALLOW_REST,
   };
 }
 function changeEaseTransfers() {
   return {
-    type: EASE_TRANSFERS
+    type: EASE_TRANSFERS,
   };
 }
 function changeImproveComfort() {
   return {
-    type: IMPROVE_COMFORT
+    type: IMPROVE_COMFORT,
   };
 }
 function changeOther() {
   return {
-    type: OTHER
+    type: OTHER,
   };
 }
 function changeDataAgreement() {
   return {
-    type: DATA_AGREEMENT
+    type: DATA_AGREEMENT,
   };
 }
 function changeLightAgreement() {
   return {
-    type: LIGHT_AGREEMENT
+    type: LIGHT_AGREEMENT,
   };
 }
 function changeNotificationAgreement() {
   return {
-    type: NOTIFICATION_AGREEMENT
+    type: NOTIFICATION_AGREEMENT,
   };
 }
 
@@ -128,49 +128,49 @@ function changeNotificationAgreement() {
 function changeTiltFrequencyWeight(tiltFreq) {
   return {
     type: TILT_FREQUENCY_WEIGHT,
-    tiltFrequencyWeight: tiltFreq
+    tiltFrequencyWeight: tiltFreq,
   };
 }
 function changeTiltLengthWeight(tiltLen) {
   return {
     type: TILT_LENGTH_WEIGHT,
-    tiltLengthWeight: tiltLen
+    tiltLengthWeight: tiltLen,
   };
 }
 function changeTiltAngleWeight(tiltAng) {
   return {
     type: TILT_ANGLE_WEIGHT,
-    tiltAngleWeight: tiltAng
+    tiltAngleWeight: tiltAng,
   };
 }
 function changeTiltAngleMoving(tiltAngMoving) {
   return {
     type: TILT_ANGLE_MOVING,
-    tiltAngleMoving: tiltAngMoving
+    tiltAngleMoving: tiltAngMoving,
   };
 }
 function changeTiltAngleRest(tiltAngRest) {
   return {
     type: TILT_ANGLE_REST,
-    tiltAngleRest: tiltAngRest
+    tiltAngleRest: tiltAngRest,
   };
 }
 function changeTiltFrequencyGoal(tiltFreq) {
   return {
     type: TILT_FREQUENCY_GOAL,
-    tiltFrequencyGoal: tiltFreq
+    tiltFrequencyGoal: tiltFreq,
   };
 }
 function changeTiltLengthGoal(tiltLen) {
   return {
     type: TILT_LENGTH_GOAL,
-    tiltLengthGoal: tiltLen
+    tiltLengthGoal: tiltLen,
   };
 }
 function changeTiltAngleGoal(tiltAng) {
   return {
     type: TILT_ANGLE_GOAL,
-    tiltAngleGoal: tiltAng
+    tiltAngleGoal: tiltAng,
   };
 }
 
@@ -179,86 +179,86 @@ function changeTiltAngleGoal(tiltAng) {
 function changeUserName(name) {
   return {
     type: USER_NAME,
-    userName: name
+    userName: name,
   };
 }
 function changeUserID(id) {
   return {
     type: USER_ID,
-    userID: id
+    userID: id,
   };
 }
 function changeUserWeight(weight) {
   return {
     type: USER_WEIGHT,
-    userWeight: weight
+    userWeight: weight,
   };
 }
 function changeMaxAngle(angle) {
   return {
     type: MAX_ANGLE,
-    maxAngle: angle
+    maxAngle: angle,
   };
 }
 
 function reducePainRecommendation(painRec) {
   return {
     type: REDUCE_PAIN_RECOMMENDATION,
-    painRecommendation: painRec
+    painRecommendation: painRec,
   };
 }
 function reduceSwellingRecommendation(swellingRec) {
   return {
     type: REDUCE_SWELLING_RECOMMENDATION,
-    swellingRecommendation: swellingRec
+    swellingRecommendation: swellingRec,
   };
 }
 function allowRestRecommendation(restRec) {
   return {
     type: ALLOW_REST_RECOMMENDATION,
-    restRecommendation: restRec
+    restRecommendation: restRec,
   };
 }
 function easeTransfersRecommendation(transferRec) {
   return {
     type: EASE_TRANSFERS_RECOMMENDATION,
-    transferRecommendation: transferRec
+    transferRecommendation: transferRec,
   };
 }
 function improveComfortRecommendation(comfortRec) {
   return {
     type: IMPROVE_COMFORT_RECOMMENDATION,
-    comfortRecommendation: comfortRec
+    comfortRecommendation: comfortRec,
   };
 }
 function otherRecommendation(otherRec) {
   return {
     type: OTHER_RECOMMENDATION,
-    otherRecommendations: otherRec
+    otherRecommendations: otherRec,
   };
 }
 function otherRecommendationTitle(otherRec) {
   return {
     type: OTHER_RECOMMENDATION_TITLE,
-    otherRecommendationsTitle: otherRec
+    otherRecommendationsTitle: otherRec,
   };
 }
 function changeDataDisagreePeriod(period) {
   return {
     type: DATA_DISAGREE_PERDIOD,
-    dataDisagreePeriod: period
+    dataDisagreePeriod: period,
   };
 }
 function changeLightDisagreePeriod(period) {
   return {
     type: LIGHT_DISAGREE_PERDIOD,
-    lightDisagreePeriod: period
+    lightDisagreePeriod: period,
   };
 }
 function changeNotificationDisagreePeriod(period) {
   return {
     type: NOTIFICATION_DISAGREE_PERDIOD,
-    notificationDisagreePeriod: period
+    notificationDisagreePeriod: period,
   };
 }
 
@@ -304,7 +304,7 @@ export const ApplicationActions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [LANGUAGE]: (state) => (
+  [LANGUAGE]: state => (
     { ...state, language: state.language === FR ? EN : FR }
   ),
   [PROFILE]: (state, action) => (
@@ -322,31 +322,31 @@ const ACTION_HANDLERS = {
   [MAX_ANGLE]: (state, action) => (
     { ...state, maxAngle: action.maxAngle }
   ),
-  [REDUCE_WEIGHT]: (state) => (
+  [REDUCE_WEIGHT]: state => (
     { ...state, reduceWeight: !state.reduceWeight }
   ),
-  [REDUCE_SWELLING]: (state) => (
+  [REDUCE_SWELLING]: state => (
     { ...state, reduceSwelling: !state.reduceSwelling }
   ),
-  [REDUCE_SLIDING_MOVING]: (state) => (
+  [REDUCE_SLIDING_MOVING]: state => (
     { ...state, reduceSlidingMoving: !state.reduceSlidingMoving }
   ),
-  [REDUCE_SLIDING_REST]: (state) => (
+  [REDUCE_SLIDING_REST]: state => (
     { ...state, reduceSlidingRest: !state.reduceSlidingRest }
   ),
-  [REDUCE_PAIN]: (state) => (
+  [REDUCE_PAIN]: state => (
     { ...state, reducePain: !state.reducePain }
   ),
-  [ALLOW_REST]: (state) => (
+  [ALLOW_REST]: state => (
     { ...state, allowRest: !state.allowRest }
   ),
-  [EASE_TRANSFERS]: (state) => (
+  [EASE_TRANSFERS]: state => (
     { ...state, easeTransfers: !state.easeTransfers }
   ),
-  [IMPROVE_COMFORT]: (state) => (
+  [IMPROVE_COMFORT]: state => (
     { ...state, improveComfort: !state.improveComfort }
   ),
-  [OTHER]: (state) => (
+  [OTHER]: state => (
     { ...state, other: !state.other }),
   [TILT_FREQUENCY_WEIGHT]: (state, action) => (
     { ...state, tiltFrequencyWeight: action.tiltFrequencyWeight }
@@ -393,13 +393,13 @@ const ACTION_HANDLERS = {
   [TILT_ANGLE_GOAL]: (state, action) => (
     { ...state, tiltAngleGoal: action.tiltAngleGoal }
   ),
-  [DATA_AGREEMENT]: (state) => (
+  [DATA_AGREEMENT]: state => (
     { ...state, dataAgreement: !state.dataAgreement }
   ),
-  [LIGHT_AGREEMENT]: (state) => (
+  [LIGHT_AGREEMENT]: state => (
     { ...state, lightAgreement: !state.lightAgreement }
   ),
-  [NOTIFICATION_AGREEMENT]: (state) => (
+  [NOTIFICATION_AGREEMENT]: state => (
     { ...state, notificationAgreement: !state.notificationAgreement }
   ),
   [DATA_DISAGREE_PERDIOD]: (state, action) => (
@@ -446,7 +446,7 @@ export const initApplication = {
   notificationAgreement: true,
   dataDisagreePeriod: null,
   lightDisagreePeriod: null,
-  notificationDisagreePeriod: null
+  notificationDisagreePeriod: null,
 };
 export default function applicationReducer(state = initApplication, action) {
   const handler = ACTION_HANDLERS[action.type];

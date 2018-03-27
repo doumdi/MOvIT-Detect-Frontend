@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import { T } from '../index';
 import { URL } from '../redux/applicationReducer';
 
 class DailyResults extends Component {
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+    reduceWeight: PropTypes.bool.isRequired,
+    reduceSlidingMoving: PropTypes.bool.isRequired,
+    reduceSlidingRest: PropTypes.bool.isRequired,
+    date: PropTypes.instanceOf(Date),
+  }
   constructor(props) {
     super();
     this.state = {
@@ -15,7 +23,7 @@ class DailyResults extends Component {
       dayData: [],
       date: props.date,
       data: null,
-      loading: true
+      loading: true,
     };
     this.getDayData(this.state.date);
   }
@@ -29,20 +37,18 @@ class DailyResults extends Component {
 
   getDayData(date) {
     this.setState({ loading: true });
-    console.log(+date);
     axios.get(`${URL}oneDay?Day=${+date}`)
-      .then(response => { this.state.dayData = response.data; this.loadData(); });
+      .then((response) => { this.state.dayData = response.data; this.loadData(); });
   }
 
   loadData() {
-    console.log(this.state.dayData);
     this.state.data = {
       labels: [
         T.translate(`dailyResults.angleDistribution.zero.${this.props.language}`),
         T.translate(`dailyResults.angleDistribution.fifteen.${this.props.language}`),
         T.translate(`dailyResults.angleDistribution.thirty.${this.props.language}`),
         T.translate(`dailyResults.angleDistribution.fortyfive.${this.props.language}`),
-        T.translate(`dailyResults.angleDistribution.more.${this.props.language}`)
+        T.translate(`dailyResults.angleDistribution.more.${this.props.language}`),
       ],
       datasets: [
         {
@@ -60,9 +66,9 @@ class DailyResults extends Component {
             'blue',
             'orange',
             'purple',
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     };
 
     this.setState({ loading: false });
@@ -71,10 +77,10 @@ class DailyResults extends Component {
   render() {
     const style = {
       center: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       bottom: {
-        paddingBottom: '400px'
+        paddingBottom: '400px',
       },
     };
 
@@ -89,8 +95,8 @@ class DailyResults extends Component {
             label += Math.round(labelData.datasets[0].data[tooltipItem.index] * 100) / 100;
             label += ' min';
             return label;
-          }
-        }
+          },
+        },
       },
     };
     return (
@@ -108,11 +114,16 @@ class DailyResults extends Component {
             <h2 style={style.center}>{T.translate(`dailyResults.pressure.${this.props.language}`)}</h2>
             <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>
             <ProgressBar value={this.state.value1} />
-            <p style={style.center}>{T.translate(`dailyResults.personal.description.${this.props.language}`, { percent: this.state.value1 })}</p>
-
+            <p style={style.center}>
+              {T.translate(`dailyResults.personal.description.${this.props.language}`,
+              { percent: this.state.value1 })}
+            </p>
             <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
             <ProgressBar value={this.state.value2} />
-            <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
+            <p style={style.center}>
+              {T.translate(`dailyResults.recommended.description.${this.props.language}`,
+              { percent: this.state.value2 })}
+            </p>
           </div>
         }
 
@@ -123,7 +134,10 @@ class DailyResults extends Component {
 
             <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
             <ProgressBar value={this.state.value2} />
-            <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
+            <p style={style.center}>
+              {T.translate(`dailyResults.recommended.description.${this.props.language}`,
+              { percent: this.state.value2 })}
+            </p>
           </div>
         }
 
@@ -134,7 +148,10 @@ class DailyResults extends Component {
 
             <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
             <ProgressBar value={this.state.value2} />
-            <p style={style.center}>{T.translate(`dailyResults.recommended.description.${this.props.language}`, { percent: this.state.value2 })}</p>
+            <p style={style.center}>
+              {T.translate(`dailyResults.recommended.description.${this.props.language}`,
+              { percent: this.state.value2 })}
+            </p>
           </div>
         }
         <div style={style.bottom} />
@@ -148,7 +165,7 @@ function mapStateToProps(state) {
     language: state.applicationReducer.language,
     reduceWeight: state.applicationReducer.reduceWeight,
     reduceSlidingRest: state.applicationReducer.reduceSlidingRest,
-    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving
+    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving,
   };
 }
 

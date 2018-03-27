@@ -12,10 +12,9 @@ const texts = require('./res/texts.yaml');
 const T = new MDText(texts, { MDFlavor: 1 });
 
 export { T };
-
 render(
   <Provider store={store} >
     <Layout />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

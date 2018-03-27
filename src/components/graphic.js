@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import { T } from '../index';
@@ -7,13 +8,15 @@ import DailyResults from './dailyResults';
 import MonthlyResults from './monthlyResults';
 
 class Graphic extends Component {
-
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+  }
   constructor(props) {
     super(props);
     this.state = {
       date: null,
       month: 2,
-      period: 'day'
+      period: 'day',
     };
     this.setDefaultDate();
     this.onPeriodChange = this.onPeriodChange.bind(this);
@@ -37,17 +40,17 @@ class Graphic extends Component {
     const style = {
       marginBottom: '20vh',
       content: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       chart: {
         width: '70%',
-        height: '70%'
-      }
+        height: '70%',
+      },
     };
 
     const periods = [
         { label: T.translate(`graphics.day.${this.props.language}`), value: 'day' },
-        { label: T.translate(`graphics.month.${this.props.language}`), value: 'month' }
+        { label: T.translate(`graphics.month.${this.props.language}`), value: 'month' },
     ];
 
     const months =
@@ -92,17 +95,20 @@ class Graphic extends Component {
         dayNames: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
         dayNamesShort: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
         dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-        monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
-        monthNamesShort: ['jan', 'fév', 'mar', 'avr', 'mai', 'jui', 'jul', 'aoû', 'sep', 'oct', 'nov', 'déc']
+        monthNames:
+          ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+        monthNamesShort:
+          ['jan', 'fév', 'mar', 'avr', 'mai', 'jui', 'jul', 'aoû', 'sep', 'oct', 'nov', 'déc'],
       },
       EN: {
         firstDayOfWeek: 1,
         dayNames: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
         dayNamesShort: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
         dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-        monthNames: ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
-        monthNamesShort: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-      }
+        monthNames:
+          ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
+        monthNamesShort: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
+      },
     };
 
     return (
@@ -112,7 +118,7 @@ class Graphic extends Component {
           <span>Date: </span>
           {
             this.state.period === 'day' ?
-              <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={(e) => this.setState({ date: e.value })} /> :
+              <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.setState({ date: e.value })} /> :
               (
                 <Dropdown
                   value={this.state.month}
@@ -144,7 +150,7 @@ class Graphic extends Component {
 
 function mapStateToProps(state) {
   return {
-    language: state.applicationReducer.language
+    language: state.applicationReducer.language,
   };
 }
 export default connect(mapStateToProps)(Graphic);

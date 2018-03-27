@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { RadioButton } from 'primereact/components/radiobutton/RadioButton';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 class Parameters extends Component {
-
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    changeDataAgreement: PropTypes.func,
+    dataAgreement: PropTypes.bool,
+    dataDisagreePeriod: PropTypes.string,
+    changeLightAgreement: PropTypes.func,
+    lightAgreement: PropTypes.string,
+    lightDisagreePeriod: PropTypes.string,
+    changeDataDisagreePeriod: PropTypes.func,
+    changeLightDisagreePeriod: PropTypes.func,
+    changeNotificationDisagreePeriod: PropTypes.func,
+    changeNotificationAgreement: PropTypes.func,
+    notificationAgreement: PropTypes.string,
+    notificationDisagreePeriod: PropTypes.string,
+  }
   save() {
     // save data to backend
     this.props.history.push('/goals');
@@ -17,11 +33,11 @@ class Parameters extends Component {
     const style = {
       height: '80vh',
       content: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       spaceTop: {
-        marginTop: '2em'
-      }
+        marginTop: '2em',
+      },
     };
 
     return (
@@ -165,7 +181,7 @@ function mapStateToProps(state) {
     notificationAgreement: state.applicationReducer.notificationAgreement,
     dataDisagreePeriod: state.applicationReducer.dataDisagreePeriod,
     lightDisagreePeriod: state.applicationReducer.lightDisagreePeriod,
-    notificationDisagreePeriod: state.applicationReducer.notificationDisagreePeriod
+    notificationDisagreePeriod: state.applicationReducer.notificationDisagreePeriod,
 
   };
 }
@@ -177,7 +193,7 @@ function mapDispatchToProps(dispatch) {
     changeNotificationAgreement: ApplicationActions.changeNotificationAgreement,
     changeDataDisagreePeriod: ApplicationActions.changeDataDisagreePeriod,
     changeLightDisagreePeriod: ApplicationActions.changeLightDisagreePeriod,
-    changeNotificationDisagreePeriod: ApplicationActions.changeNotificationDisagreePeriod
+    changeNotificationDisagreePeriod: ApplicationActions.changeNotificationDisagreePeriod,
   }, dispatch);
 }
 

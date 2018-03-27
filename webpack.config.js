@@ -51,39 +51,39 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/dev-server',
-    './src/index'
+    './src/index',
   ],
   output: {
     path: __dirname,
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
   },
   devtool: 'eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
   ],
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'src')
+        include: path.join(__dirname, 'src'),
       },
       {
         test: /\.ya?ml$/,
         loader: 'json-loader!yaml-loader' },
       {
         test: /\.(png|jpg)$/,
-        loader: 'url?limit=25000'
-      }
-    ]
+        loader: 'url?limit=25000',
+      },
+    ],
   },
   node: {
     fs: 'empty',
-    child_process: 'empty'
-  }
+    child_process: 'empty',
+  },
 };
