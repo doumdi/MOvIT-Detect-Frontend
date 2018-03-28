@@ -91,6 +91,13 @@ class Goal extends Component {
             <i id="titleInfo" className="fa fa-info-circle" />
           </h2>
         </legend>
+        {!this.props.reduceWeight && !this.props.reduceSwelling
+          && !this.props.reduceSlidingMoving && !this.props.reducePain
+          && !this.props.allowRest && !this.props.easeTransfers
+          && !this.props.improveComfort && !this.props.other
+          &&
+          <h3 style={style.chair}>{T.translate(`goals.noRecommendations.${this.props.language}`)}</h3>
+        }
         <div className="row" style={style.panelGroup}>
           <div className="col-sm-2" />
           <div className="col-sm-8">
