@@ -1,86 +1,69 @@
-export const DATA_AGREEMENT = 'DATA_AGREEMENT';
-export const LIGHT_AGREEMENT = 'LIGHT_AGREEMENT';
-export const NOTIFICATION_AGREEMENT = 'NOTIFICATION_AGREEMENT';
-export const DATA_DISAGREE_PERDIOD = 'DATA_DISAGREE_PERDIOD';
-export const LIGHT_DISAGREE_PERDIOD = 'LIGHT_DISAGREE_PERDIOD';
-export const NOTIFICATION_DISAGREE_PERDIOD = 'NOTIFICATION_DISAGREE_PERDIOD';
+export const USER_NAME = 'USER_NAME';
+export const USER_ID = 'USER_ID';
+export const USER_WEIGHT = 'USER_WEIGHT';
+export const MAX_ANGLE = 'MAX_ANGLE';
 
-// -------------- CHECKBOX --------------
-function changeDataAgreement() {
-  return {
-    type: DATA_AGREEMENT,
-  };
-}
-function changeLightAgreement() {
-  return {
-    type: LIGHT_AGREEMENT,
-  };
-}
-function changeNotificationAgreement() {
-  return {
-    type: NOTIFICATION_AGREEMENT,
-  };
-}
 
-// -------------- TEXT --------------
-function changeDataDisagreePeriod(period) {
-  return {
-    type: DATA_DISAGREE_PERDIOD,
-    dataDisagreePeriod: period,
-  };
-}
-function changeLightDisagreePeriod(period) {
-  return {
-    type: LIGHT_DISAGREE_PERDIOD,
-    lightDisagreePeriod: period,
-  };
-}
-function changeNotificationDisagreePeriod(period) {
-  return {
-    type: NOTIFICATION_DISAGREE_PERDIOD,
-    notificationDisagreePeriod: period,
-  };
-}
+// ------------------------------------
+// Actions
+// ------------------------------------
 
+function changeUserName(name) {
+  return {
+    type: USER_NAME,
+    userName: name,
+  };
+}
+function changeUserID(id) {
+  return {
+    type: USER_ID,
+    userID: id,
+  };
+}
+function changeUserWeight(weight) {
+  return {
+    type: USER_WEIGHT,
+    userWeight: weight,
+  };
+}
+function changeMaxAngle(angle) {
+  return {
+    type: MAX_ANGLE,
+    maxAngle: angle,
+  };
+}
 export const ConfigurationActions = {
-  changeDataAgreement,
-  changeLightAgreement,
-  changeNotificationAgreement,
-  changeDataDisagreePeriod,
-  changeLightDisagreePeriod,
-  changeNotificationDisagreePeriod,
+  changeUserName,
+  changeUserID,
+  changeUserWeight,
+  changeMaxAngle,
 };
 
 const ACTION_HANDLERS = {
-  [DATA_AGREEMENT]: state => (
-    { ...state, dataAgreement: !state.dataAgreement }
+  [USER_NAME]: (state, action) => (
+    { ...state, userName: action.userName }
   ),
-  [LIGHT_AGREEMENT]: state => (
-    { ...state, lightAgreement: !state.lightAgreement }
+  [USER_ID]: (state, action) => (
+    { ...state, userID: action.userID }
   ),
-  [NOTIFICATION_AGREEMENT]: state => (
-    { ...state, notificationAgreement: !state.notificationAgreement }
+  [USER_WEIGHT]: (state, action) => (
+    { ...state, userWeight: action.userWeight }
   ),
-  [DATA_DISAGREE_PERDIOD]: (state, action) => (
-    { ...state, dataDisagreePeriod: action.dataDisagreePeriod }
-  ),
-  [LIGHT_DISAGREE_PERDIOD]: (state, action) => (
-    { ...state, lightDisagreePeriod: action.lightDisagreePeriod }
-  ),
-  [NOTIFICATION_DISAGREE_PERDIOD]: (state, action) => (
-    { ...state, notificationDisagreePeriod: action.notificationDisagreePeriod }
+  [MAX_ANGLE]: (state, action) => (
+    { ...state, maxAngle: action.maxAngle }
   ),
 };
+
+// ------------------------------------
+// Reducer
+// ------------------------------------
 
 export const initConfiguration = {
-  dataAgreement: true,
-  lightAgreement: true,
-  notificationAgreement: true,
-  dataDisagreePeriod: null,
-  lightDisagreePeriod: null,
-  notificationDisagreePeriod: null,
+  userName: '',
+  userID: '',
+  maxAngle: null,
+  userWeight: null,
 };
-
 export default function applicationReducer(state = initConfiguration, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;

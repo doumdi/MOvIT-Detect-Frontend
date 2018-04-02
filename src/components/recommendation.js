@@ -399,10 +399,10 @@ function mapStateToProps(state) {
     comfortRecommendation: state.recommendationReducer.comfortRecommendation,
     otherRecommendations: state.recommendationReducer.otherRecommendations,
     otherRecommendationsTitle: state.recommendationReducer.otherRecommendationsTitle,
-    maxAngle: state.applicationReducer.maxAngle,
-    tiltFrequencyGoal: state.applicationReducer.tiltFrequencyGoal,
-    tiltLengthGoal: state.applicationReducer.tiltLengthGoal,
-    tiltAngleGoal: state.applicationReducer.tiltAngleGoal,
+    maxAngle: state.configurationReducer.maxAngle,
+    tiltFrequencyGoal: state.goalReducer.tiltFrequencyGoal,
+    tiltLengthGoal: state.goalReducer.tiltLengthGoal,
+    tiltAngleGoal: state.goalReducer.tiltAngleGoal,
   };
 }
 function mapDispatchToProps(dispatch) {

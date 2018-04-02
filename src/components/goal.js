@@ -446,7 +446,7 @@ function mapStateToProps(state) {
     comfortRecommendation: state.recommendationReducer.comfortRecommendation,
     otherRecommendations: state.recommendationReducer.otherRecommendations,
     otherRecommendationsTitle: state.recommendationReducer.otherRecommendationsTitle,
-    maxAngle: state.applicationReducer.maxAngle,
+    maxAngle: state.configurationReducer.maxAngle,
     tiltFrequencyGoal: state.goalReducer.tiltFrequencyGoal,
     tiltLengthGoal: state.goalReducer.tiltLengthGoal,
     tiltAngleGoal: state.goalReducer.tiltAngleGoal,

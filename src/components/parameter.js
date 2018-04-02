@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { RadioButton } from 'primereact/components/radiobutton/RadioButton';
-import { ConfigurationActions } from '../redux/configurationReducer';
+import { ParameterActions } from '../redux/parameterReducer';
 import { T } from '../index';
 
 class Parameters extends Component {
@@ -176,24 +176,24 @@ class Parameters extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    dataAgreement: state.configurationReducer.dataAgreement,
-    lightAgreement: state.configurationReducer.lightAgreement,
-    notificationAgreement: state.configurationReducer.notificationAgreement,
-    dataDisagreePeriod: state.configurationReducer.dataDisagreePeriod,
-    lightDisagreePeriod: state.configurationReducer.lightDisagreePeriod,
-    notificationDisagreePeriod: state.configurationReducer.notificationDisagreePeriod,
+    dataAgreement: state.parameterReducer.dataAgreement,
+    lightAgreement: state.parameterReducer.lightAgreement,
+    notificationAgreement: state.parameterReducer.notificationAgreement,
+    dataDisagreePeriod: state.parameterReducer.dataDisagreePeriod,
+    lightDisagreePeriod: state.parameterReducer.lightDisagreePeriod,
+    notificationDisagreePeriod: state.parameterReducer.notificationDisagreePeriod,
 
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeDataAgreement: ConfigurationActions.changeDataAgreement,
-    changeLightAgreement: ConfigurationActions.changeLightAgreement,
-    changeNotificationAgreement: ConfigurationActions.changeNotificationAgreement,
-    changeDataDisagreePeriod: ConfigurationActions.changeDataDisagreePeriod,
-    changeLightDisagreePeriod: ConfigurationActions.changeLightDisagreePeriod,
-    changeNotificationDisagreePeriod: ConfigurationActions.changeNotificationDisagreePeriod,
+    changeDataAgreement: ParameterActions.changeDataAgreement,
+    changeLightAgreement: ParameterActions.changeLightAgreement,
+    changeNotificationAgreement: ParameterActions.changeNotificationAgreement,
+    changeDataDisagreePeriod: ParameterActions.changeDataDisagreePeriod,
+    changeLightDisagreePeriod: ParameterActions.changeLightDisagreePeriod,
+    changeNotificationDisagreePeriod: ParameterActions.changeNotificationDisagreePeriod,
   }, dispatch);
 }
 

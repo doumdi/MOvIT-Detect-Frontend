@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { ApplicationActions } from '../redux/applicationReducer';
+import { ConfigurationActions } from '../redux/configurationReducer';
 import { T } from '../index';
 import Notification from './notification';
 // import { InputText } from 'primereact/components/inputtext/InputText';
@@ -103,18 +103,18 @@ class Configuration extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    userName: state.applicationReducer.userName,
-    userID: state.applicationReducer.userID,
-    userWeight: state.applicationReducer.userWeight,
-    maxAngle: state.applicationReducer.maxAngle,
+    userName: state.configurationReducer.userName,
+    userID: state.configurationReducer.userID,
+    userWeight: state.configurationReducer.userWeight,
+    maxAngle: state.configurationReducer.maxAngle,
   };
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeUserName: ApplicationActions.changeUserName,
-    changeUserID: ApplicationActions.changeUserID,
-    changeUserWeight: ApplicationActions.changeUserWeight,
-    changeMaxAngle: ApplicationActions.changeMaxAngle,
+    changeUserName: ConfigurationActions.changeUserName,
+    changeUserID: ConfigurationActions.changeUserID,
+    changeUserWeight: ConfigurationActions.changeUserWeight,
+    changeMaxAngle: ConfigurationActions.changeMaxAngle,
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Configuration);
