@@ -163,9 +163,9 @@ class DailyResults extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    reduceWeight: state.applicationReducer.reduceWeight,
-    reduceSlidingRest: state.applicationReducer.reduceSlidingRest,
-    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving,
+    reduceWeight: state.recommendationReducer.reduceWeight,
+    reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
+    reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
   };
 }
 

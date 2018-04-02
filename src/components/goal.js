@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ApplicationActions } from '../redux/applicationReducer';
+import { GoalActions } from '../redux/goalReducer';
 import { T } from '../index';
 
 class Goal extends Component {
@@ -425,39 +425,39 @@ function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
     profile: state.applicationReducer.profile,
-    reduceWeight: state.applicationReducer.reduceWeight,
-    reduceSwelling: state.applicationReducer.reduceSwelling,
-    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving,
-    reduceSlidingRest: state.applicationReducer.reduceSlidingRest,
-    reducePain: state.applicationReducer.reducePain,
-    allowRest: state.applicationReducer.allowRest,
-    easeTransfers: state.applicationReducer.easeTransfers,
-    improveComfort: state.applicationReducer.improveComfort,
-    other: state.applicationReducer.other,
-    tiltFrequencyWeight: state.applicationReducer.tiltFrequencyWeight,
-    tiltLengthWeight: state.applicationReducer.tiltLengthWeight,
-    tiltAngleWeight: state.applicationReducer.tiltAngleWeight,
-    tiltAngleMoving: state.applicationReducer.tiltAngleMoving,
-    tiltAngleRest: state.applicationReducer.tiltAngleRest,
-    swellingRecommendation: state.applicationReducer.swellingRecommendation,
-    painRecommendation: state.applicationReducer.painRecommendation,
-    restRecommendation: state.applicationReducer.restRecommendation,
-    transferRecommendation: state.applicationReducer.transferRecommendation,
-    comfortRecommendation: state.applicationReducer.comfortRecommendation,
-    otherRecommendations: state.applicationReducer.otherRecommendations,
-    otherRecommendationsTitle: state.applicationReducer.otherRecommendationsTitle,
+    reduceWeight: state.recommendationReducer.reduceWeight,
+    reduceSwelling: state.recommendationReducer.reduceSwelling,
+    reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
+    reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
+    reducePain: state.recommendationReducer.reducePain,
+    allowRest: state.recommendationReducer.allowRest,
+    easeTransfers: state.recommendationReducer.easeTransfers,
+    improveComfort: state.recommendationReducer.improveComfort,
+    other: state.recommendationReducer.other,
+    tiltFrequencyWeight: state.recommendationReducer.tiltFrequencyWeight,
+    tiltLengthWeight: state.recommendationReducer.tiltLengthWeight,
+    tiltAngleWeight: state.recommendationReducer.tiltAngleWeight,
+    tiltAngleMoving: state.recommendationReducer.tiltAngleMoving,
+    tiltAngleRest: state.recommendationReducer.tiltAngleRest,
+    swellingRecommendation: state.recommendationReducer.swellingRecommendation,
+    painRecommendation: state.recommendationReducer.painRecommendation,
+    restRecommendation: state.recommendationReducer.restRecommendation,
+    transferRecommendation: state.recommendationReducer.transferRecommendation,
+    comfortRecommendation: state.recommendationReducer.comfortRecommendation,
+    otherRecommendations: state.recommendationReducer.otherRecommendations,
+    otherRecommendationsTitle: state.recommendationReducer.otherRecommendationsTitle,
     maxAngle: state.applicationReducer.maxAngle,
-    tiltFrequencyGoal: state.applicationReducer.tiltFrequencyGoal,
-    tiltLengthGoal: state.applicationReducer.tiltLengthGoal,
-    tiltAngleGoal: state.applicationReducer.tiltAngleGoal,
+    tiltFrequencyGoal: state.goalReducer.tiltFrequencyGoal,
+    tiltLengthGoal: state.goalReducer.tiltLengthGoal,
+    tiltAngleGoal: state.goalReducer.tiltAngleGoal,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeTiltFrequencyGoal: ApplicationActions.changeTiltFrequencyGoal,
-    changeTiltLengthGoal: ApplicationActions.changeTiltLengthGoal,
-    changeTiltAngleGoal: ApplicationActions.changeTiltAngleGoal,
+    changeTiltFrequencyGoal: GoalActions.changeTiltFrequencyGoal,
+    changeTiltLengthGoal: GoalActions.changeTiltLengthGoal,
+    changeTiltAngleGoal: GoalActions.changeTiltAngleGoal,
   }, dispatch);
 }
 
