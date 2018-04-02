@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { RadioButton } from 'primereact/components/radiobutton/RadioButton';
-import { ApplicationActions } from '../redux/applicationReducer';
+import { ParameterActions } from '../redux/parameterReducer';
 import { T } from '../index';
 
 class Parameters extends Component {
@@ -15,13 +15,13 @@ class Parameters extends Component {
     dataAgreement: PropTypes.bool,
     dataDisagreePeriod: PropTypes.string,
     changeLightAgreement: PropTypes.func,
-    lightAgreement: PropTypes.string,
+    lightAgreement: PropTypes.bool,
     lightDisagreePeriod: PropTypes.string,
     changeDataDisagreePeriod: PropTypes.func,
     changeLightDisagreePeriod: PropTypes.func,
     changeNotificationDisagreePeriod: PropTypes.func,
     changeNotificationAgreement: PropTypes.func,
-    notificationAgreement: PropTypes.string,
+    notificationAgreement: PropTypes.bool,
     notificationDisagreePeriod: PropTypes.string,
   }
   save() {
@@ -176,24 +176,24 @@ class Parameters extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    dataAgreement: state.applicationReducer.dataAgreement,
-    lightAgreement: state.applicationReducer.lightAgreement,
-    notificationAgreement: state.applicationReducer.notificationAgreement,
-    dataDisagreePeriod: state.applicationReducer.dataDisagreePeriod,
-    lightDisagreePeriod: state.applicationReducer.lightDisagreePeriod,
-    notificationDisagreePeriod: state.applicationReducer.notificationDisagreePeriod,
+    dataAgreement: state.parameterReducer.dataAgreement,
+    lightAgreement: state.parameterReducer.lightAgreement,
+    notificationAgreement: state.parameterReducer.notificationAgreement,
+    dataDisagreePeriod: state.parameterReducer.dataDisagreePeriod,
+    lightDisagreePeriod: state.parameterReducer.lightDisagreePeriod,
+    notificationDisagreePeriod: state.parameterReducer.notificationDisagreePeriod,
 
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeDataAgreement: ApplicationActions.changeDataAgreement,
-    changeLightAgreement: ApplicationActions.changeLightAgreement,
-    changeNotificationAgreement: ApplicationActions.changeNotificationAgreement,
-    changeDataDisagreePeriod: ApplicationActions.changeDataDisagreePeriod,
-    changeLightDisagreePeriod: ApplicationActions.changeLightDisagreePeriod,
-    changeNotificationDisagreePeriod: ApplicationActions.changeNotificationDisagreePeriod,
+    changeDataAgreement: ParameterActions.changeDataAgreement,
+    changeLightAgreement: ParameterActions.changeLightAgreement,
+    changeNotificationAgreement: ParameterActions.changeNotificationAgreement,
+    changeDataDisagreePeriod: ParameterActions.changeDataDisagreePeriod,
+    changeLightDisagreePeriod: ParameterActions.changeLightDisagreePeriod,
+    changeNotificationDisagreePeriod: ParameterActions.changeNotificationDisagreePeriod,
   }, dispatch);
 }
 
