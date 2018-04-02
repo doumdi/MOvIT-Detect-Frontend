@@ -8,7 +8,7 @@ import { InputText } from 'primereact/components/inputtext/InputText';
 import { Slider } from 'primereact/components/slider/Slider';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { GoalActions } from '../redux/goalReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 class Recommendation extends Component {
   static propTypes = {

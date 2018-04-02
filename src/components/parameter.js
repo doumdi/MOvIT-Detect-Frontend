@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { RadioButton } from 'primereact/components/radiobutton/RadioButton';
 import { ParameterActions } from '../redux/parameterReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 class Parameters extends Component {
   static propTypes = {

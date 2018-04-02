@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 class MonthlyResults extends Component {
   static propTypes = {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { ConfigurationActions } from '../redux/configurationReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import Notification from './notification';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 

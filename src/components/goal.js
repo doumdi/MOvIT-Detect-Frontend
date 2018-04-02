@@ -6,7 +6,7 @@ import { Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { GoalActions } from '../redux/goalReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 class Goal extends Component {
   static propTypes = {

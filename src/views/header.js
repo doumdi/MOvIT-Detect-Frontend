@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ApplicationActions } from '../redux/applicationReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 
 class Header extends Component {

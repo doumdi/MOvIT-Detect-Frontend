@@ -4,7 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 
 class DailyResults extends Component {
