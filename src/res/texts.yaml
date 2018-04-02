@@ -149,6 +149,9 @@ goals:
   reduceSwelling:
     FR: Libérer l'enflure aux membres inférieurs
     EN: Release swelling
+  noRecommendations:
+    FR: Il n'y a pas de recommandation enregistré
+    EN: There are no recorded recommendations
 
 configurations:
   FR: Configurations
