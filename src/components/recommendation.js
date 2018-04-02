@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { InputText } from 'primereact/components/inputtext/InputText';
 import { Slider } from 'primereact/components/slider/Slider';
@@ -9,11 +10,59 @@ import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 class Recommendation extends Component {
-
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+    swellingRecommendation: PropTypes.string,
+    painRecommendation: PropTypes.string,
+    restRecommendation: PropTypes.string,
+    transferRecommendation: PropTypes.string,
+    comfortRecommendation: PropTypes.string,
+    otherRecommendations: PropTypes.string,
+    maxAngle: PropTypes.number,
+    reduceWeight: PropTypes.bool,
+    tiltFrequencyWeight: PropTypes.number.isRequired,
+    tiltLengthWeight: PropTypes.number.isRequired,
+    tiltAngleWeight: PropTypes.number.isRequired,
+    changeTiltFrequencyGoal: PropTypes.func.isRequired,
+    changeTiltLengthGoal: PropTypes.func.isRequired,
+    reduceSlidingMoving: PropTypes.bool.isRequired,
+    tiltAngleMoving: PropTypes.number.isRequired,
+    tiltAngleRest: PropTypes.number.isRequired,
+    allowRest: PropTypes.bool.isRequired,
+    easeTransfers: PropTypes.bool.isRequired,
+    improveComfort: PropTypes.bool.isRequired,
+    other: PropTypes.bool.isRequired,
+    otherRecommendationsTitle: PropTypes.string,
+    reduceSlidingRest: PropTypes.bool.isRequired,
+    reduceSwelling: PropTypes.bool.isRequired,
+    reducePain: PropTypes.bool.isRequired,
+    changeTiltAngleGoal: PropTypes.func.isRequired,
+    changeTiltFrequencyWeight: PropTypes.func.isRequired,
+    changeTiltAngleWeight: PropTypes.func.isRequired,
+    changeTiltLengthWeight: PropTypes.func.isRequired,
+    changeReduceWeight: PropTypes.func.isRequired,
+    changeReduceSlidingMoving: PropTypes.func.isRequired,
+    changeTiltAngleMoving: PropTypes.func.isRequired,
+    changeReduceSlidingRest: PropTypes.func.isRequired,
+    changeTiltAngleRest: PropTypes.func.isRequired,
+    changeReduceSwelling: PropTypes.func.isRequired,
+    otherRecommendationTitle: PropTypes.func,
+    reduceSwellingRecommendation: PropTypes.func,
+    changeImproveComfort: PropTypes.func,
+    improveComfortRecommendation: PropTypes.func,
+    changeReducePain: PropTypes.func,
+    otherRecommendation: PropTypes.func,
+    reducePainRecommendation: PropTypes.func,
+    changeOther: PropTypes.func,
+    easeTransfersRecommendation: PropTypes.func,
+    changeEaseTransfers: PropTypes.func,
+    changeAllowRest: PropTypes.func,
+    allowRestRecommendation: PropTypes.func,
+  }
   constructor(props, context) {
     super(props, context);
     this.state = {
-      maxSliderAngle: 90
+      maxSliderAngle: 90,
     };
 
     this.setMaxAngle();
@@ -45,21 +94,21 @@ class Recommendation extends Component {
       height: '80vh',
       input: {
         paddingLeft: '0',
-        marginBottom: '1em'
+        marginBottom: '1em',
       },
       stickLeft: {
-        paddingLeft: '0'
+        paddingLeft: '0',
       },
       spacingTop: {
-        paddingTop: '10'
+        paddingTop: '10',
       },
       bold: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       linkNoStyle: {
         textDecoration: 'none',
-        color: '#333'
-      }
+        color: '#333',
+      },
     };
 
     return (
@@ -88,7 +137,7 @@ class Recommendation extends Component {
                     min={0}
                     max={180}
                     value={this.props.tiltFrequencyWeight}
-                    onChange={(e) => this.changeFrequencyGoal(e.value)} step={5}
+                    onChange={e => this.changeFrequencyGoal(e.value)} step={5}
                   />
                   <span className="col-sm-2">{this.props.tiltFrequencyWeight} min </span>
                 </div>
@@ -101,7 +150,7 @@ class Recommendation extends Component {
                     min={0}
                     max={30}
                     value={this.props.tiltLengthWeight}
-                    onChange={(e) => this.changeLengthGoal(e.value)}
+                    onChange={e => this.changeLengthGoal(e.value)}
                   />
                   <span className="col-sm-2" >{this.props.tiltLengthWeight} min </span>
                 </div>
@@ -114,7 +163,7 @@ class Recommendation extends Component {
                     min={0}
                     max={this.state.maxSliderAngle}
                     value={this.props.tiltAngleWeight}
-                    onChange={(e) => this.changeAngleGoal(e.value)}
+                    onChange={e => this.changeAngleGoal(e.value)}
                   />
                   <span className="col-sm-2">{this.props.tiltAngleWeight} &deg; </span>
                 </div>
@@ -140,7 +189,7 @@ class Recommendation extends Component {
                 <Slider
                   className="col-sm-6"
                   min={0} max={this.state.maxSliderAngle}
-                  onChange={(e) => this.props.changeTiltAngleMoving(e.value)}
+                  onChange={e => this.props.changeTiltAngleMoving(e.value)}
                   value={this.props.tiltAngleMoving}
                 />
                 <span className="col-sm-2">{this.props.tiltAngleMoving} &deg; </span>
@@ -168,7 +217,7 @@ class Recommendation extends Component {
                   min={0}
                   max={this.state.maxSliderAngle}
                   value={this.props.tiltAngleRest}
-                  onChange={(e) => this.props.changeTiltAngleRest(e.value)}
+                  onChange={e => this.props.changeTiltAngleRest(e.value)}
                 />
                 <span className="col-sm-2">{this.props.tiltAngleRest} &deg; </span>
               </div>
@@ -188,7 +237,7 @@ class Recommendation extends Component {
               <div className="col-sm-7" style={style.input}>
                 <InputText
                   id="reduceSwellingRec" type="text" className="form-control"
-                  onChange={(e) => this.props.reduceSwellingRecommendation(e.target.value)}
+                  onChange={e => this.props.reduceSwellingRecommendation(e.target.value)}
                   value={this.props.swellingRecommendation}
                   placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
@@ -211,7 +260,7 @@ class Recommendation extends Component {
                 <InputText
                   id="reducePainRec" type="text" className="form-control"
                   placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-                  onChange={(e) => this.props.reducePainRecommendation(e.target.value)}
+                  onChange={e => this.props.reducePainRecommendation(e.target.value)}
                   value={this.props.painRecommendation}
                 />
               </div>
@@ -232,7 +281,7 @@ class Recommendation extends Component {
               <div className="col-sm-7" style={style.input}>
                 <InputText
                   id="allowRestRec" type="text" className="form-control"
-                  onChange={(e) => this.props.allowRestRecommendation(e.target.value)}
+                  onChange={e => this.props.allowRestRecommendation(e.target.value)}
                   value={this.props.restRecommendation}
                   placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
@@ -254,7 +303,7 @@ class Recommendation extends Component {
               <div className="col-sm-7" style={style.input}>
                 <InputText
                   id="easeTransfersRec" type="text" className="form-control"
-                  onChange={(e) => this.props.easeTransfersRecommendation(e.target.value)}
+                  onChange={e => this.props.easeTransfersRecommendation(e.target.value)}
                   value={this.props.transferRecommendation}
                   placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
@@ -275,7 +324,7 @@ class Recommendation extends Component {
               <div className="col-sm-7" style={style.input}>
                 <InputText
                   id="improveComfortRec" type="text" className="form-control"
-                  onChange={(e) => this.props.improveComfortRecommendation(e.target.value)}
+                  onChange={e => this.props.improveComfortRecommendation(e.target.value)}
                   value={this.props.comfortRecommendation}
                   placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
@@ -293,7 +342,7 @@ class Recommendation extends Component {
                 <div className="col-sm-7" style={style.input}>
                   <InputText
                     id="otherRec" type="text" className="form-control"
-                    onChange={(e) => this.props.otherRecommendationTitle(e.target.value)}
+                    onChange={e => this.props.otherRecommendationTitle(e.target.value)}
                     placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
                     value={this.props.otherRecommendationsTitle}
                   />
@@ -301,7 +350,7 @@ class Recommendation extends Component {
                 <div className="col-sm-7 col-sm-offset-4" style={style.input}>
                   <InputText
                     id="otherRec" type="text" className="form-control"
-                    onChange={(e) => this.props.otherRecommendation(e.target.value)}
+                    onChange={e => this.props.otherRecommendation(e.target.value)}
                     placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                     value={this.props.otherRecommendations}
                   />
@@ -352,7 +401,7 @@ function mapStateToProps(state) {
     maxAngle: state.applicationReducer.maxAngle,
     tiltFrequencyGoal: state.applicationReducer.tiltFrequencyGoal,
     tiltLengthGoal: state.applicationReducer.tiltLengthGoal,
-    tiltAngleGoal: state.applicationReducer.tiltAngleGoal
+    tiltAngleGoal: state.applicationReducer.tiltAngleGoal,
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -380,7 +429,7 @@ function mapDispatchToProps(dispatch) {
     otherRecommendationTitle: ApplicationActions.otherRecommendationTitle,
     changeTiltFrequencyGoal: ApplicationActions.changeTiltFrequencyGoal,
     changeTiltLengthGoal: ApplicationActions.changeTiltLengthGoal,
-    changeTiltAngleGoal: ApplicationActions.changeTiltAngleGoal
+    changeTiltAngleGoal: ApplicationActions.changeTiltAngleGoal,
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);

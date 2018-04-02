@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { URL } from '../redux/applicationReducer';
 import { T } from '../index';
-import { connect } from 'react-redux';
 
 class Notification extends Component {
-
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+  }
   turnOnNotification() {
     axios.get(`${URL}alert?State=on`)
       .then(response => console.log(response));
@@ -18,8 +21,8 @@ class Notification extends Component {
   render() {
     const style = {
       notifs: {
-        marginTop: '1em'
-      }
+        marginTop: '1em',
+      },
     };
     return (
       <div className="col-sm-9 text-right" style={style.notifs}>
@@ -34,7 +37,7 @@ class Notification extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    profile: state.applicationReducer.profile
+    profile: state.applicationReducer.profile,
   };
 }
 

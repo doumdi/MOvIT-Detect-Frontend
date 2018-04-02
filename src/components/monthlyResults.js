@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
+import PropTypes from 'prop-types';
 import { T } from '../index';
 
 class MonthlyResults extends Component {
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+    reduceWeight: PropTypes.bool,
+    reduceSlidingMoving: PropTypes.bool,
+    reduceSlidingRest: PropTypes.bool,
+  }
   render() {
     const style = {
       center: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       bottom: {
-        paddingBottom: '400px'
+        paddingBottom: '400px',
       },
     };
 
@@ -35,7 +42,7 @@ class MonthlyResults extends Component {
             99, 87, 73, 43, 34,
             45, 48, 49, 12, 11,
             75, 32, 56, 11, 6,
-          ]
+          ],
         },
         {
           label: T.translate(`monthlyResults.tiltDistribution.fifteen.${this.props.language}`),
@@ -48,7 +55,7 @@ class MonthlyResults extends Component {
             45, 48, 49, 12, 11,
             99, 87, 73, 43, 34,
             24, 13, 22, 47, 56,
-          ]
+          ],
         },
         {
           label: T.translate(`monthlyResults.tiltDistribution.thirty.${this.props.language}`),
@@ -61,7 +68,7 @@ class MonthlyResults extends Component {
             99, 87, 73, 43, 34,
             55, 40, 36, 24, 50,
             24, 13, 22, 47, 56,
-          ]
+          ],
         },
         {
           label: T.translate(`monthlyResults.tiltDistribution.fortyfive.${this.props.language}`),
@@ -74,7 +81,7 @@ class MonthlyResults extends Component {
             99, 87, 73, 43, 34,
             24, 13, 22, 47, 56,
             65, 59, 80, 81, 56,
-          ]
+          ],
         },
         {
           label: T.translate(`monthlyResults.tiltDistribution.more.${this.props.language}`),
@@ -87,9 +94,9 @@ class MonthlyResults extends Component {
             45, 48, 49, 12, 11,
             99, 87, 73, 43, 34,
             75, 32, 56, 11, 6,
-          ]
+          ],
         },
-      ]
+      ],
     };
 
     const wheelChairData = {
@@ -112,10 +119,10 @@ class MonthlyResults extends Component {
             7, 12, 11, 14, 20,
             8, 5, 6, 3, 4,
             5, 6, 7, 3, 12,
-            5, 8, 19, 5.5, 6
-          ]
+            5, 8, 19, 5.5, 6,
+          ],
         },
-      ]
+      ],
     };
 
     const personalTiltData = {
@@ -140,7 +147,7 @@ class MonthlyResults extends Component {
             0, 26, 30, 21, 24,
           ],
           fill: true,
-          borderColor: 'red'
+          borderColor: 'red',
         },
         {
           label: T.translate(`monthlyResults.pressure.tiltGoal.${this.props.language}`),
@@ -154,8 +161,8 @@ class MonthlyResults extends Component {
             36, 40, 27, 38, 42,
           ],
           fill: false,
-          borderColor: 'blue'
-        }
+          borderColor: 'blue',
+        },
       ],
     };
 
@@ -181,7 +188,7 @@ class MonthlyResults extends Component {
             0, 26, 30, 21, 24,
           ],
           fill: true,
-          borderColor: 'red'
+          borderColor: 'red',
         },
       ],
     };
@@ -208,7 +215,7 @@ class MonthlyResults extends Component {
             0, 26, 30, 21, 24,
           ],
           fill: true,
-          borderColor: 'red'
+          borderColor: 'red',
         },
       ],
     };
@@ -217,9 +224,9 @@ class MonthlyResults extends Component {
       scales: {
         yAxes: [{
           ticks: {
-            callback: (value) => `${value} h`
-          }
-        }]
+            callback: value => `${value} h`,
+          },
+        }],
       },
       tooltips: {
         callbacks: {
@@ -231,21 +238,21 @@ class MonthlyResults extends Component {
             label += Math.round(tooltipItem.yLabel * 100) / 100;
             label += ' h';
             return label;
-          }
-        }
+          },
+        },
       },
       legend: {
-        onClick: null
-      }
+        onClick: null,
+      },
     };
 
     const percentOptions = {
       scales: {
         yAxes: [{
           ticks: {
-            callback: (value) => `${value}%`
-          }
-        }]
+            callback: value => `${value}%`,
+          },
+        }],
       },
       tooltips: {
         callbacks: {
@@ -257,21 +264,21 @@ class MonthlyResults extends Component {
             label += Math.round(tooltipItem.yLabel * 100) / 100;
             label += '%';
             return label;
-          }
-        }
+          },
+        },
       },
       legend: {
-        onClick: null
-      }
+        onClick: null,
+      },
     };
 
     const percentOptions2 = {
       scales: {
         yAxes: [{
           ticks: {
-            callback: (value) => `${value}%`
-          }
-        }]
+            callback: value => `${value}%`,
+          },
+        }],
       },
       tooltips: {
         callbacks: {
@@ -283,9 +290,9 @@ class MonthlyResults extends Component {
             label += Math.round(tooltipItem.yLabel * 100) / 100;
             label += '%';
             return label;
-          }
-        }
-      }
+          },
+        },
+      },
     };
 
     return (
@@ -340,7 +347,7 @@ function mapStateToProps(state) {
     language: state.applicationReducer.language,
     reduceWeight: state.applicationReducer.reduceWeight,
     reduceSlidingRest: state.applicationReducer.reduceSlidingRest,
-    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving
+    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving,
   };
 }
 

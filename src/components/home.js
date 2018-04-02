@@ -1,16 +1,22 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 
 class Home extends Component {
-
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+    changeProfile: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    profile: PropTypes.string,
+  }
   constructor(props, context) {
     super(props, context);
     this.state = {
-      profile: null
+      profile: null,
     };
   }
 
@@ -26,18 +32,18 @@ class Home extends Component {
   render() {
     const style = {
       content: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       icons: {
-        fontSize: '20em'
+        fontSize: '20em',
       },
       pageTop: {
-        marginBottom: '2em'
+        marginBottom: '2em',
       },
       profileButton: {
         backgroundColor: 'transparent',
-        border: 0
-      }
+        border: 0,
+      },
     };
 
     return (
@@ -46,7 +52,10 @@ class Home extends Component {
         <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>
         {this.props.profile
         &&
-          <h4>{T.translate(`welcome.loginMessage.${this.props.language}`)} {T.translate(`${this.props.profile}.${this.props.language}`)} </h4>
+          <h4>
+            {T.translate(`welcome.loginMessage.${this.props.language}`)}
+            {T.translate(`${this.props.profile}.${this.props.language}`)}
+          </h4>
         }
         {!this.props.profile
         &&
@@ -73,13 +82,13 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    profile: state.applicationReducer.profile
+    profile: state.applicationReducer.profile,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeProfile: ApplicationActions.changeProfile
+    changeProfile: ApplicationActions.changeProfile,
   }, dispatch);
 }
 

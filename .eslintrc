@@ -17,24 +17,15 @@
     "modules": true
   },
   "rules": {
-    "arrow-parens": ["off"],
-    "compat/compat": 2,
-    "consistent-return": "off",
-    "comma-dangle": "off",
-    "generator-star-spacing": "off",
-    "import/no-unresolved": ["error", { "ignore": ["electron"] }],
-    "import/no-extraneous-dependencies": "off",
-    "no-use-before-define": "off",
-    "promise/param-names": 2,
-    "promise/always-return": 2,
-    "promise/catch-or-return": 2,
-    "promise/no-native": 0,
-    "react/jsx-no-bind": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
-    "react/prefer-stateless-function": "off",
     "linebreak-style": "off",
-    "no-console": "off",
-    "react/prop-types": 0,
-    "max-len": [2, { "code": 140 }]
+	"class-methods-use-this":  "off",
+	"import/prefer-default-export":  "off",
+	"no-underscore-dangle": "off",
+	"import/no-extraneous-dependencies": "off",
+	"no-static-element-interactions":  "off",
+	"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+	"react/prefer-stateless-function": "off",
+    "max-len": [2, { "code": 140 }],
+
   }
 }

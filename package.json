@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm i && node server.js",
     "build": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
-    "lint": "eslint *.js scripts/**",
+    "lint": "eslint --ext .js *.js src/",
     "test": "jest",
     "precommit": "npm run lint",
     "prepush": "jest"
@@ -36,6 +36,7 @@
     "i18n-react": "^0.6.3",
     "json-loader": "^0.5.7",
     "primereact": "^1.4.1",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",

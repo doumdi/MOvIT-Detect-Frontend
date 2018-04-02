@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Slider } from 'primereact/components/slider/Slider';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import PropTypes from 'prop-types';
 import { Panel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,7 +9,38 @@ import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 
 class Goal extends Component {
-
+  static propTypes = {
+    language: PropTypes.string.isRequired,
+    swellingRecommendation: PropTypes.string,
+    painRecommendation: PropTypes.string,
+    restRecommendation: PropTypes.string,
+    transferRecommendation: PropTypes.string,
+    comfortRecommendation: PropTypes.string,
+    otherRecommendations: PropTypes.string,
+    maxAngle: PropTypes.number,
+    reduceWeight: PropTypes.bool,
+    tiltFrequencyWeight: PropTypes.number.isRequired,
+    tiltLengthWeight: PropTypes.number.isRequired,
+    tiltAngleWeight: PropTypes.number.isRequired,
+    profile: PropTypes.string.isRequired,
+    changeTiltFrequencyGoal: PropTypes.func.isRequired,
+    tiltFrequencyGoal: PropTypes.number.isRequired,
+    changeTiltLengthGoal: PropTypes.func.isRequired,
+    tiltLengthGoal: PropTypes.number.isRequired,
+    tiltAngleGoal: PropTypes.number.isRequired,
+    reduceSlidingMoving: PropTypes.bool.isRequired,
+    tiltAngleMoving: PropTypes.number.isRequired,
+    tiltAngleRest: PropTypes.number.isRequired,
+    allowRest: PropTypes.bool.isRequired,
+    easeTransfers: PropTypes.bool.isRequired,
+    improveComfort: PropTypes.bool.isRequired,
+    other: PropTypes.bool.isRequired,
+    otherRecommendationsTitle: PropTypes.bool,
+    reduceSlidingRest: PropTypes.bool.isRequired,
+    reduceSwelling: PropTypes.bool.isRequired,
+    reducePain: PropTypes.bool.isRequired,
+    changeTiltAngleGoal: PropTypes.func.isRequired,
+  }
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -19,7 +51,7 @@ class Goal extends Component {
       restRecommendation: props.restRecommendation,
       transferRecommendation: props.transferRecommendation,
       comfortRecommendation: props.comfortRecommendation,
-      otherRecommendations: props.otherRecommendations
+      otherRecommendations: props.otherRecommendations,
     };
 
     this.setMaxAngle();
@@ -41,37 +73,40 @@ class Goal extends Component {
   }
 
   render() {
+    /* eslint-disable global-require */
+    const imagePath = require('../res/images/chair.png');
+    /* eslint-enable global-require */
     const style = {
       bar: {
         paddingLeft: '5%',
-        paddingRight: '5%'
+        paddingRight: '5%',
       },
       bold: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       bottom: {
-        marginTop: '2em'
+        marginTop: '2em',
       },
       center: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       container: {
         border: '1px solid #ddd',
-        paddingBottom: '1em'
+        paddingBottom: '1em',
       },
       icons: {
-        fontSize: 'large'
+        fontSize: 'large',
       },
       modifieButton: {
         padding: '5px',
         marginTop: '5px',
         marginBottom: '5px',
         backgroundColor: 'transparent',
-        border: 0
+        border: 0,
       },
       chair: {
         textAlign: 'center',
-        marginTop: '1em'
+        marginTop: '1em',
       },
       panels: {
         marginBottom: '0px',
@@ -79,8 +114,8 @@ class Goal extends Component {
       panelGroup: {
         height: '80em',
         maxHeight: '150em',
-        overflowY: 'auto'
-      }
+        overflowY: 'auto',
+      },
     };
 
     return (
@@ -164,7 +199,7 @@ class Goal extends Component {
                               <div className="col-sm-1" />
                               <Slider
                                 className="col-sm-5" min={0} max={180}
-                                onChange={(e) => this.props.changeTiltFrequencyGoal(e.value)} step={5}
+                                onChange={e => this.props.changeTiltFrequencyGoal(e.value)} step={5}
                                 value={this.props.tiltFrequencyGoal}
                               />
                               <span className="col-sm-2" style={style.bold}>
@@ -178,7 +213,7 @@ class Goal extends Component {
                               <div className="col-sm-1" />
                               <Slider
                                 className="col-sm-5" min={0} max={30}
-                                onChange={(e) => this.props.changeTiltLengthGoal(e.value)}
+                                onChange={e => this.props.changeTiltLengthGoal(e.value)}
                                 value={this.props.tiltLengthGoal}
                               />
                               <span className="col-sm-2" style={style.bold}>
@@ -190,7 +225,7 @@ class Goal extends Component {
                               <div className="col-sm-1" />
                               <Slider
                                 className="col-sm-5" min={0} max={this.state.maxSliderAngle}
-                                onChange={(e) => this.props.changeTiltAngleGoal(e.value)}
+                                onChange={e => this.props.changeTiltAngleGoal(e.value)}
                                 value={this.props.tiltAngleGoal}
                               />
                               <span className="col-sm-2" style={style.bold}>
@@ -229,7 +264,13 @@ class Goal extends Component {
                         <div className="col-sm-12" style={style.chair}>
                           <div className="col-sm-4" />
                           <div className="col-sm-4" >
-                            <img src={require('../res/images/chair.png')} width="50" height="50" style={{ transform: `rotate(-${this.props.tiltAngleGoal}deg)` }} />
+                            <img
+                              src={imagePath}
+                              width="50"
+                              height="50"
+                              alt="chair"
+                              style={{ transform: `rotate(-${this.props.tiltAngleGoal}deg)` }}
+                            />
                           </div>
                         </div>
                       </div>
@@ -247,7 +288,8 @@ class Goal extends Component {
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleMoving} &deg; {T.translate(`goals.reduceSlidingMoving.${this.props.language}`)}
+                  {T.translate(`recommendations.angleRecommandation.${this.props.language}`)}
+                  {this.props.tiltAngleMoving} &deg; {T.translate(`goals.reduceSlidingMoving.${this.props.language}`)}
                 </Panel.Body>
               </Panel>
             }
@@ -260,7 +302,8 @@ class Goal extends Component {
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body collapsible>
-                  {T.translate(`recommendations.angleRecommandation.${this.props.language}`)} {this.props.tiltAngleRest} &deg; {T.translate(`goals.reduceSlidingRest.${this.props.language}`)}
+                  {T.translate(`recommendations.angleRecommandation.${this.props.language}`)}
+                  {this.props.tiltAngleRest} &deg; {T.translate(`goals.reduceSlidingRest.${this.props.language}`)}
                 </Panel.Body>
               </Panel>
             }
@@ -399,7 +442,7 @@ function mapStateToProps(state) {
     maxAngle: state.applicationReducer.maxAngle,
     tiltFrequencyGoal: state.applicationReducer.tiltFrequencyGoal,
     tiltLengthGoal: state.applicationReducer.tiltLengthGoal,
-    tiltAngleGoal: state.applicationReducer.tiltAngleGoal
+    tiltAngleGoal: state.applicationReducer.tiltAngleGoal,
   };
 }
 
@@ -407,7 +450,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     changeTiltFrequencyGoal: ApplicationActions.changeTiltFrequencyGoal,
     changeTiltLengthGoal: ApplicationActions.changeTiltLengthGoal,
-    changeTiltAngleGoal: ApplicationActions.changeTiltAngleGoal
+    changeTiltAngleGoal: ApplicationActions.changeTiltAngleGoal,
   }, dispatch);
 }
 

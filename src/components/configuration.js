@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
 import Notification from './notification';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
-
+  static propTypes = {
+    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    userName: PropTypes.string.isRequired,
+    changeUserName: PropTypes.func.isRequired,
+    language: PropTypes.string.isRequired,
+    userID: PropTypes.string.isRequired,
+    changeUserID: PropTypes.func.isRequired,
+    maxAngle: PropTypes.number,
+    changeMaxAngle: PropTypes.func.isRequired,
+    userWeight: PropTypes.number,
+    changeUserWeight: PropTypes.func.isRequired,
+  }
   save() {
     // save data to backend
     this.props.history.push('/recommendations');
@@ -16,15 +28,15 @@ class Configuration extends Component {
     const style = {
       content: {
         textAlign: 'center',
-        paddingBottom: '5vh'
+        paddingBottom: '5vh',
       },
       icon: {
         paddingTop: '6px',
-        fontSize: 'large'
+        fontSize: 'large',
       },
       notifs: {
-        marginTop: '1em'
-      }
+        marginTop: '1em',
+      },
     };
 
     return (
@@ -38,7 +50,7 @@ class Configuration extends Component {
               <div className="col-md-6">
                 <input
                   type="text" placeholder={T.translate(`configurations.name.${this.props.language}`)} className="form-control"
-                  onChange={(e) => this.props.changeUserName(e.target.value)}
+                  onChange={e => this.props.changeUserName(e.target.value)}
                   value={this.props.userName}
                 />
               </div>
@@ -49,7 +61,7 @@ class Configuration extends Component {
               <div className="col-md-6">
                 <input
                   type="text" placeholder={T.translate(`configurations.telask.${this.props.language}`)} className="form-control"
-                  onChange={(e) => this.props.changeUserID(e.target.value)}
+                  onChange={e => this.props.changeUserID(e.target.value)}
                   value={this.props.userID}
                 />
               </div>
@@ -60,7 +72,7 @@ class Configuration extends Component {
               <div className="col-md-6">
                 <input
                   type="number" placeholder={T.translate(`configurations.maxTilt.${this.props.language}`)} className="form-control"
-                  onChange={(e) => this.props.changeMaxAngle(e.target.value)}
+                  onChange={e => this.props.changeMaxAngle(e.target.value)}
                   value={this.props.maxAngle}
                 />
               </div>
@@ -71,7 +83,7 @@ class Configuration extends Component {
               <div className="col-md-6">
                 <input
                   type="number" placeholder={T.translate(`configurations.weight.${this.props.language}`)} className="form-control"
-                  onChange={(e) => this.props.changeUserWeight(e.target.value)}
+                  onChange={e => this.props.changeUserWeight(e.target.value)}
                   value={this.props.userWeight}
                 />
               </div>
