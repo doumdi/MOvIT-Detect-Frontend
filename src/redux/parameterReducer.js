@@ -1,8 +1,8 @@
 export const DATA_AGREEMENT = 'DATA_AGREEMENT';
 export const LIGHT_AGREEMENT = 'LIGHT_AGREEMENT';
 export const NOTIFICATION_AGREEMENT = 'NOTIFICATION_AGREEMENT';
-export const DATA_DISAGREE_PERDIOD = 'DATA_DISAGREE_PERDIOD';
-export const LIGHT_DISAGREE_PERDIOD = 'LIGHT_DISAGREE_PERDIOD';
+export const DATA_DISAGREE_PERIOD = 'DATA_DISAGREE_PERDIOD';
+export const LIGHT_DISAGREE_PERIOD = 'LIGHT_DISAGREE_PERDIOD';
 export const NOTIFICATION_DISAGREE_PERDIOD = 'NOTIFICATION_DISAGREE_PERDIOD';
 
 // -------------- CHECKBOX --------------
@@ -25,13 +25,13 @@ function changeNotificationAgreement() {
 // -------------- TEXT --------------
 function changeDataDisagreePeriod(period) {
   return {
-    type: DATA_DISAGREE_PERDIOD,
+    type: DATA_DISAGREE_PERIOD,
     dataDisagreePeriod: period,
   };
 }
 function changeLightDisagreePeriod(period) {
   return {
-    type: LIGHT_DISAGREE_PERDIOD,
+    type: LIGHT_DISAGREE_PERIOD,
     lightDisagreePeriod: period,
   };
 }
@@ -61,10 +61,10 @@ const ACTION_HANDLERS = {
   [NOTIFICATION_AGREEMENT]: state => (
     { ...state, notificationAgreement: !state.notificationAgreement }
   ),
-  [DATA_DISAGREE_PERDIOD]: (state, action) => (
+  [DATA_DISAGREE_PERIOD]: (state, action) => (
     { ...state, dataDisagreePeriod: action.dataDisagreePeriod }
   ),
-  [LIGHT_DISAGREE_PERDIOD]: (state, action) => (
+  [LIGHT_DISAGREE_PERIOD]: (state, action) => (
     { ...state, lightDisagreePeriod: action.lightDisagreePeriod }
   ),
   [NOTIFICATION_DISAGREE_PERDIOD]: (state, action) => (
