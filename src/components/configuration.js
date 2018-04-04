@@ -24,12 +24,12 @@ class Configuration extends Component {
     changeUserWeight: PropTypes.func.isRequired,
   }
   save() {
-    // save data to backend
     this.props.history.push('/recommendations');
   }
   cancel() {
     console.log('clear all fields');
   }
+
   render() {
     return (
       <div>
@@ -63,11 +63,12 @@ class Configuration extends Component {
             />
 
           </div>
-          <SubmitButtons
-            onSave={this.save.bind(this)}
-            onCancel={this.cancel}
-          />
+
         </div>
+        <SubmitButtons
+          onSave={this.save.bind(this)}
+          onCancel={this.cancel}
+        />
         <Notification />
       </div>
     );

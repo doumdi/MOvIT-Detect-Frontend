@@ -6,7 +6,7 @@ export default class LogoText extends Component {
   static propTypes = {
     placeHolder: PropTypes.string.isRequired,
     iconClass: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
   }
 

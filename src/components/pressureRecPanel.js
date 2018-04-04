@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Slider } from 'primereact/components/slider/Slider';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Panel } from 'react-bootstrap';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../index';
+import TiltSliders from './tiltSliders';
+import TiltLabels from './tiltLabels';
 
 class PressureRecPanel extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     profile: PropTypes.string.isRequired,
-    maxAngle: PropTypes.number.isRequired,
+    maxAngle: PropTypes.number,
     reduceWeight: PropTypes.bool.isRequired,
     tiltFrequencyWeight: PropTypes.number.isRequired,
     tiltLengthWeight: PropTypes.number.isRequired,
@@ -110,30 +111,11 @@ class PressureRecPanel extends Component {
                 <div className="col-sm-12">
                   <div className="col-sm-6" style={style.container}>
                     <h4 style={style.center}>{T.translate(`goals.RecommendedGoals.${this.props.language}`)}</h4>
-                    <div className="col-sm-12">
-                      <span className="col-sm-6" style={style.bold}>
-                        {T.translate(`goals.tiltFrequency.${this.props.language}`)}
-                      </span>
-                      <span className="col-sm-6" style={style.bold}>
-                        {this.props.tiltFrequencyWeight} {T.translate(`time.min.${this.props.language}`)}
-                      </span>
-                    </div>
-                    <div className="col-sm-12">
-                      <span className="col-sm-6" style={style.bold}>
-                        {T.translate(`goals.tiltLength.${this.props.language}`)}
-                      </span>
-                      <span className="col-sm-6" style={style.bold}>
-                        {this.props.tiltLengthWeight} {T.translate(`time.min.${this.props.language}`)}
-                      </span>
-                    </div>
-                    <div className="col-sm-12">
-                      <span className="col-sm-6" style={style.bold}>
-                        {T.translate(`goals.tiltAngle.${this.props.language}`)}
-                      </span>
-                      <span className="col-sm-6" style={style.bold}>
-                        {this.props.tiltAngleWeight} &deg;
-                      </span>
-                    </div>
+                    <TiltLabels
+                      tiltFrequecy={this.props.tiltFrequencyWeight}
+                      tiltLength={this.props.tiltLengthWeight}
+                      tiltAngle={this.props.tiltAngleWeight}
+                    />
                   </div>
 
                   <div className="col-sm-6" style={style.container}>
@@ -159,75 +141,21 @@ class PressureRecPanel extends Component {
                     </div>
                     {this.state.modifieGoal
                     ?
-                      <div>
-                        <div className="col-sm-12">
-                          <span className="col-sm-4" style={style.bold}>
-                            {T.translate(`goals.tiltFrequency.${this.props.language}`)}
-                          </span>
-                          <div className="col-sm-1" />
-                          <Slider
-                            className="col-sm-5" min={0} max={180}
-                            onChange={e => this.props.changeTiltFrequencyGoal(e.value)} step={5}
-                            value={this.props.tiltFrequencyGoal}
-                          />
-                          <span className="col-sm-2" style={style.bold}>
-                            {this.props.tiltFrequencyGoal} {T.translate(`time.min.${this.props.language}`)}
-                          </span>
-                        </div>
-                        <div className="col-sm-12">
-                          <span className="col-sm-4" style={style.bold}>
-                            {T.translate(`goals.tiltLength.${this.props.language}`)}
-                          </span>
-                          <div className="col-sm-1" />
-                          <Slider
-                            className="col-sm-5" min={0} max={30}
-                            onChange={e => this.props.changeTiltLengthGoal(e.value)}
-                            value={this.props.tiltLengthGoal}
-                          />
-                          <span className="col-sm-2" style={style.bold}>
-                            {this.props.tiltLengthGoal} {T.translate(`time.min.${this.props.language}`)}
-                          </span>
-                        </div>
-                        <div className="col-sm-12">
-                          <span className="col-sm-4" style={style.bold}>{T.translate(`goals.tiltAngle.${this.props.language}`)}</span>
-                          <div className="col-sm-1" />
-                          <Slider
-                            className="col-sm-5" min={0} max={this.state.maxSliderAngle}
-                            onChange={e => this.props.changeTiltAngleGoal(e.value)}
-                            value={this.props.tiltAngleGoal}
-                          />
-                          <span className="col-sm-2" style={style.bold}>
-                            {this.props.tiltAngleGoal} &deg;
-                          </span>
-                        </div>
-                      </div>
+                      <TiltSliders
+                        tiltFrequecy={this.props.tiltFrequencyGoal}
+                        tiltLength={this.props.tiltLengthGoal}
+                        tiltAngle={this.props.tiltAngleGoal}
+                        maxAngle={this.state.maxSliderAngle}
+                        onFrequencyChange={this.props.changeTiltFrequencyGoal}
+                        onLengthChange={this.props.changeTiltLengthGoal}
+                        onAngleChange={this.props.changeTiltAngleGoal}
+                      />
                     :
-                      <div>
-                        <div className="col-sm-12">
-                          <span className="col-sm-6" style={style.bold}>
-                            {T.translate(`goals.tiltFrequency.${this.props.language}`)}
-                          </span>
-                          <span className="col-sm-6" style={style.bold}>
-                            {this.props.tiltFrequencyGoal} {T.translate(`time.min.${this.props.language}`)}
-                          </span>
-                        </div>
-                        <div className="col-sm-12">
-                          <span className="col-sm-6" style={style.bold}>
-                            {T.translate(`goals.tiltLength.${this.props.language}`)}
-                          </span>
-                          <span className="col-sm-6" style={style.bold}>
-                            {this.props.tiltLengthGoal} {T.translate(`time.min.${this.props.language}`)}
-                          </span>
-                        </div>
-                        <div className="col-sm-12">
-                          <span className="col-sm-6" style={style.bold}>
-                            {T.translate(`goals.tiltAngle.${this.props.language}`)}
-                          </span>
-                          <span className="col-sm-6" style={style.bold}>
-                            {this.props.tiltAngleGoal} &deg;
-                          </span>
-                        </div>
-                      </div>
+                      <TiltLabels
+                        tiltFrequecy={this.props.tiltFrequencyGoal}
+                        tiltLength={this.props.tiltLengthGoal}
+                        tiltAngle={this.props.tiltAngleGoal}
+                      />
                     }
                     <div className="col-sm-12" style={style.chair}>
                       <div className="col-sm-4" />

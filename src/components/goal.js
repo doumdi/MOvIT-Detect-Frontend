@@ -3,7 +3,7 @@ import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { T } from '../index';
-import { PressureRecPanel } from './pressureRecPanel';
+import PressureRecPanel from './pressureRecPanel';
 import RecPanel from './recPanel';
 
 class Goal extends Component {

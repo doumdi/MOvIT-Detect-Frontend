@@ -6,7 +6,7 @@ export default class LogoNumber extends Component {
   static propTypes = {
     iconClass: PropTypes.string.isRequired,
     placeHolder: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired,
+    value: PropTypes.number,
     onChange: PropTypes.func.isRequired,
   }
 
