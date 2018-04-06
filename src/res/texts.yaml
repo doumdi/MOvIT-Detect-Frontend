@@ -323,3 +323,6 @@ alert:
   off:
     FR: Fermer la notification
     EN: Turn off notification
+calibrate:
+  FR: Calibré
+  EN: Calibrate

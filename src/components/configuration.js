@@ -44,7 +44,7 @@ class Configuration extends Component {
         <div className="col-md-12">
           <div className="form-horizontal">
             <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
-
+            <Notification />
             <div className="form-group">
               <span className="col-md-1 col-md-offset-2 text-center" style={style.icon}><i className="fa fa-user" /></span>
               <div className="col-md-6">
@@ -95,7 +95,6 @@ class Configuration extends Component {
             <button onClick={() => this.save()} className="btn btn-lg">{T.translate(`save.${this.props.language}`)}</button>
           </div>
         </div>
-        <Notification />
       </div>
     );
   }
