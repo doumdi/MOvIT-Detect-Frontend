@@ -1,7 +1,7 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const URL = 'http://localhost:1880/';
+export const URL = 'http://private-b13547-movitplus.apiary-mock.com/';
 export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';
 export const EN = 'EN';
