@@ -4,7 +4,7 @@ import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Panel } from 'react-bootstrap';
-import { ApplicationActions } from '../redux/applicationReducer';
+import { GoalActions } from '../redux/goalReducer';
 import { T } from '../index';
 import TiltSliders from './tiltSliders';
 import TiltLabels from './tiltLabels';
@@ -187,22 +187,22 @@ function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
     profile: state.applicationReducer.profile,
-    reduceWeight: state.applicationReducer.reduceWeight,
-    tiltFrequencyWeight: state.applicationReducer.tiltFrequencyWeight,
-    tiltLengthWeight: state.applicationReducer.tiltLengthWeight,
-    tiltAngleWeight: state.applicationReducer.tiltAngleWeight,
-    maxAngle: state.applicationReducer.maxAngle,
-    tiltFrequencyGoal: state.applicationReducer.tiltFrequencyGoal,
-    tiltLengthGoal: state.applicationReducer.tiltLengthGoal,
-    tiltAngleGoal: state.applicationReducer.tiltAngleGoal,
+    reduceWeight: state.recommendationReducer.reduceWeight,
+    tiltFrequencyWeight: state.recommendationReducer.tiltFrequencyWeight,
+    tiltLengthWeight: state.recommendationReducer.tiltLengthWeight,
+    tiltAngleWeight: state.recommendationReducer.tiltAngleWeight,
+    maxAngle: state.configurationReducer.maxAngle,
+    tiltFrequencyGoal: state.goalReducer.tiltFrequencyGoal,
+    tiltLengthGoal: state.goalReducer.tiltLengthGoal,
+    tiltAngleGoal: state.goalReducer.tiltAngleGoal,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeTiltFrequencyGoal: ApplicationActions.changeTiltFrequencyGoal,
-    changeTiltLengthGoal: ApplicationActions.changeTiltLengthGoal,
-    changeTiltAngleGoal: ApplicationActions.changeTiltAngleGoal,
+    changeTiltFrequencyGoal: GoalActions.changeTiltFrequencyGoal,
+    changeTiltLengthGoal: GoalActions.changeTiltLengthGoal,
+    changeTiltAngleGoal: GoalActions.changeTiltAngleGoal,
   }, dispatch);
 }
 

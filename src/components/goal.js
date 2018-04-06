@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { GoalActions } from '../redux/goalReducer';
 import { T } from '../index';
 import PressureRecPanel from './pressureRecPanel';
 import RecPanel from './recPanel';
@@ -142,24 +144,32 @@ class Goal extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    reduceSwelling: state.applicationReducer.reduceSwelling,
-    reduceSlidingMoving: state.applicationReducer.reduceSlidingMoving,
-    reduceSlidingRest: state.applicationReducer.reduceSlidingRest,
-    reducePain: state.applicationReducer.reducePain,
-    allowRest: state.applicationReducer.allowRest,
-    easeTransfers: state.applicationReducer.easeTransfers,
-    improveComfort: state.applicationReducer.improveComfort,
-    other: state.applicationReducer.other,
-    tiltAngleMoving: state.applicationReducer.tiltAngleMoving,
-    tiltAngleRest: state.applicationReducer.tiltAngleRest,
-    swellingRecommendation: state.applicationReducer.swellingRecommendation,
-    painRecommendation: state.applicationReducer.painRecommendation,
-    restRecommendation: state.applicationReducer.restRecommendation,
-    transferRecommendation: state.applicationReducer.transferRecommendation,
-    comfortRecommendation: state.applicationReducer.comfortRecommendation,
-    otherRecommendations: state.applicationReducer.otherRecommendations,
-    otherRecommendationsTitle: state.applicationReducer.otherRecommendationsTitle,
+    reduceSwelling: state.recommendationReducer.reduceSwelling,
+    reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
+    reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
+    reducePain: state.recommendationReducer.reducePain,
+    allowRest: state.recommendationReducer.allowRest,
+    easeTransfers: state.recommendationReducer.easeTransfers,
+    improveComfort: state.recommendationReducer.improveComfort,
+    other: state.recommendationReducer.other,
+    tiltAngleMoving: state.recommendationReducer.tiltAngleMoving,
+    tiltAngleRest: state.recommendationReducer.tiltAngleRest,
+    swellingRecommendation: state.recommendationReducer.swellingRecommendation,
+    painRecommendation: state.recommendationReducer.painRecommendation,
+    restRecommendation: state.recommendationReducer.restRecommendation,
+    transferRecommendation: state.recommendationReducer.transferRecommendation,
+    comfortRecommendation: state.recommendationReducer.comfortRecommendation,
+    otherRecommendations: state.recommendationReducer.otherRecommendations,
+    otherRecommendationsTitle: state.recommendationReducer.otherRecommendationsTitle,
   };
 }
 
-export default connect(mapStateToProps)(Goal);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    changeTiltFrequencyGoal: GoalActions.changeTiltFrequencyGoal,
+    changeTiltLengthGoal: GoalActions.changeTiltLengthGoal,
+    changeTiltAngleGoal: GoalActions.changeTiltAngleGoal,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Goal);

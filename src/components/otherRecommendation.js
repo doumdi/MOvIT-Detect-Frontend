@@ -12,7 +12,7 @@ class OtherRecommendation extends Component {
     language: PropTypes.string.isRequired,
     recActive: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    recTitle: PropTypes.string.isRequired,
+    recTitle: PropTypes.string,
     value: PropTypes.string,
     onChangeActive: PropTypes.func.isRequired,
     onChangeRecTitle: PropTypes.func.isRequired,

@@ -10,7 +10,7 @@ class PreventPermission extends Component {
     language: PropTypes.string.isRequired,
     permission: PropTypes.bool.isRequired,
     permissionTitle: PropTypes.string.isRequired,
-    period: PropTypes.string.isRequired,
+    period: PropTypes.string,
     onPermissionChange: PropTypes.func.isRequired,
     onPeriodChange: PropTypes.func.isRequired,
   }
@@ -27,8 +27,8 @@ class PreventPermission extends Component {
         <div className="col-sm-12" style={style.spaceTop}>
           <Checkbox
             inputId="agreement"
-            onChange={this.props.onPermissionChange}
             checked={this.props.permission}
+            onChange={this.props.onPermissionChange}
           />
           <label htmlFor="agreement">{this.props.permissionTitle}</label>
         </div>
