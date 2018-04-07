@@ -53,8 +53,7 @@ class Home extends Component {
         {this.props.profile
         &&
           <h4>
-            {T.translate(`welcome.loginMessage.${this.props.language}`)}
-            {T.translate(`${this.props.profile}.${this.props.language}`)}
+            {T.translate(`welcome.loginMessage.${this.props.language}`, { userType: T.translate(`${this.props.profile}.${this.props.language}`) })}
           </h4>
         }
         {!this.props.profile
