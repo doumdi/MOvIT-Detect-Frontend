@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
-import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import { T } from '../index';
 import { URL } from '../redux/applicationReducer';
+import GoalProgress from './goalProgress';
+import RecGoalProgress from './recGoalProgress';
 
 class DailyResults extends Component {
   static propTypes = {
@@ -108,52 +109,22 @@ class DailyResults extends Component {
         {!this.state.loading &&
           <Chart type="pie" data={this.state.data} options={minOptions} />
         }
-        {this.props.reduceWeight &&
-          <div>
-            <hr />
-            <h2 style={style.center}>{T.translate(`dailyResults.pressure.${this.props.language}`)}</h2>
-            <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>
-            <ProgressBar value={this.state.value1} />
-            <p style={style.center}>
-              {T.translate(`dailyResults.personal.description.${this.props.language}`,
-              { percent: this.state.value1 })}
-            </p>
-            <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
-            <ProgressBar value={this.state.value2} />
-            <p style={style.center}>
-              {T.translate(`dailyResults.recommended.description.${this.props.language}`,
-              { percent: this.state.value2 })}
-            </p>
-          </div>
-        }
-
-        {this.props.reduceSlidingMoving &&
-          <div>
-            <hr />
-            <h2 style={style.center}>{T.translate(`dailyResults.travel.${this.props.language}`)}</h2>
-
-            <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
-            <ProgressBar value={this.state.value2} />
-            <p style={style.center}>
-              {T.translate(`dailyResults.recommended.description.${this.props.language}`,
-              { percent: this.state.value2 })}
-            </p>
-          </div>
-        }
-
-        {this.props.reduceSlidingRest &&
-          <div>
-            <hr />
-            <h2 style={style.center}>{T.translate(`dailyResults.rest.${this.props.language}`)}</h2>
-
-            <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
-            <ProgressBar value={this.state.value2} />
-            <p style={style.center}>
-              {T.translate(`dailyResults.recommended.description.${this.props.language}`,
-              { percent: this.state.value2 })}
-            </p>
-          </div>
-        }
+        <RecGoalProgress
+          condition={this.props.reduceWeight}
+          title={T.translate(`dailyResults.pressure.${this.props.language}`)}
+          goalValue={this.state.value2}
+          recValue={this.state.value1}
+        />
+        <GoalProgress
+          condition={this.props.reduceSlidingMoving}
+          title={T.translate(`dailyResults.travel.${this.props.language}`)}
+          value={this.state.value2}
+        />
+        <GoalProgress
+          condition={this.props.reduceSlidingRest}
+          title={T.translate(`dailyResults.rest.${this.props.language}`)}
+          value={this.state.value2}
+        />
         <div style={style.bottom} />
       </div>
     );

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import { T } from '../index';
+import GoalChart from './goalChart';
+import RecGoalChart from './recGoalChart';
 
 class MonthlyResults extends Component {
   static propTypes = {
@@ -304,38 +306,28 @@ class MonthlyResults extends Component {
         <hr />
         <h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>
         <Chart type="bar" data={wheelChairData} options={hourOptions} />
-        {this.props.reduceWeight &&
-          <div>
-            <hr />
-            <h2 style={style.center}>{T.translate(`monthlyResults.pressure.${this.props.language}`)}</h2>
-            <hr />
-            <h4>{T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}</h4>
-            <Chart type="line" data={personalTiltData} />
-            <hr />
-            <h4>{T.translate(`monthlyResults.pressure.recommended.${this.props.language}`)}</h4>
-            <Chart type="line" data={personalTiltData} />
-          </div>
-        }
-        {
-          this.props.reduceSlidingMoving &&
-          <div>
-            <hr />
-            <h2 style={style.center}>{T.translate(`monthlyResults.travel.${this.props.language}`)}</h2>
-            <hr />
-            <h4>{T.translate(`monthlyResults.travel.success.${this.props.language}`)}</h4>
-            <Chart type="line" data={travelData} options={percentOptions} />
-          </div>
-        }
-        {
-          this.props.reduceSlidingRest &&
-          <div>
-            <hr />
-            <h2 style={style.center}>{T.translate(`monthlyResults.rest.${this.props.language}`)}</h2>
-            <hr />
-            <h4>{T.translate(`monthlyResults.rest.success.${this.props.language}`)}</h4>
-            <Chart type="line" data={restData} options={percentOptions} />
-          </div>
-        }
+        <RecGoalChart
+          condition={this.props.reduceWeight}
+          title={T.translate(`monthlyResults.pressure.${this.props.language}`)}
+          goalTitle={T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}
+          recTitle={T.translate(`monthlyResults.pressure.recommended.${this.props.language}`)}
+          goalData={personalTiltData}
+          recData={personalTiltData}
+        />
+        <GoalChart
+          condition={this.props.reduceSlidingMoving}
+          title={T.translate(`monthlyResults.travel.${this.props.language}`)}
+          successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
+          data={travelData}
+          options={percentOptions}
+        />
+        <GoalChart
+          condition={this.props.reduceSlidingRest}
+          title={T.translate(`monthlyResults.rest.${this.props.language}`)}
+          successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
+          data={restData}
+          options={percentOptions}
+        />
         <div style={style.bottom} />
       </div>
     );

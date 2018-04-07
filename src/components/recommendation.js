@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import { InputText } from 'primereact/components/inputtext/InputText';
-import { Slider } from 'primereact/components/slider/Slider';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../index';
+import AngleRecommendation from './angleRecommendation';
+import TextRecommendation from './textRecommendation';
+import OtherRecommendation from './otherRecommendation';
+import SubmitButtons from './submitButtons';
+import TiltSliders from './tiltSliders';
 
 class Recommendation extends Component {
   static propTypes = {
+    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     language: PropTypes.string.isRequired,
     swellingRecommendation: PropTypes.string,
     painRecommendation: PropTypes.string,
@@ -90,287 +93,107 @@ class Recommendation extends Component {
     this.props.changeTiltAngleGoal(value);
   }
 
-  render() {
-    const style = {
-      height: '80vh',
-      input: {
-        paddingLeft: '0',
-        marginBottom: '1em',
-      },
-      stickLeft: {
-        paddingLeft: '0',
-      },
-      spacingTop: {
-        paddingTop: '10',
-      },
-      bold: {
-        fontWeight: 'bold',
-      },
-      linkNoStyle: {
-        textDecoration: 'none',
-        color: '#333',
-      },
-    };
+  save() {
+    this.props.history.push('/goals');
+  }
+  cancel() {
+    console.log('clear all fields');
+  }
 
+  render() {
     return (
-      <div style={style} className="container">
-        <center><h2>{T.translate(`recommendations.${this.props.language}`)}</h2></center>
-        <legend className="text-center header"><h4>{T.translate(`recommendations.recommendationsText.${this.props.language}`)}</h4></legend>
-        <div className="col-sm-12">
+      <div>
+        <div className="container">
+          <center><h2>{T.translate(`recommendations.${this.props.language}`)}</h2></center>
+          <legend className="text-center header"><h4>{T.translate(`recommendations.recommendationsText.${this.props.language}`)}</h4></legend>
           <div className="col-sm-12">
-            <Checkbox
-              inputId="reduceWeightCheck"
-              label="Reduce weight"
-              onChange={this.props.changeReduceWeight}
-              checked={this.props.reduceWeight}
+            <div className="col-sm-12">
+              <Checkbox
+                inputId="reduceWeightCheck"
+                label="Reduce weight"
+                onChange={this.props.changeReduceWeight}
+                checked={this.props.reduceWeight}
+              />
+              <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
+            </div>
+            {this.props.reduceWeight
+            ?
+              <TiltSliders
+                tiltFrequecy={this.props.tiltFrequencyWeight}
+                tiltLength={this.props.tiltLengthWeight}
+                tiltAngle={this.props.tiltAngleWeight}
+                maxAngle={this.state.maxSliderAngle}
+                onFrequencyChange={this.changeFrequencyGoal.bind(this)}
+                onLengthChange={this.changeLengthGoal.bind(this)}
+                onAngleChange={this.changeAngleGoal.bind(this)}
+              />
+            : null}
+            <AngleRecommendation
+              recActive={this.props.reduceSlidingMoving}
+              title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
+              maxAngle={this.state.maxSliderAngle}
+              value={this.props.tiltAngleMoving}
+              onChangeActive={this.props.changeReduceSlidingMoving}
+              onChangeValue={this.props.changeTiltAngleMoving}
             />
-            <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
-          </div>
-          {this.props.reduceWeight
-            ?
-              <div>
-                <div className="col-sm-12">
-                  <div className="col-sm-4">
-                    <span className="col-sm-12">{T.translate(`recommendations.frequency.${this.props.language}`)}</span>
-                  </div>
-                  <Slider
-                    className="col-sm-6"
-                    min={0}
-                    max={180}
-                    value={this.props.tiltFrequencyWeight}
-                    onChange={e => this.changeFrequencyGoal(e.value)} step={5}
-                  />
-                  <span className="col-sm-2">{this.props.tiltFrequencyWeight} min </span>
-                </div>
-                <div className="col-sm-12">
-                  <div className="col-sm-4">
-                    <span className="col-sm-12">{T.translate(`recommendations.duration.${this.props.language}`)}</span>
-                  </div>
-                  <Slider
-                    className="col-sm-6"
-                    min={0}
-                    max={30}
-                    value={this.props.tiltLengthWeight}
-                    onChange={e => this.changeLengthGoal(e.value)}
-                  />
-                  <span className="col-sm-2" >{this.props.tiltLengthWeight} min </span>
-                </div>
-                <div className="col-sm-12">
-                  <div className="col-sm-4">
-                    <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                  </div>
-                  <Slider
-                    className="col-sm-6"
-                    min={0}
-                    max={this.state.maxSliderAngle}
-                    value={this.props.tiltAngleWeight}
-                    onChange={e => this.changeAngleGoal(e.value)}
-                  />
-                  <span className="col-sm-2">{this.props.tiltAngleWeight} &deg; </span>
-                </div>
-              </div>
-            : null}
-          <div className="col-sm-12">
-            <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox
-                inputId="reduceMovingSlideCheck"
-                label="Reduce sliding while moving"
-                onChange={this.props.changeReduceSlidingMoving}
-                checked={this.props.reduceSlidingMoving}
-              />
-              <label htmlFor="reduceMovingSlideCheck">{T.translate(`recommendations.slidingMoving.${this.props.language}`)}</label>
-            </div>
-          </div>
-          {this.props.reduceSlidingMoving
-            ?
-              <div className="col-sm-12">
-                <div className="col-sm-4">
-                  <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                </div>
-                <Slider
-                  className="col-sm-6"
-                  min={0} max={this.state.maxSliderAngle}
-                  onChange={e => this.props.changeTiltAngleMoving(e.value)}
-                  value={this.props.tiltAngleMoving}
-                />
-                <span className="col-sm-2">{this.props.tiltAngleMoving} &deg; </span>
-              </div>
-            : null}
-          <div className="col-sm-12" style={style.spacingTop}>
-            <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox
-                inputId="reduceRestSlideCheck"
-                label="Reduce sliding at rest"
-                onChange={this.props.changeReduceSlidingRest}
-                checked={this.props.reduceSlidingRest}
-              />
-              <label htmlFor="reduceRestSlideCheck">{T.translate(`recommendations.slidingRest.${this.props.language}`)}</label>
-            </div>
-          </div>
-          {this.props.reduceSlidingRest
-            ?
-              <div className="col-sm-12">
-                <div className="col-sm-4">
-                  <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-                </div>
-                <Slider
-                  className="col-sm-6"
-                  min={0}
-                  max={this.state.maxSliderAngle}
-                  value={this.props.tiltAngleRest}
-                  onChange={e => this.props.changeTiltAngleRest(e.value)}
-                />
-                <span className="col-sm-2">{this.props.tiltAngleRest} &deg; </span>
-              </div>
-            : null}
-          <div className="col-sm-12" style={style.spacingTop}>
-            <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox
-                inputId="reduceSwellingCheck"
-                label="Reduce swelling"
-                onChange={this.props.changeReduceSwelling}
-                checked={this.props.reduceSwelling}
-              />
-              <label htmlFor="reduceSwellingCheck">{T.translate(`recommendations.reduceSwelling.${this.props.language}`)}</label>
-            </div>
-            {this.props.reduceSwelling
-            ?
-              <div className="col-sm-7" style={style.input}>
-                <InputText
-                  id="reduceSwellingRec" type="text" className="form-control"
-                  onChange={e => this.props.reduceSwellingRecommendation(e.target.value)}
-                  value={this.props.swellingRecommendation}
-                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-                />
-              </div>
-            : null}
-          </div>
-          <div className="col-sm-12" style={style.spacingTop}>
-            <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox
-                inputId="reducePainCheck"
-                label="Reduce the pain"
-                onChange={this.props.changeReducePain}
-                checked={this.props.reducePain}
-              />
-              <label htmlFor="reducePainCheck">{T.translate(`recommendations.pain.${this.props.language}`)}</label>
-            </div>
-            {this.props.reducePain
-            ?
-              <div className="col-sm-7" style={style.input}>
-                <InputText
-                  id="reducePainRec" type="text" className="form-control"
-                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-                  onChange={e => this.props.reducePainRecommendation(e.target.value)}
-                  value={this.props.painRecommendation}
-                />
-              </div>
-            : null}
-          </div>
-          <div className="col-sm-12" style={style.spacingTop}>
-            <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox
-                inputId="allowRestCheck"
-                label="Allowing rest"
-                onChange={this.props.changeAllowRest}
-                checked={this.props.allowRest}
-              />
-              <label htmlFor="allowRestCheck">{T.translate(`recommendations.rest.${this.props.language}`)}</label>
-            </div>
-            {this.props.allowRest
-            ?
-              <div className="col-sm-7" style={style.input}>
-                <InputText
-                  id="allowRestRec" type="text" className="form-control"
-                  onChange={e => this.props.allowRestRecommendation(e.target.value)}
-                  value={this.props.restRecommendation}
-                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-                />
-              </div>
-            : null}
-          </div>
-          <div className="col-sm-12" style={style.spacingTop}>
-            <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox
-                inputId="easeTransfersCheck"
-                label="Ease transfers"
-                onChange={this.props.changeEaseTransfers}
-                checked={this.props.easeTransfers}
-              />
-              <label htmlFor="easeTransfersCheck">{T.translate(`recommendations.transfer.${this.props.language}`)}</label>
-            </div>
-            {this.props.easeTransfers
-            ?
-              <div className="col-sm-7" style={style.input}>
-                <InputText
-                  id="easeTransfersRec" type="text" className="form-control"
-                  onChange={e => this.props.easeTransfersRecommendation(e.target.value)}
-                  value={this.props.transferRecommendation}
-                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-                />
-              </div>
-            : null}
-          </div>
-          <div className="col-sm-12" style={style.spacingTop}>
-            <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox
-                inputId="improveComfortCheck"
-                label="Improve comfort"
-                onChange={this.props.changeImproveComfort} checked={this.props.improveComfort}
-              />
-              <label htmlFor="improveComfortCheck">{T.translate(`recommendations.comfort.${this.props.language}`)}</label>
-            </div>
-            {this.props.improveComfort
-            ?
-              <div className="col-sm-7" style={style.input}>
-                <InputText
-                  id="improveComfortRec" type="text" className="form-control"
-                  onChange={e => this.props.improveComfortRecommendation(e.target.value)}
-                  value={this.props.comfortRecommendation}
-                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-                />
-              </div>
-            : null}
-          </div>
-          <div className="col-sm-12" style={style.spacingTop}>
-            <div className="col-sm-4" style={style.stickLeft}>
-              <Checkbox inputId="otherCheck" label="Other" onChange={this.props.changeOther} checked={this.props.other} />
-              <label htmlFor="otherCheck">{T.translate(`recommendations.other.${this.props.language}`)}</label>
-            </div>
-            {this.props.other
-            ?
-              <div>
-                <div className="col-sm-7" style={style.input}>
-                  <InputText
-                    id="otherRec" type="text" className="form-control"
-                    onChange={e => this.props.otherRecommendationTitle(e.target.value)}
-                    placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
-                    value={this.props.otherRecommendationsTitle}
-                  />
-                </div>
-                <div className="col-sm-7 col-sm-offset-4" style={style.input}>
-                  <InputText
-                    id="otherRec" type="text" className="form-control"
-                    onChange={e => this.props.otherRecommendation(e.target.value)}
-                    placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-                    value={this.props.otherRecommendations}
-                  />
-                </div>
-              </div>
-            : null}
+            <AngleRecommendation
+              recActive={this.props.reduceSlidingRest}
+              title={T.translate(`recommendations.slidingRest.${this.props.language}`)}
+              maxAngle={this.state.maxSliderAngle}
+              value={this.props.tiltAngleRest}
+              onChangeActive={this.props.changeReduceSlidingRest}
+              onChangeValue={this.props.changeTiltAngleRest}
+            />
+            <TextRecommendation
+              onChangeActive={this.props.changeReduceSwelling}
+              recActive={this.props.reduceSwelling}
+              title={T.translate(`recommendations.reduceSwelling.${this.props.language}`)}
+              value={this.props.swellingRecommendation}
+              onChangeValue={this.props.reduceSwellingRecommendation}
+            />
+            <TextRecommendation
+              onChangeActive={this.props.changeReducePain}
+              recActive={this.props.reducePain}
+              title={T.translate(`recommendations.pain.${this.props.language}`)}
+              value={this.props.painRecommendation}
+              onChangeValue={this.props.reducePainRecommendation}
+            />
+            <TextRecommendation
+              onChangeActive={this.props.changeAllowRest}
+              recActive={this.props.allowRest}
+              title={T.translate(`recommendations.rest.${this.props.language}`)}
+              value={this.props.restRecommendation}
+              onChangeValue={this.props.allowRestRecommendation}
+            />
+            <TextRecommendation
+              onChangeActive={this.props.changeEaseTransfers}
+              recActive={this.props.easeTransfers}
+              title={T.translate(`recommendations.transfer.${this.props.language}`)}
+              value={this.props.transferRecommendation}
+              onChangeValue={this.props.easeTransfersRecommendation}
+            />
+            <TextRecommendation
+              onChangeActive={this.props.changeImproveComfort}
+              recActive={this.props.improveComfort}
+              title={T.translate(`recommendations.comfort.${this.props.language}`)}
+              value={this.props.comfortRecommendation}
+              onChangeValue={this.props.improveComfortRecommendation}
+            />
+            <OtherRecommendation
+              onChangeActive={this.props.changeOther}
+              recActive={this.props.other}
+              title={T.translate(`recommendations.other.${this.props.language}`)}
+              redTitle={this.props.otherRecommendationsTitle}
+              value={this.props.otherRecommendations}
+              onChangeValue={this.props.otherRecommendation}
+              onChangeRecTitle={this.props.otherRecommendationTitle}
+            />
           </div>
         </div>
-        <div className="col-sm-12" style={style.spacingTop}>
-          <div className="col-sm-10 text-right">
-            <button type="submit" className="btn btn-lg">{T.translate(`cancel.${this.props.language}`)}</button>
-            &nbsp;
-            <Link to="goals" style={style.linkNoStyle}>
-              <button className="btn btn-lg">
-                {T.translate(`save.${this.props.language}`)}
-              </button>
-            </Link>
-          </div>
-        </div>
+        <SubmitButtons
+          onSave={this.save.bind(this)}
+          onCancel={this.cancel}
+        />
       </div>
     );
   }
