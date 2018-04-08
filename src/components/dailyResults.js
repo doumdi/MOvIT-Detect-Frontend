@@ -85,8 +85,6 @@ class DailyResults extends Component {
       },
     };
 
-    this.setState({ loading: false });
-
     const minOptions = {
       tooltips: {
         callbacks: {
