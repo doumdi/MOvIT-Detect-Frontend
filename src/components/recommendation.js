@@ -7,7 +7,6 @@ import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { InputText } from 'primereact/components/inputtext/InputText';
 import { Slider } from 'primereact/components/slider/Slider';
 import { RecommendationActions } from '../redux/recommendationReducer';
-import { GoalActions } from '../redux/goalReducer';
 import { T } from '../index';
 
 class Recommendation extends Component {
@@ -24,8 +23,6 @@ class Recommendation extends Component {
     tiltFrequencyWeight: PropTypes.number.isRequired,
     tiltLengthWeight: PropTypes.number.isRequired,
     tiltAngleWeight: PropTypes.number.isRequired,
-    changeTiltFrequencyGoal: PropTypes.func.isRequired,
-    changeTiltLengthGoal: PropTypes.func.isRequired,
     reduceSlidingMoving: PropTypes.bool.isRequired,
     tiltAngleMoving: PropTypes.number.isRequired,
     tiltAngleRest: PropTypes.number.isRequired,
@@ -37,10 +34,6 @@ class Recommendation extends Component {
     reduceSlidingRest: PropTypes.bool.isRequired,
     reduceSwelling: PropTypes.bool.isRequired,
     reducePain: PropTypes.bool.isRequired,
-    changeTiltAngleGoal: PropTypes.func.isRequired,
-    changeTiltFrequencyWeight: PropTypes.func.isRequired,
-    changeTiltAngleWeight: PropTypes.func.isRequired,
-    changeTiltLengthWeight: PropTypes.func.isRequired,
     changeReduceWeight: PropTypes.func.isRequired,
     changeReduceSlidingMoving: PropTypes.func.isRequired,
     changeTiltAngleMoving: PropTypes.func.isRequired,
@@ -59,6 +52,10 @@ class Recommendation extends Component {
     changeEaseTransfers: PropTypes.func,
     changeAllowRest: PropTypes.func,
     allowRestRecommendation: PropTypes.func,
+    changeTiltFrequencyWeight: PropTypes.func,
+    changeTiltLengthWeight: PropTypes.func,
+    changeTiltAngleWeight: PropTypes.func,
+
   }
   constructor(props, context) {
     super(props, context);
@@ -73,21 +70,6 @@ class Recommendation extends Component {
     if (this.props.maxAngle) {
       this.state.maxSliderAngle = this.props.maxAngle;
     }
-  }
-
-  changeFrequencyGoal(value) {
-    this.props.changeTiltFrequencyWeight(value);
-    this.props.changeTiltFrequencyGoal(value);
-  }
-
-  changeLengthGoal(value) {
-    this.props.changeTiltLengthWeight(value);
-    this.props.changeTiltLengthGoal(value);
-  }
-
-  changeAngleGoal(value) {
-    this.props.changeTiltAngleWeight(value);
-    this.props.changeTiltAngleGoal(value);
   }
 
   render() {
@@ -138,7 +120,7 @@ class Recommendation extends Component {
                     min={0}
                     max={180}
                     value={this.props.tiltFrequencyWeight}
-                    onChange={e => this.changeFrequencyGoal(e.value)} step={5}
+                    onChange={e => this.props.changeTiltFrequencyWeight(e.value)} step={5}
                   />
                   <span className="col-sm-2">{this.props.tiltFrequencyWeight} min </span>
                 </div>
@@ -151,7 +133,7 @@ class Recommendation extends Component {
                     min={0}
                     max={30}
                     value={this.props.tiltLengthWeight}
-                    onChange={e => this.changeLengthGoal(e.value)}
+                    onChange={e => this.props.changeTiltLengthWeight(e.value)}
                   />
                   <span className="col-sm-2" >{this.props.tiltLengthWeight} min </span>
                 </div>
@@ -164,7 +146,7 @@ class Recommendation extends Component {
                     min={0}
                     max={this.state.maxSliderAngle}
                     value={this.props.tiltAngleWeight}
-                    onChange={e => this.changeAngleGoal(e.value)}
+                    onChange={e => this.props.changeTiltAngleWeight(e.value)}
                   />
                   <span className="col-sm-2">{this.props.tiltAngleWeight} &deg; </span>
                 </div>
@@ -400,9 +382,6 @@ function mapStateToProps(state) {
     otherRecommendations: state.recommendationReducer.otherRecommendations,
     otherRecommendationsTitle: state.recommendationReducer.otherRecommendationsTitle,
     maxAngle: state.configurationReducer.maxAngle,
-    tiltFrequencyGoal: state.goalReducer.tiltFrequencyGoal,
-    tiltLengthGoal: state.goalReducer.tiltLengthGoal,
-    tiltAngleGoal: state.goalReducer.tiltAngleGoal,
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -428,9 +407,6 @@ function mapDispatchToProps(dispatch) {
     improveComfortRecommendation: RecommendationActions.improveComfortRecommendation,
     otherRecommendation: RecommendationActions.otherRecommendation,
     otherRecommendationTitle: RecommendationActions.otherRecommendationTitle,
-    changeTiltFrequencyGoal: GoalActions.changeTiltFrequencyGoal,
-    changeTiltLengthGoal: GoalActions.changeTiltLengthGoal,
-    changeTiltAngleGoal: GoalActions.changeTiltAngleGoal,
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);
