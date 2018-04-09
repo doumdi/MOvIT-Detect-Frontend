@@ -62,19 +62,22 @@ class MonthlyResults extends Component {
   }
   formatAngleChartData(data) {
     Object.keys(data).forEach((key) => {
+      const total = data[key].reduce((a, b) => a + b, 0);
+      const percents = data[key].map(v => (v / total) * 100);
+
       this.state.angleMonthLabels.push(key.toString());
-      this.state.angleMonthData.zero.push(data[key][0]);
-      this.state.angleMonthData.fifteen.push(data[key][1]);
-      this.state.angleMonthData.thirty.push(data[key][2]);
-      this.state.angleMonthData.fortyfive.push(data[key][3]);
-      this.state.angleMonthData.more.push(data[key][4]);
+      this.state.angleMonthData.zero.push(percents[0]);
+      this.state.angleMonthData.fifteen.push(percents[1]);
+      this.state.angleMonthData.thirty.push(percents[2]);
+      this.state.angleMonthData.fortyfive.push(percents[3]);
+      this.state.angleMonthData.more.push(percents[4]);
     });
     this.loadAngleData();
   }
   formatSitChartData(data) {
     Object.keys(data).forEach((key) => {
       this.state.sitMonthLabels.push(key.toString());
-      this.state.sitMonthData.push(data[key]);
+      this.state.sitMonthData.push(data[key] / 60);
     });
     this.loadSitData();
   }
