@@ -6,6 +6,7 @@ export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';
 export const EN = 'EN';
 export const PROFILE = 'PROFILE';
+export const TOKEN = 'TOKEN';
 
 // ------------------------------------
 // Actions
@@ -23,9 +24,17 @@ function changeProfile(profileName) {
   };
 }
 
+function changeToken(tokenString) {
+  return {
+    type: TOKEN,
+    token: tokenString,
+  };
+}
+
 export const ApplicationActions = {
   changeLanguage,
   changeProfile,
+  changeToken,
 };
 // ------------------------------------
 // Action Handlers
@@ -36,6 +45,9 @@ const ACTION_HANDLERS = {
   ),
   [PROFILE]: (state, action) => (
     { ...state, profile: action.profile }
+  ),
+  [TOKEN]: (state, action) => (
+    { ...state, token: action.token }
   ),
 };
 
@@ -48,6 +60,7 @@ export const initApplication = {
   profile: '',
   userName: '',
   userID: '',
+  token: null,
   maxAngle: null,
   userWeight: null,
 };
