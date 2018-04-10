@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { VictoryChart, VictoryScatter, VictoryTheme } from 'victory';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../index';
 import PressureRecPanel from './pressureRecPanel';
 import RecPanel from './recPanel';
+
 
 class Goal extends Component {
   static propTypes = {
@@ -54,6 +56,7 @@ class Goal extends Component {
         overflowY: 'auto',
       },
     };
+
     return (
       <div>
         <legend className="text-center header">
@@ -131,6 +134,26 @@ class Goal extends Component {
                 T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
                 this.props.otherRecommendations}
             />
+            <VictoryChart
+              theme={VictoryTheme.material}
+              domain={{ x: [-1, 1], y: [-1, 1] }}
+            >
+
+              <VictoryScatter
+                style={{ data: { fill: 'green' } }}
+                size={10}
+                data={[
+                  { x: 0, y: 0 },
+                ]}
+              />
+              <VictoryScatter
+                style={{ data: { fill: '#c43a31' } }}
+                size={7}
+                data={[
+                  { x: 0.1, y: 0.2 },
+                ]}
+              />
+            </VictoryChart>
           </div>
         </div>
         <Tooltip
