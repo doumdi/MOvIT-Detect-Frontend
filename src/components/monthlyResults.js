@@ -292,10 +292,14 @@ class MonthlyResults extends Component {
 
     const percentOptions2 = {
       scales: {
+        xAxes: [{
+          stacked: true,
+        }],
         yAxes: [{
           ticks: {
             callback: value => `${value}%`,
           },
+          stacked: true,
         }],
       },
       tooltips: {
