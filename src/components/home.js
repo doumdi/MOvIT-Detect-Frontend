@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
-import { Button } from 'primereact/components/button/Button';
+import { Messages } from 'primereact/components/messages/Messages';
 import { ApplicationActions, URL } from '../redux/applicationReducer';
 import { T } from '../index';
+import Password from './password';
 
 
 class Home extends Component {
@@ -27,6 +28,10 @@ class Home extends Component {
     this.loginError = this.loginError.bind(this);
   }
 
+  setPassword(passwordString) {
+    this.setState({ password: passwordString });
+  }
+
   setLoginProfile(profileName) {
     this.setState({ password: null });
     if (this.state.selectedLogin === profileName) {
@@ -40,7 +45,6 @@ class Home extends Component {
     const profileName = this.state.selectedLogin;
     this.props.changeProfile(profileName);
     this.props.changeToken(token);
-    console.log(profileName);
     if (profileName === 'user') {
       this.props.history.push('/goals');
     } else {
@@ -55,7 +59,7 @@ class Home extends Component {
   }
 
   loginError(error) {
-    console.log(error);
+    this.messages.show({ severity: 'error', summary: 'Error Message', detail: error });
   }
 
   clear() {
@@ -82,6 +86,7 @@ class Home extends Component {
 
     return (
       <div style={style.content} className="content-section implementation ui-fluid">
+        <Messages ref={(el) => { this.messages = el; }} />
         <h2>{T.translate(`welcome.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>
         {this.props.profile
@@ -100,19 +105,11 @@ class Home extends Component {
                 <i className="fa fa-user" style={style.icons} />
               </button>
               {this.state.selectedLogin === 'user' &&
-              <div>
-                <div className="col-sm-2" />
-                <div className="ui-inputgroup col-sm-8">
-                  <input
-                    className="form-control"
-                    type="password"
-                    placeholder="Password"
-                    value={this.state.value}
-                    onChange={e => this.setState({ password: e.target.value })}
-                  />
-                  <Button onClick={() => this.login()} icon="fa-sign-in" cornerStyleClass="ui-button-secondary" />
-                </div>
-              </div>
+                <Password
+                  value={this.state.password}
+                  onChange={this.setPassword.bind(this)}
+                  onSubmit={this.login.bind(this)}
+                />
               }
             </div>
             <div className="col-sm-4" >
@@ -121,19 +118,11 @@ class Home extends Component {
                 <i className="fa fa-user-md" style={style.icons} />
               </button>
               {this.state.selectedLogin === 'clinician' &&
-                <div>
-                  <div className="col-sm-2" />
-                  <div className="ui-inputgroup col-sm-8">
-                    <input
-                      className="form-control"
-                      type="password"
-                      placeholder="Password"
-                      value={this.state.value}
-                      onChange={e => this.setState({ password: e.target.value })}
-                    />
-                    <Button onClick={() => this.login()} icon="fa-sign-in" cornerStyleClass="ui-button-secondary" />
-                  </div>
-                </div>
+                <Password
+                  value={this.state.password}
+                  onChange={this.setPassword.bind(this)}
+                  onSubmit={this.login.bind(this)}
+                />
               }
             </div>
           </div>

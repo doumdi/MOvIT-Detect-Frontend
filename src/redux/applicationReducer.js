@@ -47,7 +47,7 @@ const ACTION_HANDLERS = {
     { ...state, profile: action.profile }
   ),
   [TOKEN]: (state, action) => (
-    { ...state, token: action.token }
+    { ...state, token: action.token, header: { headers: { Authorization: action.token } } }
   ),
 };
 
@@ -61,6 +61,7 @@ export const initApplication = {
   userName: '',
   userID: '',
   token: null,
+  header: {},
   maxAngle: null,
   userWeight: null,
 };
