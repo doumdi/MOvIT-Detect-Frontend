@@ -281,6 +281,9 @@ class MonthlyResults extends Component {
             callback: value => `${value}%`,
           },
         }],
+        xAxes: [{
+          stacked: true,
+        }],
       },
       tooltips: {
         callbacks: {
