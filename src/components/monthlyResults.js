@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { T } from '../index';
 import GoalChart from './goalChart';
 import RecGoalChart from './recGoalChart';
+// import { milliToPercent } from '../utils/timeFormat';
 
 class MonthlyResults extends Component {
   static propTypes = {
@@ -277,6 +278,7 @@ class MonthlyResults extends Component {
     const percentOptions2 = {
       scales: {
         yAxes: [{
+          stacked: true,
           ticks: {
             callback: value => `${value}%`,
           },

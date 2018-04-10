@@ -9,3 +9,15 @@ export function milliArrayToMinute(milliArray) {
   });
   return minuteArray;
 }
+
+export function milliToPercent(milliArray) {
+  const percentArray = [];
+  let total = 0;
+  milliArray.forEach((element) => {
+    total += element;
+  });
+  milliArray.forEach((element) => {
+    percentArray.push(Math.round((element / total) * 100));
+  });
+  return percentArray;
+}
