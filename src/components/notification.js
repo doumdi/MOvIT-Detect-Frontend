@@ -18,17 +18,40 @@ class Notification extends Component {
     axios.get(`${URL}alert?State=off`)
       .then(response => console.log(response));
   }
+
+  calibrate() {
+    axios.get(`${URL}calibrate`)
+      .then(response => console.log(response));
+  }
   render() {
     const style = {
       notifs: {
         marginTop: '1em',
+        marginBottom: '1em',
       },
     };
     return (
-      <div className="col-sm-9 text-right" style={style.notifs}>
-        <button onClick={() => this.turnOnNotification()} className="btn btn-lg">{T.translate(`alert.on.${this.props.language}`)}</button>
-        &nbsp;
-        <button onClick={() => this.turnOffNotification()} className="btn btn-lg">{T.translate(`alert.off.${this.props.language}`)}</button>
+      <div className="col-sm-12" >
+        <div className="col-sm-2" />
+        <div className="col-sm-8" style={style.notifs}>
+          <div className="col-sm-4">
+            <div className="col-sm-4" />
+            <button onClick={() => this.calibrate()} className="btn btn-lg col-sm-8">
+              {T.translate(`calibrate.${this.props.language}`)}
+            </button>
+          </div>
+          <div className="col-sm-4">
+            <div className="col-sm-2" />
+            <button onClick={() => this.turnOnNotification()} className="btn btn-lg col-sm-8">
+              {T.translate(`alert.on.${this.props.language}`)}
+            </button>
+          </div>
+          <div className="col-sm-4">
+            <button onClick={() => this.turnOffNotification()} className="btn btn-lg col-sm-8">
+              {T.translate(`alert.off.${this.props.language}`)}
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -37,7 +60,6 @@ class Notification extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    profile: state.applicationReducer.profile,
   };
 }
 

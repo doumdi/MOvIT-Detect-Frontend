@@ -184,8 +184,8 @@ welcome:
     FR: Choisissez votre profil
     EN: Choose your profile
   loginMessage:
-    FR: Vous êtes connecté en tant que
-    EN: You connected as a
+    FR: Vous êtes connecté en tant que {userType}
+    EN: You connected as a {userType}
   logout:
     FR: Déconnecter
     EN: Logout
@@ -323,3 +323,6 @@ alert:
   off:
     FR: Fermer la notification
     EN: Turn off notification
+calibrate:
+  FR: Calibrer
+  EN: Calibrate

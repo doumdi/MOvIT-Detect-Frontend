@@ -7,7 +7,7 @@ new WebpackDevServer(webpack(config), {
   hot: true,
   historyApiFallback: true,
   compress: true,
-  disableHostCheck: true
+  disableHostCheck: true,
 }).listen(3000, '0.0.0.0', (err) => {
   if (err) {
     console.log(err);
