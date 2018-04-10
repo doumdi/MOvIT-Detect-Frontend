@@ -1,6 +1,9 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
+
+console.log('Heyyy', process.env.ENV);
+
 export const URL = 'https://private-f2484-movitplus.apiary-mock.com/';
 export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';

@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
-import { T } from '../index';
-
+import { T } from '../utilities/translator';
 
 class RecGoalProgress extends Component {
   static propTypes = {
