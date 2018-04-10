@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import { T } from '../index';
 import { URL } from '../redux/applicationReducer';
+import { milliArrayToMinute } from '../utils/timeFormat';
 import GoalProgress from './goalProgress';
 import RecGoalProgress from './recGoalProgress';
 
@@ -53,7 +54,7 @@ class DailyResults extends Component {
       ],
       datasets: [
         {
-          data: this.state.dayData,
+          data: milliArrayToMinute(this.state.dayData),
           backgroundColor: [
             'red',
             'green',
