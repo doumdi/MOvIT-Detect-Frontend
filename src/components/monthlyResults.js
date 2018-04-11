@@ -133,6 +133,10 @@ class MonthlyResults extends Component {
     };
     this.setState({ sitLoading: false });
   }
+  hover(e) {
+    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["e"] }]*/
+    e.target.style.cursor = 'pointer';
+  }
   render() {
     const style = {
       center: {
@@ -260,7 +264,7 @@ class MonthlyResults extends Component {
         },
       },
       legend: {
-        onClick: null,
+        onHover: e => this.hover(e),
       },
     };
 
@@ -286,7 +290,7 @@ class MonthlyResults extends Component {
         },
       },
       legend: {
-        onClick: null,
+        onHover: e => this.hover(e),
       },
     };
 
@@ -310,6 +314,9 @@ class MonthlyResults extends Component {
             return label;
           },
         },
+      },
+      legend: {
+        onHover: e => this.hover(e),
       },
     };
 

@@ -42,6 +42,11 @@ class DailyResults extends Component {
       .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
   }
 
+  hover(e) {
+    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["e"] }]*/
+    e.target.style.cursor = 'pointer';
+  }
+
   loadData() {
     this.state.data = {
       labels: [
@@ -98,6 +103,9 @@ class DailyResults extends Component {
             return label;
           },
         },
+      },
+      legend: {
+        onHover: e => this.hover(e),
       },
     };
     return (
