@@ -244,6 +244,7 @@ class MonthlyResults extends Component {
         yAxes: [{
           ticks: {
             callback: value => `${value} h`,
+            min: 0,
           },
         }],
       },
@@ -299,6 +300,7 @@ class MonthlyResults extends Component {
         yAxes: [{
           ticks: {
             callback: value => `${value}%`,
+            min: 0,
             max: 100,
           },
           stacked: true,

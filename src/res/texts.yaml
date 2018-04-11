@@ -188,7 +188,7 @@ welcome:
     EN: You connected as a {userType}
   logout:
     FR: Déconnecter
-    EN:
+    EN: Sign out
 
 login:
   EN: Sign in
