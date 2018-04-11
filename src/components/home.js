@@ -3,11 +3,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
-import { Messages } from 'primereact/components/messages/Messages';
 import { ApplicationActions, URL } from '../redux/applicationReducer';
 import { T } from '../index';
 import Password from './password';
-
 
 class Home extends Component {
   static propTypes = {
@@ -21,28 +19,24 @@ class Home extends Component {
     super(props, context);
     this.state = {
       profile: null,
-      password: null,
-      selectedLogin: null,
+      user: null,
+      loginFail: false,
     };
 
     this.loginError = this.loginError.bind(this);
   }
 
-  setPassword(passwordString) {
-    this.setState({ password: passwordString });
-  }
-
-  setLoginProfile(profileName) {
+  setLoginProfile(userName) {
     this.setState({ password: null });
-    if (this.state.selectedLogin === profileName) {
-      this.setState({ selectedLogin: null });
+    if (this.state.user === userName) {
+      this.setState({ user: null });
     } else {
-      this.setState({ selectedLogin: profileName });
+      this.setState({ user: userName });
     }
   }
 
   setProfile(token) {
-    const profileName = this.state.selectedLogin;
+    const profileName = this.state.user;
     this.props.changeProfile(profileName);
     this.props.changeToken(token);
     if (profileName === 'user') {
@@ -52,19 +46,18 @@ class Home extends Component {
     }
   }
 
-  login() {
-    axios.post(`${URL}login`, { username: this.state.selectedLogin, password: this.state.password })
+  login(passwordString) {
+    axios.post(`${URL}login`, { username: this.state.user, password: passwordString })
     .then(result => this.setProfile(result.data.token))
     .catch(error => this.loginError(error));
   }
 
-  loginError(error) {
-    this.messages.show({ severity: 'error', summary: 'Error Message', detail: error });
+  loginError() {
+    this.setState({ loginFail: true });
   }
 
   clear() {
-    this.setState({ password: null });
-    this.setState({ selectedLogin: null });
+    this.setState({ user: null });
   }
 
   render() {
@@ -86,7 +79,6 @@ class Home extends Component {
 
     return (
       <div style={style.content} className="content-section implementation ui-fluid">
-        <Messages ref={(el) => { this.messages = el; }} />
         <h2>{T.translate(`welcome.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>
         {this.props.profile
@@ -104,11 +96,10 @@ class Home extends Component {
                 <h2>{T.translate(`user.${this.props.language}`)}</h2>
                 <i className="fa fa-user" style={style.icons} />
               </button>
-              {this.state.selectedLogin === 'user' &&
+              {this.state.user === 'user' &&
                 <Password
-                  value={this.state.password}
-                  onChange={this.setPassword.bind(this)}
                   onSubmit={this.login.bind(this)}
+                  failed={this.state.loginFail}
                 />
               }
             </div>
@@ -117,12 +108,13 @@ class Home extends Component {
                 <h2>{T.translate(`clinician.${this.props.language}`)}</h2>
                 <i className="fa fa-user-md" style={style.icons} />
               </button>
-              {this.state.selectedLogin === 'clinician' &&
-                <Password
-                  value={this.state.password}
-                  onChange={this.setPassword.bind(this)}
-                  onSubmit={this.login.bind(this)}
-                />
+              {this.state.user === 'clinician' &&
+                <div>
+                  <Password
+                    onSubmit={this.login.bind(this)}
+                    failed={this.state.loginFail}
+                  />
+                </div>
               }
             </div>
           </div>

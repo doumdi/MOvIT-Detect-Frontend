@@ -188,7 +188,17 @@ welcome:
     EN: You connected as a {userType}
   logout:
     FR: Déconnecter
-    EN: Logout
+    EN:
+
+login:
+  EN: Sign in
+  FR: Connexion
+  password:
+    EN: Password
+    FR: Mot de passe
+  wrongPassword:
+    EN: Wrong password
+    FR: Mauvais mot de passe
 
 user:
   FR: Usager
