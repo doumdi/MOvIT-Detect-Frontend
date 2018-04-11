@@ -36,7 +36,7 @@ class Configuration extends Component {
         <div className="col-md-12">
           <div className="form-horizontal">
             <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
-
+            <Notification />
             <LogoText
               iconClass="fa fa-user"
               placeHolder={T.translate(`configurations.name.${this.props.language}`)}
@@ -69,7 +69,6 @@ class Configuration extends Component {
           onSave={this.save.bind(this)}
           onCancel={this.cancel}
         />
-        <Notification />
       </div>
     );
   }

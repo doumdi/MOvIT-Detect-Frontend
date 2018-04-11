@@ -11,6 +11,7 @@ import RecGoalChart from './recGoalChart';
 class MonthlyResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
@@ -50,13 +51,13 @@ class MonthlyResults extends Component {
   }
   getAngleMonthData(date) {
     this.setState({ angleLoading: true });
-    axios.get(`${URL}oneMonth?Day=${+date}`)
+    axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
       .then((response) => { this.formatAngleChartData(response.data); })
       .catch(error => console.log(error));
   }
   getSitMonthData(date) {
     this.setState({ sitLoading: true });
-    axios.get(`${URL}sittingTime?Day?Day=${+date},Offset=0`)
+    axios.get(`${URL}sittingTime?Day?Day=${+date},Offset=0`, this.props.header)
       .then((response) => { this.formatSitChartData(response.data); })
       .catch(error => console.log(error));
   }
@@ -243,6 +244,7 @@ class MonthlyResults extends Component {
         yAxes: [{
           ticks: {
             callback: value => `${value} h`,
+            min: 0,
           },
         }],
       },
@@ -298,6 +300,8 @@ class MonthlyResults extends Component {
         yAxes: [{
           ticks: {
             callback: value => `${value}%`,
+            min: 0,
+            max: 100,
           },
           stacked: true,
         }],
@@ -364,6 +368,7 @@ function mapStateToProps(state) {
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
+    header: state.applicationReducer.header,
   };
 }
 
