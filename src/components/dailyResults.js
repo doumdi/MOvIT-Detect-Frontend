@@ -40,7 +40,7 @@ class DailyResults extends Component {
   getDayData(date) {
     this.setState({ loading: true });
     axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
-      .then((response) => { this.state.dayData = response.data; this.loadData(); });
+      .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
   }
 
   loadData() {

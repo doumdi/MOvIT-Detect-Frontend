@@ -74,6 +74,7 @@ class Home extends Component {
       profileButton: {
         backgroundColor: 'transparent',
         border: 0,
+        outline: 'none',
       },
     };
 
