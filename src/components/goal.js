@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { VictoryChart, VictoryScatter, VictoryTheme } from 'victory';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import { Slider } from 'primereact/components/slider/Slider';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../index';
 import PressureRecPanel from './pressureRecPanel';
@@ -41,7 +42,28 @@ class Goal extends Component {
       transferRecommendation: props.transferRecommendation,
       comfortRecommendation: props.comfortRecommendation,
       otherRecommendations: props.otherRecommendations,
+      time: 0,
+      currentPoint: { x: 0.1, y: 0.2 },
+      points: [
+        { x: 0.1, y: 5.2 },
+        { x: 1.1, y: 2.2 },
+        { x: -3.1, y: 3.2 },
+        { x: 0.7, y: -2.2 },
+        { x: 2.2, y: 4.2 },
+        { x: -3.1, y: -3.7 },
+        { x: 2.5, y: 1.2 },
+        { x: 1.2, y: 2.2 },
+        { x: -0.9, y: 5.2 },
+        { x: 2.9, y: 6.2 },
+        { x: -4.0, y: -5.2 },
+      ],
     };
+  }
+
+  setTime(value) {
+    this.setState({ time: value });
+    this.setState({ currentPoint: this.state.points[value] });
+    console.log(this.state.x);
   }
 
   render() {
@@ -134,11 +156,16 @@ class Goal extends Component {
                 T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
                 this.props.otherRecommendations}
             />
+            <Slider
+              min={0} max={10}
+              style={{ marginTop: '2em' }}
+              value={this.state.time}
+              onChange={e => this.setTime(e.value)}
+            />
             <VictoryChart
               theme={VictoryTheme.material}
-              domain={{ x: [-1, 1], y: [-1, 1] }}
+              domain={{ x: [-4, 4], y: [-7, 7] }}
             >
-
               <VictoryScatter
                 style={{ data: { fill: 'green' } }}
                 size={10}
@@ -150,11 +177,13 @@ class Goal extends Component {
                 style={{ data: { fill: '#c43a31' } }}
                 size={7}
                 data={[
-                  { x: 0.1, y: 0.2 },
+                  this.state.currentPoint,
                 ]}
               />
             </VictoryChart>
+
           </div>
+
         </div>
         <Tooltip
           for="#titleInfo"
