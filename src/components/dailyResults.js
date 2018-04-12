@@ -45,7 +45,6 @@ class DailyResults extends Component {
   }
 
   loadData() {
-    console.log(this.state.dayData);
     this.state.data = {
       labels: [
         T.translate(`dailyResults.angleDistribution.zero.${this.props.language}`),
@@ -74,7 +73,6 @@ class DailyResults extends Component {
         },
       ],
     };
-    console.log(this.state.data);
     this.setState({ loading: false });
   }
 
