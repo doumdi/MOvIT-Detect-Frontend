@@ -27,7 +27,9 @@
 	"react/prefer-stateless-function": "off",
   "max-len": [2, { "code": 160 }],
   "react/jsx-no-bind": "off",
-  "global-require": "off"
+  "global-require": "off",
+  "no-restricted-syntax": "off",
+  "no-prototype-builtins": "off"
 
   }
 }
