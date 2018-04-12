@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import { T } from '../index';
 import { URL } from '../redux/applicationReducer';
-import { milliArrayToMinute } from '../utils/timeFormat';
 import GoalProgress from './goalProgress';
 import RecGoalProgress from './recGoalProgress';
+import PressureCenter from './pressureCenter';
 
 class DailyResults extends Component {
   static propTypes = {
@@ -45,6 +45,7 @@ class DailyResults extends Component {
   }
 
   loadData() {
+    console.log(this.state.dayData);
     this.state.data = {
       labels: [
         T.translate(`dailyResults.angleDistribution.zero.${this.props.language}`),
@@ -55,7 +56,7 @@ class DailyResults extends Component {
       ],
       datasets: [
         {
-          data: milliArrayToMinute(this.state.dayData),
+          data: this.state.dayData,
           backgroundColor: [
             'red',
             'green',
@@ -73,7 +74,7 @@ class DailyResults extends Component {
         },
       ],
     };
-
+    console.log(this.state.data);
     this.setState({ loading: false });
   }
 
@@ -111,6 +112,10 @@ class DailyResults extends Component {
         {!this.state.loading &&
           <Chart type="pie" data={this.state.data} options={minOptions} />
         }
+        <PressureCenter
+          title={T.translate(`dailyResults.pressureCenter.${this.props.language}`)}
+          date={this.props.date}
+        />
         <RecGoalProgress
           condition={this.props.reduceWeight}
           title={T.translate(`dailyResults.pressure.${this.props.language}`)}

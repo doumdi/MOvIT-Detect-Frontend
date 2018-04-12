@@ -4,16 +4,18 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
 import { URL } from '../redux/applicationReducer';
+import { milliToTimeString } from '../utils/timeFormat';
 
 
 export default class PressureCenter extends Component {
   static propTypes = {
+    title: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
   }
   constructor(props, context) {
     super(props, context);
     this.state = {
-      time: '',
+      time: 0,
       index: 0,
       currentPoint: { x: 0, y: 0 },
       hours: [],
@@ -30,6 +32,7 @@ export default class PressureCenter extends Component {
   setIndex(value) {
     this.setState({ index: value });
     this.setState({ currentPoint: this.state.points[value] });
+    this.setState({ time: this.state.hours[value] });
   }
 
   loadPressureData(data) {
@@ -39,8 +42,7 @@ export default class PressureCenter extends Component {
         this.state.points.push(data[property]);
       }
     }
-    this.setState({ currentPoint: this.state.points[0] });
-    this.setState({ index: 0 });
+    this.setIndex(0);
   }
 
   render() {
@@ -48,9 +50,15 @@ export default class PressureCenter extends Component {
       marginBottom: '25%',
       height: '60%',
       width: '100%',
+      center: {
+        textAlign: 'center',
+      },
     };
     return (
       <div className="col-sm-8" style={style}>
+        <br />
+        <h4>{this.props.title}</h4>
+        <hr />
         <VictoryChart
           theme={VictoryTheme.material}
           domain={{ x: [-4, 4], y: [-7, 7] }}
@@ -79,6 +87,9 @@ export default class PressureCenter extends Component {
               value={this.state.index}
               onChange={e => this.setIndex(e.value)}
             />
+          </div>
+          <div className="col-sm-4">
+            <h3>{milliToTimeString(this.state.time)}</h3>
           </div>
         </div>
       </div>

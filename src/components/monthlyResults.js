@@ -7,7 +7,6 @@ import { T } from '../index';
 import { URL } from '../redux/applicationReducer';
 import GoalChart from './goalChart';
 import RecGoalChart from './recGoalChart';
-// import { milliToPercent } from '../utils/timeFormat';
 
 class MonthlyResults extends Component {
   static propTypes = {
@@ -305,10 +304,6 @@ class MonthlyResults extends Component {
             min: 0,
             max: 100,
           },
-          stacked: true,
-        }],
-        xAxes: [{
-          stacked: true,
         }],
       },
       tooltips: {
@@ -339,6 +334,7 @@ class MonthlyResults extends Component {
         {!this.state.sitLoading &&
           <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
+
         <RecGoalChart
           condition={this.props.reduceWeight}
           title={T.translate(`monthlyResults.pressure.${this.props.language}`)}
