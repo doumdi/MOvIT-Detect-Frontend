@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { ConfigurationActions } from '../redux/configurationReducer';
 import { T } from '../index';
-import Notification from './notification';
-import LogoText from './logoText';
-import LogoNumber from './logoNumber';
-import SubmitButtons from './submitButtons';
+import Notification from '../components/notification';
+import LogoText from '../components/logoText';
+import LogoNumber from '../components/logoNumber';
+import SubmitButtons from '../components/submitButtons';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
@@ -36,7 +36,7 @@ class Configuration extends Component {
         <div className="col-md-12">
           <div className="form-horizontal">
             <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
-
+            <Notification />
             <LogoText
               iconClass="fa fa-user"
               placeHolder={T.translate(`configurations.name.${this.props.language}`)}
@@ -69,7 +69,6 @@ class Configuration extends Component {
           onSave={this.save.bind(this)}
           onCancel={this.cancel}
         />
-        <Notification />
       </div>
     );
   }

@@ -16,9 +16,10 @@ class DailyResults extends Component {
     reduceSlidingMoving: PropTypes.bool.isRequired,
     reduceSlidingRest: PropTypes.bool.isRequired,
     date: PropTypes.instanceOf(Date),
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   }
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       value1: 50,
       value2: 30,
@@ -39,8 +40,8 @@ class DailyResults extends Component {
 
   getDayData(date) {
     this.setState({ loading: true });
-    axios.get(`${URL}oneDay?Day=${+date}`)
-      .then((response) => { this.state.dayData = response.data; this.loadData(); });
+    axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
+      .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
   }
 
   loadData() {
@@ -138,6 +139,7 @@ function mapStateToProps(state) {
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
+    header: state.applicationReducer.header,
   };
 }
 
