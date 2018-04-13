@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { ParameterActions } from '../redux/parameterReducer';
 import { T } from '../utilities/translator';
-import PreventPermission from './preventPermission';
-import SubmitButtons from './submitButtons';
+import PreventPermission from '../components/preventPermission';
+import SubmitButtons from '../components/submitButtons';
 
 class Parameters extends Component {
   static propTypes = {

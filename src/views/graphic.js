@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import { T } from '../utilities/translator';
-import DailyResults from './dailyResults';
-import MonthlyResults from './monthlyResults';
+import DailyResults from '../components/dailyResults';
+import MonthlyResults from '../components/monthlyResults';
 
 class Graphic extends Component {
   static propTypes = {

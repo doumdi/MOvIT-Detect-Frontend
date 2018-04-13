@@ -6,11 +6,11 @@ import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
-import AngleRecommendation from './angleRecommendation';
-import TextRecommendation from './textRecommendation';
-import OtherRecommendation from './otherRecommendation';
-import SubmitButtons from './submitButtons';
-import TiltSliders from './tiltSliders';
+import AngleRecommendation from '../components/angleRecommendation';
+import TextRecommendation from '../components/textRecommendation';
+import OtherRecommendation from '../components/otherRecommendation';
+import SubmitButtons from '../components/submitButtons';
+import TiltSliders from '../components/tiltSliders';
 
 class Recommendation extends Component {
   static propTypes = {
