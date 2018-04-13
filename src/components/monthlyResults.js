@@ -298,12 +298,12 @@ class MonthlyResults extends Component {
           stacked: true,
         }],
         yAxes: [{
+          stacked: true,
           ticks: {
             callback: value => `${value}%`,
             min: 0,
             max: 100,
           },
-          stacked: true,
         }],
       },
       tooltips: {
@@ -334,6 +334,7 @@ class MonthlyResults extends Component {
         {!this.state.sitLoading &&
           <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
+
         <RecGoalChart
           condition={this.props.reduceWeight}
           title={T.translate(`monthlyResults.pressure.${this.props.language}`)}

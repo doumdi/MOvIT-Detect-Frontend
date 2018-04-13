@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../index';
 import PressureRecPanel from '../components/pressureRecPanel';
 import RecPanel from '../components/recPanel';
+
 
 class Goal extends Component {
   static propTypes = {
@@ -54,6 +55,7 @@ class Goal extends Component {
         overflowY: 'auto',
       },
     };
+
     return (
       <div>
         <legend className="text-center header">
@@ -131,7 +133,9 @@ class Goal extends Component {
                 T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
                 this.props.otherRecommendations}
             />
+
           </div>
+
         </div>
         <Tooltip
           for="#titleInfo"

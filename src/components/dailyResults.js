@@ -7,6 +7,7 @@ import { T } from '../index';
 import { URL } from '../redux/applicationReducer';
 import GoalProgress from './goalProgress';
 import RecGoalProgress from './recGoalProgress';
+import PressureCenter from './pressureCenter';
 
 class DailyResults extends Component {
   static propTypes = {
@@ -72,7 +73,6 @@ class DailyResults extends Component {
         },
       ],
     };
-
     this.setState({ loading: false });
   }
 
@@ -110,6 +110,10 @@ class DailyResults extends Component {
         {!this.state.loading &&
           <Chart type="pie" data={this.state.data} options={minOptions} />
         }
+        <PressureCenter
+          title={T.translate(`dailyResults.pressureCenter.${this.props.language}`)}
+          date={this.props.date}
+        />
         <RecGoalProgress
           condition={this.props.reduceWeight}
           title={T.translate(`dailyResults.pressure.${this.props.language}`)}
