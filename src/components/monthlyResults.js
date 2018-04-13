@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import GoalChart from './goalChart';
 import RecGoalChart from './recGoalChart';

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import { ApplicationActions, URL } from '../redux/applicationReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import Password from '../components/password';
 
 class Home extends Component {

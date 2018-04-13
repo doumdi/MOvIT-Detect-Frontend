@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { GoalActions } from '../redux/goalReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import PressureRecPanel from '../components/pressureRecPanel';
 import RecPanel from '../components/recPanel';
 

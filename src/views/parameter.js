@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { ParameterActions } from '../redux/parameterReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import PreventPermission from '../components/preventPermission';
 import SubmitButtons from '../components/submitButtons';
 

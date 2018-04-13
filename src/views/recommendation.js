@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { GoalActions } from '../redux/goalReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import AngleRecommendation from '../components/angleRecommendation';
 import TextRecommendation from '../components/textRecommendation';
 import OtherRecommendation from '../components/otherRecommendation';
