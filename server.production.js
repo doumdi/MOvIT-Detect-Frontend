@@ -4,7 +4,7 @@ const config = require('./webpack.config.production');
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
-  hot: true,
+  hot: false,
   historyApiFallback: true,
   compress: true,
   disableHostCheck: true,
