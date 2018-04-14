@@ -15,7 +15,7 @@ class MonthlyResults extends Component {
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
-    date: PropTypes.instanceOf(Date),
+    month: PropTypes.number,
   }
   constructor(props) {
     super(props);
@@ -36,32 +36,43 @@ class MonthlyResults extends Component {
       sitMonthLabels: [],
       sitChartData: null,
       sitLoading: true,
-      date: props.date,
+      month: props.month,
     };
-    this.getAngleMonthData(props.date);
-    this.getSitMonthData(props.date);
+
+    this.getAngleMonthData(props.month);
+    this.getSitMonthData(props.month);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
-      this.getAngleMonthData(nextProps.date);
-      this.getSitMonthData(nextProps.date);
+    if (nextProps.month !== this.state.month) {
+      this.setState({ date: nextProps.month });
+      this.getAngleMonthData(nextProps.month);
+      this.getSitMonthData(nextProps.month);
     }
   }
-  getAngleMonthData(date) {
+  getAngleMonthData(month) {
+    const date = new Date().setMonth(month);
     this.setState({ angleLoading: true });
     axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
       .then((response) => { this.formatAngleChartData(response.data); })
       .catch(error => console.log(error));
   }
-  getSitMonthData(date) {
+  getSitMonthData(month) {
+    const date = new Date().setMonth(month);
     this.setState({ sitLoading: true });
     axios.get(`${URL}sittingTime?Day?Day=${+date},Offset=0`, this.props.header)
       .then((response) => { this.formatSitChartData(response.data); })
       .catch(error => console.log(error));
   }
   formatAngleChartData(data) {
+    this.state.angleMonthLabels = [];
+    this.state.angleMonthData = {
+      zero: [],
+      fifteen: [],
+      thirty: [],
+      fortyfive: [],
+      more: [],
+    };
     Object.keys(data).forEach((key) => {
       const total = data[key].reduce((a, b) => a + b, 0);
       const percents = data[key].map(v => (v / total) * 100);
@@ -76,6 +87,8 @@ class MonthlyResults extends Component {
     this.loadAngleData();
   }
   formatSitChartData(data) {
+    this.state.sitMonthLabels = [];
+    this.state.sitMonthData = [];
     Object.keys(data).forEach((key) => {
       this.state.sitMonthLabels.push(key.toString());
       this.state.sitMonthData.push(data[key] / 60);

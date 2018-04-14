@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { Panel } from 'react-bootstrap';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
+import { URL } from '../redux/applicationReducer';
 import TiltSliders from './tiltSliders';
 import TiltLabels from './tiltLabels';
 
@@ -36,7 +37,6 @@ class PressureRecPanel extends Component {
 
     this.setMaxAngle();
   }
-
 
   setMaxAngle() {
     if (this.props.maxAngle) {
