@@ -1,21 +1,24 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import { T } from '../utilities/translator';
+import { URL } from '../redux/applicationReducer';
 import DailyResults from '../components/dailyResults';
 import MonthlyResults from '../components/monthlyResults';
 
 class Graphic extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   }
   constructor(props) {
     super(props);
     this.state = {
       date: null,
-      month: 2,
+      month: null,
       period: 'day',
     };
     this.setDefaultDate();
@@ -31,9 +34,13 @@ class Graphic extends Component {
   }
 
   setDefaultDate() {
-    const date = new Date();
-    date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
-    this.state.date = date;
+    axios.get(`${URL}lastDate`, this.props.header)
+      .then((response) => {
+        const date = new Date(response.data);
+        const month = date.getMonth();
+        date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
+        this.setState({ date, month });
+      });
   }
 
   render() {
@@ -128,7 +135,6 @@ class Graphic extends Component {
                   placeholder="Select a month"
                 />
               )
-
           }
           <Dropdown
             value={this.state.period}
@@ -141,7 +147,16 @@ class Graphic extends Component {
         </div>
         <div className="content-section implementation">
           <span className="col-sm-3" />
-          <Results language={this.props.language} date={this.state.date} />
+          {this.state.period === 'day' ?
+            (
+              this.state.date &&
+              <DailyResults language={this.props.language} date={this.state.date} />
+            ) :
+            (
+              this.state.month !== null &&
+              <MonthlyResults language={this.props.language} month={this.state.month} />
+            )
+          }
         </div>
       </div>
     );
@@ -151,6 +166,7 @@ class Graphic extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
   };
 }
 export default connect(mapStateToProps)(Graphic);
