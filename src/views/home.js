@@ -39,6 +39,8 @@ class Home extends Component {
     const profileName = this.state.user;
     this.props.changeProfile(profileName);
     this.props.changeToken(token);
+    localStorage.setItem('token', token);
+    localStorage.setItem('profile', profileName);
     if (profileName === 'user') {
       this.props.history.push('/goals');
     } else {
