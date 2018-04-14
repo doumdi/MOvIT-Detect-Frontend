@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'primereact/components/button/Button';
 import { Message } from 'primereact/components/message/Message';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 class Password extends Component {
   static propTypes = {
