@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { Panel } from 'react-bootstrap';
 import { GoalActions } from '../redux/goalReducer';
@@ -47,6 +48,13 @@ class PressureRecPanel extends Component {
     if (this.state.modifieGoal) {
       this.setState({ modifieGoal: false });
       // save goals data
+      axios.post(`${URL}goal`, {
+        tiltFrequencyGoal: this.state.tiltFrequencyGoal,
+        tiltLengthGoal: this.state.tiltLengthGoal,
+        tiltAngleGoal: this.state.tiltAngleGoal,
+      })
+    .then(console.log)
+    .catch(console.log);
     } else {
       this.setState({ modifieGoal: true });
     }

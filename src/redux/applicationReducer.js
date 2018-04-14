@@ -2,9 +2,21 @@
 // Constants
 // ------------------------------------
 
-export const URL = process.env.NODE_ENV === 'production' ?
-  'http://192.168.4.1:1880/' :
-  'https://private-f2484-movitplus.apiary-mock.com/';
+let url;
+
+switch (process.env.NODE_ENV) {
+  case 'production':
+  case 'pi':
+    url = 'http://192.168.4.1:1880/';
+    break;
+  case 'local':
+    url = 'http://localhost:1880/';
+    break;
+  default:
+    url = 'https://private-f2484-movitplus.apiary-mock.com/';
+}
+
+export const URL = url;
 export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';
 export const EN = 'EN';
