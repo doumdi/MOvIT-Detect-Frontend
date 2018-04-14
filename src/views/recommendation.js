@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
+import axios from 'axios';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
@@ -11,11 +12,13 @@ import TextRecommendation from '../components/textRecommendation';
 import OtherRecommendation from '../components/otherRecommendation';
 import SubmitButtons from '../components/submitButtons';
 import TiltSliders from '../components/tiltSliders';
+import { URL } from '../redux/applicationReducer';
 
 class Recommendation extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     language: PropTypes.string.isRequired,
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     swellingRecommendation: PropTypes.string,
     painRecommendation: PropTypes.string,
     restRecommendation: PropTypes.string,
@@ -94,7 +97,27 @@ class Recommendation extends Component {
   }
 
   save() {
-    this.props.history.push('/goals');
+    const data = {
+      reduceWeight: {
+        tiltFrequecy: this.props.tiltFrequencyWeight,
+        tiltLength: this.props.tiltLengthWeight,
+        tiltAngle: this.props.tiltAngleWeight,
+      },
+      reduceSlidingMoving: this.props.tiltAngleMoving,
+      reduceSlidingRest: this.props.tiltAngleRest,
+      reduceSwelling: this.props.swellingRecommendation,
+      reducePain: this.props.painRecommendation,
+      allowRest: this.props.restRecommendation,
+      easeTransfers: this.props.transferRecommendation,
+      improveComfort: this.props.comfortRecommendation,
+      other: {
+        title: this.props.otherRecommendationsTitle,
+        value: this.props.otherRecommendations,
+      },
+    };
+    axios.post(`${URL}recommandation`, data, this.props.header)
+      .then(() => this.props.history.push('/goals'))
+      .catch(error => console.log(error));
   }
   cancel() {
     console.log('clear all fields');
@@ -201,6 +224,7 @@ class Recommendation extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSwelling: state.recommendationReducer.reduceSwelling,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
