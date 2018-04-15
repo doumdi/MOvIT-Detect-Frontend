@@ -22,7 +22,8 @@ class Configuration extends Component {
     changeMaxAngle: PropTypes.func.isRequired,
     userWeight: PropTypes.number,
     changeUserWeight: PropTypes.func.isRequired,
-  }
+  };
+
   save() {
     this.props.history.push('/recommendations');
   }

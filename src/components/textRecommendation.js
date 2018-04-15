@@ -15,7 +15,7 @@ class TextRecommendation extends Component {
     value: PropTypes.string,
     onChangeActive: PropTypes.func.isRequired,
     onChangeValue: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     const style = {

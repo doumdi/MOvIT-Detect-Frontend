@@ -65,7 +65,8 @@ class Recommendation extends Component {
     changeEaseTransfers: PropTypes.func,
     changeAllowRest: PropTypes.func,
     allowRestRecommendation: PropTypes.func,
-  }
+  };
+
   constructor(props, context) {
     super(props, context);
     this.state = {

@@ -24,6 +24,9 @@
     "babel",
     "webpack"
   ],
+  "jest": {
+    "testRegex": "/tests/((?!config/).)*.(js|ts|tsx)$"
+  },
   "author": "Vasanth Krishnamoorthy (http://www.vasanthk.com)",
   "license": "MIT",
   "bugs": {

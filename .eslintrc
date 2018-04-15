@@ -29,7 +29,7 @@
   "react/jsx-no-bind": "off",
   "global-require": "off",
   "no-restricted-syntax": "off",
-  "no-prototype-builtins": "off"
-
+  "no-prototype-builtins": "off",
+  "no-undef": "off"
   }
 }

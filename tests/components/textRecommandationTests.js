@@ -1,20 +1,19 @@
 import React from 'react';
 import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
-import AngleRecommandation from '../../src/components/angleRecommendation';
+import TextRecommandation from '../../src/components/textRecommendation';
 
-describe('AngleRecommandation Tests', () => {
+describe('TextRecommandation Tests', () => {
   it('should have proptypes', function () {
     // Actual value
-    const actualValue = AngleRecommandation.WrappedComponent.propTypes;
+    const actualValue = TextRecommandation.WrappedComponent.propTypes;
 
     // Expected value
     const expectedValue = {
       language: PropTypes.string.isRequired,
       recActive: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
-      maxAngle: PropTypes.number.isRequired,
-      value: PropTypes.number,
+      value: PropTypes.string,
       onChangeActive: PropTypes.func.isRequired,
       onChangeValue: PropTypes.func.isRequired,
     };

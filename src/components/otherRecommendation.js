@@ -16,7 +16,7 @@ class OtherRecommendation extends Component {
     onChangeActive: PropTypes.func.isRequired,
     onChangeRecTitle: PropTypes.func.isRequired,
     onChangeValue: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     const style = {

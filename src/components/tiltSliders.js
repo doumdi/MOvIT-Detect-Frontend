@@ -15,7 +15,7 @@ class TiltSliders extends Component {
     onFrequencyChange: PropTypes.func.isRequired,
     onLengthChange: PropTypes.func.isRequired,
     onAngleChange: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     return (

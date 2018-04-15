@@ -30,7 +30,8 @@ class Goal extends Component {
     reduceSlidingRest: PropTypes.bool.isRequired,
     reduceSwelling: PropTypes.bool.isRequired,
     reducePain: PropTypes.bool.isRequired,
-  }
+  };
+
   constructor(props, context) {
     super(props, context);
     this.state = {

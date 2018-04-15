@@ -8,7 +8,7 @@ export default class RecPanel extends Component {
     condition: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-  }
+  };
 
   render() {
     const style = {

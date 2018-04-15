@@ -8,7 +8,7 @@ class SumbitButtons extends Component {
     language: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     const style = {
