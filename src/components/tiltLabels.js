@@ -2,8 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { T } from '../index';
-
+import { T } from '../utilities/translator';
 
 class TiltLabels extends Component {
   static propTypes = {
@@ -11,7 +10,7 @@ class TiltLabels extends Component {
     tiltFrequecy: PropTypes.number,
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,
-  }
+  };
 
   render() {
     const style = {

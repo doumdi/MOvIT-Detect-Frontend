@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import GoalProgress from './goalProgress';
 import RecGoalProgress from './recGoalProgress';
+import PressureCenter from './pressureCenter';
 
 class DailyResults extends Component {
   static propTypes = {
@@ -15,9 +16,10 @@ class DailyResults extends Component {
     reduceSlidingMoving: PropTypes.bool.isRequired,
     reduceSlidingRest: PropTypes.bool.isRequired,
     date: PropTypes.instanceOf(Date),
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   }
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       value1: 50,
       value2: 30,
@@ -38,7 +40,7 @@ class DailyResults extends Component {
 
   getDayData(date) {
     this.setState({ loading: true });
-    axios.get(`${URL}oneDay?Day=${+date}`)
+    axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
       .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
   }
 
@@ -76,7 +78,6 @@ class DailyResults extends Component {
         },
       ],
     };
-
     this.setState({ loading: false });
   }
 
@@ -117,6 +118,10 @@ class DailyResults extends Component {
         {!this.state.loading &&
           <Chart type="pie" data={this.state.data} options={minOptions} />
         }
+        <PressureCenter
+          title={T.translate(`dailyResults.pressureCenter.${this.props.language}`)}
+          date={this.props.date}
+        />
         <RecGoalProgress
           condition={this.props.reduceWeight}
           title={T.translate(`dailyResults.pressure.${this.props.language}`)}
@@ -145,6 +150,7 @@ function mapStateToProps(state) {
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
+    header: state.applicationReducer.header,
   };
 }
 

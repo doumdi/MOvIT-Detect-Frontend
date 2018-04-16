@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { Slider } from 'primereact/components/slider/Slider';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 
 class AngleRecommendation extends Component {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { RadioButton } from 'primereact/components/radiobutton/RadioButton';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 class PreventPermission extends Component {
   static propTypes = {
@@ -13,7 +13,7 @@ class PreventPermission extends Component {
     period: PropTypes.string,
     onPermissionChange: PropTypes.func.isRequired,
     onPeriodChange: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     const style = {

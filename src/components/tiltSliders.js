@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
-import { T } from '../index';
-
+import { T } from '../utilities/translator';
 
 class TiltSliders extends Component {
   static propTypes = {
@@ -16,7 +15,7 @@ class TiltSliders extends Component {
     onFrequencyChange: PropTypes.func.isRequired,
     onLengthChange: PropTypes.func.isRequired,
     onAngleChange: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     return (

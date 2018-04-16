@@ -12,7 +12,6 @@ export default class RecGoalChart extends Component {
     recTitle: PropTypes.string.isRequired,
     goalData: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     recData: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    // e: PropTypes.instanceOf(MouseEvent),
   }
 
   hover(e) {

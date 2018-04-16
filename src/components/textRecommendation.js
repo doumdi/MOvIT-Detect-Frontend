@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { InputText } from 'primereact/components/inputtext/InputText';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 
 class TextRecommendation extends Component {
@@ -15,7 +15,7 @@ class TextRecommendation extends Component {
     value: PropTypes.string,
     onChangeActive: PropTypes.func.isRequired,
     onChangeValue: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     const style = {

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { Panel } from 'react-bootstrap';
 import { GoalActions } from '../redux/goalReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
+import { URL } from '../redux/applicationReducer';
 import TiltSliders from './tiltSliders';
 import TiltLabels from './tiltLabels';
 
@@ -24,7 +26,7 @@ class PressureRecPanel extends Component {
     changeTiltFrequencyGoal: PropTypes.func.isRequired,
     changeTiltLengthGoal: PropTypes.func.isRequired,
     changeTiltAngleGoal: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props, context) {
     super(props, context);
@@ -36,7 +38,6 @@ class PressureRecPanel extends Component {
     this.setMaxAngle();
   }
 
-
   setMaxAngle() {
     if (this.props.maxAngle) {
       this.state.maxSliderAngle = this.props.maxAngle;
@@ -47,6 +48,13 @@ class PressureRecPanel extends Component {
     if (this.state.modifieGoal) {
       this.setState({ modifieGoal: false });
       // save goals data
+      axios.post(`${URL}goal`, {
+        tiltFrequencyGoal: this.state.tiltFrequencyGoal,
+        tiltLengthGoal: this.state.tiltLengthGoal,
+        tiltAngleGoal: this.state.tiltAngleGoal,
+      })
+    .then(console.log)
+    .catch(console.log);
     } else {
       this.setState({ modifieGoal: true });
     }
