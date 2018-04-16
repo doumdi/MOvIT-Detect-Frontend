@@ -6,6 +6,7 @@ import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
+import { toDisabledDates } from '../utils/dateFormat';
 import DailyResults from '../components/dailyResults';
 import MonthlyResults from '../components/monthlyResults';
 
@@ -21,9 +22,11 @@ class Graphic extends Component {
       date: null,
       month: null,
       period: 'day',
+      disabledDates: {},
     };
     this.setDefaultDate();
     this.onPeriodChange = this.onPeriodChange.bind(this);
+    this.getDisabledDays();
   }
 
   onPeriodChange(e) {
@@ -34,6 +37,12 @@ class Graphic extends Component {
     this.setState({ month: e.value });
   }
 
+  getDisabledDays() {
+    axios.get(`${URL}daysWithData`, this.props.header)
+    .then(response => this.loadActiveDays(response.data))
+    .catch(error => console.log(error));
+  }
+
   setDefaultDate() {
     axios.get(`${URL}lastDate`, this.props.header)
       .then((response) => {
@@ -42,6 +51,11 @@ class Graphic extends Component {
         date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
         this.setState({ date, month });
       });
+  }
+
+  loadActiveDays(data) {
+    this.setState({ disabledDates: toDisabledDates(data) });
+    console.log(this.state.disabledDates);
   }
 
   render() {
@@ -124,16 +138,22 @@ class Graphic extends Component {
           <span>Date: </span>
           {
             this.state.period === 'day' ?
-              <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.setState({ date: e.value })} /> :
-              (
-                <Dropdown
-                  value={this.state.month}
-                  options={months}
-                  onChange={e => this.onMonthChange(e)}
-                  style={{ width: '150px', marginLeft: '15px' }}
-                  placeholder="Select a month"
-                />
-              )
+              <Calendar
+                minDate={this.state.disabledDates.firstDate}
+                maxDate={this.state.disabledDates.lastDate}
+                disabledDates={ths.state.disabledDates.dates}
+                locale={locale[this.props.language]}
+                value={this.state.date}
+                onChange={e => this.setState({ date: e.value })}
+              />
+              :
+              <Dropdown
+                value={this.state.month}
+                options={months}
+                onChange={e => this.onMonthChange(e)}
+                style={{ width: '150px', marginLeft: '15px' }}
+                placeholder="Select a month"
+              />
           }
           <Dropdown
             value={this.state.period}
