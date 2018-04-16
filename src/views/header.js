@@ -31,7 +31,7 @@ class Header extends Component {
   }
 
   isLoggedIn() {
-    if (this.props.profile === '') {
+    if (this.props.profile === '' && localStorage.getItem('profile') === '') {
       return <Redirect to="/home" />;
     }
     return '';
