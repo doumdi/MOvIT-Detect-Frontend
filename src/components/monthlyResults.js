@@ -265,7 +265,6 @@ class MonthlyResults extends Component {
       },
       legend: {
         onClick: null,
-        onHover: e => this.hover(e),
       },
     };
 
@@ -292,7 +291,6 @@ class MonthlyResults extends Component {
       },
       legend: {
         onClick: null,
-        onHover: e => this.hover(e),
       },
     };
 
