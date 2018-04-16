@@ -15,7 +15,7 @@ class Header extends Component {
     changeLanguage: PropTypes.func,
     changeProfile: PropTypes.func,
     changeToken: PropTypes.func,
-  }
+  };
 
   constructor(props) {
     super(props);

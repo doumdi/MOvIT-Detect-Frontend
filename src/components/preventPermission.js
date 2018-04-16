@@ -13,7 +13,7 @@ class PreventPermission extends Component {
     period: PropTypes.string,
     onPermissionChange: PropTypes.func.isRequired,
     onPeriodChange: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     const style = {

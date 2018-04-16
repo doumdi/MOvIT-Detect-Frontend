@@ -10,7 +10,7 @@ class TiltLabels extends Component {
     tiltFrequecy: PropTypes.number,
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,
-  }
+  };
 
   render() {
     const style = {

@@ -23,7 +23,8 @@ class Parameters extends Component {
     changeNotificationAgreement: PropTypes.func,
     notificationAgreement: PropTypes.bool,
     notificationDisagreePeriod: PropTypes.string,
-  }
+  };
+
   save() {
     // save data to backend
     this.props.history.push('/goals');

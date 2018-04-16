@@ -14,7 +14,8 @@ class Home extends Component {
     changeToken: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     profile: PropTypes.string,
-  }
+  };
+
   constructor(props, context) {
     super(props, context);
     this.state = {

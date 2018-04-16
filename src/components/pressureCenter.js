@@ -11,7 +11,8 @@ export default class PressureCenter extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-  }
+  };
+
   constructor(props, context) {
     super(props, context);
     this.state = {

@@ -7,12 +7,12 @@
     "start": "npm i && node server.js",
     "build": "npm i && cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
     "lint": "eslint --ext .js *.js src/",
-    "test": "jest",
+    "test": "jest tests/* --coverage",
     "prod": "node server.production.js",
     "pi": "NODE_ENV=pi node server.js",
     "local": "NODE_ENV=local node server.js",
     "precommit": "npm run lint",
-    "prepush": "jest"
+    "prepush": "npm test"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,9 @@
     "babel",
     "webpack"
   ],
+  "jest": {
+    "testRegex": "/tests/((?!config/).)*.(js|ts|tsx)$"
+  },
   "author": "Vasanth Krishnamoorthy (http://www.vasanthk.com)",
   "license": "MIT",
   "bugs": {

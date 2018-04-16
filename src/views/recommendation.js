@@ -61,8 +61,8 @@ class Recommendation extends Component {
     changeTiltFrequencyWeight: PropTypes.func,
     changeTiltLengthWeight: PropTypes.func,
     changeTiltAngleWeight: PropTypes.func,
+  };
 
-  }
   constructor(props, context) {
     super(props, context);
     this.state = {

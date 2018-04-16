@@ -12,7 +12,7 @@ class RecGoalProgress extends Component {
     title: PropTypes.string.isRequired,
     goalValue: PropTypes.number,
     recValue: PropTypes.number,
-  }
+  };
 
   render() {
     const style = {

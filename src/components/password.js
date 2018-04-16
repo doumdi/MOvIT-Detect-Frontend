@@ -10,7 +10,8 @@ class Password extends Component {
     language: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired,
     failed: PropTypes.bool.isRequired,
-  }
+  };
+
   constructor(props) {
     super(props);
     this.state = {

@@ -13,7 +13,8 @@ class Graphic extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  }
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -90,8 +91,6 @@ class Graphic extends Component {
         { label: 'November', value: 10 },
         { label: 'December', value: 11 },
       ];
-    // Jamais utilisée
-    // const Results = this.state.period === 'day' ? DailyResults : MonthlyResults;
     const title = this.state.period === 'day' ?
     T.translate(`dailyResults.${this.props.language}`) :
     T.translate(`monthlyResults.${this.props.language}`);
