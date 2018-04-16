@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
@@ -26,6 +27,14 @@ class Header extends Component {
     this.props.changeToken('');
     localStorage.setItem('token', '');
     localStorage.setItem('profile', '');
+    return <Redirect to="/home" />;
+  }
+
+  isLoggedIn() {
+    if (this.props.profile === '' && localStorage.getItem('profile') === '') {
+      return <Redirect to="/home" />;
+    }
+    return '';
   }
 
   render() {
@@ -59,9 +68,11 @@ class Header extends Component {
         border: 'none',
         outline: 'none',
       },
+
     };
     return (
       <div>
+        {this.isLoggedIn()}
         <nav className="navbar-inverse" style={style.navbar}>
           <div className="container-fluid" style={style.containerfluid}>
             <div className="navbar-header">

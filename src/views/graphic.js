@@ -91,7 +91,6 @@ class Graphic extends Component {
         { label: 'November', value: 10 },
         { label: 'December', value: 11 },
       ];
-
     const title = this.state.period === 'day' ?
     T.translate(`dailyResults.${this.props.language}`) :
     T.translate(`monthlyResults.${this.props.language}`);
