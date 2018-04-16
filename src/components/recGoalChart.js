@@ -12,7 +12,12 @@ export default class RecGoalChart extends Component {
     recTitle: PropTypes.string.isRequired,
     goalData: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     recData: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  };
+  }
+
+  hover(e) {
+    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["e"] }] */
+    e.target.style.cursor = 'pointer';
+  }
 
   render() {
     const style = {
@@ -21,6 +26,11 @@ export default class RecGoalChart extends Component {
       },
     };
 
+    const options = {
+      legend: {
+        onHover: e => this.hover(e),
+      },
+    };
     return (
       <div>
         {this.props.condition &&
@@ -29,10 +39,10 @@ export default class RecGoalChart extends Component {
             <h2 style={style.center}>{this.props.title}</h2>
             <hr />
             <h4>{this.props.goalTitle}</h4>
-            <Chart type="line" data={this.props.goalData} />
+            <Chart type="line" data={this.props.goalData} options={options} />
             <hr />
             <h4>{this.props.recTitle}</h4>
-            <Chart type="line" data={this.props.recData} />
+            <Chart type="line" data={this.props.recData} options={options} />
           </div>
         }
       </div>
