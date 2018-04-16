@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import axios from 'axios';
 import { RecommendationActions } from '../redux/recommendationReducer';
-import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
 import AngleRecommendation from '../components/angleRecommendation';
 import TextRecommendation from '../components/textRecommendation';
@@ -30,8 +29,6 @@ class Recommendation extends Component {
     tiltFrequencyWeight: PropTypes.number.isRequired,
     tiltLengthWeight: PropTypes.number.isRequired,
     tiltAngleWeight: PropTypes.number.isRequired,
-    changeTiltFrequencyGoal: PropTypes.func.isRequired,
-    changeTiltLengthGoal: PropTypes.func.isRequired,
     reduceSlidingMoving: PropTypes.bool.isRequired,
     tiltAngleMoving: PropTypes.number.isRequired,
     tiltAngleRest: PropTypes.number.isRequired,
@@ -43,10 +40,6 @@ class Recommendation extends Component {
     reduceSlidingRest: PropTypes.bool.isRequired,
     reduceSwelling: PropTypes.bool.isRequired,
     reducePain: PropTypes.bool.isRequired,
-    changeTiltAngleGoal: PropTypes.func.isRequired,
-    changeTiltFrequencyWeight: PropTypes.func.isRequired,
-    changeTiltAngleWeight: PropTypes.func.isRequired,
-    changeTiltLengthWeight: PropTypes.func.isRequired,
     changeReduceWeight: PropTypes.func.isRequired,
     changeReduceSlidingMoving: PropTypes.func.isRequired,
     changeTiltAngleMoving: PropTypes.func.isRequired,
@@ -65,6 +58,9 @@ class Recommendation extends Component {
     changeEaseTransfers: PropTypes.func,
     changeAllowRest: PropTypes.func,
     allowRestRecommendation: PropTypes.func,
+    changeTiltFrequencyWeight: PropTypes.func,
+    changeTiltLengthWeight: PropTypes.func,
+    changeTiltAngleWeight: PropTypes.func,
   };
 
   constructor(props, context) {
@@ -81,22 +77,6 @@ class Recommendation extends Component {
       this.state.maxSliderAngle = this.props.maxAngle;
     }
   }
-
-  changeFrequencyGoal(value) {
-    this.props.changeTiltFrequencyWeight(value);
-    this.props.changeTiltFrequencyGoal(value);
-  }
-
-  changeLengthGoal(value) {
-    this.props.changeTiltLengthWeight(value);
-    this.props.changeTiltLengthGoal(value);
-  }
-
-  changeAngleGoal(value) {
-    this.props.changeTiltAngleWeight(value);
-    this.props.changeTiltAngleGoal(value);
-  }
-
   save() {
     const data = {
       reduceWeight: {
@@ -147,9 +127,9 @@ class Recommendation extends Component {
                 tiltLength={this.props.tiltLengthWeight}
                 tiltAngle={this.props.tiltAngleWeight}
                 maxAngle={this.state.maxSliderAngle}
-                onFrequencyChange={this.changeFrequencyGoal.bind(this)}
-                onLengthChange={this.changeLengthGoal.bind(this)}
-                onAngleChange={this.changeAngleGoal.bind(this)}
+                onFrequencyChange={this.props.changeTiltFrequencyWeight.bind(this)}
+                onLengthChange={this.props.changeTiltLengthWeight.bind(this)}
+                onAngleChange={this.props.changeTiltAngleWeight.bind(this)}
               />
             : null}
             <AngleRecommendation
@@ -248,9 +228,6 @@ function mapStateToProps(state) {
     otherRecommendations: state.recommendationReducer.otherRecommendations,
     otherRecommendationsTitle: state.recommendationReducer.otherRecommendationsTitle,
     maxAngle: state.configurationReducer.maxAngle,
-    tiltFrequencyGoal: state.goalReducer.tiltFrequencyGoal,
-    tiltLengthGoal: state.goalReducer.tiltLengthGoal,
-    tiltAngleGoal: state.goalReducer.tiltAngleGoal,
   };
 }
 function mapDispatchToProps(dispatch) {
@@ -276,9 +253,6 @@ function mapDispatchToProps(dispatch) {
     improveComfortRecommendation: RecommendationActions.improveComfortRecommendation,
     otherRecommendation: RecommendationActions.otherRecommendation,
     otherRecommendationTitle: RecommendationActions.otherRecommendationTitle,
-    changeTiltFrequencyGoal: GoalActions.changeTiltFrequencyGoal,
-    changeTiltLengthGoal: GoalActions.changeTiltLengthGoal,
-    changeTiltAngleGoal: GoalActions.changeTiltAngleGoal,
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);
