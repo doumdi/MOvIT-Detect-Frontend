@@ -5,18 +5,28 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import { ApplicationActions } from '../redux/applicationReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 
 class Header extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    changeProfile: PropTypes.func,
     profile: PropTypes.string,
     changeLanguage: PropTypes.func,
+    changeProfile: PropTypes.func,
+    changeToken: PropTypes.func,
+  }
+
+  constructor(props) {
+    super(props);
+    this.props.changeProfile(localStorage.getItem('profile'));
+    this.props.changeToken(localStorage.getItem('token'));
   }
   logout() {
     this.props.changeProfile('');
+    this.props.changeToken('');
+    localStorage.setItem('token', '');
+    localStorage.setItem('profile', '');
     return <Redirect to="/home" />;
   }
 
@@ -130,6 +140,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     changeLanguage: ApplicationActions.changeLanguage,
     changeProfile: ApplicationActions.changeProfile,
+    changeToken: ApplicationActions.changeToken,
   }, dispatch);
 }
 

@@ -188,7 +188,17 @@ welcome:
     EN: You connected as a {userType}
   logout:
     FR: Déconnecter
-    EN: Logout
+    EN: Sign out
+
+login:
+  EN: Sign in
+  FR: Connexion
+  password:
+    EN: Password
+    FR: Mot de passe
+  wrongPassword:
+    EN: Wrong password
+    FR: Mauvais mot de passe
 
 user:
   FR: Usager
@@ -245,6 +255,9 @@ dailyResults:
     description:
       FR: Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!
       EN: You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!
+  pressureCenter:
+    EN: Pressure center
+    FR: Centre de pression
 
 monthlyResults:
   FR: Mes résultats mensuels

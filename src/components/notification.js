@@ -3,24 +3,25 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from '../redux/applicationReducer';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 
 class Notification extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   }
   turnOnNotification() {
-    axios.get(`${URL}alert?State=on`)
+    axios.get(`${URL}alert?State=on`, this.props.header)
       .then(response => console.log(response));
   }
 
   turnOffNotification() {
-    axios.get(`${URL}alert?State=off`)
+    axios.get(`${URL}alert?State=off`, this.props.header)
       .then(response => console.log(response));
   }
 
   calibrate() {
-    axios.get(`${URL}calibrate`)
+    axios.get(`${URL}calibrate`, this.props.header)
       .then(response => console.log(response));
   }
   render() {
@@ -60,6 +61,7 @@ class Notification extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
   };
 }
 

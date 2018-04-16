@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
-import { T } from '../index';
-
+import { T } from '../utilities/translator';
 
 class TiltSliders extends Component {
   static propTypes = {

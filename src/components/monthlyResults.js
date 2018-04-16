@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { T } from '../index';
+import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import GoalChart from './goalChart';
 import RecGoalChart from './recGoalChart';
@@ -11,10 +11,11 @@ import RecGoalChart from './recGoalChart';
 class MonthlyResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
-    date: PropTypes.instanceOf(Date),
+    month: PropTypes.number,
   }
   constructor(props) {
     super(props);
@@ -35,32 +36,43 @@ class MonthlyResults extends Component {
       sitMonthLabels: [],
       sitChartData: null,
       sitLoading: true,
-      date: props.date,
+      month: props.month,
     };
-    this.getAngleMonthData(props.date);
-    this.getSitMonthData(props.date);
+
+    this.getAngleMonthData(props.month);
+    this.getSitMonthData(props.month);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
-      this.getAngleMonthData(nextProps.date);
-      this.getSitMonthData(nextProps.date);
+    if (nextProps.month !== this.state.month) {
+      this.setState({ date: nextProps.month });
+      this.getAngleMonthData(nextProps.month);
+      this.getSitMonthData(nextProps.month);
     }
   }
-  getAngleMonthData(date) {
+  getAngleMonthData(month) {
+    const date = new Date().setMonth(month);
     this.setState({ angleLoading: true });
-    axios.get(`${URL}oneMonth?Day=${+date}`)
+    axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
       .then((response) => { this.formatAngleChartData(response.data); })
       .catch(error => console.log(error));
   }
-  getSitMonthData(date) {
+  getSitMonthData(month) {
+    const date = new Date().setMonth(month);
     this.setState({ sitLoading: true });
-    axios.get(`${URL}sittingTime?Day?Day=${+date},Offset=0`)
+    axios.get(`${URL}sittingTime?Day?Day=${+date},Offset=0`, this.props.header)
       .then((response) => { this.formatSitChartData(response.data); })
       .catch(error => console.log(error));
   }
   formatAngleChartData(data) {
+    this.state.angleMonthLabels = [];
+    this.state.angleMonthData = {
+      zero: [],
+      fifteen: [],
+      thirty: [],
+      fortyfive: [],
+      more: [],
+    };
     Object.keys(data).forEach((key) => {
       const total = data[key].reduce((a, b) => a + b, 0);
       const percents = data[key].map(v => (v / total) * 100);
@@ -75,6 +87,8 @@ class MonthlyResults extends Component {
     this.loadAngleData();
   }
   formatSitChartData(data) {
+    this.state.sitMonthLabels = [];
+    this.state.sitMonthData = [];
     Object.keys(data).forEach((key) => {
       this.state.sitMonthLabels.push(key.toString());
       this.state.sitMonthData.push(data[key] / 60);
@@ -243,6 +257,7 @@ class MonthlyResults extends Component {
         yAxes: [{
           ticks: {
             callback: value => `${value} h`,
+            min: 0,
           },
         }],
       },
@@ -296,10 +311,12 @@ class MonthlyResults extends Component {
           stacked: true,
         }],
         yAxes: [{
+          stacked: true,
           ticks: {
             callback: value => `${value}%`,
+            min: 0,
+            max: 100,
           },
-          stacked: true,
         }],
       },
       tooltips: {
@@ -330,6 +347,7 @@ class MonthlyResults extends Component {
         {!this.state.sitLoading &&
           <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
+
         <RecGoalChart
           condition={this.props.reduceWeight}
           title={T.translate(`monthlyResults.pressure.${this.props.language}`)}
@@ -364,6 +382,7 @@ function mapStateToProps(state) {
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
+    header: state.applicationReducer.header,
   };
 }
 
