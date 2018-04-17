@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { VictoryChart, VictoryScatter, VictoryTheme } from 'victory';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -7,10 +8,11 @@ import { URL } from '../redux/applicationReducer';
 import { milliToTimeString } from '../utils/timeFormat';
 
 
-export default class PressureCenter extends Component {
+class PressureCenter extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   };
 
   constructor(props, context) {
@@ -26,7 +28,7 @@ export default class PressureCenter extends Component {
   }
 
   getPressureData() {
-    axios.get(`${URL}gravityCenter?Day=${+this.props.date},offset=0`)
+    axios.get(`${URL}gravityCenter?Day=${+this.props.date},offset=0`, this.props.header)
       .then((response) => { this.loadPressureData(response.data); });
   }
 
@@ -101,3 +103,11 @@ export default class PressureCenter extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    header: state.applicationReducer.header,
+  };
+}
+
+export default connect(mapStateToProps)(PressureCenter);
