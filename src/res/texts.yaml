@@ -31,8 +31,8 @@ parameters:
 
 time:
   min:
-    FR: "min"
-    EN: "min"
+    FR: "sec"
+    EN: "sec"
   hours:
     FR: "heures"
     EN: "hours"

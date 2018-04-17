@@ -31,7 +31,7 @@ class TiltSliders extends Component {
             value={this.props.tiltFrequecy}
             onChange={e => this.props.onFrequencyChange(e.value)} step={5}
           />
-          <span className="col-sm-2">{this.props.tiltFrequecy} min </span>
+          <span className="col-sm-2">{this.props.tiltFrequecy} sec </span>
         </div>
         <div className="col-sm-12">
           <div className="col-sm-4">
@@ -44,7 +44,7 @@ class TiltSliders extends Component {
             value={this.props.tiltLength}
             onChange={e => this.props.onLengthChange(e.value)}
           />
-          <span className="col-sm-2" >{this.props.tiltLength} min </span>
+          <span className="col-sm-2" >{this.props.tiltLength} sec </span>
         </div>
         <div className="col-sm-12">
           <div className="col-sm-4">

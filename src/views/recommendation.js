@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import axios from 'axios';
 import { RecommendationActions } from '../redux/recommendationReducer';
+import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
 import AngleRecommendation from '../components/angleRecommendation';
 import TextRecommendation from '../components/textRecommendation';
@@ -61,6 +62,9 @@ class Recommendation extends Component {
     changeTiltFrequencyWeight: PropTypes.func,
     changeTiltLengthWeight: PropTypes.func,
     changeTiltAngleWeight: PropTypes.func,
+    changeTiltFrequencyGoal: PropTypes.func,
+    changeTiltLengthGoal: PropTypes.func,
+    changeTiltAngleGoal: PropTypes.func,
   };
 
   constructor(props, context) {
@@ -104,6 +108,21 @@ class Recommendation extends Component {
     console.log('clear all fields');
   }
 
+  changeTitlFrequency(value) {
+    this.props.changeTiltFrequencyWeight(value);
+    this.props.changeTiltFrequencyGoal(value);
+  }
+
+  changeTiltLength(value) {
+    this.props.changeTiltLengthWeight(value);
+    this.props.changeTiltLengthGoal(value);
+  }
+
+  changeTiltAngle(value) {
+    this.props.changeTiltAngleWeight(value);
+    this.props.changeTiltAngleGoal(value);
+  }
+
   render() {
     return (
       <div>
@@ -127,9 +146,9 @@ class Recommendation extends Component {
                 tiltLength={this.props.tiltLengthWeight}
                 tiltAngle={this.props.tiltAngleWeight}
                 maxAngle={this.state.maxSliderAngle}
-                onFrequencyChange={this.props.changeTiltFrequencyWeight.bind(this)}
-                onLengthChange={this.props.changeTiltLengthWeight.bind(this)}
-                onAngleChange={this.props.changeTiltAngleWeight.bind(this)}
+                onFrequencyChange={this.changeTitlFrequency.bind(this)}
+                onLengthChange={this.changeTiltLength.bind(this)}
+                onAngleChange={this.changeTiltAngle.bind(this)}
               />
             : null}
             <AngleRecommendation
@@ -253,6 +272,9 @@ function mapDispatchToProps(dispatch) {
     improveComfortRecommendation: RecommendationActions.improveComfortRecommendation,
     otherRecommendation: RecommendationActions.otherRecommendation,
     otherRecommendationTitle: RecommendationActions.otherRecommendationTitle,
+    changeTiltFrequencyGoal: GoalActions.changeTiltFrequencyGoal,
+    changeTiltLengthGoal: GoalActions.changeTiltLengthGoal,
+    changeTiltAngleGoal: GoalActions.changeTiltAngleGoal,
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);
