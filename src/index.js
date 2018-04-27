@@ -1,3 +1,9 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin Didier Tran
+ */
+
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';

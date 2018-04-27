@@ -1,3 +1,7 @@
+/**
+ * @author Austin Didier Tran
+ */
+
 import React from 'react';
 import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';

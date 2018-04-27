@@ -4,6 +4,12 @@ import { VictoryChart, VictoryScatter, VictoryTheme } from 'victory';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin Didier Tran
+ */
+
 import { URL } from '../redux/applicationReducer';
 import { milliToTimeString } from '../utils/timeFormat';
 

@@ -1,3 +1,9 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin Didier Tran
+ */
+
 // ------------------------------------
 // Constants
 // ------------------------------------

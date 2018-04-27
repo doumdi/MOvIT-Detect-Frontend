@@ -1,3 +1,9 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin Didier Tran
+ */
+
 export const TILT_FREQUENCY_GOAL = 'TILT_FREQUENCY_GOAL';
 export const TILT_LENGTH_GOAL = 'TILT_LENGTH_GOAL';
 export const TILT_ANGLE_GOAL = 'TILT_ANGLE_GOAL';

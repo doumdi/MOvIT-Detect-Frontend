@@ -1,3 +1,9 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin Didier Tran
+ */
+
 export const DATA_AGREEMENT = 'DATA_AGREEMENT';
 export const LIGHT_AGREEMENT = 'LIGHT_AGREEMENT';
 export const NOTIFICATION_AGREEMENT = 'NOTIFICATION_AGREEMENT';

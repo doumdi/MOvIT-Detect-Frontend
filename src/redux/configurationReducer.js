@@ -1,3 +1,9 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin Didier Tran
+ */
+
 export const USER_NAME = 'USER_NAME';
 export const USER_ID = 'USER_ID';
 export const USER_WEIGHT = 'USER_WEIGHT';

@@ -1,3 +1,9 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin Didier Tran
+ */
+
 export const REDUCE_WEIGHT = 'REDUCE_WEIGHT';
 export const REDUCE_SWELLING = 'REDUCE_SWELLING';
 export const REDUCE_SLIDING_MOVING = 'REDUCE_SLIDING_MOVING';
