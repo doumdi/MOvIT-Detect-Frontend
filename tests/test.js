@@ -1,7 +1,3 @@
-/**
- * @author Anne-Marie Desloges
- */
-
 import React from 'react';
 import TestUtils from 'react-dom/test-utils';
 
