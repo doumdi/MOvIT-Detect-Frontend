@@ -342,3 +342,6 @@ alert:
 calibrate:
   FR: "Calibrer"
   EN: "Calibrate"
+calibrating:
+  FR: "En calibration"
+  EN: "Calibrating"
