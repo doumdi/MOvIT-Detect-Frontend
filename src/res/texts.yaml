@@ -342,3 +342,10 @@ alert:
 calibrate:
   FR: "Calibrer"
   EN: "Calibrate"
+
+wifi:
+  FR: "Wifi"
+  EN: "Wifi"
+  name:
+    FR: "Nom du wifi"
+    EN: "Wifi name"
