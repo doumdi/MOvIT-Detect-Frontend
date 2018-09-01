@@ -15,7 +15,7 @@ const port = process.env.PORT || 1881;
 switch (process.env.NODE_ENV) {
   case 'production':
   case 'pi':
-    url = `http://192.168.4.1:${port}/`;
+    url = `http://192.168.137.175:${port}/`;
     break;
   case 'local':
     url = `http://localhost:${port}/`;
