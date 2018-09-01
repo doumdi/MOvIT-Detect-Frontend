@@ -10,7 +10,7 @@
 
 let url;
 
-const port = process.env.PORT || 1880;
+const port = process.env.PORT || 1881;
 
 switch (process.env.NODE_ENV) {
   case 'production':
