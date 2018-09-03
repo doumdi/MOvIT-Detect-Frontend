@@ -349,3 +349,6 @@ wifi:
   name:
     FR: "Nom du wifi"
     EN: "Wifi name"
+  connected:
+    FR: "Vous êtes connecté au wifi"
+    EN: "You are connected to the wifi"
