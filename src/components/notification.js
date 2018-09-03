@@ -8,9 +8,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Dialog } from 'primereact/components/dialog/Dialog';
 import { URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
+import Countdown from './countdown';
 
 class Notification extends Component {
   static propTypes = {
@@ -22,8 +22,8 @@ class Notification extends Component {
     super(props);
     this.state = {
       showCountdown: false,
-      timer: 10,
     };
+    this.calibrationCompleted = this.calibrationCompleted.bind(this);
   }
 
   turnOnNotification() {
@@ -38,33 +38,18 @@ class Notification extends Component {
 
   calibrate() {
     axios.get(`${URL}calibrate`, this.props.header)
-      .then(() => this.countdownCalibration());
+      .then(() => this.setState({ ...this.state, showCountdown: true }));
   }
-  countdownCalibration() {
-    this.setState({ ...this.state, showCountdown: true });
-    const countdown = window.setInterval(() => {
-      this.setState({ ...this.state, timer: this.state.timer - 1 });
-      if (this.state.timer === 0) {
-        window.clearInterval(countdown);
-        this.setState({ showCountdown: false, timer: 10 });
-      }
-    }, 1000);
+
+  calibrationCompleted() {
+    this.setState({ ...this.state, showCountdown: false });
   }
+
   render() {
     const style = {
       notifs: {
         marginTop: '1em',
         marginBottom: '1em',
-      },
-      timer: {
-        fontSize: '30',
-        textAlign: 'center',
-        width: '100%',
-      },
-      timerHeader: {
-        fontSize: '20',
-        textAlign: 'center',
-        width: '100%',
       },
     };
     return (
@@ -89,13 +74,7 @@ class Notification extends Component {
             </button>
           </div>
         </div>
-        <Dialog
-          visible={this.state.showCountdown} width="300px" height="100px" showHeader={false}
-          modal onHide={() => this.setState({ showCountdown: false })}
-        >
-          <div style={style.timerHeader}> {T.translate(`calibrating.${this.props.language}`)} </div>
-          <div style={style.timer}>{this.state.timer}</div>
-        </Dialog>
+        {this.state.showCountdown && <Countdown time={10} onComplete={this.calibrationCompleted} />}
       </div>
     );
   }
