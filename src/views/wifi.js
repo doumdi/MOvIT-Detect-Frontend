@@ -32,34 +32,34 @@ class Wifi extends Component {
     axios.get(`${URL}wifi`)
       .then((response) => {
         if (response.data.connected) {
-          this.setState({ ...this.state, connected: true });
+          this.setState({ connected: true });
         }
-        this.setState({ ...this.state, connecting: false });
+        this.setState({ connecting: false });
       })
-      .catch((error) => { this.setState({ ...this.state, connecting: false }); console.log(error); });
+      .catch((error) => { this.setState({ connecting: false }); console.log(error); });
   }
 
   enableConnection() {
-    this.setState({ ...this.state, connecting: false, connected: false });
+    this.setState({ connecting: false, connected: false });
   }
 
 
   changeWifi(wifiName) {
-    this.setState({ ...this.state, wifi: wifiName });
+    this.setState({ wifi: wifiName });
   }
 
   changePassword(passwordString) {
-    this.setState({ ...this.state, password: passwordString });
+    this.setState({ password: passwordString });
   }
 
   save() {
     axios.post(`${URL}wifi`, this.state)
       .then(() => this.waitConnection())
-      .catch(error => console.log(error));
+      .catch(console.error);
   }
 
   waitConnection() {
-    this.setState({ ...this.state, connecting: true });
+    this.setState({ connecting: true });
     const connectionValidation = window.setInterval(() => {
       axios.get(`${URL}wifi`)
       .then((response) => {
@@ -68,7 +68,7 @@ class Wifi extends Component {
           this.setState({ ...this.state, connecting: false, connected: true });
         }
       })
-      .catch(error => console.log(error));
+      .catch(console.error);
     }, 1000);
   }
 
