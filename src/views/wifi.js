@@ -13,7 +13,6 @@ class Wifi extends Component {
 
   static propTypes = {
     language: PropTypes.string.isRequired,
-    // history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   };
 
   constructor(props) {
@@ -86,7 +85,10 @@ class Wifi extends Component {
         <div className="col-md-12">
           <legend className="text-center header"><h2>{T.translate(`wifi.${this.props.language}`)}</h2></legend>
           { this.state.connected
-            ? <h2 className="text-center" >{T.translate(`wifi.connected.${this.props.language}`)} <a style={style} onClick={() => this.enableConnection()}>{T.translate(`wifi.changeWifi.${this.props.language}`)}</a> </h2>
+            ? <h2 className="text-center" >
+              {T.translate(`wifi.connected.${this.props.language}`)}
+              <a style={style} onClick={() => this.enableConnection()}>{T.translate(`wifi.changeWifi.${this.props.language}`)}</a>
+            </h2>
             : [
                 (this.state.connecting ?
                   <Loading />
