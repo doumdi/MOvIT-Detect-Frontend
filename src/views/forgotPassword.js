@@ -26,17 +26,12 @@ class ForgotPassword extends Component {
     this.changePassword = this.changePassword.bind(this);
   }
 
-  enableConnection() {
-    this.setState({ ...this.state, connecting: false, connected: false });
-  }
-
-
   changeSecret(secretString) {
-    this.setState({ ...this.state, secret: secretString });
+    this.setState({ secret: secretString });
   }
 
   changePassword(passwordString) {
-    this.setState({ ...this.state, password: passwordString });
+    this.setState({ password: passwordString });
   }
 
   save() {
@@ -49,7 +44,7 @@ class ForgotPassword extends Component {
     };
     axios.post(`${URL}forgotPassword`, data)
       .then(() => this.props.history.push('/home'))
-      .catch(error => console.log(error));
+      .catch(console.error);
   }
 
   cancel() {
