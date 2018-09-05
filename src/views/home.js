@@ -31,6 +31,7 @@ class Home extends Component {
     };
 
     this.loginError = this.loginError.bind(this);
+    this.forgotPassword = this.forgotPassword.bind(this);
   }
 
   setLoginProfile(userName) {
@@ -67,6 +68,10 @@ class Home extends Component {
 
   clear() {
     this.setState({ user: null });
+  }
+
+  forgotPassword() {
+    this.props.history.push(`/forgotpassword?user=${this.state.user}`);
   }
 
   render() {
@@ -110,6 +115,7 @@ class Home extends Component {
                 <Password
                   onSubmit={this.login.bind(this)}
                   failed={this.state.loginFail}
+                  onForgotPassword={this.forgotPassword}
                 />
               }
             </div>
@@ -123,6 +129,7 @@ class Home extends Component {
                   <Password
                     onSubmit={this.login.bind(this)}
                     failed={this.state.loginFail}
+                    onForgotPassword={this.forgotPassword}
                   />
                 </div>
               }
