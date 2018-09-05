@@ -350,5 +350,8 @@ wifi:
     FR: "Nom du wifi"
     EN: "Wifi name"
   connected:
-    FR: "Vous êtes connecté au wifi"
-    EN: "You are connected to the wifi"
+    FR: "Vous êtes connecté au wifi."
+    EN: "You are connected to the wifi."
+  changeWifi:
+    FR: "Changer de réseau"
+    EN: "Change your network"
