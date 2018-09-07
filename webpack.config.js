@@ -83,7 +83,7 @@ module.exports = {
         test: /\.ya?ml$/,
         loader: 'json-loader!yaml-loader' },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|gif)$/,
         loader: 'url?limit=25000',
       },
     ],
