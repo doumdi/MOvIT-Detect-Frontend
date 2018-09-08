@@ -118,6 +118,17 @@ class Header extends Component {
                     }
                 </button>
               </li>
+              <li className="nav-item dropdown">
+                <a className="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span className="fa fa-cog" />
+                </a>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item">Action</a>
+                  <a className="dropdown-item">Another action</a>
+                  <div className="dropdown-divider" />
+                  <a className="dropdown-item">Something else here</a>
+                </div>
+              </li>
               {this.props.profile
               &&
               <li>
