@@ -25,6 +25,7 @@ class TiltSliders extends Component {
   };
 
   render() {
+    const imagePath = require('../res/images/chair.png');
     const style = {
       padding: '2px',
       card: {
@@ -34,44 +35,55 @@ class TiltSliders extends Component {
     };
     return (
       <Card title={this.props.title} style={style.card} class="col-md-6">
-        <div className="col-sm-12">
-          <div className="col-sm-4">
-            <span className="col-sm-12">{T.translate(`recommendations.frequency.${this.props.language}`)}</span>
+        <div className="col-md-10">
+          <div className="col-sm-12">
+            <div className="col-sm-4">
+              <span className="col-sm-12">{T.translate(`recommendations.frequency.${this.props.language}`)}</span>
+            </div>
+            <Slider
+              className="col-sm-6"
+              min={0}
+              max={180}
+              value={this.props.tiltFrequecy}
+              onChange={e => this.props.onFrequencyChange(e.value)} step={5}
+            />
+            <span className="col-sm-2">{this.props.tiltFrequecy} sec </span>
           </div>
-          <Slider
-            className="col-sm-6"
-            min={0}
-            max={180}
-            value={this.props.tiltFrequecy}
-            onChange={e => this.props.onFrequencyChange(e.value)} step={5}
-          />
-          <span className="col-sm-2">{this.props.tiltFrequecy} sec </span>
+          <div className="col-sm-12">
+            <div className="col-sm-4">
+              <span className="col-sm-12">{T.translate(`recommendations.duration.${this.props.language}`)}</span>
+            </div>
+            <Slider
+              className="col-sm-6"
+              min={0}
+              max={30}
+              value={this.props.tiltLength}
+              onChange={e => this.props.onLengthChange(e.value)}
+            />
+            <span className="col-sm-2" >{this.props.tiltLength} sec </span>
+          </div>
+          <div className="col-sm-12">
+            <div className="col-sm-4">
+              <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
+            </div>
+            <Slider
+              className="col-sm-6"
+              min={0}
+              max={this.props.maxAngle}
+              value={this.props.tiltAngle}
+              onChange={e => this.props.onAngleChange(e.value)}
+            />
+            <span className="col-sm-2">{this.props.tiltAngle} &deg; </span>
+          </div>
         </div>
-        <div className="col-sm-12">
-          <div className="col-sm-4">
-            <span className="col-sm-12">{T.translate(`recommendations.duration.${this.props.language}`)}</span>
-          </div>
-          <Slider
-            className="col-sm-6"
-            min={0}
-            max={30}
-            value={this.props.tiltLength}
-            onChange={e => this.props.onLengthChange(e.value)}
+        <div className="col-md-2">
+          <img
+            src={imagePath}
+            width="50"
+            height="50"
+            alt="chair"
+            style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
           />
-          <span className="col-sm-2" >{this.props.tiltLength} sec </span>
-        </div>
-        <div className="col-sm-12">
-          <div className="col-sm-4">
-            <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-          </div>
-          <Slider
-            className="col-sm-6"
-            min={0}
-            max={this.props.maxAngle}
-            value={this.props.tiltAngle}
-            onChange={e => this.props.onAngleChange(e.value)}
-          />
-          <span className="col-sm-2">{this.props.tiltAngle} &deg; </span>
         </div>
       </Card>
     );

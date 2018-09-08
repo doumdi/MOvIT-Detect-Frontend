@@ -13,11 +13,15 @@ import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
 import PressureRecPanel from '../components/pressureRecPanel';
 import RecPanel from '../components/recPanel';
+import TiltLabels from '../components/tiltLabels';
 
 
 class Goal extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    tiltFrequencyWeight: PropTypes.number.isRequired,
+    tiltLengthWeight: PropTypes.number.isRequired,
+    tiltAngleWeight: PropTypes.number.isRequired,
     swellingRecommendation: PropTypes.string,
     painRecommendation: PropTypes.string,
     restRecommendation: PropTypes.string,
@@ -84,6 +88,15 @@ class Goal extends Component {
             <h2>Objectifs personnel</h2>
             <PressureRecPanel />
             <h2>Recommandations du clinicien</h2>
+            {this.props.reduceWeight
+            &&
+              <TiltLabels
+                title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                tiltFrequecy={this.props.tiltFrequencyWeight}
+                tiltLength={this.props.tiltLengthWeight}
+                tiltAngle={this.props.tiltAngleWeight}
+              />
+            }
             <RecPanel
               condition={this.props.reduceSlidingMoving}
               title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
@@ -157,6 +170,10 @@ class Goal extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    tiltFrequencyWeight: state.recommendationReducer.tiltFrequencyWeight,
+    tiltLengthWeight: state.recommendationReducer.tiltLengthWeight,
+    tiltAngleWeight: state.recommendationReducer.tiltAngleWeight,
+    reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSwelling: state.recommendationReducer.reduceSwelling,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,

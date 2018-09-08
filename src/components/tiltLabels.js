@@ -20,6 +20,7 @@ class TiltLabels extends Component {
   };
 
   render() {
+    const imagePath = require('../res/images/chair.png');
     const style = {
       bold: {
         fontWeight: 'bold',
@@ -28,34 +29,50 @@ class TiltLabels extends Component {
         height: '150px',
         padding: '2px',
       },
+      container: {
+        padding: '2px',
+      },
     };
     return (
-      <Card title={this.props.title} style={style.card} class="col-md-6">
-        <div className="col-sm-12">
-          <span className="col-sm-6" style={style.bold}>
-            {T.translate(`goals.tiltFrequency.${this.props.language}`)}
-          </span>
-          <span className="col-sm-6" style={style.bold}>
-            {this.props.tiltFrequecy} {T.translate(`time.min.${this.props.language}`)}
-          </span>
-        </div>
-        <div className="col-sm-12">
-          <span className="col-sm-6" style={style.bold}>
-            {T.translate(`goals.tiltLength.${this.props.language}`)}
-          </span>
-          <span className="col-sm-6" style={style.bold}>
-            {this.props.tiltLength} {T.translate(`time.min.${this.props.language}`)}
-          </span>
-        </div>
-        <div className="col-sm-12">
-          <span className="col-sm-6" style={style.bold}>
-            {T.translate(`goals.tiltAngle.${this.props.language}`)}
-          </span>
-          <span className="col-sm-6" style={style.bold}>
-            {this.props.tiltAngle} &deg;
-          </span>
-        </div>
-      </Card>
+      <div style={style.container}>
+        <Card title={this.props.title} style={style.card} className="col-md-12">
+          <div className="col-md-10">
+            <div className="col-sm-12">
+              <span className="col-sm-6" style={style.bold}>
+                {T.translate(`goals.tiltFrequency.${this.props.language}`)}
+              </span>
+              <span className="col-sm-6" style={style.bold}>
+                {this.props.tiltFrequecy} {T.translate(`time.min.${this.props.language}`)}
+              </span>
+            </div>
+            <div className="col-sm-12">
+              <span className="col-sm-6" style={style.bold}>
+                {T.translate(`goals.tiltLength.${this.props.language}`)}
+              </span>
+              <span className="col-sm-6" style={style.bold}>
+                {this.props.tiltLength} {T.translate(`time.min.${this.props.language}`)}
+              </span>
+            </div>
+            <div className="col-sm-12">
+              <span className="col-sm-6" style={style.bold}>
+                {T.translate(`goals.tiltAngle.${this.props.language}`)}
+              </span>
+              <span className="col-sm-6" style={style.bold}>
+                {this.props.tiltAngle} &deg;
+              </span>
+            </div>
+          </div>
+          <div className="col-md-2">
+            <img
+              src={imagePath}
+              width="50"
+              height="50"
+              alt="chair"
+              style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
+            />
+          </div>
+        </Card>
+      </div>
     );
   }
 }
