@@ -7,11 +7,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Card } from 'primereact/components/card/Card';
 import { T } from '../utilities/translator';
 
 class TiltLabels extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    title: PropTypes.string,
     tiltFrequecy: PropTypes.number,
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,
@@ -22,9 +24,13 @@ class TiltLabels extends Component {
       bold: {
         fontWeight: 'bold',
       },
+      card: {
+        height: '150px',
+        padding: '2px',
+      },
     };
     return (
-      <div>
+      <Card title={this.props.title} style={style.card} class="col-md-6">
         <div className="col-sm-12">
           <span className="col-sm-6" style={style.bold}>
             {T.translate(`goals.tiltFrequency.${this.props.language}`)}
@@ -49,7 +55,7 @@ class TiltLabels extends Component {
             {this.props.tiltAngle} &deg;
           </span>
         </div>
-      </div>
+      </Card>
     );
   }
 }

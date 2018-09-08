@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
+import { Card } from 'primereact/components/card/Card';
 import { T } from '../utilities/translator';
 
 class TiltSliders extends Component {
@@ -17,14 +18,22 @@ class TiltSliders extends Component {
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,
     maxAngle: PropTypes.number,
+    title: PropTypes.string,
     onFrequencyChange: PropTypes.func.isRequired,
     onLengthChange: PropTypes.func.isRequired,
     onAngleChange: PropTypes.func.isRequired,
   };
 
   render() {
+    const style = {
+      padding: '2px',
+      card: {
+        height: '150px',
+        padding: '2px',
+      },
+    };
     return (
-      <div>
+      <Card title={this.props.title} style={style.card} class="col-md-6">
         <div className="col-sm-12">
           <div className="col-sm-4">
             <span className="col-sm-12">{T.translate(`recommendations.frequency.${this.props.language}`)}</span>
@@ -64,7 +73,7 @@ class TiltSliders extends Component {
           />
           <span className="col-sm-2">{this.props.tiltAngle} &deg; </span>
         </div>
-      </div>
+      </Card>
     );
   }
 }

@@ -10,7 +10,6 @@ import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
-import { Panel } from 'react-bootstrap';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
@@ -114,80 +113,71 @@ class PressureRecPanel extends Component {
       <div>
         {this.props.reduceWeight
           &&
-          <Panel style={style.panels}>
-            <Panel.Heading>
-              <Panel.Title toggle>
-                <i className="fa fa-chevron-down" /> {T.translate(`recommendations.reduceWeight.${this.props.language}`)}
-              </Panel.Title>
-            </Panel.Heading>
-            <Panel.Body collapsible>
-              <div className="row">
-                <div className="col-sm-12">
-                  <div className="col-sm-6" style={style.container}>
-                    <h4 style={style.center}>{T.translate(`goals.RecommendedGoals.${this.props.language}`)}</h4>
-                    <TiltLabels
-                      tiltFrequecy={this.props.tiltFrequencyWeight}
-                      tiltLength={this.props.tiltLengthWeight}
-                      tiltAngle={this.props.tiltAngleWeight}
-                    />
-                  </div>
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="col-sm-6" style={style.container}>
+                  <h4 style={style.center}>{T.translate(`goals.RecommendedGoals.${this.props.language}`)}</h4>
+                  <TiltLabels
+                    tiltFrequecy={this.props.tiltFrequencyWeight}
+                    tiltLength={this.props.tiltLengthWeight}
+                    tiltAngle={this.props.tiltAngleWeight}
+                  />
+                </div>
 
-                  <div className="col-sm-6" style={style.container}>
-                    <div className="col-sm-2" />
-                    <div className="col-sm-9">
-                      <h4 style={style.center}>
-                        {T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp;
-                        <i id="personalGoalInfo" className="fa fa-info-circle" />
-                      </h4>
-                    </div>
-                    <div className="col-sm-1" >
-                      {this.props.profile === 'user'
-                        &&
-                        <button style={style.modifieButton} onClick={() => this.toggleEditing()}>
-                          {this.state.modifieGoal
-                          ?
-                            <i className="fa fa-check" style={style.icons} />
-                          :
-                            <i className="fa fa-edit" style={style.icons} />
-                          }
-                        </button>
-                      }
-                    </div>
-                    {this.state.modifieGoal
-                    ?
-                      <TiltSliders
-                        tiltFrequecy={this.props.tiltFrequencyGoal}
-                        tiltLength={this.props.tiltLengthGoal}
-                        tiltAngle={this.props.tiltAngleGoal}
-                        maxAngle={this.state.maxSliderAngle}
-                        onFrequencyChange={this.props.changeTiltFrequencyGoal}
-                        onLengthChange={this.props.changeTiltLengthGoal}
-                        onAngleChange={this.props.changeTiltAngleGoal}
-                      />
-                    :
-                      <TiltLabels
-                        tiltFrequecy={this.props.tiltFrequencyGoal}
-                        tiltLength={this.props.tiltLengthGoal}
-                        tiltAngle={this.props.tiltAngleGoal}
-                      />
+                <div className="col-sm-6" style={style.container}>
+                  <div className="col-sm-2" />
+                  <div className="col-sm-9">
+                    <h4 style={style.center}>
+                      {T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp;
+                      <i id="personalGoalInfo" className="fa fa-info-circle" />
+                    </h4>
+                  </div>
+                  <div className="col-sm-1" >
+                    {this.props.profile === 'user'
+                      &&
+                      <button style={style.modifieButton} onClick={() => this.toggleEditing()}>
+                        {this.state.modifieGoal
+                        ?
+                          <i className="fa fa-check" style={style.icons} />
+                        :
+                          <i className="fa fa-edit" style={style.icons} />
+                        }
+                      </button>
                     }
-                    <div className="col-sm-12" style={style.chair}>
-                      <div className="col-sm-4" />
-                      <div className="col-sm-4" >
-                        <img
-                          src={imagePath}
-                          width="50"
-                          height="50"
-                          alt="chair"
-                          style={{ transform: `rotate(-${this.props.tiltAngleGoal}deg)` }}
-                        />
-                      </div>
+                  </div>
+                  {this.state.modifieGoal
+                  ?
+                    <TiltSliders
+                      tiltFrequecy={this.props.tiltFrequencyGoal}
+                      tiltLength={this.props.tiltLengthGoal}
+                      tiltAngle={this.props.tiltAngleGoal}
+                      maxAngle={this.state.maxSliderAngle}
+                      onFrequencyChange={this.props.changeTiltFrequencyGoal}
+                      onLengthChange={this.props.changeTiltLengthGoal}
+                      onAngleChange={this.props.changeTiltAngleGoal}
+                    />
+                  :
+                    <TiltLabels
+                      tiltFrequecy={this.props.tiltFrequencyGoal}
+                      tiltLength={this.props.tiltLengthGoal}
+                      tiltAngle={this.props.tiltAngleGoal}
+                    />
+                  }
+                  <div className="col-sm-12" style={style.chair}>
+                    <div className="col-sm-4" />
+                    <div className="col-sm-4" >
+                      <img
+                        src={imagePath}
+                        width="50"
+                        height="50"
+                        alt="chair"
+                        style={{ transform: `rotate(-${this.props.tiltAngleGoal}deg)` }}
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-            </Panel.Body>
-          </Panel>
+            </div>
         }
         <Tooltip
           for="#personalGoalInfo"

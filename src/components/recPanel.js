@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from 'react-bootstrap';
+import { Card } from 'primereact/components/card/Card';
 
 
 export default class RecPanel extends Component {
@@ -18,8 +18,10 @@ export default class RecPanel extends Component {
 
   render() {
     const style = {
-      panels: {
-        marginBottom: '0px',
+      padding: '2px',
+      card: {
+        height: '150px',
+        padding: '2px',
       },
     };
 
@@ -27,16 +29,11 @@ export default class RecPanel extends Component {
       <div>
         {this.props.condition
           &&
-          <Panel style={style.panels}>
-            <Panel.Heading>
-              <Panel.Title toggle>
-                <i className="fa fa-chevron-down" /> {this.props.title}
-              </Panel.Title>
-            </Panel.Heading>
-            <Panel.Body collapsible>
+          <div className="col-md-4" style={style}>
+            <Card title={this.props.title} style={style.card}>
               {this.props.value}
-            </Panel.Body>
-          </Panel>
+            </Card>
+          </div>
         }
       </div>
     );

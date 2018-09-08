@@ -81,7 +81,9 @@ class Goal extends Component {
         <div className="row" style={style.panelGroup}>
           <div className="col-sm-2" />
           <div className="col-sm-8">
+            <h2>Objectifs personnel</h2>
             <PressureRecPanel />
+            <h2>Recommandations du clinicien</h2>
             <RecPanel
               condition={this.props.reduceSlidingMoving}
               title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
