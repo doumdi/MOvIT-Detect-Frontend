@@ -111,23 +111,22 @@ class Header extends Component {
               <li>
                 <button className="btn" onClick={this.props.changeLanguage} style={style.button}>
                   {this.props.language === 'FR'
-                    ?
-                      <a style={style.link}>EN</a>
+                    ? <a style={style.link}>EN</a>
                     :
-                      <a style={style.link}>FR</a>
-                    }
+                    <a style={style.link}>FR</a>
+                  }
                 </button>
               </li>
               {this.props.profile
-              &&
-              <li>
-                <button className="btn" onClick={() => this.logout()} style={style.button}>
-                  <Link to="home" style={style.link}>
-                    {T.translate(`welcome.logout.${this.props.language}`)}  &nbsp;
-                    <i className="fa fa-sign-out" />
-                  </Link>
-                </button>
-              </li>
+                &&
+                <li>
+                  <button className="btn" onClick={() => this.logout()} style={style.button}>
+                    <Link to="home" style={style.link}>
+                      {T.translate(`welcome.logout.${this.props.language}`)}  &nbsp;
+                      <i className="fa fa-sign-out" />
+                    </Link>
+                  </button>
+                </li>
               }
             </ul>
           </div>

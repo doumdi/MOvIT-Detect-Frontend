@@ -49,25 +49,25 @@ class OtherRecommendation extends Component {
           <label htmlFor="activeRecCheck">{this.props.title}</label>
         </div>
         {this.props.recActive
-        &&
-        <div>
-          <div className="col-sm-7" style={style.input}>
-            <InputText
-              id="otherRec" type="text" className="form-control"
-              onChange={e => this.props.onChangeRecTitle(e.target.value)}
-              placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
-              value={this.props.recTitle}
-            />
+          &&
+          <div>
+            <div className="col-sm-7" style={style.input}>
+              <InputText
+                id="otherRec" type="text" className="form-control"
+                onChange={e => this.props.onChangeRecTitle(e.target.value)}
+                placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
+                value={this.props.recTitle}
+              />
+            </div>
+            <div className="col-sm-7 col-sm-offset-4" style={style.input}>
+              <InputText
+                id="textRec" type="text" className="form-control"
+                onChange={e => this.props.onChangeValue(e.target.value)}
+                value={this.props.value}
+                placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
+              />
+            </div>
           </div>
-          <div className="col-sm-7 col-sm-offset-4" style={style.input}>
-            <InputText
-              id="textRec" type="text" className="form-control"
-              onChange={e => this.props.onChangeValue(e.target.value)}
-              value={this.props.value}
-              placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-            />
-          </div>
-        </div>
         }
       </div>
     );
