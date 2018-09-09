@@ -22,10 +22,21 @@ class TiltSliders extends Component {
     onFrequencyChange: PropTypes.func.isRequired,
     onLengthChange: PropTypes.func.isRequired,
     onAngleChange: PropTypes.func.isRequired,
+    modifiable: PropTypes.bool,
+    onModifie: PropTypes.func,
   };
 
   render() {
-    const imagePath = require('../res/images/chair.png');
+    const chairImagePath = require('../res/images/chair.png');
+    const protractorImagePath = require('../res/images/Protractor.png');
+    const header = (
+      <div className="ui-card-title">
+        {this.props.title} &nbsp;
+        {this.props.modifiable &&
+          <i className="fa fa-check" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
+        }
+      </div>
+    );
     const style = {
       padding: '2px',
       card: {
@@ -34,7 +45,7 @@ class TiltSliders extends Component {
       },
     };
     return (
-      <Card title={this.props.title} style={style.card} class="col-md-6">
+      <Card header={header} style={style.card} class="col-md-6">
         <div className="col-md-10">
           <div className="col-sm-12">
             <div className="col-sm-4">
@@ -78,11 +89,18 @@ class TiltSliders extends Component {
         </div>
         <div className="col-md-2">
           <img
-            src={imagePath}
-            width="50"
-            height="50"
+            src={chairImagePath}
+            width="75"
+            height="75"
             alt="chair"
             style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
+          />
+          <img
+            src={protractorImagePath}
+            width="150"
+            height="150"
+            alt="protractor"
+            style={{ marginTop: '-75px', marginLeft: '-20px' }}
           />
         </div>
       </Card>

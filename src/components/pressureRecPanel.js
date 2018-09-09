@@ -19,7 +19,7 @@ import TiltLabels from './tiltLabels';
 class PressureRecPanel extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    // profile: PropTypes.string.isRequired,
+    profile: PropTypes.string.isRequired,
     maxAngle: PropTypes.number,
     reduceWeight: PropTypes.bool.isRequired,
     tiltFrequencyGoal: PropTypes.number.isRequired,
@@ -37,6 +37,7 @@ class PressureRecPanel extends Component {
       maxSliderAngle: 90,
     };
 
+    this.toggleEditing = this.toggleEditing.bind(this);
     this.setMaxAngle();
   }
 
@@ -63,55 +64,13 @@ class PressureRecPanel extends Component {
   }
 
   render() {
-    // const style = {
-    //   bar: {
-    //     paddingLeft: '5%',
-    //     paddingRight: '5%',
-    //   },
-    //   bold: {
-    //     fontWeight: 'bold',
-    //   },
-    //   bottom: {
-    //     marginTop: '2em',
-    //   },
-    //   center: {
-    //     textAlign: 'center',
-    //   },
-    //   container: {
-    //     border: '1px solid #ddd',
-    //     paddingBottom: '1em',
-    //   },
-    //   icons: {
-    //     fontSize: 'large',
-    //   },
-    //   modifieButton: {
-    //     padding: '5px',
-    //     marginTop: '5px',
-    //     marginBottom: '5px',
-    //     backgroundColor: 'transparent',
-    //     border: 0,
-    //   },
-    //   chair: {
-    //     textAlign: 'center',
-    //     marginTop: '1em',
-    //   },
-    //   panels: {
-    //     marginBottom: '0px',
-    //   },
-    //   panelGroup: {
-    //     height: '80em',
-    //     maxHeight: '150em',
-    //     overflowY: 'auto',
-    //   },
-    // };
-
     return (
       <div>
         {this.props.reduceWeight
           &&
             <div className="row">
               <div className="col-sm-12">
-                {!this.state.modifieGoal
+                {this.state.modifieGoal
                 ?
                   <TiltSliders
                     title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
@@ -122,6 +81,7 @@ class PressureRecPanel extends Component {
                     onFrequencyChange={this.props.changeTiltFrequencyGoal}
                     onLengthChange={this.props.changeTiltLengthGoal}
                     onAngleChange={this.props.changeTiltAngleGoal}
+                    modifiable={this.props.profile === 'user'} onModifie={this.toggleEditing}
                   />
                 :
                   <TiltLabels
@@ -129,6 +89,7 @@ class PressureRecPanel extends Component {
                     tiltFrequecy={this.props.tiltFrequencyGoal}
                     tiltLength={this.props.tiltLengthGoal}
                     tiltAngle={this.props.tiltAngleGoal}
+                    modifiable={this.props.profile === 'user'} onModifie={this.toggleEditing}
                   />
                 }
               </div>

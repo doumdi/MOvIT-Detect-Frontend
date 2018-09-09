@@ -85,7 +85,7 @@ class Goal extends Component {
         <div className="row" style={style.panelGroup}>
           <div className="col-sm-2" />
           <div className="col-sm-8">
-            <h2>Objectifs personnel</h2>
+            <h2>Objectifs personnel &nbsp; <i id="personalGoalInfo" className="fa fa-info-circle" /></h2>
             <PressureRecPanel />
             <h2>Recommandations du clinicien</h2>
             {this.props.reduceWeight
@@ -162,6 +162,10 @@ class Goal extends Component {
         <Tooltip
           for="#titleInfo"
           title={T.translate(`toolTip.goals.${this.props.language}`)}
+        />
+        <Tooltip
+          for="#personalGoalInfo"
+          title={T.translate(`toolTip.personalGoal.${this.props.language}`)}
         />
       </div>
     );

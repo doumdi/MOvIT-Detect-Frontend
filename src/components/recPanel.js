@@ -20,7 +20,7 @@ export default class RecPanel extends Component {
     const style = {
       padding: '2px',
       card: {
-        height: '150px',
+        height: '200px',
         padding: '2px',
       },
     };
