@@ -19,6 +19,7 @@ describe('AngleRecommandation Tests', () => {
       onChangeValue: PropTypes.func.isRequired,
     };
 
+
     // Test
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
