@@ -48,7 +48,7 @@ class TextRecommendation extends Component {
           <label htmlFor="activeRecCheck">{this.props.title}</label>
         </div>
         {this.props.recActive
-        &&
+          &&
           <div className="col-sm-7" style={style.input}>
             <InputText
               id="textRec" type="text" className="form-control"

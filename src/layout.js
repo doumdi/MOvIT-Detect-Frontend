@@ -15,6 +15,7 @@ import Goal from './views/goal';
 import Recommendation from './views/recommendation';
 import Configuration from './views/configuration';
 import Parameters from './views/parameter';
+import Wifi from './views/wifi';
 import forgotPassword from './views/forgotPassword';
 
 export default class Layout extends Component {
@@ -31,6 +32,7 @@ export default class Layout extends Component {
             <Route path="/recommendations" component={Recommendation} />
             <Route path="/goals" component={Goal} />
             <Route path="/configurations" component={Configuration} />
+            <Route path="/wifi" component={Wifi} />
             <Route path="/forgotpassword" component={forgotPassword} />
           </Switch>
 

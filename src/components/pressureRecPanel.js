@@ -59,8 +59,8 @@ class PressureRecPanel extends Component {
         tiltLengthGoal: this.state.tiltLengthGoal,
         tiltAngleGoal: this.state.tiltAngleGoal,
       })
-    .then(console.log)
-    .catch(console.log);
+        .then(console.log)
+        .catch(console.log);
     } else {
       this.setState({ modifieGoal: true });
     }
@@ -145,17 +145,15 @@ class PressureRecPanel extends Component {
                         &&
                         <button style={style.modifieButton} onClick={() => this.toggleEditing()}>
                           {this.state.modifieGoal
-                          ?
-                            <i className="fa fa-check" style={style.icons} />
-                          :
+                            ? <i className="fa fa-check" style={style.icons} />
+                            :
                             <i className="fa fa-edit" style={style.icons} />
                           }
                         </button>
                       }
                     </div>
                     {this.state.modifieGoal
-                    ?
-                      <TiltSliders
+                      ? <TiltSliders
                         tiltFrequecy={this.props.tiltFrequencyGoal}
                         tiltLength={this.props.tiltLengthGoal}
                         tiltAngle={this.props.tiltAngleGoal}
@@ -164,7 +162,7 @@ class PressureRecPanel extends Component {
                         onLengthChange={this.props.changeTiltLengthGoal}
                         onAngleChange={this.props.changeTiltAngleGoal}
                       />
-                    :
+                      :
                       <TiltLabels
                         tiltFrequecy={this.props.tiltFrequencyGoal}
                         tiltLength={this.props.tiltLengthGoal}
