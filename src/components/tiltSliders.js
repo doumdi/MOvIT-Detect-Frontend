@@ -29,21 +29,25 @@ class TiltSliders extends Component {
   render() {
     const chairImagePath = require('../res/images/chair.png');
     const protractorImagePath = require('../res/images/Protractor.png');
-    const header = (
-      <div className="ui-card-title">
-        {this.props.title} &nbsp;
-        {this.props.modifiable &&
-          <i className="fa fa-check" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
-        }
-      </div>
-    );
     const style = {
       padding: '2px',
       card: {
         height: '150px',
         padding: '2px',
       },
+      header: {
+        marginLeft: '14px',
+        marginTop: '14px',
+      },
     };
+    const header = (
+      <div className="ui-card-title" style={style.header}>
+        {this.props.title} &nbsp;
+        {this.props.modifiable &&
+          <i className="fa fa-check" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
+        }
+      </div>
+    );
     return (
       <Card header={header} style={style.card} class="col-md-6">
         <div className="col-md-10">
