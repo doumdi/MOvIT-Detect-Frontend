@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import TiltSliders from './tiltSliders';
+import TiltSlidersCard from './tiltSlidersCard';
 import TiltLabels from './tiltLabels';
 
 class PressureRecPanel extends Component {
@@ -72,7 +72,7 @@ class PressureRecPanel extends Component {
               <div className="col-sm-12">
                 {this.state.modifieGoal
                 ?
-                  <TiltSliders
+                  <TiltSlidersCard
                     title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
                     tiltFrequecy={this.props.tiltFrequencyGoal}
                     tiltLength={this.props.tiltLengthGoal}

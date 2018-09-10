@@ -22,18 +22,17 @@ class TiltLabels extends Component {
   };
 
   render() {
-    const chairImagePath = require('../res/images/chair.png');
-    const protractorImagePath = require('../res/images/Protractor.png');
+    const chairImagePath = require('../res/images/chair-old.png');
     const style = {
       bold: {
         fontWeight: 'bold',
       },
       card: {
         height: '150px',
-        padding: '2px',
+        padding: '5px',
       },
       container: {
-        padding: '2px',
+        padding: '5px',
       },
       header: {
         marginLeft: '14px',
@@ -81,16 +80,9 @@ class TiltLabels extends Component {
             <img
               src={chairImagePath}
               width="50"
-              height="75"
+              height="50"
               alt="chair"
-              style={{ transform: `rotate(-${this.props.tiltAngle}deg)`, marginLeft: '35px' }}
-            />
-            <img
-              src={protractorImagePath}
-              width="150"
-              height="150"
-              alt="protractor"
-              style={{ marginTop: '-75px', marginLeft: '-20px' }}
+              style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
             />
           </div>
         </Card>

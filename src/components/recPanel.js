@@ -18,7 +18,7 @@ export default class RecPanel extends Component {
 
   render() {
     const style = {
-      padding: '2px',
+      padding: '5px',
       card: {
         height: '200px',
         padding: '2px',
