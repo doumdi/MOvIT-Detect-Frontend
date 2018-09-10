@@ -90,10 +90,10 @@ class TiltSliders extends Component {
         <div className="col-md-2">
           <img
             src={chairImagePath}
-            width="75"
+            width="50"
             height="75"
             alt="chair"
-            style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
+            style={{ transform: `rotate(-${this.props.tiltAngle}deg)`, marginLeft: '35px' }}
           />
           <img
             src={protractorImagePath}
