@@ -22,6 +22,7 @@ export default class RecPanel extends Component {
       card: {
         height: '200px',
         padding: '2px',
+        backgroundColor: 'Gainsboro',
       },
     };
 

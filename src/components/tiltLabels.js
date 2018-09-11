@@ -30,6 +30,7 @@ class TiltLabels extends Component {
       card: {
         height: '150px',
         padding: '5px',
+        backgroundColor: 'Gainsboro',
       },
       container: {
         padding: '5px',

@@ -30,6 +30,7 @@ export default class TiltSlidersCard extends Component {
       card: {
         height: '150px',
         padding: '5px',
+        backgroundColor: 'Gainsboro',
       },
       header: {
         marginLeft: '14px',
