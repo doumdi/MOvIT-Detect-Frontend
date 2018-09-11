@@ -57,8 +57,8 @@ class Home extends Component {
 
   login(passwordString) {
     axios.post(`${URL}login`, { username: this.state.user, password: passwordString })
-    .then(result => this.setProfile(result.data.token))
-    .catch(error => this.loginError(error));
+      .then(result => this.setProfile(result.data.token))
+      .catch(error => this.loginError(error));
   }
 
   loginError() {
@@ -92,13 +92,13 @@ class Home extends Component {
         <h2>{T.translate(`welcome.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>
         {this.props.profile
-        &&
+          &&
           <h4>
             {T.translate(`welcome.loginMessage.${this.props.language}`, { userType: T.translate(`${this.props.profile}.${this.props.language}`) })}
           </h4>
         }
         {!this.props.profile
-        &&
+          &&
           <div>
             <div className="col-sm-2" />
             <div className="col-sm-4">

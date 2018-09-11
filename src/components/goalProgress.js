@@ -36,7 +36,7 @@ class GoalProgress extends Component {
             <ProgressBar value={this.props.value} />
             <p style={style.center}>
               {T.translate(`dailyResults.recommended.description.${this.props.language}`,
-              { percent: this.props.value })}
+                { percent: this.props.value })}
             </p>
           </div>
         }

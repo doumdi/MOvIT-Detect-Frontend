@@ -7,8 +7,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Slider } from 'primereact/components/slider/Slider';
 import { T } from '../utilities/translator';
+import SliderValue from '../components/sliderValue';
 
 class TiltSliders extends Component {
   static propTypes = {
@@ -24,46 +24,19 @@ class TiltSliders extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="col-sm-12">
-          <div className="col-sm-4">
-            <span className="col-sm-12">{T.translate(`recommendations.frequency.${this.props.language}`)}</span>
-          </div>
-          <Slider
-            className="col-sm-6"
-            min={0}
-            max={180}
-            value={this.props.tiltFrequecy}
-            onChange={e => this.props.onFrequencyChange(e.value)} step={5}
-          />
-          <span className="col-sm-2">{this.props.tiltFrequecy} sec </span>
-        </div>
-        <div className="col-sm-12">
-          <div className="col-sm-4">
-            <span className="col-sm-12">{T.translate(`recommendations.duration.${this.props.language}`)}</span>
-          </div>
-          <Slider
-            className="col-sm-6"
-            min={0}
-            max={30}
-            value={this.props.tiltLength}
-            onChange={e => this.props.onLengthChange(e.value)}
-          />
-          <span className="col-sm-2" >{this.props.tiltLength} sec </span>
-        </div>
-        <div className="col-sm-12">
-          <div className="col-sm-4">
-            <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-          </div>
-          <Slider
-            className="col-sm-6"
-            min={0}
-            max={this.props.maxAngle}
-            value={this.props.tiltAngle}
-            onChange={e => this.props.onAngleChange(e.value)}
-          />
-          <span className="col-sm-2">{this.props.tiltAngle} &deg; </span>
-        </div>
+      <div>
+        <SliderValue
+          min={0} max={180} onChange={this.props.onFrequencyChange}
+          value={this.props.tiltFrequecy} unit="sec" title={T.translate(`recommendations.frequency.${this.props.language}`)}
+        />
+        <SliderValue
+          min={0} max={30} onChange={this.props.onLengthChange}
+          value={this.props.tiltLength} unit="sec" title={T.translate(`recommendations.duration.${this.props.language}`)}
+        />
+        <SliderValue
+          min={0} max={this.props.maxAngle} onChange={this.props.onAngleChange}
+          value={this.props.tiltAngle} unit="°" title={T.translate(`recommendations.angle.${this.props.language}`)}
+        />
       </div>
     );
   }

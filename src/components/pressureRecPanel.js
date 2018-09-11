@@ -56,8 +56,8 @@ class PressureRecPanel extends Component {
         tiltLengthGoal: this.state.tiltLengthGoal,
         tiltAngleGoal: this.state.tiltAngleGoal,
       })
-    .then(console.log)
-    .catch(console.log);
+        .then(console.log)
+        .catch(console.log);
     } else {
       this.setState({ modifieGoal: true });
     }

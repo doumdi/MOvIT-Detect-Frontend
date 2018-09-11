@@ -39,35 +39,35 @@ class PreventPermission extends Component {
           <label htmlFor="agreement">{this.props.permissionTitle}</label>
         </div>
         {!this.props.permission &&
-        <div>
-          <div className="col-sm-12" >
-            <h5>{T.translate(`parameters.doNotReceive.${this.props.language}`)}:</h5>
+          <div>
+            <div className="col-sm-12" >
+              <h5>{T.translate(`parameters.doNotReceive.${this.props.language}`)}:</h5>
+            </div>
+            <div className="col-sm-12" >
+              <RadioButton
+                inputId="doNotReceiveDay" value="day"
+                onChange={() => this.props.onPeriodChange('day')}
+                checked={this.props.period === 'day'}
+              />
+              <label htmlFor="doNotReceiveDay">24 {T.translate(`time.hours.${this.props.language}`)}</label>
+            </div>
+            <div className="col-sm-12" >
+              <RadioButton
+                inputId="doNotReceiveWeek" value="week"
+                onChange={() => this.props.onPeriodChange('week')}
+                checked={this.props.period === 'week'}
+              />
+              <label htmlFor="doNotReceiveWeek">1 {T.translate(`time.week.${this.props.language}`)}</label>
+            </div>
+            <div className="col-sm-12" >
+              <RadioButton
+                inputId="doNotReceiveMonth" value="month"
+                onChange={() => this.props.onPeriodChange('month')}
+                checked={this.props.period === 'month'}
+              />
+              <label htmlFor="doNotReceiveMonth">1 {T.translate(`time.month.${this.props.language}`)}</label>
+            </div>
           </div>
-          <div className="col-sm-12" >
-            <RadioButton
-              inputId="doNotReceiveDay" value="day"
-              onChange={() => this.props.onPeriodChange('day')}
-              checked={this.props.period === 'day'}
-            />
-            <label htmlFor="doNotReceiveDay">24 {T.translate(`time.hours.${this.props.language}`)}</label>
-          </div>
-          <div className="col-sm-12" >
-            <RadioButton
-              inputId="doNotReceiveWeek" value="week"
-              onChange={() => this.props.onPeriodChange('week')}
-              checked={this.props.period === 'week'}
-            />
-            <label htmlFor="doNotReceiveWeek">1 {T.translate(`time.week.${this.props.language}`)}</label>
-          </div>
-          <div className="col-sm-12" >
-            <RadioButton
-              inputId="doNotReceiveMonth" value="month"
-              onChange={() => this.props.onPeriodChange('month')}
-              checked={this.props.period === 'month'}
-            />
-            <label htmlFor="doNotReceiveMonth">1 {T.translate(`time.month.${this.props.language}`)}</label>
-          </div>
-        </div>
         }
       </div>
     );

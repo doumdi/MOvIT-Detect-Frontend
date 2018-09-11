@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import { Slider } from 'primereact/components/slider/Slider';
+import SliderValue from '../components/sliderValue';
 import { T } from '../utilities/translator';
 
 
@@ -45,18 +45,10 @@ class AngleRecommendation extends Component {
         </div>
         {this.props.recActive
         &&
-          <div className="col-sm-12">
-            <div className="col-sm-4">
-              <span className="col-sm-12">{T.translate(`recommendations.angle.${this.props.language}`)}</span>
-            </div>
-            <Slider
-              className="col-sm-6"
-              min={0} max={this.props.maxAngle}
-              onChange={e => this.props.onChangeValue(e.value)}
-              value={this.props.value}
-            />
-            <span className="col-sm-2">{this.props.value} &deg; </span>
-          </div>
+          <SliderValue
+            min={0} max={this.props.maxAngle} onChange={this.props.onChangeValue}
+            value={this.props.value} unit="°" title={T.translate(`recommendations.angle.${this.props.language}`)}
+          />
         }
       </div>
     );
