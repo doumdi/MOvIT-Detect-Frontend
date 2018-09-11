@@ -199,9 +199,18 @@ login:
   password:
     EN: "Password"
     FR: "Mot de passe"
+  newPassword:
+    EN: "New password"
+    FR: "Nouveau mot de passe"
   wrongPassword:
     EN: "Wrong password"
     FR: "Mauvais mot de passe"
+  forgotPassword:
+    EN: "Forgotten password"
+    FR: "Mot de passe oublié"
+    secret:
+      EN: "Secret"
+      FR: "Secret"
 
 user:
   FR: "Usager"
