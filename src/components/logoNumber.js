@@ -21,13 +21,14 @@ export default class LogoNumber extends Component {
       icon: {
         paddingTop: '6px',
         fontSize: 'large',
+        minWidth: '23px',
       },
     };
 
     return (
-      <div className="form-group">
-        <span className="col-md-1 col-md-offset-2 text-center" style={style.icon}><i className={this.props.iconClass} /></span>
-        <div className="col-md-6">
+      <div className="form-horizontal row ml-3 mb-3">
+        <span className="text-center mr-1" style={style.icon}><i className={this.props.iconClass} /></span>
+        <div className="col-10 col-lg-6">
           <input
             type="number" placeholder={this.props.placeHolder} className="form-control"
             onChange={e => this.props.onChange(e.target.value)}
