@@ -46,7 +46,7 @@ class Header extends Component {
   render() {
     const style = {
       navbar: { background: '#cc2033', margin: '0px' },
-      containerfluid: { width: '90%' },
+      containerfluid: { width: '90%', height: '100%' },
       title: {
         color: 'white',
         lineHeight: '52px',
@@ -73,65 +73,91 @@ class Header extends Component {
         backgroundColor: 'transparent',
         border: 'none',
         outline: 'none',
+        textAlign: 'left',
       },
-
+      toggle: {
+        color: 'white',
+      },
+      toggleButton: {
+        border: 'none',
+      },
     };
     return (
       <div>
         {this.isLoggedIn()}
-        <nav className="navbar-inverse" style={style.navbar}>
-          <div className="container-fluid" style={style.containerfluid}>
-            <div className="navbar-header">
-              <Link to="home" style={style.title}>MOvIT+</Link>
-            </div>
-            <ul className="nav navbar-nav">
+
+        <nav className="navbar navbar-dark navbar-expand-lg" style={style.navbar}>
+          <Link to="home" className="navbar-brand" style={style.title}>MOvIT+</Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" style={style.toggle} />
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="nav navbar-nav mr-auto">
               {this.props.profile === 'clinician'
                 &&
-                <li> <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link> </li>
+                <li className="nav-item px-3 mt-1">
+                  <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link>
+                </li>
               }
               {this.props.profile === 'clinician'
                 &&
-                <li> <Link to="recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link> </li>
+                <li className="nav-item px-3 mt-1">
+                  <Link to="recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link>
+                </li>
               }
               {this.props.profile
                 &&
-                <li> <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link> </li>
+                <li className="nav-item px-3 mt-1">
+                  <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link>
+                </li>
               }
               {this.props.profile
                 &&
-                <li> <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link> </li>
+                <li className="nav-item px-3 mt-1">
+                  <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link>
+                </li>
               }
               {this.props.profile === 'user'
                 &&
-                <li> <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link> </li>
+                <li className="nav-item px-3 mt-1">
+                  <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link>
+                </li>
               }
             </ul>
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-                <button className="btn" onClick={this.props.changeLanguage} style={style.button}>
-                  {this.props.language === 'FR'
-                    ?
-                      <a style={style.link}>EN</a>
-                    :
-                      <a style={style.link}>FR</a>
-                    }
-                </button>
-              </li>
-              {this.props.profile
+
+            <li className="nav navbar-nav pl-1">
+              <button className="btn" onClick={this.props.changeLanguage} style={style.button}>
+                {this.props.language === 'FR'
+                  ? <a className="small-font" style={style.link}>EN</a>
+                  :
+                  <a className="small-font" style={style.link}>FR</a>
+                }
+              </button>
+            </li>
+            {this.props.profile
               &&
-              <li>
+              <li className="nav navbar-nav pl-1">
                 <button className="btn" onClick={() => this.logout()} style={style.button}>
                   <Link to="home" style={style.link}>
-                    {T.translate(`welcome.logout.${this.props.language}`)}  &nbsp;
+                    {T.translate(`welcome.logout.${this.props.language}`)} &nbsp;
                     <i className="fa fa-sign-out" />
                   </Link>
                 </button>
               </li>
-              }
-            </ul>
+            }
+
           </div>
         </nav>
-      </div>
+      </div >
     );
   }
 }
