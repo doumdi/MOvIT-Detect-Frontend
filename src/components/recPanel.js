@@ -18,11 +18,12 @@ export default class RecPanel extends Component {
 
   render() {
     const style = {
-      padding: '5px',
+      padding: '10px',
       card: {
         height: '200px',
-        padding: '2px',
-        backgroundColor: 'Gainsboro',
+        padding: '5px',
+        backgroundColor: 'white',
+        boxShadow: '5px 5px gainsboro',
       },
     };
 

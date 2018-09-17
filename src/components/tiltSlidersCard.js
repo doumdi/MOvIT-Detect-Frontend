@@ -26,11 +26,12 @@ export default class TiltSlidersCard extends Component {
   render() {
     const chairImagePath = require('../res/images/chair-old.png');
     const style = {
-      padding: '5px',
+      padding: '10px',
       card: {
         height: '150px',
         padding: '5px',
-        backgroundColor: 'Gainsboro',
+        backgroundColor: 'white',
+        boxShadow: '5px 5px gainsboro',
       },
       header: {
         marginLeft: '14px',
