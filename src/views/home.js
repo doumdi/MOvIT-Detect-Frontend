@@ -31,6 +31,7 @@ class Home extends Component {
     };
 
     this.loginError = this.loginError.bind(this);
+    this.forgotPassword = this.forgotPassword.bind(this);
   }
 
   setLoginProfile(userName) {
@@ -57,8 +58,8 @@ class Home extends Component {
 
   login(passwordString) {
     axios.post(`${URL}login`, { username: this.state.user, password: passwordString })
-    .then(result => this.setProfile(result.data.token))
-    .catch(error => this.loginError(error));
+      .then(result => this.setProfile(result.data.token))
+      .catch(error => this.loginError(error));
   }
 
   loginError() {
@@ -67,6 +68,10 @@ class Home extends Component {
 
   clear() {
     this.setState({ user: null });
+  }
+
+  forgotPassword() {
+    this.props.history.push(`/forgotpassword?user=${this.state.user}`);
   }
 
   render() {
@@ -92,13 +97,13 @@ class Home extends Component {
         <h2>{T.translate(`welcome.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>
         {this.props.profile
-        &&
+          &&
           <h4>
             {T.translate(`welcome.loginMessage.${this.props.language}`, { userType: T.translate(`${this.props.profile}.${this.props.language}`) })}
           </h4>
         }
         {!this.props.profile
-        &&
+          &&
           <div>
             <div className="col-sm-2" />
             <div className="col-sm-4">
@@ -110,6 +115,7 @@ class Home extends Component {
                 <Password
                   onSubmit={this.login.bind(this)}
                   failed={this.state.loginFail}
+                  onForgotPassword={this.forgotPassword}
                 />
               }
             </div>
@@ -123,6 +129,7 @@ class Home extends Component {
                   <Password
                     onSubmit={this.login.bind(this)}
                     failed={this.state.loginFail}
+                    onForgotPassword={this.forgotPassword}
                   />
                 </div>
               }

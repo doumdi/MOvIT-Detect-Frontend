@@ -199,9 +199,18 @@ login:
   password:
     EN: "Password"
     FR: "Mot de passe"
+  newPassword:
+    EN: "New password"
+    FR: "Nouveau mot de passe"
   wrongPassword:
     EN: "Wrong password"
     FR: "Mauvais mot de passe"
+  forgotPassword:
+    EN: "Forgotten password"
+    FR: "Mot de passe oublié"
+    secret:
+      EN: "Secret"
+      FR: "Secret"
 
 user:
   FR: "Usager"
@@ -342,3 +351,18 @@ alert:
 calibrate:
   FR: "Calibrer"
   EN: "Calibrate"
+calibrating:
+  FR: "En calibration"
+  EN: "Calibrating"
+wifi:
+  FR: "Wifi"
+  EN: "Wifi"
+  name:
+    FR: "Nom du wifi"
+    EN: "Wifi name"
+  connected:
+    FR: "Vous êtes connecté au wifi."
+    EN: "You are connected to the wifi."
+  changeWifi:
+    FR: "Changer de réseau"
+    EN: "Change your network"

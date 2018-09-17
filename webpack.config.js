@@ -67,6 +67,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        PORT: JSON.stringify(process.env.PORT),
       },
     }),
     new webpack.NoErrorsPlugin(),
@@ -82,7 +83,7 @@ module.exports = {
         test: /\.ya?ml$/,
         loader: 'json-loader!yaml-loader' },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|gif)$/,
         loader: 'url?limit=25000',
       },
     ],

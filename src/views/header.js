@@ -132,6 +132,9 @@ class Header extends Component {
                   <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link>
                 </li>
               }
+              <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
+                <Link to="wifi" style={style.link}>{T.translate(`wifi.${this.props.language}`)}</Link>
+              </li>
             </ul>
 
             <li className="nav navbar-nav pl-1">

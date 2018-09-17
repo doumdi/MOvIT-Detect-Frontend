@@ -146,8 +146,7 @@ class Recommendation extends Component {
               <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
             </div>
             {this.props.reduceWeight
-            ?
-              <TiltSliders
+              ? <TiltSliders
                 tiltFrequecy={this.props.tiltFrequencyWeight}
                 tiltLength={this.props.tiltLengthWeight}
                 tiltAngle={this.props.tiltAngleWeight}
@@ -156,7 +155,7 @@ class Recommendation extends Component {
                 onLengthChange={this.changeTiltLength.bind(this)}
                 onAngleChange={this.changeTiltAngle.bind(this)}
               />
-            : null}
+              : null}
             <AngleRecommendation
               recActive={this.props.reduceSlidingMoving}
               title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}

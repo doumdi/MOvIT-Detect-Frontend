@@ -10,12 +10,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
+import Countdown from './countdown';
 
 class Notification extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showCountdown: false,
+    };
+    this.calibrationCompleted = this.calibrationCompleted.bind(this);
+  }
+
   turnOnNotification() {
     axios.get(`${URL}alert?State=on`, this.props.header)
       .then(response => console.log(response));
@@ -28,8 +38,13 @@ class Notification extends Component {
 
   calibrate() {
     axios.get(`${URL}calibrate`, this.props.header)
-      .then(response => console.log(response));
+      .then(() => this.setState({ ...this.state, showCountdown: true }));
   }
+
+  calibrationCompleted() {
+    this.setState({ ...this.state, showCountdown: false });
+  }
+
   render() {
     return (
       <div className="row m-3 mt-5" >
@@ -48,6 +63,7 @@ class Notification extends Component {
             {T.translate(`alert.off.${this.props.language}`)}
           </button>
         </div>
+        {this.state.showCountdown && <Countdown time={10} onComplete={this.calibrationCompleted} />}
       </div>
     );
   }
