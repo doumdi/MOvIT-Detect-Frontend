@@ -35,6 +35,7 @@ class TiltLabels extends Component {
       },
       container: {
         padding: '10px',
+        height: '170px',
       },
       header: {
         marginLeft: '14px',

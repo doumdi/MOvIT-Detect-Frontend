@@ -27,6 +27,7 @@ export default class TiltSlidersCard extends Component {
     const chairImagePath = require('../res/images/chair-old.png');
     const style = {
       padding: '10px',
+      height: '170px',
       card: {
         height: '150px',
         padding: '5px',
