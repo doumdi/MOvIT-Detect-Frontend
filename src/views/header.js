@@ -92,43 +92,43 @@ class Header extends Component {
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
+            data-target="#navbarContent"
+            aria-controls="navbarContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" style={style.toggle} />
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse" id="navbarContent">
             <ul className="nav navbar-nav mr-auto">
               {this.props.profile === 'clinician'
                 &&
-                <li className="nav-item px-3 mt-1">
+                <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                   <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link>
                 </li>
               }
               {this.props.profile === 'clinician'
                 &&
-                <li className="nav-item px-3 mt-1">
+                <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                   <Link to="recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link>
                 </li>
               }
               {this.props.profile
                 &&
-                <li className="nav-item px-3 mt-1">
+                <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                   <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link>
                 </li>
               }
               {this.props.profile
                 &&
-                <li className="nav-item px-3 mt-1">
+                <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                   <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link>
                 </li>
               }
               {this.props.profile === 'user'
                 &&
-                <li className="nav-item px-3 mt-1">
+                <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                   <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link>
                 </li>
               }
