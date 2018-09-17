@@ -25,7 +25,8 @@
     "webpack"
   ],
   "jest": {
-    "testRegex": "/tests/((?!config/).)*.(js|ts|tsx)$"
+    "testRegex": "/tests/((?!config/).)*.(js|ts|tsx)$",
+    "testURL": "http://localhost/"
   },
   "author": "Vasanth Krishnamoorthy (http://www.vasanthk.com)",
   "license": "MIT",
