@@ -10,11 +10,10 @@ import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
-import { Panel } from 'react-bootstrap';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import TiltSliders from './tiltSliders';
+import TiltSlidersCard from './tiltSlidersCard';
 import TiltLabels from './tiltLabels';
 
 class PressureRecPanel extends Component {
@@ -23,9 +22,6 @@ class PressureRecPanel extends Component {
     profile: PropTypes.string.isRequired,
     maxAngle: PropTypes.number,
     reduceWeight: PropTypes.bool.isRequired,
-    tiltFrequencyWeight: PropTypes.number.isRequired,
-    tiltLengthWeight: PropTypes.number.isRequired,
-    tiltAngleWeight: PropTypes.number.isRequired,
     tiltFrequencyGoal: PropTypes.number.isRequired,
     tiltLengthGoal: PropTypes.number.isRequired,
     tiltAngleGoal: PropTypes.number.isRequired,
@@ -41,6 +37,7 @@ class PressureRecPanel extends Component {
       maxSliderAngle: 90,
     };
 
+    this.toggleEditing = this.toggleEditing.bind(this);
     this.setMaxAngle();
   }
 
@@ -67,125 +64,36 @@ class PressureRecPanel extends Component {
   }
 
   render() {
-    const imagePath = require('../res/images/chair.png');
-    const style = {
-      bar: {
-        paddingLeft: '5%',
-        paddingRight: '5%',
-      },
-      bold: {
-        fontWeight: 'bold',
-      },
-      bottom: {
-        marginTop: '2em',
-      },
-      center: {
-        textAlign: 'center',
-      },
-      container: {
-        border: '1px solid #ddd',
-        paddingBottom: '1em',
-      },
-      icons: {
-        fontSize: 'large',
-      },
-      modifieButton: {
-        padding: '5px',
-        marginTop: '5px',
-        marginBottom: '5px',
-        backgroundColor: 'transparent',
-        border: 0,
-      },
-      chair: {
-        textAlign: 'center',
-        marginTop: '1em',
-      },
-      panels: {
-        marginBottom: '0px',
-      },
-      panelGroup: {
-        height: '80em',
-        maxHeight: '150em',
-        overflowY: 'auto',
-      },
-    };
-
     return (
       <div>
         {this.props.reduceWeight
           &&
-          <Panel style={style.panels}>
-            <Panel.Heading>
-              <Panel.Title toggle>
-                <i className="fa fa-chevron-down" /> {T.translate(`recommendations.reduceWeight.${this.props.language}`)}
-              </Panel.Title>
-            </Panel.Heading>
-            <Panel.Body collapsible>
-              <div className="row">
-                <div className="col-sm-12">
-                  <div className="col-sm-6" style={style.container}>
-                    <h4 style={style.center}>{T.translate(`goals.RecommendedGoals.${this.props.language}`)}</h4>
-                    <TiltLabels
-                      tiltFrequecy={this.props.tiltFrequencyWeight}
-                      tiltLength={this.props.tiltLengthWeight}
-                      tiltAngle={this.props.tiltAngleWeight}
-                    />
-                  </div>
-
-                  <div className="col-sm-6" style={style.container}>
-                    <div className="col-sm-2" />
-                    <div className="col-sm-9">
-                      <h4 style={style.center}>
-                        {T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp;
-                        <i id="personalGoalInfo" className="fa fa-info-circle" />
-                      </h4>
-                    </div>
-                    <div className="col-sm-1" >
-                      {this.props.profile === 'user'
-                        &&
-                        <button style={style.modifieButton} onClick={() => this.toggleEditing()}>
-                          {this.state.modifieGoal
-                            ? <i className="fa fa-check" style={style.icons} />
-                            :
-                            <i className="fa fa-edit" style={style.icons} />
-                          }
-                        </button>
-                      }
-                    </div>
-                    {this.state.modifieGoal
-                      ? <TiltSliders
-                        tiltFrequecy={this.props.tiltFrequencyGoal}
-                        tiltLength={this.props.tiltLengthGoal}
-                        tiltAngle={this.props.tiltAngleGoal}
-                        maxAngle={this.state.maxSliderAngle}
-                        onFrequencyChange={this.props.changeTiltFrequencyGoal}
-                        onLengthChange={this.props.changeTiltLengthGoal}
-                        onAngleChange={this.props.changeTiltAngleGoal}
-                      />
-                      :
-                      <TiltLabels
-                        tiltFrequecy={this.props.tiltFrequencyGoal}
-                        tiltLength={this.props.tiltLengthGoal}
-                        tiltAngle={this.props.tiltAngleGoal}
-                      />
-                    }
-                    <div className="col-sm-12" style={style.chair}>
-                      <div className="col-sm-4" />
-                      <div className="col-sm-4" >
-                        <img
-                          src={imagePath}
-                          width="50"
-                          height="50"
-                          alt="chair"
-                          style={{ transform: `rotate(-${this.props.tiltAngleGoal}deg)` }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div className="row">
+              <div className="col-sm-12">
+                {this.state.modifieGoal
+                ?
+                  <TiltSlidersCard
+                    title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                    tiltFrequecy={this.props.tiltFrequencyGoal}
+                    tiltLength={this.props.tiltLengthGoal}
+                    tiltAngle={this.props.tiltAngleGoal}
+                    maxAngle={this.state.maxSliderAngle}
+                    onFrequencyChange={this.props.changeTiltFrequencyGoal}
+                    onLengthChange={this.props.changeTiltLengthGoal}
+                    onAngleChange={this.props.changeTiltAngleGoal}
+                    modifiable={this.props.profile === 'user'} onModifie={this.toggleEditing}
+                  />
+                :
+                  <TiltLabels
+                    title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                    tiltFrequecy={this.props.tiltFrequencyGoal}
+                    tiltLength={this.props.tiltLengthGoal}
+                    tiltAngle={this.props.tiltAngleGoal}
+                    modifiable={this.props.profile === 'user'} onModifie={this.toggleEditing}
+                  />
+                }
               </div>
-            </Panel.Body>
-          </Panel>
+            </div>
         }
         <Tooltip
           for="#personalGoalInfo"
@@ -200,9 +108,6 @@ function mapStateToProps(state) {
     language: state.applicationReducer.language,
     profile: state.applicationReducer.profile,
     reduceWeight: state.recommendationReducer.reduceWeight,
-    tiltFrequencyWeight: state.recommendationReducer.tiltFrequencyWeight,
-    tiltLengthWeight: state.recommendationReducer.tiltLengthWeight,
-    tiltAngleWeight: state.recommendationReducer.tiltAngleWeight,
     maxAngle: state.configurationReducer.maxAngle,
     tiltFrequencyGoal: state.goalReducer.tiltFrequencyGoal,
     tiltLengthGoal: state.goalReducer.tiltLengthGoal,

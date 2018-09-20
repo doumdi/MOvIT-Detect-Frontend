@@ -17,6 +17,8 @@ export default class SliderValue extends Component {
   render() {
     const style = {
       border: 0,
+      width: '60px',
+      background: 'rgba(0,0,0,0)',
     };
 
     return (

@@ -86,6 +86,10 @@ module.exports = {
         test: /\.(png|gif)$/,
         loader: 'url?limit=25000',
       },
+      {
+        test: /\.(css|scss)$/,
+        loader: 'style-loader!css-loader',
+      },
     ],
   },
   node: {
