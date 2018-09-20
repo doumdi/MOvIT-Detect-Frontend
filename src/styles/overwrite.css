@@ -1,0 +1,14 @@
+.ui-slider {
+  position: relative;
+  text-align: left;
+  background-color: white;
+}
+
+.ui-chkbox .ui-chkbox-box {
+  width: 1.125em;
+  height: 1.125em;
+  line-height: 1.125em;
+  text-align: center;
+  border-radius: 2px;
+  background-color: white;
+}

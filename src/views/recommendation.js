@@ -19,6 +19,7 @@ import OtherRecommendation from '../components/otherRecommendation';
 import SubmitButtons from '../components/submitButtons';
 import TiltSliders from '../components/tiltSliders';
 import { URL } from '../redux/applicationReducer';
+import '../styles/overwrite.css';
 
 class Recommendation extends Component {
   static propTypes = {
