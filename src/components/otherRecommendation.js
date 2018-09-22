@@ -24,34 +24,21 @@ class OtherRecommendation extends Component {
   };
 
   render() {
-    const style = {
-      stickLeft: {
-        paddingLeft: '0',
-      },
-      input: {
-        paddingLeft: '0',
-        marginBottom: '1em',
-      },
-      spacingTop: {
-        paddingTop: '10',
-      },
-    };
-
     return (
-      <div className="col-sm-12" style={style.spacingTop}>
-        <div className="col-sm-4" style={style.stickLeft}>
+      <div className="pt-2 pl-3 row">
+        <div className="col-12 pl-0 mt-1">
           <Checkbox
             inputId="activeRecCheck"
             label={this.props.title}
             onChange={this.props.onChangeActive}
             checked={this.props.recActive}
           />
-          <label htmlFor="activeRecCheck">{this.props.title}</label>
+          <label htmlFor="activeRecCheck" className="mt-1">{this.props.title}</label>
         </div>
         {this.props.recActive
           &&
-          <div>
-            <div className="col-sm-7" style={style.input}>
+          <div className="row">
+            <div className="col-sm-12 pl-3 mb-1" >
               <InputText
                 id="otherRec" type="text" className="form-control"
                 onChange={e => this.props.onChangeRecTitle(e.target.value)}
@@ -59,7 +46,7 @@ class OtherRecommendation extends Component {
                 value={this.props.recTitle}
               />
             </div>
-            <div className="col-sm-7 col-sm-offset-4" style={style.input}>
+            <div className="col-sm-12 col-sm-offset-4 pl-3 mb-1" >
               <InputText
                 id="textRec" type="text" className="form-control"
                 onChange={e => this.props.onChangeValue(e.target.value)}

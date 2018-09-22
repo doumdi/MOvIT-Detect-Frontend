@@ -23,33 +23,20 @@ class TextRecommendation extends Component {
   };
 
   render() {
-    const style = {
-      stickLeft: {
-        paddingLeft: '0',
-      },
-      input: {
-        paddingLeft: '0',
-        marginBottom: '1em',
-      },
-      spacingTop: {
-        paddingTop: '10',
-      },
-    };
-
     return (
-      <div className="col-sm-12" style={style.spacingTop}>
-        <div className="col-sm-4" style={style.stickLeft}>
+      <div className="pt-2 pl-3 row">
+        <div className="col-12 pl-0 mt-1">
           <Checkbox
             inputId="activeRecCheck"
             label={this.props.title}
             onChange={this.props.onChangeActive}
             checked={this.props.recActive}
           />
-          <label htmlFor="activeRecCheck">{this.props.title}</label>
+          <label htmlFor="activeRecCheck" className="mt-1">{this.props.title}</label>
         </div>
         {this.props.recActive
           &&
-          <div className="col-sm-7" style={style.input}>
+          <div className="col-sm-5 pl-0 mb-1">
             <InputText
               id="textRec" type="text" className="form-control"
               onChange={e => this.props.onChangeValue(e.target.value)}

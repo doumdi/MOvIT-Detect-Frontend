@@ -18,11 +18,10 @@ class SumbitButtons extends Component {
 
   render() {
     const style = {
-      paddingBottom: '1em',
       height: '25%',
     };
     return (
-      <div className="col-sm-9 text-right" style={style}>
+      <div className="col-sm-9 text-right py-3" style={style}>
         <button onClick={() => this.props.onCancel()} className="btn btn-lg">
           {T.translate(`cancel.${this.props.language}`)}
         </button>
