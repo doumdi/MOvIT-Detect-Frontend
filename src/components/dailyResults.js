@@ -144,7 +144,6 @@ class DailyResults extends Component {
           title={T.translate(`dailyResults.rest.${this.props.language}`)}
           value={this.state.value2}
         />
-        <div style={style.bottom} />
       </div>
     );
   }
