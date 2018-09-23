@@ -14,6 +14,7 @@ export default class Footer extends Component {
         padding: '3vh',
         textAlign: 'center',
         color: 'white',
+        height: '52px',
       },
       color: 'white',
     };

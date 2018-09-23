@@ -78,6 +78,7 @@ class Home extends Component {
     const style = {
       content: {
         textAlign: 'center',
+        height: 'fit-content',
       },
       icons: {
         fontSize: '20em',

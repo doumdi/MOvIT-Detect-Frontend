@@ -86,7 +86,7 @@ class Header extends Component {
       <div>
         {this.isLoggedIn()}
 
-        <nav className="navbar navbar-dark navbar-expand-lg" style={style.navbar}>
+        <nav className="navbar navbar-dark fixed-top navbar-expand-lg" style={style.navbar}>
           <Link to="home" className="navbar-brand" style={style.title}>MOvIT+</Link>
           <button
             className="navbar-toggler"
