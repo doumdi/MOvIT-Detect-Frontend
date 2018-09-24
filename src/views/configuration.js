@@ -19,6 +19,7 @@ import SubmitButtons from '../components/submitButtons';
 class Configuration extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     userName: PropTypes.string.isRequired,
     changeUserName: PropTypes.func.isRequired,
     language: PropTypes.string.isRequired,
@@ -31,8 +32,17 @@ class Configuration extends Component {
   };
 
   save() {
-    this.props.history.push('/recommendations');
+    const data = {
+      userName: this.props.userName,
+      userID: this.props.userID,
+      maxAngle: this.props.maxAngle,
+      userWeight: this.props.userWeight,
+    };
+    axios.post(`${URL}configuration`, data, this.props.header)
+      .then(() => this.props.history.push('/recommendations'))
+      .catch(error => console.log(error));
   }
+
   cancel() {
     console.log('clear all fields');
   }
@@ -83,6 +93,7 @@ class Configuration extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
     userName: state.configurationReducer.userName,
     userID: state.configurationReducer.userID,
     userWeight: state.configurationReducer.userWeight,

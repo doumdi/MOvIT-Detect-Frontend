@@ -17,6 +17,7 @@ class Parameters extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     changeDataAgreement: PropTypes.func,
     dataAgreement: PropTypes.bool,
     dataDisagreePeriod: PropTypes.string,
@@ -32,8 +33,17 @@ class Parameters extends Component {
   };
 
   save() {
-    // save data to backend
-    this.props.history.push('/goals');
+    const data = {
+      dataAgreement: this.props.dataAgreement,
+      dataDisagreePeriod: this.props.dataDisagreePeriod,
+      lightAgreement: this.props.lightAgreement,
+      lightDisagreePeriod: this.props.lightDisagreePeriod,
+      notificationAgreement: this.props.notificationAgreement,
+      notificationDisagreePeriod: this.props.notificationDisagreePeriod,
+    };
+    axios.post(`${URL}configuration`, data, this.props.header)
+      .then(() => this.props.history.push('/goals'))
+      .catch(error => console.log(error));
   }
 
   cancel() {
@@ -90,6 +100,7 @@ class Parameters extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
     dataAgreement: state.parameterReducer.dataAgreement,
     lightAgreement: state.parameterReducer.lightAgreement,
     notificationAgreement: state.parameterReducer.notificationAgreement,
