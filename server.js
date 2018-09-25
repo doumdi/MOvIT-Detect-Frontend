@@ -3,7 +3,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 
 const port = process.env.PORT || 3000;
-const host = process.env.host || 'http://movit-plus.herokuapp.com';
+const host = process.env.host || 'movit-plus.herokuapp.com';
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
