@@ -1,3 +1,3 @@
-node: yarn start
+node: yarn startDemo
 
-web: yarn start
+web: yarn startDemo
