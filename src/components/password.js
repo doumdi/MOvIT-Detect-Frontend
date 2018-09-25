@@ -16,6 +16,7 @@ class Password extends Component {
     language: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired,
     failed: PropTypes.bool.isRequired,
+    onForgotPassword: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -56,7 +57,13 @@ class Password extends Component {
             <Button onClick={() => this.props.onSubmit(this.state.password)} icon="fa-sign-in" cornerStyleClass="ui-button-secondary" />
           </div>
         </div>
-        {this.state.failed &&
+        <div className="col-sm-12">
+          <div className="col-sm-2" />
+          <div className="ui-inputgroup col-sm-8">
+            <a style={{ cursor: 'pointer' }} onClick={() => this.props.onForgotPassword()}>{T.translate(`login.forgotPassword.${this.props.language}`)}</a>
+          </div>
+        </div>
+        { this.state.failed &&
           <div className="col-sm-12" style={{ marginTop: '2px' }}>
             <div className="col-sm-2" />
             <div className="col-sm-8" >
