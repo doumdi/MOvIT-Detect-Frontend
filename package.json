@@ -1,6 +1,9 @@
 {
   "name": "react-es6-webpack-boilerplate",
   "version": "5.0.0",
+  "engines": {
+    "yarn": "1.9.4"
+  },
   "description": "Boilerplate for kick starting a React Project with ES6 (Babel) and Hot reloader using Webpack.",
   "main": "index.js",
   "scripts": {
