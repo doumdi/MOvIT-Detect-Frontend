@@ -80,6 +80,7 @@ class Recommendation extends Component {
       maxSliderAngle: 90,
     };
 
+    this.load();
     this.setMaxAngle();
   }
 
@@ -88,10 +89,61 @@ class Recommendation extends Component {
       this.state.maxSliderAngle = this.props.maxAngle;
     }
   }
+
+  load() {
+    axios.get(`${URL}recommandation`, this.props.header)
+      .then(response => this.mapData(response.data))
+      .catch(console.log);
+  }
+
+  mapData(response) {
+    if (response.reduceWeight) {
+      console.log(response.reduceWeight);
+      this.props.changeReduceWeight(true);
+      this.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency);
+      this.props.changeTiltLengthWeight(response.reduceWeight.tiltLength);
+      this.props.changeTiltAngleWeight(response.reduceWeight.tiltAngle);
+    }
+    if (response.reduceSlidingMoving) {
+      this.props.changeReduceSlidingMoving(true);
+      this.props.changeTiltAngleMoving(response.reduceSlidingMoving);
+    }
+    if (response.reduceSlidingRest) {
+      this.props.changeReduceSlidingRest(true);
+      this.props.changeTiltAngleRest(response.reduceSlidingRest);
+    }
+    if (response.reduceSwelling) {
+      this.props.changeReduceSwelling(true);
+      this.props.reduceSwellingRecommendation(response.reduceSwelling);
+    }
+    if (response.reducePain) {
+      this.props.changeReducePain(true);
+      this.props.reducePainRecommendation(response.reducePain);
+    }
+    if (response.allowRest) {
+      this.props.changeAllowRest(true);
+      this.props.allowRestRecommendation(response.allowRest);
+    }
+    if (response.easeTransfers) {
+      this.props.changeEaseTransfers(true);
+      this.props.easeTransfersRecommendation(response.easeTransfers);
+    }
+    if (response.improveComfort) {
+      this.props.changeImproveComfort(true);
+      this.props.improveComfortRecommendation(response.improveComfort);
+    }
+    if (response.other) {
+      console.log(response.other);
+      this.props.changeOther(true);
+      this.props.otherRecommendationTitle(response.other.title);
+      this.props.otherRecommendation(response.other.value);
+    }
+  }
+
   save() {
     const data = {
       reduceWeight: {
-        tiltFrequecy: this.props.tiltFrequencyWeight,
+        tiltFrequency: this.props.tiltFrequencyWeight,
         tiltLength: this.props.tiltLengthWeight,
         tiltAngle: this.props.tiltAngleWeight,
       },
@@ -141,7 +193,7 @@ class Recommendation extends Component {
               <Checkbox
                 inputId="reduceWeightCheck"
                 label="Reduce weight"
-                onChange={this.props.changeReduceWeight}
+                onChange={e => this.props.changeReduceWeight(e.checked)}
                 checked={this.props.reduceWeight}
               />
               <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
@@ -212,7 +264,7 @@ class Recommendation extends Component {
               onChangeActive={this.props.changeOther}
               recActive={this.props.other}
               title={T.translate(`recommendations.other.${this.props.language}`)}
-              redTitle={this.props.otherRecommendationsTitle}
+              recTitle={this.props.otherRecommendationsTitle}
               value={this.props.otherRecommendations}
               onChangeValue={this.props.otherRecommendation}
               onChangeRecTitle={this.props.otherRecommendationTitle}

@@ -8,10 +8,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { ParameterActions } from '../redux/parameterReducer';
 import { T } from '../utilities/translator';
 import PreventPermission from '../components/preventPermission';
 import SubmitButtons from '../components/submitButtons';
+import { URL } from '../redux/applicationReducer';
 
 class Parameters extends Component {
   static propTypes = {
@@ -32,6 +34,28 @@ class Parameters extends Component {
     notificationDisagreePeriod: PropTypes.string,
   };
 
+  constructor(props) {
+    super(props);
+    this.load();
+  }
+
+  load() {
+    axios.get(`${URL}notificationParam`, this.props.header)
+      .then(response => this.mapData(response.data))
+      .catch(console.log);
+  }
+
+  mapData(response) {
+    this.props.changeDataAgreement(response.dataAgreement);
+    this.props.changeDataDisagreePeriod(response.dataDisagreePeriod);
+
+    this.props.changeLightAgreement(response.lightAgreement);
+    this.props.changeLightDisagreePeriod(response.lightDisagreePeriod);
+
+    this.props.changeNotificationAgreement(response.notificationAgreement);
+    this.props.changeNotificationDisagreePeriod(response.notificationDisagreePeriod);
+  }
+
   save() {
     const data = {
       dataAgreement: this.props.dataAgreement,
@@ -41,9 +65,9 @@ class Parameters extends Component {
       notificationAgreement: this.props.notificationAgreement,
       notificationDisagreePeriod: this.props.notificationDisagreePeriod,
     };
-    axios.post(`${URL}configuration`, data, this.props.header)
+    axios.post(`${URL}notificationParam`, data, this.props.header)
       .then(() => this.props.history.push('/goals'))
-      .catch(error => console.log(error));
+      .catch(console.log);
   }
 
   cancel() {

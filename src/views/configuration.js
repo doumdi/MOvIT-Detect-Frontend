@@ -8,12 +8,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { ConfigurationActions } from '../redux/configurationReducer';
 import { T } from '../utilities/translator';
 import Notification from '../components/notification';
 import LogoText from '../components/logoText';
 import LogoNumber from '../components/logoNumber';
 import SubmitButtons from '../components/submitButtons';
+import { URL } from '../redux/applicationReducer';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
@@ -31,6 +33,24 @@ class Configuration extends Component {
     changeUserWeight: PropTypes.func.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+    this.load();
+  }
+
+  load() {
+    axios.get(`${URL}configuration`, this.props.header)
+      .then(response => this.mapData(response.data))
+      .catch(console.log);
+  }
+
+  mapData(response) {
+    this.props.changeUserName(response.userName);
+    this.props.changeUserID(response.userID);
+    this.props.changeMaxAngle(response.maxAngle);
+    this.props.changeUserWeight(response.userWeight);
+  }
+
   save() {
     const data = {
       userName: this.props.userName,
@@ -40,7 +60,7 @@ class Configuration extends Component {
     };
     axios.post(`${URL}configuration`, data, this.props.header)
       .then(() => this.props.history.push('/recommendations'))
-      .catch(error => console.log(error));
+      .catch(console.log);
   }
 
   cancel() {

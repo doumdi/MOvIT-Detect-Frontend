@@ -7,8 +7,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Card } from 'primereact/components/card/Card';
 import TiltSliders from '../components/tiltSliders';
+import { URL } from '../redux/applicationReducer';
 
 class TiltSlidersCard extends Component {
   static propTypes = {
@@ -25,6 +27,18 @@ class TiltSlidersCard extends Component {
     onModifie: PropTypes.func,
   };
 
+  load() {
+    axios.get(`${URL}goal`, this.props.header)
+      .then(response => this.mapData(response.data))
+      .catch(console.log);
+  }
+
+  mapData(response) {
+    this.props.onFrequencyChange(response.tiltFrequecy);
+    this.props.onLengthChange(response.tiltLength);
+    this.props.onLengthChange(response.tiltAngle);
+  }
+
   save() {
     const data = {
       tiltFrequecy: this.props.tiltFrequecy,
@@ -33,7 +47,7 @@ class TiltSlidersCard extends Component {
     };
     axios.post(`${URL}goal`, data, this.props.header)
       .then(() => console.log('succesfully updated'))
-      .catch(error => console.log(error));
+      .catch(console.log);
   }
 
   render() {
