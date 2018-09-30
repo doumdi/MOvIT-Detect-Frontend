@@ -9,8 +9,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import axios from 'axios';
 import { GoalActions } from '../redux/goalReducer';
+import { RecommendationActions } from '../redux/recommendationReducer';
 import { T } from '../utilities/translator';
+import { URL } from '../redux/applicationReducer';
 import PressureRecPanel from '../components/pressureRecPanel';
 import RecPanel from '../components/recPanel';
 import TiltLabels from '../components/tiltLabels';
@@ -19,6 +22,7 @@ import TiltLabels from '../components/tiltLabels';
 class Goal extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     tiltFrequencyWeight: PropTypes.number.isRequired,
     tiltLengthWeight: PropTypes.number.isRequired,
     tiltAngleWeight: PropTypes.number.isRequired,
@@ -40,6 +44,27 @@ class Goal extends Component {
     reduceSlidingRest: PropTypes.bool.isRequired,
     reduceSwelling: PropTypes.bool.isRequired,
     reducePain: PropTypes.bool.isRequired,
+    changeReduceWeight: PropTypes.func.isRequired,
+    changeReduceSlidingMoving: PropTypes.func.isRequired,
+    changeTiltAngleMoving: PropTypes.func.isRequired,
+    changeReduceSlidingRest: PropTypes.func.isRequired,
+    changeTiltAngleRest: PropTypes.func.isRequired,
+    changeReduceSwelling: PropTypes.func.isRequired,
+    otherRecommendationTitle: PropTypes.func,
+    reduceSwellingRecommendation: PropTypes.func,
+    changeImproveComfort: PropTypes.func,
+    improveComfortRecommendation: PropTypes.func,
+    changeReducePain: PropTypes.func,
+    otherRecommendation: PropTypes.func,
+    reducePainRecommendation: PropTypes.func,
+    changeOther: PropTypes.func,
+    easeTransfersRecommendation: PropTypes.func,
+    changeEaseTransfers: PropTypes.func,
+    changeAllowRest: PropTypes.func,
+    allowRestRecommendation: PropTypes.func,
+    changeTiltFrequencyWeight: PropTypes.func,
+    changeTiltLengthWeight: PropTypes.func,
+    changeTiltAngleWeight: PropTypes.func,
   };
 
   constructor(props, context) {
@@ -52,6 +77,58 @@ class Goal extends Component {
       comfortRecommendation: props.comfortRecommendation,
       otherRecommendations: props.otherRecommendations,
     };
+    this.load();
+  }
+
+  load() {
+    if (this.props.reduceWeight) { // most important rec, if this is not existing, reload recs
+      return;
+    }
+    axios.get(`${URL}recommandation`, this.props.header)
+      .then(response => this.mapData(response.data))
+      .catch(console.log);
+  }
+
+  mapData(response) {
+    if (response.reduceWeight) {
+      this.props.changeReduceWeight(true);
+      this.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency);
+      this.props.changeTiltLengthWeight(response.reduceWeight.tiltLength);
+      this.props.changeTiltAngleWeight(response.reduceWeight.tiltAngle);
+    }
+    if (response.reduceSlidingMoving) {
+      this.props.changeReduceSlidingMoving(true);
+      this.props.changeTiltAngleMoving(response.reduceSlidingMoving);
+    }
+    if (response.reduceSlidingRest) {
+      this.props.changeReduceSlidingRest(true);
+      this.props.changeTiltAngleRest(response.reduceSlidingRest);
+    }
+    if (response.reduceSwelling) {
+      this.props.changeReduceSwelling(true);
+      this.props.reduceSwellingRecommendation(response.reduceSwelling);
+    }
+    if (response.reducePain) {
+      this.props.changeReducePain(true);
+      this.props.reducePainRecommendation(response.reducePain);
+    }
+    if (response.allowRest) {
+      this.props.changeAllowRest(true);
+      this.props.allowRestRecommendation(response.allowRest);
+    }
+    if (response.easeTransfers) {
+      this.props.changeEaseTransfers(true);
+      this.props.easeTransfersRecommendation(response.easeTransfers);
+    }
+    if (response.improveComfort) {
+      this.props.changeImproveComfort(true);
+      this.props.improveComfortRecommendation(response.improveComfort);
+    }
+    if (response.other) {
+      this.props.changeOther(true);
+      this.props.otherRecommendationTitle(response.other.title);
+      this.props.otherRecommendation(response.other.value);
+    }
   }
 
   render() {
@@ -175,6 +252,7 @@ class Goal extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
     tiltFrequencyWeight: state.recommendationReducer.tiltFrequencyWeight,
     tiltLengthWeight: state.recommendationReducer.tiltLengthWeight,
     tiltAngleWeight: state.recommendationReducer.tiltAngleWeight,
@@ -201,6 +279,27 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
+    changeReduceWeight: RecommendationActions.changeReduceWeight,
+    changeReduceSwelling: RecommendationActions.changeReduceSwelling,
+    changeReduceSlidingMoving: RecommendationActions.changeReduceSlidingMoving,
+    changeReduceSlidingRest: RecommendationActions.changeReduceSlidingRest,
+    changeReducePain: RecommendationActions.changeReducePain,
+    changeAllowRest: RecommendationActions.changeAllowRest,
+    changeEaseTransfers: RecommendationActions.changeEaseTransfers,
+    changeImproveComfort: RecommendationActions.changeImproveComfort,
+    changeOther: RecommendationActions.changeOther,
+    changeTiltFrequencyWeight: RecommendationActions.changeTiltFrequencyWeight,
+    changeTiltLengthWeight: RecommendationActions.changeTiltLengthWeight,
+    changeTiltAngleWeight: RecommendationActions.changeTiltAngleWeight,
+    changeTiltAngleMoving: RecommendationActions.changeTiltAngleMoving,
+    changeTiltAngleRest: RecommendationActions.changeTiltAngleRest,
+    reducePainRecommendation: RecommendationActions.reducePainRecommendation,
+    reduceSwellingRecommendation: RecommendationActions.reduceSwellingRecommendation,
+    allowRestRecommendation: RecommendationActions.allowRestRecommendation,
+    easeTransfersRecommendation: RecommendationActions.easeTransfersRecommendation,
+    improveComfortRecommendation: RecommendationActions.improveComfortRecommendation,
+    otherRecommendation: RecommendationActions.otherRecommendation,
+    otherRecommendationTitle: RecommendationActions.otherRecommendationTitle,
     changeTiltFrequencyGoal: GoalActions.changeTiltFrequencyGoal,
     changeTiltLengthGoal: GoalActions.changeTiltLengthGoal,
     changeTiltAngleGoal: GoalActions.changeTiltAngleGoal,

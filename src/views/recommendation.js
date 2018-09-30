@@ -98,7 +98,6 @@ class Recommendation extends Component {
 
   mapData(response) {
     if (response.reduceWeight) {
-      console.log(response.reduceWeight);
       this.props.changeReduceWeight(true);
       this.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency);
       this.props.changeTiltLengthWeight(response.reduceWeight.tiltLength);
@@ -133,7 +132,6 @@ class Recommendation extends Component {
       this.props.improveComfortRecommendation(response.improveComfort);
     }
     if (response.other) {
-      console.log(response.other);
       this.props.changeOther(true);
       this.props.otherRecommendationTitle(response.other.title);
       this.props.otherRecommendation(response.other.value);
