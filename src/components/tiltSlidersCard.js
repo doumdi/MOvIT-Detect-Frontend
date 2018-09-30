@@ -27,18 +27,6 @@ class TiltSlidersCard extends Component {
     onModifie: PropTypes.func,
   };
 
-  load() {
-    axios.get(`${URL}goal`, this.props.header)
-      .then(response => this.mapData(response.data))
-      .catch(console.log);
-  }
-
-  mapData(response) {
-    this.props.onFrequencyChange(response.tiltFrequecy);
-    this.props.onLengthChange(response.tiltLength);
-    this.props.onLengthChange(response.tiltAngle);
-  }
-
   save() {
     const data = {
       tiltFrequecy: this.props.tiltFrequecy,

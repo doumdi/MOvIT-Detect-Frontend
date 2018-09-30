@@ -65,6 +65,9 @@ class Goal extends Component {
     changeTiltFrequencyWeight: PropTypes.func,
     changeTiltLengthWeight: PropTypes.func,
     changeTiltAngleWeight: PropTypes.func,
+    changeTiltFrequencyGoal: PropTypes.func,
+    changeTiltLengthGoal: PropTypes.func,
+    changeTiltAngleGoal: PropTypes.func,
   };
 
   constructor(props, context) {
@@ -77,19 +80,32 @@ class Goal extends Component {
       comfortRecommendation: props.comfortRecommendation,
       otherRecommendations: props.otherRecommendations,
     };
-    this.load();
+    this.loadGoals();
+    this.loadRecommendations();
   }
 
-  load() {
+  loadGoals() {
+    axios.get(`${URL}goal`, this.props.header)
+      .then(response => this.mapGoalData(response.data))
+      .catch(console.log);
+  }
+
+  loadRecommendations() {
     if (this.props.reduceWeight) { // most important rec, if this is not existing, reload recs
       return;
     }
     axios.get(`${URL}recommandation`, this.props.header)
-      .then(response => this.mapData(response.data))
+      .then(response => this.mapRecData(response.data))
       .catch(console.log);
   }
 
-  mapData(response) {
+  mapGoalData(response) {
+    this.props.changeTiltAngleGoal(response.tiltAngle);
+    this.props.changeTiltFrequencyGoal(response.tiltFrequency);
+    this.props.changeTiltLengthGoal(response.tiltLength);
+  }
+
+  mapRecData(response) {
     if (response.reduceWeight) {
       this.props.changeReduceWeight(true);
       this.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency);
