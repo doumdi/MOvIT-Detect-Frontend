@@ -84,10 +84,6 @@ module.exports = {
         loader: 'json-loader!yaml-loader',
       },
       {
-        test: /\.(png|gif)$/,
-        loader: 'url?limit=25000',
-      },
-      {
 
         test: /\.(png|jpg|gif)$/,
         loader: 'file-loader',
