@@ -34,7 +34,7 @@ class PreventPermission extends Component {
           <Checkbox
             inputId="agreement"
             checked={this.props.permission}
-            onChange={this.props.onPermissionChange}
+            onChange={e => this.props.onPermissionChange(e.checked)}
           />
           <label htmlFor="agreement">{this.props.permissionTitle}</label>
         </div>

@@ -22,6 +22,15 @@ class TextRecommendation extends Component {
     onChangeValue: PropTypes.func.isRequired,
   };
 
+  affectDefaultValue(checked) {
+    this.props.onChangeActive(checked);
+    if (checked) {
+      this.props.onChangeValue(T.translate(`recommendations.tiltAsNeeded.${this.props.language}`));
+    } else {
+      this.props.onChangeValue('');
+    }
+  }
+
   render() {
     const style = {
       stickLeft: {
@@ -42,7 +51,7 @@ class TextRecommendation extends Component {
           <Checkbox
             inputId="activeRecCheck"
             label={this.props.title}
-            onChange={this.props.onChangeActive}
+            onChange={e => this.affectDefaultValue(e.checked)}
             checked={this.props.recActive}
           />
           <label htmlFor="activeRecCheck">{this.props.title}</label>

@@ -5,12 +5,16 @@
  */
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Card } from 'primereact/components/card/Card';
 import TiltSliders from '../components/tiltSliders';
+import { URL } from '../redux/applicationReducer';
 
-export default class TiltSlidersCard extends Component {
+class TiltSlidersCard extends Component {
   static propTypes = {
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     tiltFrequecy: PropTypes.number,
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,
@@ -22,6 +26,17 @@ export default class TiltSlidersCard extends Component {
     modifiable: PropTypes.bool,
     onModifie: PropTypes.func,
   };
+
+  save() {
+    const data = {
+      tiltFrequecy: this.props.tiltFrequecy,
+      tiltLength: this.props.tiltLength,
+      tiltAngle: this.props.tiltAngle,
+    };
+    axios.post(`${URL}goal`, data, this.props.header)
+      .then(() => console.log('succesfully updated'))
+      .catch(console.log);
+  }
 
   render() {
     const chairImagePath = require('../res/images/chair-old.png');
@@ -73,3 +88,10 @@ export default class TiltSlidersCard extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    header: state.applicationReducer.header,
+  };
+}
+export default connect(mapStateToProps)(TiltSlidersCard);

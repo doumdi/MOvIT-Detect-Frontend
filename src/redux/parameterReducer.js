@@ -12,19 +12,22 @@ export const LIGHT_DISAGREE_PERIOD = 'LIGHT_DISAGREE_PERDIOD';
 export const NOTIFICATION_DISAGREE_PERDIOD = 'NOTIFICATION_DISAGREE_PERDIOD';
 
 // -------------- CHECKBOX --------------
-function changeDataAgreement() {
+function changeDataAgreement(agree) {
   return {
     type: DATA_AGREEMENT,
+    dataAgreement: agree,
   };
 }
-function changeLightAgreement() {
+function changeLightAgreement(agree) {
   return {
     type: LIGHT_AGREEMENT,
+    lightAgreement: agree,
   };
 }
-function changeNotificationAgreement() {
+function changeNotificationAgreement(agree) {
   return {
     type: NOTIFICATION_AGREEMENT,
+    notificationAgreement: agree,
   };
 }
 
@@ -58,14 +61,14 @@ export const ParameterActions = {
 };
 
 const ACTION_HANDLERS = {
-  [DATA_AGREEMENT]: state => (
-    { ...state, dataAgreement: !state.dataAgreement }
+  [DATA_AGREEMENT]: (state, action) => (
+    { ...state, dataAgreement: action.dataAgreement }
   ),
-  [LIGHT_AGREEMENT]: state => (
-    { ...state, lightAgreement: !state.lightAgreement }
+  [LIGHT_AGREEMENT]: (state, action) => (
+    { ...state, lightAgreement: action.lightAgreement }
   ),
-  [NOTIFICATION_AGREEMENT]: state => (
-    { ...state, notificationAgreement: !state.notificationAgreement }
+  [NOTIFICATION_AGREEMENT]: (state, action) => (
+    { ...state, notificationAgreement: action.notificationAgreement }
   ),
   [DATA_DISAGREE_PERIOD]: (state, action) => (
     { ...state, dataDisagreePeriod: action.dataDisagreePeriod }

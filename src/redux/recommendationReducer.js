@@ -30,49 +30,58 @@ export const OTHER_RECOMMENDATION = 'OTHER_RECOMMENDATION';
 export const OTHER_RECOMMENDATION_TITLE = 'OTHER_RECOMMENDATION_TITLE';
 
 // -------------- CHECKBOX --------------
-function changeReduceWeight() {
+function changeReduceWeight(value) {
   return {
     type: REDUCE_WEIGHT,
+    reduceWeight: value,
   };
 }
-function changeReduceSwelling() {
+function changeReduceSwelling(value) {
   return {
     type: REDUCE_SWELLING,
+    reduceSwelling: value,
   };
 }
-function changeReduceSlidingMoving() {
+function changeReduceSlidingMoving(value) {
   return {
     type: REDUCE_SLIDING_MOVING,
+    reduceSlidingMoving: value,
   };
 }
-function changeReduceSlidingRest() {
+function changeReduceSlidingRest(value) {
   return {
     type: REDUCE_SLIDING_REST,
+    reduceSlidingRest: value,
   };
 }
-function changeReducePain() {
+function changeReducePain(value) {
   return {
     type: REDUCE_PAIN,
+    reducePain: value,
   };
 }
-function changeAllowRest() {
+function changeAllowRest(value) {
   return {
     type: ALLOW_REST,
+    allowRest: value,
   };
 }
-function changeEaseTransfers() {
+function changeEaseTransfers(value) {
   return {
     type: EASE_TRANSFERS,
+    easeTransfers: value,
   };
 }
-function changeImproveComfort() {
+function changeImproveComfort(value) {
   return {
     type: IMPROVE_COMFORT,
+    improveComfort: value,
   };
 }
-function changeOther() {
+function changeOther(value) {
   return {
     type: OTHER,
+    other: value,
   };
 }
 
@@ -176,32 +185,32 @@ export const RecommendationActions = {
   otherRecommendationTitle,
 };
 const ACTION_HANDLERS = {
-  [REDUCE_WEIGHT]: state => (
-    { ...state, reduceWeight: !state.reduceWeight }
+  [REDUCE_WEIGHT]: (state, action) => (
+    { ...state, reduceWeight: action.reduceWeight }
   ),
-  [REDUCE_SWELLING]: state => (
-    { ...state, reduceSwelling: !state.reduceSwelling }
+  [REDUCE_SWELLING]: (state, action) => (
+    { ...state, reduceSwelling: action.reduceSwelling }
   ),
-  [REDUCE_SLIDING_MOVING]: state => (
-    { ...state, reduceSlidingMoving: !state.reduceSlidingMoving }
+  [REDUCE_SLIDING_MOVING]: (state, action) => (
+    { ...state, reduceSlidingMoving: action.reduceSlidingMoving }
   ),
-  [REDUCE_SLIDING_REST]: state => (
-    { ...state, reduceSlidingRest: !state.reduceSlidingRest }
+  [REDUCE_SLIDING_REST]: (state, action) => (
+    { ...state, reduceSlidingRest: action.reduceSlidingRest }
   ),
-  [REDUCE_PAIN]: state => (
-    { ...state, reducePain: !state.reducePain }
+  [REDUCE_PAIN]: (state, action) => (
+    { ...state, reducePain: action.reducePain }
   ),
-  [ALLOW_REST]: state => (
-    { ...state, allowRest: !state.allowRest }
+  [ALLOW_REST]: (state, action) => (
+    { ...state, allowRest: action.allowRest }
   ),
-  [EASE_TRANSFERS]: state => (
-    { ...state, easeTransfers: !state.easeTransfers }
+  [EASE_TRANSFERS]: (state, action) => (
+    { ...state, easeTransfers: action.easeTransfers }
   ),
-  [IMPROVE_COMFORT]: state => (
-    { ...state, improveComfort: !state.improveComfort }
+  [IMPROVE_COMFORT]: (state, action) => (
+    { ...state, improveComfort: action.improveComfort }
   ),
-  [OTHER]: state => (
-    { ...state, other: !state.other }
+  [OTHER]: (state, action) => (
+    { ...state, other: action.other }
   ),
   [TILT_FREQUENCY_WEIGHT]: (state, action) => (
     { ...state, tiltFrequencyWeight: action.tiltFrequencyWeight }

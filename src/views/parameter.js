@@ -8,15 +8,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { ParameterActions } from '../redux/parameterReducer';
 import { T } from '../utilities/translator';
 import PreventPermission from '../components/preventPermission';
 import SubmitButtons from '../components/submitButtons';
+import { URL } from '../redux/applicationReducer';
 
 class Parameters extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     changeDataAgreement: PropTypes.func,
     dataAgreement: PropTypes.bool,
     dataDisagreePeriod: PropTypes.string,
@@ -31,9 +34,40 @@ class Parameters extends Component {
     notificationDisagreePeriod: PropTypes.string,
   };
 
+  constructor(props) {
+    super(props);
+    this.load();
+  }
+
+  load() {
+    axios.get(`${URL}notificationParam`, this.props.header)
+      .then(response => this.mapData(response.data))
+      .catch(console.log);
+  }
+
+  mapData(response) {
+    this.props.changeDataAgreement(response.dataAgreement);
+    this.props.changeDataDisagreePeriod(response.dataDisagreePeriod);
+
+    this.props.changeLightAgreement(response.lightAgreement);
+    this.props.changeLightDisagreePeriod(response.lightDisagreePeriod);
+
+    this.props.changeNotificationAgreement(response.notificationAgreement);
+    this.props.changeNotificationDisagreePeriod(response.notificationDisagreePeriod);
+  }
+
   save() {
-    // save data to backend
-    this.props.history.push('/goals');
+    const data = {
+      dataAgreement: this.props.dataAgreement,
+      dataDisagreePeriod: this.props.dataDisagreePeriod,
+      lightAgreement: this.props.lightAgreement,
+      lightDisagreePeriod: this.props.lightDisagreePeriod,
+      notificationAgreement: this.props.notificationAgreement,
+      notificationDisagreePeriod: this.props.notificationDisagreePeriod,
+    };
+    axios.post(`${URL}notificationParam`, data, this.props.header)
+      .then(() => this.props.history.push('/goals'))
+      .catch(console.log);
   }
 
   cancel() {
@@ -90,6 +124,7 @@ class Parameters extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
     dataAgreement: state.parameterReducer.dataAgreement,
     lightAgreement: state.parameterReducer.lightAgreement,
     notificationAgreement: state.parameterReducer.notificationAgreement,

@@ -43,7 +43,7 @@ class OtherRecommendation extends Component {
           <Checkbox
             inputId="activeRecCheck"
             label={this.props.title}
-            onChange={this.props.onChangeActive}
+            onChange={e => this.props.onChangeActive(e.checked)}
             checked={this.props.recActive}
           />
           <label htmlFor="activeRecCheck">{this.props.title}</label>
