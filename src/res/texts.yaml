@@ -9,7 +9,7 @@ parameters:
   EN: "Settings"
   dataAgreement:
     FR: "J’accepte que mes données d’utilisation soient transmises à mon établissement de santé"
-    EN: "I agree to transmit my usage data to my health facility"
+    EN: "I allow my data usage to be sent to my healthcare facility"
   lightAgreement:
     FR: "Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer"
     EN: "I want the light on my chair to light up to remind me to tip"
@@ -66,8 +66,8 @@ recommendations:
     FR: "Veuillez sélectionner la ou les cibles d’usage de la bascule destinée(s) à l’usager. Veuillez également personnaliser chacune des cibles sélectionnées aux besoins de l’usager en y saisissant vos recommandations."
     EN: "Please select the goal(s) for the recommend use of the tilt. Please personalise every selected goal for the user's need by entering you recommendations"
   reduceWeight:
-    FR: "Réduire la pression sur le siège"
-    EN: "Reduce weight"
+    FR: "Réduire la pression sous le siège"
+    EN: "Reduce pressure"
   reduceSwelling:
     FR: "Réduire l'enflure aux membres inférieurs"
     EN: "Reduce swelling"
@@ -85,19 +85,19 @@ recommendations:
     EN: "Reduce sliding while moving"
   slidingRest:
     FR: "Réduire le glissement au repos"
-    EN: "Reduce sliding at rest"
+    EN: "Reduce sliding while at rest"
   pain:
     FR: "Réduire la douleur"
-    EN: "Reduce the pain"
+    EN: "Reduce pain"
     recommendation:
       FR: "Recommandations pour réduire la douleur"
       EN: "Recommendations for reducing pain"
   rest:
     FR: "Permettre le repos"
-    EN: "Allowing rest"
+    EN: "Permit a time of rest in the wheelchair "
     recommendation:
       FR: "Recommandations pour le repos"
-      EN: "Recommendations for allowing rest"
+      EN: "Recommendations to permit a time of rest in the wheelchair "
   transfer:
     FR: "Faciliter les transferts"
     EN: "Ease transfers"
@@ -123,10 +123,13 @@ recommendations:
 
 goals:
   FR: "Objectifs de bascule"
-  EN: "Tilt goals"
+  EN: "My tilt goals"
   personalGoals:
-    FR: "Objectif personnel"
-    EN: "Personnal goal"
+    FR: "Objectifs personnel"
+    EN: "My goals"
+  ClinicianRecommendations:
+    FR: "Recommandations du clinicien"
+    EN: "Clinician recommendations"
   RecommendedGoals:
     FR: "Objectif recommandé"
     EN: "Recommended goal"
@@ -135,7 +138,7 @@ goals:
     EN: "Tilt frequency"
   tiltLength:
     FR: "Durée de bascule"
-    EN: "Tilt length"
+    EN: "Tilt duration"
   tiltAngle:
     FR: "Angle de bascule"
     EN: "Tilt angle"
@@ -223,7 +226,7 @@ dailyResults:
   EN: "My daily results"
   howDo:
     FR: "Comment j'utilise ma bascule en général?"
-    EN: "How do I use my wheelchair in general"
+    EN: "How do I use my wheelchair tilt in general"
   angleDistribution:
     FR: "Distribution des angles de bascule au cours de la journée"
     EN: "Distribution of tilt angles during the day"
@@ -243,8 +246,8 @@ dailyResults:
       FR: "45° et plus"
       EN: "45° and more"
   pressure:
-    FR: "Libérer la pression sur le siège"
-    EN: "Release pressure under the seat"
+    FR: "Libérer la pression sous le siège"
+    EN: "Relieving pressure on the buttocks"
   travel:
     FR: "Faciliter vos déplacements"
     EN: "Making your travel easier"
@@ -293,7 +296,7 @@ monthlyResults:
       EN: "45° and more"
   wheelChair:
     FR: "Temps passé au fauteuil au cours du mois"
-    EN: "Time spent on the wheelchair during the month"
+    EN: "Time spent in the wheelchair during the month"
   hours:
     FR: "Temps passé en heures"
     EN: "Time spent in hours"
@@ -317,7 +320,7 @@ monthlyResults:
     EN: "Making your travel easier"
     success:
       FR: "Taux de réussite de l’objectif recommandé au cours du mois"
-      EN: "Success rate for the recommend goal of the month"
+      EN: "Success rate for the recommended goal of the month"
     successRate:
       FR: "Taux de réussite"
       EN: "Success Rate"
@@ -326,7 +329,7 @@ monthlyResults:
     EN: "Reduce sliding at rest"
     success:
       FR: "Taux de réussite de l’objectif recommandé au cours du mois"
-      EN: "Success rate for the recommend goal of the month"
+      EN: "Success rate for the recommended goal of the month"
     successRate:
       FR: "Taux de réussite"
       EN: "Success Rate"

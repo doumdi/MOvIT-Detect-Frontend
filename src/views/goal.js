@@ -85,9 +85,9 @@ class Goal extends Component {
             <div className="row" style={style.panelGroup}>
               <div className="col-sm-2" />
               <div className="col-sm-8">
-                <h2>Objectifs personnel &nbsp; <i id="personalGoalInfo" className="fa fa-info-circle" /></h2>
+                <h2>{T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp; <i id="personalGoalInfo" className="fa fa-info-circle" /></h2>
                 <PressureRecPanel />
-                <h2>Recommandations du clinicien</h2>
+                <h2>{T.translate(`goals.ClinicianRecommendations.${this.props.language}`)}</h2>
                 {this.props.reduceWeight
                 &&
                   <TiltLabels
