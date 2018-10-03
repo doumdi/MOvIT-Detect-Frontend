@@ -81,7 +81,7 @@ class Wifi extends Component {
       cursor: 'pointer',
     };
     return (
-      <div>
+      <div className="mt-3">
         <div className="col-md-12">
           <legend className="text-center header"><h2>{T.translate(`wifi.${this.props.language}`)}</h2></legend>
           {this.state.connected
