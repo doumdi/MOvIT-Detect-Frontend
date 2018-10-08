@@ -7,7 +7,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'primereact/components/button/Button';
 import { Message } from 'primereact/components/message/Message';
 import { T } from '../utilities/translator';
 
@@ -54,7 +53,7 @@ class Password extends Component {
               onKeyPress={e => this.onKeyPress(e)}
               style={this.state.failed ? { borderColor: 'red' } : {}}
             />
-            <Button onClick={() => this.props.onSubmit(this.state.password)} icon="fa-sign-in" cornerStyleClass="ui-button-secondary" />
+            <button onClick={() => this.props.onSubmit(this.state.password)} ><i className="fa fa-sign-in" /></button>
           </div>
         </div>
         <div className="col-sm-12">
@@ -63,7 +62,7 @@ class Password extends Component {
             <a style={{ cursor: 'pointer' }} onClick={() => this.props.onForgotPassword()}>{T.translate(`login.forgotPassword.${this.props.language}`)}</a>
           </div>
         </div>
-        { this.state.failed &&
+        {this.state.failed &&
           <div className="col-sm-12" style={{ marginTop: '2px' }}>
             <div className="col-sm-2" />
             <div className="col-sm-8" >
