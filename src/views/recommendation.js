@@ -157,6 +157,9 @@ class Recommendation extends Component {
         value: this.props.otherRecommendations,
       },
     };
+    axios.post(`${URL}goal`, data.reduceWeight, this.props.header)
+      .then()
+      .catch(error => console.log(error));
     axios.post(`${URL}recommandation`, data, this.props.header)
       .then(() => this.props.history.push('/goals'))
       .catch(error => console.log(error));
