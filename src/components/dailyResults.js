@@ -97,6 +97,54 @@ class DailyResults extends Component {
       },
     };
 
+    const tiltSuccessData = {
+      labels: [
+        ['Bascules réalisées', 'bon angle', 'bonne durée'],
+        ['Bascules réalisées', 'bon angle', 'durée insuffisante'],
+        ['Bascules réalisées', 'bonne durée', 'angle insuffisant'],
+        'Bascules non réalisées',
+      ],
+      datasets: [
+        {
+          data: [
+            36, 40, 27, 38,
+          ],
+          fill: true,
+          backgroundColor: [
+            'green',
+            'yellow',
+            'orange',
+            'red',
+          ],
+          hoverBackgroundColor: [
+            'green',
+            'yellow',
+            'orange',
+            'red',
+          ],
+          lineTension: 0,
+        },
+      ],
+    };
+
+    const tiltSuccessOptions = {
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          categoryPercentage: 1.0,
+          barPercentage: 1.0,
+        }],
+        yAxes: [{
+          ticks: {
+            min: 0,
+            max: 50,
+          },
+        }],
+      },
+    };
+
     const minOptions = {
       tooltips: {
         callbacks: {
@@ -128,6 +176,9 @@ class DailyResults extends Component {
           title={T.translate(`dailyResults.pressureCenter.${this.props.language}`)}
           date={this.props.date}
         />
+
+        <Chart type="bar" data={tiltSuccessData} options={tiltSuccessOptions} />
+
         <RecGoalProgress
           condition={this.props.reduceWeight}
           title={T.translate(`dailyResults.pressure.${this.props.language}`)}

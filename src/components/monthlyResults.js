@@ -208,6 +208,93 @@ class MonthlyResults extends Component {
       ],
     };
 
+    const tiltSuccessData = {
+      labels: [
+        '1', '2', '3', '4', '5',
+        '6', '7', '8', '9', '10',
+        '11', '12', '13', '14', '15',
+        '16', '17', '18', '19', '20',
+        '21', '22', '23', '24', '25',
+        '26', '27', '28', '29', '30',
+      ],
+      datasets: [
+        {
+          label: 'Bascules réalisées au bon angle et de bonne durée',
+          lineTension: 0,
+          data: [
+            36, 40, 27, 38, 42,
+            55, 40, 28, 32, 26,
+            25, 28, 31, 22, 25,
+            34, 36, 30, 21, 24,
+            26, 28, 31, 32, 8,
+            0, 26, 30, 21, 24,
+          ],
+          fill: true,
+          borderColor: 'greend',
+          backgroundColor: 'green',
+        },
+        {
+          label: 'Bascules réalisées au bon angle mais de durée insuffisante',
+          lineTension: 0,
+          data: [
+            26, 28, 31, 32, 8,
+            34, 36, 30, 21, 24,
+            55, 40, 28, 32, 26,
+            25, 28, 31, 22, 25,
+            0, 26, 30, 21, 24,
+            36, 40, 27, 38, 42,
+          ],
+          fill: true,
+          borderColor: 'yellow',
+          backgroundColor: 'yellow',
+        },
+        {
+          label: 'Bascules réalisées de bonne durée mais à un angle insuffisant',
+          lineTension: 0,
+          data: [
+            26, 28, 31, 32, 8,
+            34, 36, 30, 21, 24,
+            55, 40, 28, 32, 26,
+            25, 28, 31, 22, 25,
+            0, 26, 30, 21, 24,
+            36, 40, 27, 38, 42,
+          ],
+          fill: true,
+          borderColor: 'orange',
+          backgroundColor: 'orange',
+        },
+        {
+          label: 'Bascules non réalisées',
+          lineTension: 0,
+          data: [
+            26, 28, 31, 32, 8,
+            34, 36, 30, 21, 24,
+            55, 40, 28, 32, 26,
+            25, 28, 31, 22, 25,
+            0, 26, 30, 21, 24,
+            36, 40, 27, 38, 42,
+          ],
+          fill: true,
+          borderColor: 'red',
+          backgroundColor: 'red',
+        },
+      ],
+    };
+
+    const tiltSuccessOptions = {
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true,
+          ticks: {
+            min: 0,
+          },
+        }],
+      },
+    };
+
     const travelData = {
       labels: [
         '1', '2', '3', '4', '5',
@@ -360,6 +447,8 @@ class MonthlyResults extends Component {
         {!this.state.sitLoading &&
           <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
+
+        <Chart type="bar" data={tiltSuccessData} options={tiltSuccessOptions} />
 
         <RecGoalChart
           condition={this.props.reduceWeight}
