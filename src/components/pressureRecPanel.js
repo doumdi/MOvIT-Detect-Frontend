@@ -52,9 +52,9 @@ class PressureRecPanel extends Component {
       this.setState({ modifieGoal: false });
       // save goals data
       axios.post(`${URL}goal`, {
-        tiltFrequencyGoal: this.state.tiltFrequencyGoal,
-        tiltLengthGoal: this.state.tiltLengthGoal,
-        tiltAngleGoal: this.state.tiltAngleGoal,
+        tiltFrequencyGoal: this.props.tiltFrequencyGoal,
+        tiltLengthGoal: this.props.tiltLengthGoal,
+        tiltAngleGoal: this.props.tiltAngleGoal,
       })
         .then(console.log)
         .catch(console.log);

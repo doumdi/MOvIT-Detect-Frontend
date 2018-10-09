@@ -60,15 +60,22 @@ class Wifi extends Component {
 
   waitConnection() {
     this.setState({ connecting: true });
+    let tries = 0;
     const connectionValidation = window.setInterval(() => {
-      axios.get(`${URL}wifi`)
+      if (tries >= 15) {
+        window.clearInterval(connectionValidation);
+        this.setState({ ...this.state, connecting: false, connected: false });
+      } else {
+        tries += 1;
+        axios.get(`${URL}wifi`)
         .then((response) => {
           if (response.data.connected) {
             window.clearInterval(connectionValidation);
             this.setState({ ...this.state, connecting: false, connected: true });
           }
         })
-        .catch(console.error);
+        .catch(window.clearInterval(connectionValidation));
+      }
     }, 1000);
   }
 
