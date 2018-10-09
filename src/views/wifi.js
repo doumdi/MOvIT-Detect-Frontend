@@ -6,6 +6,7 @@ import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import SubmitButtons from '../components/submitButtons';
 import LogoText from '../components/logoText';
+import LogoPassword from '../components/logoPassword';
 import Loading from '../components/loading';
 
 
@@ -67,6 +68,7 @@ class Wifi extends Component {
         this.setState({ ...this.state, connecting: false, connected: false });
       } else {
         tries += 1;
+        console.log(tries);
         axios.get(`${URL}wifi`)
         .then((response) => {
           if (response.data.connected) {
@@ -74,7 +76,7 @@ class Wifi extends Component {
             this.setState({ ...this.state, connecting: false, connected: true });
           }
         })
-        .catch(window.clearInterval(connectionValidation));
+        .catch(() => { window.clearInterval(connectionValidation); this.setState({ ...this.state, connecting: false, connected: false }); });
       }
     }, 1000);
   }
@@ -108,7 +110,7 @@ class Wifi extends Component {
                       value={this.state.wifi}
                       onChange={this.changeWifi}
                     />
-                    <LogoText
+                    <LogoPassword
                       iconClass="fa fa-key"
                       placeHolder={T.translate(`login.password.${this.props.language}`)}
                       value={this.state.password}
