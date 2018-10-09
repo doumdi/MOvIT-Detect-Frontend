@@ -18,6 +18,7 @@ import TiltLabels from './tiltLabels';
 
 class PressureRecPanel extends Component {
   static propTypes = {
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     language: PropTypes.string.isRequired,
     profile: PropTypes.string.isRequired,
     maxAngle: PropTypes.number,
@@ -55,7 +56,7 @@ class PressureRecPanel extends Component {
         tiltFrequencyGoal: this.props.tiltFrequencyGoal,
         tiltLengthGoal: this.props.tiltLengthGoal,
         tiltAngleGoal: this.props.tiltAngleGoal,
-      })
+      }, this.props.header)
         .then(console.log)
         .catch(console.log);
     } else {
@@ -105,6 +106,7 @@ class PressureRecPanel extends Component {
 }
 function mapStateToProps(state) {
   return {
+    header: state.applicationReducer.header,
     language: state.applicationReducer.language,
     profile: state.applicationReducer.profile,
     reduceWeight: state.recommendationReducer.reduceWeight,
