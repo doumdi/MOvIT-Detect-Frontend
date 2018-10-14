@@ -12,14 +12,17 @@ let url;
 
 const port = process.env.PORT || 1880;
 
+console.log(process.env.NODE_ENV);
+
 switch (process.env.NODE_ENV) {
   case 'production':
   case 'pi':
-    url = `http://192.168.137.175:${port}/`;
+    url = `http://192.168.4.1:${port}/`;
     break;
   case 'local':
     url = `http://localhost:${port}/`;
     break;
+  case 'demo':
   default:
     url = 'https://private-f2484-movitplus.apiary-mock.com/';
 }

@@ -8,17 +8,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { ConfigurationActions } from '../redux/configurationReducer';
 import { T } from '../utilities/translator';
 import Notification from '../components/notification';
 import LogoText from '../components/logoText';
 import LogoNumber from '../components/logoNumber';
 import SubmitButtons from '../components/submitButtons';
+import { URL } from '../redux/applicationReducer';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     userName: PropTypes.string.isRequired,
     changeUserName: PropTypes.func.isRequired,
     language: PropTypes.string.isRequired,
@@ -30,9 +33,36 @@ class Configuration extends Component {
     changeUserWeight: PropTypes.func.isRequired,
   };
 
-  save() {
-    this.props.history.push('/recommendations');
+  constructor(props) {
+    super(props);
+    this.load();
   }
+
+  load() {
+    axios.get(`${URL}configuration`, this.props.header)
+      .then(response => this.mapData(response.data))
+      .catch(console.log);
+  }
+
+  mapData(response) {
+    this.props.changeUserName(response.userName);
+    this.props.changeUserID(response.userID);
+    this.props.changeMaxAngle(response.maxAngle);
+    this.props.changeUserWeight(response.userWeight);
+  }
+
+  save() {
+    const data = {
+      userName: this.props.userName,
+      userID: this.props.userID,
+      maxAngle: this.props.maxAngle,
+      userWeight: this.props.userWeight,
+    };
+    axios.post(`${URL}configuration`, data, this.props.header)
+      .then(() => this.props.history.push('/recommendations'))
+      .catch(console.log);
+  }
+
   cancel() {
     console.log('clear all fields');
   }
@@ -83,6 +113,7 @@ class Configuration extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
     userName: state.configurationReducer.userName,
     userID: state.configurationReducer.userID,
     userWeight: state.configurationReducer.userWeight,

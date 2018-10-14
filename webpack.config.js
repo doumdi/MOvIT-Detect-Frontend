@@ -81,10 +81,17 @@ module.exports = {
       },
       {
         test: /\.ya?ml$/,
-        loader: 'json-loader!yaml-loader' },
+        loader: 'json-loader!yaml-loader',
+      },
       {
-        test: /\.(png|gif)$/,
-        loader: 'url?limit=25000',
+
+        test: /\.(png|jpg|gif)$/,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.(css|scss)$/,
+        loader: 'style-loader!css-loader',
+
       },
     ],
   },

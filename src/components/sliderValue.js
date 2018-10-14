@@ -17,27 +17,31 @@ export default class SliderValue extends Component {
   render() {
     const style = {
       border: 0,
+      width: '60px',
+      background: 'rgba(0,0,0,0)',
     };
 
     return (
-      <div className="col-sm-12">
-        <div className="col-sm-4">
-          <span className="col-sm-12">{this.props.title}</span>
-        </div>
-        <Slider
-          className="col-sm-6"
-          min={this.props.min ? this.props.min : 0} max={this.props.max}
-          onChange={e => this.props.onChange(e.value)}
-          value={this.props.value}
-        />
-        <div className="col-sm-2">
-          <input
-            type="number" style={style}
-            value={this.props.value}
-            onChange={e => this.props.onChange(e.target.value)}
+      <div className="row">
+        <div className="col-12 ml-4">
+          <div className="pb-1">
+            <span>{this.props.title}</span>
+          </div>
+          <Slider
+            className="col-12 col-md-6"
             min={this.props.min ? this.props.min : 0} max={this.props.max}
+            onChange={e => this.props.onChange(e.value)}
+            value={this.props.value}
           />
-          <span>{this.props.unit}</span>
+          <div className="pb-2">
+            <input
+              type="number" style={style}
+              value={this.props.value}
+              onChange={e => this.props.onChange(e.target.value)}
+              min={this.props.min ? this.props.min : 0} max={this.props.max}
+            />
+            <span>{this.props.unit}</span>
+          </div>
         </div>
       </div>
     );

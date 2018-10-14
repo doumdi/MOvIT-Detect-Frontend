@@ -26,7 +26,7 @@ class AngleRecommendation extends Component {
   render() {
     return (
       <div className="pt-2 pl-3 row">
-        <div className="col-12 pl-0 mt-1">
+        <div className="col-11 pl-0 mt-1">
           <Checkbox
             inputId="activeRecCheck"
             label={this.props.title}
@@ -34,9 +34,6 @@ class AngleRecommendation extends Component {
             checked={this.props.recActive}
           />
           <label htmlFor="activeRecCheck">{this.props.title}</label>
-
-        </div>
-        <div className="col-10">
           {this.props.recActive
             &&
             <SliderValue
