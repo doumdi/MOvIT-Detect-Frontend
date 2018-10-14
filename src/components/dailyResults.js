@@ -107,7 +107,7 @@ class DailyResults extends Component {
       datasets: [
         {
           data: [
-            36, 40, 27, 38,
+            36, 12, 15, 8,
           ],
           fill: true,
           backgroundColor: [
