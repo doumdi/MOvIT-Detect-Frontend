@@ -14,6 +14,7 @@ import { URL } from '../redux/applicationReducer';
 import GoalProgress from './goalProgress';
 import RecGoalProgress from './recGoalProgress';
 import PressureCenter from './pressureCenter';
+import DailySuccessTilt from './dailySuccessTilt';
 
 class DailyResults extends Component {
   static propTypes = {
@@ -97,60 +98,6 @@ class DailyResults extends Component {
       },
     };
 
-    const tiltSuccessData = {
-      labels: [
-        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
-          T.translate(`SuccessfulTilt.rightAngle.${this.props.language}`),
-          T.translate(`SuccessfulTilt.rightDuration.${this.props.language}`)],
-        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
-          T.translate(`SuccessfulTilt.rightAngle.${this.props.language}`),
-          T.translate(`SuccessfulTilt.wrongDuration.${this.props.language}`)],
-        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
-          T.translate(`SuccessfulTilt.rightDuration.${this.props.language}`),
-          T.translate(`SuccessfulTilt.wrongAngle.${this.props.language}`)],
-        T.translate(`SuccessfulTilt.tiltNotMade.${this.props.language}`),
-      ],
-      datasets: [
-        {
-          data: [
-            36, 12, 15, 8,
-          ],
-          fill: true,
-          backgroundColor: [
-            'green',
-            'yellow',
-            'orange',
-            'red',
-          ],
-          hoverBackgroundColor: [
-            'green',
-            'yellow',
-            'orange',
-            'red',
-          ],
-          lineTension: 0,
-        },
-      ],
-    };
-
-    const tiltSuccessOptions = {
-      legend: {
-        display: false,
-      },
-      scales: {
-        xAxes: [{
-          categoryPercentage: 1.0,
-          barPercentage: 1.0,
-        }],
-        yAxes: [{
-          ticks: {
-            min: 0,
-            max: 50,
-          },
-        }],
-      },
-    };
-
     const minOptions = {
       tooltips: {
         callbacks: {
@@ -183,7 +130,7 @@ class DailyResults extends Component {
           date={this.props.date}
         />
 
-        <Chart type="bar" data={tiltSuccessData} options={tiltSuccessOptions} />
+        <DailySuccessTilt />
 
         <RecGoalProgress
           condition={this.props.reduceWeight}

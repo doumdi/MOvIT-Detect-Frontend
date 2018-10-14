@@ -13,6 +13,7 @@ import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import GoalChart from './goalChart';
 import RecGoalChart from './recGoalChart';
+import MonthlySuccessTilt from './monthlySuccessTilt';
 
 class MonthlyResults extends Component {
   static propTypes = {
@@ -208,93 +209,6 @@ class MonthlyResults extends Component {
       ],
     };
 
-    const tiltSuccessData = {
-      labels: [
-        '1', '2', '3', '4', '5',
-        '6', '7', '8', '9', '10',
-        '11', '12', '13', '14', '15',
-        '16', '17', '18', '19', '20',
-        '21', '22', '23', '24', '25',
-        '26', '27', '28', '29', '30',
-      ],
-      datasets: [
-        {
-          label: T.translate(`SuccessfulTilt.tiltSucessful.${this.props.language}`),
-          lineTension: 0,
-          data: [
-            36, 40, 27, 38, 42,
-            55, 40, 28, 32, 26,
-            55, 28, 31, 22, 25,
-            34, 36, 30, 21, 24,
-            56, 28, 31, 32, 8,
-            20, 26, 30, 21, 24,
-          ],
-          fill: true,
-          borderColor: 'greend',
-          backgroundColor: 'green',
-        },
-        {
-          label: T.translate(`SuccessfulTilt.tiltBadDuration.${this.props.language}`),
-          lineTension: 0,
-          data: [
-            26, 28, 31, 32, 30,
-            34, 36, 30, 21, 24,
-            25, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            8, 26, 30, 21, 24,
-            36, 40, 27, 38, 42,
-          ],
-          fill: true,
-          borderColor: 'yellow',
-          backgroundColor: 'yellow',
-        },
-        {
-          label: T.translate(`SuccessfulTilt.tiltBadAngle.${this.props.language}`),
-          lineTension: 0,
-          data: [
-            26, 28, 31, 32, 24,
-            34, 36, 30, 21, 24,
-            25, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            24, 26, 30, 21, 24,
-            36, 40, 27, 38, 42,
-          ],
-          fill: true,
-          borderColor: 'orange',
-          backgroundColor: 'orange',
-        },
-        {
-          label: T.translate(`SuccessfulTilt.tiltNotMade.${this.props.language}`),
-          lineTension: 0,
-          data: [
-            26, 28, 31, 32, 16,
-            4, 36, 30, 21, 24,
-            5, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            0, 26, 30, 21, 24,
-            36, 40, 27, 38, 42,
-          ],
-          fill: true,
-          borderColor: 'red',
-          backgroundColor: 'red',
-        },
-      ],
-    };
-
-    const tiltSuccessOptions = {
-      scales: {
-        xAxes: [{
-          stacked: true,
-        }],
-        yAxes: [{
-          stacked: true,
-          ticks: {
-            min: 0,
-          },
-        }],
-      },
-    };
-
     const travelData = {
       labels: [
         '1', '2', '3', '4', '5',
@@ -448,7 +362,7 @@ class MonthlyResults extends Component {
           <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
 
-        <Chart type="bar" data={tiltSuccessData} options={tiltSuccessOptions} />
+        <MonthlySuccessTilt />
 
         <RecGoalChart
           condition={this.props.reduceWeight}
