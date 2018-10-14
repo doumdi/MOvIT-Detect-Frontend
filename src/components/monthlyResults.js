@@ -219,7 +219,7 @@ class MonthlyResults extends Component {
       ],
       datasets: [
         {
-          label: 'Bascules réalisées au bon angle et de bonne durée',
+          label: T.translate(`SuccessfulTilt.tiltSucessful.${this.props.language}`),
           lineTension: 0,
           data: [
             36, 40, 27, 38, 42,
@@ -234,7 +234,7 @@ class MonthlyResults extends Component {
           backgroundColor: 'green',
         },
         {
-          label: 'Bascules réalisées au bon angle mais de durée insuffisante',
+          label: T.translate(`SuccessfulTilt.tiltBadDuration.${this.props.language}`),
           lineTension: 0,
           data: [
             26, 28, 31, 32, 30,
@@ -249,7 +249,7 @@ class MonthlyResults extends Component {
           backgroundColor: 'yellow',
         },
         {
-          label: 'Bascules réalisées de bonne durée mais à un angle insuffisant',
+          label: T.translate(`SuccessfulTilt.tiltBadAngle.${this.props.language}`),
           lineTension: 0,
           data: [
             26, 28, 31, 32, 24,
@@ -264,7 +264,7 @@ class MonthlyResults extends Component {
           backgroundColor: 'orange',
         },
         {
-          label: 'Bascules non réalisées',
+          label: T.translate(`SuccessfulTilt.tiltNotMade.${this.props.language}`),
           lineTension: 0,
           data: [
             26, 28, 31, 32, 16,

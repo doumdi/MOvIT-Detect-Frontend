@@ -99,10 +99,16 @@ class DailyResults extends Component {
 
     const tiltSuccessData = {
       labels: [
-        ['Bascules réalisées', 'bon angle', 'bonne durée'],
-        ['Bascules réalisées', 'bon angle', 'durée insuffisante'],
-        ['Bascules réalisées', 'bonne durée', 'angle insuffisant'],
-        'Bascules non réalisées',
+        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
+          T.translate(`SuccessfulTilt.rightAngle.${this.props.language}`),
+          T.translate(`SuccessfulTilt.rightDuration.${this.props.language}`)],
+        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
+          T.translate(`SuccessfulTilt.rightAngle.${this.props.language}`),
+          T.translate(`SuccessfulTilt.wrongDuration.${this.props.language}`)],
+        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
+          T.translate(`SuccessfulTilt.rightDuration.${this.props.language}`),
+          T.translate(`SuccessfulTilt.wrongAngle.${this.props.language}`)],
+        T.translate(`SuccessfulTilt.tiltNotMade.${this.props.language}`),
       ],
       datasets: [
         {

@@ -270,6 +270,36 @@ dailyResults:
     EN: "Pressure center"
     FR: "Centre de pression"
 
+SuccessfulTilt:
+  tiltMade:
+    FR: "Bascule réalisées"
+    EN: "Tilt made"
+  rightAngle:
+    FR: "bon angle"
+    EN: "right angle"
+  rightDuration:
+    FR: "bonne durée"
+    EN: "right duration"
+  wrongAngle:
+    FR: "angle insuffisant"
+    EN: "insufficient angle"
+  wrongDuration:
+    FR: "durée insuffisante"
+    EN: "insufficient duration"
+  tiltNotMade:
+    FR: "Bascules non réalisées"
+    EN: "Tilt not made"
+  tiltSucessful:
+    FR: "Bascules réalisées au bon angle et de bonne durée"
+    EN: "Tilt made at the right angle and the right duration"
+  tiltBadAngle:
+    FR: "Bascules réalisées de bonne durée mais à un angle insuffisant"
+    EN: "Tile made for the right duration but at an insufficient angle"
+  tiltBadDuration:
+    FR: "Bascules réalisées au bon angle mais de durée insuffisante"
+    EN: "Tilt made at the right angle but for an insufficient duration"
+
+
 monthlyResults:
   FR: "Mes résultats mensuels"
   EN: "My monthly results"
