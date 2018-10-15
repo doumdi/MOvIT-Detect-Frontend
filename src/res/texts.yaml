@@ -275,17 +275,17 @@ SuccessfulTilt:
     FR: "Bascule réalisées"
     EN: "Tilt made"
   rightAngle:
-    FR: "bon angle"
-    EN: "right angle"
+    FR: "Bon angle"
+    EN: "Right angle"
   rightDuration:
-    FR: "bonne durée"
-    EN: "right duration"
+    FR: "Bonne durée"
+    EN: "Right duration"
   wrongAngle:
-    FR: "angle insuffisant"
-    EN: "insufficient angle"
+    FR: "Angle insuffisant"
+    EN: "Insufficient angle"
   wrongDuration:
-    FR: "durée insuffisante"
-    EN: "insufficient duration"
+    FR: "Durée insuffisante"
+    EN: "Insufficient duration"
   tiltNotMade:
     FR: "Bascules non réalisées"
     EN: "Tilt not made"
