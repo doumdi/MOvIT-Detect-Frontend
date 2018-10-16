@@ -31,7 +31,7 @@ export default class LogoNumber extends Component {
           <input
             type="number" placeholder={this.props.placeHolder} className="form-control"
             onChange={e => this.props.onChange(e.target.value)}
-            value={this.props.value}
+            value={this.props.value ? this.props.value : ''}
           />
         </div>
       </div>

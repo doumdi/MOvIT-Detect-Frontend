@@ -40,7 +40,7 @@ class Goal extends Component {
     easeTransfers: PropTypes.bool.isRequired,
     improveComfort: PropTypes.bool.isRequired,
     other: PropTypes.bool.isRequired,
-    otherRecommendationsTitle: PropTypes.bool,
+    otherRecommendationsTitle: PropTypes.string,
     reduceSlidingRest: PropTypes.bool.isRequired,
     reduceSwelling: PropTypes.bool.isRequired,
     reducePain: PropTypes.bool.isRequired,

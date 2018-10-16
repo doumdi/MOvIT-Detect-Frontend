@@ -52,7 +52,7 @@ class TextRecommendation extends Component {
             inputId="activeRecCheck"
             label={this.props.title}
             onChange={e => this.affectDefaultValue(e.checked)}
-            checked={this.props.recActive}
+            checked={this.props.recActive ? this.props.recActive : false}
           />
           <label htmlFor="activeRecCheck">{this.props.title}</label>
         </div>
@@ -62,7 +62,7 @@ class TextRecommendation extends Component {
             <InputText
               id="textRec" type="text" className="form-control"
               onChange={e => this.props.onChangeValue(e.target.value)}
-              value={this.props.value}
+              value={this.props.value ? this.props.value : ''}
               placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
             />
           </div>

@@ -59,14 +59,14 @@ class MonthlyResults extends Component {
   }
   getAngleMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    this.setState({ angleLoading: true });
+    // this.setState({ angleLoading: true });
     axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
       .then((response) => { this.formatAngleChartData(response.data); })
       .catch(error => console.log(error));
   }
   getSitMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    this.setState({ sitLoading: true });
+    // this.setState({ sitLoading: true });
     axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header)
       .then((response) => { this.formatSitChartData(response.data); })
       .catch(error => console.log(error));

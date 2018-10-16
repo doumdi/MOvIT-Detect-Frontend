@@ -68,7 +68,6 @@ class Wifi extends Component {
         this.setState({ ...this.state, connecting: false, connected: false });
       } else {
         tries += 1;
-        console.log(tries);
         axios.get(`${URL}wifi`)
         .then((response) => {
           if (response.data.connected) {
@@ -100,7 +99,7 @@ class Wifi extends Component {
             </h2>
             : [
               (this.state.connecting ?
-                <Loading />
+                <Loading key="loading" />
                 :
                 <div>
                   <div className="form-horizontal">
