@@ -13,6 +13,7 @@ import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import GoalChart from './goalChart';
 import RecGoalChart from './recGoalChart';
+import MonthlySuccessTilt from './monthlySuccessTilt';
 
 class MonthlyResults extends Component {
   static propTypes = {
@@ -360,6 +361,8 @@ class MonthlyResults extends Component {
         {!this.state.sitLoading &&
           <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
+
+        <MonthlySuccessTilt />
 
         <RecGoalChart
           condition={this.props.reduceWeight}

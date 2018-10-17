@@ -46,8 +46,6 @@ class Recommendation extends Component {
     other: PropTypes.bool.isRequired,
     otherRecommendationsTitle: PropTypes.string,
     reduceSlidingRest: PropTypes.bool.isRequired,
-    reduceSwelling: PropTypes.bool.isRequired,
-    reducePain: PropTypes.bool.isRequired,
     changeReduceWeight: PropTypes.func.isRequired,
     changeReduceSlidingMoving: PropTypes.func.isRequired,
     changeTiltAngleMoving: PropTypes.func.isRequired,

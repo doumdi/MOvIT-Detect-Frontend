@@ -14,6 +14,7 @@ import { URL } from '../redux/applicationReducer';
 import GoalProgress from './goalProgress';
 import RecGoalProgress from './recGoalProgress';
 import PressureCenter from './pressureCenter';
+import DailySuccessTilt from './dailySuccessTilt';
 
 class DailyResults extends Component {
   static propTypes = {
@@ -128,6 +129,9 @@ class DailyResults extends Component {
           title={T.translate(`dailyResults.pressureCenter.${this.props.language}`)}
           date={this.props.date}
         />
+
+        <DailySuccessTilt />
+
         <RecGoalProgress
           condition={this.props.reduceWeight}
           title={T.translate(`dailyResults.pressure.${this.props.language}`)}
