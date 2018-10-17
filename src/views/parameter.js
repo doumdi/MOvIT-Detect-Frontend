@@ -76,7 +76,6 @@ class Parameters extends Component {
 
   render() {
     const style = {
-      height: '80vh',
       content: {
         textAlign: 'center',
       },
@@ -86,10 +85,9 @@ class Parameters extends Component {
     };
 
     return (
-      <div style={style}>
+      <div style={style} className="row mt-3">
         <legend className="text-center header"><h2>{T.translate(`parameters.${this.props.language}`)}</h2></legend>
-        <div className="col-sm-2" />
-        <div className="col-sm-8">
+        <div className="col-12">
           <PreventPermission
             permission={this.props.dataAgreement}
             permissionTitle={T.translate(`parameters.dataAgreement.${this.props.language}`)}

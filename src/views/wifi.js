@@ -86,9 +86,6 @@ class Wifi extends Component {
   }
 
   render() {
-    const style = {
-      cursor: 'pointer',
-    };
     return (
       <div className="mt-3">
         <div className="col-md-12">
@@ -96,7 +93,9 @@ class Wifi extends Component {
           {this.state.connected
             ? <h2 className="text-center" >
               {T.translate(`wifi.connected.${this.props.language}`)}
-              <a style={style} onClick={() => this.enableConnection()}>{T.translate(`wifi.changeWifi.${this.props.language}`)}</a>
+              <button type="button" className="btn btn-link" onClick={() => this.enableConnection()}>
+                <h2>{T.translate(`wifi.changeWifi.${this.props.language}`)}</h2>
+              </button>
             </h2>
             : [
               (this.state.connecting ?
