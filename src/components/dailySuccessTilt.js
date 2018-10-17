@@ -1,18 +1,44 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
+import { URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
 
 class DailySuccessTilt extends Component {
 
   static propTypes = {
     language: PropTypes.string.isRequired,
-    // header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    date: PropTypes.instanceOf(Date),
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   }
 
-  render() {
-    const tiltSuccessData = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dayData: [],
+      date: props.date,
+      data: null,
+      loading: true,
+    };
+    this.getData(this.state.date);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.date !== this.state.date) {
+      this.setState({ date: nextProps.date });
+      this.getData(nextProps.date);
+    }
+  }
+
+  getData(date) {
+    axios.get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
+      .then((response) => { this.state.dayData = response.data.data; this.loadData(); });
+  }
+
+  loadData() {
+    this.state.data = {
       labels: [
         [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
           T.translate(`SuccessfulTilt.rightAngle.${this.props.language}`),
@@ -27,9 +53,7 @@ class DailySuccessTilt extends Component {
       ],
       datasets: [
         {
-          data: [
-            36, 12, 15, 8,
-          ],
+          data: this.state.dayData,
           fill: true,
           backgroundColor: [
             'green',
@@ -47,7 +71,11 @@ class DailySuccessTilt extends Component {
         },
       ],
     };
+    console.log(this.state.data);
+    this.setState({ loading: false });
+  }
 
+  render() {
     const tiltSuccessOptions = {
       legend: {
         display: false,
@@ -60,14 +88,17 @@ class DailySuccessTilt extends Component {
         yAxes: [{
           ticks: {
             min: 0,
-            max: 50,
           },
         }],
       },
     };
 
     return (
-      <Chart type="bar" data={tiltSuccessData} options={tiltSuccessOptions} />
+      <div>
+        {!this.state.loading &&
+          <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
+        }
+      </div>
     );
   }
 }
