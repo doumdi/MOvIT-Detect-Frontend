@@ -23,6 +23,7 @@ export default class RecPanel extends Component {
         padding: '5px',
         backgroundColor: 'white',
         boxShadow: '5px 5px 5px gainsboro',
+        height: '100%',
       },
     };
 
