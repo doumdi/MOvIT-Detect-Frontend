@@ -29,7 +29,7 @@ export default class LogoText extends Component {
         <span className="col-md-1 col-md-offset-2 text-center" style={style.icon}><i className={this.props.iconClass} /></span>
         <div className="col-md-6">
           <input
-            type="text" placeholder={this.props.placeHolder} className="form-control"
+            type="text" placeholder={this.props.placeHolder} className="form-control" id="logoText"
             onChange={e => this.props.onChange(e.target.value)}
             value={this.props.value}
           />
