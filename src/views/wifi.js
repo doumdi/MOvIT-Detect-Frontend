@@ -70,13 +70,13 @@ class Wifi extends Component {
         tries += 1;
         console.log(tries);
         axios.get(`${URL}wifi`)
-        .then((response) => {
-          if (response.data.connected) {
-            window.clearInterval(connectionValidation);
-            this.setState({ ...this.state, connecting: false, connected: true });
-          }
-        })
-        .catch(() => { window.clearInterval(connectionValidation); this.setState({ ...this.state, connecting: false, connected: false }); });
+          .then((response) => {
+            if (response.data.connected) {
+              window.clearInterval(connectionValidation);
+              this.setState({ ...this.state, connecting: false, connected: true });
+            }
+          })
+          .catch(() => { window.clearInterval(connectionValidation); this.setState({ ...this.state, connecting: false, connected: false }); });
       }
     }, 1000);
   }
@@ -101,8 +101,8 @@ class Wifi extends Component {
               (this.state.connecting ?
                 <Loading />
                 :
-                <div>
-                  <div className="form-horizontal">
+                <div className="row">
+                  <div className="form-horizontal mt-3 col-12 col-md-8 offset-md-2">
                     <LogoText
                       iconClass="fa fa-wifi"
                       placeHolder={T.translate(`wifi.name.${this.props.language}`)}
