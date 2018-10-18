@@ -63,25 +63,27 @@ class TiltSlidersCard extends Component {
     );
     return (
       <Card header={header} style={style.card} class="col-md-6">
-        <div className="col-md-10">
-          <TiltSliders
-            tiltFrequecy={this.props.tiltFrequecy}
-            tiltLength={this.props.tiltLength}
-            tiltAngle={this.props.tiltAngle}
-            maxAngle={this.props.maxAngle}
-            onFrequencyChange={this.props.onFrequencyChange}
-            onLengthChange={this.props.onLengthChange}
-            onAngleChange={this.props.onAngleChange}
-          />
-        </div>
-        <div className="col-md-2">
-          <img
-            src={chairImagePath}
-            width="50"
-            height="50"
-            alt="chair"
-            style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
-          />
+        <div className="row">
+          <div className="col-9">
+            <TiltSliders
+              tiltFrequecy={this.props.tiltFrequecy}
+              tiltLength={this.props.tiltLength}
+              tiltAngle={this.props.tiltAngle}
+              maxAngle={this.props.maxAngle}
+              onFrequencyChange={this.props.onFrequencyChange}
+              onLengthChange={this.props.onLengthChange}
+              onAngleChange={this.props.onAngleChange}
+            />
+          </div>
+          <div className="col-3 justify-content-center align-self-center">
+            <img
+              src={chairImagePath}
+              width="50"
+              height="50"
+              alt="chair"
+              style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
+            />
+          </div>
         </div>
       </Card>
     );
