@@ -22,20 +22,13 @@ class PreventPermission extends Component {
   };
 
   render() {
-    const style = {
-      spaceTop: {
-        marginTop: '2em',
-        display: 'flex',
-      },
-    };
-
     return (
       <div className="row">
-        <div className="col-10 offset-1" style={style.spaceTop}>
+        <div className="col-10 offset-1 mt-3 d-flex">
           <Checkbox
             inputId="agreement"
             checked={this.props.permission}
-            onChange={this.props.onPermissionChange}
+            onChange={e => this.props.onPermissionChange(e.checked)}
           />
           <label htmlFor="agreement">{this.props.permissionTitle}</label>
         </div>
