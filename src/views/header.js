@@ -33,6 +33,7 @@ class Header extends Component {
     this.props.changeToken('');
     localStorage.setItem('token', '');
     localStorage.setItem('profile', '');
+    $('.navbar-collapse').collapse('hide');
     return <Redirect to="/home" />;
   }
 
