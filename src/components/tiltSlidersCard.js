@@ -44,7 +44,6 @@ class TiltSlidersCard extends Component {
       padding: '10px',
       height: '170px',
       card: {
-        height: '150px',
         padding: '5px',
         backgroundColor: 'white',
         boxShadow: '5px 5px 5px gainsboro',
