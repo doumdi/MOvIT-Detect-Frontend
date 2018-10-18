@@ -12,7 +12,7 @@ import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
-
+import '../styles/header.css';
 
 class Header extends Component {
   static propTypes = {
@@ -76,9 +76,7 @@ class Header extends Component {
         outline: 'none',
         textAlign: 'left',
       },
-      toggle: {
-        color: 'white',
-      },
+
       toggleButton: {
         border: 'none',
       },
@@ -87,10 +85,10 @@ class Header extends Component {
       <div>
         {this.isLoggedIn()}
 
-        <nav className="navbar navbar-dark fixed-top navbar-expand-lg" style={style.navbar}>
+        <nav className="navbar fixed-top navbar-expand-lg" style={style.navbar}>
           <Link to="home" className="navbar-brand" style={style.title}>MOvIT+</Link>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler custom-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarContent"
@@ -98,7 +96,7 @@ class Header extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" style={style.toggle} />
+            <span className="navbar-toggler-icon" />
           </button>
 
           <div className="collapse navbar-collapse" id="navbarContent">
