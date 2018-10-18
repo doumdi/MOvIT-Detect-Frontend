@@ -175,11 +175,11 @@ class Goal extends Component {
           ? <h3 style={style.chair}>{T.translate(`goals.noRecommendations.${this.props.language}`)}</h3>
           : <div className="row" style={style.panelGroup}>
             <div className="col-12 col-md-8 offset-md-2">
-              <h2 className="ml-2 text-md-left text-center">
+              <h3 className="ml-2 text-md-left text-center">
                 {T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp; <i id="personalGoalInfo" className="fa fa-info-circle" />
-              </h2>
+              </h3>
               <PressureRecPanel />
-              <h2 className="ml-2 text-md-left text-center">{T.translate(`goals.ClinicianRecommendations.${this.props.language}`)}</h2>
+              <h3 className="ml-2 text-md-left text-center">{T.translate(`goals.ClinicianRecommendations.${this.props.language}`)}</h3>
               {this.props.reduceWeight
                 &&
                 <TiltLabels
