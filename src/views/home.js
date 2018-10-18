@@ -107,7 +107,7 @@ class Home extends Component {
           {!this.props.profile
             &&
             <div className="row">
-              <div className="col-12 col-md-4 offset-md-4">
+              <div className="col-12 col-md-4 offset-md-2">
                 <button onClick={() => this.setLoginProfile('user')} style={style.profileButton}>
                   <h2>{T.translate(`user.${this.props.language}`)}</h2>
                   <i className="fa fa-user" style={style.icons} />
@@ -120,7 +120,7 @@ class Home extends Component {
                   />
                 }
               </div>
-              <div className="col-12 col-md-4 offset-md-4">
+              <div className="col-12 col-md-4">
                 <button onClick={() => this.setLoginProfile('clinician')} style={style.profileButton} >
                   <h2>{T.translate(`clinician.${this.props.language}`)}</h2>
                   <i className="fa fa-user-md" style={style.icons} />
