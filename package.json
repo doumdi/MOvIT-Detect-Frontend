@@ -6,7 +6,7 @@
   "scripts": {
     "start": "yarn && node server.js",
     "build": "yarn && cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
-    "lint": "eslint --ext .js *.js src/",
+    "lint": "eslint --fix --ext .js *.js src/, tests/",
     "test": "jest tests/* --coverage",
     "prod": "node server.production.js",
     "pi": "NODE_ENV=pi node server.js",

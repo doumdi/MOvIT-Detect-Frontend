@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TextRecommandation from '../../src/components/textRecommendation';
 
 describe('TextRecommandation Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = TextRecommandation.WrappedComponent.propTypes;
 

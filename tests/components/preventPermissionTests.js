@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PreventPermission from '../../src/components/preventPermission';
 
 describe('PreventPermission Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = PreventPermission.WrappedComponent.propTypes;
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LogoNumber from '../../src/components/logoNumber';
 
 describe('LogoNumber Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = LogoNumber.propTypes;
 

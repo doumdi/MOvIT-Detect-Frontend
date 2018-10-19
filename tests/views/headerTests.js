@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../../src/views/header';
 
 describe('Header Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Header.WrappedComponent.propTypes;
 

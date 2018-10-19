@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import GoalProgress from '../../src/components/goalProgress';
 
 describe('GoalProgress Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = GoalProgress.WrappedComponent.propTypes;
 
