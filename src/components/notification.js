@@ -46,33 +46,22 @@ class Notification extends Component {
   }
 
   render() {
-    const style = {
-      notifs: {
-        marginTop: '1em',
-        marginBottom: '1em',
-      },
-    };
     return (
-      <div className="col-sm-12" >
-        <div className="col-sm-2" />
-        <div className="col-sm-8" style={style.notifs}>
-          <div className="col-sm-4">
-            <div className="col-sm-4" />
-            <button onClick={() => this.calibrate()} className="btn btn-lg col-sm-8">
-              {T.translate(`calibrate.${this.props.language}`)}
-            </button>
-          </div>
-          <div className="col-sm-4">
-            <div className="col-sm-2" />
-            <button onClick={() => this.turnOnNotification()} className="btn btn-lg col-sm-8">
-              {T.translate(`alert.on.${this.props.language}`)}
-            </button>
-          </div>
-          <div className="col-sm-4">
-            <button onClick={() => this.turnOffNotification()} className="btn btn-lg col-sm-8">
-              {T.translate(`alert.off.${this.props.language}`)}
-            </button>
-          </div>
+      <div className="row m-3 mt-5 ml-md-5" >
+        <div className="mb-2 mr-3" >
+          <button onClick={() => this.calibrate()} className="btn btn-lg">
+            {T.translate(`calibrate.${this.props.language}`)}
+          </button>
+        </div>
+        <div className="mr-3 mb-2">
+          <button onClick={() => this.turnOnNotification()} className="btn btn-lg">
+            {T.translate(`alert.on.${this.props.language}`)}
+          </button>
+        </div>
+        <div className="mr-3 mb-2">
+          <button onClick={() => this.turnOffNotification()} className="btn btn-lg">
+            {T.translate(`alert.off.${this.props.language}`)}
+          </button>
         </div>
         {this.state.showCountdown && <Countdown time={10} onComplete={this.calibrationCompleted} />}
       </div>

@@ -53,10 +53,10 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <div>
-        <div className="col-md-12">
+      <div className="mt-4">
+        <div className="col-12">
           <legend className="text-center header"><h2>{T.translate(`login.forgotPassword.${this.props.language}`)}</h2></legend>
-          <div>
+          <div className="mt-5">
             <div className="form-horizontal">
               <LogoText
                 iconClass="fa fa-puzzle-piece"

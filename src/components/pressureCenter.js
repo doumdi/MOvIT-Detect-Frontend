@@ -64,44 +64,43 @@ class PressureCenter extends Component {
       },
     };
     return (
-      <div className="col-sm-8" style={style}>
+      <div style={style}>
         {this.state.points.length > 0 &&
           <div>
             <br />
             <h4>{this.props.title}</h4>
             <hr />
-            <VictoryChart
-              theme={VictoryTheme.material}
-              domain={{ x: [-4, 4], y: [-7, 7] }}
-            >
-              <VictoryScatter
-                style={{ data: { fill: 'green' } }}
-                size={10}
-                data={[
-                  { x: 0, y: 0 },
-                ]}
-              />
-              <VictoryScatter
-                style={{ data: { fill: '#c43a31' } }}
-                size={7}
-                data={[
-                  this.state.currentPoint,
-                ]}
-              />
-            </VictoryChart>
-            <div className="col-sm-12">
-              <div className="col-sm-4" />
-              <div className="col-sm-4">
-                <Slider
-                  min={0} max={this.state.points.length - 1}
-                  style={{ marginTop: '2em' }}
-                  value={this.state.index}
-                  onChange={e => this.setIndex(e.value)}
+            <div className="col-12 col-md-6 offset-md-3">
+              <VictoryChart
+                theme={VictoryTheme.material}
+                domain={{ x: [-4, 4], y: [-7, 7] }}
+              >
+                <VictoryScatter
+                  style={{ data: { fill: 'green' } }}
+                  size={10}
+                  data={[
+                    { x: 0, y: 0 },
+                  ]}
                 />
-              </div>
-              <div className="col-sm-4">
-                <h3>{milliToTimeString(this.state.time)}</h3>
-              </div>
+                <VictoryScatter
+                  style={{ data: { fill: '#c43a31' } }}
+                  size={7}
+                  data={[
+                    this.state.currentPoint,
+                  ]}
+                />
+              </VictoryChart>
+            </div>
+            <div className="col-8 offset-2 col-md-4 offset-md-4">
+              <Slider
+                min={0} max={this.state.points.length - 1}
+                style={{ marginTop: '2em' }}
+                value={this.state.index}
+                onChange={e => this.setIndex(e.value)}
+              />
+            </div>
+            <div className="col-6 offset-3 text-center">
+              <h3>{milliToTimeString(this.state.time)}</h3>
             </div>
           </div>
         }

@@ -70,7 +70,7 @@ class Configuration extends Component {
   render() {
     return (
       <div>
-        <div className="col-md-12">
+        <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3">
           <div className="form-horizontal">
             <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
             <Notification />
