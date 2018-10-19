@@ -1,14 +1,28 @@
 import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import Enzyme, { shallow } from 'enzyme';
-import LogoNumber from '../../src/components/logoNumber';
 import Adapter from 'enzyme-adapter-react-16';
+import configureMockStore from 'redux-mock-store';
+import toJson from 'enzyme-to-json';
+import LogoNumber from '../../src/components/logoNumber';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('LogoNumber Tests', () => {
-  it('should have proptypes', function () {
+  const initialState = { applicationReducer: { language: 'en' } };
+  const mockStore = configureMockStore();
+  const store = mockStore(initialState);
+  const props = {
+    value: 20,
+    language: 'en',
+  };
+
+  it('should match the snapshot', () => {
+    const wrapper = shallow(<LogoNumber store={store} {...props} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = LogoNumber.propTypes;
 

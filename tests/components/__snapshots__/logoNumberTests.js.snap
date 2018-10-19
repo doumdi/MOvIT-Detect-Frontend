@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LogoNumber Tests should match the snapshot 1`] = `
+<div
+  className="form-group"
+>
+  <span
+    className="col-md-1 col-md-offset-2 text-center"
+    style={
+      Object {
+        "fontSize": "large",
+        "paddingTop": "6px",
+      }
+    }
+  >
+    <i />
+  </span>
+  <div
+    className="col-md-6"
+  >
+    <input
+      className="form-control"
+      id="logoNumber"
+      onChange={[Function]}
+      type="number"
+      value={20}
+    />
+  </div>
+</div>
+`;
