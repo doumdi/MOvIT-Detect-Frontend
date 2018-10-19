@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ConfigurationActions } from '../redux/configurationReducer';
 import { T } from '../utilities/translator';
-import Notification from '../components/notification';
 import LogoText from '../components/logoText';
 import LogoNumber from '../components/logoNumber';
 import SubmitButtons from '../components/submitButtons';
@@ -73,7 +72,6 @@ class Configuration extends Component {
         <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3">
           <div className="form-horizontal">
             <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
-            <Notification />
             <LogoText
               iconClass="fa fa-user"
               placeHolder={T.translate(`configurations.name.${this.props.language}`)}

@@ -145,6 +145,9 @@ class Header extends Component {
                 }
               </button>
             </li>
+            <li className="nav navbar-nav pl-1">
+              <Link to="debug" style={style.link}><i className="fa fa-cog" /></Link>
+            </li>
             {this.props.profile
               &&
               <li className="nav navbar-nav pl-1">
@@ -156,7 +159,6 @@ class Header extends Component {
                 </button>
               </li>
             }
-
           </div>
         </nav>
       </div >
