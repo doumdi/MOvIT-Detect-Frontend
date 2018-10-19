@@ -1,3 +1,10 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
