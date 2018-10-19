@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AngleRecommandation Tests should match the snapshot when the recommandation is active 1`] = `
+exports[`TextRecommandation Tests should match the snapshot when the recommandation is active 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -23,27 +23,36 @@ exports[`AngleRecommandation Tests should match the snapshot when the recommanda
       value={null}
     />
     <label
+      className="mt-1"
       htmlFor="activeRecCheck"
     >
       Test
     </label>
     <div
-      className="col-12 col-md-10 ml-3"
+      className="row"
     >
-      <SliderValue
-        max={45}
-        min={0}
-        onChange={[Function]}
-        title="recommendations.angle.en"
-        unit="°"
-        value={0}
-      />
+      <div
+        className="col-12 col-md-6 ml-4 mb-1"
+      >
+        <InputText
+          className="form-control"
+          id="textRec"
+          keyfilter={null}
+          onChange={[Function]}
+          onInput={null}
+          onKeyPress={null}
+          placeholder="recommendations.tiltAsNeeded.en"
+          type="text"
+          validateOnly={false}
+          value={0}
+        />
+      </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`AngleRecommandation Tests should match the snapshot when the recommandation is inactive 1`] = `
+exports[`TextRecommandation Tests should match the snapshot when the recommandation is inactive 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -58,7 +67,7 @@ exports[`AngleRecommandation Tests should match the snapshot when the recommanda
       inputId="activeRecCheck"
       label="Test"
       name={null}
-      onChange={null}
+      onChange={[Function]}
       onContextMenu={null}
       onMouseDown={null}
       readOnly={false}
@@ -66,6 +75,7 @@ exports[`AngleRecommandation Tests should match the snapshot when the recommanda
       value={null}
     />
     <label
+      className="mt-1"
       htmlFor="activeRecCheck"
     >
       Test
