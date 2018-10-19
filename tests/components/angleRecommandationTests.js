@@ -24,8 +24,8 @@ describe('AngleRecommandation Tests', () => {
     maxAngle: 45,
     value: 0,
     language: 'en',
-    onChangeActive: onChangeActiveSpy,
-    onChangeValue: onChangeValueSpy,
+    onChangeActive: (value) => { onChangeActiveSpy(value); },
+    onChangeValue: (value) => { onChangeValueSpy(value); },
   };
 
   it('should have proptypes', () => {
@@ -47,15 +47,19 @@ describe('AngleRecommandation Tests', () => {
   it('should trigger onChangeActive when simulating a change event on checkbox', () => {
     const wrapper = shallow(<AngleRecommendation store={store} {...props} />).dive();
 
-    wrapper.find(Checkbox).simulate('change', {});
+    wrapper.find(Checkbox).simulate('change', { checked: false });
+
     expect(onChangeActiveSpy.calledOnce).toEqual(true);
+    expect(onChangeActiveSpy.getCalls()[0].args[0]).toEqual(false);
   });
 
   it('should trigger onChangeValue when simulating a change event on SliderValue', () => {
     const wrapper = shallow(<AngleRecommendation store={store} {...props} />).dive();
 
-    wrapper.find(SliderValue).simulate('change', {});
+    wrapper.find(SliderValue).simulate('change', 10);
+
     expect(onChangeValueSpy.calledOnce).toEqual(true);
+    expect(onChangeValueSpy.getCalls()[0].args[0]).toEqual(10);
   });
 
   it('should match the snapshot when the recommandation is active', () => {
