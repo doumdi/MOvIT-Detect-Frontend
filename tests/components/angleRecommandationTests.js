@@ -5,6 +5,7 @@ import SliderValue from '../../src/components/sliderValue';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import configureMockStore from "redux-mock-store";
 
+import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -13,23 +14,20 @@ import toJson from 'enzyme-to-json';
 Enzyme.configure({ adapter: new Adapter() })
 
 describe('AngleRecommandation Tests', () => {
+  const onChangeActiveSpy = sinon.spy()
+  const onChangeValueSpy = sinon.spy()
   const initialState = {applicationReducer: {language: 'en'}}
   const mockStore = configureMockStore()
   const store = mockStore(initialState)
-  const activeProps = {
+  const props = {
     recActive: true,
     title: 'Test',
     maxAngle: 45,
-    value: 10,
+    value: 0,
     language: 'en',
-  };
-  const inactiveProps = {
-    recActive: false,
-    title: 'Test',
-    maxAngle: 45,
-    value: 10,
-    language: 'en',
-  };
+    onChangeActive: onChangeActiveSpy,
+    onChangeValue: onChangeValueSpy,
+  }
 
   it('should have proptypes', function () {
     const actualValue = AngleRecommendation.WrappedComponent.propTypes;
@@ -47,54 +45,35 @@ describe('AngleRecommandation Tests', () => {
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   })
 
-  it('should render the component', () => {
-    const wrapper = shallow(<AngleRecommendation store={store} {...activeProps}/>).dive();
+  it('should trigger onChangeActive when simulating a change event on checkbox', () => {
+    const wrapper = shallow(<AngleRecommendation store={store} {...props}/>).dive()
 
-    expect(wrapper.length).toEqual(1)
-    expect(wrapper.find('.col-sm-12').length).toEqual(1)
-    expect(wrapper.find('.col-sm-4').length).toEqual(1)
-    expect(wrapper.find('.col-sm-4').props().style).toEqual({paddingLeft: '0'})
-    expect(wrapper.find('label').length).toEqual(1)
-    expect(wrapper.find('label').text()).toEqual('Test')
-  });
+    wrapper.find(Checkbox).simulate('change', {})
+    expect(onChangeActiveSpy.calledOnce).toEqual(true)
+  })
 
-  it('should render the checkbox when the recommandation is active', () => {
-    const wrapper = shallow(<AngleRecommendation store={store} {...activeProps}/>).dive();
+  it('should trigger onChangeValue when simulating a change event on SliderValue', () => {
+    const wrapper = shallow(<AngleRecommendation store={store} {...props}/>).dive()
 
-    expect(wrapper.find(Checkbox).props().checked).toEqual(true)
-    expect(wrapper.find(Checkbox).length).toEqual(1)
-    expect(wrapper.find(Checkbox).props().label).toEqual('Test')
-    expect(wrapper.find(Checkbox).props().inputId).toEqual('activeRecCheck')
-  });
+    wrapper.find(SliderValue).simulate('change', {})
+    expect(onChangeValueSpy.calledOnce).toEqual(true)
+  })
 
-  it('should render the checkbox when the recommandation is inactive', () => {
-    const wrapper = shallow(<AngleRecommendation store={store} {...inactiveProps}/>).dive();
+  it('should match the snapshot when the recommandation is active', () => {
+    const wrapper = shallow(<AngleRecommendation store={store} {...props}/>).dive()
 
-    expect(wrapper.find(Checkbox).props().checked).toEqual(false)
-    expect(wrapper.find(Checkbox).length).toEqual(1)
-    expect(wrapper.find(Checkbox).props().label).toEqual('Test')
-    expect(wrapper.find(Checkbox).props().inputId).toEqual('activeRecCheck')
-  });
+    expect(toJson(wrapper)).toMatchSnapshot()
+  })
 
-  it('should render the SliderValue when the recommandation is active', () => {
-    const wrapper = shallow(<AngleRecommendation store={store} {...activeProps}/>).dive();
-
-    expect(wrapper.find(SliderValue).length).toEqual(1)
-    expect(wrapper.find(SliderValue).props().min).toEqual(0)
-    expect(wrapper.find(SliderValue).props().max).toEqual(45)
-    expect(wrapper.find(SliderValue).props().value).toEqual(10)
-    expect(wrapper.find(SliderValue).props().unit).toEqual('°')
-    expect(wrapper.find(SliderValue).props().title).toEqual('recommendations.angle.en')
-  });
-
-  it('should not render the SliderValue when the recommandation is inactive', () => {
-    const wrapper = shallow(<AngleRecommendation store={store} {...inactiveProps}/>).dive();
-
-    expect(wrapper.find(SliderValue).length).toEqual(0)
-  });
-
-  it('should match the snapshot', () => {
-    const wrapper = shallow(<AngleRecommendation store={store} {...activeProps}/>).dive();
+  it('should match the snapshot when the recommandation is inactive', () => {
+    const inactiveProps = {
+      recActive: false,
+      title: 'Test',
+      maxAngle: 45,
+      value: 10,
+      language: 'en',
+    }
+    const wrapper = shallow(<AngleRecommendation store={store} {...inactiveProps}/>).dive()
 
     expect(toJson(wrapper)).toMatchSnapshot()
   })
