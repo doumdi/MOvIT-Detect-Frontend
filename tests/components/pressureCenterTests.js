@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PressureCenter from '../../src/components/pressureCenter';
 
 describe('PressureCenter Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = PressureCenter.propTypes;
 

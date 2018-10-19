@@ -6,13 +6,12 @@
   "scripts": {
     "start": "yarn && node server.js",
     "build": "yarn && cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
-    "lint": "eslint --ext .js *.js src/",
+    "lint": "eslint --fix --ext .js *.js src/, tests/",
     "test": "jest tests/* --coverage",
     "prod": "node server.production.js",
     "pi": "NODE_ENV=pi node server.js",
     "local": "NODE_ENV=local node server.js",
-    "precommit": "yarn lint",
-    "prepush": "yarn test",
+    "prepush": "yarn lint && yarn test",
     "startDemo": "yarn && NODE_ENV=demo node server.js"
   },
   "repository": {
@@ -73,6 +72,9 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.16.0",
     "cross-env": "^3.1.3",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-formatter-pretty": "^1.3.0",
@@ -86,6 +88,8 @@
     "jest": "^22.2.1",
     "react-test-renderer": "^16.2.0",
     "react-transform-hmr": "^1.0.4",
+    "redux-mock-store": "^1.5.3",
+    "sinon": "^7.0.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   }

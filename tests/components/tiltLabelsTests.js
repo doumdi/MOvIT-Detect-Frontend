@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TiltLabels from '../../src/components/tiltLabels';
 
 describe('TiltLabels Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = TiltLabels.WrappedComponent.propTypes;
 

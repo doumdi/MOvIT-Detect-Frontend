@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Footer from '../../src/views/footer';
 
 describe('Footer Tests', () => {
-  it('should not have proptypes', function () {
+  it('should not have proptypes', () => {
     // Actual value
     const actualValue = Footer.propTypes;
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Goal from '../../src/views/goal';
 
 describe('Goal Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Goal.WrappedComponent.propTypes;
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Recommendation from '../../src/views/recommendation';
 
 describe('Recommendation Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Recommendation.WrappedComponent.propTypes;
 
