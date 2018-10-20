@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import MonthlyResults from '../../src/components/monthlyResults';
 
 describe('MonthlyResults Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = MonthlyResults.WrappedComponent.propTypes;
 

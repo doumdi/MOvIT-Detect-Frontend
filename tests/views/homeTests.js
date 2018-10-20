@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Home from '../../src/views/home';
 
 describe('Home Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Home.WrappedComponent.propTypes;
 

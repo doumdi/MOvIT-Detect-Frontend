@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LogoText from '../../src/components/logoText';
 
 describe('LogoText Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = LogoText.propTypes;
 

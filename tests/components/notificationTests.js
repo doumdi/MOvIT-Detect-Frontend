@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import GoalProgress from '../../src/components/notification';
 
 describe('Notification Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = GoalProgress.WrappedComponent.propTypes;
 
@@ -12,7 +12,7 @@ describe('Notification Tests', () => {
     const expectedValue = {
       language: PropTypes.string.isRequired,
       header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    }
+    };
 
     // Test
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

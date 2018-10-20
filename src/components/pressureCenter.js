@@ -128,10 +128,25 @@ class PressureCenter extends Component {
                   value={this.state.index}
                   onChange={e => this.setIndex(e.value)}
                 />
-              </div>
-              <div className="col-sm-4">
-                <h3>{milliToTimeString(this.state.time)}</h3>
-              </div>
+                <VictoryScatter
+                  style={{ data: { fill: '#c43a31' } }}
+                  size={7}
+                  data={[
+                    this.state.currentPoint,
+                  ]}
+                />
+              </VictoryChart>
+            </div>
+            <div className="col-8 offset-2 col-md-4 offset-md-4">
+              <Slider
+                min={0} max={this.state.points.length - 1}
+                style={{ marginTop: '2em' }}
+                value={this.state.index}
+                onChange={e => this.setIndex(e.value)}
+              />
+            </div>
+            <div className="col-6 offset-3 text-center">
+              <h3>{milliToTimeString(this.state.time)}</h3>
             </div>
           </div>
         }

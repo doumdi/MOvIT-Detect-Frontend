@@ -2,6 +2,7 @@
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
  * @author Austin Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -24,32 +25,26 @@ class AngleRecommendation extends Component {
   }
 
   render() {
-    const style = {
-      stickLeft: {
-        paddingLeft: '0',
-      },
-    };
-
     return (
-      <div>
-        <div className="col-sm-12">
-          <div className="col-sm-4" style={style.stickLeft}>
-            <Checkbox
-              inputId="activeRecCheck"
-              label={this.props.title}
-              onChange={e => this.props.onChangeActive(e.checked)}
-              checked={this.props.recActive}
-            />
-            <label htmlFor="activeRecCheck">{this.props.title}</label>
-          </div>
-        </div>
-        {this.props.recActive
-        &&
-          <SliderValue
-            min={0} max={this.props.maxAngle} onChange={this.props.onChangeValue}
-            value={this.props.value} unit="°" title={T.translate(`recommendations.angle.${this.props.language}`)}
+      <div className="pt-2 pl-3 row">
+        <div className="col-11 pl-0 mt-1">
+          <Checkbox
+            inputId="activeRecCheck"
+            label={this.props.title}
+            onChange={this.props.onChangeActive}
+            checked={this.props.recActive}
           />
-        }
+          <label htmlFor="activeRecCheck">{this.props.title}</label>
+          {this.props.recActive
+            &&
+            <div className="col-12 col-md-10 ml-3">
+              <SliderValue
+                min={0} max={this.props.maxAngle} onChange={this.props.onChangeValue}
+                value={this.props.value} unit="°" title={T.translate(`recommendations.angle.${this.props.language}`)}
+              />
+            </div>
+          }
+        </div>
       </div>
     );
   }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Graphic from '../../src/views/graphic';
 
 describe('Graphic Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Graphic.WrappedComponent.propTypes;
 
