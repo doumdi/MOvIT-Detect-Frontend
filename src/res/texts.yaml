@@ -272,7 +272,7 @@ dailyResults:
 
 SuccessfulTilt:
   tiltMade:
-    FR: "Bascule réalisées"
+    FR: "Bascules réalisées"
     EN: "Tilt made"
   rightAngle:
     FR: "Bon angle"
