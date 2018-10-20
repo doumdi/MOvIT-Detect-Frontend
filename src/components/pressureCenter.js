@@ -119,27 +119,9 @@ class PressureCenter extends Component {
                 ]}
               />
             </VictoryChart>
-            <div className="col-sm-12">
-              <div className="col-sm-4" />
-              <div className="col-sm-4">
-                <Slider
-                  min={0} max={this.state.centers.length - 1}
-                  style={{ marginTop: '2em' }}
-                  value={this.state.index}
-                  onChange={e => this.setIndex(e.value)}
-                />
-                <VictoryScatter
-                  style={{ data: { fill: '#c43a31' } }}
-                  size={7}
-                  data={[
-                    this.state.currentPoint,
-                  ]}
-                />
-              </VictoryChart>
-            </div>
             <div className="col-8 offset-2 col-md-4 offset-md-4">
               <Slider
-                min={0} max={this.state.points.length - 1}
+                min={0} max={this.state.centers.length - 1}
                 style={{ marginTop: '2em' }}
                 value={this.state.index}
                 onChange={e => this.setIndex(e.value)}
