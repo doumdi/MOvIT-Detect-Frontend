@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TextRecommandation Tests should match the snapshot when the recommandation is active 1`] = `
+exports[`OtherRecommendation Tests should match the snapshot when the recommandation is active 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -13,7 +13,7 @@ exports[`TextRecommandation Tests should match the snapshot when the recommandat
       disabled={false}
       id={null}
       inputId="activeRecCheck"
-      label="Test"
+      label="Recommandation value"
       name={null}
       onChange={[Function]}
       onContextMenu={null}
@@ -26,11 +26,27 @@ exports[`TextRecommandation Tests should match the snapshot when the recommandat
       className="mt-1"
       htmlFor="activeRecCheck"
     >
-      Test
+      Recommandation value
     </label>
     <div
       className="row"
     >
+      <div
+        className="col-12 col-md-6 ml-4 mb-1"
+      >
+        <InputText
+          className="form-control"
+          id="otherRec"
+          keyfilter={null}
+          onChange={[Function]}
+          onInput={null}
+          onKeyPress={null}
+          placeholder="recommendations.otherTitle.en"
+          type="text"
+          validateOnly={false}
+          value="Recommandation title"
+        />
+      </div>
       <div
         className="col-12 col-md-6 ml-4 mb-1"
       >
@@ -52,7 +68,7 @@ exports[`TextRecommandation Tests should match the snapshot when the recommandat
 </div>
 `;
 
-exports[`TextRecommandation Tests should match the snapshot when the recommandation is inactive 1`] = `
+exports[`OtherRecommendation Tests should match the snapshot when the recommandation is inactive 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -65,7 +81,7 @@ exports[`TextRecommandation Tests should match the snapshot when the recommandat
       disabled={false}
       id={null}
       inputId="activeRecCheck"
-      label="Test"
+      label="Recommandation value"
       name={null}
       onChange={[Function]}
       onContextMenu={null}
@@ -78,7 +94,7 @@ exports[`TextRecommandation Tests should match the snapshot when the recommandat
       className="mt-1"
       htmlFor="activeRecCheck"
     >
-      Test
+      Recommandation value
     </label>
   </div>
 </div>

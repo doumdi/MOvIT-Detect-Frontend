@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import SliderValue from '../components/sliderValue';
+import SliderValue from './sliderValue';
 import { T } from '../utilities/translator';
 
 

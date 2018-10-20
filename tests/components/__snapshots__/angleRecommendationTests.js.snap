@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AngleRecommandation Tests should match the snapshot when the recommandation is active 1`] = `
+exports[`AngleRecommandation Tests should match the snapshot when the recommendation is active 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -43,7 +43,7 @@ exports[`AngleRecommandation Tests should match the snapshot when the recommanda
 </div>
 `;
 
-exports[`AngleRecommandation Tests should match the snapshot when the recommandation is inactive 1`] = `
+exports[`AngleRecommandation Tests should match the snapshot when the recommendation is inactive 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
