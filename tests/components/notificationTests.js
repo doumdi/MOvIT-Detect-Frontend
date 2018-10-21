@@ -1,20 +1,86 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
-import GoalProgress from '../../src/components/notification';
+import configureMockStore from 'redux-mock-store';
+import sinon from 'sinon';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json';
+
+import Notification from '../../src/components/notification';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Notification Tests', () => {
-  it('should have proptypes', () => {
-    // Actual value
-    const actualValue = GoalProgress.WrappedComponent.propTypes;
+  let wrapper;
 
-    // Expected value
+  const initialState = { applicationReducer: { language: 'en' } };
+  const mockStore = configureMockStore();
+  const store = mockStore(initialState);
+  const props = {
+    language: 'en',
+  };
+
+  beforeEach(() => {
+    wrapper = shallow(<Notification store={store} {...props} />).dive();
+    wrapper.setState({ showCountdown: true });
+  });
+
+  it('should have proptypes', () => {
+    const actualValue = Notification.WrappedComponent.propTypes;
+
     const expectedValue = {
       language: PropTypes.string.isRequired,
       header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     };
 
-    // Test
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
+  });
+
+  it('should trigger calibrate when clicking on button', () => {
+    const spy = sinon.spy(wrapper.instance(), 'calibrate');
+
+    wrapper.find('#calibrate-button').simulate('click');
+
+    expect(spy.calledOnce).toEqual(true);
+  });
+
+  it('should trigger turnOnNotification when clicking on button', () => {
+    const spy = sinon.spy(wrapper.instance(), 'turnOnNotification');
+
+    wrapper.find('#turn-on-button').simulate('click');
+
+    expect(spy.calledOnce).toEqual(true);
+  });
+
+  it('should trigger turnOffNotification when clicking on button', () => {
+    const spy = sinon.spy(wrapper.instance(), 'turnOffNotification');
+
+    wrapper.find('#turn-off-button').simulate('click');
+
+    expect(spy.calledOnce).toEqual(true);
+  });
+
+  it('should hide the countdown when the calibration is completed', () => {
+    wrapper.instance().calibrationCompleted();
+
+    expect(wrapper.state('showCountdown')).toEqual(false);
+  });
+
+  it('should show the countdown when calibrating', async () => {
+    wrapper.setState({ showCountdown: false });
+    await wrapper.instance().calibrate();
+
+    expect(wrapper.state('showCountdown')).toEqual(true);
+  });
+
+  it('should match the snapshot', () => {
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
