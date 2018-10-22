@@ -32,7 +32,7 @@ export default class LogoNumber extends Component {
         </div>
         <div className="col-10 col-lg-8 d-inline-block">
           <input
-            type="number" placeholder={this.props.placeHolder} className="form-control"
+            type="number" placeholder={this.props.placeHolder} className="form-control" id="logoNumber"
             onChange={e => this.props.onChange(e.target.value)}
             value={this.props.value}
           />

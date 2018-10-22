@@ -39,6 +39,7 @@
     "babel-runtime": "^6.20.0",
     "chart.js": "^2.7.1",
     "css-loader": "^0.28.11",
+    "enzyme-to-json": "^3.3.4",
     "file-loader": "^2.0.0",
     "history": "^4.7.2",
     "i18n-react": "^0.6.3",
