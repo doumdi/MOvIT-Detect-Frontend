@@ -1,7 +1,8 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -26,19 +27,19 @@ class Notification extends Component {
     this.calibrationCompleted = this.calibrationCompleted.bind(this);
   }
 
-  turnOnNotification() {
-    axios.get(`${URL}alert?State=on`, this.props.header)
-      .then(response => console.log(response));
+  async turnOnNotification() {
+    const response = axios.get(`${URL}alert?State=on`, this.props.header);
+    console.log(response);
   }
 
-  turnOffNotification() {
-    axios.get(`${URL}alert?State=off`, this.props.header)
-      .then(response => console.log(response));
+  async turnOffNotification() {
+    const response = await axios.get(`${URL}alert?State=off`, this.props.header);
+    console.log(response);
   }
 
-  calibrate() {
-    axios.get(`${URL}calibrate`, this.props.header)
-      .then(() => this.setState({ ...this.state, showCountdown: true }));
+  async calibrate() {
+    await axios.get(`${URL}calibrate`, this.props.header);
+    this.setState({ ...this.state, showCountdown: true });
   }
 
   calibrationCompleted() {
@@ -49,17 +50,17 @@ class Notification extends Component {
     return (
       <div className="row m-3 mt-5 ml-md-5" >
         <div className="mb-2 mr-3" >
-          <button onClick={() => this.calibrate()} className="btn btn-lg">
+          <button id="calibrate-button" onClick={() => this.calibrate()} className="btn btn-lg">
             {T.translate(`calibrate.${this.props.language}`)}
           </button>
         </div>
         <div className="mr-3 mb-2">
-          <button onClick={() => this.turnOnNotification()} className="btn btn-lg">
+          <button id="turn-on-button" onClick={() => this.turnOnNotification()} className="btn btn-lg">
             {T.translate(`alert.on.${this.props.language}`)}
           </button>
         </div>
         <div className="mr-3 mb-2">
-          <button onClick={() => this.turnOffNotification()} className="btn btn-lg">
+          <button id="turn-off-button" onClick={() => this.turnOffNotification()} className="btn btn-lg">
             {T.translate(`alert.off.${this.props.language}`)}
           </button>
         </div>
