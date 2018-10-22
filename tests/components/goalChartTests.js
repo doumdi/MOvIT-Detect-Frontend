@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import GoalChart from '../../src/components/goalChart';
 
 describe('GoalChart Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = GoalChart.propTypes;
 

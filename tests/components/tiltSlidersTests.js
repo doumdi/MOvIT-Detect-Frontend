@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TiltSliders from '../../src/components/tiltSliders';
 
 describe('TiltSliders Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = TiltSliders.WrappedComponent.propTypes;
 

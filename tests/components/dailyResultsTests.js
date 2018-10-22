@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import DailyResults from '../../src/components/dailyResults';
 
 describe('DailyResults Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = DailyResults.WrappedComponent.propTypes;
 

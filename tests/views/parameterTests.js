@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Parameter from '../../src/views/parameter';
 
 describe('Parameter Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Parameter.WrappedComponent.propTypes;
 

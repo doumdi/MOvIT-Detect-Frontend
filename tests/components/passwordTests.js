@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Password from '../../src/components/password';
 
 describe('Password Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Password.WrappedComponent.propTypes;
 

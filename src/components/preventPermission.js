@@ -22,15 +22,9 @@ class PreventPermission extends Component {
   };
 
   render() {
-    const style = {
-      spaceTop: {
-        marginTop: '2em',
-      },
-    };
-
     return (
-      <div>
-        <div className="col-sm-12" style={style.spaceTop}>
+      <div className="row">
+        <div className="col-10 offset-1 mt-3 d-flex">
           <Checkbox
             inputId="agreement"
             checked={this.props.permission}
@@ -39,11 +33,11 @@ class PreventPermission extends Component {
           <label htmlFor="agreement">{this.props.permissionTitle}</label>
         </div>
         {!this.props.permission &&
-          <div>
-            <div className="col-sm-12" >
+          <div className="row">
+            <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6">
               <h5>{T.translate(`parameters.doNotReceive.${this.props.language}`)}:</h5>
             </div>
-            <div className="col-sm-12" >
+            <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6" >
               <RadioButton
                 inputId="doNotReceiveDay" value="day"
                 onChange={() => this.props.onPeriodChange('day')}
@@ -51,7 +45,7 @@ class PreventPermission extends Component {
               />
               <label htmlFor="doNotReceiveDay">24 {T.translate(`time.hours.${this.props.language}`)}</label>
             </div>
-            <div className="col-sm-12" >
+            <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6" >
               <RadioButton
                 inputId="doNotReceiveWeek" value="week"
                 onChange={() => this.props.onPeriodChange('week')}
@@ -59,7 +53,7 @@ class PreventPermission extends Component {
               />
               <label htmlFor="doNotReceiveWeek">1 {T.translate(`time.week.${this.props.language}`)}</label>
             </div>
-            <div className="col-sm-12" >
+            <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6">
               <RadioButton
                 inputId="doNotReceiveMonth" value="month"
                 onChange={() => this.props.onPeriodChange('month')}

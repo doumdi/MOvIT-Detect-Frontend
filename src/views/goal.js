@@ -161,7 +161,7 @@ class Goal extends Component {
     };
 
     return (
-      <div>
+      <div className="mt-3">
         <legend className="text-center header">
           <h2>
             {T.translate(`goals.${this.props.language}`)} &nbsp;
@@ -172,24 +172,24 @@ class Goal extends Component {
           && !this.props.reduceSlidingMoving && !this.props.reducePain
           && !this.props.allowRest && !this.props.easeTransfers
           && !this.props.improveComfort && !this.props.other
-          ?
-            <h3 style={style.chair}>{T.translate(`goals.noRecommendations.${this.props.language}`)}</h3>
-          :
-            <div className="row" style={style.panelGroup}>
-              <div className="col-sm-2" />
-              <div className="col-sm-8">
-                <h2>{T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp; <i id="personalGoalInfo" className="fa fa-info-circle" /></h2>
-                <PressureRecPanel />
-                <h2>{T.translate(`goals.ClinicianRecommendations.${this.props.language}`)}</h2>
-                {this.props.reduceWeight
+          ? <h3 style={style.chair}>{T.translate(`goals.noRecommendations.${this.props.language}`)}</h3>
+          : <div className="row" style={style.panelGroup}>
+            <div className="col-12 col-md-8 offset-md-2">
+              <h3 className="ml-2 text-md-left text-center">
+                {T.translate(`goals.personalGoals.${this.props.language}`)} &nbsp; <i id="personalGoalInfo" className="fa fa-info-circle" />
+              </h3>
+              <PressureRecPanel />
+              <h3 className="ml-2 text-md-left text-center">{T.translate(`goals.ClinicianRecommendations.${this.props.language}`)}</h3>
+              {this.props.reduceWeight
                 &&
-                  <TiltLabels
-                    title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
-                    tiltFrequecy={this.props.tiltFrequencyWeight}
-                    tiltLength={this.props.tiltLengthWeight}
-                    tiltAngle={this.props.tiltAngleWeight}
-                  />
-                }
+                <TiltLabels
+                  title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                  tiltFrequecy={this.props.tiltFrequencyWeight}
+                  tiltLength={this.props.tiltLengthWeight}
+                  tiltAngle={this.props.tiltAngleWeight}
+                />
+              }
+              <div className="d-flex flex-wrap">
                 <RecPanel
                   condition={this.props.reduceSlidingMoving}
                   title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
@@ -248,10 +248,10 @@ class Goal extends Component {
                     T.translate(`recommendations.tiltAsNeeded.${this.props.language}`) :
                     this.props.otherRecommendations}
                 />
-
               </div>
-
             </div>
+
+          </div>
         }
         <Tooltip
           for="#titleInfo"

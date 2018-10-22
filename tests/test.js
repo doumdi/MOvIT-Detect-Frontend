@@ -3,7 +3,7 @@ import TestUtils from 'react-dom/test-utils';
 
 // first test
 describe('First test!', () => {
-  it('Test init status', function () {
+  it('Test init status', () => {
     expect(1).toEqual(1);
   });
 });

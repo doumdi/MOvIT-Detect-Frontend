@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Configuration from '../../src/views/configuration';
 
 describe('Configuration Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Configuration.WrappedComponent.propTypes;
 

@@ -24,7 +24,7 @@ class TiltSliders extends Component {
 
   render() {
     return (
-      <div>
+      <div className="col-12 col-md-10 ml-3">
         <SliderValue
           min={0} max={180} onChange={this.props.onFrequencyChange}
           value={this.props.tiltFrequecy} unit="sec" title={T.translate(`recommendations.frequency.${this.props.language}`)}

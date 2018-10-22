@@ -122,7 +122,7 @@ class Graphic extends Component {
     };
 
     return (
-      <div>
+      <div className="mt-3">
         <div style={style.content}>
           <h1>{title}</h1>
           <span>Date: </span>

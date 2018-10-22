@@ -395,3 +395,8 @@ wifi:
   changeWifi:
     FR: "Changer de réseau"
     EN: "Change your network"
+
+debug:
+  state:
+    FR: "État des capteurs"
+    EN: "Module status"

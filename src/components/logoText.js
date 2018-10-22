@@ -21,13 +21,17 @@ export default class LogoText extends Component {
       icon: {
         paddingTop: '6px',
         fontSize: 'large',
+        minWidth: '26px',
       },
+
     };
 
     return (
-      <div className="form-group">
-        <span className="col-md-1 col-md-offset-2 text-center" style={style.icon}><i className={this.props.iconClass} /></span>
-        <div className="col-md-6">
+      <div className="form-horizontal row mb-3">
+        <div className="col-1 d-inline-block text-right">
+          <span style={style.icon}><i className={this.props.iconClass} /></span>
+        </div>
+        <div className=" col-10 col-lg-8 d-inline-block">
           <input
             type="text" placeholder={this.props.placeHolder} className="form-control" id="logoText"
             onChange={e => this.props.onChange(e.target.value)}
