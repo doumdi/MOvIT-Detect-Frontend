@@ -1,18 +1,19 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { VictoryChart, VictoryScatter, VictoryTheme } from 'victory';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
-/**
- * @author Gabriel Boucher
- * @author Anne-Marie Desloges
- * @author Austin Didier Tran
- */
 
 import { URL } from '../redux/applicationReducer';
 import { milliToTimeString } from '../utils/timeFormat';
-
 
 class PressureCenter extends Component {
   static propTypes = {
@@ -37,12 +38,17 @@ class PressureCenter extends Component {
       centers: [],
       hours: [],
     };
-    this.getPressureData();
+    this.initialize();
   }
 
-  getPressureData() {
-    axios.get(`${URL}gravityCenter?Day=${+this.props.date},offset=0`, this.props.header)
-      .then((response) => { this.loadPressureData(response.data); });
+  async initialize() {
+    const pressureData = await this.getPressureData();
+    this.loadPressureData(pressureData);
+  }
+
+  async getPressureData() {
+    const response = await axios.get(`${URL}gravityCenter?Day=${+this.props.date},offset=0`, this.props.header);
+    return response.data;
   }
 
   setIndex(value) {
