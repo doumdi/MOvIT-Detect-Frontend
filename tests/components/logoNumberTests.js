@@ -4,17 +4,21 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import configureMockStore from 'redux-mock-store';
 import toJson from 'enzyme-to-json';
+import sinon from 'sinon';
 import LogoNumber from '../../src/components/logoNumber';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('LogoNumber Tests', () => {
   const initialState = { applicationReducer: { language: 'en' } };
+  const spy = sinon.spy();
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
     value: 20,
-    language: 'en',
+    iconClass: 'fa fa-id-card',
+    placeHolder: 'test',
+    onChange: (value) => { spy(value); },
   };
 
   it('should match the snapshot', () => {
@@ -39,30 +43,14 @@ describe('LogoNumber Tests', () => {
   });
 
   it('input prints the right value', () => {
-    const value = 20;
-    const comp = shallow(
-      <LogoNumber
-        iconClass="fa fa-id-card"
-        placeHolder="test"
-        value={value}
-        onChange={() => {}}
-      />,
-    );
-    expect(comp.find('#logoNumber').props().value).toEqual(value);
+    const wrapper = shallow(<LogoNumber store={store} {...props} />);
+    expect(wrapper.find('#logoNumber').props().value).toEqual(20);
   });
 
   it('input calls the method onChange with the right value', () => {
-    let value = 0;
-    const change = (text) => { value = text; };
-    const comp = shallow(
-      <LogoNumber
-        iconClass="fa fa-id-card"
-        placeHolder="test"
-        value={value}
-        onChange={change}
-      />,
-    );
-    comp.find('#logoNumber').simulate('change', { target: { value: 20 } });
-    expect(value).toEqual(20);
+    const wrapper = shallow(<LogoNumber store={store} {...props} />);
+    wrapper.find('#logoNumber').simulate('change', { target: { value: 20 } });
+    expect(spy.calledOnce).toEqual(true);
+    expect(spy.getCalls()[0].args[0]).toEqual(20);
   });
 });
