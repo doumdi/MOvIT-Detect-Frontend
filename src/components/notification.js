@@ -28,18 +28,18 @@ class Notification extends Component {
   }
 
   async turnOnNotification() {
-    const response = axios.get(`${URL}alert?State=on`, this.props.header)
-    console.log(response)
+    const response = axios.get(`${URL}alert?State=on`, this.props.header);
+    console.log(response);
   }
 
   async turnOffNotification() {
-    const response = await axios.get(`${URL}alert?State=off`, this.props.header)
-    console.log(response)
+    const response = await axios.get(`${URL}alert?State=off`, this.props.header);
+    console.log(response);
   }
 
   async calibrate() {
-    await axios.get(`${URL}calibrate`, this.props.header)
-    this.setState({ ...this.state, showCountdown: true })
+    await axios.get(`${URL}calibrate`, this.props.header);
+    this.setState({ ...this.state, showCountdown: true });
   }
 
   calibrationCompleted() {

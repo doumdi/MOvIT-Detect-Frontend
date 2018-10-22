@@ -81,6 +81,7 @@ describe('Notification Tests', () => {
   });
 
   it('should match the snapshot', () => {
+    const wrapper = shallow(<Notification store={store} {...props} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
