@@ -1,101 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OtherRecommendation Tests should match the snapshot when the recommandation is active 1`] = `
-<div
-  className="pt-2 pl-3 row"
->
-  <div
-    className="col-11 pl-0 mt-1"
-  >
-    <Checkbox
-      checked={true}
-      className={null}
-      disabled={false}
-      id={null}
-      inputId="activeRecCheck"
-      label="Recommandation value"
-      name={null}
-      onChange={[Function]}
-      onContextMenu={null}
-      onMouseDown={null}
-      readOnly={false}
-      style={null}
-      value={null}
-    />
-    <label
-      className="mt-1"
-      htmlFor="activeRecCheck"
-    >
-      Recommandation value
-    </label>
-    <div
-      className="row"
-    >
-      <div
-        className="col-12 col-md-6 ml-4 mb-1"
-      >
-        <InputText
-          className="form-control"
-          id="otherRec"
-          keyfilter={null}
-          onChange={[Function]}
-          onInput={null}
-          onKeyPress={null}
-          placeholder="recommendations.otherTitle.en"
-          type="text"
-          validateOnly={false}
-          value="Recommandation title"
-        />
-      </div>
-      <div
-        className="col-12 col-md-6 ml-4 mb-1"
-      >
-        <InputText
-          className="form-control"
-          id="textRec"
-          keyfilter={null}
-          onChange={[Function]}
-          onInput={null}
-          onKeyPress={null}
-          placeholder="recommendations.tiltAsNeeded.en"
-          type="text"
-          validateOnly={false}
-          value={0}
-        />
-      </div>
-    </div>
-  </div>
-</div>
+<OtherRecommendation
+  dispatch={[Function]}
+  language="en"
+  onChangeActive={[Function]}
+  onChangeRecTitle={[Function]}
+  onChangeValue={[Function]}
+  recActive={true}
+  recTitle="Recommandation title"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+  title="Recommandation value"
+  value={0}
+/>
 `;
 
 exports[`OtherRecommendation Tests should match the snapshot when the recommandation is inactive 1`] = `
-<div
-  className="pt-2 pl-3 row"
->
-  <div
-    className="col-11 pl-0 mt-1"
-  >
-    <Checkbox
-      checked={false}
-      className={null}
-      disabled={false}
-      id={null}
-      inputId="activeRecCheck"
-      label="Recommandation value"
-      name={null}
-      onChange={[Function]}
-      onContextMenu={null}
-      onMouseDown={null}
-      readOnly={false}
-      style={null}
-      value={null}
-    />
-    <label
-      className="mt-1"
-      htmlFor="activeRecCheck"
-    >
-      Recommandation value
-    </label>
-  </div>
-</div>
+<OtherRecommendation
+  dispatch={[Function]}
+  language="en"
+  recActive={false}
+  recTitle="Recommandation title"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+  title="Recommandation value"
+  value={0}
+/>
 `;

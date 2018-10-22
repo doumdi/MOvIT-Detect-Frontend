@@ -83,7 +83,7 @@ describe('OtherRecommendation Tests', () => {
   });
 
   it('should match the snapshot when the recommandation is active', () => {
-    const wrapper = shallow(<OtherRecommendation store={store} {...props} />).dive();
+    const wrapper = shallow(<OtherRecommendation store={store} {...props} />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -96,7 +96,7 @@ describe('OtherRecommendation Tests', () => {
       value: 0,
       language: 'en',
     };
-    const wrapper = shallow(<OtherRecommendation store={store} {...inactiveProps} />).dive();
+    const wrapper = shallow(<OtherRecommendation store={store} {...inactiveProps} />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
