@@ -91,13 +91,13 @@ describe('TextRecommandation Tests', () => {
     expect(onChangeValueSpy.getCalls()[0].args[0]).toEqual('Test');
   });
 
-  it('should match the snapshot when the recommandation is active', () => {
+  it('should match the snapshot when the recommendation is active', () => {
     const wrapper = shallow(<TextRecommendation store={store} {...props} />).dive();
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it('should match the snapshot when the recommandation is inactive', () => {
+  it('should match the snapshot when the recommendation is inactive', () => {
     const inactiveProps = {
       recActive: false,
       title: 'Test',
