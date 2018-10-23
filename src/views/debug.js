@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { T } from '../utilities/translator';
 import Notification from '../components/notification';
+import ModuleStatus from '../components/moduleStatus';
 
 
 class Debug extends Component {
@@ -16,6 +17,7 @@ class Debug extends Component {
         <div className="col-12">
           <h2 className="header text-center">{T.translate(`debug.state.${this.props.language}`)}</h2>
           <Notification />
+          <ModuleStatus />
         </div>
       </div>
     );

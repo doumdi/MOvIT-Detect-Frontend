@@ -400,3 +400,14 @@ debug:
   state:
     FR: "État des capteurs"
     EN: "Module status"
+    value: 
+      true:
+        FR: "Connecté"
+        EN: "Connected"
+      false:
+        FR: "Déconnecté"
+        EN: "Disconnected"
+  modules:
+    FR: "Capteurs"
+    EN: "Sensors"
+
