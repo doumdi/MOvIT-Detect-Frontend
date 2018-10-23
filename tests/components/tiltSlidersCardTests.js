@@ -12,38 +12,45 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
-import TiltLabels from '../../src/components/tiltLabels';
+import TiltSlidersCard from '../../src/components/tiltSlidersCard';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('TiltLabels Tests', () => {
+describe('TiltSlidersCard Tests', () => {
   const initialState = { applicationReducer: { language: 'en' } };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
-    language: 'en',
-    title: 'This is a title',
-    tiltFrequecy: 60,
+    tiltFrequecy: 40,
     tiltLength: 30,
-    tiltAngle: 15,
+    tiltAngle: 20,
+    maxAngle: 45,
+    title: 'This is a title',
     modifiable: true,
   };
 
   it('should have proptypes', () => {
-    const actualValue = TiltLabels.WrappedComponent.propTypes;
+    const actualValue = TiltSlidersCard.WrappedComponent.propTypes;
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
       tiltFrequecy: PropTypes.number,
       tiltLength: PropTypes.number,
       tiltAngle: PropTypes.number,
+      maxAngle: PropTypes.number,
+      title: PropTypes.string,
+      onFrequencyChange: PropTypes.func.isRequired,
+      onLengthChange: PropTypes.func.isRequired,
+      onAngleChange: PropTypes.func.isRequired,
+      modifiable: PropTypes.bool,
+      onModifie: PropTypes.func,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
   it('should match the snapshot', () => {
-    const wrapper = shallow(<TiltLabels store={store} {...props} />).dive();
+    const wrapper = shallow(<TiltSlidersCard store={store} {...props} />).dive();
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
