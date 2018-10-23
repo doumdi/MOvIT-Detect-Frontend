@@ -2,6 +2,7 @@
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
  * @author Austin Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -45,16 +46,22 @@ class Password extends Component {
           <input
             className="form-control"
             type="password"
+            id="password"
             placeholder={T.translate(`login.password.${this.props.language}`)}
             value={this.state.password}
             onChange={e => this.setState({ password: e.target.value, failed: false })}
             onKeyPress={e => this.onKeyPress(e)}
             style={this.state.failed ? { borderColor: 'red' } : {}}
           />
-          <button onClick={() => this.props.onSubmit(this.state.password)} cornerStyleClass="ui-button-secondary" ><i className="fa fa-sign-in" /></button>
+          <button
+            id="loginBtn" onClick={() => this.props.onSubmit(this.state.password)}
+            cornerStyleClass="ui-button-secondary"
+          >
+            <i className="fa fa-sign-in" />
+          </button>
         </div>
         <div className="ui-inputgroup col-8 offset-2">
-          <button type="button" className="btn btn-link pl-0" onClick={() => this.props.onForgotPassword()}>
+          <button type="button" id="forgotPasswordBtn" className="btn btn-link pl-0" onClick={() => this.props.onForgotPassword()}>
             {T.translate(`login.forgotPassword.${this.props.language}`)}
           </button>
         </div>
@@ -62,7 +69,7 @@ class Password extends Component {
           this.state.failed &&
           <div className="row" style={{ marginTop: '2px' }}>
             <div className="col-8 offset-2">
-              <Message severity="error" text={T.translate(`login.wrongPassword.${this.props.language}`)} />
+              <Message id="errorMsg" severity="error" text={T.translate(`login.wrongPassword.${this.props.language}`)} />
             </div>
           </div>
         }

@@ -41,11 +41,6 @@ class PressureCenter extends Component {
     this.initialize();
   }
 
-  async initialize() {
-    const pressureData = await this.getPressureData();
-    this.loadPressureData(pressureData);
-  }
-
   async getPressureData() {
     const response = await axios.get(`${URL}gravityCenter?Day=${+this.props.date},offset=0`, this.props.header);
     return response.data;
@@ -56,6 +51,11 @@ class PressureCenter extends Component {
     this.setState({ currentCenter: this.state.centers[value] });
     this.setState({ currentQuadrants: this.state.quadrants[value] });
     this.setState({ time: this.state.hours[value] });
+  }
+
+  async initialize() {
+    const pressureData = await this.getPressureData();
+    this.loadPressureData(pressureData);
   }
 
   loadPressureData(data) {
