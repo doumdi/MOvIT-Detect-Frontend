@@ -1,7 +1,8 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -54,7 +55,6 @@ class TiltLabels extends Component {
           <div className="row">
             <div className=" col-12 col-md-4 ml-md-4">
               <div className="row">
-
                 <span className="ml-3" style={style.bold}>
                   {T.translate(`goals.tiltFrequency.${this.props.language}`)}
                 </span>
