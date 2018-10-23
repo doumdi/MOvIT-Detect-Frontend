@@ -1,6 +1,3 @@
-import React from 'react';
-import TestUtils from 'react-dom/test-utils';
-import PropTypes from 'prop-types';
 import Footer from '../../src/views/footer';
 
 describe('Footer Tests', () => {

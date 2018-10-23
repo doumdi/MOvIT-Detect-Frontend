@@ -1,5 +1,3 @@
-import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import Configuration from '../../src/views/configuration';
 
