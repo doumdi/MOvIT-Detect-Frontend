@@ -171,7 +171,6 @@ describe('PressureCenter Tests', () => {
   });
 
   it('should match the snapshot', () => {
-    const wrapper = shallow(<PressureCenter store={store} {...props} />);
     setFakeState(wrapper);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
