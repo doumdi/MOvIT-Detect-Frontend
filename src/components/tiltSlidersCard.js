@@ -38,7 +38,7 @@ class TiltSlidersCard extends Component {
     try {
       await axios.post(`${URL}goal`, data, this.props.header);
       console.log('succesfully updated');
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   }
