@@ -26,7 +26,7 @@ class PreventPermission extends Component {
       <div className="row">
         <div className="col-10 offset-1 mt-3 d-flex">
           <Checkbox
-            inputId="agreement"
+            id="agreement"
             checked={this.props.permission}
             onChange={e => this.props.onPermissionChange(e.checked)}
           />
@@ -39,7 +39,7 @@ class PreventPermission extends Component {
             </div>
             <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6" >
               <RadioButton
-                inputId="doNotReceiveDay" value="day"
+                id="doNotReceiveDay" value="day"
                 onChange={() => this.props.onPeriodChange('day')}
                 checked={this.props.period === 'day'}
               />
@@ -47,7 +47,7 @@ class PreventPermission extends Component {
             </div>
             <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6" >
               <RadioButton
-                inputId="doNotReceiveWeek" value="week"
+                id="doNotReceiveWeek" value="week"
                 onChange={() => this.props.onPeriodChange('week')}
                 checked={this.props.period === 'week'}
               />
@@ -55,7 +55,7 @@ class PreventPermission extends Component {
             </div>
             <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6">
               <RadioButton
-                inputId="doNotReceiveMonth" value="month"
+                id="doNotReceiveMonth" value="month"
                 onChange={() => this.props.onPeriodChange('month')}
                 checked={this.props.period === 'month'}
               />
