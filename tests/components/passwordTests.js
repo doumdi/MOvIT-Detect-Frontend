@@ -54,6 +54,14 @@ describe('Password Tests', () => {
     expect(submitSpy.getCalls()[0].args[0]).toEqual('test');
   });
 
+  it('should call onSumbit on login enter pressed', () => {
+    const wrapper = shallow(<Password store={store} {...props} />).dive();
+    wrapper.setState({ password: 'test' });
+    wrapper.find('#password').simulate('keyPress', { keyCode: 13, key: 'Enter' });
+    expect(submitSpy.calledOnce).toEqual(true);
+    expect(submitSpy.getCalls()[0].args[0]).toEqual('test');
+  });
+
   it('should change the states password and reset failed boolean when password field is changed', () => {
     const wrapper = shallow(<Password store={store} {...props} />).dive();
     wrapper.setState({ password: 'test', failed: true });
