@@ -27,7 +27,7 @@ describe('Password Tests', () => {
   });
 
   it('should match the snapshot', () => {
-    const wrapper = shallow(<Password store={store} {...props} />);
+    const wrapper = shallow(<Password store={store} {...props} />).dive();
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
@@ -82,7 +82,7 @@ describe('Password Tests', () => {
       onSubmit: (value) => { submitSpy(value); },
       onForgotPassword: () => { forgotPasswordSpy(); },
     };
-    const wrapper = shallow(<Password store={store} {...failedProps} />);
+    const wrapper = shallow(<Password store={store} {...failedProps} />).dive();
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
