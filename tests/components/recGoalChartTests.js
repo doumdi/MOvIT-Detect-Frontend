@@ -26,8 +26,8 @@ describe('RecGoalChart Tests', () => {
     title: 'test',
     goalTitle: 'test',
     recTitle: 'test',
-    goalData: data, // eslint-disable-line react/forbid-prop-types
-    recData: data, // eslint-disable-line react/forbid-prop-types
+    goalData: data,
+    recData: data,
   };
 
   it('should match snapshot', () => {
@@ -45,8 +45,8 @@ describe('RecGoalChart Tests', () => {
       title: PropTypes.string.isRequired,
       goalTitle: PropTypes.string.isRequired,
       recTitle: PropTypes.string.isRequired,
-      goalData: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-      recData: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+      goalData: PropTypes.object,
+      recData: PropTypes.object,
     };
 
     // Test

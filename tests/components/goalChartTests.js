@@ -11,8 +11,8 @@ describe('GoalChart Tests', () => {
       condition: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
       successMessage: PropTypes.string.isRequired,
-      data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-      options: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+      data: PropTypes.object,
+      options: PropTypes.object.isRequired,
     };
 
     // Test

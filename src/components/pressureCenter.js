@@ -19,7 +19,7 @@ class PressureCenter extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
   };
 
   constructor(props, context) {

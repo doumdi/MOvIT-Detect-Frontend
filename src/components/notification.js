@@ -16,7 +16,7 @@ import Countdown from './countdown';
 class Notification extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
   }
 
   constructor(props) {

@@ -13,7 +13,7 @@ class ForgotPassword extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    history: PropTypes.object.isRequired,
   };
 
   constructor(props) {

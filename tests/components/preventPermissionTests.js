@@ -51,7 +51,7 @@ describe('PreventPermission Tests', () => {
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
-  it('should call onPersmissionChange when check box is changed', () => {
+  it('should call onPermissionChange when check box is changed', () => {
     const wrapper = shallow(<PreventPermission store={store} {...props} />).dive();
     wrapper.find('#agreement').simulate('change', { checked: true });
     expect(permissionSpy.calledOnce).toEqual(true);

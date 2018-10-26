@@ -19,8 +19,8 @@ import { URL } from '../redux/applicationReducer';
 
 class Configuration extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    history: PropTypes.object.isRequired,
+    header: PropTypes.object,
     userName: PropTypes.string.isRequired,
     changeUserName: PropTypes.func.isRequired,
     language: PropTypes.string.isRequired,

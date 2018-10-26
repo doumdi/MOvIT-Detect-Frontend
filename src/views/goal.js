@@ -22,7 +22,7 @@ import TiltLabels from '../components/tiltLabels';
 class Goal extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
     tiltFrequencyWeight: PropTypes.number.isRequired,
     tiltLengthWeight: PropTypes.number.isRequired,
     tiltAngleWeight: PropTypes.number.isRequired,

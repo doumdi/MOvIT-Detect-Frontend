@@ -8,7 +8,7 @@ describe('Configuration Tests', () => {
 
     // Expected value
     const expectedValue = {
-      history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+      history: PropTypes.object.isRequired,
       userName: PropTypes.string.isRequired,
       changeUserName: PropTypes.func.isRequired,
       language: PropTypes.string.isRequired,
