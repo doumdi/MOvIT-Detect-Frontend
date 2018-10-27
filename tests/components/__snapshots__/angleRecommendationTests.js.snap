@@ -58,7 +58,7 @@ exports[`AngleRecommandation Tests should match the snapshot when the recommenda
       inputId="activeRecCheck"
       label="Test"
       name={null}
-      onChange={null}
+      onChange={[Function]}
       onContextMenu={null}
       onMouseDown={null}
       readOnly={false}
