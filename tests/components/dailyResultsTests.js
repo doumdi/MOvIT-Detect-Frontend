@@ -13,7 +13,7 @@ describe('DailyResults Tests', () => {
       reduceSlidingMoving: PropTypes.bool.isRequired,
       reduceSlidingRest: PropTypes.bool.isRequired,
       date: PropTypes.instanceOf(Date),
-      header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+      header: PropTypes.object,
     };
 
     // Test

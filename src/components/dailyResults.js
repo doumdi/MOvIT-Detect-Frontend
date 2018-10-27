@@ -23,7 +23,7 @@ class DailyResults extends Component {
     reduceSlidingMoving: PropTypes.bool.isRequired,
     reduceSlidingRest: PropTypes.bool.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
   }
   constructor(props) {
     super(props);

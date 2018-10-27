@@ -37,7 +37,7 @@ describe('Notification Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+      header: PropTypes.object,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

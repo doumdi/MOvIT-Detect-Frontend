@@ -15,7 +15,7 @@ import { URL } from '../redux/applicationReducer';
 
 class TiltSlidersCard extends Component {
   static propTypes = {
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
     tiltFrequecy: PropTypes.number,
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,

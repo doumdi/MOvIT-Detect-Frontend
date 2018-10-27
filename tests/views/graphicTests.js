@@ -9,7 +9,7 @@ describe('Graphic Tests', () => {
     // Expected value
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+      header: PropTypes.object,
     };
 
     // Test

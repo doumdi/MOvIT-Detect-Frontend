@@ -8,9 +8,9 @@ describe('Recommendation Tests', () => {
 
     // Expected value
     const expectedValue = {
-      history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+      history: PropTypes.object.isRequired,
       language: PropTypes.string.isRequired,
-      header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+      header: PropTypes.object,
       swellingRecommendation: PropTypes.string,
       painRecommendation: PropTypes.string,
       restRecommendation: PropTypes.string,

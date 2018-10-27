@@ -18,8 +18,8 @@ import { URL } from '../redux/applicationReducer';
 class Parameters extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    history: PropTypes.object.isRequired,
+    header: PropTypes.object,
     changeDataAgreement: PropTypes.func,
     dataAgreement: PropTypes.bool,
     dataDisagreePeriod: PropTypes.string,

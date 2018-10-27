@@ -18,7 +18,7 @@ import TiltLabels from './tiltLabels';
 
 class PressureRecPanel extends Component {
   static propTypes = {
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
     language: PropTypes.string.isRequired,
     profile: PropTypes.string.isRequired,
     maxAngle: PropTypes.number,

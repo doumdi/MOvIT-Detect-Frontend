@@ -18,7 +18,7 @@ import MonthlySuccessTilt from './monthlySuccessTilt';
 class MonthlyResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
