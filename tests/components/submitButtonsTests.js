@@ -1,10 +1,8 @@
-import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import SubmitButtons from '../../src/components/submitButtons';
 
 describe('SubmitButtons Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = SubmitButtons.WrappedComponent.propTypes;
 

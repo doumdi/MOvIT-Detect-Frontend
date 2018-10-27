@@ -18,7 +18,7 @@ class Home extends Component {
     language: PropTypes.string.isRequired,
     changeProfile: PropTypes.func.isRequired,
     changeToken: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    history: PropTypes.object.isRequired,
     profile: PropTypes.string,
   };
 
@@ -78,6 +78,7 @@ class Home extends Component {
     const style = {
       content: {
         textAlign: 'center',
+        height: 'fit-content',
       },
       icons: {
         fontSize: '20em',
@@ -93,49 +94,50 @@ class Home extends Component {
     };
 
     return (
-      <div style={style.content} className="content-section implementation ui-fluid">
+      <div style={style.content} className="content-section mt-3 mt-md-4 implementation ui-fluid">
         <h2>{T.translate(`welcome.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>
-        {this.props.profile
-          &&
-          <h4>
-            {T.translate(`welcome.loginMessage.${this.props.language}`, { userType: T.translate(`${this.props.profile}.${this.props.language}`) })}
-          </h4>
-        }
-        {!this.props.profile
-          &&
-          <div>
-            <div className="col-sm-2" />
-            <div className="col-sm-4">
-              <button onClick={() => this.setLoginProfile('user')} style={style.profileButton}>
-                <h2>{T.translate(`user.${this.props.language}`)}</h2>
-                <i className="fa fa-user" style={style.icons} />
-              </button>
-              {this.state.user === 'user' &&
-                <Password
-                  onSubmit={this.login.bind(this)}
-                  failed={this.state.loginFail}
-                  onForgotPassword={this.forgotPassword}
-                />
-              }
-            </div>
-            <div className="col-sm-4" >
-              <button onClick={() => this.setLoginProfile('clinician')} style={style.profileButton} >
-                <h2>{T.translate(`clinician.${this.props.language}`)}</h2>
-                <i className="fa fa-user-md" style={style.icons} />
-              </button>
-              {this.state.user === 'clinician' &&
-                <div>
+        <div>
+          {this.props.profile
+            &&
+            <h4>
+              {T.translate(`welcome.loginMessage.${this.props.language}`, { userType: T.translate(`${this.props.profile}.${this.props.language}`) })}
+            </h4>
+          }
+          {!this.props.profile
+            &&
+            <div className="row">
+              <div className="col-12 col-md-4 offset-md-2">
+                <button onClick={() => this.setLoginProfile('user')} style={style.profileButton}>
+                  <h2>{T.translate(`user.${this.props.language}`)}</h2>
+                  <i className="fa fa-user" style={style.icons} />
+                </button>
+                {this.state.user === 'user' &&
                   <Password
                     onSubmit={this.login.bind(this)}
                     failed={this.state.loginFail}
                     onForgotPassword={this.forgotPassword}
                   />
-                </div>
-              }
+                }
+              </div>
+              <div className="col-12 col-md-4">
+                <button onClick={() => this.setLoginProfile('clinician')} style={style.profileButton} >
+                  <h2>{T.translate(`clinician.${this.props.language}`)}</h2>
+                  <i className="fa fa-user-md" style={style.icons} />
+                </button>
+                {this.state.user === 'clinician' &&
+                  <div>
+                    <Password
+                      onSubmit={this.login.bind(this)}
+                      failed={this.state.loginFail}
+                      onForgotPassword={this.forgotPassword}
+                    />
+                  </div>
+                }
+              </div>
             </div>
-          </div>
-        }
+          }
+        </div>
       </div>
     );
   }

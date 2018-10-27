@@ -8,7 +8,6 @@ class MonthlySuccessTilt extends Component {
 
   static propTypes = {
     language: PropTypes.string.isRequired,
-    // header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   }
 
   render() {

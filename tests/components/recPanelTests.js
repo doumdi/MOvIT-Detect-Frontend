@@ -1,10 +1,8 @@
-import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import RecPanel from '../../src/components/recPanel';
 
 describe('RecPanel Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = RecPanel.propTypes;
 

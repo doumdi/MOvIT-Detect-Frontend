@@ -1,18 +1,16 @@
-import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import Recommendation from '../../src/views/recommendation';
 
 describe('Recommendation Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = Recommendation.WrappedComponent.propTypes;
 
     // Expected value
     const expectedValue = {
-      history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+      history: PropTypes.object.isRequired,
       language: PropTypes.string.isRequired,
-      header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+      header: PropTypes.object,
       swellingRecommendation: PropTypes.string,
       painRecommendation: PropTypes.string,
       restRecommendation: PropTypes.string,
