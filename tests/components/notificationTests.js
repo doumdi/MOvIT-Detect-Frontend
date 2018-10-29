@@ -28,6 +28,8 @@ describe('Notification Tests', () => {
   };
 
   beforeEach(() => {
+    jest.setTimeout(10000);
+
     wrapper = shallow(<Notification store={store} {...props} />).dive();
     wrapper.setState({ showCountdown: true });
   });
