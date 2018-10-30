@@ -1,3 +1,10 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

@@ -1,37 +1,75 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
+import { URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
 
 class MonthlySuccessTilt extends Component {
 
   static propTypes = {
     language: PropTypes.string.isRequired,
+    header: PropTypes.object,
+    month: PropTypes.number,
   }
 
-  render() {
-    const tiltSuccessData = {
-      labels: [
-        '1', '2', '3', '4', '5',
-        '6', '7', '8', '9', '10',
-        '11', '12', '13', '14', '15',
-        '16', '17', '18', '19', '20',
-        '21', '22', '23', '24', '25',
-        '26', '27', '28', '29', '30',
-      ],
+  constructor(props) {
+    super(props);
+    this.state = {
+      tiltMonthData: {
+        good: [],
+        badDuration: [],
+        badAngle: [],
+        bad: [],
+      },
+      labels: [],
+      data: null,
+      loading: true,
+      month: props.month,
+    };
+    this.getMonthData(props.month);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.month !== this.state.month) {
+      this.setState({ date: nextProps.month });
+      this.getMonthData(nextProps.month);
+    }
+  }
+  getMonthData(month) {
+    const date = new Date(new Date().getFullYear(), month, 1);
+    axios.get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
+      .then((response) => { this.formatChartData(response.data); })
+      .catch(console.error);
+  }
+
+  formatChartData(data) {
+    this.state.labels = [];
+    this.state.tiltMonthData = {
+      good: [],
+      badDuration: [],
+      badAngle: [],
+      bad: [],
+    };
+    Object.keys(data).forEach((key) => {
+      this.state.labels.push(key.toString());
+      this.state.tiltMonthData.good.push(data[key][0]);
+      this.state.tiltMonthData.badDuration.push(data[key][1]);
+      this.state.tiltMonthData.badAngle.push(data[key][2]);
+      this.state.tiltMonthData.bad.push(data[key][3]);
+    });
+    this.loadData();
+  }
+
+  loadData() {
+    this.state.data = {
+      labels: this.state.labels,
       datasets: [
         {
           label: T.translate(`SuccessfulTilt.tiltSucessful.${this.props.language}`),
           lineTension: 0,
-          data: [
-            36, 40, 27, 38, 42,
-            55, 40, 28, 32, 26,
-            55, 28, 31, 22, 25,
-            34, 36, 30, 21, 24,
-            56, 28, 31, 32, 8,
-            20, 26, 30, 21, 24,
-          ],
+          data: this.state.tiltMonthData.good,
           fill: true,
           borderColor: 'greend',
           backgroundColor: 'green',
@@ -39,14 +77,7 @@ class MonthlySuccessTilt extends Component {
         {
           label: T.translate(`SuccessfulTilt.tiltBadDuration.${this.props.language}`),
           lineTension: 0,
-          data: [
-            26, 28, 31, 32, 30,
-            34, 36, 30, 21, 24,
-            25, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            8, 26, 30, 21, 24,
-            36, 40, 27, 38, 42,
-          ],
+          data: this.state.tiltMonthData.badDuration,
           fill: true,
           borderColor: 'yellow',
           backgroundColor: 'yellow',
@@ -54,14 +85,7 @@ class MonthlySuccessTilt extends Component {
         {
           label: T.translate(`SuccessfulTilt.tiltBadAngle.${this.props.language}`),
           lineTension: 0,
-          data: [
-            26, 28, 31, 32, 24,
-            34, 36, 30, 21, 24,
-            25, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            24, 26, 30, 21, 24,
-            36, 40, 27, 38, 42,
-          ],
+          data: this.state.tiltMonthData.badAngle,
           fill: true,
           borderColor: 'orange',
           backgroundColor: 'orange',
@@ -69,21 +93,17 @@ class MonthlySuccessTilt extends Component {
         {
           label: T.translate(`SuccessfulTilt.tiltNotMade.${this.props.language}`),
           lineTension: 0,
-          data: [
-            26, 28, 31, 32, 16,
-            4, 36, 30, 21, 24,
-            5, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            0, 26, 30, 21, 24,
-            36, 40, 27, 38, 42,
-          ],
+          data: this.state.tiltMonthData.bad,
           fill: true,
           borderColor: 'red',
           backgroundColor: 'red',
         },
       ],
     };
+    this.setState({ loading: false });
+  }
 
+  render() {
     const tiltSuccessOptions = {
       scales: {
         xAxes: [{
@@ -99,7 +119,11 @@ class MonthlySuccessTilt extends Component {
     };
 
     return (
-      <Chart type="bar" data={tiltSuccessData} options={tiltSuccessOptions} />
+      <div>
+        {!this.state.loading &&
+          <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
+        }
+      </div>
     );
   }
 }

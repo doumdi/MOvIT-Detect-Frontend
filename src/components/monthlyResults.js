@@ -351,7 +351,7 @@ class MonthlyResults extends Component {
           <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
 
-        <MonthlySuccessTilt />
+        <MonthlySuccessTilt month={this.props.month} />
 
         <RecGoalChart
           condition={this.props.reduceWeight}

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecPanel Tests should match the snapshot 1`] = `
+<div
+  className="col-12 col-sm-6 col-md-4 "
+  style={
+    Object {
+      "card": Object {
+        "backgroundColor": "white",
+        "boxShadow": "5px 5px 5px gainsboro",
+        "height": "100%",
+        "padding": "5px",
+      },
+      "padding": "10px",
+    }
+  }
+>
+  <Card
+    className={null}
+    footer={null}
+    header={null}
+    id={null}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "boxShadow": "5px 5px 5px gainsboro",
+        "height": "100%",
+        "padding": "5px",
+      }
+    }
+    subtitle={null}
+    title="This is a test"
+  >
+    10
+  </Card>
+</div>
+`;

@@ -129,7 +129,7 @@ class DailyResults extends Component {
           date={this.props.date}
         />
 
-        <DailySuccessTilt />
+        <DailySuccessTilt date={this.props.date} />
 
         <RecGoalProgress
           condition={this.props.reduceWeight}
