@@ -18,7 +18,7 @@ import MonthlyResults from '../components/monthlyResults';
 class Graphic extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
   };
 
   constructor(props) {
@@ -122,7 +122,7 @@ class Graphic extends Component {
     };
 
     return (
-      <div>
+      <div className="mt-3">
         <div style={style.content}>
           <h1>{title}</h1>
           <span>Date: </span>

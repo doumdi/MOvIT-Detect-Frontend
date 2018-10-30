@@ -1,10 +1,8 @@
-import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import GoalChart from '../../src/components/goalChart';
 
 describe('GoalChart Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = GoalChart.propTypes;
 
@@ -13,8 +11,8 @@ describe('GoalChart Tests', () => {
       condition: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
       successMessage: PropTypes.string.isRequired,
-      data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-      options: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+      data: PropTypes.object,
+      options: PropTypes.object.isRequired,
     };
 
     // Test

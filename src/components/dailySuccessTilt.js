@@ -11,7 +11,7 @@ class DailySuccessTilt extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
   }
 
   constructor(props) {
@@ -71,7 +71,6 @@ class DailySuccessTilt extends Component {
         },
       ],
     };
-    console.log(this.state.data);
     this.setState({ loading: false });
   }
 
