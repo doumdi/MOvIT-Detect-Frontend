@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AngleRecommandation Tests should match the snapshot 1`] = `
+<Dialog
+  appendTo={null}
+  autoAlign={true}
+  baseZIndex={0}
+  breakpoint={640}
+  className={null}
+  closable={true}
+  closeOnEscape={true}
+  contentStyle={null}
+  dismissableMask={false}
+  draggable={true}
+  footer={null}
+  header={null}
+  height="100px"
+  id={null}
+  minHeight={150}
+  minWidth={150}
+  minX={0}
+  minY={0}
+  modal={true}
+  onHide={[Function]}
+  onShow={null}
+  positionLeft={-1}
+  positionTop={-1}
+  resizable={true}
+  responsive={true}
+  rtl={false}
+  showHeader={false}
+  style={null}
+  visible={true}
+  width="300px"
+>
+  <div
+    style={
+      Object {
+        "fontSize": "20",
+        "textAlign": "center",
+        "width": "100%",
+      }
+    }
+  >
+     
+    calibrating.en
+     
+  </div>
+  <div
+    style={
+      Object {
+        "fontSize": "30",
+        "textAlign": "center",
+        "width": "100%",
+      }
+    }
+  >
+    3
+  </div>
+</Dialog>
+`;
