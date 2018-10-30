@@ -35,7 +35,7 @@ describe('SliderValue Tests', () => {
     spy.resetHistory();
   });
 
-  it('should trigger onSave when simulating a change event on the Slider', () => {
+  it('should trigger onChange when simulating a change event on the Slider', () => {
     const wrapper = shallow(<SliderValue store={store} {...props} />);
 
     wrapper.find(Slider).simulate('change', { value: 10 });
@@ -44,7 +44,7 @@ describe('SliderValue Tests', () => {
     expect(spy.getCalls()[0].args[0]).toEqual(10);
   });
 
-  it('should trigger onSave when simulating a change event on the input field', () => {
+  it('should trigger onChange when simulating a change event on the input field', () => {
     const wrapper = shallow(<SliderValue store={store} {...props} />);
 
     wrapper.find('#value').simulate('change', { target: { value: 10 } });
