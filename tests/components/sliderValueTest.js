@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -19,9 +18,6 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('SliderValue Tests', () => {
   const spy = sinon.spy();
-  const initialState = { applicationReducer: { language: 'en' } };
-  const mockStore = configureMockStore();
-  const store = mockStore(initialState);
   const props = {
     value: 12,
     min: 10,
@@ -36,7 +32,7 @@ describe('SliderValue Tests', () => {
   });
 
   it('should trigger onChange when simulating a change event on the Slider', () => {
-    const wrapper = shallow(<SliderValue store={store} {...props} />);
+    const wrapper = shallow(<SliderValue {...props} />);
 
     wrapper.find(Slider).simulate('change', { value: 10 });
 
@@ -45,7 +41,7 @@ describe('SliderValue Tests', () => {
   });
 
   it('should trigger onChange when simulating a change event on the input field', () => {
-    const wrapper = shallow(<SliderValue store={store} {...props} />);
+    const wrapper = shallow(<SliderValue {...props} />);
 
     wrapper.find('#value').simulate('change', { target: { value: 10 } });
 
@@ -54,7 +50,7 @@ describe('SliderValue Tests', () => {
   });
 
   it('should match the snapshot', () => {
-    const wrapper = shallow(<SliderValue store={store} {...props} />);
+    const wrapper = shallow(<SliderValue {...props} />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

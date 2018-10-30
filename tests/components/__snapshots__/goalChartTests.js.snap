@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GoalChart Tests should match the snapshot 1`] = `
+<div>
+  <div>
+    <hr />
+    <h2
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      This is a test
+    </h2>
+    <hr />
+    <h4>
+      Success
+    </h4>
+    <Chart
+      className={null}
+      data={Object {}}
+      height={null}
+      id={null}
+      options={Object {}}
+      style={null}
+      type="line"
+      width={null}
+    />
+  </div>
+</div>
+`;
