@@ -65,7 +65,6 @@ class MonthlyResults extends Component {
   }
   getSitMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    // this.setState({ sitLoading: true });
     axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header)
       .then((response) => { this.formatSitChartData(response.data); })
       .catch(error => console.log(error));

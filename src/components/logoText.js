@@ -35,7 +35,7 @@ export default class LogoText extends Component {
           <input
             type="text" placeholder={this.props.placeHolder} className="form-control" id="logoText"
             onChange={e => this.props.onChange(e.target.value)}
-            value={this.props.value ? this.props.value : ''}
+            value={this.props.value || ''}
           />
         </div>
       </div>

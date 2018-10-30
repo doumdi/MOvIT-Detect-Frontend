@@ -47,12 +47,6 @@ class PressureCenter extends Component {
   }
 
   setIndex(value) {
-    // this.state = {
-    //   index: value,
-    //   currentCenter: this.state.centers[value],
-    //   currentQuadrants: this.state.quadrants[value],
-    //   time: this.state.hours[value],
-    // };
     this.setState({ index: value });
     this.setState({ currentCenter: this.state.centers[value] });
     this.setState({ currentQuadrants: this.state.quadrants[value] });
