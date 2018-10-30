@@ -31,8 +31,8 @@ class AngleRecommendation extends Component {
           <Checkbox
             inputId="activeRecCheck"
             label={this.props.title}
-            onChange={this.props.onChangeActive}
-            checked={this.props.recActive}
+            onChange={e => this.props.onChangeActive(e.checked)}
+            checked={this.props.recActive || false}
           />
           <label htmlFor="activeRecCheck">{this.props.title}</label>
           {this.props.recActive

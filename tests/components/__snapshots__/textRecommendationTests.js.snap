@@ -44,7 +44,7 @@ exports[`TextRecommandation Tests should match the snapshot when the recommendat
           placeholder="recommendations.tiltAsNeeded.en"
           type="text"
           validateOnly={false}
-          value={0}
+          value=""
         />
       </div>
     </div>

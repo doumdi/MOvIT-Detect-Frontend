@@ -55,7 +55,7 @@ class Password extends Component {
           />
           <button
             id="loginBtn" onClick={() => this.props.onSubmit(this.state.password)}
-            cornerStyleClass="ui-button-secondary"
+            className="ui-button-secondary"
           >
             <i className="fa fa-sign-in" />
           </button>

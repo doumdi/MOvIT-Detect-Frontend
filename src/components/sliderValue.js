@@ -35,7 +35,7 @@ export default class SliderValue extends Component {
             <div className="col-12 col-md-6">
               <Slider
                 className=" mt-2"
-                min={this.props.min ? this.props.min : 0} max={this.props.max}
+                min={this.props.min || 0} max={this.props.max}
                 onChange={e => this.props.onChange(e.value)}
                 value={this.props.value}
               />
@@ -46,7 +46,7 @@ export default class SliderValue extends Component {
                 type="number" style={style}
                 value={this.props.value}
                 onChange={e => this.props.onChange(e.target.value)}
-                min={this.props.min ? this.props.min : 0} max={this.props.max}
+                min={this.props.min || 0} max={this.props.max}
               />
               <span>{this.props.unit}</span>
             </div>
