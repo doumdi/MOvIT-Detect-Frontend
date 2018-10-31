@@ -184,7 +184,19 @@ class ProgressResults extends Component {
         <hr />
         {!isMobile &&
           <div className="col-lg-2 leftMenu">
-            {this.state.period === 'month' &&
+            {this.state.period === 'day' ?
+              <div>
+                {this.props.reduceWeight &&
+                  <div><a href="#reduceWeight" >{T.translate(`dailyResults.pressure.${this.props.language}`)}</a></div>
+                }
+                {this.props.reduceSlidingMoving &&
+                  <div><a href="#reduceSlidingMoving" >{T.translate(`dailyResults.travel.${this.props.language}`)}</a></div>
+                }
+                {this.props.reduceSlidingRest &&
+                  <div><a href="#reduceSlidingMoving" >{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></div>
+                }
+              </div>
+            :
               <div>
                 {this.props.reduceWeight &&
                   <div><a href="#reduceWeight" >{T.translate(`dailyResults.pressure.${this.props.language}`)}</a></div>

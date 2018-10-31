@@ -1,3 +1,10 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
@@ -11,7 +18,6 @@ export default class SliderValue extends Component {
     onChange: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     unit: PropTypes.string,
-
   };
 
   render() {
@@ -29,17 +35,18 @@ export default class SliderValue extends Component {
             <div className="col-12 col-md-6">
               <Slider
                 className=" mt-2"
-                min={this.props.min ? this.props.min : 0} max={this.props.max}
+                min={this.props.min || 0} max={this.props.max}
                 onChange={e => this.props.onChange(e.value)}
                 value={this.props.value}
               />
             </div>
             <div className="pb-2 col-12 col-md-3">
               <input
+                id="value"
                 type="number" style={style}
                 value={this.props.value}
                 onChange={e => this.props.onChange(e.target.value)}
-                min={this.props.min ? this.props.min : 0} max={this.props.max}
+                min={this.props.min || 0} max={this.props.max}
               />
               <span>{this.props.unit}</span>
             </div>

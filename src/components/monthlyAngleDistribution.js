@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
+import '../styles/results.css';
 
 class MonthlyAngleDistribution extends Component {
   static propTypes = {
@@ -147,7 +148,7 @@ class MonthlyAngleDistribution extends Component {
     };
 
     return (
-      <div className="container">
+      <div className="container graphic">
         <h4 id="monthlyAngle">{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>
         <hr />
         {!this.state.angleLoading &&

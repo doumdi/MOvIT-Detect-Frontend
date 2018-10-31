@@ -1,13 +1,13 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
-
 
 export default class GoalChart extends Component {
   static propTypes = {
