@@ -13,15 +13,15 @@ export default class Footer extends Component {
         background: '#cc2033',
         padding: '3vh',
         textAlign: 'center',
-        height: '8vh',
         color: 'white',
+        height: '52px',
       },
       color: 'white',
     };
 
     return (
-      <div className="navbar navbar-default navbar-fixed-bottom" style={style.footer}>
-        <div className="container-fluid">
+      <div className="navbar fixed-bottom" style={style.footer}>
+        <div className="mx-auto">
           © 2015 Copyright: <a href="http://agewell-nce.ca/" style={style}> AgeWell </a>
         </div>
       </div>

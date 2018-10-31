@@ -1,7 +1,8 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -24,51 +25,38 @@ class OtherRecommendation extends Component {
   };
 
   render() {
-    const style = {
-      stickLeft: {
-        paddingLeft: '0',
-      },
-      input: {
-        paddingLeft: '0',
-        marginBottom: '1em',
-      },
-      spacingTop: {
-        paddingTop: '10',
-      },
-    };
-
     return (
-      <div className="col-sm-12" style={style.spacingTop}>
-        <div className="col-sm-4" style={style.stickLeft}>
+      <div className="pt-2 pl-3 row">
+        <div className="col-11 pl-0 mt-1">
           <Checkbox
             inputId="activeRecCheck"
             label={this.props.title}
             onChange={e => this.props.onChangeActive(e.checked)}
-            checked={this.props.recActive}
+            checked={this.props.recActive || false}
           />
-          <label htmlFor="activeRecCheck">{this.props.title}</label>
+          <label htmlFor="activeRecCheck" className="mt-1">{this.props.title}</label>
+          {this.props.recActive
+            &&
+            <div className="row">
+              <div className="col-12 col-md-6 ml-4 mb-1" >
+                <InputText
+                  id="otherRec" type="text" className="form-control"
+                  onChange={e => this.props.onChangeRecTitle(e.target.value)}
+                  placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
+                  value={this.props.recTitle || ''}
+                />
+              </div>
+              <div className="col-12 col-md-6 ml-4 mb-1" >
+                <InputText
+                  id="textRec" type="text" className="form-control"
+                  onChange={e => this.props.onChangeValue(e.target.value)}
+                  value={this.props.value || ''}
+                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
+                />
+              </div>
+            </div>
+          }
         </div>
-        {this.props.recActive
-          &&
-          <div>
-            <div className="col-sm-7" style={style.input}>
-              <InputText
-                id="otherRec" type="text" className="form-control"
-                onChange={e => this.props.onChangeRecTitle(e.target.value)}
-                placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
-                value={this.props.recTitle}
-              />
-            </div>
-            <div className="col-sm-7 col-sm-offset-4" style={style.input}>
-              <InputText
-                id="textRec" type="text" className="form-control"
-                onChange={e => this.props.onChangeValue(e.target.value)}
-                value={this.props.value}
-                placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-              />
-            </div>
-          </div>
-        }
       </div>
     );
   }

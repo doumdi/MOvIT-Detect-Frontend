@@ -1,13 +1,13 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'primereact/components/card/Card';
-
 
 export default class RecPanel extends Component {
   static propTypes = {
@@ -20,22 +20,20 @@ export default class RecPanel extends Component {
     const style = {
       padding: '10px',
       card: {
-        height: '200px',
         padding: '5px',
         backgroundColor: 'white',
-        boxShadow: '5px 5px gainsboro',
+        boxShadow: '5px 5px 5px gainsboro',
+        height: '100%',
       },
     };
 
     return (
-      <div>
+      <div className="col-12 col-sm-6 col-md-4 " style={style}>
         {this.props.condition
           &&
-          <div className="col-md-4" style={style}>
-            <Card title={this.props.title} style={style.card}>
-              {this.props.value}
-            </Card>
-          </div>
+          <Card title={this.props.title} style={style.card}>
+            {this.props.value}
+          </Card>
         }
       </div>
     );

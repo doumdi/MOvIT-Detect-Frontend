@@ -1,10 +1,8 @@
-import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import DailyResults from '../../src/components/dailyResults';
 
 describe('DailyResults Tests', () => {
-  it('should have proptypes', function () {
+  it('should have proptypes', () => {
     // Actual value
     const actualValue = DailyResults.WrappedComponent.propTypes;
 
@@ -15,7 +13,7 @@ describe('DailyResults Tests', () => {
       reduceSlidingMoving: PropTypes.bool.isRequired,
       reduceSlidingRest: PropTypes.bool.isRequired,
       date: PropTypes.instanceOf(Date),
-      header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+      header: PropTypes.object,
     };
 
     // Test

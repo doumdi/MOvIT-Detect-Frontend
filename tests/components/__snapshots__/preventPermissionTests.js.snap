@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreventPermission Tests should match snapshot 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-10 offset-1 mt-3 d-flex"
+  >
+    <Checkbox
+      checked={false}
+      className={null}
+      disabled={false}
+      id="agreement"
+      inputId={null}
+      name={null}
+      onChange={[Function]}
+      onContextMenu={null}
+      onMouseDown={null}
+      readOnly={false}
+      style={null}
+      value={null}
+    />
+    <label
+      htmlFor="agreement"
+    >
+      test
+    </label>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6"
+    >
+      <h5>
+        parameters.doNotReceive.en
+        :
+      </h5>
+    </div>
+    <div
+      className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6"
+    >
+      <RadioButton
+        checked={false}
+        className={null}
+        disabled={false}
+        id="doNotReceiveDay"
+        inputId={null}
+        name={null}
+        onChange={[Function]}
+        style={null}
+        value="day"
+      />
+      <label
+        htmlFor="doNotReceiveDay"
+      >
+        24 
+        time.hours.en
+      </label>
+    </div>
+    <div
+      className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6"
+    >
+      <RadioButton
+        checked={false}
+        className={null}
+        disabled={false}
+        id="doNotReceiveWeek"
+        inputId={null}
+        name={null}
+        onChange={[Function]}
+        style={null}
+        value="week"
+      />
+      <label
+        htmlFor="doNotReceiveWeek"
+      >
+        1 
+        time.week.en
+      </label>
+    </div>
+    <div
+      className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6"
+    >
+      <RadioButton
+        checked={false}
+        className={null}
+        disabled={false}
+        id="doNotReceiveMonth"
+        inputId={null}
+        name={null}
+        onChange={[Function]}
+        style={null}
+        value="month"
+      />
+      <label
+        htmlFor="doNotReceiveMonth"
+      >
+        1 
+        time.month.en
+      </label>
+    </div>
+  </div>
+</div>
+`;

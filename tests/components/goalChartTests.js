@@ -1,23 +1,46 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json';
+
 import GoalChart from '../../src/components/goalChart';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('GoalChart Tests', () => {
-  it('should have proptypes', function () {
-    // Actual value
+  const props = {
+    condition: true,
+    title: 'This is a test',
+    successMessage: 'Success',
+    data: {},
+    options: {},
+  };
+
+  it('should have proptypes', () => {
     const actualValue = GoalChart.propTypes;
 
-    // Expected value
     const expectedValue = {
       condition: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
       successMessage: PropTypes.string.isRequired,
-      data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-      options: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+      data: PropTypes.object,
+      options: PropTypes.object.isRequired,
     };
 
-    // Test
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
+  });
+
+  it('should match the snapshot', () => {
+    const wrapper = shallow(<GoalChart {...props} />);
+
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

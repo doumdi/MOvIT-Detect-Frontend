@@ -1,7 +1,8 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -17,17 +18,13 @@ class SumbitButtons extends Component {
   };
 
   render() {
-    const style = {
-      paddingBottom: '1em',
-      height: '25%',
-    };
     return (
-      <div className="col-sm-9 text-right" style={style}>
-        <button onClick={() => this.props.onCancel()} className="btn btn-lg">
+      <div className="col-10 offset-1 offset-md-0 text-right py-3">
+        <button id="cancelButton" onClick={() => this.props.onCancel()} className="btn btn-lg mb-2 mb-sm-0">
           {T.translate(`cancel.${this.props.language}`)}
         </button>
         &nbsp;
-        <button onClick={() => this.props.onSave()} className="btn btn-lg">
+        <button id="saveButton" onClick={() => this.props.onSave()} className="btn btn-lg mb-2 mb-sm-0">
           {T.translate(`save.${this.props.language}`)}
         </button>
       </div>
