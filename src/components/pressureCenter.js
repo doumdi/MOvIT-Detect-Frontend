@@ -27,6 +27,7 @@ class PressureCenter extends Component {
     this.state = {
       time: 0,
       index: 0,
+      date: props.date,
       currentCenter: { x: 0, y: 0 },
       currentQuadrants: [
         { x: 0, y: 0 },
@@ -41,8 +42,15 @@ class PressureCenter extends Component {
     this.initialize();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.date !== this.state.date) {
+      this.setState({ date: nextProps.date });
+      this.initialize();
+    }
+  }
+
   async getPressureData() {
-    const response = await axios.get(`${URL}gravityCenter?Day=${+this.props.date},offset=0`, this.props.header);
+    const response = await axios.get(`${URL}gravityCenter?Day=${+this.state.date},offset=0`, this.props.header);
     return response.data;
   }
 
@@ -59,6 +67,9 @@ class PressureCenter extends Component {
   }
 
   loadPressureData(data) {
+    this.setState({ quadrants: [] });
+    this.setState({ centers: [] });
+    this.setState({ hours: [] });
     for (const property in data) {
       if (data.hasOwnProperty(property)) {
         this.state.hours.push(property);
@@ -71,7 +82,7 @@ class PressureCenter extends Component {
 
   render() {
     const style = {
-      marginBottom: '25%',
+      marginBottom: '10%',
       height: '60%',
       width: '100%',
       center: {
@@ -79,62 +90,64 @@ class PressureCenter extends Component {
       },
     };
     return (
-      <div className="col-sm-8" style={style}>
+      <div className="container" style={style}>
         {this.state.centers.length > 0 &&
           <div>
             <br />
-            <h4>{this.props.title}</h4>
+            <h4 id="dailyPressureCenter">{this.props.title}</h4>
             <hr />
-            <VictoryChart
-              theme={VictoryTheme.material}
-              domain={{ x: [-4, 4], y: [-7, 7] }}
-            >
-              <VictoryScatter
-                style={{ data: { fill: 'green' } }}
-                size={10}
-                data={[
-                  this.state.currentCenter,
-                ]}
-              />
-              <VictoryScatter
-                style={{ data: { fill: '#c43a31' } }}
-                size={7}
-                data={[
-                  this.state.currentQuadrants[0],
-                ]}
-              />
-              <VictoryScatter
-                style={{ data: { fill: '#c43a31' } }}
-                size={7}
-                data={[
-                  this.state.currentQuadrants[1],
-                ]}
-              />
-              <VictoryScatter
-                style={{ data: { fill: '#c43a31' } }}
-                size={7}
-                data={[
-                  this.state.currentQuadrants[2],
-                ]}
-              />
-              <VictoryScatter
-                style={{ data: { fill: '#c43a31' } }}
-                size={7}
-                data={[
-                  this.state.currentQuadrants[3],
-                ]}
-              />
-            </VictoryChart>
-            <div className="col-8 offset-2 col-md-4 offset-md-4">
-              <Slider
-                min={0} max={this.state.centers.length - 1}
-                style={{ marginTop: '2em' }}
-                value={this.state.index}
-                onChange={e => this.setIndex(e.value)}
-              />
-            </div>
-            <div className="col-6 offset-3 text-center">
-              <h3>{milliToTimeString(this.state.time)}</h3>
+            <div className="col-lg-6 offset-lg-1">
+              <VictoryChart
+                theme={VictoryTheme.material}
+                domain={{ x: [-4, 4], y: [-7, 7] }}
+              >
+                <VictoryScatter
+                  style={{ data: { fill: 'green' } }}
+                  size={10}
+                  data={[
+                    this.state.currentCenter,
+                  ]}
+                />
+                <VictoryScatter
+                  style={{ data: { fill: '#c43a31' } }}
+                  size={7}
+                  data={[
+                    this.state.currentQuadrants[0],
+                  ]}
+                />
+                <VictoryScatter
+                  style={{ data: { fill: '#c43a31' } }}
+                  size={7}
+                  data={[
+                    this.state.currentQuadrants[1],
+                  ]}
+                />
+                <VictoryScatter
+                  style={{ data: { fill: '#c43a31' } }}
+                  size={7}
+                  data={[
+                    this.state.currentQuadrants[2],
+                  ]}
+                />
+                <VictoryScatter
+                  style={{ data: { fill: '#c43a31' } }}
+                  size={7}
+                  data={[
+                    this.state.currentQuadrants[3],
+                  ]}
+                />
+              </VictoryChart>
+              <div className="col-8 offset-2 col-md-4 offset-md-4">
+                <Slider
+                  min={0} max={this.state.centers.length - 1}
+                  style={{ marginTop: '1vh' }}
+                  value={this.state.index}
+                  onChange={e => this.setIndex(e.value)}
+                />
+              </div>
+              <div className="col-6 offset-3 text-center">
+                <h3>{milliToTimeString(this.state.time)}</h3>
+              </div>
             </div>
           </div>
         }

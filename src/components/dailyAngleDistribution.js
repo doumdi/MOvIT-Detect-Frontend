@@ -11,28 +11,20 @@ import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import GoalProgress from './goalProgress';
-import RecGoalProgress from './recGoalProgress';
-import PressureCenter from './pressureCenter';
-import DailySuccessTilt from './dailySuccessTilt';
+import '../styles/results.css';
 
-class DailyResults extends Component {
+class DailyAngleDistribution extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    reduceWeight: PropTypes.bool.isRequired,
-    reduceSlidingMoving: PropTypes.bool.isRequired,
-    reduceSlidingRest: PropTypes.bool.isRequired,
     date: PropTypes.instanceOf(Date),
     header: PropTypes.object,
   }
   constructor(props) {
     super(props);
     this.state = {
-      value1: 50,
-      value2: 30,
       dayData: [],
       date: props.date,
-      data: {},
+      data: null,
       loading: true,
     };
     this.getDayData(this.state.date);
@@ -46,13 +38,9 @@ class DailyResults extends Component {
   }
 
   getDayData(date) {
+    this.setState({ loading: true });
     axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
       .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
-  }
-
-  hover(e) {
-    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["e"] }]*/
-    e.target.style.cursor = 'pointer';
   }
 
   loadData() {
@@ -88,15 +76,6 @@ class DailyResults extends Component {
   }
 
   render() {
-    const style = {
-      center: {
-        textAlign: 'center',
-      },
-      bottom: {
-        paddingBottom: '400px',
-      },
-    };
-
     const minOptions = {
       tooltips: {
         callbacks: {
@@ -116,37 +95,12 @@ class DailyResults extends Component {
       },
     };
     return (
-      <div className="container">
-        <h2 style={style.center}>{T.translate(`dailyResults.howDo.${this.props.language}`)}</h2>
-        <br />
-        <h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>
+      <div className="container graphic">
+        <h4 id="dailyAngle">{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>
         <hr />
         {!this.state.loading &&
           <Chart type="pie" data={this.state.data} options={minOptions} />
         }
-        <PressureCenter
-          title={T.translate(`dailyResults.pressureCenter.${this.props.language}`)}
-          date={this.props.date}
-        />
-
-        <DailySuccessTilt date={this.props.date} />
-
-        <RecGoalProgress
-          condition={this.props.reduceWeight}
-          title={T.translate(`dailyResults.pressure.${this.props.language}`)}
-          goalValue={this.state.value2}
-          recValue={this.state.value1}
-        />
-        <GoalProgress
-          condition={this.props.reduceSlidingMoving}
-          title={T.translate(`dailyResults.travel.${this.props.language}`)}
-          value={this.state.value2}
-        />
-        <GoalProgress
-          condition={this.props.reduceSlidingRest}
-          title={T.translate(`dailyResults.rest.${this.props.language}`)}
-          value={this.state.value2}
-        />
       </div>
     );
   }
@@ -162,4 +116,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(DailyResults);
+export default connect(mapStateToProps)(DailyAngleDistribution);

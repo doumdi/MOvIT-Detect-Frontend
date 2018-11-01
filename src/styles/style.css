@@ -3,3 +3,7 @@
 .mb-1 {
   margin-bottom: 1rem;
 }
+
+.results::-webkit-scrollbar {
+  display: none;
+}

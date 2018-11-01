@@ -119,10 +119,10 @@ class MonthlySuccessTilt extends Component {
     };
 
     return (
-      <div>
-        {!this.state.loading &&
-          <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
-        }
+      <div classame="container">
+        <h4 id="monthlyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>
+        <hr />
+        <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
       </div>
     );
   }
