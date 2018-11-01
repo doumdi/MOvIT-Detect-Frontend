@@ -18,7 +18,7 @@ import MonthlySuccessTilt from './monthlySuccessTilt';
 class MonthlyResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
@@ -59,12 +59,14 @@ class MonthlyResults extends Component {
   }
   getAngleMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
+    this.setState({ angleLoading: true });
     axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
       .then((response) => { this.formatAngleChartData(response.data); })
       .catch(error => console.log(error));
   }
   getSitMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
+    this.setState({ sitLoading: true });
     axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header)
       .then((response) => { this.formatSitChartData(response.data); })
       .catch(error => console.log(error));
@@ -157,6 +159,15 @@ class MonthlyResults extends Component {
     e.target.style.cursor = 'pointer';
   }
   render() {
+    const style = {
+      center: {
+        textAlign: 'center',
+      },
+      bottom: {
+        paddingBottom: '400px',
+      },
+    };
+
     const personalTiltData = {
       labels: [
         '1', '2', '3', '4', '5',
@@ -339,7 +350,7 @@ class MonthlyResults extends Component {
 
     return (
       <div className="container">
-        <h2 className="text-center">{T.translate(`monthlyResults.howDo.${this.props.language}`)}</h2>
+        <h2 style={style.center}>{T.translate(`monthlyResults.howDo.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>
         {!this.state.angleLoading &&
@@ -351,7 +362,7 @@ class MonthlyResults extends Component {
           <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
 
-        <MonthlySuccessTilt month={this.props.month} />
+        <MonthlySuccessTilt />
 
         <RecGoalChart
           condition={this.props.reduceWeight}
@@ -375,6 +386,7 @@ class MonthlyResults extends Component {
           data={restData}
           options={percentOptions}
         />
+        <div style={style.bottom} />
       </div>
     );
   }

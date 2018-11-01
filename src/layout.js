@@ -17,7 +17,6 @@ import Configuration from './views/configuration';
 import Parameters from './views/parameter';
 import Wifi from './views/wifi';
 import forgotPassword from './views/forgotPassword';
-import debug from './views/debug';
 
 export default class Layout extends Component {
   render() {
@@ -26,7 +25,7 @@ export default class Layout extends Component {
         <div>
           <Header />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact="true" path="/" component={Home} />
             <Route path="/home" component={Home} />
             <Route path="/graphic" component={Graphic} />
             <Route path="/parameter" component={Parameters} />
@@ -35,7 +34,6 @@ export default class Layout extends Component {
             <Route path="/configurations" component={Configuration} />
             <Route path="/wifi" component={Wifi} />
             <Route path="/forgotpassword" component={forgotPassword} />
-            <Route path="/debug" component={debug} />
           </Switch>
 
           <Footer />

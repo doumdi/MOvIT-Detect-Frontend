@@ -1,8 +1,10 @@
+import React from 'react';
+import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import Goal from '../../src/views/goal';
 
 describe('Goal Tests', () => {
-  it('should have proptypes', () => {
+  it('should have proptypes', function () {
     // Actual value
     const actualValue = Goal.WrappedComponent.propTypes;
 

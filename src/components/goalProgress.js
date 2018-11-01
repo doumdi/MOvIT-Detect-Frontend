@@ -1,8 +1,7 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin-Didier Tran
- * @author Benjamin Roy
+ * @author Austin Didier Tran
  */
 
 import React, { Component } from 'react';

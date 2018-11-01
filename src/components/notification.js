@@ -1,8 +1,7 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin-Didier Tran
- * @author Benjamin Roy
+ * @author Austin Didier Tran
  */
 
 import React, { Component } from 'react';
@@ -16,7 +15,7 @@ import Countdown from './countdown';
 class Notification extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   }
 
   constructor(props) {
@@ -27,19 +26,19 @@ class Notification extends Component {
     this.calibrationCompleted = this.calibrationCompleted.bind(this);
   }
 
-  async turnOnNotification() {
-    const response = axios.get(`${URL}alert?State=on`, this.props.header);
-    console.log(response);
+  turnOnNotification() {
+    axios.get(`${URL}alert?State=on`, this.props.header)
+      .then(response => console.log(response));
   }
 
-  async turnOffNotification() {
-    const response = await axios.get(`${URL}alert?State=off`, this.props.header);
-    console.log(response);
+  turnOffNotification() {
+    axios.get(`${URL}alert?State=off`, this.props.header)
+      .then(response => console.log(response));
   }
 
-  async calibrate() {
-    await axios.get(`${URL}calibrate`, this.props.header);
-    this.setState({ ...this.state, showCountdown: true });
+  calibrate() {
+    axios.get(`${URL}calibrate`, this.props.header)
+      .then(() => this.setState({ ...this.state, showCountdown: true }));
   }
 
   calibrationCompleted() {
@@ -47,22 +46,33 @@ class Notification extends Component {
   }
 
   render() {
+    const style = {
+      notifs: {
+        marginTop: '1em',
+        marginBottom: '1em',
+      },
+    };
     return (
-      <div className="row m-3 mt-5 ml-md-5" >
-        <div className="mb-2 mr-3" >
-          <button id="calibrate-button" onClick={() => this.calibrate()} className="btn btn-lg">
-            {T.translate(`calibrate.${this.props.language}`)}
-          </button>
-        </div>
-        <div className="mr-3 mb-2">
-          <button id="turn-on-button" onClick={() => this.turnOnNotification()} className="btn btn-lg">
-            {T.translate(`alert.on.${this.props.language}`)}
-          </button>
-        </div>
-        <div className="mr-3 mb-2">
-          <button id="turn-off-button" onClick={() => this.turnOffNotification()} className="btn btn-lg">
-            {T.translate(`alert.off.${this.props.language}`)}
-          </button>
+      <div className="col-sm-12" >
+        <div className="col-sm-2" />
+        <div className="col-sm-8" style={style.notifs}>
+          <div className="col-sm-4">
+            <div className="col-sm-4" />
+            <button onClick={() => this.calibrate()} className="btn btn-lg col-sm-8">
+              {T.translate(`calibrate.${this.props.language}`)}
+            </button>
+          </div>
+          <div className="col-sm-4">
+            <div className="col-sm-2" />
+            <button onClick={() => this.turnOnNotification()} className="btn btn-lg col-sm-8">
+              {T.translate(`alert.on.${this.props.language}`)}
+            </button>
+          </div>
+          <div className="col-sm-4">
+            <button onClick={() => this.turnOffNotification()} className="btn btn-lg col-sm-8">
+              {T.translate(`alert.off.${this.props.language}`)}
+            </button>
+          </div>
         </div>
         {this.state.showCountdown && <Countdown time={10} onComplete={this.calibrationCompleted} />}
       </div>

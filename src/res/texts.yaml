@@ -272,7 +272,7 @@ dailyResults:
 
 SuccessfulTilt:
   tiltMade:
-    FR: "Bascules réalisées"
+    FR: "Bascule réalisées"
     EN: "Tilt made"
   rightAngle:
     FR: "Bon angle"
@@ -395,8 +395,3 @@ wifi:
   changeWifi:
     FR: "Changer de réseau"
     EN: "Change your network"
-
-debug:
-  state:
-    FR: "État des capteurs"
-    EN: "Module status"

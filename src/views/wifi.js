@@ -68,14 +68,15 @@ class Wifi extends Component {
         this.setState({ ...this.state, connecting: false, connected: false });
       } else {
         tries += 1;
+        console.log(tries);
         axios.get(`${URL}wifi`)
-          .then((response) => {
-            if (response.data.connected) {
-              window.clearInterval(connectionValidation);
-              this.setState({ ...this.state, connecting: false, connected: true });
-            }
-          })
-          .catch(() => { window.clearInterval(connectionValidation); this.setState({ ...this.state, connecting: false, connected: false }); });
+        .then((response) => {
+          if (response.data.connected) {
+            window.clearInterval(connectionValidation);
+            this.setState({ ...this.state, connecting: false, connected: true });
+          }
+        })
+        .catch(() => { window.clearInterval(connectionValidation); this.setState({ ...this.state, connecting: false, connected: false }); });
       }
     }, 1000);
   }
@@ -85,23 +86,24 @@ class Wifi extends Component {
   }
 
   render() {
+    const style = {
+      cursor: 'pointer',
+    };
     return (
-      <div className="mt-3">
+      <div>
         <div className="col-md-12">
           <legend className="text-center header"><h2>{T.translate(`wifi.${this.props.language}`)}</h2></legend>
           {this.state.connected
             ? <h2 className="text-center" >
               {T.translate(`wifi.connected.${this.props.language}`)}
-              <button type="button" className="btn btn-link" onClick={() => this.enableConnection()}>
-                <h2>{T.translate(`wifi.changeWifi.${this.props.language}`)}</h2>
-              </button>
+              <a style={style} onClick={() => this.enableConnection()}>{T.translate(`wifi.changeWifi.${this.props.language}`)}</a>
             </h2>
             : [
               (this.state.connecting ?
-                <Loading key="loading" />
+                <Loading />
                 :
-                <div className="row">
-                  <div className="form-horizontal mt-3 col-12 col-md-8 offset-md-2">
+                <div>
+                  <div className="form-horizontal">
                     <LogoText
                       iconClass="fa fa-wifi"
                       placeHolder={T.translate(`wifi.name.${this.props.language}`)}

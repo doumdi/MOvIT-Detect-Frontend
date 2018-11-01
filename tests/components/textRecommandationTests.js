@@ -1,20 +1,21 @@
 import React from 'react';
 import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
-import RecGoalProgress from '../../src/components/recGoalProgress';
+import TextRecommandation from '../../src/components/textRecommendation';
 
-describe('RecGoalProgress Tests', () => {
+describe('TextRecommandation Tests', () => {
   it('should have proptypes', function () {
     // Actual value
-    const actualValue = RecGoalProgress.WrappedComponent.propTypes;
+    const actualValue = TextRecommandation.WrappedComponent.propTypes;
 
     // Expected value
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      condition: PropTypes.bool.isRequired,
+      recActive: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
-      goalValue: PropTypes.number,
-      recValue: PropTypes.number,
+      value: PropTypes.string,
+      onChangeActive: PropTypes.func.isRequired,
+      onChangeValue: PropTypes.func.isRequired,
     };
 
     // Test

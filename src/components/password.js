@@ -2,7 +2,6 @@
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
  * @author Austin Didier Tran
- * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -41,39 +40,37 @@ class Password extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="ui-inputgroup col-8 offset-2">
-          <input
-            className="form-control"
-            type="password"
-            id="password"
-            placeholder={T.translate(`login.password.${this.props.language}`)}
-            value={this.state.password}
-            onChange={e => this.setState({ password: e.target.value, failed: false })}
-            onKeyPress={e => this.onKeyPress(e)}
-            style={this.state.failed ? { borderColor: 'red' } : {}}
-          />
-          <button
-            id="loginBtn" onClick={() => this.props.onSubmit(this.state.password)}
-            className="ui-button-secondary"
-          >
-            <i className="fa fa-sign-in" />
-          </button>
+      <div className="col-sm-12">
+        <div className="col-sm-12">
+          <div className="col-sm-2" />
+          <div className="ui-inputgroup col-sm-8">
+            <input
+              className="form-control"
+              type="password"
+              placeholder={T.translate(`login.password.${this.props.language}`)}
+              value={this.state.password}
+              onChange={e => this.setState({ password: e.target.value, failed: false })}
+              onKeyPress={e => this.onKeyPress(e)}
+              style={this.state.failed ? { borderColor: 'red' } : {}}
+            />
+            <button onClick={() => this.props.onSubmit(this.state.password)} ><i className="fa fa-sign-in" /></button>
+          </div>
         </div>
-        <div className="ui-inputgroup col-8 offset-2">
-          <button type="button" id="forgotPasswordBtn" className="btn btn-link pl-0" onClick={() => this.props.onForgotPassword()}>
-            {T.translate(`login.forgotPassword.${this.props.language}`)}
-          </button>
+        <div className="col-sm-12">
+          <div className="col-sm-2" />
+          <div className="ui-inputgroup col-sm-8">
+            <a style={{ cursor: 'pointer' }} onClick={() => this.props.onForgotPassword()}>{T.translate(`login.forgotPassword.${this.props.language}`)}</a>
+          </div>
         </div>
-        {
-          this.state.failed &&
-          <div className="row" style={{ marginTop: '2px' }}>
-            <div className="col-8 offset-2">
-              <Message id="errorMsg" severity="error" text={T.translate(`login.wrongPassword.${this.props.language}`)} />
+        {this.state.failed &&
+          <div className="col-sm-12" style={{ marginTop: '2px' }}>
+            <div className="col-sm-2" />
+            <div className="col-sm-8" >
+              <Message severity="error" text={T.translate(`login.wrongPassword.${this.props.language}`)} />
             </div>
           </div>
         }
-      </div >
+      </div>
     );
   }
 }

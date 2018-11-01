@@ -1,8 +1,10 @@
+import React from 'react';
+import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import Home from '../../src/views/home';
 
 describe('Home Tests', () => {
-  it('should have proptypes', () => {
+  it('should have proptypes', function () {
     // Actual value
     const actualValue = Home.WrappedComponent.propTypes;
 
@@ -11,7 +13,7 @@ describe('Home Tests', () => {
       language: PropTypes.string.isRequired,
       changeProfile: PropTypes.func.isRequired,
       changeToken: PropTypes.func.isRequired,
-      history: PropTypes.object.isRequired,
+      history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
       profile: PropTypes.string,
     };
 

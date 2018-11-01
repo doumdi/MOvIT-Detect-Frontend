@@ -18,8 +18,8 @@ import { URL } from '../redux/applicationReducer';
 class Parameters extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    history: PropTypes.object.isRequired,
-    header: PropTypes.object,
+    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     changeDataAgreement: PropTypes.func,
     dataAgreement: PropTypes.bool,
     dataDisagreePeriod: PropTypes.string,
@@ -76,6 +76,7 @@ class Parameters extends Component {
 
   render() {
     const style = {
+      height: '80vh',
       content: {
         textAlign: 'center',
       },
@@ -85,9 +86,10 @@ class Parameters extends Component {
     };
 
     return (
-      <div style={style} className="row mt-3">
+      <div style={style}>
         <legend className="text-center header"><h2>{T.translate(`parameters.${this.props.language}`)}</h2></legend>
-        <div className="col-12">
+        <div className="col-sm-2" />
+        <div className="col-sm-8">
           <PreventPermission
             permission={this.props.dataAgreement}
             permissionTitle={T.translate(`parameters.dataAgreement.${this.props.language}`)}

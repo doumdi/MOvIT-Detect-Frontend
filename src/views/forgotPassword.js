@@ -13,7 +13,7 @@ class ForgotPassword extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
-    history: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   };
 
   constructor(props) {
@@ -53,10 +53,10 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <div className="mt-4">
-        <div className="col-12">
+      <div>
+        <div className="col-md-12">
           <legend className="text-center header"><h2>{T.translate(`login.forgotPassword.${this.props.language}`)}</h2></legend>
-          <div className="mt-5">
+          <div>
             <div className="form-horizontal">
               <LogoText
                 iconClass="fa fa-puzzle-piece"
