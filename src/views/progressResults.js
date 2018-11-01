@@ -180,7 +180,7 @@ class ProgressResults extends Component {
     return (
       <div>
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
-        <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
+        <h2 className="center">{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
         <hr />
         {!isMobile &&
           <div className="col-lg-2 leftMenu">

@@ -52,7 +52,7 @@ class PressureResults extends Component {
     return (
       <div>
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
-        <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
+        <h2 className="center">{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
         <hr />
         {!isMobile &&
           <div className="col-lg-2 leftMenu">
@@ -71,7 +71,7 @@ class PressureResults extends Component {
           <div className="col-lg-8 offset-lg-2 graphic">
             {this.state.period === 'day' ?
               <PressureCenter
-                title={T.translate(`dailyResults.pressureCenter.${this.props.language}`)}
+                title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
                 date={this.state.date}
               />
             :
