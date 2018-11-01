@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import { URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
+import '../styles/results.css';
 
 class DailySuccessTilt extends Component {
 
@@ -93,10 +94,10 @@ class DailySuccessTilt extends Component {
     };
 
     return (
-      <div>
-        {!this.state.loading &&
-          <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
-        }
+      <div className="container graphic">
+        <h4 id="dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>
+        <hr />
+        <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
       </div>
     );
   }
