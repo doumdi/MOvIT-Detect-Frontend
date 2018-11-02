@@ -75,20 +75,21 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel'],
+        loader: 'babel-loader',
         include: path.join(__dirname, 'src'),
       },
       {
         test: /\.ya?ml$/,
-        loader: 'json-loader!yaml-loader' },
+        loader: 'json-loader!yaml-loader'
+      },
       {
         test: /\.(png|gif)$/,
         loader: 'url?limit=25000',
       },
       {
-        test: /.css$/,
+        test: /\.(css|scss)$/,
         exclude: [/node_modules/],
-        use: ['css-loader'],
+        loader: 'style-loader!css-loader',
       },
     ],
   },
