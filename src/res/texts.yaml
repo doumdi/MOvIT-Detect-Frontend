@@ -435,5 +435,14 @@ debug:
       FR: "Temps avant un rappel"
       EN: "Snooze time"
     snoozeTimeToolTip:
-      FR: "Temps avant de reçevoir un rappel d'effectuer une bascule"
-      EN: "Time before receiving a reminder to perform a tilt"
+      FR: "Temps avant de reçevoir un rappel d'effectuer une bascule (minutes)"
+      EN: "Time before receiving a reminder to perform a tilt (minutes)"
+  update:
+    FR: "Mise à jour du système"
+    EN: "System update"
+    last:
+      FR: "Dernière mise à jour"
+      EN: "Last update"
+    countdownTitle:
+      FR: "La mise à jour sera lancée dans..."
+      EN: "The update will be launched in ..."

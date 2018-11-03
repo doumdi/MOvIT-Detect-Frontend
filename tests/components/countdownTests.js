@@ -26,6 +26,7 @@ describe('AngleRecommandation Tests', () => {
   const store = mockStore(initialState);
   const props = {
     time: 3,
+    title: 'Countdown',
     language: 'en',
     onComplete: () => { spy(); },
   };
@@ -42,6 +43,7 @@ describe('AngleRecommandation Tests', () => {
 
     const expectedValue = {
       time: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
       onComplete: PropTypes.func.isRequired,
       language: PropTypes.string.isRequired,
     };

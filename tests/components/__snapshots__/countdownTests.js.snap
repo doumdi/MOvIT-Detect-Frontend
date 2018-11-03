@@ -42,9 +42,7 @@ exports[`AngleRecommandation Tests should match the snapshot 1`] = `
       }
     }
   >
-     
-    calibrating.en
-     
+    Countdown
   </div>
   <div
     style={
