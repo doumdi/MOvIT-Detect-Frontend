@@ -5,6 +5,7 @@
  * @author Benjamin Roy
  */
 
+export const SNOOZE_TIME = 'SNOOZE_TIME';
 export const IS_LED_BLINKING_ENABLED = 'IS_LED_BLINKING_ENABLED';
 export const IS_VIBRATION_ENABLED = 'IS_VIBRATION_ENABLED';
 
@@ -15,6 +16,7 @@ function changeIsLedBlinkingEnabled(isEnabled) {
     isLedBlinkingEnabled: isEnabled,
   };
 }
+
 function changeIsVibrationEnabled(isEnabled) {
   return {
     type: IS_VIBRATION_ENABLED,
@@ -22,9 +24,18 @@ function changeIsVibrationEnabled(isEnabled) {
   };
 }
 
+// -------------- TIME PICKER --------------
+function changeSnoozeTime(time) {
+  return {
+    type: SNOOZE_TIME,
+    snoozeTime: time,
+  }
+}
+
 export const DebugActions = {
   changeIsLedBlinkingEnabled,
   changeIsVibrationEnabled,
+  changeSnoozeTime,
 };
 
 const ACTION_HANDLERS = {
@@ -34,11 +45,15 @@ const ACTION_HANDLERS = {
   [IS_VIBRATION_ENABLED]: (state, action) => (
     { ...state, isVibrationEnabled: action.isVibrationEnabled }
   ),
+  [SNOOZE_TIME]: (state, action) => (
+    { ...state, snoozeTime: action.snoozeTime }
+  )
 };
 
 export const initParameter = {
   isLedBlinkingEnabled: true,
   isVibrationEnabled: true,
+  snoozeTime: 10,
 };
 
 export default function applicationReducer(state = initParameter, action) {

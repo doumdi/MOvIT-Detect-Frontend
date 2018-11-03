@@ -36,6 +36,14 @@ describe('NotificationTests Tests', () => {
   };
 
   beforeEach(() => {
+    const mock = new MockAdapter(axios);
+    const data = {
+      response: true,
+    };
+
+    mock.onPost().reply(200);
+    mock.onGet(`${URL}notificationSettings`).reply(200, data);
+
     store = mockStore(initialState);
     wrapper = shallow(<NotificationSettings store={store} {...props} />).dive();
   });
@@ -45,8 +53,13 @@ describe('NotificationTests Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
+      header: PropTypes.object,
+      snoozeTime: PropTypes.number,
+      minimumSnoozeTime: PropTypes.number,
+      maximumSnoozeTime: PropTypes.number,
       isLedBlinkingEnabled: PropTypes.bool,
       isVibrationEnabled: PropTypes.bool,
+      changeSnoozeTime: PropTypes.func,
       changeIsLedBlinkingEnabled: PropTypes.func,
       changeIsVibrationEnabled: PropTypes.func,
     };
@@ -55,16 +68,9 @@ describe('NotificationTests Tests', () => {
   });
 
   it('should get the notification settings', async () => {
-    const mock = new MockAdapter(axios);
-    const data = {
-      response: true,
-    };
-
-    mock.onGet(`${URL}notificationSettings`).reply(200, data);
-
     const response = await wrapper.instance().getSettings();
 
-    expect(response).toEqual(data);
+    expect(response).toEqual({ response: true });
   });
 
   it('should enable the led blinking when checking the led blinking checkbox', () => {
@@ -95,6 +101,16 @@ describe('NotificationTests Tests', () => {
 
     expect(actions[0].isVibrationEnabled).toEqual(true);
     expect(actions[0].type).toEqual('IS_VIBRATION_ENABLED');
+  });
+
+  it('should set the snooze time when changing the input value', () => {
+    wrapper.setProps({ snoozeTime: 10 });
+    wrapper.instance().changeSnoozeTime(15);
+
+    const actions = store.getActions();
+
+    expect(actions[0].snoozeTime).toEqual(15);
+    expect(actions[0].type).toEqual('SNOOZE_TIME');
   });
 
   it('should disable the vibration when unchecking the vibration checkbox', () => {
