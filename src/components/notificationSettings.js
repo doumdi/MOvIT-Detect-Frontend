@@ -29,10 +29,18 @@ class NotificationSettings extends Component {
     this.load();
   }
 
-  load() {
-    axios.get(`${URL}notificationSettings`, this.props.header)
-      .then(response => this.mapData(response.data))
-      .catch(console.log);
+  async load() {
+    const settings = await this.getSettings();
+    this.mapData(settings);
+  }
+
+  async getSettings() {
+    try {
+      const response = await axios.get(`${URL}notificationSettings`, this.props.header);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   mapData(settings) {
@@ -45,7 +53,6 @@ class NotificationSettings extends Component {
     axios.post(`${URL}notificationSettings`, {
       isLedBlinkingEnabled: this.props.isLedBlinkingEnabled,
     }, this.props.header)
-      .then(console.log)
       .catch(console.log);
   }
 
@@ -54,17 +61,14 @@ class NotificationSettings extends Component {
     axios.post(`${URL}notificationSettings`, {
       isVibrationEnabled: this.props.isVibrationEnabled,
     }, this.props.header)
-      .then(console.log)
       .catch(console.log);
   }
 
   render() {
     return (
-      <div className="row">
-        <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6">
-          <h5>{T.translate(`debug.notificationSettings.${this.props.language}`)}:</h5>
-        </div>
-        <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6" >
+      <div>
+        <h5>{T.translate(`debug.notificationSettings.${this.props.language}`)}:</h5>
+        <div>
           <Checkbox
             id="enableLedBlinking"
             onChange={() => this.enableLedBlinking()}
@@ -72,7 +76,7 @@ class NotificationSettings extends Component {
           />
           <label htmlFor="enableLedBlinking">{T.translate(`debug.notificationSettings.enableLedBlinking.${this.props.language}`)}</label>
         </div>
-        <div className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6" >
+        <div>
           <Checkbox
             id="enableVibration" 
             onChange={() => this.enableVibration()}
