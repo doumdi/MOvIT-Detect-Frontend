@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotificationTests Tests should match the snapshot 1`] = `
+<div>
+  <h5>
+    debug.notificationSettings.en
+    :
+  </h5>
+  <div>
+    <Checkbox
+      checked={true}
+      className={null}
+      disabled={false}
+      id="enableLedBlinking"
+      inputId={null}
+      name={null}
+      onChange={[Function]}
+      onContextMenu={null}
+      onMouseDown={null}
+      readOnly={false}
+      style={null}
+      value={null}
+    />
+    <label
+      htmlFor="enableLedBlinking"
+    >
+      debug.notificationSettings.enableLedBlinking.en
+    </label>
+  </div>
+  <div>
+    <Checkbox
+      checked={true}
+      className={null}
+      disabled={false}
+      id="enableVibration"
+      inputId={null}
+      name={null}
+      onChange={[Function]}
+      onContextMenu={null}
+      onMouseDown={null}
+      readOnly={false}
+      style={null}
+      value={null}
+    />
+    <label
+      htmlFor="enableVibration"
+    >
+      debug.notificationSettings.enableVibration.en
+    </label>
+  </div>
+</div>
+`;

@@ -422,3 +422,12 @@ debug:
   state:
     FR: "État des capteurs"
     EN: "Module status"
+  notificationSettings:
+    FR: "Paramètres des notifications"
+    EN: "Notifications settings"
+    enableLedBlinking:
+      FR: "Clignoter la lumière"
+      EN: "Blink the light"
+    enableVibration:
+      FR: "Vibrer"
+      EN: "Vibrate"
