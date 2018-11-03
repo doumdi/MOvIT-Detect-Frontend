@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { T } from '../utilities/translator';
 import Notification from '../components/notification';
-
+import NotificationSettings from '../components/notificationSettings';
 
 class Debug extends Component {
   static propTypes = {
@@ -16,6 +16,7 @@ class Debug extends Component {
         <div className="col-12">
           <h2 className="header text-center">{T.translate(`debug.state.${this.props.language}`)}</h2>
           <Notification />
+          <NotificationSettings />
         </div>
       </div>
     );
@@ -26,4 +27,5 @@ function mapStateToProps(state) {
     language: state.applicationReducer.language,
   };
 }
+
 export default connect(mapStateToProps)(Debug);
