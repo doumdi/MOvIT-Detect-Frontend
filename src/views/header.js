@@ -1,7 +1,8 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -28,6 +29,7 @@ class Header extends Component {
     this.props.changeProfile(localStorage.getItem('profile'));
     this.props.changeToken(localStorage.getItem('token'));
   }
+
   logout() {
     this.props.changeProfile('');
     this.props.changeToken('');
@@ -81,6 +83,7 @@ class Header extends Component {
         border: 'none',
       },
     };
+  
     return (
       <div>
         {this.isLoggedIn()}
@@ -145,8 +148,10 @@ class Header extends Component {
                 }
               </button>
             </li>
-            <li className="nav navbar-nav pl-1">
-              <Link to="/debug" style={style.link}><i className="fa fa-cog" /></Link>
+            <li className="nav navbar-nav pl-1" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <button className="btn" style={style.button}>
+                <Link to="/debug" style={style.link}><i className="fa fa-cog" /></Link>
+              </button>
             </li>
             {this.props.profile
               &&
@@ -165,6 +170,7 @@ class Header extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
