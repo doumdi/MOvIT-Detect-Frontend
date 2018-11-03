@@ -8,22 +8,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
+import { DebugActions } from '../redux/debugReducer';
 
 class NotificationSettings extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    isLedBlinkingEnabled: PropTypes.bool,
+    isVibrationEnabled: PropTypes.bool,
+    changeIsLedBlinkingEnabled: PropTypes.func,
+    changeIsVibrationEnabled: PropTypes.func,
   }
 
   constructor(props) {
     super(props);
-    this.state = {
-      isLedBlinkingEnabled: true,
-      isVibrationEnabled: true,
-    };
     this.load();
   }
 
@@ -34,25 +36,23 @@ class NotificationSettings extends Component {
   }
 
   mapData(settings) {
-    this.setState({
-      isLedBlinkingEnabled: settings.isLedBlinkingEnabled,
-      isVibrationEnabled: settings.isVibrationEnabled
-    });
+    this.props.changeIsLedBlinkingEnabled(settings.isLedBlinkingEnabled);
+    this.props.changeIsVibrationEnabled(settings.isVibrationEnabled);
   }
 
   enableLedBlinking() {
-    this.setState({isLedBlinkingEnabled: !this.state.isLedBlinkingEnabled});
+    this.props.changeIsLedBlinkingEnabled(!this.props.isLedBlinkingEnabled);
     axios.post(`${URL}notificationSettings`, {
-      isLedBlinkingEnabled: this.state.isLedBlinkingEnabled,
+      isLedBlinkingEnabled: this.props.isLedBlinkingEnabled,
     }, this.props.header)
       .then(console.log)
       .catch(console.log);
   }
 
   enableVibration() {
-    this.setState({isVibrationEnabled: !this.state.isVibrationEnabled});
+    this.props.changeIsVibrationEnabled(!this.props.isVibrationEnabled);
     axios.post(`${URL}notificationSettings`, {
-      isVibrationEnabled: this.state.isVibrationEnabled,
+      isVibrationEnabled: this.props.isVibrationEnabled,
     }, this.props.header)
       .then(console.log)
       .catch(console.log);
@@ -68,7 +68,7 @@ class NotificationSettings extends Component {
           <Checkbox
             id="enableLedBlinking"
             onChange={() => this.enableLedBlinking()}
-            checked={this.state.isLedBlinkingEnabled}
+            checked={this.props.isLedBlinkingEnabled}
           />
           <label htmlFor="enableLedBlinking">{T.translate(`debug.notificationSettings.enableLedBlinking.${this.props.language}`)}</label>
         </div>
@@ -76,7 +76,7 @@ class NotificationSettings extends Component {
           <Checkbox
             id="enableVibration" 
             onChange={() => this.enableVibration()}
-            checked={this.state.isVibrationEnabled}
+            checked={this.props.isVibrationEnabled}
           />
           <label htmlFor="enableVibration">{T.translate(`debug.notificationSettings.enableVibration.${this.props.language}`)}</label>
         </div>
@@ -88,7 +88,16 @@ class NotificationSettings extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    isLedBlinkingEnabled: state.debugReducer.isLedBlinkingEnabled,
+    isVibrationEnabled: state.debugReducer.isVibrationEnabled,
   };
 }
 
-export default connect(mapStateToProps)(NotificationSettings);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    changeIsLedBlinkingEnabled: DebugActions.changeIsLedBlinkingEnabled,
+    changeIsVibrationEnabled: DebugActions.changeIsVibrationEnabled,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationSettings);
