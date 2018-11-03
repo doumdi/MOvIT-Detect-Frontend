@@ -19,6 +19,16 @@ import NotificationSettings from '../../src/components/notificationSettings';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+function initializeMockAdapter() {
+  const mock = new MockAdapter(axios);
+  const data = {
+    response: true,
+  };
+
+  mock.onPost().reply(200);
+  mock.onGet(`${URL}notificationSettings`).reply(200, data);
+}
+
 describe('NotificationTests Tests', () => {
   let wrapper;
   let store;
@@ -34,16 +44,9 @@ describe('NotificationTests Tests', () => {
     isLedBlinkingEnabled: true,
     isVibrationEnabled: true,
   };
+  initializeMockAdapter();
 
   beforeEach(() => {
-    const mock = new MockAdapter(axios);
-    const data = {
-      response: true,
-    };
-
-    mock.onPost().reply(200);
-    mock.onGet(`${URL}notificationSettings`).reply(200, data);
-
     store = mockStore(initialState);
     wrapper = shallow(<NotificationSettings store={store} {...props} />).dive();
   });
