@@ -8,7 +8,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import configureMockStore from 'redux-mock-store';
-import sinon from 'sinon';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
@@ -23,8 +22,6 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('NotificationTests Tests', () => {
   let wrapper;
   let store;
-  const isLedBlinkingEnabledSpy = sinon.spy();
-  const isVibrationEnabledSpy = sinon.spy();
   const initialState = {
     applicationReducer: { language: 'en' },
     debugReducer: {
@@ -36,15 +33,11 @@ describe('NotificationTests Tests', () => {
   const props = {
     isLedBlinkingEnabled: true,
     isVibrationEnabled: true,
-    changeIsLedBlinkingEnabled: (value) => { isLedBlinkingEnabledSpy(value); },
-    changeIsVibrationEnabled: (value) => { isVibrationEnabledSpy(value); },
   };
 
   beforeEach(() => {
     store = mockStore(initialState);
     wrapper = shallow(<NotificationSettings store={store} {...props} />).dive();
-    isLedBlinkingEnabledSpy.resetHistory();
-    isVibrationEnabledSpy.resetHistory();
   });
 
   it('should have proptypes', () => {

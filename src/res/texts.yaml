@@ -427,7 +427,7 @@ debug:
     EN: "Notifications settings"
     enableLedBlinking:
       FR: "Clignoter la lumière"
-      EN: "Blink the led"
+      EN: "Blink the light"
     enableVibration:
       FR: "Vibrer"
       EN: "Vibrate"
