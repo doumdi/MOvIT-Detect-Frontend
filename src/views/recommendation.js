@@ -225,9 +225,8 @@ class Recommendation extends Component {
             recActive={this.props.reduceSlidingRest}
             title={T.translate(`recommendations.slidingRest.${this.props.language}`)}
             maxAngle={this.state.maxSliderAngle}
-            onFrequencyChange={this.changeTitlFrequency.bind(this)}
-            onLengthChange={this.changeTiltLength.bind(this)}
-            onAngleChange={this.changeTiltAngle.bind(this)}
+            onChangeActive={this.props.changeReduceSlidingRest}
+            onChangeValue={this.props.changeTiltAngleRest}
           />
           <TextRecommendation
             onChangeActive={this.props.changeAllowRest}

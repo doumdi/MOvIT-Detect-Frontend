@@ -38,7 +38,7 @@ export default class LogoText extends Component {
             className="form-control"
             id="logoText"
             onChange={e => this.props.onChange(e.target.value)}
-            value={this.props.value}
+            value={this.props.value || ''}
           />
         </div>
       </div>

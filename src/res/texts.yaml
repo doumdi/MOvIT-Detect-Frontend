@@ -266,14 +266,11 @@ dailyResults:
     description:
       FR: "Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!"
       EN: "You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!"
-  pressureCenter:
-    EN: "Pressure center"
-    FR: "Centre de pression"
 
 SuccessfulTilt:
   tiltMade:
     FR: "Bascules réalisées"
-    EN: "Tilt made"
+    EN: "Tilts made"
   rightAngle:
     FR: "Bon angle"
     EN: "Right angle"
@@ -299,6 +296,31 @@ SuccessfulTilt:
     FR: "Bascules réalisées au bon angle mais de durée insuffisante"
     EN: "Tilt made at the right angle but for an insufficient duration"
 
+results:
+  FR: "Résultats"
+  EN: "Results"
+  categories:
+    FR: "Choisissez une catégorie"
+    EN: "Choose a category"
+    pressure:
+      FR: "Pression"
+      EN: "Pressure"
+    angle:
+      FR: "Bascules"
+      EN: "Tilts"
+    progress:
+      FR: "Progrès"
+      EN: "Progress"
+  graphicsLink:
+    angle:
+      FR: "Distribution des angles de bascules"
+      EN: "Distribution of tilt angles"
+    pressureCenter:
+      EN: "Pressure center"
+      FR: "Centre de pression"
+    sittingTime:
+      FR: "Temps passé au fauteuil"
+      EN: "Time spent in the wheelchair"
 
 monthlyResults:
   FR: "Mes résultats mensuels"
@@ -400,3 +422,18 @@ debug:
   state:
     FR: "État des capteurs"
     EN: "Module status"
+  notificationSettings:
+    FR: "Paramètres des notifications"
+    EN: "Notifications settings"
+    enableLedBlinking:
+      FR: "Clignoter la lumière"
+      EN: "Blink the light"
+    enableVibration:
+      FR: "Vibrer"
+      EN: "Vibrate"
+    snoozeTime:
+      FR: "Temps avant un rappel"
+      EN: "Snooze time"
+    snoozeTimeToolTip:
+      FR: "Temps avant de reçevoir un rappel d'effectuer une bascule"
+      EN: "Time before receiving a reminder to perform a tilt"

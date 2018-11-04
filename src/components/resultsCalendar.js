@@ -12,13 +12,14 @@ import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import DailyResults from '../components/dailyResults';
-import MonthlyResults from '../components/monthlyResults';
 
-class Graphic extends Component {
+class ResultsCalendar extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     header: PropTypes.object,
+    onPeriodChange: PropTypes.func.isRequired,
+    onDateChange: PropTypes.func.isRequired,
+    onMonthChange: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -33,10 +34,17 @@ class Graphic extends Component {
   }
 
   onPeriodChange(e) {
+    this.props.onPeriodChange(e.value);
     this.setState({ period: e.value });
   }
 
+  onDateChange(e) {
+    this.props.onDateChange(e.value);
+    this.setState({ date: e.value });
+  }
+
   onMonthChange(e) {
+    this.props.onMonthChange(e.value);
     this.setState({ month: e.value });
   }
 
@@ -123,11 +131,11 @@ class Graphic extends Component {
     return (
       <div className="mt-3">
         <div style={style.content}>
-          <h1>{title}</h1>
+          <h2>{title}</h2>
           <span>Date: </span>
           {
             this.state.period === 'day'
-              ? <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.setState({ date: e.value })} />
+              ? <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.onDateChange(e)} />
               : (
                 <Dropdown
                   value={this.state.month}
@@ -145,20 +153,6 @@ class Graphic extends Component {
             style={{ width: '150px', marginLeft: '15px' }}
             placeholder="Select a period"
           />
-
-        </div>
-        <div className="content-section implementation">
-          <span className="col-sm-3" />
-          {this.state.period === 'day'
-            ? (
-              this.state.date
-              && <DailyResults language={this.props.language} date={this.state.date} />
-            )
-            : (
-              this.state.month !== null
-              && <MonthlyResults language={this.props.language} month={this.state.month} />
-            )
-          }
         </div>
       </div>
     );
@@ -171,4 +165,4 @@ function mapStateToProps(state) {
     header: state.applicationReducer.header,
   };
 }
-export default connect(mapStateToProps)(Graphic);
+export default connect(mapStateToProps)(ResultsCalendar);

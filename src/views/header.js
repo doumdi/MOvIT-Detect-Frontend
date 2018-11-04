@@ -1,7 +1,8 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -82,12 +83,13 @@ class Header extends Component {
         border: 'none',
       },
     };
+
     return (
       <div>
         {this.isLoggedIn()}
 
         <nav className="navbar fixed-top navbar-expand-lg" style={style.navbar}>
-          <Link to="home" className="navbar-brand" style={style.title}>MOvIT+</Link>
+          <Link to="/home" className="navbar-brand" style={style.title}>MOvIT+</Link>
           <button
             className="navbar-toggler custom-toggler"
             type="button"
@@ -105,40 +107,40 @@ class Header extends Component {
               {this.props.profile === 'clinician'
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link>
+                    <Link to="/configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link>
                   </li>
                 )
               }
               {this.props.profile === 'clinician'
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link>
+                    <Link to="/recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link>
                   </li>
                 )
               }
               {this.props.profile
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link>
+                    <Link to="/goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link>
                   </li>
                 )
               }
               {this.props.profile
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="graphic" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link>
+                    <Link to="/results" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link>
                   </li>
                 )
               }
               {this.props.profile === 'user'
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link>
+                    <Link to="/parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link>
                   </li>
                 )
               }
               <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                <Link to="wifi" style={style.link}>{T.translate(`wifi.${this.props.language}`)}</Link>
+                <Link to="/wifi" style={style.link}>{T.translate(`wifi.${this.props.language}`)}</Link>
               </li>
             </ul>
 
@@ -150,14 +152,16 @@ class Header extends Component {
                 }
               </button>
             </li>
-            <li className="nav navbar-nav pl-1">
-              <Link to="debug" style={style.link}><i className="fa fa-cog" /></Link>
+            <li className="nav navbar-nav pl-1" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <button className="btn" style={style.button} type="button">
+                <Link to="/debug" style={style.link}><i className="fa fa-cog" /></Link>
+              </button>
             </li>
             {this.props.profile
               && (
                 <li className="nav navbar-nav pl-1">
-                  <button className="btn" type="button" onClick={() => this.logout()} style={style.button}>
-                    <Link to="home" style={style.link}>
+                  <button className="btn" onClick={() => this.logout()} style={style.button} type="button">
+                    <Link to="/home" style={style.link}>
                       {T.translate(`welcome.logout.${this.props.language}`)}
                       {' '}
 
@@ -174,6 +178,7 @@ class Header extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,

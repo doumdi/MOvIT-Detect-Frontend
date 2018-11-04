@@ -23,6 +23,7 @@ export default class Footer extends Component {
       <div className="navbar fixed-bottom" style={style.footer}>
         <div className="mx-auto">
 
+
           © 2015 Copyright:
           <a href="http://agewell-nce.ca/" style={style}> AgeWell </a>
         </div>

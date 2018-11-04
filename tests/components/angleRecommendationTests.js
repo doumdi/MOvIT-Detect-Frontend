@@ -56,8 +56,7 @@ describe('AngleRecommandation Tests', () => {
 
   it('should trigger onChangeActive when simulating a change event on checkbox', () => {
     const wrapper = shallow(<AngleRecommendation store={store} {...props} />).dive();
-
-    wrapper.find(Checkbox).simulate('change', false);
+    wrapper.find(Checkbox).simulate('change', { checked: false });
 
     expect(spy.calledOnce).toEqual(true);
     expect(spy.getCalls()[0].args[0]).toEqual(false);

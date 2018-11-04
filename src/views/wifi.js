@@ -4,7 +4,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import SubmitButtons from '../components/submitButtons';
 import LogoText from '../components/logoText';
 import LogoPassword from '../components/logoPassword';
 import Loading from '../components/loading';
@@ -67,7 +66,6 @@ class Wifi extends Component {
         this.setState({ ...this.state, connecting: false, connected: false });
       } else {
         tries += 1;
-        console.log(tries);
         axios.get(`${URL}wifi`)
           .then((response) => {
             if (response.data.connected) {
@@ -100,7 +98,7 @@ class Wifi extends Component {
             )
             : [
               (this.state.connecting
-                ? <Loading />
+                ? <Loading key="loading" />
                 : (
                   <div className="row">
                     <div className="form-horizontal mt-3 col-12 col-md-8 offset-md-2">
@@ -117,10 +115,6 @@ class Wifi extends Component {
                         onChange={this.changePassword}
                       />
                     </div>
-                    <SubmitButtons
-                      onSave={this.save.bind(this)}
-                      onCancel={this.cancel.bind(this)}
-                    />
                   </div>
                 )
               ),
