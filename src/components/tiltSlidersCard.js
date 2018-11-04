@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Card } from 'primereact/components/card/Card';
-import TiltSliders from '../components/tiltSliders';
+import TiltSliders from './tiltSliders';
 import { URL } from '../redux/applicationReducer';
 
 class TiltSlidersCard extends Component {
@@ -60,9 +60,11 @@ class TiltSlidersCard extends Component {
     };
     const header = (
       <div className="ui-card-title" style={style.header}>
-        {this.props.title} &nbsp;
-        {this.props.modifiable &&
-          <i className="fa fa-check" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
+        {this.props.title}
+        {' '}
+&nbsp;
+        {this.props.modifiable
+          && <i className="fa fa-check" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
         }
       </div>
     );

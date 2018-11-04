@@ -54,7 +54,9 @@ class Password extends Component {
             style={this.state.failed ? { borderColor: 'red' } : {}}
           />
           <button
-            id="loginBtn" onClick={() => this.props.onSubmit(this.state.password)}
+            id="loginBtn"
+            onClick={() => this.props.onSubmit(this.state.password)}
+            type="submit"
             cornerStyleClass="ui-button-secondary"
           >
             <i className="fa fa-sign-in" />
@@ -66,14 +68,16 @@ class Password extends Component {
           </button>
         </div>
         {
-          this.state.failed &&
-          <div className="row" style={{ marginTop: '2px' }}>
-            <div className="col-8 offset-2">
-              <Message id="errorMsg" severity="error" text={T.translate(`login.wrongPassword.${this.props.language}`)} />
+          this.state.failed
+          && (
+            <div className="row" style={{ marginTop: '2px' }}>
+              <div className="col-8 offset-2">
+                <Message id="errorMsg" severity="error" text={T.translate(`login.wrongPassword.${this.props.language}`)} />
+              </div>
             </div>
-          </div>
+          )
         }
-      </div >
+      </div>
     );
   }
 }

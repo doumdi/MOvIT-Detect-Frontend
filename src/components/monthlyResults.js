@@ -24,11 +24,10 @@ class MonthlyResults extends Component {
     reduceSlidingRest: PropTypes.bool,
     month: PropTypes.number,
   }
+
   constructor(props) {
     super(props);
     this.state = {
-      value1: 50,
-      value2: 30,
       angleMonthData: {
         zero: [],
         fifteen: [],
@@ -52,25 +51,28 @@ class MonthlyResults extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.month !== this.state.month) {
-      this.setState({ date: nextProps.month });
+      this.state.date = nextProps.month;
       this.getAngleMonthData(nextProps.month);
       this.getSitMonthData(nextProps.month);
     }
   }
+
   getAngleMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    this.setState({ angleLoading: true });
+    this.state.angleLoading = true;
     axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
       .then((response) => { this.formatAngleChartData(response.data); })
       .catch(error => console.log(error));
   }
+
   getSitMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    this.setState({ sitLoading: true });
+    this.state.sitLoading = true;
     axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header)
       .then((response) => { this.formatSitChartData(response.data); })
       .catch(error => console.log(error));
   }
+
   formatAngleChartData(data) {
     this.state.angleMonthLabels = [];
     this.state.angleMonthData = {
@@ -93,6 +95,7 @@ class MonthlyResults extends Component {
     });
     this.loadAngleData();
   }
+
   formatSitChartData(data) {
     this.state.sitMonthLabels = [];
     this.state.sitMonthData = [];
@@ -102,6 +105,7 @@ class MonthlyResults extends Component {
     });
     this.loadSitData();
   }
+
   loadAngleData() {
     this.state.angleChartData = {
       labels: this.state.angleMonthLabels,
@@ -138,8 +142,9 @@ class MonthlyResults extends Component {
         },
       ],
     };
-    this.setState({ angleLoading: false });
+    this.state.angleLoading = false;
   }
+
   loadSitData() {
     this.state.sitChartData = {
       labels: this.state.sitMonthLabels,
@@ -152,12 +157,14 @@ class MonthlyResults extends Component {
         },
       ],
     };
-    this.setState({ sitLoading: false });
+    this.state.sitLoading = false;
   }
+
   hover(e) {
-    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["e"] }]*/
+    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["e"] }] */
     e.target.style.cursor = 'pointer';
   }
+
   render() {
     const personalTiltData = {
       labels: [
@@ -344,13 +351,13 @@ class MonthlyResults extends Component {
         <h2 className="text-center">{T.translate(`monthlyResults.howDo.${this.props.language}`)}</h2>
         <hr />
         <h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>
-        {!this.state.angleLoading &&
-          <Chart type="bar" data={this.state.angleChartData} options={percentOptions2} />
+        {!this.state.angleLoading
+          && <Chart type="bar" data={this.state.angleChartData} options={percentOptions2} />
         }
         <hr />
         <h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>
-        {!this.state.sitLoading &&
-          <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
+        {!this.state.sitLoading
+          && <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
 
         <MonthlySuccessTilt />

@@ -36,13 +36,18 @@ class AngleRecommendation extends Component {
           />
           <label htmlFor="activeRecCheck">{this.props.title}</label>
           {this.props.recActive
-            &&
-            <div className="col-12 col-md-10 ml-3">
-              <SliderValue
-                min={0} max={this.props.maxAngle} onChange={this.props.onChangeValue}
-                value={this.props.value} unit="°" title={T.translate(`recommendations.angle.${this.props.language}`)}
-              />
-            </div>
+            && (
+              <div className="col-12 col-md-10 ml-3">
+                <SliderValue
+                  min={0}
+                  max={this.props.maxAngle}
+                  onChange={this.props.onChangeValue}
+                  value={this.props.value}
+                  unit="°"
+                  title={T.translate(`recommendations.angle.${this.props.language}`)}
+                />
+              </div>
+            )
           }
         </div>
       </div>

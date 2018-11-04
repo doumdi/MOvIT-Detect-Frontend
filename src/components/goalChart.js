@@ -27,14 +27,16 @@ export default class GoalChart extends Component {
 
     return (
       <div>
-        {this.props.condition &&
-          <div>
-            <hr />
-            <h2 style={style.center}>{this.props.title}</h2>
-            <hr />
-            <h4>{this.props.successMessage}</h4>
-            <Chart type="line" data={this.props.data} options={this.props.options} />
-          </div>
+        {this.props.condition
+          && (
+            <div>
+              <hr />
+              <h2 style={style.center}>{this.props.title}</h2>
+              <hr />
+              <h4>{this.props.successMessage}</h4>
+              <Chart type="line" data={this.props.data} options={this.props.options} />
+            </div>
+          )
         }
       </div>
     );

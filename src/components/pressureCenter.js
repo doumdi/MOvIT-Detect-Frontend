@@ -80,7 +80,8 @@ class PressureCenter extends Component {
     };
     return (
       <div className="col-sm-8" style={style}>
-        {this.state.centers.length > 0 &&
+        {this.state.centers.length > 0
+          && (
           <div>
             <br />
             <h4>{this.props.title}</h4>
@@ -127,7 +128,8 @@ class PressureCenter extends Component {
             </VictoryChart>
             <div className="col-8 offset-2 col-md-4 offset-md-4">
               <Slider
-                min={0} max={this.state.centers.length - 1}
+                min={0}
+                max={this.state.centers.length - 1}
                 style={{ marginTop: '2em' }}
                 value={this.state.index}
                 onChange={e => this.setIndex(e.value)}
@@ -137,6 +139,7 @@ class PressureCenter extends Component {
               <h3>{milliToTimeString(this.state.time)}</h3>
             </div>
           </div>
+          )
         }
       </div>
     );

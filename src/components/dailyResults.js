@@ -22,14 +22,13 @@ class DailyResults extends Component {
     reduceWeight: PropTypes.bool.isRequired,
     reduceSlidingMoving: PropTypes.bool.isRequired,
     reduceSlidingRest: PropTypes.bool.isRequired,
-    date: PropTypes.instanceOf(Date),
-    header: PropTypes.object,
+    date: PropTypes.instanceOf(Date).isRequired,
+    header: PropTypes.object.isRequired,
   }
+
   constructor(props) {
     super(props);
     this.state = {
-      value1: 50,
-      value2: 30,
       dayData: [],
       date: props.date,
       data: null,
@@ -40,19 +39,19 @@ class DailyResults extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
+      this.state.date = nextProps.date;
       this.getDayData(nextProps.date);
     }
   }
 
   getDayData(date) {
-    this.setState({ loading: true });
+    this.state.loading = true;
     axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
       .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
   }
 
   hover(e) {
-    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["e"] }]*/
+    /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["e"] }] */
     e.target.style.cursor = 'pointer';
   }
 
@@ -122,8 +121,8 @@ class DailyResults extends Component {
         <br />
         <h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>
         <hr />
-        {!this.state.loading &&
-          <Chart type="pie" data={this.state.data} options={minOptions} />
+        {!this.state.loading
+          && <Chart type="pie" data={this.state.data} options={minOptions} />
         }
         <PressureCenter
           title={T.translate(`dailyResults.pressureCenter.${this.props.language}`)}

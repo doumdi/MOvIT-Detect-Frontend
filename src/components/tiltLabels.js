@@ -43,9 +43,11 @@ class TiltLabels extends Component {
     };
     const header = (
       <div className="ui-card-title" style={style.header}>
-        {this.props.title} &nbsp;
-        {this.props.modifiable &&
-          <i className="fa fa-pencil" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
+        {this.props.title}
+        {' '}
+&nbsp;
+        {this.props.modifiable
+          && <i className="fa fa-pencil" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
         }
       </div>
     );
@@ -59,7 +61,9 @@ class TiltLabels extends Component {
                   {T.translate(`goals.tiltFrequency.${this.props.language}`)}
                 </span>
                 <span className="ml-3" style={style.bold}>
-                  {this.props.tiltFrequecy} {T.translate(`time.min.${this.props.language}`)}
+                  {this.props.tiltFrequecy}
+                  {' '}
+                  {T.translate(`time.min.${this.props.language}`)}
                 </span>
               </div>
               <div className="row">
@@ -67,7 +71,9 @@ class TiltLabels extends Component {
                   {T.translate(`goals.tiltLength.${this.props.language}`)}
                 </span>
                 <span className="ml-3" style={style.bold}>
-                  {this.props.tiltLength} {T.translate(`time.min.${this.props.language}`)}
+                  {this.props.tiltLength}
+                  {' '}
+                  {T.translate(`time.min.${this.props.language}`)}
                 </span>
               </div>
               <div className="row">
@@ -75,8 +81,10 @@ class TiltLabels extends Component {
                   {T.translate(`goals.tiltAngle.${this.props.language}`)}
                 </span>
                 <span className="ml-3" style={style.bold}>
-                  {this.props.tiltAngle} &deg;
-              </span>
+                  {this.props.tiltAngle}
+                  {' '}
+&deg;
+                </span>
               </div>
             </div>
             <div className="col-2 offset-1">

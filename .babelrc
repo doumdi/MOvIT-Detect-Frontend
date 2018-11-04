@@ -3,12 +3,8 @@
     "@babel/preset-env",
     "@babel/preset-react"
   ],
-  "env": {
-    "development": {
-      "plugins": [
-        "@babel/plugin-transform-runtime",
-        "@babel/plugin-proposal-class-properties"
-      ]
-    }
-  }
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties"
+  ]
 }

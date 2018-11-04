@@ -48,19 +48,19 @@ class Notification extends Component {
 
   render() {
     return (
-      <div className="row m-3 mt-5 ml-md-5" >
-        <div className="mb-2 mr-3" >
-          <button id="calibrate-button" onClick={() => this.calibrate()} className="btn btn-lg">
+      <div className="row m-3 mt-5 ml-md-5">
+        <div className="mb-2 mr-3">
+          <button id="calibrate-button" type="button" onClick={() => this.calibrate()} className="btn btn-lg">
             {T.translate(`calibrate.${this.props.language}`)}
           </button>
         </div>
         <div className="mr-3 mb-2">
-          <button id="turn-on-button" onClick={() => this.turnOnNotification()} className="btn btn-lg">
+          <button id="turn-on-button" type="button" onClick={() => this.turnOnNotification()} className="btn btn-lg">
             {T.translate(`alert.on.${this.props.language}`)}
           </button>
         </div>
         <div className="mr-3 mb-2">
-          <button id="turn-off-button" onClick={() => this.turnOffNotification()} className="btn btn-lg">
+          <button id="turn-off-button" type="button" onClick={() => this.turnOffNotification()} className="btn btn-lg">
             {T.translate(`alert.off.${this.props.language}`)}
           </button>
         </div>

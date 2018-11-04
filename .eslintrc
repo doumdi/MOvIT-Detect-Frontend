@@ -12,20 +12,29 @@
     "compat",
     "react"
   ],
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
   "rules": {
     "linebreak-style": "off",
-    "class-methods-use-this":  "off",
-    "import/prefer-default-export":  "off",
+    "class-methods-use-this": "off",
+    "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "import/no-extraneous-dependencies": "off",
-    "no-static-element-interactions":  "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-static-element-interactions": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
     "react/prefer-stateless-function": "off",
-    "max-len": [2, { "code": 160 }],
+    "max-len": [
+      2,
+      {
+        "code": 160
+      }
+    ],
     "react/jsx-no-bind": "off",
     "global-require": "off",
     "no-restricted-syntax": "off",
@@ -33,6 +42,26 @@
     "no-undef": "off",
     "jsx-a11y/no-static-element-interactions": 0,
     "react/no-unused-prop-types": "warn",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "react/destructuring-assignment": "off",
+    "react/no-access-state-in-setstate": "off",
+    "react/require-default-props": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "components": [
+          "Label"
+        ],
+        "required": {
+          "every": [
+            "nesting",
+            "id"
+          ]
+        },
+        "allowChildren": true
+      }
+    ]
   }
 }

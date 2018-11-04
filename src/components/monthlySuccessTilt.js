@@ -5,7 +5,6 @@ import { Chart } from 'primereact/components/chart/Chart';
 import { T } from '../utilities/translator';
 
 class MonthlySuccessTilt extends Component {
-
   static propTypes = {
     language: PropTypes.string.isRequired,
   }
