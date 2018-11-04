@@ -45,7 +45,6 @@ class TiltLabels extends Component {
       <div className="ui-card-title" style={style.header}>
         {this.props.title}
         {' '}
-&nbsp;
         {this.props.modifiable
           && <i className="fa fa-pencil" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
         }
@@ -83,7 +82,9 @@ class TiltLabels extends Component {
                 <span className="ml-3" style={style.bold}>
                   {this.props.tiltAngle}
                   {' '}
-&deg;
+
+
+                  &deg;
                 </span>
               </div>
             </div>

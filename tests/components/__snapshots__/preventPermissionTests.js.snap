@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PreventPermission Tests should match snapshot 1`] = `
+exports['PreventPermission Tests should match snapshot 1'] = `
 <div
   className="row"
 >
@@ -55,7 +55,7 @@ exports[`PreventPermission Tests should match snapshot 1`] = `
       <label
         htmlFor="doNotReceiveDay"
       >
-        24 
+        24
         time.hours.en
       </label>
     </div>
@@ -76,7 +76,7 @@ exports[`PreventPermission Tests should match snapshot 1`] = `
       <label
         htmlFor="doNotReceiveWeek"
       >
-        1 
+        1
         time.week.en
       </label>
     </div>
@@ -97,7 +97,7 @@ exports[`PreventPermission Tests should match snapshot 1`] = `
       <label
         htmlFor="doNotReceiveMonth"
       >
-        1 
+        1
         time.month.en
       </label>
     </div>

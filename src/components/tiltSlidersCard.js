@@ -62,7 +62,6 @@ class TiltSlidersCard extends Component {
       <div className="ui-card-title" style={style.header}>
         {this.props.title}
         {' '}
-&nbsp;
         {this.props.modifiable
           && <i className="fa fa-check" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
         }
