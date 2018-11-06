@@ -193,7 +193,7 @@ class ProgressResults extends Component {
                   <div><a href="#reduceSlidingMoving" >{T.translate(`dailyResults.travel.${this.props.language}`)}</a></div>
                 }
                 {this.props.reduceSlidingRest &&
-                  <div><a href="#reduceSlidingMoving" >{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></div>
+                  <div><a href="#reduceSlidingRest" >{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></div>
                 }
               </div>
             :
@@ -205,7 +205,7 @@ class ProgressResults extends Component {
                   <div><a href="#reduceSlidingMoving" >{T.translate(`dailyResults.travel.${this.props.language}`)}</a></div>
                 }
                 {this.props.reduceSlidingRest &&
-                  <div><a href="#reduceSlidingMoving" >{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></div>
+                  <div><a href="#reduceSlidingRest" >{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></div>
                 }
               </div>
             }
@@ -215,22 +215,28 @@ class ProgressResults extends Component {
           <div className="col-lg-8 offset-lg-2 graphic">
             {this.state.period === 'day' ?
               <div>
-                <RecGoalProgress
-                  condition={this.props.reduceWeight}
-                  title={T.translate(`dailyResults.pressure.${this.props.language}`)}
-                  goalValue={this.state.value2}
-                  recValue={this.state.value1}
-                />
-                <GoalProgress
-                  condition={this.props.reduceSlidingMoving}
-                  title={T.translate(`dailyResults.travel.${this.props.language}`)}
-                  value={this.state.value2}
-                />
-                <GoalProgress
-                  condition={this.props.reduceSlidingRest}
-                  title={T.translate(`dailyResults.rest.${this.props.language}`)}
-                  value={this.state.value2}
-                />
+                <div id="reduceWeight">
+                  <RecGoalProgress
+                    condition={this.props.reduceWeight}
+                    title={T.translate(`dailyResults.pressure.${this.props.language}`)}
+                    goalValue={this.state.value2}
+                    recValue={this.state.value1}
+                  />
+                </div>
+                <div id="reduceSlidingMoving">
+                  <GoalProgress
+                    condition={this.props.reduceSlidingMoving}
+                    title={T.translate(`dailyResults.travel.${this.props.language}`)}
+                    value={this.state.value2}
+                  />
+                </div>
+                <div id="reduceSlidingRest">
+                  <GoalProgress
+                    condition={this.props.reduceSlidingRest}
+                    title={T.translate(`dailyResults.rest.${this.props.language}`)}
+                    value={this.state.value2}
+                  />
+                </div>
               </div>
             :
               <div>
@@ -253,14 +259,15 @@ class ProgressResults extends Component {
                     options={percentOptions}
                   />
                 </div>
-                <GoalChart
-                  id="reduceSlidingRest"
-                  condition={this.props.reduceSlidingRest}
-                  title={T.translate(`monthlyResults.rest.${this.props.language}`)}
-                  successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
-                  data={restData}
-                  options={percentOptions}
-                />
+                <div id="reduceSlidingRest">
+                  <GoalChart
+                    condition={this.props.reduceSlidingRest}
+                    title={T.translate(`monthlyResults.rest.${this.props.language}`)}
+                    successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
+                    data={restData}
+                    options={percentOptions}
+                  />
+                </div>
               </div>
             }
           </div>
