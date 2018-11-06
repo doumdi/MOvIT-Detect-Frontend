@@ -1,89 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotificationTests Tests should match the snapshot 1`] = `
-<div>
-  <h5>
-    debug.notificationSettings.en
-    :
-  </h5>
-  <div>
-    <Checkbox
-      checked={true}
+<div
+  className="container"
+>
+  <div
+    className="card"
+  >
+    <Card
       className={null}
-      disabled={false}
-      id="enableLedBlinking"
-      inputId={null}
-      name={null}
-      onChange={[Function]}
-      onContextMenu={null}
-      onMouseDown={null}
-      readOnly={false}
-      style={null}
-      value={null}
-    />
-    <label
-      htmlFor="enableLedBlinking"
-    >
-      debug.notificationSettings.enableLedBlinking.en
-    </label>
-  </div>
-  <div>
-    <Checkbox
-      checked={true}
-      className={null}
-      disabled={false}
-      id="enableVibration"
-      inputId={null}
-      name={null}
-      onChange={[Function]}
-      onContextMenu={null}
-      onMouseDown={null}
-      readOnly={false}
-      style={null}
-      value={null}
-    />
-    <label
-      htmlFor="enableVibration"
-    >
-      debug.notificationSettings.enableVibration.en
-    </label>
-  </div>
-  <div>
-    <span>
-      <i
-        className="fa fa-info-circle"
-        id="snoozeTimeToolTip"
-      />
-       
-      debug.notificationSettings.snoozeTime.en
-      :  
-    </span>
-    <Tooltip
-      appendTo="body"
-      escape={true}
-      for="#snoozeTimeToolTip"
-      hideDelay={null}
-      onBeforeShow={null}
-      positionStyle={null}
-      showDelay={null}
-      title="debug.notificationSettings.snoozeTimeToolTip.en"
-      tooltipDisabled={false}
-      tooltipEvent="hover"
-      tooltipPosition="right"
-      tooltipStyleClass={null}
-    />
-    <input
-      id="value"
-      min={0}
-      onBlur={[Function]}
-      onChange={[Function]}
-      style={
-        Object {
-          "width": "75px",
-        }
+      footer={null}
+      header={
+        <div
+          className="ui-card-title header"
+        >
+          debug.notificationSettings.en
+        </div>
       }
-      type="number"
-    />
+      id={null}
+      style={null}
+      subtitle={null}
+      title={null}
+    >
+      <div>
+        <Checkbox
+          checked={true}
+          className={null}
+          disabled={false}
+          id="enableLedBlinking"
+          inputId={null}
+          name={null}
+          onChange={[Function]}
+          onContextMenu={null}
+          onMouseDown={null}
+          readOnly={false}
+          style={null}
+          value={null}
+        />
+        <label
+          htmlFor="enableLedBlinking"
+        >
+          debug.notificationSettings.enableLedBlinking.en
+        </label>
+      </div>
+      <div>
+        <Checkbox
+          checked={true}
+          className={null}
+          disabled={false}
+          id="enableVibration"
+          inputId={null}
+          name={null}
+          onChange={[Function]}
+          onContextMenu={null}
+          onMouseDown={null}
+          readOnly={false}
+          style={null}
+          value={null}
+        />
+        <label
+          htmlFor="enableVibration"
+        >
+          debug.notificationSettings.enableVibration.en
+        </label>
+      </div>
+      <div>
+        <span>
+          <i
+            className="fa fa-info-circle"
+            id="snoozeTimeToolTip"
+          />
+           
+          debug.notificationSettings.snoozeTime.en
+          :  
+        </span>
+        <Tooltip
+          appendTo="body"
+          escape={true}
+          for="#snoozeTimeToolTip"
+          hideDelay={null}
+          onBeforeShow={null}
+          positionStyle={null}
+          showDelay={null}
+          title="debug.notificationSettings.snoozeTimeToolTip.en"
+          tooltipDisabled={false}
+          tooltipEvent="hover"
+          tooltipPosition="right"
+          tooltipStyleClass={null}
+        />
+        <input
+          className="inputSmallWidth"
+          id="value"
+          max={60}
+          min={0}
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="number"
+        />
+      </div>
+    </Card>
   </div>
 </div>
 `;

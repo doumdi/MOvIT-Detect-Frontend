@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import { T } from '../utilities/translator';
 import Notification from '../components/notification';
 import NotificationSettings from '../components/notificationSettings';
+import UpdatesManager from '../components/updatesManager';
 
 class Debug extends Component {
   static propTypes = {
@@ -25,6 +26,7 @@ class Debug extends Component {
             <h2 className="header text-center">{T.translate(`debug.state.${this.props.language}`)}</h2>
             <Notification />
             <NotificationSettings />
+            <UpdatesManager />
           </div>
         </div>
       </div>

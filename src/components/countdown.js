@@ -14,6 +14,7 @@ import { T } from '../utilities/translator';
 class Countdown extends Component {
   static propTypes = {
     time: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
     onComplete: PropTypes.func.isRequired,
     language: PropTypes.string.isRequired,
   }
@@ -59,7 +60,7 @@ class Countdown extends Component {
         visible={this.state.show} width="300px" height="100px" showHeader={false}
         modal onHide={() => this.setState({ show: false })}
       >
-        <div style={style.timerHeader}> {T.translate(`calibrating.${this.props.language}`)} </div>
+        <div style={style.timerHeader}>{this.props.title}</div>
         <div style={style.timer}>{this.state.timer}</div>
       </Dialog>
     );
