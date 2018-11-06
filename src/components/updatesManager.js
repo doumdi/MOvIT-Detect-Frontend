@@ -80,7 +80,7 @@ class UpdatesManager extends Component {
 
   async triggerUpdate() {
     try {
-      await axios.put(`${URL}updates`, this.props.header);
+      await axios.post(`${URL}updates`, this.props.header);
     } catch (error) {
       console.log(error);
     }

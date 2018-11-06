@@ -19,6 +19,9 @@ import { DebugActions } from '../redux/debugReducer';
 import { T } from '../utilities/translator';
 import '../styles/notificationSettings.css'
 
+const MINIMUM_SNOOZE_TIME = 0;
+const MAXIMUM_SNOOZE_TIME = 60;
+
 class NotificationSettings extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
@@ -134,7 +137,8 @@ class NotificationSettings extends Component {
                 onChange={e => this.changeSnoozeTime(e.target.value)}
                 onBlur={e => this.saveSnoozeTime(e.target.value)}
                 value={this.props.snoozeTime}
-                min={this.props.minimumSnoozeTime || 0} max={this.props.maximumSnoozeTime}
+                min={this.props.minimumSnoozeTime || MINIMUM_SNOOZE_TIME}
+                max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}
               />
             </div>
           </Card>

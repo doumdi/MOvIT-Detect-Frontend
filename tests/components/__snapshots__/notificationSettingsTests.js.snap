@@ -91,6 +91,7 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
         <input
           className="inputSmallWidth"
           id="value"
+          max={60}
           min={0}
           onBlur={[Function]}
           onChange={[Function]}
