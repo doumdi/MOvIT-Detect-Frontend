@@ -96,10 +96,7 @@ class NotificationSettings extends Component {
     return (
       <div>
         <h5>
-          {T.translate(`debug.notificationSettings.${this.props.language}`)}
-
-
-          :
+          {`${T.translate(`debug.notificationSettings.${this.props.language}`)}:`}
         </h5>
         <div>
           <Checkbox
@@ -119,14 +116,8 @@ class NotificationSettings extends Component {
         </div>
         <div>
           <span>
-            <i id="snoozeTimeToolTip" className="fa fa-info-circle" />
-
-
-            &nbsp;
-            {T.translate(`debug.notificationSettings.snoozeTime.${this.props.language}`)}
-
-
-            :&nbsp;&nbsp;
+            <i id="snoozeTimeToolTip" className="fa fa-info-circle pr-1" />
+            {`${T.translate(`debug.notificationSettings.snoozeTime.${this.props.language}`)}:  `}
           </span>
           <Tooltip
             for="#snoozeTimeToolTip"

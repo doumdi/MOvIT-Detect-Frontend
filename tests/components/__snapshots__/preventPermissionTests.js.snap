@@ -34,8 +34,7 @@ exports['PreventPermission Tests should match snapshot 1'] = `
       className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6"
     >
       <h5>
-        parameters.doNotReceive.en
-        :
+        parameters.doNotReceive.en:
       </h5>
     </div>
     <div
@@ -55,8 +54,7 @@ exports['PreventPermission Tests should match snapshot 1'] = `
       <label
         htmlFor="doNotReceiveDay"
       >
-        24
-        time.hours.en
+        24 time.hours.en
       </label>
     </div>
     <div
@@ -76,8 +74,7 @@ exports['PreventPermission Tests should match snapshot 1'] = `
       <label
         htmlFor="doNotReceiveWeek"
       >
-        1
-        time.week.en
+        1 time.week.en
       </label>
     </div>
     <div
@@ -97,8 +94,7 @@ exports['PreventPermission Tests should match snapshot 1'] = `
       <label
         htmlFor="doNotReceiveMonth"
       >
-        1
-        time.month.en
+        1 time.month.en
       </label>
     </div>
   </div>

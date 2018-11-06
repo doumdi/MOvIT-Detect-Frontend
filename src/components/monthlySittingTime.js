@@ -34,6 +34,7 @@ class MonthlySittingTime extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.month !== this.state.month) {
+      this.setState({ date: nextProps.month });
       this.getSitMonthData(nextProps.month);
     }
   }

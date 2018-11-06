@@ -3,8 +3,7 @@
 exports[`NotificationTests Tests should match the snapshot 1`] = `
 <div>
   <h5>
-    debug.notificationSettings.en
-    :
+    debug.notificationSettings.en:
   </h5>
   <div>
     <Checkbox
@@ -51,12 +50,10 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
   <div>
     <span>
       <i
-        className="fa fa-info-circle"
+        className="fa fa-info-circle pr-1"
         id="snoozeTimeToolTip"
       />
-       
-      debug.notificationSettings.snoozeTime.en
-      :  
+      debug.notificationSettings.snoozeTime.en:  
     </span>
     <Tooltip
       appendTo="body"
