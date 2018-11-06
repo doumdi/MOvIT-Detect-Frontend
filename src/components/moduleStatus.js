@@ -29,12 +29,12 @@ class ModuleStatus extends Component {
     const moduleList = this.state.moduleStatus.map((module, idx) => {
       return (
         <li key={idx} className="mb-1">
-          {module.name}: <span style={{ color: module.value === 'true' ? 'green' : 'red' }}>{T.translate(`debug.state.value.${module.value}.${this.props.language}`)}</span>
+          {module.name}: <span style={{ color: module.value === 'true' ? 'green' : 'red' }}>{T.translate(`debug.state.value.${module.value === 'true' ? 'yes' : 'no'}.${this.props.language}`)}</span>
         </li>);
     });
 
     return (
-      <div className="row m-3 ml-md-5">
+      <div className="row mt-3 ml-2">
         <div className="col-6 pl-0">
           <h4>{T.translate(`debug.modules.${this.props.language}`)}</h4>
           <ul className="list-unstyled">{moduleList}</ul>

@@ -1,7 +1,8 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -14,7 +15,7 @@ import { URL } from '../redux/applicationReducer';
 
 class TiltSlidersCard extends Component {
   static propTypes = {
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
     tiltFrequecy: PropTypes.number,
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,
@@ -27,15 +28,19 @@ class TiltSlidersCard extends Component {
     onModifie: PropTypes.func,
   };
 
-  save() {
+  // TODO: Add feedback when saving
+  async save() {
     const data = {
       tiltFrequecy: this.props.tiltFrequecy,
       tiltLength: this.props.tiltLength,
       tiltAngle: this.props.tiltAngle,
     };
-    axios.post(`${URL}goal`, data, this.props.header)
-      .then(() => console.log('succesfully updated'))
-      .catch(console.log);
+    try {
+      await axios.post(`${URL}goal`, data, this.props.header);
+      console.log('succesfully updated');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {

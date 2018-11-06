@@ -1,7 +1,8 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
@@ -26,15 +27,15 @@ class TiltSliders extends Component {
     return (
       <div className="col-12 col-md-10 ml-3">
         <SliderValue
-          min={0} max={180} onChange={this.props.onFrequencyChange}
+          id="frequency-slider" min={0} max={180} onChange={this.props.onFrequencyChange}
           value={this.props.tiltFrequecy} unit="sec" title={T.translate(`recommendations.frequency.${this.props.language}`)}
         />
         <SliderValue
-          min={0} max={30} onChange={this.props.onLengthChange}
+          id="duration-slider" min={0} max={30} onChange={this.props.onLengthChange}
           value={this.props.tiltLength} unit="sec" title={T.translate(`recommendations.duration.${this.props.language}`)}
         />
         <SliderValue
-          min={0} max={this.props.maxAngle} onChange={this.props.onAngleChange}
+          id="angle-slider" min={0} max={this.props.maxAngle} onChange={this.props.onAngleChange}
           value={this.props.tiltAngle} unit="°" title={T.translate(`recommendations.angle.${this.props.language}`)}
         />
       </div>

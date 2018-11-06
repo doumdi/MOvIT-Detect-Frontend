@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import SliderValue from '../components/sliderValue';
+import SliderValue from './sliderValue';
 import { T } from '../utilities/translator';
 
 
@@ -31,8 +31,8 @@ class AngleRecommendation extends Component {
           <Checkbox
             inputId="activeRecCheck"
             label={this.props.title}
-            onChange={this.props.onChangeActive}
-            checked={this.props.recActive}
+            onChange={e => this.props.onChangeActive(e.checked)}
+            checked={this.props.recActive || false}
           />
           <label htmlFor="activeRecCheck">{this.props.title}</label>
           {this.props.recActive

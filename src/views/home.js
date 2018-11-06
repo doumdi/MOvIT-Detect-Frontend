@@ -18,7 +18,7 @@ class Home extends Component {
     language: PropTypes.string.isRequired,
     changeProfile: PropTypes.func.isRequired,
     changeToken: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    history: PropTypes.object.isRequired,
     profile: PropTypes.string,
   };
 

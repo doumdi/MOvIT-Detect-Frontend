@@ -20,8 +20,7 @@ import SliderValue from '../../src/components/sliderValue';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('AngleRecommandation Tests', () => {
-  const onChangeActiveSpy = sinon.spy();
-  const onChangeValueSpy = sinon.spy();
+  const spy = sinon.spy();
   const initialState = { applicationReducer: { language: 'en' } };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
@@ -31,9 +30,13 @@ describe('AngleRecommandation Tests', () => {
     maxAngle: 45,
     value: 0,
     language: 'en',
-    onChangeActive: (value) => { onChangeActiveSpy(value); },
-    onChangeValue: (value) => { onChangeValueSpy(value); },
+    onChangeActive: (value) => { spy(value); },
+    onChangeValue: (value) => { spy(value); },
   };
+
+  beforeEach(() => {
+    spy.resetHistory();
+  });
 
   it('should have proptypes', () => {
     const actualValue = AngleRecommendation.WrappedComponent.propTypes;
@@ -53,11 +56,10 @@ describe('AngleRecommandation Tests', () => {
 
   it('should trigger onChangeActive when simulating a change event on checkbox', () => {
     const wrapper = shallow(<AngleRecommendation store={store} {...props} />).dive();
+    wrapper.find(Checkbox).simulate('change', { checked: false });
 
-    wrapper.find(Checkbox).simulate('change', false);
-
-    expect(onChangeActiveSpy.calledOnce).toEqual(true);
-    expect(onChangeActiveSpy.getCalls()[0].args[0]).toEqual(false);
+    expect(spy.calledOnce).toEqual(true);
+    expect(spy.getCalls()[0].args[0]).toEqual(false);
   });
 
   it('should trigger onChangeValue when simulating a change event on SliderValue', () => {
@@ -65,17 +67,17 @@ describe('AngleRecommandation Tests', () => {
 
     wrapper.find(SliderValue).simulate('change', 10);
 
-    expect(onChangeValueSpy.calledOnce).toEqual(true);
-    expect(onChangeValueSpy.getCalls()[0].args[0]).toEqual(10);
+    expect(spy.calledOnce).toEqual(true);
+    expect(spy.getCalls()[0].args[0]).toEqual(10);
   });
 
-  it('should match the snapshot when the recommandation is active', () => {
+  it('should match the snapshot when the recommendation is active', () => {
     const wrapper = shallow(<AngleRecommendation store={store} {...props} />).dive();
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it('should match the snapshot when the recommandation is inactive', () => {
+  it('should match the snapshot when the recommendation is inactive', () => {
     const inactiveProps = {
       recActive: false,
       title: 'Test',

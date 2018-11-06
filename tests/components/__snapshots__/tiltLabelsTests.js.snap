@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TiltLabels Tests should match the snapshot 1`] = `
+<div
+  style={
+    Object {
+      "padding": "10px",
+    }
+  }
+>
+  <Card
+    className="col-12"
+    footer={null}
+    header={
+      <div
+        className="ui-card-title"
+        style={
+          Object {
+            "marginLeft": "14px",
+            "marginTop": "14px",
+          }
+        }
+      >
+        This is a title
+          
+        <i
+          className="fa fa-pencil"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        />
+      </div>
+    }
+    id={null}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "boxShadow": "5px 5px 5px gainsboro",
+        "padding": "5px",
+      }
+    }
+    subtitle={null}
+    title={null}
+  >
+    <div
+      className="row"
+    >
+      <div
+        className=" col-12 col-md-4 ml-md-4"
+      >
+        <div
+          className="row"
+        >
+          <span
+            className="ml-3"
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            goals.tiltFrequency.en
+          </span>
+          <span
+            className="ml-3"
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            60
+             
+            time.min.en
+          </span>
+        </div>
+        <div
+          className="row"
+        >
+          <span
+            className="ml-3"
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            goals.tiltLength.en
+          </span>
+          <span
+            className="ml-3"
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            30
+             
+            time.min.en
+          </span>
+        </div>
+        <div
+          className="row"
+        >
+          <span
+            className="ml-3"
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            goals.tiltAngle.en
+          </span>
+          <span
+            className="ml-3"
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            15
+             °
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-2 offset-1"
+      >
+        <img
+          alt="chair"
+          height="50"
+          src={
+            Object {
+              "default": "",
+            }
+          }
+          style={
+            Object {
+              "transform": "rotate(-15deg)",
+            }
+          }
+          width="50"
+        />
+      </div>
+    </div>
+  </Card>
+</div>
+`;

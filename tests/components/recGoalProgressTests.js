@@ -1,14 +1,36 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
+import configureMockStore from 'redux-mock-store';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json';
+
 import RecGoalProgress from '../../src/components/recGoalProgress';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 describe('RecGoalProgress Tests', () => {
+  const initialState = { applicationReducer: { language: 'en' } };
+  const mockStore = configureMockStore();
+  const store = mockStore(initialState);
+  const props = {
+    language: 'en',
+    condition: true,
+    title: 'This is a title',
+    goalValue: 50,
+    recValue: 30,
+  };
+
   it('should have proptypes', () => {
-    // Actual value
     const actualValue = RecGoalProgress.WrappedComponent.propTypes;
 
-    // Expected value
     const expectedValue = {
       language: PropTypes.string.isRequired,
       condition: PropTypes.bool.isRequired,
@@ -17,7 +39,12 @@ describe('RecGoalProgress Tests', () => {
       recValue: PropTypes.number,
     };
 
-    // Test
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
+  });
+
+  it('should match the snapshot', () => {
+    const wrapper = shallow(<RecGoalProgress store={store} {...props} />).dive();
+
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

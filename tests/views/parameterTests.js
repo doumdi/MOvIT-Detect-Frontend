@@ -1,5 +1,3 @@
-import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import Parameter from '../../src/views/parameter';
 
@@ -11,7 +9,7 @@ describe('Parameter Tests', () => {
     // Expected value
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+      history: PropTypes.object.isRequired,
       changeDataAgreement: PropTypes.func,
       dataAgreement: PropTypes.bool,
       dataDisagreePeriod: PropTypes.string,

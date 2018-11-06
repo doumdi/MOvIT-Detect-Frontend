@@ -15,8 +15,9 @@ export default class RecGoalChart extends Component {
     title: PropTypes.string.isRequired,
     goalTitle: PropTypes.string.isRequired,
     recTitle: PropTypes.string.isRequired,
-    goalData: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    recData: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    goalData: PropTypes.object,
+    recData: PropTypes.object,
+    id: PropTypes.string,
   }
 
   hover(e) {
@@ -41,7 +42,7 @@ export default class RecGoalChart extends Component {
         {this.props.condition &&
           <div>
             <hr />
-            <h2 style={style.center}>{this.props.title}</h2>
+            <h2 id={this.props.id || ''} style={style.center}>{this.props.title}</h2>
             <hr />
             <h4>{this.props.goalTitle}</h4>
             <Chart type="line" data={this.props.goalData} options={options} />

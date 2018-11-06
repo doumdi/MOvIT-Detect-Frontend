@@ -23,9 +23,9 @@ import '../styles/overwrite.css';
 
 class Recommendation extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    history: PropTypes.object.isRequired,
     language: PropTypes.string.isRequired,
-    header: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    header: PropTypes.object,
     swellingRecommendation: PropTypes.string,
     painRecommendation: PropTypes.string,
     restRecommendation: PropTypes.string,
@@ -222,9 +222,8 @@ class Recommendation extends Component {
             recActive={this.props.reduceSlidingRest}
             title={T.translate(`recommendations.slidingRest.${this.props.language}`)}
             maxAngle={this.state.maxSliderAngle}
-            onFrequencyChange={this.changeTitlFrequency.bind(this)}
-            onLengthChange={this.changeTiltLength.bind(this)}
-            onAngleChange={this.changeTiltAngle.bind(this)}
+            onChangeActive={this.props.changeReduceSlidingRest}
+            onChangeValue={this.props.changeTiltAngleRest}
           />
           <TextRecommendation
             onChangeActive={this.props.changeAllowRest}
