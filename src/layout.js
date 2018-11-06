@@ -33,9 +33,9 @@ export default class Layout extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/home" component={Home} />
             <Route exact path="/results" component={ResultsCategories} />
-            <Route path="/results/angle" component={AngleResults} />
-            <Route path="/results/pressure" component={PressureResults} />
-            <Route path="/results/progress" component={ProgressResults} />
+            <Route path="/angleResults" component={AngleResults} />
+            <Route path="/pressureResults" component={PressureResults} />
+            <Route path="/progressResults" component={ProgressResults} />
             <Route path="/parameter" component={Parameters} />
             <Route path="/recommendations" component={Recommendation} />
             <Route path="/goals" component={Goal} />

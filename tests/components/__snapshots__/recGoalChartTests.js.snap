@@ -5,7 +5,6 @@ exports[`RecGoalChart Tests should match snapshot 1`] = `
   <div>
     <hr />
     <h2
-      id=""
       style={
         Object {
           "textAlign": "center",
