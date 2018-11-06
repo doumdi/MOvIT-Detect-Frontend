@@ -5,19 +5,20 @@
  * @author Benjamin Roy
  */
 
+import '../styles/components/notificationSettings.css'
+
 import React, { Component } from 'react';
+
+import { Card } from 'primereact/components/card/Card';
+import { Checkbox } from 'primereact/components/checkbox/Checkbox';
+import { DebugActions } from '../redux/debugReducer';
 import PropTypes from 'prop-types';
+import { T } from '../utilities/translator';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import { URL } from '../redux/applicationReducer';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import { Card } from 'primereact/components/card/Card';
-
-import { URL } from '../redux/applicationReducer';
-import { DebugActions } from '../redux/debugReducer';
-import { T } from '../utilities/translator';
-import '../styles/notificationSettings.css'
 
 const MINIMUM_SNOOZE_TIME = 0;
 const MAXIMUM_SNOOZE_TIME = 60;

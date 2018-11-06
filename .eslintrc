@@ -33,6 +33,7 @@
     "no-undef": "off",
     "jsx-a11y/no-static-element-interactions": 0,
     "react/no-unused-prop-types": "warn",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "import/first": ["error", "DISABLE-absolute-first"]
   }
 }

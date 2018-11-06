@@ -5,20 +5,22 @@
  * @author Benjamin Roy
  */
 
+import '../styles/components/updatesManager.css'
+
 import React, { Component } from 'react';
+
+import { Card } from 'primereact/components/card/Card';
+import { Checkbox } from 'primereact/components/checkbox/Checkbox';
+import ConfirmationPopup from './popups/confirmationPopup';
+import Countdown from './countdown';
+import { DebugActions } from '../redux/debugReducer';
 import PropTypes from 'prop-types';
+import { T } from '../utilities/translator';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import { URL } from '../redux/applicationReducer';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import { Card } from 'primereact/components/card/Card';
-
-import Countdown from './countdown';
-import { URL } from '../redux/applicationReducer';
-import { DebugActions } from '../redux/debugReducer';
-import { T } from '../utilities/translator';
-import '../styles/updatesManager.css'
 
 const POLLING_INTERVAL = 10000;
 const COUNTDOWN_TIME = 10;
@@ -34,9 +36,10 @@ class UpdatesManager extends Component {
     this.state = {
       isAvailable: true,
       date: null,
-      showCountdown: false,
+      isPopupOpened: false,
     }
     this.triggerUpdate = this.triggerUpdate.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.updateData();
   }
 
@@ -46,6 +49,12 @@ class UpdatesManager extends Component {
 
   componentWillUnmount() {
     window.clearInterval(this.timer);
+  }
+
+  toggleModal() {
+    this.setState({
+      isPopupOpened: !this.state.isPopupOpened
+    });
   }
 
   poll() {
@@ -65,11 +74,11 @@ class UpdatesManager extends Component {
   }
   
   async updateData() {
-    const status = await this.getUpdateStatus();
+    const status = await this.getUpdateData();
     this.mapData(status);
   }
 
-  async getUpdateStatus() {
+  async getUpdateData() {
     try {
       const response = await axios.get(`${URL}updates`, this.props.header);
       return response.data;
@@ -84,6 +93,7 @@ class UpdatesManager extends Component {
     } catch (error) {
       console.log(error);
     }
+    this.toggleModal();
   }
 
   render() {
@@ -101,7 +111,7 @@ class UpdatesManager extends Component {
                 id="updateButton"
                 className={`btn ui-button-secondary ${this.state.isAvailable ? 'btn-danger' : 'btn-default'}`}
                 disabled={!this.state.isAvailable}
-                onClick={() => this.setState({showCountdown: true})}>
+                onClick={() => this.toggleModal()}>
                   <i className="fa fa-2x fa-refresh" />
               </button>
               <div>
@@ -111,12 +121,13 @@ class UpdatesManager extends Component {
             </div>
           </Card>
         </div>
-        {this.state.showCountdown &&
-          <Countdown
-            time={COUNTDOWN_TIME}
-            title={T.translate(`debug.update.countdownTitle.${this.props.language}`)}
-            onComplete={this.triggerUpdate}
-          />}
+        <ConfirmationPopup
+          title={T.translate(`debug.update.${this.props.language}`)}
+          body={T.translate(`debug.update.confirmation.${this.props.language}`)}
+          show={this.state.isPopupOpened}
+          onConfirm={this.triggerUpdate}
+          onClose={this.toggleModal}>
+        </ConfirmationPopup>
       </div>
     );
   }

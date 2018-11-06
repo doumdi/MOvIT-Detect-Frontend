@@ -1,0 +1,71 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
+import { Button, Modal } from 'react-bootstrap';
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+import { T } from '../../utilities/translator';
+import { connect } from 'react-redux';
+
+class ConfirmationPopup extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  static propTypes = {
+    onClose: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    show: PropTypes.bool.isRequired,
+  };
+
+  render() {
+    const style = {
+      dialog: {
+        display: 'flex',
+        alignItems: 'center',
+      },
+      body: {
+        textAlign: 'justify'
+      }
+    }
+    return (
+      <div>
+        {this.props.show && (
+          <div>
+            <Modal.Dialog style={style.dialog}>
+              <Modal.Header>
+                <Modal.Title>{this.props.title}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body style={style.body}>
+                {this.props.body}
+              </Modal.Body>
+              <Modal.Footer>
+                <Button id="closeButton" onClick={this.props.onClose}>
+                  {T.translate(`confirmation.close.${this.props.language}`)}
+                </Button>
+                <Button id="confirmButton" bsStyle="primary" onClick={this.props.onConfirm}>
+                  {T.translate(`confirmation.confirm.${this.props.language}`)}
+                </Button>
+              </Modal.Footer>
+            </Modal.Dialog>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    language: state.applicationReducer.language,
+  };
+}
+
+export default connect(mapStateToProps)(ConfirmationPopup);
