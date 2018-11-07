@@ -13,10 +13,6 @@ import { T } from '../../utilities/translator';
 import { connect } from 'react-redux';
 
 class ConfirmationPopup extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
