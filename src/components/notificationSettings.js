@@ -13,6 +13,7 @@ import { Card } from 'primereact/components/card/Card';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { DebugActions } from '../redux/debugReducer';
 import PropTypes from 'prop-types';
+import { Spinner } from 'primereact/components/spinner/Spinner';
 import { T } from '../utilities/translator';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { URL } from '../redux/applicationReducer';
@@ -131,15 +132,15 @@ class NotificationSettings extends Component {
                 for="#snoozeTimeToolTip"
                 title={T.translate(`debug.notificationSettings.snoozeTimeToolTip.${this.props.language}`)}
               />
-              <input
+              <Spinner
                 id="value"
-                className="inputSmallWidth"
                 type="number"
-                onChange={e => this.changeSnoozeTime(e.target.value)}
-                onBlur={e => this.saveSnoozeTime(e.target.value)}
+                onChange={event => this.changeSnoozeTime(event.value)}
+                onBlur={event => this.saveSnoozeTime(event.value)}
                 value={this.props.snoozeTime}
                 min={this.props.minimumSnoozeTime || MINIMUM_SNOOZE_TIME}
                 max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}
+                maxlength={2}
               />
             </div>
           </Card>

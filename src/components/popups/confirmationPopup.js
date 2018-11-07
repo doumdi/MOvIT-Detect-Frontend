@@ -33,7 +33,13 @@ class ConfirmationPopup extends React.Component {
       },
       body: {
         textAlign: 'justify'
-      }
+      },
+      icon: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%,-50%)',
+      },
     }
     return (
       <div>
@@ -44,13 +50,20 @@ class ConfirmationPopup extends React.Component {
                 <Modal.Title>{this.props.title}</Modal.Title>
               </Modal.Header>
               <Modal.Body style={style.body}>
-                {this.props.body}
+                <div className="row">
+                  <div className="col">
+                    <i className="fa fa-question-circle fa-3x" style={style.icon}></i>
+                  </div>
+                  <div className="col-10">
+                    {this.props.body}
+                  </div>
+                </div>
               </Modal.Body>
               <Modal.Footer>
                 <Button id="closeButton" onClick={this.props.onClose}>
                   {T.translate(`confirmation.close.${this.props.language}`)}
                 </Button>
-                <Button id="confirmButton" bsStyle="primary" onClick={this.props.onConfirm}>
+                <Button id="confirmButton" bsStyle="success" onClick={this.props.onConfirm}>
                   {T.translate(`confirmation.confirm.${this.props.language}`)}
                 </Button>
               </Modal.Footer>

@@ -33,7 +33,30 @@ exports[`ConfirmationPopup Tests should match the snapshot 1`] = `
           }
         }
       >
-        Body test
+        <div
+          className="row"
+        >
+          <div
+            className="col"
+          >
+            <i
+              className="fa fa-question-circle fa-3x"
+              style={
+                Object {
+                  "left": "50%",
+                  "position": "absolute",
+                  "top": "50%",
+                  "transform": "translate(-50%,-50%)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="col-10"
+          >
+            Body test
+          </div>
+        </div>
       </ModalBody>
       <ModalFooter
         bsClass="modal-footer"
@@ -54,7 +77,7 @@ exports[`ConfirmationPopup Tests should match the snapshot 1`] = `
           active={false}
           block={false}
           bsClass="btn"
-          bsStyle="primary"
+          bsStyle="success"
           disabled={false}
           id="confirmButton"
           onClick={[Function]}
