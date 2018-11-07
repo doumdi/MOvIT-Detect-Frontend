@@ -17,14 +17,10 @@
     "modules": true
   },
   "rules": {
-    "linebreak-style": "off",
-    "class-methods-use-this":  "off",
     "import/prefer-default-export":  "off",
-    "no-underscore-dangle": "off",
     "import/no-extraneous-dependencies": "off",
     "no-static-element-interactions":  "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prefer-stateless-function": "off",
     "max-len": [2, { "code": 160 }],
     "react/jsx-no-bind": "off",
     "global-require": "off",
