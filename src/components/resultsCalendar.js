@@ -52,10 +52,11 @@ class ResultsCalendar extends Component {
     axios.get(`${URL}lastDate`, this.props.header)
       .then((response) => {
         const date = new Date(response.data);
-        const month = date.getMonth();
         date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
+        const month = date.getMonth();
         this.setState({ date, month });
         this.props.onDateChange(date);
+        this.props.onMonthChange(month);
       });
   }
 

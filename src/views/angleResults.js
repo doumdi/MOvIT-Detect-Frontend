@@ -81,7 +81,7 @@ class AngleResults extends Component {
             :
               <div>
                 <MonthlyAngleDistribution month={this.state.month} />
-                <MonthlySuccessTilt />
+                <MonthlySuccessTilt month={this.state.month} />
               </div>
             }
           </div>
