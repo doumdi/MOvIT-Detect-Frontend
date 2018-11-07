@@ -5,18 +5,18 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import configureMockStore from 'redux-mock-store';
 import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import toJson from 'enzyme-to-json';
-import sinon from 'sinon';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 
+import Adapter from 'enzyme-adapter-react-16';
+import MockAdapter from 'axios-mock-adapter';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { URL } from '../../src/redux/applicationReducer';
 import UpdatesManager from '../../src/components/updatesManager';
+import axios from 'axios';
+import configureMockStore from 'redux-mock-store';
+import sinon from 'sinon';
+import toJson from 'enzyme-to-json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -42,7 +42,7 @@ describe('UpdatesManager Tests', () => {
     wrapper.setState({
       isAvailable: false,
       date: null,
-      showCountdown: true,
+      isPopupOpened: true,
     });
   });
 
@@ -58,18 +58,16 @@ describe('UpdatesManager Tests', () => {
   });
 
   it('should get the update availability', async () => {
-    const response = await wrapper.instance().getUpdateStatus();
+    const response = await wrapper.instance().getUpdateData();
 
     expect(response).toEqual({ response: true });
   });
 
   it('should poll the server at the polling interval', () => {
     const clock = sinon.useFakeTimers();
-    const spy = sinon.spy(wrapper.instance(), 'getUpdateStatus');
+    const spy = sinon.spy(wrapper.instance(), 'getUpdateData');
 
     wrapper.instance().poll();
-
-    clock.tick(10000);
     expect(spy.callCount).toEqual(1);
 
     clock.tick(10000);
@@ -80,6 +78,9 @@ describe('UpdatesManager Tests', () => {
 
     clock.tick(10000);
     expect(spy.callCount).toEqual(4);
+
+    clock.tick(10000);
+    expect(spy.callCount).toEqual(5);
   });
 
   it('should set the component state when mapping the server response', () => {
@@ -95,11 +96,11 @@ describe('UpdatesManager Tests', () => {
   });
 
   it('should show the countdown popup', () => {
-    wrapper.instance().setState({ showCountdown: false });
+    wrapper.instance().setState({ isPopupOpened: false });
 
     wrapper.find('#updateButton').simulate('click');
 
-    expect(wrapper.state('showCountdown')).toEqual(true);
+    expect(wrapper.state('isPopupOpened')).toEqual(true);
   });
 
   it('should match the snapshot', () => {

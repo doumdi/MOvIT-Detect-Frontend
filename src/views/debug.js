@@ -6,12 +6,13 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { T } from '../utilities/translator';
+
 import Notification from '../components/notification';
 import NotificationSettings from '../components/notificationSettings';
+import PropTypes from 'prop-types';
+import { T } from '../utilities/translator';
 import UpdatesManager from '../components/updatesManager';
+import { connect } from 'react-redux';
 
 class Debug extends Component {
   static propTypes = {
