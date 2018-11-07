@@ -68,8 +68,6 @@ describe('UpdatesManager Tests', () => {
     const spy = sinon.spy(wrapper.instance(), 'getUpdateData');
 
     wrapper.instance().poll();
-
-    clock.tick(10000);
     expect(spy.callCount).toEqual(1);
 
     clock.tick(10000);
@@ -80,6 +78,9 @@ describe('UpdatesManager Tests', () => {
 
     clock.tick(10000);
     expect(spy.callCount).toEqual(4);
+
+    clock.tick(10000);
+    expect(spy.callCount).toEqual(5);
   });
 
   it('should set the component state when mapping the server response', () => {

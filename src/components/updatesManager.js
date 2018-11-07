@@ -40,7 +40,6 @@ class UpdatesManager extends Component {
     }
     this.triggerUpdate = this.triggerUpdate.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    this.updateData();
   }
 
   componentDidMount() {
@@ -58,6 +57,7 @@ class UpdatesManager extends Component {
   }
 
   poll() {
+    this.updateData();
     this.timer = setInterval(async () => {
       this.updateData();
     }, POLLING_INTERVAL);
