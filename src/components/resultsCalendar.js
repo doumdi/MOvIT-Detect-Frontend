@@ -55,6 +55,7 @@ class ResultsCalendar extends Component {
         const month = date.getMonth();
         date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
         this.setState({ date, month });
+        this.props.onDateChange(date);
       });
   }
 
