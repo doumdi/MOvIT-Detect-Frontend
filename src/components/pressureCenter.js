@@ -96,7 +96,7 @@ class PressureCenter extends Component {
             <br />
             <h4 id="dailyPressureCenter">{this.props.title}</h4>
             <hr />
-            <div className="col-lg-6 offset-lg-1">
+            <div className="col-lg-5 offset-lg-2">
               <VictoryChart
                 theme={VictoryTheme.material}
                 domain={{ x: [-4, 4], y: [-7, 7] }}

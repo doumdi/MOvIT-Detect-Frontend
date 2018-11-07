@@ -19,6 +19,10 @@ export default class GoalChart extends Component {
     id: PropTypes.string,
   }
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     const style = {
       center: {
