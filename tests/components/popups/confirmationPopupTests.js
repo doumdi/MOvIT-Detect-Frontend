@@ -8,12 +8,12 @@
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
-import ConfirmationPopup from '../../../src/components/popups/confirmationPopup';
 import PropTypes from 'prop-types';
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
+import ConfirmationPopup from '../../../src/components/popups/confirmationPopup';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -36,11 +36,11 @@ describe('ConfirmationPopup Tests', () => {
     onCloseSpy.resetHistory();
     onConfirmSpy.resetHistory();
 
-    wrapper = shallow(<ConfirmationPopup store={store} {...props} />).dive();
+    wrapper = shallow(<ConfirmationPopup store={store} {...props} />);
   });
 
   it('should have proptypes', () => {
-    const actualValue = ConfirmationPopup.WrappedComponent.propTypes;
+    const actualValue = ConfirmationPopup.propTypes;
 
     const expectedValue = {
       onClose: PropTypes.func.isRequired,

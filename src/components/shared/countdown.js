@@ -54,8 +54,12 @@ export default class Countdown extends Component {
     };
     return (
       <Dialog
-        visible={this.state.show} width="300px" height="100px" showHeader={false}
-        modal onHide={() => this.setState({ show: false })}
+        visible={this.state.show}
+        width="300px"
+        height="100px"
+        showHeader={false}
+        modal
+        onHide={() => this.setState({ show: false })}
       >
         <div style={style.timerHeader}>{this.props.title}</div>
         <div style={style.timer}>{this.state.timer}</div>

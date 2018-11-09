@@ -8,7 +8,6 @@ import { T } from '../../../utilities/translator';
 import '../../../styles/results.css';
 
 class DailySuccessTilt extends Component {
-
   static propTypes = {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
@@ -21,7 +20,6 @@ class DailySuccessTilt extends Component {
       dayData: [],
       date: props.date,
       data: null,
-      loading: true,
     };
     this.getData(this.state.date);
   }
@@ -35,7 +33,7 @@ class DailySuccessTilt extends Component {
 
   getData(date) {
     axios.get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
-      .then((response) => { this.state.dayData = response.data.data; this.loadData(); });
+      .then((response) => { this.state.dayData = response.data; this.loadData(); });
   }
 
   loadData() {
@@ -72,7 +70,6 @@ class DailySuccessTilt extends Component {
         },
       ],
     };
-    this.setState({ loading: false });
   }
 
   render() {

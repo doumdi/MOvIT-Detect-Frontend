@@ -16,7 +16,7 @@ exports[`TiltSlidersCard Tests should match the snapshot 1`] = `
       }
     >
       This is a title
-        
+       
       <i
         className="fa fa-check"
         onClick={[Function]}

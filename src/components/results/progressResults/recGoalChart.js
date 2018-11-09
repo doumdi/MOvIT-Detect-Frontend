@@ -42,7 +42,8 @@ export default class RecGoalChart extends Component {
     };
     return (
       <div>
-        {this.props.condition &&
+        {this.props.condition
+          && (
           <div>
             <hr />
             <h2 style={style.center}>{this.props.title}</h2>
@@ -53,6 +54,7 @@ export default class RecGoalChart extends Component {
             <h4>{this.props.recTitle}</h4>
             <Chart type="line" data={this.props.recData} options={options} />
           </div>
+          )
         }
       </div>
     );

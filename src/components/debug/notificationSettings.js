@@ -11,15 +11,15 @@ import React, { Component } from 'react';
 
 import { Card } from 'primereact/components/card/Card';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import { DebugActions } from '../../redux/debugReducer';
 import PropTypes from 'prop-types';
 import { Spinner } from 'primereact/components/spinner/Spinner';
-import { T } from '../../utilities/translator';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import { URL } from '../../redux/applicationReducer';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { URL } from '../../redux/applicationReducer';
+import { T } from '../../utilities/translator';
+import { DebugActions } from '../../redux/debugReducer';
 
 const MINIMUM_SNOOZE_TIME = 0;
 const MAXIMUM_SNOOZE_TIME = 60;
@@ -57,6 +57,7 @@ class NotificationSettings extends Component {
     this.mapData(settings);
   }
 
+
   mapData(settings) {
     this.props.changeIsLedBlinkingEnabled(settings.isLedBlinkingEnabled);
     this.props.changeIsVibrationEnabled(settings.isVibrationEnabled);
@@ -82,7 +83,7 @@ class NotificationSettings extends Component {
   }
 
   changeSnoozeTime(snoozeTime) {
-    if (!snoozeTime || !parseInt(snoozeTime, 10)) {
+    if (!snoozeTime || !parseInt(snoozeTime)) {
       return;
     }
     this.props.changeSnoozeTime(parseInt(snoozeTime, 10));
@@ -125,8 +126,10 @@ class NotificationSettings extends Component {
             </div>
             <div>
               <span>
-                <i id="snoozeTimeToolTip" className="fa fa-info-circle" />&nbsp;
-                {T.translate(`debug.notificationSettings.snoozeTime.${this.props.language}`)}:&nbsp;&nbsp;
+                <i id="snoozeTimeToolTip" className="fa fa-info-circle" />
+                &nbsp;
+                {T.translate(`debug.notificationSettings.snoozeTime.${this.props.language}`)}
+                :&nbsp;&nbsp;
               </span>
               <Tooltip
                 for="#snoozeTimeToolTip"
@@ -142,7 +145,10 @@ class NotificationSettings extends Component {
                 max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}
                 maxlength={2}
               />
-              <span>&nbsp;&nbsp;{T.translate(`time.minutes.${this.props.language}`)}</span>
+              <span>
+                &nbsp;&nbsp;
+                {T.translate(`time.minutes.${this.props.language}`)}
+              </span>
             </div>
           </Card>
         </div>

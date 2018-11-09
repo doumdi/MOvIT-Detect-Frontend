@@ -10,9 +10,8 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { T } from '../../utilities/translator';
-import { connect } from 'react-redux';
 
-class ConfirmationPopup extends Component {
+export default class ConfirmationPopup extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -71,11 +70,3 @@ class ConfirmationPopup extends Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    language: state.applicationReducer.language,
-  };
-}
-
-export default connect(mapStateToProps)(ConfirmationPopup);

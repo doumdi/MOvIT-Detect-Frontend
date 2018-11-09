@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Notification Tests should match the snapshot 1`] = `
+exports['Notification Tests should match the snapshot 1'] = `
 <div
   className="row m-3 mt-5 ml-md-5"
 >
@@ -11,6 +11,7 @@ exports[`Notification Tests should match the snapshot 1`] = `
       className="btn btn-lg"
       id="calibrate-button"
       onClick={[Function]}
+      type="button"
     >
       calibrate.en
     </button>
@@ -22,6 +23,7 @@ exports[`Notification Tests should match the snapshot 1`] = `
       className="btn btn-lg"
       id="turn-on-button"
       onClick={[Function]}
+      type="button"
     >
       alert.on.en
     </button>
@@ -33,6 +35,7 @@ exports[`Notification Tests should match the snapshot 1`] = `
       className="btn btn-lg"
       id="turn-off-button"
       onClick={[Function]}
+      type="button"
     >
       alert.off.en
     </button>

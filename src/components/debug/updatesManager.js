@@ -7,12 +7,14 @@
 
 import React, { Component } from 'react';
 
-import ConfirmationPopup from '../popups/confirmationPopup';
+
 import PropTypes from 'prop-types';
-import { T } from '../../utilities/translator';
-import { URL } from '../../redux/applicationReducer';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import ConfirmationPopup from '../popups/confirmationPopup';
+import { T } from '../../utilities/translator';
+import { URL } from '../../redux/applicationReducer';
+
 
 const POLLING_INTERVAL = 10000;
 
@@ -99,7 +101,8 @@ class UpdatesManager extends Component {
           <i className="fa fa-2x fa-refresh" />
         </button>
         <div>
-          {T.translate(`debug.system.update.last.${this.props.language}`)}:&nbsp;
+          {T.translate(`debug.system.update.last.${this.props.language}`)}
+          : &nbsp;
           {this.state.date}
         </div>
         <ConfirmationPopup

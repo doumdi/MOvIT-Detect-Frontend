@@ -11,12 +11,12 @@ import Adapter from 'enzyme-adapter-react-16';
 import MockAdapter from 'axios-mock-adapter';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { URL } from '../../../src/redux/applicationReducer';
-import UpdatesManager from '../../../src/components/debug/updatesManager';
 import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
+import UpdatesManager from '../../../src/components/debug/updatesManager';
+import { URL } from '../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 

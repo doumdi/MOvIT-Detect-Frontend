@@ -7,7 +7,6 @@ import { URL } from '../../../redux/applicationReducer';
 import { T } from '../../../utilities/translator';
 
 class MonthlySuccessTilt extends Component {
-
   static propTypes = {
     language: PropTypes.string.isRequired,
     header: PropTypes.object,
@@ -37,6 +36,7 @@ class MonthlySuccessTilt extends Component {
       this.getMonthData(nextProps.month);
     }
   }
+
   getMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     axios.get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`, this.props.header)

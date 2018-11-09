@@ -71,7 +71,7 @@ exports[`ConfirmationPopup Tests should match the snapshot 1`] = `
           id="closeButton"
           onClick={[Function]}
         >
-          confirmation.close.en
+          confirmation.close.undefined
         </Button>
         <Button
           active={false}
@@ -82,7 +82,7 @@ exports[`ConfirmationPopup Tests should match the snapshot 1`] = `
           id="confirmButton"
           onClick={[Function]}
         >
-          confirmation.confirm.en
+          confirmation.confirm.undefined
         </Button>
       </ModalFooter>
     </ModalDialog>

@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { T } from '../../utilities/translator';
-import SliderValue from '../shared/sliderValue';
+import SliderValue from './sliderValue';
 
 class TiltSliders extends Component {
   static propTypes = {

@@ -39,18 +39,18 @@ class PressureCenter extends Component {
       centers: [],
       hours: [],
     };
-    this.initialize();
+    this.initialize(this.state.date);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.date !== this.state.date) {
       this.setState({ date: nextProps.date });
-      this.initialize();
+      this.initialize(nextProps.date);
     }
   }
 
-  async getPressureData() {
-    const response = await axios.get(`${URL}gravityCenter?Day=${+this.state.date},offset=0`, this.props.header);
+  async getPressureData(date) {
+    const response = await axios.get(`${URL}gravityCenter?Day=${+date},offset=0`, this.props.header);
     return response.data;
   }
 
@@ -61,8 +61,8 @@ class PressureCenter extends Component {
     this.setState({ time: this.state.hours[value] });
   }
 
-  async initialize() {
-    const pressureData = await this.getPressureData();
+  async initialize(date) {
+    const pressureData = await this.getPressureData(date);
     this.loadPressureData(pressureData);
   }
 
@@ -91,7 +91,8 @@ class PressureCenter extends Component {
     };
     return (
       <div className="container" style={style}>
-        {this.state.centers.length > 0 &&
+        {this.state.centers.length > 0
+          && (
           <div>
             <br />
             <h4 id="dailyPressureCenter">{this.props.title}</h4>
@@ -139,7 +140,8 @@ class PressureCenter extends Component {
               </VictoryChart>
               <div className="col-8 offset-2 col-md-4 offset-md-4">
                 <Slider
-                  min={0} max={this.state.centers.length - 1}
+                  min={0}
+                  max={this.state.centers.length - 1}
                   style={{ marginTop: '1vh' }}
                   value={this.state.index}
                   onChange={e => this.setIndex(e.value)}
@@ -150,6 +152,7 @@ class PressureCenter extends Component {
               </div>
             </div>
           </div>
+          )
         }
       </div>
     );
