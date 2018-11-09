@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import { ApplicationActions, URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
-import Password from '../components/password';
+import Password from '../components/home/password';
 
 class Home extends Component {
   static propTypes = {

@@ -83,7 +83,7 @@ class Header extends Component {
         border: 'none',
       },
     };
-  
+
     return (
       <div>
         {this.isLoggedIn()}

@@ -11,9 +11,9 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ConfigurationActions } from '../redux/configurationReducer';
 import { T } from '../utilities/translator';
-import LogoText from '../components/logoText';
-import LogoNumber from '../components/logoNumber';
-import SubmitButtons from '../components/submitButtons';
+import LogoText from '../components/shared/logoText';
+import LogoNumber from '../components/shared/logoNumber';
+import SubmitButtons from '../components/shared/submitButtons';
 import { URL } from '../redux/applicationReducer';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 

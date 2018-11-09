@@ -12,8 +12,9 @@ import PropTypes from 'prop-types';
 import { T } from '../../utilities/translator';
 import { connect } from 'react-redux';
 
-class ConfirmationPopup extends React.Component {
+class ConfirmationPopup extends Component {
   static propTypes = {
+    language: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
@@ -28,7 +29,7 @@ class ConfirmationPopup extends React.Component {
         alignItems: 'center',
       },
       body: {
-        textAlign: 'justify'
+        textAlign: 'justify',
       },
       icon: {
         position: 'absolute',
@@ -36,7 +37,7 @@ class ConfirmationPopup extends React.Component {
         left: '50%',
         transform: 'translate(-50%,-50%)',
       },
-    }
+    };
     return (
       <div>
         {this.props.show && (
@@ -48,7 +49,7 @@ class ConfirmationPopup extends React.Component {
               <Modal.Body style={style.body}>
                 <div className="row">
                   <div className="col">
-                    <i className="fa fa-question-circle fa-3x" style={style.icon}></i>
+                    <i className="fa fa-question-circle fa-3x" style={style.icon} />
                   </div>
                   <div className="col-10">
                     {this.props.body}

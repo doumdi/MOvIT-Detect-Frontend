@@ -15,7 +15,6 @@ class ResultsCategories extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
-    profile: PropTypes.string,
   };
 
   constructor(props, context) {
@@ -87,7 +86,6 @@ class ResultsCategories extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    profile: state.applicationReducer.profile,
   };
 }
 

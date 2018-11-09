@@ -8,11 +8,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { T } from '../utilities/translator';
-import DailySuccessTilt from '../components//dailySuccessTilt';
-import DailyAngleDistribution from '../components/dailyAngleDistribution';
-import ResultsCalendar from '../components/resultsCalendar';
-import MonthlySuccessTilt from '../components/monthlySuccessTilt';
-import MonthlyAngleDistribution from '../components/monthlyAngleDistribution';
+import DailySuccessTilt from '../components/results/angleResults/dailySuccessTilt';
+import DailyAngleDistribution from '../components/results/angleResults/dailyAngleDistribution';
+import ResultsCalendar from '../components/results/resultsCalendar';
+import MonthlySuccessTilt from '../components/results/angleResults/monthlySuccessTilt';
+import MonthlyAngleDistribution from '../components/results/angleResults/monthlyAngleDistribution';
 import '../styles/style.css';
 import '../styles/results.css';
 

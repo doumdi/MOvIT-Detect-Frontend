@@ -5,17 +5,17 @@
  * @author Benjamin Roy
  */
 
-import '../styles/views/debug.css'
+import '../styles/views/debug.css';
 
 import React, { Component } from 'react';
 
 import { Card } from 'primereact/components/card/Card';
-import MemoryUsage from '../components/memoryUsage';
-import Notification from '../components/notification';
-import NotificationSettings from '../components/notificationSettings';
+import MemoryUsage from '../components/debug/memoryUsage';
+import Notification from '../components/debug/notification';
+import NotificationSettings from '../components/debug/notificationSettings';
 import PropTypes from 'prop-types';
 import { T } from '../utilities/translator';
-import UpdatesManager from '../components/updatesManager';
+import UpdatesManager from '../components/debug/updatesManager';
 import { connect } from 'react-redux';
 
 class Debug extends Component {
@@ -41,7 +41,7 @@ class Debug extends Component {
                 <Card header={header}>
                   <h6>{T.translate(`debug.system.memory.${this.props.language}`)}</h6>
                   <MemoryUsage />
-                  <br></br>
+                  <br />
                   <h6>{T.translate(`debug.system.update.${this.props.language}`)}</h6>
                   <UpdatesManager />
                 </Card>

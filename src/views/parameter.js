@@ -11,8 +11,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ParameterActions } from '../redux/parameterReducer';
 import { T } from '../utilities/translator';
-import PreventPermission from '../components/preventPermission';
-import SubmitButtons from '../components/submitButtons';
+import PreventPermission from '../components/parameter/preventPermission';
+import SubmitButtons from '../components/shared/submitButtons';
 import { URL } from '../redux/applicationReducer';
 
 class Parameters extends Component {
