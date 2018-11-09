@@ -17,7 +17,39 @@ exports[`Debug Tests should match the snapshot 1`] = `
       </h2>
       <Connect(Notification) />
       <Connect(NotificationSettings) />
-      <Connect(UpdatesManager) />
+      <div
+        className="container"
+      >
+        <div
+          className="card"
+        >
+          <Card
+            className={null}
+            footer={null}
+            header={
+              <div
+                className="ui-card-title header"
+              >
+                debug.system.en
+              </div>
+            }
+            id={null}
+            style={null}
+            subtitle={null}
+            title={null}
+          >
+            <h6>
+              debug.system.memory.en
+            </h6>
+            <Connect(MemoryUsage) />
+            <br />
+            <h6>
+              debug.system.update.en
+            </h6>
+            <Connect(UpdatesManager) />
+          </Card>
+        </div>
+      </div>
     </div>
   </div>
 </div>

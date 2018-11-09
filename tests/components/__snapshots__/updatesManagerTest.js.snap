@@ -1,51 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UpdatesManager Tests should match the snapshot 1`] = `
-<div
-  className="container"
->
-  <div
-    className="card"
+<div>
+  <button
+    className="btn ui-button-secondary btn-default"
+    disabled={true}
+    id="updateButton"
+    onClick={[Function]}
   >
-    <Card
-      className={null}
-      footer={null}
-      header={
-        <div
-          className="ui-card-title header"
-        >
-          debug.update.en
-        </div>
-      }
-      id={null}
-      style={null}
-      subtitle={null}
-      title={null}
-    >
-      <div>
-        <button
-          className="btn ui-button-secondary btn-default"
-          disabled={true}
-          id="updateButton"
-          onClick={[Function]}
-        >
-          <i
-            className="fa fa-2x fa-refresh"
-          />
-        </button>
-        <div>
-          debug.update.last.en
-          : 
-        </div>
-      </div>
-    </Card>
+    <i
+      className="fa fa-2x fa-refresh"
+    />
+  </button>
+  <div>
+    debug.system.update.last.en
+    : 
   </div>
   <Connect(ConfirmationPopup)
-    body="debug.update.confirmation.en"
+    body="debug.system.update.confirmation.en"
     onClose={[Function]}
     onConfirm={[Function]}
     show={true}
-    title="debug.update.en"
+    title="debug.system.update.en"
   />
 </div>
 `;
