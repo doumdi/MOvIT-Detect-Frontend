@@ -33,6 +33,9 @@ time:
   min:
     FR: "sec"
     EN: "sec"
+  minutes:
+    FR: "minutes"
+    EN: "minutes"
   hours:
     FR: "heures"
     EN: "hours"
@@ -432,7 +435,7 @@ debug:
       FR: "Vibrer"
       EN: "Vibrate"
     snoozeTime:
-      FR: "Temps avant un rappel"
+      FR: "Temps de snooze"
       EN: "Snooze time"
     snoozeTimeToolTip:
       FR: "Temps avant de reçevoir un rappel d'effectuer une bascule (minutes)"
