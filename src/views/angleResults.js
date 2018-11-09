@@ -75,13 +75,21 @@ class AngleResults extends Component {
           <div className="col-lg-8 offset-lg-2">
             {this.state.period === 'day' ?
               <div>
-                <DailyAngleDistribution date={this.state.date} />
-                <DailySuccessTilt date={this.state.date} />
+                {this.state.date &&
+                  <div>
+                    <DailyAngleDistribution date={this.state.date} />
+                    <DailySuccessTilt date={this.state.date} />
+                  </div>
+                }
               </div>
             :
               <div>
-                <MonthlyAngleDistribution month={this.state.month} />
-                <MonthlySuccessTilt month={this.state.month} />
+                {this.state.month &&
+                  <div>
+                    <MonthlyAngleDistribution month={this.state.month} />
+                    <MonthlySuccessTilt month={this.state.month} />
+                  </div>
+                }
               </div>
             }
           </div>

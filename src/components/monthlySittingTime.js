@@ -38,9 +38,6 @@ class MonthlySittingTime extends Component {
     }
   }
   getSitMonthData(month) {
-    if (!month) {
-      return;
-    }
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ sitLoading: true });
     axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header)

@@ -34,9 +34,6 @@ class DailySuccessTilt extends Component {
   }
 
   getData(date) {
-    if (!date) {
-      return;
-    }
     axios.get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
       .then((response) => { this.state.dayData = response.data; this.loadData(); });
   }

@@ -62,9 +62,6 @@ class PressureCenter extends Component {
   }
 
   async initialize(date) {
-    if (!date) {
-      return;
-    }
     const pressureData = await this.getPressureData(date);
     this.loadPressureData(pressureData);
   }
