@@ -45,6 +45,9 @@ class MonthlyAngleDistribution extends Component {
     }
   }
   getAngleMonthData(month) {
+    if (!month) {
+      return;
+    }
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ angleLoading: true });
     axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
