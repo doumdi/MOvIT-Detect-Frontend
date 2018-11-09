@@ -18,6 +18,7 @@ class MonthlySittingTime extends Component {
     header: PropTypes.object,
     month: PropTypes.number,
   }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,6 +38,7 @@ class MonthlySittingTime extends Component {
       this.getSitMonthData(nextProps.month);
     }
   }
+
   getSitMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ sitLoading: true });
@@ -44,6 +46,7 @@ class MonthlySittingTime extends Component {
       .then((response) => { this.formatSitChartData(response.data); })
       .catch(error => console.log(error));
   }
+
   formatSitChartData(data) {
     this.state.sitMonthLabels = [];
     this.state.sitMonthData = [];
@@ -53,6 +56,7 @@ class MonthlySittingTime extends Component {
     });
     this.loadSitData();
   }
+
   loadSitData() {
     this.state.sitChartData = {
       labels: this.state.sitMonthLabels,
@@ -100,8 +104,8 @@ class MonthlySittingTime extends Component {
       <div className="container">
         <h4 id="monthlySitting">{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>
         <hr />
-        {!this.state.sitLoading &&
-          <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
+        {!this.state.sitLoading
+          && <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
         }
       </div>
     );

@@ -29,7 +29,8 @@ class RecGoalProgress extends Component {
 
     return (
       <div>
-        {this.props.condition &&
+        {this.props.condition
+          && (
           <div>
             <hr />
             <h2 style={style.center}>{this.props.title}</h2>
@@ -47,6 +48,7 @@ class RecGoalProgress extends Component {
                 { percent: this.props.recValue })}
             </p>
           </div>
+          )
         }
       </div>
     );

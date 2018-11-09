@@ -16,9 +16,13 @@ import '../styles/results.css';
 class DailyAngleDistribution extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date),
-    header: PropTypes.object,
+    reduceWeight: PropTypes.bool.isRequired,
+    reduceSlidingMoving: PropTypes.bool.isRequired,
+    reduceSlidingRest: PropTypes.bool.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
+    header: PropTypes.object.isRequired,
   }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -32,13 +36,13 @@ class DailyAngleDistribution extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
+      this.state.date = nextProps.date;
       this.getDayData(nextProps.date);
     }
   }
 
   getDayData(date) {
-    this.setState({ loading: true });
+    this.state.loading = true;
     axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
       .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
   }
@@ -98,8 +102,8 @@ class DailyAngleDistribution extends Component {
       <div className="container graphic">
         <h4 id="dailyAngle">{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>
         <hr />
-        {!this.state.loading &&
-          <Chart type="pie" data={this.state.data} options={minOptions} />
+        {!this.state.loading
+          && <Chart type="pie" data={this.state.data} options={minOptions} />
         }
       </div>
     );

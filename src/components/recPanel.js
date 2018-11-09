@@ -30,10 +30,11 @@ export default class RecPanel extends Component {
     return (
       <div className="col-12 col-sm-6 col-md-4 " style={style}>
         {this.props.condition
-          &&
+          && (
           <Card title={this.props.title} style={style.card}>
             {this.props.value}
           </Card>
+          )
         }
       </div>
     );

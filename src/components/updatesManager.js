@@ -7,12 +7,12 @@
 
 import React, { Component } from 'react';
 
-import ConfirmationPopup from './popups/confirmationPopup';
 import PropTypes from 'prop-types';
-import { T } from '../utilities/translator';
-import { URL } from '../redux/applicationReducer';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import ConfirmationPopup from './popups/confirmationPopup';
+import { T } from '../utilities/translator';
+import { URL } from '../redux/applicationReducer';
 
 const POLLING_INTERVAL = 10000;
 
@@ -28,22 +28,31 @@ class UpdatesManager extends Component {
       isAvailable: true,
       date: null,
       isPopupOpened: false,
-    }
+    };
     this.triggerUpdate = this.triggerUpdate.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
-    this.poll(); 
+    this.poll();
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timer);
   }
 
+  async getUpdateData() {
+    try {
+      const response = await axios.get(`${URL}updates`, this.props.header);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   toggleModal() {
     this.setState({
-      isPopupOpened: !this.state.isPopupOpened
+      isPopupOpened: !this.state.isPopupOpened,
     });
   }
 
@@ -59,23 +68,14 @@ class UpdatesManager extends Component {
     date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
 
     this.setState({
-      'isAvailable': response.isAvailable,
-      'date': date.toISOString().split('T')[0],
+      isAvailable: response.isAvailable,
+      date: date.toISOString().split('T')[0],
     });
   }
-  
+
   async updateData() {
     const status = await this.getUpdateData();
     this.mapData(status);
-  }
-
-  async getUpdateData() {
-    try {
-      const response = await axios.get(`${URL}updates`, this.props.header);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   async triggerUpdate() {
@@ -94,11 +94,16 @@ class UpdatesManager extends Component {
           id="updateButton"
           className={`btn ui-button-secondary ${this.state.isAvailable ? 'btn-danger' : 'btn-default'}`}
           disabled={!this.state.isAvailable}
-          onClick={() => this.toggleModal()}>
-            <i className="fa fa-2x fa-refresh" />
+          onClick={() => this.toggleModal()}
+          type="button"
+        >
+          <i className="fa fa-2x fa-refresh" />
         </button>
         <div>
-          {T.translate(`debug.system.update.last.${this.props.language}`)}:&nbsp;
+          {T.translate(`debug.system.update.last.${this.props.language}`)}
+
+
+          :&nbsp;
           {this.state.date}
         </div>
         <ConfirmationPopup
@@ -106,8 +111,8 @@ class UpdatesManager extends Component {
           body={T.translate(`debug.system.update.confirmation.${this.props.language}`)}
           show={this.state.isPopupOpened}
           onConfirm={this.triggerUpdate}
-          onClose={this.toggleModal}>
-        </ConfirmationPopup>
+          onClose={this.toggleModal}
+        />
       </div>
     );
   }

@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { T } from '../utilities/translator';
-import DailySuccessTilt from '../components//dailySuccessTilt';
+import DailySuccessTilt from '../components/dailySuccessTilt';
 import DailyAngleDistribution from '../components/dailyAngleDistribution';
 import ResultsCalendar from '../components/resultsCalendar';
 import MonthlySuccessTilt from '../components/monthlySuccessTilt';
@@ -56,20 +56,25 @@ class AngleResults extends Component {
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
         <hr />
-        {!isMobile &&
+        {!isMobile
+          && (
           <div className="col-lg-2 leftMenu">
-            {this.state.period === 'day' ?
-              <div>
-                <div><a href="#dailyAngle" >{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></div>
-                <div><a href="#dailyTilt" >{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></div>
-              </div>
-            :
-              <div>
-                <div><a href="#monthlyAngle" >{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></div>
-                <div><a href="#monthlyTilt" >{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></div>
-              </div>
+            {this.state.period === 'day'
+              ? (
+                <div>
+                  <div><a href="#dailyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></div>
+                  <div><a href="#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></div>
+                </div>
+              )
+              : (
+                <div>
+                  <div><a href="#monthlyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></div>
+                  <div><a href="#monthlyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></div>
+                </div>
+              )
             }
           </div>
+          )
         }
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
           <div className="col-lg-8 offset-lg-2">

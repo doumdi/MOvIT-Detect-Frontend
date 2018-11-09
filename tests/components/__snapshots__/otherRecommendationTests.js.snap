@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OtherRecommendation Tests should match the snapshot when the recommandation is active 1`] = `
+exports['OtherRecommendation Tests should match the snapshot when the recommandation is active 1'] = `
 <OtherRecommendation
   dispatch={[Function]}
   language="en"
@@ -45,7 +45,7 @@ exports[`OtherRecommendation Tests should match the snapshot when the recommanda
 />
 `;
 
-exports[`OtherRecommendation Tests should match the snapshot when the recommandation is inactive 1`] = `
+exports['OtherRecommendation Tests should match the snapshot when the recommandation is inactive 1'] = `
 <OtherRecommendation
   dispatch={[Function]}
   language="en"

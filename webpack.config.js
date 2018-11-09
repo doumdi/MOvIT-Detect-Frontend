@@ -46,10 +46,10 @@
 
 const webpack = require('webpack');
 const path = require('path');
-require('babel-core/register');
 require('babel-polyfill');
 
 module.exports = {
+  mode: 'development',
   entry: [
     'babel-polyfill',
     'webpack-dev-server/client?http://localhost:3000',
@@ -62,7 +62,7 @@ module.exports = {
     publicPath: '/static/',
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
   devtool: 'eval-source-map',
   plugins: [
@@ -73,13 +73,13 @@ module.exports = {
         PORT: JSON.stringify(process.env.PORT),
       },
     }),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel'],
+        loader: 'babel-loader',
         include: path.join(__dirname, 'src'),
       },
       {
@@ -87,14 +87,12 @@ module.exports = {
         loader: 'json-loader!yaml-loader',
       },
       {
-
         test: /\.(png|jpg|gif)$/,
         loader: 'file-loader',
       },
       {
         test: /\.(css|scss)$/,
         loader: 'style-loader!css-loader',
-
       },
     ],
   },

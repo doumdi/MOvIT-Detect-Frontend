@@ -19,6 +19,7 @@ class MonthlyAngleDistribution extends Component {
     header: PropTypes.object,
     month: PropTypes.number,
   }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -44,6 +45,7 @@ class MonthlyAngleDistribution extends Component {
       this.getAngleMonthData(nextProps.month);
     }
   }
+
   getAngleMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ angleLoading: true });
@@ -151,8 +153,8 @@ class MonthlyAngleDistribution extends Component {
       <div className="container graphic">
         <h4 id="monthlyAngle">{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>
         <hr />
-        {!this.state.angleLoading &&
-          <Chart type="bar" data={this.state.angleChartData} options={percentOptions2} />
+        {!this.state.angleLoading
+          && <Chart type="bar" data={this.state.angleChartData} options={percentOptions2} />
         }
       </div>
     );

@@ -8,11 +8,11 @@
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
-import Debug from '../../src/views/debug';
 import PropTypes from 'prop-types';
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import toJson from 'enzyme-to-json';
+import Debug from '../../src/views/debug';
 
 Enzyme.configure({ adapter: new Adapter() });
 

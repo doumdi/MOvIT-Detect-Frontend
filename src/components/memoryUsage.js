@@ -9,10 +9,9 @@ import React, { Component } from 'react';
 
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import PropTypes from 'prop-types';
-import { T } from '../utilities/translator';
-import { URL } from '../redux/applicationReducer';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { URL } from '../redux/applicationReducer';
 
 class MemoryUsage extends Component {
   static propTypes = {
@@ -24,19 +23,10 @@ class MemoryUsage extends Component {
     super(props);
 
     this.state = {
-      'total': 0,
-      'used': 0,
+      total: 0,
+      used: 0,
     };
     this.load();
-  }
-
-  async load() {
-    const memory = await this.getMemoryUsage();
-
-    this.setState({
-      'total': memory.total,
-      'used': memory.used
-    });
   }
 
   async getMemoryUsage() {
@@ -46,6 +36,15 @@ class MemoryUsage extends Component {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async load() {
+    const memory = await this.getMemoryUsage();
+
+    this.setState({
+      total: memory.total,
+      used: memory.used,
+    });
   }
 
   render() {

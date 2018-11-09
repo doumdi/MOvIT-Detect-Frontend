@@ -24,39 +24,45 @@ Enzyme.configure({ adapter: new Adapter() });
 function setFakeState(wrapper) {
   wrapper.setState({ time: 10800000 });
   wrapper.setState({ index: 0 });
-  wrapper.setState({ centers: [
-    { x: 0.2, y: 0.3 },
-    { x: 0.1, y: 0.2 },
-    { x: 0.5, y: 0.7 },
-  ] });
-  wrapper.setState({ quadrants: [
-    [
-      { 0: { x: -1.2, y: 3.2 } },
-      { 1: { x: 2.2, y: 3 } },
-      { 2: { x: 3.2, y: -5.2 } },
-      { 3: { x: -1.2, y: -3.2 } },
+  wrapper.setState({
+    centers: [
+      { x: 0.2, y: 0.3 },
+      { x: 0.1, y: 0.2 },
+      { x: 0.5, y: 0.7 },
     ],
-    [
-      { 0: { x: -1.2, y: 3.2 } },
-      { 1: { x: 0.2, y: -3 } },
-      { 2: { x: 1.2, y: -2.2 } },
-      { 3: { x: -2.2, y: -3.2 } },
+  });
+  wrapper.setState({
+    quadrants: [
+      [
+        { 0: { x: -1.2, y: 3.2 } },
+        { 1: { x: 2.2, y: 3 } },
+        { 2: { x: 3.2, y: -5.2 } },
+        { 3: { x: -1.2, y: -3.2 } },
+      ],
+      [
+        { 0: { x: -1.2, y: 3.2 } },
+        { 1: { x: 0.2, y: -3 } },
+        { 2: { x: 1.2, y: -2.2 } },
+        { 3: { x: -2.2, y: -3.2 } },
+      ],
+      [
+        { 0: { x: -3.2, y: 1.2 } },
+        { 1: { x: 1.1, y: 2 } },
+        { 2: { x: 3.1, y: -5.2 } },
+        { 3: { x: -2.2, y: -5.2 } },
+      ],
     ],
-    [
-      { 0: { x: -3.2, y: 1.2 } },
-      { 1: { x: 1.1, y: 2 } },
-      { 2: { x: 3.1, y: -5.2 } },
-      { 3: { x: -2.2, y: -5.2 } },
-    ],
-  ] });
+  });
   wrapper.setState({ hours: [10800000, 10800001, 10800002] });
   wrapper.setState({ currentCenter: { x: 0, y: 0 } });
-  wrapper.setState({ currentQuadrants: [
-    { x: 0, y: 0 },
-    { x: 0, y: 0 },
-    { x: 0, y: 0 },
-    { x: 0, y: 0 },
-  ] });
+  wrapper.setState({
+    currentQuadrants: [
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+    ],
+  });
 }
 
 describe('PressureCenter Tests', () => {
