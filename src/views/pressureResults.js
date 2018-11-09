@@ -74,14 +74,21 @@ class PressureResults extends Component {
         }
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
           <div className="col-lg-8 offset-lg-2 graphic">
-            {this.state.period === 'day'
-              ? (
-                <PressureCenter
-                  title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
-                  date={this.state.date}
-                />
-              )
-              : <MonthlySittingTime month={this.state.month} />
+            {this.state.period === 'day' ?
+              <div>
+                {this.state.date &&
+                  <PressureCenter
+                    title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
+                    date={this.state.date}
+                  />
+                }
+              </div>
+            :
+              <div>
+                {this.state.month &&
+                  <MonthlySittingTime month={this.state.month} />
+                }
+              </div>
             }
           </div>
         </div>

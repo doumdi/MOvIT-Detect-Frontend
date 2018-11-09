@@ -9,10 +9,10 @@
     "lint": "eslint --fix --ext .js src/ tests/",
     "test": "jest tests/* --coverage",
     "prod": "node server.production.js",
-    "pi": "NODE_ENV=pi yarn && node server.js",
-    "local": "cross-env NODE_ENV=local yarn && node server.js",
+    "pi": "NODE_ENV=pi node server.js",
+    "local": "cross-env NODE_ENV=local node server.js",
     "prepush": "yarn lint && yarn test",
-    "startDemo": "yarn && NODE_ENV=demo node server.js"
+    "startDemo": "cross-env NODE_ENV=demos node server.js"
   },
   "repository": {
     "type": "git",
@@ -76,6 +76,13 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
     "axios-mock-adapter": "^1.15.0",
+    "babel-jest": "^22.2.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",

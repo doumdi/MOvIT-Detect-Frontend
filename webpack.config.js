@@ -46,10 +46,12 @@
 
 const webpack = require('webpack');
 const path = require('path');
+require('babel-polyfill');
 
 module.exports = {
   mode: 'development',
   entry: [
+    'babel-polyfill',
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/dev-server',
     './src/index',
