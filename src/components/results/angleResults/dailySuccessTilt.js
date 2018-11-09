@@ -33,10 +33,10 @@ class DailySuccessTilt extends Component {
 
   getData(date) {
     axios.get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
-      .then((response) => { this.state.dayData = response.data; this.loadData(); });
+      .then((response) => { this.state.dayData = response.data; this.loadData(response.data); });
   }
 
-  loadData() {
+  loadData(newData) {
     this.state.data = {
       labels: [
         [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
@@ -52,7 +52,7 @@ class DailySuccessTilt extends Component {
       ],
       datasets: [
         {
-          data: this.state.dayData,
+          data: newData,
           fill: true,
           backgroundColor: [
             'green',
