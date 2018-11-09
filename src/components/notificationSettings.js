@@ -142,6 +142,7 @@ class NotificationSettings extends Component {
                 max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}
                 maxlength={2}
               />
+              <span>&nbsp;&nbsp;{T.translate(`time.minutes.${this.props.language}`)}</span>
             </div>
           </Card>
         </div>

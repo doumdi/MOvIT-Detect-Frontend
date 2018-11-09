@@ -9,8 +9,8 @@
     "lint": "eslint --fix --ext .js *.js src/, tests/",
     "test": "jest tests/* --coverage",
     "prod": "node server.production.js",
-    "pi": "NODE_ENV=pi node server.js",
-    "local": "cross-env NODE_ENV=local node server.js",
+    "pi": "NODE_ENV=pi yarn && node server.js",
+    "local": "cross-env NODE_ENV=local yarn && node server.js",
     "prepush": "yarn lint && yarn test",
     "startDemo": "cross-env NODE_ENV=demos node server.js"
   },
