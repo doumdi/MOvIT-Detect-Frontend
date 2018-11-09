@@ -8,6 +8,7 @@ exports[`SubmitButtons Tests should match the snapshot 1`] = `
     className="btn btn-lg mb-2 mb-sm-0"
     id="cancelButton"
     onClick={[Function]}
+    type="button"
   >
     cancel.en
   </button>
@@ -16,6 +17,7 @@ exports[`SubmitButtons Tests should match the snapshot 1`] = `
     className="btn btn-lg mb-2 mb-sm-0"
     id="saveButton"
     onClick={[Function]}
+    type="button"
   >
     save.en
   </button>

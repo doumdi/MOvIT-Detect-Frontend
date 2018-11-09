@@ -91,7 +91,8 @@ class PressureCenter extends Component {
     };
     return (
       <div className="container" style={style}>
-        {this.state.centers.length > 0 &&
+        {this.state.centers.length > 0
+          && (
           <div>
             <br />
             <h4 id="dailyPressureCenter">{this.props.title}</h4>
@@ -139,7 +140,8 @@ class PressureCenter extends Component {
               </VictoryChart>
               <div className="col-8 offset-2 col-md-4 offset-md-4">
                 <Slider
-                  min={0} max={this.state.centers.length - 1}
+                  min={0}
+                  max={this.state.centers.length - 1}
                   style={{ marginTop: '1vh' }}
                   value={this.state.index}
                   onChange={e => this.setIndex(e.value)}
@@ -150,6 +152,7 @@ class PressureCenter extends Component {
               </div>
             </div>
           </div>
+          )
         }
       </div>
     );

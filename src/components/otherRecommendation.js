@@ -36,25 +36,30 @@ class OtherRecommendation extends Component {
           />
           <label htmlFor="activeRecCheck" className="mt-1">{this.props.title}</label>
           {this.props.recActive
-            &&
+            && (
             <div className="row">
-              <div className="col-12 col-md-6 ml-4 mb-1" >
+              <div className="col-12 col-md-6 ml-4 mb-1">
                 <InputText
-                  id="otherRec" type="text" className="form-control"
+                  id="otherRec"
+                  type="text"
+                  className="form-control"
                   onChange={e => this.props.onChangeRecTitle(e.target.value)}
                   placeholder={T.translate(`recommendations.otherTitle.${this.props.language}`)}
                   value={this.props.recTitle || ''}
                 />
               </div>
-              <div className="col-12 col-md-6 ml-4 mb-1" >
+              <div className="col-12 col-md-6 ml-4 mb-1">
                 <InputText
-                  id="textRec" type="text" className="form-control"
+                  id="textRec"
+                  type="text"
+                  className="form-control"
                   onChange={e => this.props.onChangeValue(e.target.value)}
                   value={this.props.value || ''}
                   placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
                 />
               </div>
             </div>
+            )
           }
         </div>
       </div>

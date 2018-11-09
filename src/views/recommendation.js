@@ -162,6 +162,7 @@ class Recommendation extends Component {
       .then(() => this.props.history.push('/goals'))
       .catch(error => console.log(error));
   }
+
   cancel() {
     console.log('clear all fields');
   }
@@ -198,15 +199,17 @@ class Recommendation extends Component {
               <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
 
               {this.props.reduceWeight
-                ? <TiltSliders
-                  tiltFrequecy={this.props.tiltFrequencyWeight}
-                  tiltLength={this.props.tiltLengthWeight}
-                  tiltAngle={this.props.tiltAngleWeight}
-                  maxAngle={this.state.maxSliderAngle}
-                  onFrequencyChange={this.changeTitlFrequency.bind(this)}
-                  onLengthChange={this.changeTiltLength.bind(this)}
-                  onAngleChange={this.changeTiltAngle.bind(this)}
-                />
+                ? (
+                  <TiltSliders
+                    tiltFrequecy={this.props.tiltFrequencyWeight}
+                    tiltLength={this.props.tiltLengthWeight}
+                    tiltAngle={this.props.tiltAngleWeight}
+                    maxAngle={this.state.maxSliderAngle}
+                    onFrequencyChange={this.changeTitlFrequency.bind(this)}
+                    onLengthChange={this.changeTiltLength.bind(this)}
+                    onAngleChange={this.changeTiltAngle.bind(this)}
+                  />
+                )
                 : null}
             </div>
           </div>
@@ -260,7 +263,7 @@ class Recommendation extends Component {
           onSave={this.save.bind(this)}
           onCancel={this.cancel}
         />
-      </div >
+      </div>
     );
   }
 }

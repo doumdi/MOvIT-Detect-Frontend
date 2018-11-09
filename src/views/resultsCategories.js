@@ -18,13 +18,6 @@ class ResultsCategories extends Component {
     profile: PropTypes.string,
   };
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      category: null,
-    };
-  }
-
   loadResults(category) {
     this.props.history.push(`/${category}Results`);
   }
@@ -61,19 +54,19 @@ class ResultsCategories extends Component {
         <div>
           <div className="row col-md-12">
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('angle')} style={style.profileButton}>
+              <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
                 <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
                 <i className="fa fa-wheelchair" style={style.angle} />
               </button>
             </div>
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('pressure')} style={style.profileButton} >
+              <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
                 <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
                 <i className="fa fa-balance-scale" style={style.icons} />
               </button>
             </div>
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('progress')} style={style.profileButton} >
+              <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>
                 <h2>{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
                 <i className="fa fa-tasks" style={style.icons} />
               </button>

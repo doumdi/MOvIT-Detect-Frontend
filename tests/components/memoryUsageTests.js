@@ -8,14 +8,14 @@
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
-import MemoryUsage from '../../src/components/memoryUsage';
 import MockAdapter from 'axios-mock-adapter';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { URL } from '../../src/redux/applicationReducer';
 import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import toJson from 'enzyme-to-json';
+import { URL } from '../../src/redux/applicationReducer';
+import MemoryUsage from '../../src/components/memoryUsage';
 
 Enzyme.configure({ adapter: new Adapter() });
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TiltLabels Tests should match the snapshot 1`] = `
+exports['TiltLabels Tests should match the snapshot 1'] = `
 <div
   style={
     Object {
@@ -22,7 +22,7 @@ exports[`TiltLabels Tests should match the snapshot 1`] = `
         }
       >
         This is a title
-          
+         
         <i
           className="fa fa-pencil"
           onClick={[Function]}
@@ -125,7 +125,8 @@ exports[`TiltLabels Tests should match the snapshot 1`] = `
             }
           >
             15
-             °
+             
+            °
           </span>
         </div>
       </div>

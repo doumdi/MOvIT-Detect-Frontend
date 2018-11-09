@@ -9,7 +9,6 @@ import LogoText from '../components/logoText';
 
 
 class ForgotPassword extends Component {
-
   static propTypes = {
     language: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,

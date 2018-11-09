@@ -7,6 +7,7 @@ exports[`UpdatesManager Tests should match the snapshot 1`] = `
     disabled={true}
     id="updateButton"
     onClick={[Function]}
+    type="button"
   >
     <i
       className="fa fa-2x fa-refresh"

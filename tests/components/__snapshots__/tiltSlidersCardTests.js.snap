@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TiltSlidersCard Tests should match the snapshot 1`] = `
+exports['TiltSlidersCard Tests should match the snapshot 1'] = `
 <Card
   class="col-md-6"
   className={null}
@@ -16,7 +16,7 @@ exports[`TiltSlidersCard Tests should match the snapshot 1`] = `
       }
     >
       This is a title
-        
+       
       <i
         className="fa fa-check"
         onClick={[Function]}

@@ -68,32 +68,37 @@ class PressureRecPanel extends Component {
     return (
       <div>
         {this.props.reduceWeight
-          &&
+          && (
           <div className="row">
             <div className="col-12">
               {this.state.modifieGoal
-                ? <TiltSlidersCard
-                  title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
-                  tiltFrequecy={this.props.tiltFrequencyGoal}
-                  tiltLength={this.props.tiltLengthGoal}
-                  tiltAngle={this.props.tiltAngleGoal}
-                  maxAngle={this.state.maxSliderAngle}
-                  onFrequencyChange={this.props.changeTiltFrequencyGoal}
-                  onLengthChange={this.props.changeTiltLengthGoal}
-                  onAngleChange={this.props.changeTiltAngleGoal}
-                  modifiable={this.props.profile === 'user'} onModifie={this.toggleEditing}
-                />
-                :
-                <TiltLabels
-                  title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
-                  tiltFrequecy={this.props.tiltFrequencyGoal}
-                  tiltLength={this.props.tiltLengthGoal}
-                  tiltAngle={this.props.tiltAngleGoal}
-                  modifiable={this.props.profile === 'user'} onModifie={this.toggleEditing}
-                />
-              }
+                ? (
+                  <TiltSlidersCard
+                    title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                    tiltFrequecy={this.props.tiltFrequencyGoal}
+                    tiltLength={this.props.tiltLengthGoal}
+                    tiltAngle={this.props.tiltAngleGoal}
+                    maxAngle={this.state.maxSliderAngle}
+                    onFrequencyChange={this.props.changeTiltFrequencyGoal}
+                    onLengthChange={this.props.changeTiltLengthGoal}
+                    onAngleChange={this.props.changeTiltAngleGoal}
+                    modifiable={this.props.profile === 'user'}
+                    onModifie={this.toggleEditing}
+                  />
+                )
+                : (
+                  <TiltLabels
+                    title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                    tiltFrequecy={this.props.tiltFrequencyGoal}
+                    tiltLength={this.props.tiltLengthGoal}
+                    tiltAngle={this.props.tiltAngleGoal}
+                    modifiable={this.props.profile === 'user'}
+                    onModifie={this.toggleEditing}
+                  />
+                )}
             </div>
           </div>
+          )
         }
         <Tooltip
           for="#personalGoalInfo"

@@ -9,15 +9,16 @@ import { Button, Modal } from 'react-bootstrap';
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import { T } from '../../utilities/translator';
 import { connect } from 'react-redux';
+import { T } from '../../utilities/translator';
 
-class ConfirmationPopup extends React.Component {
+class ConfirmationPopup extends Component {
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
     show: PropTypes.bool.isRequired,
   };
 
@@ -28,7 +29,7 @@ class ConfirmationPopup extends React.Component {
         alignItems: 'center',
       },
       body: {
-        textAlign: 'justify'
+        textAlign: 'justify',
       },
       icon: {
         position: 'absolute',
@@ -36,7 +37,7 @@ class ConfirmationPopup extends React.Component {
         left: '50%',
         transform: 'translate(-50%,-50%)',
       },
-    }
+    };
     return (
       <div>
         {this.props.show && (
@@ -48,7 +49,7 @@ class ConfirmationPopup extends React.Component {
               <Modal.Body style={style.body}>
                 <div className="row">
                   <div className="col">
-                    <i className="fa fa-question-circle fa-3x" style={style.icon}></i>
+                    <i className="fa fa-question-circle fa-3x" style={style.icon} />
                   </div>
                   <div className="col-10">
                     {this.props.body}
