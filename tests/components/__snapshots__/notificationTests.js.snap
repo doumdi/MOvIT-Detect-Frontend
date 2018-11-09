@@ -43,6 +43,7 @@ exports['Notification Tests should match the snapshot 1'] = `
   <Connect(Countdown)
     onComplete={[Function]}
     time={10}
+    title="calibrating.en"
   />
 </div>
 `;

@@ -64,7 +64,14 @@ class Notification extends Component {
             {T.translate(`alert.off.${this.props.language}`)}
           </button>
         </div>
-        {this.state.showCountdown && <Countdown time={10} onComplete={this.calibrationCompleted} />}
+        {this.state.showCountdown
+          && (
+          <Countdown
+            time={10}
+            title={T.translate(`calibrating.${this.props.language}`)}
+            onComplete={this.calibrationCompleted}
+          />
+          )}
       </div>
     );
   }

@@ -33,6 +33,9 @@ time:
   min:
     FR: "sec"
     EN: "sec"
+  minutes:
+    FR: "minutes"
+    EN: "minutes"
   hours:
     FR: "heures"
     EN: "hours"
@@ -432,8 +435,30 @@ debug:
       FR: "Vibrer"
       EN: "Vibrate"
     snoozeTime:
-      FR: "Temps avant un rappel"
+      FR: "Temps de snooze"
       EN: "Snooze time"
     snoozeTimeToolTip:
-      FR: "Temps avant de reçevoir un rappel d'effectuer une bascule"
-      EN: "Time before receiving a reminder to perform a tilt"
+      FR: "Temps avant de reçevoir un rappel d'effectuer une bascule (minutes)"
+      EN: "Time before receiving a reminder to perform a tilt (minutes)"
+  system:
+    FR: "Informations sur le système"
+    EN: "System information"
+    memory:
+      FR: "Utilisation de la mémoire"
+      EN: "Memory usage"
+    update:
+      FR: "Mise à jour du système"
+      EN: "System update"
+      last:
+        FR: "Dernière mise à jour"
+        EN: "Last update"
+      confirmation:
+        FR: "En effectuant la mise à jour du système, l'application sera inaccessible pour environ 10 minutes. Voulez-vous effectuer la mise à jour maintenant?"
+        EN: "By performing the system update, the application will be inaccessible for about 10 minutes. Do you want to do the update now?"
+confirmation:
+  close:
+    FR: "Fermer"
+    EN: "Close"
+  confirm:
+    FR: "Continuer"
+    EN: "Continue" 

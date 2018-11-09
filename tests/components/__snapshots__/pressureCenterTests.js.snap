@@ -21,7 +21,7 @@ exports['PressureCenter Tests should match the snapshot 1'] = `
     />
     <hr />
     <div
-      className="col-lg-6 offset-lg-1"
+      className="col-lg-5 offset-lg-2"
     >
       <VictoryChart
         containerComponent={

@@ -17,7 +17,10 @@ export default class RecGoalChart extends Component {
     recTitle: PropTypes.string.isRequired,
     goalData: PropTypes.object,
     recData: PropTypes.object,
-    id: PropTypes.string,
+  }
+
+  shouldComponentUpdate() {
+    return false;
   }
 
   hover(e) {
@@ -43,7 +46,7 @@ export default class RecGoalChart extends Component {
           && (
           <div>
             <hr />
-            <h2 id={this.props.id || ''} style={style.center}>{this.props.title}</h2>
+            <h2 style={style.center}>{this.props.title}</h2>
             <hr />
             <h4>{this.props.goalTitle}</h4>
             <Chart type="line" data={this.props.goalData} options={options} />

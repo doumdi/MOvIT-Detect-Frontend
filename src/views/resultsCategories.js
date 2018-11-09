@@ -19,7 +19,7 @@ class ResultsCategories extends Component {
   };
 
   loadResults(category) {
-    this.props.history.push(`/results/${category}`);
+    this.props.history.push(`/${category}Results`);
   }
 
   render() {
@@ -29,11 +29,11 @@ class ResultsCategories extends Component {
         height: 'fit-content',
       },
       icons: {
-        fontSize: '20em',
+        fontSize: '15em',
         cursor: 'pointer',
       },
       angle: {
-        fontSize: '20em',
+        fontSize: '15em',
         cursor: 'pointer',
         transform: 'rotate(-25deg)',
       },
@@ -52,7 +52,7 @@ class ResultsCategories extends Component {
         <h2>{T.translate(`results.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`results.categories.${this.props.language}`)}</h3>
         <div>
-          <div className="row">
+          <div className="row col-md-12">
             <div className="col-12 col-md-4">
               <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
                 <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>

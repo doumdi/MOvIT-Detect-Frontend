@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmationPopup Tests should match the snapshot 1`] = `
+<div>
+  <div>
+    <ModalDialog
+      bsClass="modal"
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+        }
+      }
+    >
+      <ModalHeader
+        bsClass="modal-header"
+        closeButton={false}
+        closeLabel="Close"
+      >
+        <ModalTitle
+          bsClass="modal-title"
+          componentClass="h4"
+        >
+          Title test
+        </ModalTitle>
+      </ModalHeader>
+      <ModalBody
+        bsClass="modal-body"
+        componentClass="div"
+        style={
+          Object {
+            "textAlign": "justify",
+          }
+        }
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col"
+          >
+            <i
+              className="fa fa-question-circle fa-3x"
+              style={
+                Object {
+                  "left": "50%",
+                  "position": "absolute",
+                  "top": "50%",
+                  "transform": "translate(-50%,-50%)",
+                }
+              }
+            />
+          </div>
+          <div
+            className="col-10"
+          >
+            Body test
+          </div>
+        </div>
+      </ModalBody>
+      <ModalFooter
+        bsClass="modal-footer"
+        componentClass="div"
+      >
+        <Button
+          active={false}
+          block={false}
+          bsClass="btn"
+          bsStyle="default"
+          disabled={false}
+          id="closeButton"
+          onClick={[Function]}
+        >
+          confirmation.close.en
+        </Button>
+        <Button
+          active={false}
+          block={false}
+          bsClass="btn"
+          bsStyle="success"
+          disabled={false}
+          id="confirmButton"
+          onClick={[Function]}
+        >
+          confirmation.confirm.en
+        </Button>
+      </ModalFooter>
+    </ModalDialog>
+  </div>
+</div>
+`;

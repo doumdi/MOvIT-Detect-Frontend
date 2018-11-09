@@ -165,6 +165,7 @@ class Header extends Component {
                       {T.translate(`welcome.logout.${this.props.language}`)}
                       {' '}
 
+
                       &nbsp;
                       <i className="fa fa-sign-out" />
                     </Link>

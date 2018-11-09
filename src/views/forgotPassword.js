@@ -37,9 +37,9 @@ class ForgotPassword extends Component {
     const params = new URLSearchParams(this.props.location.search);
     const userName = params.get('user');
     const data = {
-      user: userName,
+      userName,
       secret: this.state.secret,
-      passwrd: this.state.password,
+      newPassword: this.state.password,
     };
     axios.post(`${URL}forgotPassword`, data)
       .then(() => this.props.history.push('/home'))

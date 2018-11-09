@@ -83,6 +83,10 @@ class DailySuccessTilt extends Component {
           barPercentage: 1.0,
         }],
         yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
+          },
           ticks: {
             min: 0,
           },

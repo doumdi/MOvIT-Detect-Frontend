@@ -5,16 +5,24 @@
  * @author Benjamin Roy
  */
 
+import '../styles/components/notificationSettings.css';
+
 import React, { Component } from 'react';
+
+import { Card } from 'primereact/components/card/Card';
+import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
+import { Spinner } from 'primereact/components/spinner/Spinner';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
+import { T } from '../utilities/translator';
 import { DebugActions } from '../redux/debugReducer';
+
+const MINIMUM_SNOOZE_TIME = 0;
+const MAXIMUM_SNOOZE_TIME = 60;
 
 class NotificationSettings extends Component {
   static propTypes = {
@@ -89,50 +97,58 @@ class NotificationSettings extends Component {
   }
 
   render() {
-    const style = {
-      width: '75px',
-    };
+    const header = (
+      <div className="ui-card-title header">
+        {T.translate(`debug.notificationSettings.${this.props.language}`)}
+      </div>
+    );
 
     return (
-      <div>
-        <h5>
-          {`${T.translate(`debug.notificationSettings.${this.props.language}`)}:`}
-        </h5>
-        <div>
-          <Checkbox
-            id="enableLedBlinking"
-            onChange={() => this.enableLedBlinking()}
-            checked={this.props.isLedBlinkingEnabled}
-          />
-          <label htmlFor="enableLedBlinking">{T.translate(`debug.notificationSettings.enableLedBlinking.${this.props.language}`)}</label>
-        </div>
-        <div>
-          <Checkbox
-            id="enableVibration"
-            onChange={() => this.enableVibration()}
-            checked={this.props.isVibrationEnabled}
-          />
-          <label htmlFor="enableVibration">{T.translate(`debug.notificationSettings.enableVibration.${this.props.language}`)}</label>
-        </div>
-        <div>
-          <span>
-            <i id="snoozeTimeToolTip" className="fa fa-info-circle pr-1" />
-            {`${T.translate(`debug.notificationSettings.snoozeTime.${this.props.language}`)}:  `}
-          </span>
-          <Tooltip
-            for="#snoozeTimeToolTip"
-            title={T.translate(`debug.notificationSettings.snoozeTimeToolTip.${this.props.language}`)}
-          />
-          <input
-            style={style}
-            id="value"
-            type="number"
-            onChange={e => this.changeSnoozeTime(e.target.value)}
-            onBlur={e => this.saveSnoozeTime(e.target.value)}
-            value={this.props.snoozeTime}
-            min={this.props.minimumSnoozeTime || 0}
-            max={this.props.maximumSnoozeTime}
-          />
+      <div className="container">
+        <div className="card">
+          <Card header={header}>
+            <div>
+              <Checkbox
+                id="enableLedBlinking"
+                onChange={() => this.enableLedBlinking()}
+                checked={this.props.isLedBlinkingEnabled}
+              />
+              <label htmlFor="enableLedBlinking">{T.translate(`debug.notificationSettings.enableLedBlinking.${this.props.language}`)}</label>
+            </div>
+            <div>
+              <Checkbox
+                id="enableVibration"
+                onChange={() => this.enableVibration()}
+                checked={this.props.isVibrationEnabled}
+              />
+              <label htmlFor="enableVibration">{T.translate(`debug.notificationSettings.enableVibration.${this.props.language}`)}</label>
+            </div>
+            <div>
+              <span>
+                <i id="snoozeTimeToolTip" className="fa fa-info-circle" />
+&nbsp;
+                {T.translate(`debug.notificationSettings.snoozeTime.${this.props.language}`)}
+:&nbsp;&nbsp;
+              </span>
+              <Tooltip
+                for="#snoozeTimeToolTip"
+                title={T.translate(`debug.notificationSettings.snoozeTimeToolTip.${this.props.language}`)}
+              />
+              <Spinner
+                id="value"
+                type="number"
+                onChange={event => this.changeSnoozeTime(event.value)}
+                onBlur={event => this.saveSnoozeTime(event.value)}
+                value={this.props.snoozeTime}
+                min={this.props.minimumSnoozeTime || MINIMUM_SNOOZE_TIME}
+                max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}
+                maxlength={2}
+              />
+              <span>
+                {T.translate(`time.minutes.${this.props.language}`)}
+              </span>
+            </div>
+          </Card>
         </div>
       </div>
     );
