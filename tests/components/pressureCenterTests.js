@@ -107,7 +107,7 @@ describe('PressureCenter Tests', () => {
 
     mock.onGet(`${URL}gravityCenter?Day=1517720400000,offset=0`).reply(200, data);
 
-    const response = await wrapper.instance().getPressureData();
+    const response = await wrapper.instance().getPressureData(props.date);
 
     expect(response).toEqual(data);
   });
