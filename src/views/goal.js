@@ -14,9 +14,9 @@ import { GoalActions } from '../redux/goalReducer';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import PressureRecPanel from '../components/pressureRecPanel';
-import RecPanel from '../components/recPanel';
-import TiltLabels from '../components/tiltLabels';
+import PressureRecPanel from '../components/goal/pressureRecPanel';
+import RecPanel from '../components/goal/recPanel';
+import TiltLabels from '../components/goal/tiltLabels';
 
 
 class Goal extends Component {

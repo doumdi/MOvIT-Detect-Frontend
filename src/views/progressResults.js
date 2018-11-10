@@ -8,11 +8,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { T } from '../utilities/translator';
-import GoalProgress from '../components/goalProgress';
-import RecGoalProgress from '../components/recGoalProgress';
-import GoalChart from '../components/goalChart';
-import RecGoalChart from '../components/recGoalChart';
-import ResultsCalendar from '../components/resultsCalendar';
+import GoalProgress from '../components/results/progressResults/goalProgress';
+import RecGoalProgress from '../components/results/progressResults/recGoalProgress';
+import GoalChart from '../components/results/progressResults/goalChart';
+import RecGoalChart from '../components/results/progressResults/recGoalChart';
+import ResultsCalendar from '../components/results/resultsCalendar';
 import '../styles/style.css';
 import '../styles/results.css';
 
@@ -265,6 +265,7 @@ class ProgressResults extends Component {
                       value={this.state.value2}
                     />
                   </div>
+
 
                 )
                 : (

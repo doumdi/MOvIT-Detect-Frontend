@@ -6,19 +6,19 @@
  */
 
 import { Button, Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { T } from '../../utilities/translator';
 
 class ConfirmationPopup extends Component {
   static propTypes = {
+    language: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
     show: PropTypes.bool.isRequired,
   };
 

@@ -13,11 +13,11 @@ import axios from 'axios';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
-import AngleRecommendation from '../components/angleRecommendation';
-import TextRecommendation from '../components/textRecommendation';
-import OtherRecommendation from '../components/otherRecommendation';
-import SubmitButtons from '../components/submitButtons';
-import TiltSliders from '../components/tiltSliders';
+import AngleRecommendation from '../components/recommendation/angleRecommendation';
+import TextRecommendation from '../components/recommendation/textRecommendation';
+import OtherRecommendation from '../components/recommendation/otherRecommendation';
+import SubmitButtons from '../components/shared/submitButtons';
+import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
 import '../styles/overwrite.css';
 

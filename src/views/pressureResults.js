@@ -8,9 +8,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { T } from '../utilities/translator';
-import PressureCenter from '../components/pressureCenter';
-import ResultsCalendar from '../components/resultsCalendar';
-import MonthlySittingTime from '../components/monthlySittingTime';
+import PressureCenter from '../components/results/pressureResults/pressureCenter';
+import ResultsCalendar from '../components/results/resultsCalendar';
+import MonthlySittingTime from '../components/results/pressureResults/monthlySittingTime';
 import '../styles/style.css';
 import '../styles/results.css';
 
@@ -74,21 +74,26 @@ class PressureResults extends Component {
         }
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
           <div className="col-lg-8 offset-lg-2 graphic">
-            {this.state.period === 'day' ?
-              <div>
-                {this.state.date &&
+            {this.state.period === 'day'
+              ? (
+                <div>
+                  {this.state.date
+                  && (
                   <PressureCenter
                     title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
                     date={this.state.date}
                   />
+                  )
                 }
-              </div>
-            :
-              <div>
-                {this.state.month &&
-                  <MonthlySittingTime month={this.state.month} />
+                </div>
+              )
+              : (
+                <div>
+                  {this.state.month
+                  && <MonthlySittingTime month={this.state.month} />
                 }
-              </div>
+                </div>
+              )
             }
           </div>
         </div>

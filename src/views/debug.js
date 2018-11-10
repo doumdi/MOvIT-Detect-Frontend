@@ -12,11 +12,11 @@ import React, { Component } from 'react';
 import { Card } from 'primereact/components/card/Card';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MemoryUsage from '../components/memoryUsage';
-import Notification from '../components/notification';
-import NotificationSettings from '../components/notificationSettings';
+import MemoryUsage from '../components/debug/memoryUsage';
+import Notification from '../components/debug/notification';
+import NotificationSettings from '../components/debug/notificationSettings';
 import { T } from '../utilities/translator';
-import UpdatesManager from '../components/updatesManager';
+import UpdatesManager from '../components/debug/updatesManager';
 
 class Debug extends Component {
   static propTypes = {

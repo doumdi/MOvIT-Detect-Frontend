@@ -6,13 +6,14 @@
   "scripts": {
     "start": "yarn && node server.js",
     "build": "yarn && cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
-    "lint": "eslint --fix --ext .js src/ tests/",
+    "lint-src": "eslint --fix --ext .js src/",
+    "lint-test": "eslint --fix --ext .js tests/",
     "test": "jest tests/* --coverage",
     "prod": "node server.production.js",
-    "pi": "NODE_ENV=pi node server.js",
-    "local": "cross-env NODE_ENV=local node server.js",
-    "prepush": "yarn lint && yarn test",
-    "startDemo": "cross-env NODE_ENV=demos node server.js"
+    "pi": "yarn && NODE_ENV=pi node server.js",
+    "local": "yarn && cross-env NODE_ENV=local node server.js",
+    "prepush": "yarn lint-src && yarn lint-test && yarn test",
+    "startDemo": "yarn && cross-env NODE_ENV=demo node server.js"
   },
   "repository": {
     "type": "git",

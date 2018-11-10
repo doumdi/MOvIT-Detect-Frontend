@@ -80,7 +80,7 @@ module.exports = {
       },
       {
         test: /\.ya?ml$/,
-        loader: 'json-loader!yaml-loader'
+        loader: 'json-loader!yaml-loader',
       },
       {
         test: /\.(png|gif)$/,

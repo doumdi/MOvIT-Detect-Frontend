@@ -4,9 +4,9 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import LogoText from '../components/logoText';
-import LogoPassword from '../components/logoPassword';
-import Loading from '../components/loading';
+import LogoText from '../components/shared/logoText';
+import LogoPassword from '../components/shared/logoPassword';
+import Loading from '../components/shared/loading';
 
 
 class Wifi extends Component {

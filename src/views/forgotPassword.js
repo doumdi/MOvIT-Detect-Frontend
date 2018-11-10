@@ -4,8 +4,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import SubmitButtons from '../components/submitButtons';
-import LogoText from '../components/logoText';
+import SubmitButtons from '../components/shared/submitButtons';
+import LogoText from '../components/shared/logoText';
 
 
 class ForgotPassword extends Component {

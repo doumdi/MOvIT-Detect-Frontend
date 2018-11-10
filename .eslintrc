@@ -45,10 +45,15 @@
     "radix": "off",
     "react/no-unused-prop-types": "warn",
     "react/forbid-prop-types": "off",
+    "no-console": "off",
+    "import/first": ["error", "DISABLE-absolute-first"],
     "react/destructuring-assignment": "off",
     "react/no-access-state-in-setstate": "off",
     "react/no-unused-state": "off",
     "react/require-default-props": "off",
+    "react/jsx-max-props-per-line": "off",
+    "react/button-has-type": "off",
+    "react/jsx-one-expression-per-line": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/label-has-for": [
@@ -66,5 +71,5 @@
         "allowChildren": true
       }
     ]
-  },
+  }
 }
