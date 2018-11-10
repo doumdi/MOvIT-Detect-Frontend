@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Enzyme, { shallow } from 'enzyme';
+
 import Adapter from 'enzyme-adapter-react-16';
+import PropTypes from 'prop-types';
+import React from 'react';
 import configureMockStore from 'redux-mock-store';
-import toJson from 'enzyme-to-json';
 import sinon from 'sinon';
-import PreventPermission from '../../../src/components/parameter/preventPermission';
+import toJson from 'enzyme-to-json';
+import PreventPermission from '../../../src/components/settings/preventPermission';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -21,6 +22,7 @@ describe('PreventPermission Tests', () => {
     period: {},
     onPermissionChange: (value) => { permissionSpy(value); },
     onPeriodChange: (value) => { periodSpy(value); },
+    onSave: () => {},
   };
 
   beforeEach(() => {

@@ -5,20 +5,21 @@
  * @author Benjamin Roy
  */
 
-import '../styles/views/debug.css';
+import '../styles/card.css';
 
 import React, { Component } from 'react';
 
 import { Card } from 'primereact/components/card/Card';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MemoryUsage from '../components/debug/memoryUsage';
-import Notification from '../components/debug/notification';
-import NotificationSettings from '../components/debug/notificationSettings';
+import MemoryUsage from '../components/settings/memoryUsage';
+import Notification from '../components/settings/notification';
+import NotificationSettings from '../components/settings/notificationSettings';
+import Permissions from '../components/settings/permissions';
 import { T } from '../utilities/translator';
-import UpdatesManager from '../components/debug/updatesManager';
+import UpdatesManager from '../components/settings/updatesManager';
 
-class Debug extends Component {
+class Settings extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
   };
@@ -26,23 +27,24 @@ class Debug extends Component {
   render() {
     const header = (
       <div className="ui-card-title header">
-        {T.translate(`debug.system.${this.props.language}`)}
+        {T.translate(`settings.system.${this.props.language}`)}
       </div>
     );
     return (
       <div className="container">
         <div className="row mt-4">
           <div className="col-12">
-            <h2 className="header text-center">{T.translate(`debug.state.${this.props.language}`)}</h2>
+            <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
             <Notification />
             <NotificationSettings />
+            <Permissions />
             <div className="container">
               <div className="card">
                 <Card header={header}>
-                  <h6>{T.translate(`debug.system.memory.${this.props.language}`)}</h6>
+                  <h6>{T.translate(`settings.system.memory.${this.props.language}`)}</h6>
                   <MemoryUsage />
                   <br />
-                  <h6>{T.translate(`debug.system.update.${this.props.language}`)}</h6>
+                  <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
                   <UpdatesManager />
                 </Card>
               </div>
@@ -60,4 +62,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Debug);
+export default connect(mapStateToProps)(Settings);

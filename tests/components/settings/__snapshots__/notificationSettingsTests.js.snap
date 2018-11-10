@@ -14,7 +14,7 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
         <div
           className="ui-card-title header"
         >
-          debug.notificationSettings.en
+          settings.notification.en
         </div>
       }
       id={null}
@@ -40,7 +40,7 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
         <label
           htmlFor="enableLedBlinking"
         >
-          debug.notificationSettings.enableLedBlinking.en
+          settings.notification.enableLedBlinking.en
         </label>
       </div>
       <div>
@@ -61,7 +61,7 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
         <label
           htmlFor="enableVibration"
         >
-          debug.notificationSettings.enableVibration.en
+          settings.notification.enableVibration.en
         </label>
       </div>
       <div>
@@ -71,7 +71,7 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
             id="snoozeTimeToolTip"
           />
            
-          debug.notificationSettings.snoozeTime.en
+          settings.notification.snoozeTime.en
           :  
         </span>
         <Tooltip
@@ -82,7 +82,7 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
           onBeforeShow={null}
           positionStyle={null}
           showDelay={null}
-          title="debug.notificationSettings.snoozeTimeToolTip.en"
+          title="settings.notification.snoozeTimeToolTip.en"
           tooltipDisabled={false}
           tooltipEvent="hover"
           tooltipPosition="right"

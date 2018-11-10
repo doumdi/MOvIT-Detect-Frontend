@@ -1,25 +1,29 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
+import '../../styles/card.css';
+
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
+import { Card } from 'primereact/components/card/Card';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { ParameterActions } from '../redux/parameterReducer';
-import { T } from '../utilities/translator';
-import PreventPermission from '../components/parameter/preventPermission';
-import SubmitButtons from '../components/shared/submitButtons';
-import { URL } from '../redux/applicationReducer';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { ParameterActions } from '../../redux/parameterReducer';
+import PreventPermission from './preventPermission';
+import { T } from '../../utilities/translator';
+import { URL } from '../../redux/applicationReducer';
 
-class Parameters extends Component {
+class Permissions extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    history: PropTypes.object.isRequired,
     header: PropTypes.object,
+    history: PropTypes.object,
     changeDataAgreement: PropTypes.func,
     dataAgreement: PropTypes.bool,
     dataDisagreePeriod: PropTypes.string,
@@ -70,50 +74,42 @@ class Parameters extends Component {
       .catch(console.log);
   }
 
-  cancel() {
-    console.log('clear all');
-  }
-
   render() {
-    const style = {
-      content: {
-        textAlign: 'center',
-      },
-      spaceTop: {
-        marginTop: '2em',
-      },
-    };
-
+    const header = (
+      <div className="ui-card-title header">
+        {T.translate(`settings.permissions.${this.props.language}`)}
+      </div>
+    );
     return (
-      <div style={style} className="row mt-3">
-        <legend className="text-center header"><h2>{T.translate(`parameters.${this.props.language}`)}</h2></legend>
-        <div className="col-12">
-          <PreventPermission
-            permission={this.props.dataAgreement}
-            permissionTitle={T.translate(`parameters.dataAgreement.${this.props.language}`)}
-            period={this.props.dataDisagreePeriod}
-            onPermissionChange={this.props.changeDataAgreement}
-            onPeriodChange={this.props.changeDataDisagreePeriod}
-          />
-          <PreventPermission
-            permission={this.props.lightAgreement}
-            permissionTitle={T.translate(`parameters.lightAgreement.${this.props.language}`)}
-            period={this.props.lightDisagreePeriod}
-            onPermissionChange={this.props.changeLightAgreement}
-            onPeriodChange={this.props.changeLightDisagreePeriod}
-          />
-          <PreventPermission
-            permission={this.props.notificationAgreement}
-            permissionTitle={T.translate(`parameters.notificationAgreement.${this.props.language}`)}
-            period={this.props.notificationDisagreePeriod}
-            onPermissionChange={this.props.changeNotificationAgreement}
-            onPeriodChange={this.props.changeNotificationDisagreePeriod}
-          />
+      <div className="container">
+        <div className="card">
+          <Card header={header}>
+            <PreventPermission
+              permission={this.props.dataAgreement}
+              permissionTitle={T.translate(`settings.permissions.dataAgreement.${this.props.language}`)}
+              period={this.props.dataDisagreePeriod}
+              onPermissionChange={this.props.changeDataAgreement}
+              onPeriodChange={this.props.changeDataDisagreePeriod}
+              onSave={this.save.bind(this)}
+            />
+            <PreventPermission
+              permission={this.props.lightAgreement}
+              permissionTitle={T.translate(`settings.permissions.lightAgreement.${this.props.language}`)}
+              period={this.props.lightDisagreePeriod}
+              onPermissionChange={this.props.changeLightAgreement}
+              onPeriodChange={this.props.changeLightDisagreePeriod}
+              onSave={this.save.bind(this)}
+            />
+            <PreventPermission
+              permission={this.props.notificationAgreement}
+              permissionTitle={T.translate(`settings.permissions.notificationAgreement.${this.props.language}`)}
+              period={this.props.notificationDisagreePeriod}
+              onPermissionChange={this.props.changeNotificationAgreement}
+              onPeriodChange={this.props.changeNotificationDisagreePeriod}
+              onSave={this.save.bind(this)}
+            />
+          </Card>
         </div>
-        <SubmitButtons
-          onSave={this.save.bind(this)}
-          onCancel={this.cancel}
-        />
       </div>
     );
   }
@@ -144,4 +140,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Parameters);
+export default connect(mapStateToProps, mapDispatchToProps)(Permissions);

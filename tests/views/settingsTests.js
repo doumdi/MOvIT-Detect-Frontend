@@ -12,18 +12,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import toJson from 'enzyme-to-json';
-import Debug from '../../src/views/debug';
+import Settings from '../../src/views/settings';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Debug Tests', () => {
+describe('Settings Tests', () => {
   const initialState = { applicationReducer: { language: 'en' } };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {};
 
   it('should have proptypes', () => {
-    const actualValue = Debug.WrappedComponent.propTypes;
+    const actualValue = Settings.WrappedComponent.propTypes;
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
@@ -33,7 +33,7 @@ describe('Debug Tests', () => {
   });
 
   it('should match the snapshot', () => {
-    const wrapper = shallow(<Debug store={store} {...props} />).dive();
+    const wrapper = shallow(<Settings store={store} {...props} />).dive();
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

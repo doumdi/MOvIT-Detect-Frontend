@@ -15,7 +15,7 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import toJson from 'enzyme-to-json';
 import { URL } from '../../../src/redux/applicationReducer';
-import MemoryUsage from '../../../src/components/debug/memoryUsage';
+import MemoryUsage from '../../../src/components/settings/memoryUsage';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -49,7 +49,6 @@ describe('MemoryUsage Tests', () => {
     const actualValue = MemoryUsage.WrappedComponent.propTypes;
 
     const expectedValue = {
-      language: PropTypes.string.isRequired,
       header: PropTypes.object,
     };
 

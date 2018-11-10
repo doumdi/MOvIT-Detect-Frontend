@@ -100,7 +100,7 @@ class NotificationSettings extends Component {
   render() {
     const header = (
       <div className="ui-card-title header">
-        {T.translate(`debug.notificationSettings.${this.props.language}`)}
+        {T.translate(`settings.notification.${this.props.language}`)}
       </div>
     );
 
@@ -114,7 +114,7 @@ class NotificationSettings extends Component {
                 onChange={() => this.enableLedBlinking()}
                 checked={this.props.isLedBlinkingEnabled}
               />
-              <label htmlFor="enableLedBlinking">{T.translate(`debug.notificationSettings.enableLedBlinking.${this.props.language}`)}</label>
+              <label htmlFor="enableLedBlinking">{T.translate(`settings.notification.enableLedBlinking.${this.props.language}`)}</label>
             </div>
             <div>
               <Checkbox
@@ -122,18 +122,18 @@ class NotificationSettings extends Component {
                 onChange={() => this.enableVibration()}
                 checked={this.props.isVibrationEnabled}
               />
-              <label htmlFor="enableVibration">{T.translate(`debug.notificationSettings.enableVibration.${this.props.language}`)}</label>
+              <label htmlFor="enableVibration">{T.translate(`settings.notification.enableVibration.${this.props.language}`)}</label>
             </div>
             <div>
               <span>
                 <i id="snoozeTimeToolTip" className="fa fa-info-circle" />
                 &nbsp;
-                {T.translate(`debug.notificationSettings.snoozeTime.${this.props.language}`)}
+                {T.translate(`settings.notification.snoozeTime.${this.props.language}`)}
                 :&nbsp;&nbsp;
               </span>
               <Tooltip
                 for="#snoozeTimeToolTip"
-                title={T.translate(`debug.notificationSettings.snoozeTimeToolTip.${this.props.language}`)}
+                title={T.translate(`settings.notification.snoozeTimeToolTip.${this.props.language}`)}
               />
               <Spinner
                 id="value"
