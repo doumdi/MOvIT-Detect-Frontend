@@ -5,13 +5,11 @@
  * @author Benjamin Roy
  */
 
-import '../styles/card.css';
-
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CustomCard from '../components/shared/card';
+import CustomPanel from '../components/shared/panel';
 import MemoryUsage from '../components/settings/memoryUsage';
 import Notification from '../components/settings/notification';
 import NotificationSettings from '../components/settings/notificationSettings';
@@ -40,15 +38,15 @@ class Settings extends Component {
           <div className="col-12">
             <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
             <Notification />
-            <CustomCard
+            <CustomPanel
               title={T.translate(`settings.notification.${this.props.language}`)}
               element={<NotificationSettings />}
             />
-            <CustomCard
+            <CustomPanel
               title={T.translate(`settings.permissions.${this.props.language}`)}
               element={<Permissions />}
             />
-            <CustomCard
+            <CustomPanel
               title={T.translate(`settings.system.${this.props.language}`)}
               element={element}
             />
