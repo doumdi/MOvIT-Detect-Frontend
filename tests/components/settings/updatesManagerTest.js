@@ -15,7 +15,7 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import UpdatesManager from '../../../src/components/debug/updatesManager';
+import UpdatesManager from '../../../src/components/settings/updatesManager';
 import { URL } from '../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });

@@ -15,7 +15,6 @@ import { URL } from '../../redux/applicationReducer';
 
 class MemoryUsage extends Component {
   static propTypes = {
-    language: PropTypes.string.isRequired,
     header: PropTypes.object,
   };
 
@@ -61,7 +60,6 @@ class MemoryUsage extends Component {
 
 function mapStateToProps(state) {
   return {
-    language: state.applicationReducer.language,
     header: state.applicationReducer.header,
   };
 }

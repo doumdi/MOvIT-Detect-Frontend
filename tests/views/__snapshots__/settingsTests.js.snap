@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Debug Tests should match the snapshot 1`] = `
+exports[`Settings Tests should match the snapshot 1`] = `
 <div
   className="container"
 >
@@ -13,10 +13,11 @@ exports[`Debug Tests should match the snapshot 1`] = `
       <h2
         className="header text-center"
       >
-        debug.state.en
+        settings.en
       </h2>
       <Connect(Notification) />
       <Connect(NotificationSettings) />
+      <Connect(Permissions) />
       <div
         className="container"
       >
@@ -30,7 +31,7 @@ exports[`Debug Tests should match the snapshot 1`] = `
               <div
                 className="ui-card-title header"
               >
-                debug.system.en
+                settings.system.en
               </div>
             }
             id={null}
@@ -39,12 +40,12 @@ exports[`Debug Tests should match the snapshot 1`] = `
             title={null}
           >
             <h6>
-              debug.system.memory.en
+              settings.system.memory.en
             </h6>
             <Connect(MemoryUsage) />
             <br />
             <h6>
-              debug.system.update.en
+              settings.system.update.en
             </h6>
             <Connect(UpdatesManager) />
           </Card>

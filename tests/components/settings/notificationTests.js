@@ -5,15 +5,15 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
+import Enzyme, { shallow } from 'enzyme';
+
+import Adapter from 'enzyme-adapter-react-16';
 import PropTypes from 'prop-types';
+import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
-
-import Notification from '../../../src/components/debug/notification';
+import Notification from '../../../src/components/settings/notification';
 
 Enzyme.configure({ adapter: new Adapter() });
 
