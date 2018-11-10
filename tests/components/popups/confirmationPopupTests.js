@@ -35,8 +35,7 @@ describe('ConfirmationPopup Tests', () => {
   beforeEach(() => {
     onCloseSpy.resetHistory();
     onConfirmSpy.resetHistory();
-
-    wrapper = shallow(<ConfirmationPopup store={store} {...props} />);
+    wrapper = shallow(<ConfirmationPopup store={store} {...props} />).dive();
   });
 
   it('should have proptypes', () => {

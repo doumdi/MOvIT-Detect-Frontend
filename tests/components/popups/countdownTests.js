@@ -14,7 +14,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import { Dialog } from 'primereact/components/dialog/Dialog';
 
-import Countdown from '../../../src/components/shared/countdown';
+import Countdown from '../../../src/components/popups/countdown';
 
 Enzyme.configure({ adapter: new Adapter() });
 

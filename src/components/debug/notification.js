@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
-import Countdown from '../shared/countdown';
+import Countdown from '../popups/countdown';
 
 class Notification extends Component {
   static propTypes = {

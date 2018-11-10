@@ -102,6 +102,7 @@ class UpdatesManager extends Component {
         </button>
         <div>
           {T.translate(`debug.system.update.last.${this.props.language}`)}
+
           : &nbsp;
           {this.state.date}
         </div>

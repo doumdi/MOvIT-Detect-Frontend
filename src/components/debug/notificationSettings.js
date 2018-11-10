@@ -139,7 +139,7 @@ class NotificationSettings extends Component {
                 id="value"
                 type="number"
                 onChange={event => this.changeSnoozeTime(event.value)}
-                onBlur={event => this.saveSnoozeTime(event.value)}
+                onBlur={() => this.saveSnoozeTime()}
                 value={this.props.snoozeTime}
                 min={this.props.minimumSnoozeTime || MINIMUM_SNOOZE_TIME}
                 max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}

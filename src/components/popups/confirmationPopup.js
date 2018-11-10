@@ -6,12 +6,13 @@
  */
 
 import { Button, Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { T } from '../../utilities/translator';
 
-export default class ConfirmationPopup extends Component {
+class ConfirmationPopup extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -70,3 +71,11 @@ export default class ConfirmationPopup extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    language: state.applicationReducer.language,
+  };
+}
+
+export default connect(mapStateToProps)(ConfirmationPopup);
