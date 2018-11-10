@@ -5,11 +5,8 @@
  * @author Benjamin Roy
  */
 
-import '../../styles/card.css';
-
 import React, { Component } from 'react';
 
-import { Card } from 'primereact/components/card/Card';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
@@ -75,41 +72,32 @@ class Permissions extends Component {
   }
 
   render() {
-    const header = (
-      <div className="ui-card-title header">
-        {T.translate(`settings.permissions.${this.props.language}`)}
-      </div>
-    );
     return (
-      <div className="container">
-        <div className="card">
-          <Card header={header}>
-            <PreventPermission
-              permission={this.props.dataAgreement}
-              permissionTitle={T.translate(`settings.permissions.dataAgreement.${this.props.language}`)}
-              period={this.props.dataDisagreePeriod}
-              onPermissionChange={this.props.changeDataAgreement}
-              onPeriodChange={this.props.changeDataDisagreePeriod}
-              onSave={this.save.bind(this)}
-            />
-            <PreventPermission
-              permission={this.props.lightAgreement}
-              permissionTitle={T.translate(`settings.permissions.lightAgreement.${this.props.language}`)}
-              period={this.props.lightDisagreePeriod}
-              onPermissionChange={this.props.changeLightAgreement}
-              onPeriodChange={this.props.changeLightDisagreePeriod}
-              onSave={this.save.bind(this)}
-            />
-            <PreventPermission
-              permission={this.props.notificationAgreement}
-              permissionTitle={T.translate(`settings.permissions.notificationAgreement.${this.props.language}`)}
-              period={this.props.notificationDisagreePeriod}
-              onPermissionChange={this.props.changeNotificationAgreement}
-              onPeriodChange={this.props.changeNotificationDisagreePeriod}
-              onSave={this.save.bind(this)}
-            />
-          </Card>
-        </div>
+      <div>
+        <PreventPermission
+          permission={this.props.dataAgreement}
+          permissionTitle={T.translate(`settings.permissions.dataAgreement.${this.props.language}`)}
+          period={this.props.dataDisagreePeriod}
+          onPermissionChange={this.props.changeDataAgreement}
+          onPeriodChange={this.props.changeDataDisagreePeriod}
+          onSave={this.save.bind(this)}
+        />
+        <PreventPermission
+          permission={this.props.lightAgreement}
+          permissionTitle={T.translate(`settings.permissions.lightAgreement.${this.props.language}`)}
+          period={this.props.lightDisagreePeriod}
+          onPermissionChange={this.props.changeLightAgreement}
+          onPeriodChange={this.props.changeLightDisagreePeriod}
+          onSave={this.save.bind(this)}
+        />
+        <PreventPermission
+          permission={this.props.notificationAgreement}
+          permissionTitle={T.translate(`settings.permissions.notificationAgreement.${this.props.language}`)}
+          period={this.props.notificationDisagreePeriod}
+          onPermissionChange={this.props.changeNotificationAgreement}
+          onPeriodChange={this.props.changeNotificationDisagreePeriod}
+          onSave={this.save.bind(this)}
+        />
       </div>
     );
   }

@@ -16,29 +16,17 @@ exports[`Settings Tests should match the snapshot 1`] = `
         settings.en
       </h2>
       <Connect(Notification) />
-      <Connect(NotificationSettings) />
-      <Connect(Permissions) />
-      <div
-        className="container"
-      >
-        <div
-          className="card"
-        >
-          <Card
-            className={null}
-            footer={null}
-            header={
-              <div
-                className="ui-card-title header"
-              >
-                settings.system.en
-              </div>
-            }
-            id={null}
-            style={null}
-            subtitle={null}
-            title={null}
-          >
+      <CustomCard
+        element={<Connect(NotificationSettings) />}
+        title="settings.notification.en"
+      />
+      <CustomCard
+        element={<Connect(Permissions) />}
+        title="settings.permissions.en"
+      />
+      <CustomCard
+        element={
+          <div>
             <h6>
               settings.system.memory.en
             </h6>
@@ -48,9 +36,10 @@ exports[`Settings Tests should match the snapshot 1`] = `
               settings.system.update.en
             </h6>
             <Connect(UpdatesManager) />
-          </Card>
-        </div>
-      </div>
+          </div>
+        }
+        title="settings.system.en"
+      />
     </div>
   </div>
 </div>

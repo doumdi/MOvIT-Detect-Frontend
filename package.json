@@ -8,6 +8,7 @@
     "build": "yarn && cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
     "lint-src": "eslint --fix --ext .js src/",
     "lint-test": "eslint --fix --ext .js tests/",
+    "lint": "yarn lint-src && yarn lint-test",
     "test": "jest tests/* --coverage",
     "prod": "node server.production.js",
     "pi": "yarn && NODE_ENV=pi node server.js",

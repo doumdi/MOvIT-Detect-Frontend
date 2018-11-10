@@ -1,3 +1,7 @@
+.ui-inputtext {
+  width: 75px;
+}   
+
 .ui-slider {
   position: relative;
   text-align: left;

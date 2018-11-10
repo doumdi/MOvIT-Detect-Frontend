@@ -9,9 +9,9 @@ import '../styles/card.css';
 
 import React, { Component } from 'react';
 
-import { Card } from 'primereact/components/card/Card';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import CustomCard from '../components/shared/card';
 import MemoryUsage from '../components/settings/memoryUsage';
 import Notification from '../components/settings/notification';
 import NotificationSettings from '../components/settings/notificationSettings';
@@ -25,9 +25,13 @@ class Settings extends Component {
   };
 
   render() {
-    const header = (
-      <div className="ui-card-title header">
-        {T.translate(`settings.system.${this.props.language}`)}
+    const element = (
+      <div>
+        <h6>{T.translate(`settings.system.memory.${this.props.language}`)}</h6>
+        <MemoryUsage />
+        <br />
+        <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
+        <UpdatesManager />
       </div>
     );
     return (
@@ -36,19 +40,18 @@ class Settings extends Component {
           <div className="col-12">
             <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
             <Notification />
-            <NotificationSettings />
-            <Permissions />
-            <div className="container">
-              <div className="card">
-                <Card header={header}>
-                  <h6>{T.translate(`settings.system.memory.${this.props.language}`)}</h6>
-                  <MemoryUsage />
-                  <br />
-                  <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
-                  <UpdatesManager />
-                </Card>
-              </div>
-            </div>
+            <CustomCard
+              title={T.translate(`settings.notification.${this.props.language}`)}
+              element={<NotificationSettings />}
+            />
+            <CustomCard
+              title={T.translate(`settings.permissions.${this.props.language}`)}
+              element={<Permissions />}
+            />
+            <CustomCard
+              title={T.translate(`settings.system.${this.props.language}`)}
+              element={element}
+            />
           </div>
         </div>
       </div>
