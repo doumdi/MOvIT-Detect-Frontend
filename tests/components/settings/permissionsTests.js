@@ -5,8 +5,8 @@
  * @author Benjamin Roy
  */
 
-import Permissions from '../../../src/components/settings/permissions';
 import PropTypes from 'prop-types';
+import Permissions from '../../../src/components/settings/permissions';
 
 describe('Permissions Tests', () => {
   it('should have proptypes', () => {
