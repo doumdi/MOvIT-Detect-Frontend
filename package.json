@@ -13,7 +13,7 @@
     "prod": "node server.production.js",
     "pi": "yarn && NODE_ENV=pi node server.js",
     "local": "yarn && cross-env NODE_ENV=local node server.js",
-    "prepush": "yarn lint-src && yarn lint-test && yarn test",
+    "prepush": "yarn lint && yarn test",
     "startDemo": "yarn && cross-env NODE_ENV=demo node server.js"
   },
   "repository": {

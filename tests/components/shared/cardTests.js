@@ -8,27 +8,21 @@
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
-import { Panel } from 'primereact/components/panel/Panel';
 import PropTypes from 'prop-types';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import CustomPanel from '../../../src/components/shared/panel';
+import CustomCard from '../../../src/components/shared/card';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('CustomPanel Tests', () => {
-  let wrapper;
+describe('CustomCard Tests', () => {
   const props = {
     element: <div>Test</div>,
     title: 'This is a test',
   };
 
-  beforeEach(() => {
-    wrapper = shallow(<CustomPanel {...props} />);
-  });
-
   it('should have proptypes', () => {
-    const actualValue = CustomPanel.propTypes;
+    const actualValue = CustomCard.propTypes;
 
     const expectedValue = {
       element: PropTypes.element.isRequired,
@@ -38,23 +32,9 @@ describe('CustomPanel Tests', () => {
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
-  it('should expand the panel', () => {
-    wrapper.setState({ panelCollapsed: true });
-
-    wrapper.find(Panel).simulate('collapse');
-
-    expect(wrapper.state('panelCollapsed')).toEqual(false);
-  });
-
-  it('should collapse the panel', () => {
-    wrapper.setState({ panelCollapsed: false });
-
-    wrapper.find(Panel).simulate('collapse');
-
-    expect(wrapper.state('panelCollapsed')).toEqual(true);
-  });
-
   it('should match the snapshot', () => {
+    const wrapper = shallow(<CustomCard {...props} />);
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

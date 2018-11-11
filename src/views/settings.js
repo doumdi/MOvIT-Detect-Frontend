@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CustomPanel from '../components/shared/panel';
+import CustomCard from '../components/shared/card';
 import MemoryUsage from '../components/settings/memoryUsage';
 import Notification from '../components/settings/notification';
 import NotificationSettings from '../components/settings/notificationSettings';
@@ -38,15 +38,15 @@ class Settings extends Component {
           <div className="col-12">
             <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
             <Notification />
-            <CustomPanel
+            <CustomCard
               title={T.translate(`settings.notification.${this.props.language}`)}
               element={<NotificationSettings />}
             />
-            <CustomPanel
+            <CustomCard
               title={T.translate(`settings.permissions.${this.props.language}`)}
               element={<Permissions />}
             />
-            <CustomPanel
+            <CustomCard
               title={T.translate(`settings.system.${this.props.language}`)}
               element={element}
             />

@@ -1,32 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CustomPanel Tests should match the snapshot 1`] = `
+exports[`CustomCard Tests should match the snapshot 1`] = `
 <div
   className="container"
 >
   <div
     className="card"
   >
-    <Panel
+    <Card
       className={null}
-      collapsed={true}
+      footer={null}
       header={
         <span
-          className="header"
+          className="ui-card-title"
         >
           This is a test
         </span>
       }
       id={null}
-      onCollapse={[Function]}
-      onExpand={null}
       style={null}
-      toggleable={true}
+      subtitle={null}
+      title={null}
     >
       <div>
         Test
       </div>
-    </Panel>
+    </Card>
   </div>
 </div>
 `;

@@ -16,15 +16,15 @@ exports[`Settings Tests should match the snapshot 1`] = `
         settings.en
       </h2>
       <Connect(Notification) />
-      <CustomPanel
+      <CustomCard
         element={<Connect(NotificationSettings) />}
         title="settings.notification.en"
       />
-      <CustomPanel
+      <CustomCard
         element={<Connect(Permissions) />}
         title="settings.permissions.en"
       />
-      <CustomPanel
+      <CustomCard
         element={
           <div>
             <h6>

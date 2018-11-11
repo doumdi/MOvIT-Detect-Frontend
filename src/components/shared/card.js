@@ -5,45 +5,32 @@
  * @author Benjamin Roy
  */
 
-import '../../styles/panel.css';
+import '../../styles/card.css';
 import '../../styles/overwrite.css';
 
 import React, { Component } from 'react';
 
-import { Panel } from 'primereact/components/panel/Panel';
+import { Card } from 'primereact/components/card/Card';
 import PropTypes from 'prop-types';
 
-export default class CustomPanel extends Component {
+export default class CustomCard extends Component {
   static propTypes = {
     element: PropTypes.element.isRequired,
     title: PropTypes.string.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      panelCollapsed: true,
-    };
-  }
-
   render() {
     const header = (
-      <span className="header">
+      <span className="ui-card-title">
         {this.props.title}
       </span>
     );
     return (
       <div className="container">
         <div className="card">
-          <Panel
-            header={header}
-            toggleable
-            collapsed={this.state.panelCollapsed}
-            onCollapse={() => this.setState({ panelCollapsed: !this.state.panelCollapsed })
-            }
-          >
+          <Card header={header}>
             {this.props.element}
-          </Panel>
+          </Card>
         </div>
       </div>
     );
