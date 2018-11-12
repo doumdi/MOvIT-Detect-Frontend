@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
-import { ApplicationActions } from '../redux/applicationReducer';
+import axios from 'axios';
+import { ApplicationActions, URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
 import '../styles/header.css';
 
@@ -40,6 +41,13 @@ class Header extends Component {
   }
 
   isLoggedIn() {
+    axios.post(`${URL}validateToken`, { token: localStorage.getItem('token') })
+      .then((response) => {
+        if (response.status === 401) {
+          this.logout();
+        }
+      })
+      .catch(error => console.log(error));
     if (this.props.profile === '' && localStorage.getItem('profile') === '') {
       return <Redirect to="/home" />;
     }
