@@ -15,18 +15,10 @@ class ResultsCategories extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
-    profile: PropTypes.string,
   };
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      category: null,
-    };
-  }
-
   loadResults(category) {
-    this.props.history.push(`/results/${category}`);
+    this.props.history.push(`/${category}Results`);
   }
 
   render() {
@@ -36,11 +28,11 @@ class ResultsCategories extends Component {
         height: 'fit-content',
       },
       icons: {
-        fontSize: '20em',
+        fontSize: '15em',
         cursor: 'pointer',
       },
       angle: {
-        fontSize: '20em',
+        fontSize: '15em',
         cursor: 'pointer',
         transform: 'rotate(-25deg)',
       },
@@ -59,21 +51,21 @@ class ResultsCategories extends Component {
         <h2>{T.translate(`results.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`results.categories.${this.props.language}`)}</h3>
         <div>
-          <div className="row">
+          <div className="row col-md-12">
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('angle')} style={style.profileButton}>
+              <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
                 <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
                 <i className="fa fa-wheelchair" style={style.angle} />
               </button>
             </div>
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('pressure')} style={style.profileButton} >
+              <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
                 <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
                 <i className="fa fa-balance-scale" style={style.icons} />
               </button>
             </div>
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('progress')} style={style.profileButton} >
+              <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>
                 <h2>{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
                 <i className="fa fa-tasks" style={style.icons} />
               </button>
@@ -87,7 +79,6 @@ class ResultsCategories extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    profile: state.applicationReducer.profile,
   };
 }
 

@@ -13,11 +13,11 @@ import axios from 'axios';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { GoalActions } from '../redux/goalReducer';
 import { T } from '../utilities/translator';
-import AngleRecommendation from '../components/angleRecommendation';
-import TextRecommendation from '../components/textRecommendation';
-import OtherRecommendation from '../components/otherRecommendation';
-import SubmitButtons from '../components/submitButtons';
-import TiltSliders from '../components/tiltSliders';
+import AngleRecommendation from '../components/recommendation/angleRecommendation';
+import TextRecommendation from '../components/recommendation/textRecommendation';
+import OtherRecommendation from '../components/recommendation/otherRecommendation';
+import SubmitButtons from '../components/shared/submitButtons';
+import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
 import '../styles/overwrite.css';
 
@@ -162,6 +162,7 @@ class Recommendation extends Component {
       .then(() => this.props.history.push('/goals'))
       .catch(error => console.log(error));
   }
+
   cancel() {
     console.log('clear all fields');
   }
@@ -198,15 +199,17 @@ class Recommendation extends Component {
               <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
 
               {this.props.reduceWeight
-                ? <TiltSliders
-                  tiltFrequecy={this.props.tiltFrequencyWeight}
-                  tiltLength={this.props.tiltLengthWeight}
-                  tiltAngle={this.props.tiltAngleWeight}
-                  maxAngle={this.state.maxSliderAngle}
-                  onFrequencyChange={this.changeTitlFrequency.bind(this)}
-                  onLengthChange={this.changeTiltLength.bind(this)}
-                  onAngleChange={this.changeTiltAngle.bind(this)}
-                />
+                ? (
+                  <TiltSliders
+                    tiltFrequecy={this.props.tiltFrequencyWeight}
+                    tiltLength={this.props.tiltLengthWeight}
+                    tiltAngle={this.props.tiltAngleWeight}
+                    maxAngle={this.state.maxSliderAngle}
+                    onFrequencyChange={this.changeTitlFrequency.bind(this)}
+                    onLengthChange={this.changeTiltLength.bind(this)}
+                    onAngleChange={this.changeTiltAngle.bind(this)}
+                  />
+                )
                 : null}
             </div>
           </div>
@@ -260,7 +263,7 @@ class Recommendation extends Component {
           onSave={this.save.bind(this)}
           onCancel={this.cancel}
         />
-      </div >
+      </div>
     );
   }
 }

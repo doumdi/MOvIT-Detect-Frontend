@@ -29,7 +29,7 @@ function changeSnoozeTime(time) {
   return {
     type: SNOOZE_TIME,
     snoozeTime: time,
-  }
+  };
 }
 
 export const DebugActions = {
@@ -47,7 +47,7 @@ const ACTION_HANDLERS = {
   ),
   [SNOOZE_TIME]: (state, action) => (
     { ...state, snoozeTime: action.snoozeTime }
-  )
+  ),
 };
 
 export const initParameter = {

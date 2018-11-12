@@ -4,35 +4,14 @@ home:
 preferences:
   FR: "Préférences"
   EN: "Preferences"
-parameters:
-  FR: "Paramètres"
-  EN: "Settings"
-  dataAgreement:
-    FR: "J’accepte que mes données d’utilisation soient transmises à mon établissement de santé"
-    EN: "I allow my data usage to be sent to my healthcare facility"
-  lightAgreement:
-    FR: "Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer"
-    EN: "I want the light on my chair to light up to remind me to tip"
-  notificationAgreement:
-    FR: "Je souhaite recevoir une notification lorsqu’un rapport est disponible"
-    EN: "I want to receive a notification when a report is available"
-  doNotDisturb:
-    FR: "Ne pas me le rappeler pour"
-    EN: "Do not remind me for"
-  doNotSend:
-    FR: "Ne pas transmettre pendant"
-    EN: "Do not send for"
-  doNotLightUp:
-    FR: "Ne pas allumer pendant"
-    EN: "Do not light up for"
-  doNotReceive:
-    FR: "Ne pas recevoir pendant"
-    EN: "Do not receive for"
 
 time:
   min:
     FR: "sec"
     EN: "sec"
+  minutes:
+    FR: "minutes"
+    EN: "minutes"
   hours:
     FR: "heures"
     EN: "hours"
@@ -418,7 +397,9 @@ wifi:
     FR: "Changer de réseau"
     EN: "Change your network"
 
-debug:
+settings:
+  FR: "Paramètres"
+  EN: "Settings"
   state:
     FR: "État des capteurs"
     EN: "Module status"
@@ -434,6 +415,7 @@ debug:
     EN: "Sensors"
 
   notificationSettings:
+  notification:
     FR: "Paramètres des notifications"
     EN: "Notifications settings"
     enableLedBlinking:
@@ -443,17 +425,55 @@ debug:
       FR: "Vibrer"
       EN: "Vibrate"
     snoozeTime:
-      FR: "Temps avant un rappel"
+      FR: "Temps de snooze"
       EN: "Snooze time"
     snoozeTimeToolTip:
       FR: "Temps avant de reçevoir un rappel d'effectuer une bascule (minutes)"
       EN: "Time before receiving a reminder to perform a tilt (minutes)"
-  update:
-    FR: "Mise à jour du système"
-    EN: "System update"
-    last:
-      FR: "Dernière mise à jour"
-      EN: "Last update"
-    countdownTitle:
-      FR: "La mise à jour sera lancée dans..."
-      EN: "The update will be launched in ..."
+  system:
+    FR: "Informations sur le système"
+    EN: "System information"
+    memory:
+      FR: "Utilisation de la mémoire"
+      EN: "Memory usage"
+    update:
+      FR: "Mise à jour du système"
+      EN: "System update"
+      last:
+        FR: "Dernière mise à jour"
+        EN: "Last update"
+      confirmation:
+        FR: "En effectuant la mise à jour du système, l'application sera inaccessible pour environ 10 minutes. Voulez-vous effectuer la mise à jour maintenant?"
+        EN: "By performing the system update, the application will be inaccessible for about 10 minutes. Do you want to do the update now?"
+  permissions:
+    FR: "Permissions"
+    EN: "Permissions"
+    dataAgreement:
+      FR: "J’accepte que mes données d’utilisation soient transmises à mon établissement de santé"
+      EN: "I allow my data usage to be sent to my healthcare facility"
+    lightAgreement:
+      FR: "Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer"
+      EN: "I want the light on my chair to light up to remind me to tip"
+    notificationAgreement:
+      FR: "Je souhaite recevoir une notification lorsqu’un rapport est disponible"
+      EN: "I want to receive a notification when a report is available"
+    doNotDisturb:
+      FR: "Ne pas me le rappeler pour"
+      EN: "Do not remind me for"
+    doNotSend:
+      FR: "Ne pas transmettre pendant"
+      EN: "Do not send for"
+    doNotLightUp:
+      FR: "Ne pas allumer pendant"
+      EN: "Do not light up for"
+    doNotReceive:
+      FR: "Ne pas recevoir pendant"
+      EN: "Do not receive for"
+
+confirmation:
+  close:
+    FR: "Fermer"
+    EN: "Close"
+  confirm:
+    FR: "Continuer"
+    EN: "Continue" 

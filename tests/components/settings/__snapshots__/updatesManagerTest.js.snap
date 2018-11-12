@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdatesManager Tests should match the snapshot 1`] = `
+<div>
+  <button
+    className="btn ui-button-secondary btn-default"
+    disabled={true}
+    id="updateButton"
+    onClick={[Function]}
+  >
+    <i
+      className="fa fa-2x fa-refresh"
+    />
+  </button>
+  <div>
+    settings.system.update.last.en
+    :  
+  </div>
+  <Connect(ConfirmationPopup)
+    body="settings.system.update.confirmation.en"
+    onClose={[Function]}
+    onConfirm={[Function]}
+    show={true}
+    title="settings.system.update.en"
+  />
+</div>
+`;

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports['LogoText Tests should match the snapshot 1'] = `
+<div
+  className="form-horizontal row mb-3"
+>
+  <div
+    className="col-1 d-inline-block text-right"
+  >
+    <span
+      style={
+        Object {
+          "fontSize": "large",
+          "minWidth": "26px",
+          "paddingTop": "6px",
+        }
+      }
+    >
+      <i
+        className="fa fa-id-card"
+      />
+    </span>
+  </div>
+  <div
+    className=" col-10 col-lg-8 d-inline-block"
+  >
+    <input
+      className="form-control"
+      id="logoText"
+      onChange={[Function]}
+      placeholder="test"
+      type="text"
+      value="test"
+    />
+  </div>
+</div>
+`;

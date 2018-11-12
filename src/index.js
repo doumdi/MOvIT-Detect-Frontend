@@ -13,7 +13,7 @@ import Layout from './layout';
 import store from './redux/store';
 
 render(
-  <Provider store={store} >
+  <Provider store={store}>
     <Layout />
   </Provider>,
   document.getElementById('root'),

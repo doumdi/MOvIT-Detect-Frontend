@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports['AngleRecommandation Tests should match the snapshot when the recommendation is active 1'] = `
+<div
+  className="pt-2 pl-3 row"
+>
+  <div
+    className="col-11 pl-0 mt-1"
+  >
+    <Checkbox
+      checked={true}
+      className={null}
+      disabled={false}
+      id={null}
+      inputId="activeRecCheck"
+      label="Test"
+      name={null}
+      onChange={[Function]}
+      onContextMenu={null}
+      onMouseDown={null}
+      readOnly={false}
+      style={null}
+      value={null}
+    />
+    <label
+      htmlFor="activeRecCheck"
+    >
+      Test
+    </label>
+    <div
+      className="col-12 col-md-10 ml-3"
+    >
+      <SliderValue
+        max={45}
+        min={0}
+        onChange={[Function]}
+        title="recommendations.angle.en"
+        unit="°"
+        value={0}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports['AngleRecommandation Tests should match the snapshot when the recommendation is inactive 1'] = `
+<div
+  className="pt-2 pl-3 row"
+>
+  <div
+    className="col-11 pl-0 mt-1"
+  >
+    <Checkbox
+      checked={false}
+      className={null}
+      disabled={false}
+      id={null}
+      inputId="activeRecCheck"
+      label="Test"
+      name={null}
+      onChange={[Function]}
+      onContextMenu={null}
+      onMouseDown={null}
+      readOnly={false}
+      style={null}
+      value={null}
+    />
+    <label
+      htmlFor="activeRecCheck"
+    >
+      Test
+    </label>
+  </div>
+</div>
+`;

@@ -4,12 +4,11 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import SubmitButtons from '../components/submitButtons';
-import LogoText from '../components/logoText';
+import SubmitButtons from '../components/shared/submitButtons';
+import LogoText from '../components/shared/logoText';
 
 
 class ForgotPassword extends Component {
-
   static propTypes = {
     language: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
@@ -38,9 +37,9 @@ class ForgotPassword extends Component {
     const params = new URLSearchParams(this.props.location.search);
     const userName = params.get('user');
     const data = {
-      user: userName,
+      userName,
       secret: this.state.secret,
-      passwrd: this.state.password,
+      newPassword: this.state.password,
     };
     axios.post(`${URL}forgotPassword`, data)
       .then(() => this.props.history.push('/home'))

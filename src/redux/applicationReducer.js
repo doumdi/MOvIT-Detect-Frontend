@@ -22,7 +22,7 @@ switch (process.env.NODE_ENV) {
   case 'local':
     url = `http://localhost:${port}/`;
     break;
-  case 'demo':
+  case 'demos':
   default:
     url = 'https://private-f2484-movitplus.apiary-mock.com/';
 }
