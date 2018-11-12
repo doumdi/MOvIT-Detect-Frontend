@@ -48,7 +48,7 @@ class Notification extends Component {
 
   render() {
     return (
-      <div className="row m-3 mt-5 ml-md-5">
+      <div className="row ml-2 mt-5">
         <div className="mb-2 mr-3">
           <button id="calibrate-button" type="button" onClick={() => this.calibrate()} className="btn btn-lg">
             {T.translate(`calibrate.${this.props.language}`)}

@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { T } from '../utilities/translator';
-import { URL } from '../redux/applicationReducer';
+import { T } from '../../utilities/translator';
+import { URL } from '../../redux/applicationReducer';
 
 
 class ModuleStatus extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
   }
+
   constructor(props) {
     super(props);
     this.state = {
       moduleStatus: [],
-      moduleNames: ['module1'],
     };
     this.getStatus();
   }
@@ -26,17 +26,17 @@ class ModuleStatus extends Component {
   }
 
   render() {
-    const moduleList = this.state.moduleStatus.map((module, idx) => {
-      return (
-        <li key={idx} className="mb-1">
-          {module.name}: <span style={{ color: module.value === 'true' ? 'green' : 'red' }}>{T.translate(`debug.state.value.${module.value === 'true' ? 'yes' : 'no'}.${this.props.language}`)}</span>
-        </li>);
-    });
+    const moduleList = this.state.moduleStatus.map(module => (
+      <li className="mb-1">
+        {module.name}: &nbsp;
+        <span style={{ color: module.value === true ? 'green' : 'red' }}>
+          {T.translate(`settings.state.value.${module.value === true ? 'connected' : 'disconnected'}.${this.props.language}`)}
+        </span>
+      </li>));
 
     return (
-      <div className="row mt-3 ml-2">
-        <div className="col-6 pl-0">
-          <h4>{T.translate(`debug.modules.${this.props.language}`)}</h4>
+      <div className="row">
+        <div className="col-6">
           <ul className="list-unstyled">{moduleList}</ul>
         </div>
       </div>

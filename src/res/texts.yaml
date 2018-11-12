@@ -404,10 +404,10 @@ settings:
     FR: "État des capteurs"
     EN: "Module status"
     value:
-      yes:
+      connected:
         FR: "Connecté"
         EN: "Connected"
-      no:
+      disconnected:
         FR: "Déconnecté"
         EN: "Disconnected"
   modules:

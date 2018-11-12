@@ -17,6 +17,10 @@ exports[`Settings Tests should match the snapshot 1`] = `
       </h2>
       <Connect(Notification) />
       <CustomCard
+        element={<Connect(ModuleStatus) />}
+        title="settings.modules.en"
+      />
+      <CustomCard
         element={<Connect(NotificationSettings) />}
         title="settings.notification.en"
       />
