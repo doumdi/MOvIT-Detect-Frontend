@@ -464,4 +464,8 @@ confirmation:
     EN: "Close"
   confirm:
     FR: "Continuer"
-    EN: "Continue" 
+    EN: "Continue"
+
+demo:
+  FR: DÉMO
+  EN: DEMO

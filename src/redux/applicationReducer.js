@@ -9,6 +9,7 @@
 // ------------------------------------
 
 let url;
+let isDemo = false;
 
 const port = process.env.PORT || 1880;
 
@@ -23,11 +24,15 @@ switch (process.env.NODE_ENV) {
     url = `http://localhost:${port}/`;
     break;
   case 'demos':
+    isDemo = true;
+    url = 'https://private-f2484-movitplus.apiary-mock.com/';
+    break;
   default:
     url = 'https://private-f2484-movitplus.apiary-mock.com/';
 }
 
 export const URL = url;
+export const IS_DEMO = isDemo;
 export const LANGUAGE = 'LANGUAGE';
 export const FR = 'FR';
 export const EN = 'EN';

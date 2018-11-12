@@ -15,7 +15,7 @@ import { Redirect } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
-import { ApplicationActions } from '../redux/applicationReducer';
+import { ApplicationActions, IS_DEMO } from '../redux/applicationReducer';
 
 class Header extends Component {
   static propTypes = {
@@ -89,8 +89,8 @@ class Header extends Component {
     return (
       <div>
         {this.isLoggedIn()}
-
         <nav className="navbar fixed-top navbar-expand-lg" style={style.navbar}>
+          {IS_DEMO && <h2 className="demo">{T.translate(`demo.${this.props.language}`)}</h2>}
           <Link to="/home" className="navbar-brand" style={style.title}>MOvIT+</Link>
           <button
             className="navbar-toggler custom-toggler"
@@ -159,8 +159,6 @@ class Header extends Component {
                     <Link to="/home" style={style.link}>
                       {T.translate(`welcome.logout.${this.props.language}`)}
                       {' '}
-
-
                       &nbsp;
                       <i className="fa fa-sign-out" />
                     </Link>
