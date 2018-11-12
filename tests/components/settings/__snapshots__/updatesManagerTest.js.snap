@@ -13,15 +13,15 @@ exports[`UpdatesManager Tests should match the snapshot 1`] = `
     />
   </button>
   <div>
-    debug.system.update.last.en
+    settings.system.update.last.en
     :  
   </div>
   <Connect(ConfirmationPopup)
-    body="debug.system.update.confirmation.en"
+    body="settings.system.update.confirmation.en"
     onClose={[Function]}
     onConfirm={[Function]}
     show={true}
-    title="debug.system.update.en"
+    title="settings.system.update.en"
   />
 </div>
 `;

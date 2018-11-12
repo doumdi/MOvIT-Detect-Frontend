@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports['PreventPermission Tests should match snapshot 1'] = `
+exports[`PreventPermission Tests should match snapshot 1`] = `
 <div
   className="row"
 >
   <div
-    className="col-10 offset-1 mt-3 d-flex"
+    className="col-10 mt-3 d-flex"
   >
     <Checkbox
       checked={false}
@@ -34,7 +34,7 @@ exports['PreventPermission Tests should match snapshot 1'] = `
       className="col-9 offset-3 col-md-6 offset-md-4 col-lg-6 offset-lg-6"
     >
       <h5>
-        parameters.doNotReceive.en:
+        settings.permissions.doNotReceive.en:
       </h5>
     </div>
     <div

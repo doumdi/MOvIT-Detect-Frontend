@@ -7,14 +7,12 @@
 
 import React, { Component } from 'react';
 
-
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import ConfirmationPopup from '../popups/confirmationPopup';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
-
 
 const POLLING_INTERVAL = 10000;
 
@@ -101,14 +99,14 @@ class UpdatesManager extends Component {
           <i className="fa fa-2x fa-refresh" />
         </button>
         <div>
-          {T.translate(`debug.system.update.last.${this.props.language}`)}
+          {T.translate(`settings.system.update.last.${this.props.language}`)}
 
           : &nbsp;
           {this.state.date}
         </div>
         <ConfirmationPopup
-          title={T.translate(`debug.system.update.${this.props.language}`)}
-          body={T.translate(`debug.system.update.confirmation.${this.props.language}`)}
+          title={T.translate(`settings.system.update.${this.props.language}`)}
+          body={T.translate(`settings.system.update.confirmation.${this.props.language}`)}
           show={this.state.isPopupOpened}
           onConfirm={this.triggerUpdate}
           onClose={this.toggleModal}

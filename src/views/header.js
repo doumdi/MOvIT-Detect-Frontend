@@ -5,16 +5,18 @@
  * @author Benjamin Roy
  */
 
+import '../styles/header.css';
+
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ApplicationActions, URL } from '../redux/applicationReducer';
+import { Redirect } from 'react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
-import '../styles/header.css';
 
 class Header extends Component {
   static propTypes = {
@@ -140,13 +142,6 @@ class Header extends Component {
                   </li>
                 )
               }
-              {this.props.profile === 'user'
-                && (
-                  <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="/parameter" style={style.link}>{T.translate(`parameters.${this.props.language}`)}</Link>
-                  </li>
-                )
-              }
               <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <Link to="/wifi" style={style.link}>{T.translate(`wifi.${this.props.language}`)}</Link>
               </li>
@@ -162,7 +157,7 @@ class Header extends Component {
             </li>
             <li className="nav navbar-nav pl-1" data-toggle="collapse" data-target=".navbar-collapse.show">
               <button className="btn" style={style.button} type="button">
-                <Link to="/debug" style={style.link}><i className="fa fa-cog" /></Link>
+                <Link to="/settings" style={style.link}><i className="fa fa-cog" /></Link>
               </button>
             </li>
             {this.props.profile

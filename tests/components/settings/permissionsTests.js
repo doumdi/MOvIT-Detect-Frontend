@@ -1,12 +1,17 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import PropTypes from 'prop-types';
-import Parameter from '../../src/views/parameter';
+import Permissions from '../../../src/components/settings/permissions';
 
-describe('Parameter Tests', () => {
+describe('Permissions Tests', () => {
   it('should have proptypes', () => {
-    // Actual value
-    const actualValue = Parameter.WrappedComponent.propTypes;
+    const actualValue = Permissions.WrappedComponent.propTypes;
 
-    // Expected value
     const expectedValue = {
       language: PropTypes.string.isRequired,
       history: PropTypes.object.isRequired,
@@ -24,7 +29,6 @@ describe('Parameter Tests', () => {
       notificationDisagreePeriod: PropTypes.string,
     };
 
-    // Test
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 });

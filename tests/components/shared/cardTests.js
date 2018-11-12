@@ -10,30 +10,30 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PropTypes from 'prop-types';
 import React from 'react';
-import configureMockStore from 'redux-mock-store';
 import toJson from 'enzyme-to-json';
-import Debug from '../../src/views/debug';
+import CustomCard from '../../../src/components/shared/card';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Debug Tests', () => {
-  const initialState = { applicationReducer: { language: 'en' } };
-  const mockStore = configureMockStore();
-  const store = mockStore(initialState);
-  const props = {};
+describe('CustomCard Tests', () => {
+  const props = {
+    element: <div>Test</div>,
+    title: 'This is a test',
+  };
 
   it('should have proptypes', () => {
-    const actualValue = Debug.WrappedComponent.propTypes;
+    const actualValue = CustomCard.propTypes;
 
     const expectedValue = {
-      language: PropTypes.string.isRequired,
+      element: PropTypes.element.isRequired,
+      title: PropTypes.string.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
   it('should match the snapshot', () => {
-    const wrapper = shallow(<Debug store={store} {...props} />).dive();
+    const wrapper = shallow(<CustomCard {...props} />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
