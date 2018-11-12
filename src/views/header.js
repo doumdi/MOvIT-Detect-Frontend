@@ -50,7 +50,10 @@ class Header extends Component {
 
   render() {
     const style = {
-      navbar: { background: '#cc2033', margin: '0px' },
+      navbar: {
+        background: '#cc2033',
+        margin: '0px',
+      },
       containerfluid: { width: '90%', height: '100%' },
       title: {
         color: 'white',
@@ -87,10 +90,16 @@ class Header extends Component {
     };
 
     return (
-      <div>
+      <div className="top" style={style.navbar}>
         {this.isLoggedIn()}
-        <nav className="navbar fixed-top navbar-expand-lg" style={style.navbar}>
-          {IS_DEMO && <h2 className="demo">{T.translate(`demo.${this.props.language}`)}</h2>}
+        {IS_DEMO && (
+          <div className="demo">
+            <span className="demo-title">{T.translate(`demo.${this.props.language}`)}</span>
+            &nbsp;
+            <span>{T.translate(`demo.message.${this.props.language}`)}</span>
+          </div>
+        )}
+        <nav className="navbar navbar-expand-lg">
           <Link to="/home" className="navbar-brand" style={style.title}>MOvIT+</Link>
           <button
             className="navbar-toggler custom-toggler"

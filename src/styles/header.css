@@ -3,8 +3,21 @@
 }
 
 .demo {
-  position: relative;
-   left: 50%;
    color: white;
-   text-decoration: underline;
+   width: 100%;
+   text-align: center;
+   margin-bottom: -15px;
+   background-color: darkred;
+}
+
+.demo-title {
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+.top {
+  top: 0;
+  left: 0;
+  right: 0;
 }

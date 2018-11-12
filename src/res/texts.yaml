@@ -469,3 +469,6 @@ confirmation:
 demo:
   FR: "DÉMO"
   EN: "DEMO"
+  message:
+    FR: "Tous les données sont falsifiées et ne seront pas sauvegardées"
+    EN: "All the datas are faked and will not be saved"
