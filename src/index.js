@@ -5,6 +5,7 @@
  */
 
 import './styles/overwrite.css';
+import './styles/style.css';
 
 import { Provider } from 'react-redux';
 import React from 'react';

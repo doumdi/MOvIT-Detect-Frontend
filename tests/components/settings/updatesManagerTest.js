@@ -95,7 +95,17 @@ describe('UpdatesManager Tests', () => {
     expect(wrapper.state('date')).toEqual('2018-02-04');
   });
 
-  it('should show the countdown popup', () => {
+  it('should show/hide the confirmation popup', () => {
+    wrapper.instance().setState({ isPopupOpened: false });
+
+    wrapper.instance().openModal();
+    expect(wrapper.state('isPopupOpened')).toEqual(true);
+
+    wrapper.instance().closeModal();
+    expect(wrapper.state('isPopupOpened')).toEqual(false);
+  });
+
+  it('should show the confirmation popup when clicking on the update button', () => {
     wrapper.instance().setState({ isPopupOpened: false });
 
     wrapper.find('#updateButton').simulate('click');
