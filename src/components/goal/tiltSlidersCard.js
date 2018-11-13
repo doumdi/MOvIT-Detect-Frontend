@@ -6,10 +6,11 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Card } from 'primereact/components/card/Card';
+import { connect } from 'react-redux';
+import CustomCard from '../shared/card';
 import TiltSliders from '../shared/tiltSliders';
 import { URL } from '../../redux/applicationReducer';
 
@@ -45,54 +46,45 @@ class TiltSlidersCard extends Component {
 
   render() {
     const chairImagePath = require('../../res/images/chair-old.png');
-    const style = {
-      padding: '10px',
-      height: '170px',
-      card: {
-        padding: '5px',
-        backgroundColor: 'white',
-        boxShadow: '5px 5px 5px gainsboro',
-      },
-      header: {
-        marginLeft: '14px',
-        marginTop: '14px',
-      },
-    };
     const header = (
-      <div className="ui-card-title" style={style.header}>
+      <div className="ui-card-title">
         {this.props.title}
-
         &nbsp;
         {this.props.modifiable
           && <i className="fa fa-check" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
         }
       </div>
     );
-    return (
-      <Card header={header} style={style.card} class="col-md-6">
-        <div className="row">
-          <div className="col-9">
-            <TiltSliders
-              tiltFrequecy={this.props.tiltFrequecy}
-              tiltLength={this.props.tiltLength}
-              tiltAngle={this.props.tiltAngle}
-              maxAngle={this.props.maxAngle}
-              onFrequencyChange={this.props.onFrequencyChange}
-              onLengthChange={this.props.onLengthChange}
-              onAngleChange={this.props.onAngleChange}
-            />
-          </div>
-          <div className="col-3 justify-content-center align-self-center">
-            <img
-              src={chairImagePath}
-              width="50"
-              height="50"
-              alt="chair"
-              style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
-            />
-          </div>
+    const element = (
+      <div className="row">
+        <div className="col-9">
+          <TiltSliders
+            tiltFrequecy={this.props.tiltFrequecy}
+            tiltLength={this.props.tiltLength}
+            tiltAngle={this.props.tiltAngle}
+            maxAngle={this.props.maxAngle}
+            onFrequencyChange={this.props.onFrequencyChange}
+            onLengthChange={this.props.onLengthChange}
+            onAngleChange={this.props.onAngleChange}
+          />
         </div>
-      </Card>
+        <div className="col-3 justify-content-center align-self-center">
+          <img
+            src={chairImagePath}
+            width="50"
+            height="50"
+            alt="chair"
+            style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
+          />
+        </div>
+      </div>
+    );
+    return (
+      <CustomCard
+        className="col-md-6"
+        header={header}
+        element={element}
+      />
     );
   }
 }

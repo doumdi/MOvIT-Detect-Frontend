@@ -54,7 +54,7 @@ class Header extends Component {
         {this.isLoggedIn()}
         {IS_DEMO && (
           <div className="demo">
-            <span className="demo-title">{T.translate(`demo.${this.props.language}`)}</span>
+            <span className="demoTitle">{T.translate(`demo.${this.props.language}`)}</span>
             &nbsp;
             <span>{T.translate(`demo.message.${this.props.language}`)}</span>
           </div>

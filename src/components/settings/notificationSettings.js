@@ -5,8 +5,6 @@
  * @author Benjamin Roy
  */
 
-import '../../styles/overwrite.css';
-
 import React, { Component } from 'react';
 
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
