@@ -4,12 +4,13 @@
  * @author Austin Didier Tran
  */
 
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import CustomCard from '../components/shared/card';
+import { connect } from 'react-redux';
 import { ApplicationActions } from '../redux/applicationReducer';
+import CustomCard from '../components/shared/card';
 import { T } from '../utilities/translator';
 
 class ResultsCategories extends Component {
@@ -19,7 +20,7 @@ class ResultsCategories extends Component {
   };
 
   loadResults(category) {
-    this.props.history.push(`/${category}Results`);
+    this.props.history.push(`/results/${category}`);
   }
 
   render() {
