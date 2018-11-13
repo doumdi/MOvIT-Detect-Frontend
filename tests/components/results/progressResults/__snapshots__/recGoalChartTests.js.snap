@@ -76,17 +76,15 @@ exports[`RecGoalChart Tests should match snapshot 1`] = `
         </div>
       }
       header={
-        <div>
-          <h2
-            style={
-              Object {
-                "textAlign": "center",
-              }
+        <h2
+          style={
+            Object {
+              "textAlign": "center",
             }
-          >
-            test
-          </h2>
-        </div>
+          }
+        >
+          test
+        </h2>
       }
     />
   </div>
