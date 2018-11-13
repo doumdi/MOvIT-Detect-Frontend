@@ -6,7 +6,6 @@
  */
 
 import '../../styles/card.css';
-import '../../styles/overwrite.css';
 
 import React, { Component } from 'react';
 
@@ -16,22 +15,19 @@ import PropTypes from 'prop-types';
 export default class CustomCard extends Component {
   static propTypes = {
     element: PropTypes.element.isRequired,
-    title: PropTypes.string.isRequired,
+    header: PropTypes.element.isRequired,
+    style: PropTypes.object,
   }
 
   render() {
-    const header = (
-      <span className="ui-card-title">
-        {this.props.title}
-      </span>
-    );
     return (
-      <div className="container">
-        <div className="card">
-          <Card header={header}>
-            {this.props.element}
-          </Card>
-        </div>
+      <div className="container" style={this.props.style}>
+        <Card
+          className="card"
+          header={this.props.header}
+        >
+          {this.props.element}
+        </Card>
       </div>
     );
   }

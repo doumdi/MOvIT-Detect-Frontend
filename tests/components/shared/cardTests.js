@@ -8,17 +8,17 @@
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
+import CustomCard from '../../../src/components/shared/card';
 import PropTypes from 'prop-types';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import CustomCard from '../../../src/components/shared/card';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('CustomCard Tests', () => {
   const props = {
     element: <div>Test</div>,
-    title: 'This is a test',
+    header: <span>This is a test</span>,
   };
 
   it('should have proptypes', () => {
@@ -26,7 +26,8 @@ describe('CustomCard Tests', () => {
 
     const expectedValue = {
       element: PropTypes.element.isRequired,
-      title: PropTypes.string.isRequired,
+      header: PropTypes.element.isRequired,
+      style: PropTypes.object,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

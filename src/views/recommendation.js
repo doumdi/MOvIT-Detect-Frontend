@@ -5,21 +5,21 @@
  */
 
 import React, { Component } from 'react';
+
+import { Checkbox } from 'primereact/components/checkbox/Checkbox';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import axios from 'axios';
-import { RecommendationActions } from '../redux/recommendationReducer';
-import { GoalActions } from '../redux/goalReducer';
-import { T } from '../utilities/translator';
 import AngleRecommendation from '../components/recommendation/angleRecommendation';
-import TextRecommendation from '../components/recommendation/textRecommendation';
+import { GoalActions } from '../redux/goalReducer';
 import OtherRecommendation from '../components/recommendation/otherRecommendation';
+import { RecommendationActions } from '../redux/recommendationReducer';
 import SubmitButtons from '../components/shared/submitButtons';
+import { T } from '../utilities/translator';
+import TextRecommendation from '../components/recommendation/textRecommendation';
 import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
-import '../styles/overwrite.css';
 
 class Recommendation extends Component {
   static propTypes = {

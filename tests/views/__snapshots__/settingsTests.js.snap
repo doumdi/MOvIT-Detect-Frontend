@@ -2,27 +2,39 @@
 
 exports[`Settings Tests should match the snapshot 1`] = `
 <div
-  className="container"
+  className="mt-3"
 >
+  <h2
+    className="header text-center"
+  >
+    settings.en
+  </h2>
   <div
-    className="row mt-4"
+    className="row"
   >
     <div
-      className="col-12"
+      className="col-12 col-md-8 offset-md-2"
     >
-      <h2
-        className="header text-center"
-      >
-        settings.en
-      </h2>
       <Connect(Notification) />
       <CustomCard
         element={<Connect(NotificationSettings) />}
-        title="settings.notification.en"
+        header={
+          <span
+            className="ui-card-title"
+          >
+            settings.notification.en
+          </span>
+        }
       />
       <CustomCard
         element={<Connect(Permissions) />}
-        title="settings.permissions.en"
+        header={
+          <span
+            className="ui-card-title"
+          >
+            settings.permissions.en
+          </span>
+        }
       />
       <CustomCard
         element={
@@ -38,7 +50,13 @@ exports[`Settings Tests should match the snapshot 1`] = `
             <Connect(UpdatesManager) />
           </div>
         }
-        title="settings.system.en"
+        header={
+          <span
+            className="ui-card-title"
+          >
+            settings.system.en
+          </span>
+        }
       />
     </div>
   </div>

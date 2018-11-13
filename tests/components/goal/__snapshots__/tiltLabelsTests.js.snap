@@ -1,50 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports['TiltLabels Tests should match the snapshot 1'] = `
-<div
-  style={
-    Object {
-      "padding": "10px",
-    }
-  }
->
-  <Card
-    className="col-12"
-    footer={null}
-    header={
-      <div
-        className="ui-card-title"
-        style={
-          Object {
-            "marginLeft": "14px",
-            "marginTop": "14px",
-          }
-        }
-      >
-        This is a title
-         
-        <i
-          className="fa fa-pencil"
-          onClick={[Function]}
-          style={
-            Object {
-              "cursor": "pointer",
-            }
-          }
-        />
-      </div>
-    }
-    id={null}
-    style={
-      Object {
-        "backgroundColor": "white",
-        "boxShadow": "5px 5px 5px gainsboro",
-        "padding": "5px",
-      }
-    }
-    subtitle={null}
-    title={null}
-  >
+exports[`TiltLabels Tests should match the snapshot 1`] = `
+<CustomCard
+  className="col-12"
+  element={
     <div
       className="row"
     >
@@ -73,7 +32,7 @@ exports['TiltLabels Tests should match the snapshot 1'] = `
             }
           >
             60
-             
+             
             time.min.en
           </span>
         </div>
@@ -99,7 +58,7 @@ exports['TiltLabels Tests should match the snapshot 1'] = `
             }
           >
             30
-             
+             
             time.min.en
           </span>
         </div>
@@ -125,8 +84,7 @@ exports['TiltLabels Tests should match the snapshot 1'] = `
             }
           >
             15
-             
-            °
+              °
           </span>
         </div>
       </div>
@@ -150,6 +108,23 @@ exports['TiltLabels Tests should match the snapshot 1'] = `
         />
       </div>
     </div>
-  </Card>
-</div>
+  }
+  header={
+    <div
+      className="ui-card-title"
+    >
+      This is a title
+       
+      <i
+        className="fa fa-pencil"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      />
+    </div>
+  }
+/>
 `;

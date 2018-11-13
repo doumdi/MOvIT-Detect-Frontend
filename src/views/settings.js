@@ -33,21 +33,21 @@ class Settings extends Component {
       </div>
     );
     return (
-      <div className="container">
-        <div className="row mt-4">
-          <div className="col-12">
-            <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
+      <div className="mt-3">
+        <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
+        <div className="row">
+          <div className="col-12 col-md-8 offset-md-2">
             <Notification />
             <CustomCard
-              title={T.translate(`settings.notification.${this.props.language}`)}
+              header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
               element={<NotificationSettings />}
             />
             <CustomCard
-              title={T.translate(`settings.permissions.${this.props.language}`)}
+              header={<span className="ui-card-title">{T.translate(`settings.permissions.${this.props.language}`)}</span>}
               element={<Permissions />}
             />
             <CustomCard
-              title={T.translate(`settings.system.${this.props.language}`)}
+              header={<span className="ui-card-title">{T.translate(`settings.system.${this.props.language}`)}</span>}
               element={element}
             />
           </div>

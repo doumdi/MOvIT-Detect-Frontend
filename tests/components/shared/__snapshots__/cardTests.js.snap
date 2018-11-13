@@ -4,28 +4,22 @@ exports[`CustomCard Tests should match the snapshot 1`] = `
 <div
   className="container"
 >
-  <div
+  <Card
     className="card"
+    footer={null}
+    header={
+      <span>
+        This is a test
+      </span>
+    }
+    id={null}
+    style={null}
+    subtitle={null}
+    title={null}
   >
-    <Card
-      className={null}
-      footer={null}
-      header={
-        <span
-          className="ui-card-title"
-        >
-          This is a test
-        </span>
-      }
-      id={null}
-      style={null}
-      subtitle={null}
-      title={null}
-    >
-      <div>
-        Test
-      </div>
-    </Card>
-  </div>
+    <div>
+      Test
+    </div>
+  </Card>
 </div>
 `;
