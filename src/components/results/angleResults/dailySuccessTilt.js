@@ -21,6 +21,7 @@ class DailySuccessTilt extends Component {
       dayData: [],
       date: props.date,
       data: null,
+      loading: true,
     };
     this.getData(this.state.date);
   }
@@ -33,6 +34,7 @@ class DailySuccessTilt extends Component {
   }
 
   getData(date) {
+    this.state.loading = true;
     axios.get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
       .then((response) => { this.state.dayData = response.data; this.loadData(response.data); });
   }
@@ -71,6 +73,7 @@ class DailySuccessTilt extends Component {
         },
       ],
     };
+    this.setState({ loading: false });
   }
 
   render() {
@@ -96,11 +99,14 @@ class DailySuccessTilt extends Component {
     };
 
     return (
+
       <div className="container graphic" id="dailyTilt">
-        <CustomCard
-          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
-          element={<Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />}
-        />
+        {!this.state.loading && (
+          <CustomCard
+            header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
+            element={<Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />}
+          />
+        )}
       </div>
     );
   }

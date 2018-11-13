@@ -6,8 +6,9 @@
  */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 import { Dialog } from 'primereact/components/dialog/Dialog';
+import PropTypes from 'prop-types';
 
 export default class Countdown extends Component {
   static propTypes = {
@@ -58,6 +59,7 @@ export default class Countdown extends Component {
         width="300px"
         height="100px"
         showHeader={false}
+        closeOnEscape={false}
         modal
         onHide={() => this.setState({ show: false })}
       >

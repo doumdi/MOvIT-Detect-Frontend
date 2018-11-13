@@ -4,17 +4,18 @@
  * @author Austin Didier Tran
  */
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { T } from '../utilities/translator';
-import DailySuccessTilt from '../components/results/angleResults/dailySuccessTilt';
-import DailyAngleDistribution from '../components/results/angleResults/dailyAngleDistribution';
-import ResultsCalendar from '../components/results/resultsCalendar';
-import MonthlySuccessTilt from '../components/results/angleResults/monthlySuccessTilt';
-import MonthlyAngleDistribution from '../components/results/angleResults/monthlyAngleDistribution';
-import '../styles/style.css';
 import '../styles/results.css';
+
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import DailyAngleDistribution from '../components/results/angleResults/dailyAngleDistribution';
+import DailySuccessTilt from '../components/results/angleResults/dailySuccessTilt';
+import MonthlyAngleDistribution from '../components/results/angleResults/monthlyAngleDistribution';
+import MonthlySuccessTilt from '../components/results/angleResults/monthlySuccessTilt';
+import ResultsCalendar from '../components/results/resultsCalendar';
+import { T } from '../utilities/translator';
 
 class AngleResults extends Component {
   static propTypes = {

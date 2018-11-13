@@ -4,17 +4,18 @@
  * @author Austin Didier Tran
  */
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { T } from '../utilities/translator';
-import GoalProgress from '../components/results/progressResults/goalProgress';
-import RecGoalProgress from '../components/results/progressResults/recGoalProgress';
-import GoalChart from '../components/results/progressResults/goalChart';
-import RecGoalChart from '../components/results/progressResults/recGoalChart';
-import ResultsCalendar from '../components/results/resultsCalendar';
-import '../styles/style.css';
 import '../styles/results.css';
+
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import GoalChart from '../components/results/progressResults/goalChart';
+import GoalProgress from '../components/results/progressResults/goalProgress';
+import RecGoalChart from '../components/results/progressResults/recGoalChart';
+import RecGoalProgress from '../components/results/progressResults/recGoalProgress';
+import ResultsCalendar from '../components/results/resultsCalendar';
+import { T } from '../utilities/translator';
 
 class ProgressResults extends Component {
   static propTypes = {

@@ -5,11 +5,12 @@
  * @author Benjamin Roy
  */
 
-import { Button, Modal } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
+import { Button } from 'primereact/components/button/Button';
+import { Dialog } from 'primereact/components/dialog/Dialog';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { T } from '../../utilities/translator';
 
 class ConfirmationPopup extends Component {
@@ -24,10 +25,6 @@ class ConfirmationPopup extends Component {
 
   render() {
     const style = {
-      dialog: {
-        display: 'flex',
-        alignItems: 'center',
-      },
       body: {
         textAlign: 'justify',
       },
@@ -38,36 +35,35 @@ class ConfirmationPopup extends Component {
         transform: 'translate(-50%,-50%)',
       },
     };
-    return (
+    const footer = (
       <div>
-        {this.props.show && (
-          <div>
-            <Modal.Dialog style={style.dialog}>
-              <Modal.Header>
-                <Modal.Title>{this.props.title}</Modal.Title>
-              </Modal.Header>
-              <Modal.Body style={style.body}>
-                <div className="row">
-                  <div className="col">
-                    <i className="fa fa-question-circle fa-3x" style={style.icon} />
-                  </div>
-                  <div className="col-10">
-                    {this.props.body}
-                  </div>
-                </div>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button id="closeButton" onClick={this.props.onClose}>
-                  {T.translate(`confirmation.close.${this.props.language}`)}
-                </Button>
-                <Button id="confirmButton" bsStyle="success" onClick={this.props.onConfirm}>
-                  {T.translate(`confirmation.confirm.${this.props.language}`)}
-                </Button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          </div>
-        )}
+        <Button
+          id="confirmButton"
+          label={T.translate(`confirmation.confirm.${this.props.language}`)}
+          onClick={this.props.onConfirm}
+        />
       </div>
+    );
+    return (
+      <Dialog
+        width="550px"
+        visible={this.props.show}
+        modal
+        header={this.props.title}
+        footer={footer}
+        onHide={this.props.onClose}
+      >
+        <div style={style.body}>
+          <div className="row">
+            <div className="col">
+              <i className="fa fa-question-circle fa-3x" style={style.icon} />
+            </div>
+            <div className="col-10">
+              {this.props.body}
+            </div>
+          </div>
+        </div>
+      </Dialog>
     );
   }
 }

@@ -17,3 +17,7 @@
   margin-top: 10px;
   margin-left: 14px;
 }
+
+.ui-dialog .ui-dialog-content {
+  overflow: hidden;
+}

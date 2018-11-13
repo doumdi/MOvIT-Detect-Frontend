@@ -4,15 +4,16 @@
  * @author Austin Didier Tran
  */
 
+import '../styles/results.css';
+
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
-import { T } from '../utilities/translator';
+import { connect } from 'react-redux';
+import MonthlySittingTime from '../components/results/pressureResults/monthlySittingTime';
 import PressureCenter from '../components/results/pressureResults/pressureCenter';
 import ResultsCalendar from '../components/results/resultsCalendar';
-import MonthlySittingTime from '../components/results/pressureResults/monthlySittingTime';
-import '../styles/style.css';
-import '../styles/results.css';
+import { T } from '../utilities/translator';
 
 class PressureResults extends Component {
   static propTypes = {
