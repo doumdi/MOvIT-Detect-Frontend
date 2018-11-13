@@ -60,7 +60,7 @@ class Header extends Component {
           </div>
         )}
         <nav className="navbar navbar-expand-lg">
-          <Link to="/home" className="navbar-brand title navLink">MOvIT+</Link>
+          <Link to="/home" className="navbar-brand title">MOvIT+</Link>
           <button
             className="navbar-toggler custom-toggler"
             type="button"
