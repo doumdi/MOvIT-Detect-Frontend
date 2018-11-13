@@ -19,27 +19,39 @@ import ResultsCategories from './views/resultsCategories';
 import Settings from './views/settings';
 import Wifi from './views/wifi';
 import forgotPassword from './views/forgotPassword';
+import { IS_DEMO } from './redux/applicationReducer';
 
 export default class Layout extends Component {
   render() {
+    const style = {
+      zIndex: '200',
+      demo: {
+        paddingTop: '80px',
+      },
+      normal: {
+        paddingTop: '65px',
+      },
+    };
     return (
       <Router>
         <div>
           <Header />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/home" component={Home} />
-            <Route exact path="/results" component={ResultsCategories} />
-            <Route path="/angleResults" component={AngleResults} />
-            <Route path="/pressureResults" component={PressureResults} />
-            <Route path="/progressResults" component={ProgressResults} />
-            <Route path="/recommendations" component={Recommendation} />
-            <Route path="/goals" component={Goal} />
-            <Route path="/configurations" component={Configuration} />
-            <Route path="/wifi" component={Wifi} />
-            <Route path="/forgotpassword" component={forgotPassword} />
-            <Route path="/settings" component={Settings} />
-          </Switch>
+          <div style={IS_DEMO ? style.demo : style.normal}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/home" component={Home} />
+              <Route exact path="/results" component={ResultsCategories} />
+              <Route path="/angleResults" component={AngleResults} />
+              <Route path="/pressureResults" component={PressureResults} />
+              <Route path="/progressResults" component={ProgressResults} />
+              <Route path="/recommendations" component={Recommendation} />
+              <Route path="/goals" component={Goal} />
+              <Route path="/configurations" component={Configuration} />
+              <Route path="/wifi" component={Wifi} />
+              <Route path="/forgotpassword" component={forgotPassword} />
+              <Route path="/settings" component={Settings} />
+            </Switch>
+          </div>
         </div>
       </Router>
     );
