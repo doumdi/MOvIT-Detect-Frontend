@@ -44,3 +44,13 @@
 .col-lg-2{
   padding: 0px;
 }
+
+.tilted {
+  transform: rotate(-25deg);
+}
+
+.icons {
+  font-size: 15em;
+  cursor: pointer;
+  padding-bottom: 15px;
+}

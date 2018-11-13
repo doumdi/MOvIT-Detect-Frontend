@@ -43,9 +43,7 @@ export default class RecGoalChart extends Component {
     };
 
     const header = (
-      <div>
-        <h2 style={style.center}>{this.props.title}</h2>
-      </div>
+      <h2 style={style.center}>{this.props.title}</h2>
     );
 
     const element = (

@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 export default class CustomCard extends Component {
   static propTypes = {
     element: PropTypes.element.isRequired,
-    header: PropTypes.element.isRequired,
+    header: PropTypes.element,
     style: PropTypes.object,
   }
 

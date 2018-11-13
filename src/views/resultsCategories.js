@@ -28,17 +28,6 @@ class ResultsCategories extends Component {
         textAlign: 'center',
         height: 'fit-content',
       },
-      icons: {
-        fontSize: '15em',
-        cursor: 'pointer',
-        paddingBottom: '15px',
-      },
-      angle: {
-        fontSize: '15em',
-        cursor: 'pointer',
-        transform: 'rotate(-25deg)',
-        paddingBottom: '15px',
-      },
       pageTop: {
         marginBottom: '2em',
       },
@@ -63,7 +52,7 @@ class ResultsCategories extends Component {
                 element={(
                   <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
                     <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
-                    <i className="fa fa-wheelchair" style={style.angle} />
+                    <i className="fa fa-wheelchair icons tilted" />
                   </button>
               )}
               />
@@ -73,7 +62,7 @@ class ResultsCategories extends Component {
                 element={(
                   <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
                     <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
-                    <i className="fa fa-balance-scale" style={style.icons} />
+                    <i className="fa fa-balance-scale icons" />
                   </button>
               )}
               />
@@ -83,7 +72,7 @@ class ResultsCategories extends Component {
                 element={(
                   <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>
                     <h2>{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
-                    <i className="fa fa-tasks" style={style.icons} />
+                    <i className="fa fa-tasks icons" />
                   </button>
               )}
               />
