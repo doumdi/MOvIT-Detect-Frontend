@@ -1,85 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports['RecGoalChart Tests should match snapshot 1'] = `
+exports[`RecGoalChart Tests should match snapshot 1`] = `
 <div>
   <div>
-    <hr />
-    <h2
-      style={
-        Object {
-          "textAlign": "center",
-        }
+    <CustomCard
+      element={
+        <div>
+          <h4>
+            test
+          </h4>
+          <Chart
+            className={null}
+            data={
+              Object {
+                "datasets": Array [
+                  Object {
+                    "data": Array [
+                      1,
+                    ],
+                    "label": "test",
+                  },
+                ],
+                "labels": Array [
+                  "label",
+                ],
+              }
+            }
+            height={null}
+            id={null}
+            options={
+              Object {
+                "legend": Object {
+                  "onHover": [Function],
+                },
+              }
+            }
+            style={null}
+            type="line"
+            width={null}
+          />
+          <hr />
+          <h4>
+            test
+          </h4>
+          <Chart
+            className={null}
+            data={
+              Object {
+                "datasets": Array [
+                  Object {
+                    "data": Array [
+                      1,
+                    ],
+                    "label": "test",
+                  },
+                ],
+                "labels": Array [
+                  "label",
+                ],
+              }
+            }
+            height={null}
+            id={null}
+            options={
+              Object {
+                "legend": Object {
+                  "onHover": [Function],
+                },
+              }
+            }
+            style={null}
+            type="line"
+            width={null}
+          />
+        </div>
       }
-    >
-      test
-    </h2>
-    <hr />
-    <h4>
-      test
-    </h4>
-    <Chart
-      className={null}
-      data={
-        Object {
-          "datasets": Array [
-            Object {
-              "data": Array [
-                1,
-              ],
-              "label": "test",
-            },
-          ],
-          "labels": Array [
-            "label",
-          ],
-        }
+      header={
+        <div>
+          <h2
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            test
+          </h2>
+        </div>
       }
-      height={null}
-      id={null}
-      options={
-        Object {
-          "legend": Object {
-            "onHover": [Function],
-          },
-        }
-      }
-      style={null}
-      type="line"
-      width={null}
-    />
-    <hr />
-    <h4>
-      test
-    </h4>
-    <Chart
-      className={null}
-      data={
-        Object {
-          "datasets": Array [
-            Object {
-              "data": Array [
-                1,
-              ],
-              "label": "test",
-            },
-          ],
-          "labels": Array [
-            "label",
-          ],
-        }
-      }
-      height={null}
-      id={null}
-      options={
-        Object {
-          "legend": Object {
-            "onHover": [Function],
-          },
-        }
-      }
-      style={null}
-      type="line"
-      width={null}
     />
   </div>
 </div>

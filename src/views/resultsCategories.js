@@ -44,8 +44,11 @@ class ResultsCategories extends Component {
       },
       profileButton: {
         backgroundColor: 'transparent',
+        height: '100%',
+        width: '100%',
         border: 0,
         outline: 'none',
+        cursor: 'pointer',
       },
     };
 

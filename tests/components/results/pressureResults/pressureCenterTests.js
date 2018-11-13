@@ -16,6 +16,7 @@ import toJson from 'enzyme-to-json';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
+import CustomCard from '../../../../src/components/shared/card';
 import { URL } from '../../../../src/redux/applicationReducer';
 import PressureCenter from '../../../../src/components/results/pressureResults/pressureCenter';
 
@@ -170,7 +171,7 @@ describe('PressureCenter Tests', () => {
 
     setFakeState(wrapper);
 
-    wrapper.find(Slider).simulate('change', { value: 1 });
+    wrapper.find(CustomCard).dive().find(Slider).simulate('change', { value: 1 });
 
     expect(spy.calledOnce).toEqual(true);
     expect(spy.getCalls()[0].args[0]).toEqual(1);
