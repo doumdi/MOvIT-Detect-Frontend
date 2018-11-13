@@ -7,15 +7,15 @@
 
 import '../styles/header.css';
 
+import { ApplicationActions, IS_DEMO } from '../redux/applicationReducer';
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
+import { T } from '../utilities/translator';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { T } from '../utilities/translator';
-import { ApplicationActions, IS_DEMO } from '../redux/applicationReducer';
 
 class Header extends Component {
   static propTypes = {
@@ -54,7 +54,7 @@ class Header extends Component {
         {this.isLoggedIn()}
         {IS_DEMO && (
           <div className="demo">
-            <span className="demo-title">{T.translate(`demo.${this.props.language}`)}</span>
+            <span className="demoTitle">{T.translate(`demo.${this.props.language}`)}</span>
             &nbsp;
             <span>{T.translate(`demo.message.${this.props.language}`)}</span>
           </div>
