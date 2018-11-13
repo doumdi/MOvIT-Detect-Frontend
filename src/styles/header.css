@@ -10,7 +10,7 @@
    background-color: darkred;
 }
 
-.demo-title {
+.demoTitle {
   font-weight: bold;
   font-style: italic;
 }
@@ -20,4 +20,46 @@
   top: 0;
   left: 0;
   right: 0;
+}
+
+
+.headerNav {
+  background: #cc2033;
+  margin: 0px;
+}
+
+.containerfluid {
+  width: 90%;
+  height: 100%;
+}
+.title {
+  color: white;
+  line-height: 52px;
+  height: 52px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.navLink {
+  color: white !important;
+  line-height: 52px;
+  height: 52px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  cursor: pointer;
+}
+.navBtn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-align: left;
+}
+.toggleButton {
+  border: none;
 }
