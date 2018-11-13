@@ -101,8 +101,8 @@ class DailySuccessTilt extends Component {
       <div className="container graphic">
         <h4 id="dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>
         <hr />
-        {!this.state.loading &&
-          <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
+        {!this.state.loading
+          && <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
         }
       </div>
     );
