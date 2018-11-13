@@ -21,7 +21,7 @@ export default class CustomCard extends Component {
 
   render() {
     return (
-      <div className="container" style={this.props.style}>
+      <div className="cardContainer" style={this.props.style}>
         <Card
           className="card"
           header={this.props.header}

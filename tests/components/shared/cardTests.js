@@ -8,10 +8,10 @@
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
-import CustomCard from '../../../src/components/shared/card';
 import PropTypes from 'prop-types';
 import React from 'react';
 import toJson from 'enzyme-to-json';
+import CustomCard from '../../../src/components/shared/card';
 
 Enzyme.configure({ adapter: new Adapter() });
 

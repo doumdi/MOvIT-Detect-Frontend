@@ -7,15 +7,15 @@
 
 import '../styles/header.css';
 
-import { ApplicationActions, IS_DEMO } from '../redux/applicationReducer';
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import { T } from '../utilities/translator';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { T } from '../utilities/translator';
+import { ApplicationActions, IS_DEMO } from '../redux/applicationReducer';
 
 class Header extends Component {
   static propTypes = {
