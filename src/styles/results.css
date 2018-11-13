@@ -49,8 +49,18 @@
   transform: rotate(-25deg);
 }
 
-.icons {
-  font-size: 15em;
-  cursor: pointer;
-  padding-bottom: 15px;
+@media (min-width: 780px) {
+  .icons {
+    font-size: 15em;
+    cursor: pointer;
+    padding-bottom: 15px;
+  }
+}
+
+@media (max-width: 779px)  {
+  .icons {
+    font-size: 10em;
+    cursor: pointer;
+    padding-bottom: 15px;
+  }
 }

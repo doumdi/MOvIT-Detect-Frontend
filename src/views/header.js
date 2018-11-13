@@ -28,6 +28,9 @@ class Header extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      width: window.innerWidth,
+    };
     this.props.changeProfile(localStorage.getItem('profile'));
     this.props.changeToken(localStorage.getItem('token'));
   }
@@ -49,6 +52,7 @@ class Header extends Component {
   }
 
   render() {
+    const isMobile = this.state.width <= 500;
     return (
       <div className="top headerNav">
         {this.isLoggedIn()}
@@ -96,7 +100,7 @@ class Header extends Component {
                   </li>
                 )
               }
-              {this.props.profile
+              {this.props.profile && !isMobile
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                     <Link to="/results" className="navLink">{T.translate(`graphics.${this.props.language}`)}</Link>

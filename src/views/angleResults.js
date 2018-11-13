@@ -51,7 +51,7 @@ class AngleResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 500;
+    const isMobile = this.state.width <= 770;
     return (
       <div>
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
@@ -63,14 +63,14 @@ class AngleResults extends Component {
             {this.state.period === 'day'
               ? (
                 <ul className="graphlist">
-                  <li className="graphLink"><a href="#dailyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
-                  <li className="graphLink"><a href="#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
+                  <li className="graphLink"><a href="results/angle#dailyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
+                  <li className="graphLink"><a href="results/angle#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
                 </ul>
               )
               : (
                 <ul className="graphlist">
-                  <li className="graphLink"><a href="#monthlyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
-                  <li className="graphLink"><a href="#monthlyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
+                  <li className="graphLink"><a href="results/angle#monthlyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
+                  <li className="graphLink"><a href="results/angle#monthlyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
                 </ul>
               )
             }

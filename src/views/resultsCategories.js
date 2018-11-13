@@ -43,12 +43,12 @@ class ResultsCategories extends Component {
     };
 
     return (
-      <div style={style.content} className="content-section mt-3 mt-md-4 implementation ui-fluid">
+      <div style={style.content} className="content-section mt-3 mt-lg-4 implementation ui-fluid">
         <h2>{T.translate(`results.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`results.categories.${this.props.language}`)}</h3>
         <div>
-          <div className="row col-md-12">
-            <div className="col-12 col-md-4">
+          <div className="row col-lg-12">
+            <div className="col-12 col-lg-4">
               <CustomCard
                 element={(
                   <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
@@ -58,7 +58,7 @@ class ResultsCategories extends Component {
               )}
               />
             </div>
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-lg-4">
               <CustomCard
                 element={(
                   <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
@@ -68,7 +68,7 @@ class ResultsCategories extends Component {
               )}
               />
             </div>
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-lg-4">
               <CustomCard
                 element={(
                   <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>

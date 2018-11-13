@@ -49,7 +49,7 @@ class PressureResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 500;
+    const isMobile = this.state.width <= 770;
     return (
       <div>
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
@@ -61,12 +61,16 @@ class PressureResults extends Component {
             {this.state.period === 'day'
               ? (
                 <ul className="graphlist">
-                  <li className="graphLink"><a href="#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a></li>
+                  <li className="graphLink">
+                    <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
+                  </li>
                 </ul>
               )
               : (
                 <ul className="graphlist">
-                  <li className="graphLink"><a href="#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a></li>
+                  <li className="graphLink">
+                    <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
+                  </li>
                 </ul>
               )
             }

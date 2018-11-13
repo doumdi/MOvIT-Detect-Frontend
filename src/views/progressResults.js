@@ -57,7 +57,7 @@ class ProgressResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 500;
+    const isMobile = this.state.width <= 770;
     const personalTiltData = {
       labels: [
         '1', '2', '3', '4', '5',
@@ -190,27 +190,45 @@ class ProgressResults extends Component {
                 ? (
                   <ul className="graphlist">
                     {this.props.reduceWeight
-                      && <li className="graphLink"><a href="#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a></li>
-                    }
+                      && (
+                      <li className="graphLink">
+                        <a href="results/progress#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
+                      </li>
+                      )}
                     {this.props.reduceSlidingMoving
-                      && <li className="graphLink"><a href="#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a></li>
-                    }
+                      && (
+                        <li className="graphLink">
+                          <a href="results/progress#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
+                        </li>
+                      )}
                     {this.props.reduceSlidingRest
-                      && <li className="graphLink"><a href="#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></li>
-                    }
+                      && (
+                        <li className="graphLink">
+                          <a href="results/progress#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
+                        </li>
+                      )}
                   </ul>
                 )
                 : (
                   <ul className="graphlist">
                     {this.props.reduceWeight
-                      && <li className="graphLink"><a href="#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a></li>
-                    }
+                      && (
+                      <li className="graphLink">
+                        <a href="results/progress#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
+                      </li>
+                      )}
                     {this.props.reduceSlidingMoving
-                      && <li className="graphLink"><a href="#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a></li>
-                    }
+                      && (
+                        <li className="graphLink">
+                          <a href="results/progress#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
+                        </li>
+                      )}
                     {this.props.reduceSlidingRest
-                      && <li className="graphLink"><a href="#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></li>
-                    }
+                      && (
+                        <li className="graphLink">
+                          <a href="results/progress#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
+                        </li>
+                      )}
                   </ul>
                 )
               }
