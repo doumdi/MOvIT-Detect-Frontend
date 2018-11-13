@@ -27,6 +27,7 @@ describe('ConfirmationPopup Tests', () => {
   const props = {
     onClose: () => { onCloseSpy(); },
     onConfirm: () => { onConfirmSpy(); },
+    language: 'en',
     title: 'Title test',
     body: 'Body test',
     show: true,
@@ -52,14 +53,16 @@ describe('ConfirmationPopup Tests', () => {
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
-  it('should trigger onClose when simulating a click on the close button', () => {
-    wrapper.find('#closeButton').simulate('click');
+  it('should trigger onClose when hiding the dialog', () => {
+    wrapper.simulate('hide');
 
     expect(onCloseSpy.calledOnce).toEqual(true);
   });
 
-  it('should trigger onConfirm when simulating a click on the confirmation button', () => {
-    wrapper.find('#confirmButton').simulate('click');
+  it('should trigger onConfirm when simulating a click on the button', () => {
+    const footer = shallow(wrapper.props().footer);
+
+    footer.find('#confirmButton').simulate('click');
 
     expect(onConfirmSpy.calledOnce).toEqual(true);
   });
