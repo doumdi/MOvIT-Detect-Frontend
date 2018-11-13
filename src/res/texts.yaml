@@ -464,4 +464,11 @@ confirmation:
     EN: "Close"
   confirm:
     FR: "Continuer"
-    EN: "Continue" 
+    EN: "Continue"
+
+demo:
+  FR: "DÉMO"
+  EN: "DEMO"
+  message:
+    FR: "Tous les données sont falsifiées et ne seront pas sauvegardées"
+    EN: "All data is falsified and will not be saved"
