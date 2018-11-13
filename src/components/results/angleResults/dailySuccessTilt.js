@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
+import CustomCard from '../../shared/card';
 import { URL } from '../../../redux/applicationReducer';
 import { T } from '../../../utilities/translator';
 import '../../../styles/results.css';
@@ -95,10 +96,11 @@ class DailySuccessTilt extends Component {
     };
 
     return (
-      <div className="container graphic">
-        <h4 id="dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>
-        <hr />
-        <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
+      <div className="container graphic" id="dailyTilt">
+        <CustomCard
+          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
+          element={<Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />}
+        />
       </div>
     );
   }

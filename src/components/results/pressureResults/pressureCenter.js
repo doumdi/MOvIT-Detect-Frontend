@@ -11,7 +11,7 @@ import { VictoryChart, VictoryScatter, VictoryTheme } from 'victory';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
-
+import CustomCard from '../../shared/card';
 import { URL } from '../../../redux/applicationReducer';
 import { milliToTimeString } from '../../../utils/timeFormat';
 
@@ -89,69 +89,71 @@ class PressureCenter extends Component {
         textAlign: 'center',
       },
     };
+
+    const element = (
+      <div className="col-lg-6 offset-lg-3">
+        <VictoryChart
+          theme={VictoryTheme.material}
+          domain={{ x: [-4, 4], y: [-7, 7] }}
+        >
+          <VictoryScatter
+            style={{ data: { fill: 'green' } }}
+            size={10}
+            data={[
+              this.state.currentCenter,
+            ]}
+          />
+          <VictoryScatter
+            style={{ data: { fill: '#c43a31' } }}
+            size={7}
+            data={[
+              this.state.currentQuadrants[0],
+            ]}
+          />
+          <VictoryScatter
+            style={{ data: { fill: '#c43a31' } }}
+            size={7}
+            data={[
+              this.state.currentQuadrants[1],
+            ]}
+          />
+          <VictoryScatter
+            style={{ data: { fill: '#c43a31' } }}
+            size={7}
+            data={[
+              this.state.currentQuadrants[2],
+            ]}
+          />
+          <VictoryScatter
+            style={{ data: { fill: '#c43a31' } }}
+            size={7}
+            data={[
+              this.state.currentQuadrants[3],
+            ]}
+          />
+        </VictoryChart>
+        <div className="col-8 offset-2">
+          <Slider
+            min={0}
+            max={this.state.centers.length - 1}
+            style={{ marginTop: '1vh' }}
+            value={this.state.index}
+            onChange={e => this.setIndex(e.value)}
+          />
+        </div>
+        <div className="col-6 offset-3 text-center">
+          <h3>{milliToTimeString(this.state.time)}</h3>
+        </div>
+      </div>
+    );
     return (
-      <div className="container" style={style}>
+      <div className="container" style={style} id="dailyPressureCenter">
         {this.state.centers.length > 0
           && (
-          <div>
-            <br />
-            <h4 id="dailyPressureCenter">{this.props.title}</h4>
-            <hr />
-            <div className="col-lg-5 offset-lg-2">
-              <VictoryChart
-                theme={VictoryTheme.material}
-                domain={{ x: [-4, 4], y: [-7, 7] }}
-              >
-                <VictoryScatter
-                  style={{ data: { fill: 'green' } }}
-                  size={10}
-                  data={[
-                    this.state.currentCenter,
-                  ]}
-                />
-                <VictoryScatter
-                  style={{ data: { fill: '#c43a31' } }}
-                  size={7}
-                  data={[
-                    this.state.currentQuadrants[0],
-                  ]}
-                />
-                <VictoryScatter
-                  style={{ data: { fill: '#c43a31' } }}
-                  size={7}
-                  data={[
-                    this.state.currentQuadrants[1],
-                  ]}
-                />
-                <VictoryScatter
-                  style={{ data: { fill: '#c43a31' } }}
-                  size={7}
-                  data={[
-                    this.state.currentQuadrants[2],
-                  ]}
-                />
-                <VictoryScatter
-                  style={{ data: { fill: '#c43a31' } }}
-                  size={7}
-                  data={[
-                    this.state.currentQuadrants[3],
-                  ]}
-                />
-              </VictoryChart>
-              <div className="col-8 offset-2 col-md-4 offset-md-4">
-                <Slider
-                  min={0}
-                  max={this.state.centers.length - 1}
-                  style={{ marginTop: '1vh' }}
-                  value={this.state.index}
-                  onChange={e => this.setIndex(e.value)}
-                />
-              </div>
-              <div className="col-6 offset-3 text-center">
-                <h3>{milliToTimeString(this.state.time)}</h3>
-              </div>
-            </div>
-          </div>
+            <CustomCard
+              header={<h4>{this.props.title}</h4>}
+              element={element}
+            />
           )
         }
       </div>

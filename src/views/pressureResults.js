@@ -59,21 +59,21 @@ class PressureResults extends Component {
           <div className="col-lg-2 leftMenu">
             {this.state.period === 'day'
               ? (
-                <div>
-                  <div><a href="#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a></div>
-                </div>
+                <ul className="graphlist">
+                  <li className="graphLink"><a href="#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a></li>
+                </ul>
               )
               : (
-                <div>
-                  <div><a href="#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a></div>
-                </div>
+                <ul className="graphlist">
+                  <li className="graphLink"><a href="#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a></li>
+                </ul>
               )
             }
           </div>
           )
         }
-        <div className=" col-lg-10 offset-lg-2 results resultsContainer">
-          <div className="col-lg-8 offset-lg-2 graphic">
+        <div className=" col-lg-10 offset-lg-3 results resultsContainer">
+          <div className="col-lg-8 graphic">
             {this.state.period === 'day'
               ? (
                 <div>

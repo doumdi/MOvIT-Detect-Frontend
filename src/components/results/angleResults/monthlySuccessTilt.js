@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
+import CustomCard from '../../shared/card';
 import { URL } from '../../../redux/applicationReducer';
 import { T } from '../../../utilities/translator';
 
@@ -119,10 +120,11 @@ class MonthlySuccessTilt extends Component {
     };
 
     return (
-      <div classame="container">
-        <h4 id="monthlyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>
-        <hr />
-        <Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />
+      <div classame="container" id="monthlyTilt">
+        <CustomCard
+          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
+          element={<Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />}
+        />
       </div>
     );
   }

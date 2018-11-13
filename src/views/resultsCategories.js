@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import CustomCard from '../components/shared/card';
 import { ApplicationActions } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
 
@@ -30,11 +31,13 @@ class ResultsCategories extends Component {
       icons: {
         fontSize: '15em',
         cursor: 'pointer',
+        paddingBottom: '15px',
       },
       angle: {
         fontSize: '15em',
         cursor: 'pointer',
         transform: 'rotate(-25deg)',
+        paddingBottom: '15px',
       },
       pageTop: {
         marginBottom: '2em',
@@ -53,22 +56,34 @@ class ResultsCategories extends Component {
         <div>
           <div className="row col-md-12">
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
-                <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
-                <i className="fa fa-wheelchair" style={style.angle} />
-              </button>
+              <CustomCard
+                element={(
+                  <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
+                    <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
+                    <i className="fa fa-wheelchair" style={style.angle} />
+                  </button>
+              )}
+              />
             </div>
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
-                <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
-                <i className="fa fa-balance-scale" style={style.icons} />
-              </button>
+              <CustomCard
+                element={(
+                  <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
+                    <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
+                    <i className="fa fa-balance-scale" style={style.icons} />
+                  </button>
+              )}
+              />
             </div>
             <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>
-                <h2>{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
-                <i className="fa fa-tasks" style={style.icons} />
-              </button>
+              <CustomCard
+                element={(
+                  <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>
+                    <h2>{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
+                    <i className="fa fa-tasks" style={style.icons} />
+                  </button>
+              )}
+              />
             </div>
           </div>
         </div>

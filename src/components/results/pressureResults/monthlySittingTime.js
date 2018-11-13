@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 import { URL } from '../../../redux/applicationReducer';
 
@@ -101,11 +102,13 @@ class MonthlySittingTime extends Component {
     };
 
     return (
-      <div className="container">
-        <h4 id="monthlySitting">{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>
-        <hr />
+      <div className="container" id="monthlySitting">
         {!this.state.sitLoading
-          && <Chart type="bar" data={this.state.sitChartData} options={hourOptions} />
+          && (<CustomCard
+            header={<h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>}
+            element={<Chart type="bar" data={this.state.sitChartData} options={hourOptions} />}
+          />
+          )
         }
       </div>
     );
