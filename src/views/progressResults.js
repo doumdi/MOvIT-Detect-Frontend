@@ -143,26 +143,12 @@ class ProgressResults extends Component {
     };
 
     const travelData = {
-      labels: [
-        '1', '2', '3', '4', '5',
-        '6', '7', '8', '9', '10',
-        '11', '12', '13', '14', '15',
-        '16', '17', '18', '19', '20',
-        '21', '22', '23', '24', '25',
-        '26', '27', '28', '29', '30',
-      ],
+      labels: this.state.monthSlideLabels,
       datasets: [
         {
           label: T.translate(`monthlyResults.travel.successRate.${this.props.language}`),
           lineTension: 0,
-          data: [
-            36, 40, 27, 38, 42,
-            55, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            34, 36, 30, 21, 24,
-            26, 28, 31, 32, 8,
-            0, 26, 30, 21, 24,
-          ],
+          data: this.state.monthSildeMoving,
           fill: true,
           borderColor: 'red',
         },
@@ -265,7 +251,7 @@ class ProgressResults extends Component {
                     <GoalProgress
                       condition={this.props.reduceSlidingMoving}
                       title={T.translate(`dailyResults.travel.${this.props.language}`)}
-                      value={this.state.value2}
+                      value={this.state.daySildeMoving}
                     />
                   </div>
                   <div id="reduceSlidingRest">
@@ -289,25 +275,27 @@ class ProgressResults extends Component {
                       recData={personalTiltData}
                     />
                   </div>
-                  <div id="reduceSlidingMoving">
-                    <GoalChart
-                      condition={this.props.reduceSlidingMoving}
-                      title={T.translate(`monthlyResults.travel.${this.props.language}`)}
-                      successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
-                      data={travelData}
-                      options={percentOptions}
-                    />
-                  </div>
                   {!this.state.monthLoading
                   && (
-                    <div id="reduceSlidingRest">
-                      <GoalChart
-                        condition={this.props.reduceSlidingRest}
-                        title={T.translate(`monthlyResults.rest.${this.props.language}`)}
-                        successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
-                        data={restData}
-                        options={percentOptions}
-                      />
+                    <div>
+                      <div id="reduceSlidingMoving">
+                        <GoalChart
+                          condition={this.props.reduceSlidingMoving}
+                          title={T.translate(`monthlyResults.travel.${this.props.language}`)}
+                          successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
+                          data={travelData}
+                          options={percentOptions}
+                        />
+                      </div>
+                      <div id="reduceSlidingRest">
+                        <GoalChart
+                          condition={this.props.reduceSlidingRest}
+                          title={T.translate(`monthlyResults.rest.${this.props.language}`)}
+                          successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
+                          data={restData}
+                          options={percentOptions}
+                        />
+                      </div>
                     </div>
                   )}
                 </div>
