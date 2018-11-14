@@ -16,6 +16,8 @@ import RecGoalChart from '../components/results/progressResults/recGoalChart';
 import RecGoalProgress from '../components/results/progressResults/recGoalProgress';
 import ResultsCalendar from '../components/results/resultsCalendar';
 import { T } from '../utilities/translator';
+import { IS_TABLET } from '../redux/applicationReducer';
+
 
 class ProgressResults extends Component {
   static propTypes = {
@@ -57,7 +59,6 @@ class ProgressResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 770;
     const personalTiltData = {
       labels: [
         '1', '2', '3', '4', '5',
@@ -183,7 +184,7 @@ class ProgressResults extends Component {
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
         <hr />
-        {!isMobile
+        {!IS_TABLET
           && (
             <div className="col-lg-2 leftMenu">
               {this.state.period === 'day'

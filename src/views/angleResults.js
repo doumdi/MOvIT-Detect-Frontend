@@ -16,6 +16,8 @@ import MonthlyAngleDistribution from '../components/results/angleResults/monthly
 import MonthlySuccessTilt from '../components/results/angleResults/monthlySuccessTilt';
 import ResultsCalendar from '../components/results/resultsCalendar';
 import { T } from '../utilities/translator';
+import { IS_TABLET } from '../redux/applicationReducer';
+
 
 class AngleResults extends Component {
   static propTypes = {
@@ -51,13 +53,12 @@ class AngleResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 770;
     return (
       <div>
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
         <hr />
-        {!isMobile
+        {!IS_TABLET
           && (
           <div className="col-lg-2 leftMenu">
             {this.state.period === 'day'

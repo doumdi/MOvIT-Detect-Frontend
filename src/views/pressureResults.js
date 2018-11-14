@@ -14,6 +14,8 @@ import MonthlySittingTime from '../components/results/pressureResults/monthlySit
 import PressureCenter from '../components/results/pressureResults/pressureCenter';
 import ResultsCalendar from '../components/results/resultsCalendar';
 import { T } from '../utilities/translator';
+import { IS_TABLET } from '../redux/applicationReducer';
+
 
 class PressureResults extends Component {
   static propTypes = {
@@ -49,13 +51,12 @@ class PressureResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 770;
     return (
       <div>
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
         <hr />
-        {!isMobile
+        {!IS_TABLET
           && (
           <div className="col-lg-2 leftMenu">
             {this.state.period === 'day'
