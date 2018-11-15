@@ -16,11 +16,8 @@ import GoalProgress from '../components/results/progressResults/goalProgress';
 import RecGoalChart from '../components/results/progressResults/recGoalChart';
 import RecGoalProgress from '../components/results/progressResults/recGoalProgress';
 import ResultsCalendar from '../components/results/resultsCalendar';
-import { URL } from '../redux/applicationReducer';
+import { URL, IS_TABLET } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
-import { IS_TABLET } from '../redux/applicationReducer';
-
-
 
 class ProgressResults extends Component {
   static propTypes = {
