@@ -17,6 +17,16 @@ exports[`Settings Tests should match the snapshot 1`] = `
     >
       <Connect(Notification) />
       <CustomCard
+        element={<Connect(ModuleStatus) />}
+        header={
+          <span
+            className="ui-card-title"
+          >
+            settings.modules.en
+          </span>
+        }
+      />
+      <CustomCard
         element={<Connect(NotificationSettings) />}
         header={
           <span

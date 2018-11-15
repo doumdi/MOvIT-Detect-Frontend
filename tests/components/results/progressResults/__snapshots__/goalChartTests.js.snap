@@ -3,30 +3,36 @@
 exports[`GoalChart Tests should match the snapshot 1`] = `
 <div>
   <div>
-    <hr />
-    <h2
-      id=""
-      style={
-        Object {
-          "textAlign": "center",
-        }
+    <CustomCard
+      element={
+        <Chart
+          className={null}
+          data={Object {}}
+          height={null}
+          id={null}
+          options={Object {}}
+          style={null}
+          type="line"
+          width={null}
+        />
       }
-    >
-      This is a test
-    </h2>
-    <hr />
-    <h4>
-      Success
-    </h4>
-    <Chart
-      className={null}
-      data={Object {}}
-      height={null}
-      id={null}
-      options={Object {}}
-      style={null}
-      type="line"
-      width={null}
+      header={
+        <div>
+          <h2
+            id=""
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            This is a test
+          </h2>
+          <h4>
+            Success
+          </h4>
+        </div>
+      }
     />
   </div>
 </div>

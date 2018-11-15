@@ -13,6 +13,7 @@ import CustomCard from '../components/shared/card';
 import MemoryUsage from '../components/settings/memoryUsage';
 import Notification from '../components/settings/notification';
 import NotificationSettings from '../components/settings/notificationSettings';
+import ModuleStatus from '../components/settings/moduleStatus';
 import Permissions from '../components/settings/permissions';
 import { T } from '../utilities/translator';
 import UpdatesManager from '../components/settings/updatesManager';
@@ -38,6 +39,10 @@ class Settings extends Component {
         <div className="row">
           <div className="col-12 col-md-8 offset-md-2">
             <Notification />
+            <CustomCard
+              header={<span className="ui-card-title">{T.translate(`settings.modules.${this.props.language}`)}</span>}
+              element={<ModuleStatus />}
+            />
             <CustomCard
               header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
               element={<NotificationSettings />}

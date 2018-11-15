@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import { T } from '../../../utilities/translator';
+import CustomCard from '../../shared/card';
 
 class RecGoalProgress extends Component {
   static propTypes = {
@@ -27,26 +28,38 @@ class RecGoalProgress extends Component {
       },
     };
 
+    const header = (
+      <div>
+        <h2 style={style.center}>{this.props.title}</h2>
+      </div>
+    );
+
+    const element = (
+      <div>
+        <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>
+        <ProgressBar value={this.props.goalValue} />
+        <p style={style.center}>
+          {T.translate(`dailyResults.personal.description.${this.props.language}`,
+            { percent: this.props.goalValue })}
+        </p>
+        <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
+        <ProgressBar value={this.props.recValue} />
+        <p style={style.center}>
+          {T.translate(`dailyResults.recommended.description.${this.props.language}`,
+            { percent: this.props.recValue })}
+        </p>
+      </div>
+    );
+
     return (
       <div>
         {this.props.condition
           && (
           <div>
-            <hr />
-            <h2 style={style.center}>{this.props.title}</h2>
-
-            <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>
-            <ProgressBar value={this.props.goalValue} />
-            <p style={style.center}>
-              {T.translate(`dailyResults.personal.description.${this.props.language}`,
-                { percent: this.props.goalValue })}
-            </p>
-            <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
-            <ProgressBar value={this.props.recValue} />
-            <p style={style.center}>
-              {T.translate(`dailyResults.recommended.description.${this.props.language}`,
-                { percent: this.props.recValue })}
-            </p>
+            <CustomCard
+              header={header}
+              element={element}
+            />
           </div>
           )
         }

@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
+import CustomCard from '../../shared/card';
 
 export default class GoalChart extends Component {
   static propTypes = {
@@ -30,16 +31,22 @@ export default class GoalChart extends Component {
       },
     };
 
+    const header = (
+      <div>
+        <h2 id={this.props.id || ''} style={style.center}>{this.props.title}</h2>
+        <h4>{this.props.successMessage}</h4>
+      </div>
+    );
+
     return (
       <div>
         {this.props.condition
           && (
           <div>
-            <hr />
-            <h2 id={this.props.id || ''} style={style.center}>{this.props.title}</h2>
-            <hr />
-            <h4>{this.props.successMessage}</h4>
-            <Chart type="line" data={this.props.data} options={this.props.options} />
+            <CustomCard
+              header={header}
+              element={<Chart type="line" data={this.props.data} options={this.props.options} />}
+            />
           </div>
           )
         }

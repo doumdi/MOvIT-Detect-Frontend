@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
+import CustomCard from '../../shared/card';
 
 
 export default class RecGoalChart extends Component {
@@ -40,19 +41,30 @@ export default class RecGoalChart extends Component {
         onHover: e => this.hover(e),
       },
     };
+
+    const header = (
+      <h2 style={style.center}>{this.props.title}</h2>
+    );
+
+    const element = (
+      <div>
+        <h4>{this.props.goalTitle}</h4>
+        <Chart type="line" data={this.props.goalData} options={options} />
+        <hr />
+        <h4>{this.props.recTitle}</h4>
+        <Chart type="line" data={this.props.recData} options={options} />
+      </div>
+    );
+
     return (
       <div>
         {this.props.condition
           && (
           <div>
-            <hr />
-            <h2 style={style.center}>{this.props.title}</h2>
-            <hr />
-            <h4>{this.props.goalTitle}</h4>
-            <Chart type="line" data={this.props.goalData} options={options} />
-            <hr />
-            <h4>{this.props.recTitle}</h4>
-            <Chart type="line" data={this.props.recData} options={options} />
+            <CustomCard
+              header={header}
+              element={element}
+            />
           </div>
           )
         }

@@ -3,58 +3,67 @@
 exports[`RecGoalProgress Tests should match the snapshot 1`] = `
 <div>
   <div>
-    <hr />
-    <h2
-      style={
-        Object {
-          "textAlign": "center",
-        }
+    <CustomCard
+      element={
+        <div>
+          <h4>
+            dailyResults.personal.en
+          </h4>
+          <ProgressBar
+            className={null}
+            id={null}
+            mode="determinate"
+            showValue={true}
+            style={null}
+            unit="%"
+            value={50}
+          />
+          <p
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            dailyResults.personal.description.en
+          </p>
+          <h4>
+            dailyResults.recommended.en
+          </h4>
+          <ProgressBar
+            className={null}
+            id={null}
+            mode="determinate"
+            showValue={true}
+            style={null}
+            unit="%"
+            value={30}
+          />
+          <p
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            dailyResults.recommended.description.en
+          </p>
+        </div>
       }
-    >
-      This is a title
-    </h2>
-    <h4>
-      dailyResults.personal.en
-    </h4>
-    <ProgressBar
-      className={null}
-      id={null}
-      mode="determinate"
-      showValue={true}
-      style={null}
-      unit="%"
-      value={50}
+      header={
+        <div>
+          <h2
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            This is a title
+          </h2>
+        </div>
+      }
     />
-    <p
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
-    >
-      dailyResults.personal.description.en
-    </p>
-    <h4>
-      dailyResults.recommended.en
-    </h4>
-    <ProgressBar
-      className={null}
-      id={null}
-      mode="determinate"
-      showValue={true}
-      style={null}
-      unit="%"
-      value={30}
-    />
-    <p
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
-    >
-      dailyResults.recommended.description.en
-    </p>
   </div>
 </div>
 `;
