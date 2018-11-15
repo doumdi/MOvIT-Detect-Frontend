@@ -10,18 +10,19 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import GoalChart from '../components/results/progressResults/goalChart';
 import GoalProgress from '../components/results/progressResults/goalProgress';
 import RecGoalChart from '../components/results/progressResults/recGoalChart';
 import RecGoalProgress from '../components/results/progressResults/recGoalProgress';
 import ResultsCalendar from '../components/results/resultsCalendar';
+import { URL, IS_TABLET } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
-import { IS_TABLET } from '../redux/applicationReducer';
-
 
 class ProgressResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    header: PropTypes.object,
     date: PropTypes.instanceOf(Date),
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
@@ -37,7 +38,13 @@ class ProgressResults extends Component {
       date: props.date,
       month: props.month,
       value1: 50,
-      value2: 30,
+      value2: 70,
+      daySildeRest: 0,
+      daySildeMoving: 0,
+      monthSildeRest: [],
+      monthSildeMoving: [],
+      monthSlideLabels: [],
+      monthLoading: true,
     };
 
     this.changePeriod = this.changePeriod.bind(this);
@@ -45,12 +52,45 @@ class ProgressResults extends Component {
     this.changeMonth = this.changeMonth.bind(this);
   }
 
+  getDailySlidingProgress(date) {
+    axios.get(`${URL}dailySlideProgress?Day=${+date},offset=0`, this.props.header)
+      .then((response) => { this.loadDailySlidingData(response.data); })
+      .catch(console.log);
+  }
+
+  getMonthlySlidingProgress(month) {
+    this.state.monthLoading = true;
+    const date = new Date(new Date().getFullYear(), month, 1);
+    axios.get(`${URL}monthlySlideProgress?Day=${+date},offset=0`, this.props.header)
+      .then((response) => { this.loadMonthlySlidingData(response.data); })
+      .catch(console.log);
+  }
+
+  loadMonthlySlidingData(data) {
+    this.state.monthSlideLabels = [];
+    this.state.monthSildeRest = [];
+    this.state.monthSlideMoving = [];
+    Object.keys(data).forEach((key) => {
+      this.state.monthSlideLabels.push(key.toString());
+      this.state.monthSildeRest.push(data[key][0] * 100);
+      this.state.monthSildeMoving.push(data[key][1] * 100);
+    });
+
+    this.setState({ monthLoading: false });
+  }
+
+  loadDailySlidingData(data) {
+    this.setState({ daySildeRest: data[0] * 100, daySildeMoving: data[1] * 100, loadingDay: false });
+  }
+
   changeMonth(newMonth) {
     this.setState({ month: newMonth });
+    this.getMonthlySlidingProgress(newMonth);
   }
 
   changeDate(newDate) {
     this.setState({ date: newDate });
+    this.getDailySlidingProgress(newDate);
   }
 
   changePeriod(newPeriod) {
@@ -101,26 +141,12 @@ class ProgressResults extends Component {
     };
 
     const travelData = {
-      labels: [
-        '1', '2', '3', '4', '5',
-        '6', '7', '8', '9', '10',
-        '11', '12', '13', '14', '15',
-        '16', '17', '18', '19', '20',
-        '21', '22', '23', '24', '25',
-        '26', '27', '28', '29', '30',
-      ],
+      labels: this.state.monthSlideLabels,
       datasets: [
         {
           label: T.translate(`monthlyResults.travel.successRate.${this.props.language}`),
           lineTension: 0,
-          data: [
-            36, 40, 27, 38, 42,
-            55, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            34, 36, 30, 21, 24,
-            26, 28, 31, 32, 8,
-            0, 26, 30, 21, 24,
-          ],
+          data: this.state.monthSildeMoving,
           fill: true,
           borderColor: 'red',
         },
@@ -128,26 +154,12 @@ class ProgressResults extends Component {
     };
 
     const restData = {
-      labels: [
-        '1', '2', '3', '4', '5',
-        '6', '7', '8', '9', '10',
-        '11', '12', '13', '14', '15',
-        '16', '17', '18', '19', '20',
-        '21', '22', '23', '24', '25',
-        '26', '27', '28', '29', '30',
-      ],
+      labels: this.state.monthSlideLabels,
       datasets: [
         {
           label: T.translate(`monthlyResults.travel.successRate.${this.props.language}`),
           lineTension: 0,
-          data: [
-            36, 40, 27, 38, 42,
-            55, 40, 28, 32, 26,
-            25, 28, 31, 22, 25,
-            34, 36, 30, 21, 24,
-            26, 28, 31, 32, 8,
-            0, 26, 30, 21, 24,
-          ],
+          data: this.state.monthSildeRest,
           fill: true,
           borderColor: 'red',
         },
@@ -159,6 +171,8 @@ class ProgressResults extends Component {
         yAxes: [{
           ticks: {
             callback: value => `${value}%`,
+            min: 0,
+            max: 100,
           },
         }],
       },
@@ -253,14 +267,14 @@ class ProgressResults extends Component {
                     <GoalProgress
                       condition={this.props.reduceSlidingMoving}
                       title={T.translate(`dailyResults.travel.${this.props.language}`)}
-                      value={this.state.value2}
+                      value={this.state.daySildeMoving}
                     />
                   </div>
                   <div id="reduceSlidingRest">
                     <GoalProgress
                       condition={this.props.reduceSlidingRest}
                       title={T.translate(`dailyResults.rest.${this.props.language}`)}
-                      value={this.state.value2}
+                      value={this.state.daySildeRest}
                     />
                   </div>
                 </div>
@@ -277,27 +291,31 @@ class ProgressResults extends Component {
                       recData={personalTiltData}
                     />
                   </div>
-                  <div id="reduceSlidingMoving">
-                    <GoalChart
-                      condition={this.props.reduceSlidingMoving}
-                      title={T.translate(`monthlyResults.travel.${this.props.language}`)}
-                      successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
-                      data={travelData}
-                      options={percentOptions}
-                    />
-                  </div>
-                  <div id="reduceSlidingRest">
-                    <GoalChart
-                      condition={this.props.reduceSlidingRest}
-                      title={T.translate(`monthlyResults.rest.${this.props.language}`)}
-                      successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
-                      data={restData}
-                      options={percentOptions}
-                    />
-                  </div>
+                  {!this.state.monthLoading
+                  && (
+                    <div>
+                      <div id="reduceSlidingMoving">
+                        <GoalChart
+                          condition={this.props.reduceSlidingMoving}
+                          title={T.translate(`monthlyResults.travel.${this.props.language}`)}
+                          successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
+                          data={travelData}
+                          options={percentOptions}
+                        />
+                      </div>
+                      <div id="reduceSlidingRest">
+                        <GoalChart
+                          condition={this.props.reduceSlidingRest}
+                          title={T.translate(`monthlyResults.rest.${this.props.language}`)}
+                          successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
+                          data={restData}
+                          options={percentOptions}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )
-            }
+              )}
           </div>
         </div>
       </div>
@@ -308,6 +326,7 @@ class ProgressResults extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
+    header: state.applicationReducer.header,
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
