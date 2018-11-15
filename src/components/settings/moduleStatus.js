@@ -29,8 +29,8 @@ class ModuleStatus extends Component {
     const moduleList = this.state.moduleStatus.map(module => (
       <li className="mb-1">
         {module.name}: &nbsp;
-        <span style={{ color: module.value === true ? 'green' : 'red' }}>
-          {T.translate(`settings.state.value.${module.value === true ? 'connected' : 'disconnected'}.${this.props.language}`)}
+        <span style={{ color: module.value ? 'green' : 'red' }}>
+          {T.translate(`settings.state.value.${module.value ? 'connected' : 'disconnected'}.${this.props.language}`)}
         </span>
       </li>));
 
