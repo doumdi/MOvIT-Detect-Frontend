@@ -5,8 +5,6 @@
  * @author Benjamin Roy
  */
 
-import '../../styles/overwrite.css';
-
 import React, { Component } from 'react';
 
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
@@ -135,6 +133,7 @@ class NotificationSettings extends Component {
             min={this.props.minimumSnoozeTime || MINIMUM_SNOOZE_TIME}
             max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}
             maxlength={2}
+            size="3"
           />
           <span>
             &nbsp;&nbsp;

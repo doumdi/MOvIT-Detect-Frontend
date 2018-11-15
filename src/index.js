@@ -4,11 +4,12 @@
  * @author Austin Didier Tran
  */
 
+import './styles/overwrite.css';
+import './styles/style.css';
+
+import { Provider } from 'react-redux';
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-
-// import Application from './redux/reducers';
 import Layout from './layout';
 import store from './redux/store';
 

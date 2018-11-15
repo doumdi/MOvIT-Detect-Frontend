@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
+import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 
 class GoalProgress extends Component {
@@ -26,20 +27,32 @@ class GoalProgress extends Component {
       },
     };
 
+    const header = (
+      <div>
+        <h2 style={style.center}>{this.props.title}</h2>
+        <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
+      </div>
+    );
+
+    const element = (
+      <div>
+        <ProgressBar value={this.props.value} />
+        <p style={style.center}>
+          {T.translate(`dailyResults.recommended.description.${this.props.language}`,
+            { percent: this.props.value })}
+        </p>
+      </div>
+    );
+
     return (
       <div>
         {this.props.condition
           && (
           <div>
-            <hr />
-            <h2 style={style.center}>{this.props.title}</h2>
-
-            <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
-            <ProgressBar value={this.props.value} />
-            <p style={style.center}>
-              {T.translate(`dailyResults.recommended.description.${this.props.language}`,
-                { percent: this.props.value })}
-            </p>
+            <CustomCard
+              header={header}
+              element={element}
+            />
           </div>
           )
         }

@@ -15,7 +15,7 @@ import { Redirect } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
-import { ApplicationActions } from '../redux/applicationReducer';
+import { ApplicationActions, IS_DEMO, IS_MOBILE } from '../redux/applicationReducer';
 
 class Header extends Component {
   static propTypes = {
@@ -49,49 +49,18 @@ class Header extends Component {
   }
 
   render() {
-    const style = {
-      navbar: { background: '#cc2033', margin: '0px' },
-      containerfluid: { width: '90%', height: '100%' },
-      title: {
-        color: 'white',
-        lineHeight: '52px',
-        height: '52px',
-        paddingTop: 0,
-        marginTop: 0,
-        marginBottom: 0,
-        fontWeight: 'bold',
-        fontSize: '24px',
-        fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
-      },
-      link: {
-        color: 'white',
-        lineHeight: '52px',
-        height: '52px',
-        paddingTop: 0,
-        marginTop: 0,
-        marginBottom: 0,
-        fontSize: '16px',
-        fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
-        cursor: 'pointer',
-      },
-      button: {
-        backgroundColor: 'transparent',
-        border: 'none',
-        outline: 'none',
-        textAlign: 'left',
-      },
-
-      toggleButton: {
-        border: 'none',
-      },
-    };
-
     return (
-      <div>
+      <div className="top headerNav">
         {this.isLoggedIn()}
-
-        <nav className="navbar fixed-top navbar-expand-lg" style={style.navbar}>
-          <Link to="/home" className="navbar-brand" style={style.title}>MOvIT+</Link>
+        {IS_DEMO && (
+          <div className="demo">
+            <span className="demoTitle">{T.translate(`demo.${this.props.language}`)}</span>
+            &nbsp;
+            <span>{T.translate(`demo.message.${this.props.language}`)}</span>
+          </div>
+        )}
+        <nav className="navbar navbar-expand-lg">
+          <Link to="/home" className="navbar-brand title">MOvIT+</Link>
           <button
             className="navbar-toggler custom-toggler"
             type="button"
@@ -109,58 +78,56 @@ class Header extends Component {
               {this.props.profile === 'clinician'
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="/configurations" style={style.link}>{T.translate(`configurations.${this.props.language}`)}</Link>
+                    <Link to="/configurations" className="navLink">{T.translate(`configurations.${this.props.language}`)}</Link>
                   </li>
                 )
               }
               {this.props.profile === 'clinician'
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="/recommendations" style={style.link}>{T.translate(`recommendations.${this.props.language}`)}</Link>
+                    <Link to="/recommendations" className="navLink">{T.translate(`recommendations.${this.props.language}`)}</Link>
                   </li>
                 )
               }
               {this.props.profile
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="/goals" style={style.link}>{T.translate(`goals.${this.props.language}`)}</Link>
+                    <Link to="/goals" className="navLink">{T.translate(`goals.${this.props.language}`)}</Link>
                   </li>
                 )
               }
-              {this.props.profile
+              {this.props.profile && !IS_MOBILE
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="/results" style={style.link}>{T.translate(`graphics.${this.props.language}`)}</Link>
+                    <Link to="/results" className="navLink">{T.translate(`graphics.${this.props.language}`)}</Link>
                   </li>
                 )
               }
               <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                <Link to="/wifi" style={style.link}>{T.translate(`wifi.${this.props.language}`)}</Link>
+                <Link to="/wifi" className="navLink">{T.translate(`wifi.${this.props.language}`)}</Link>
               </li>
             </ul>
 
             <li className="nav navbar-nav pl-1">
-              <button className="btn" type="button" onClick={this.props.changeLanguage} style={style.button}>
+              <button className="btn navBtn" type="button" onClick={this.props.changeLanguage}>
                 {this.props.language === 'FR'
-                  ? <a className="small-font" style={style.link}>EN</a>
-                  : <a className="small-font" style={style.link}>FR</a>
+                  ? <a className="small-font navLink">EN</a>
+                  : <a className="small-font navLink">FR</a>
                 }
               </button>
             </li>
             <li className="nav navbar-nav pl-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-              <button className="btn" style={style.button} type="button">
-                <Link to="/settings" style={style.link}><i className="fa fa-cog" /></Link>
+              <button className="btn navBtn" type="button">
+                <Link to="/settings" className="navLink"><i className="fa fa-cog" /></Link>
               </button>
             </li>
             {this.props.profile
               && (
                 <li className="nav navbar-nav pl-1">
-                  <button className="btn" onClick={() => this.logout()} style={style.button} type="button">
-                    <Link to="/home" style={style.link}>
+                  <button className="btn navBtn" onClick={() => this.logout()} type="button">
+                    <Link to="/home" className="navLink">
                       {T.translate(`welcome.logout.${this.props.language}`)}
                       {' '}
-
-
                       &nbsp;
                       <i className="fa fa-sign-out" />
                     </Link>

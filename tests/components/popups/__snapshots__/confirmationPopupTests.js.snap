@@ -1,91 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ConfirmationPopup Tests should match the snapshot 1`] = `
-<div>
-  <div>
-    <ModalDialog
-      bsClass="modal"
-      style={
-        Object {
-          "alignItems": "center",
-          "display": "flex",
-        }
+<Dialog
+  appendTo={null}
+  autoAlign={true}
+  baseZIndex={0}
+  breakpoint={640}
+  className={null}
+  closable={true}
+  closeOnEscape={true}
+  contentStyle={null}
+  dismissableMask={false}
+  draggable={true}
+  footer={
+    <div>
+      <Button
+        cornerStyleClass="ui-corner-all"
+        icon={null}
+        iconPos="left"
+        id="confirmButton"
+        label="confirmation.confirm.en"
+        onClick={[Function]}
+      />
+    </div>
+  }
+  header="Title test"
+  height="auto"
+  id={null}
+  minHeight={150}
+  minWidth={150}
+  minX={0}
+  minY={0}
+  modal={true}
+  onHide={[Function]}
+  onShow={null}
+  positionLeft={-1}
+  positionTop={-1}
+  resizable={true}
+  responsive={true}
+  rtl={false}
+  showHeader={true}
+  style={null}
+  visible={true}
+  width="550px"
+>
+  <div
+    style={
+      Object {
+        "textAlign": "justify",
       }
+    }
+  >
+    <div
+      className="row"
     >
-      <ModalHeader
-        bsClass="modal-header"
-        closeButton={false}
-        closeLabel="Close"
+      <div
+        className="col"
       >
-        <ModalTitle
-          bsClass="modal-title"
-          componentClass="h4"
-        >
-          Title test
-        </ModalTitle>
-      </ModalHeader>
-      <ModalBody
-        bsClass="modal-body"
-        componentClass="div"
-        style={
-          Object {
-            "textAlign": "justify",
+        <i
+          className="fa fa-question-circle fa-3x"
+          style={
+            Object {
+              "left": "50%",
+              "position": "absolute",
+              "top": "50%",
+              "transform": "translate(-50%,-50%)",
+            }
           }
-        }
+        />
+      </div>
+      <div
+        className="col-10"
       >
-        <div
-          className="row"
-        >
-          <div
-            className="col"
-          >
-            <i
-              className="fa fa-question-circle fa-3x"
-              style={
-                Object {
-                  "left": "50%",
-                  "position": "absolute",
-                  "top": "50%",
-                  "transform": "translate(-50%,-50%)",
-                }
-              }
-            />
-          </div>
-          <div
-            className="col-10"
-          >
-            Body test
-          </div>
-        </div>
-      </ModalBody>
-      <ModalFooter
-        bsClass="modal-footer"
-        componentClass="div"
-      >
-        <Button
-          active={false}
-          block={false}
-          bsClass="btn"
-          bsStyle="default"
-          disabled={false}
-          id="closeButton"
-          onClick={[Function]}
-        >
-          confirmation.close.en
-        </Button>
-        <Button
-          active={false}
-          block={false}
-          bsClass="btn"
-          bsStyle="success"
-          disabled={false}
-          id="confirmButton"
-          onClick={[Function]}
-        >
-          confirmation.confirm.en
-        </Button>
-      </ModalFooter>
-    </ModalDialog>
+        Body test
+      </div>
+    </div>
   </div>
-</div>
+</Dialog>
 `;
