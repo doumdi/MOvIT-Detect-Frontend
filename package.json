@@ -14,7 +14,7 @@
     "pi": "yarn && NODE_ENV=pi node server.js",
     "local": "yarn && cross-env NODE_ENV=local node server.js",
     "prepush": "yarn lint && yarn test",
-    "startDemo": "yarn && cross-env NODE_ENV=demo node server.js"
+    "startDemo": "yarn && cross-env NODE_ENV=demos node server.js"
   },
   "repository": {
     "type": "git",
@@ -78,7 +78,6 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
     "axios-mock-adapter": "^1.15.0",
-    "babel-jest": "^22.2.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
