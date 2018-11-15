@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
+import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 import { URL } from '../../../redux/applicationReducer';
 import '../../../styles/results.css';
@@ -99,11 +100,14 @@ class DailyAngleDistribution extends Component {
       },
     };
     return (
-      <div className="container graphic">
-        <h4 id="dailyAngle">{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>
-        <hr />
+      <div className="container graphic" id="dailyAngle">
         {!this.state.loading
-          && <Chart type="pie" data={this.state.data} options={minOptions} />
+          && (
+          <CustomCard
+            header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>}
+            element={<Chart type="pie" data={this.state.data} options={minOptions} />}
+          />
+          )
         }
       </div>
     );

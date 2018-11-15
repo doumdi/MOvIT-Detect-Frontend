@@ -16,6 +16,8 @@ import RecGoalChart from '../components/results/progressResults/recGoalChart';
 import RecGoalProgress from '../components/results/progressResults/recGoalProgress';
 import ResultsCalendar from '../components/results/resultsCalendar';
 import { T } from '../utilities/translator';
+import { IS_TABLET } from '../redux/applicationReducer';
+
 
 class ProgressResults extends Component {
   static propTypes = {
@@ -57,7 +59,6 @@ class ProgressResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 500;
     const personalTiltData = {
       labels: [
         '1', '2', '3', '4', '5',
@@ -183,35 +184,53 @@ class ProgressResults extends Component {
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
         <hr />
-        {!isMobile
+        {!IS_TABLET
           && (
             <div className="col-lg-2 leftMenu">
               {this.state.period === 'day'
                 ? (
-                  <div>
+                  <ul className="graphlist">
                     {this.props.reduceWeight
-                      && <div><a href="#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a></div>
-                    }
+                      && (
+                      <li className="graphLink">
+                        <a href="results/progress#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
+                      </li>
+                      )}
                     {this.props.reduceSlidingMoving
-                      && <div><a href="#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a></div>
-                    }
+                      && (
+                        <li className="graphLink">
+                          <a href="results/progress#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
+                        </li>
+                      )}
                     {this.props.reduceSlidingRest
-                      && <div><a href="#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></div>
-                    }
-                  </div>
+                      && (
+                        <li className="graphLink">
+                          <a href="results/progress#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
+                        </li>
+                      )}
+                  </ul>
                 )
                 : (
-                  <div>
+                  <ul className="graphlist">
                     {this.props.reduceWeight
-                      && <div><a href="#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a></div>
-                    }
+                      && (
+                      <li className="graphLink">
+                        <a href="results/progress#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
+                      </li>
+                      )}
                     {this.props.reduceSlidingMoving
-                      && <div><a href="#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a></div>
-                    }
+                      && (
+                        <li className="graphLink">
+                          <a href="results/progress#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
+                        </li>
+                      )}
                     {this.props.reduceSlidingRest
-                      && <div><a href="#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a></div>
-                    }
-                  </div>
+                      && (
+                        <li className="graphLink">
+                          <a href="results/progress#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
+                        </li>
+                      )}
+                  </ul>
                 )
               }
             </div>
@@ -251,51 +270,19 @@ class ProgressResults extends Component {
                   <div id="reduceWeight">
                     <RecGoalChart
                       condition={this.props.reduceWeight}
-                      title={T.translate(`dailyResults.pressure.${this.props.language}`)}
-                      goalValue={this.state.value2}
-                      recValue={this.state.value1}
-                    />
-                    <GoalProgress
-                      condition={this.props.reduceSlidingMoving}
-                      title={T.translate(`dailyResults.travel.${this.props.language}`)}
-                      value={this.state.value2}
-                    />
-                    <GoalProgress
-                      condition={this.props.reduceSlidingRest}
-                      title={T.translate(`dailyResults.rest.${this.props.language}`)}
-                      value={this.state.value2}
+                      title={T.translate(`monthlyResults.pressure.${this.props.language}`)}
+                      goalTitle={T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}
+                      recTitle={T.translate(`monthlyResults.pressure.recommended.${this.props.language}`)}
+                      goalData={personalTiltData}
+                      recData={personalTiltData}
                     />
                   </div>
-
-
-                )
-                : (
-                  <div>
-                    <div id="reduceWeight">
-                      <RecGoalChart
-                        condition={this.props.reduceWeight}
-                        title={T.translate(`monthlyResults.pressure.${this.props.language}`)}
-                        goalTitle={T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}
-                        recTitle={T.translate(`monthlyResults.pressure.recommended.${this.props.language}`)}
-                        goalData={personalTiltData}
-                        recData={personalTiltData}
-                      />
-                    </div>
-                    <div id="reduceSlidingMoving">
-                      <GoalChart
-                        condition={this.props.reduceSlidingMoving}
-                        title={T.translate(`monthlyResults.travel.${this.props.language}`)}
-                        successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
-                        data={travelData}
-                        options={percentOptions}
-                      />
-                    </div>
+                  <div id="reduceSlidingMoving">
                     <GoalChart
-                      id="reduceSlidingRest"
-                      condition={this.props.reduceSlidingRest}
-                      title={T.translate(`monthlyResults.rest.${this.props.language}`)}
-                      successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
-                      data={restData}
+                      condition={this.props.reduceSlidingMoving}
+                      title={T.translate(`monthlyResults.travel.${this.props.language}`)}
+                      successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
+                      data={travelData}
                       options={percentOptions}
                     />
                   </div>

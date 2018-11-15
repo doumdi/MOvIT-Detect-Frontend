@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 import { URL } from '../../../redux/applicationReducer';
 import '../../../styles/results.css';
@@ -150,11 +151,13 @@ class MonthlyAngleDistribution extends Component {
     };
 
     return (
-      <div className="container graphic">
-        <h4 id="monthlyAngle">{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>
-        <hr />
+      <div className="container graphic" id="monthlyAngle">
         {!this.state.angleLoading
-          && <Chart type="bar" data={this.state.angleChartData} options={percentOptions2} />
+          && (<CustomCard
+            header={<h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>}
+            element={<Chart type="bar" data={this.state.angleChartData} options={percentOptions2} />}
+          />
+          )
         }
       </div>
     );

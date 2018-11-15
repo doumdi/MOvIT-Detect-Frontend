@@ -12,6 +12,7 @@ import Configuration from './views/configuration';
 import Goal from './views/goal';
 import Header from './views/header';
 import Home from './views/home';
+import { IS_DEMO } from './redux/applicationReducer';
 import PressureResults from './views/pressureResults';
 import ProgressResults from './views/progressResults';
 import Recommendation from './views/recommendation';
@@ -19,7 +20,6 @@ import ResultsCategories from './views/resultsCategories';
 import Settings from './views/settings';
 import Wifi from './views/wifi';
 import forgotPassword from './views/forgotPassword';
-import { IS_DEMO } from './redux/applicationReducer';
 
 export default class Layout extends Component {
   render() {
@@ -41,9 +41,9 @@ export default class Layout extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/home" component={Home} />
               <Route exact path="/results" component={ResultsCategories} />
-              <Route path="/angleResults" component={AngleResults} />
-              <Route path="/pressureResults" component={PressureResults} />
-              <Route path="/progressResults" component={ProgressResults} />
+              <Route path="/results/angle" component={AngleResults} />
+              <Route path="/results/pressure" component={PressureResults} />
+              <Route path="/results/progress" component={ProgressResults} />
               <Route path="/recommendations" component={Recommendation} />
               <Route path="/goals" component={Goal} />
               <Route path="/configurations" component={Configuration} />
