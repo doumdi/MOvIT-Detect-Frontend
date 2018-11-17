@@ -47,10 +47,10 @@ describe('LogoPassword Tests', () => {
   });
 
   it('should call onChange when editing the password field', () => {
-    wrapper.find('#password').simulate('change', { target: { value: 20 } });
+    wrapper.find('#password').simulate('change', { target: { value: '20' } });
 
     expect(spy.calledOnce).toEqual(true);
-    expect(spy.getCalls()[0].args[0]).toEqual(20);
+    expect(spy.getCalls()[0].args[0]).toEqual('20');
   });
 
   it('should call onKeyPress when simulating a keypress on the password field', () => {
