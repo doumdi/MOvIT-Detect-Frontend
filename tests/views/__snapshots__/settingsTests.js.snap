@@ -37,6 +37,16 @@ exports[`Settings Tests should match the snapshot 1`] = `
         }
       />
       <CustomCard
+        element={<Connect(Wifi) />}
+        header={
+          <span
+            className="ui-card-title"
+          >
+            settings.wifi.en
+          </span>
+        }
+      />
+      <CustomCard
         element={<Connect(Permissions) />}
         header={
           <span

@@ -1,12 +1,13 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
+import PropTypes from 'prop-types';
 
 export default class LogoPassword extends Component {
   static propTypes = {
@@ -14,6 +15,7 @@ export default class LogoPassword extends Component {
     iconClass: PropTypes.string.isRequired,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    onKeyPress: PropTypes.func.isRequired,
   }
 
   render() {
@@ -31,10 +33,12 @@ export default class LogoPassword extends Component {
         </div>
         <div className="col-10 col-lg-8 d-inline-block">
           <input
+            id="password"
             type="password"
             placeholder={this.props.placeHolder}
             className="form-control"
-            onChange={e => this.props.onChange(e.target.value)}
+            onChange={event => this.props.onChange(event.target.value)}
+            onKeyPress={event => this.props.onKeyPress(event)}
             value={this.props.value || ''}
           />
         </div>

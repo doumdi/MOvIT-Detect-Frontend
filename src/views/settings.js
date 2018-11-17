@@ -11,12 +11,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../components/shared/card';
 import MemoryUsage from '../components/settings/memoryUsage';
+import ModuleStatus from '../components/settings/moduleStatus';
 import Notification from '../components/settings/notification';
 import NotificationSettings from '../components/settings/notificationSettings';
-import ModuleStatus from '../components/settings/moduleStatus';
 import Permissions from '../components/settings/permissions';
 import { T } from '../utilities/translator';
 import UpdatesManager from '../components/settings/updatesManager';
+import Wifi from '../components/settings/wifi';
 
 class Settings extends Component {
   static propTypes = {
@@ -46,6 +47,10 @@ class Settings extends Component {
             <CustomCard
               header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
               element={<NotificationSettings />}
+            />
+            <CustomCard
+              header={<span className="ui-card-title">{T.translate(`settings.wifi.${this.props.language}`)}</span>}
+              element={<Wifi />}
             />
             <CustomCard
               header={<span className="ui-card-title">{T.translate(`settings.permissions.${this.props.language}`)}</span>}
