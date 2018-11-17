@@ -1,3 +1,10 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
@@ -11,73 +18,49 @@ import PreventPermission from '../../../src/components/settings/preventPermissio
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('PreventPermission Tests', () => {
+  let wrapper;
   const initialState = { applicationReducer: { language: 'en' } };
-  const permissionSpy = sinon.spy();
-  const periodSpy = sinon.spy();
+  const permissionChangeSpy = sinon.spy();
+  const saveSpy = sinon.spy();
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
     permission: false,
     permissionTitle: 'test',
-    period: {},
-    onPermissionChange: (value) => { permissionSpy(value); },
-    onPeriodChange: (value) => { periodSpy(value); },
-    onSave: () => {},
+    onPermissionChange: (value) => { permissionChangeSpy(value); },
+    onSave: () => { saveSpy(); },
   };
 
   beforeEach(() => {
-    permissionSpy.resetHistory();
-    periodSpy.resetHistory();
+    permissionChangeSpy.resetHistory();
+    saveSpy.resetHistory();
+
+    wrapper = shallow(<PreventPermission store={store} {...props} />).dive();
   });
 
   it('should match snapshot', () => {
-    const wrapper = shallow(<PreventPermission store={store} {...props} />).dive();
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it('should have proptypes', () => {
-    // Actual value
     const actualValue = PreventPermission.WrappedComponent.propTypes;
 
-    // Expected value
     const expectedValue = {
       language: PropTypes.string.isRequired,
       permission: PropTypes.bool.isRequired,
       permissionTitle: PropTypes.string.isRequired,
-      period: PropTypes.string,
       onPermissionChange: PropTypes.func.isRequired,
-      onPeriodChange: PropTypes.func.isRequired,
+      onSave: PropTypes.func.isRequired,
     };
 
-    // Test
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
   it('should call onPermissionChange when check box is changed', () => {
-    const wrapper = shallow(<PreventPermission store={store} {...props} />).dive();
     wrapper.find('#agreement').simulate('change', { checked: true });
-    expect(permissionSpy.calledOnce).toEqual(true);
-    expect(permissionSpy.getCalls()[0].args[0]).toEqual(true);
-  });
 
-  it('should call onPeriodChange with day when day radio box is changed', () => {
-    const wrapper = shallow(<PreventPermission store={store} {...props} />).dive();
-    wrapper.find('#doNotReceiveDay').simulate('change');
-    expect(periodSpy.calledOnce).toEqual(true);
-    expect(periodSpy.getCalls()[0].args[0]).toEqual('day');
-  });
-
-  it('should call onPeriodChange with week when day radio box is changed', () => {
-    const wrapper = shallow(<PreventPermission store={store} {...props} />).dive();
-    wrapper.find('#doNotReceiveWeek').simulate('change');
-    expect(periodSpy.calledOnce).toEqual(true);
-    expect(periodSpy.getCalls()[0].args[0]).toEqual('week');
-  });
-
-  it('should call onPeriodChange with month when day radio box is changed', () => {
-    const wrapper = shallow(<PreventPermission store={store} {...props} />).dive();
-    wrapper.find('#doNotReceiveMonth').simulate('change');
-    expect(periodSpy.calledOnce).toEqual(true);
-    expect(periodSpy.getCalls()[0].args[0]).toEqual('month');
+    expect(saveSpy.calledOnce).toEqual(true);
+    expect(permissionChangeSpy.calledOnce).toEqual(true);
+    expect(permissionChangeSpy.getCalls()[0].args[0]).toEqual(true);
   });
 });
