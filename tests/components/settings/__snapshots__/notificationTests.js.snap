@@ -2,7 +2,7 @@
 
 exports['Notification Tests should match the snapshot 1'] = `
 <div
-  className="row m-3 mt-5 ml-md-5"
+  className="row ml-2 mt-5"
 >
   <div
     className="mb-2 mr-3"

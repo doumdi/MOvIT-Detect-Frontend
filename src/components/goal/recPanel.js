@@ -6,8 +6,9 @@
  */
 
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
-import { Card } from 'primereact/components/card/Card';
+import CustomCard from '../shared/card';
 
 export default class RecPanel extends Component {
   static propTypes = {
@@ -18,22 +19,20 @@ export default class RecPanel extends Component {
 
   render() {
     const style = {
-      padding: '10px',
+      padding: '0px',
       card: {
-        padding: '5px',
-        backgroundColor: 'white',
-        boxShadow: '5px 5px 5px gainsboro',
         height: '100%',
       },
     };
-
     return (
-      <div className="col-12 col-sm-6 col-md-4 " style={style}>
+      <div className="col-12 col-sm-6 col-md-4" style={style}>
         {this.props.condition
           && (
-          <Card title={this.props.title} style={style.card}>
-            {this.props.value}
-          </Card>
+            <CustomCard
+              header={<span className="ui-card-title">{this.props.title}</span>}
+              element={<span>{this.props.value}</span>}
+              style={style.card}
+            />
           )
         }
       </div>

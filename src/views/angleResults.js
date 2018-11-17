@@ -4,17 +4,20 @@
  * @author Austin Didier Tran
  */
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { T } from '../utilities/translator';
-import DailySuccessTilt from '../components/results/angleResults/dailySuccessTilt';
-import DailyAngleDistribution from '../components/results/angleResults/dailyAngleDistribution';
-import ResultsCalendar from '../components/results/resultsCalendar';
-import MonthlySuccessTilt from '../components/results/angleResults/monthlySuccessTilt';
-import MonthlyAngleDistribution from '../components/results/angleResults/monthlyAngleDistribution';
-import '../styles/style.css';
 import '../styles/results.css';
+
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import DailyAngleDistribution from '../components/results/angleResults/dailyAngleDistribution';
+import DailySuccessTilt from '../components/results/angleResults/dailySuccessTilt';
+import MonthlyAngleDistribution from '../components/results/angleResults/monthlyAngleDistribution';
+import MonthlySuccessTilt from '../components/results/angleResults/monthlySuccessTilt';
+import ResultsCalendar from '../components/results/resultsCalendar';
+import { T } from '../utilities/translator';
+import { IS_TABLET } from '../redux/applicationReducer';
+
 
 class AngleResults extends Component {
   static propTypes = {
@@ -50,34 +53,33 @@ class AngleResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 500;
     return (
       <div>
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
         <hr />
-        {!isMobile
+        {!IS_TABLET
           && (
           <div className="col-lg-2 leftMenu">
             {this.state.period === 'day'
               ? (
-                <div>
-                  <div><a href="#dailyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></div>
-                  <div><a href="#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></div>
-                </div>
+                <ul className="graphlist">
+                  <li className="graphLink"><a href="results/angle#dailyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
+                  <li className="graphLink"><a href="results/angle#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
+                </ul>
               )
               : (
-                <div>
-                  <div><a href="#monthlyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></div>
-                  <div><a href="#monthlyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></div>
-                </div>
+                <ul className="graphlist">
+                  <li className="graphLink"><a href="results/angle#monthlyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
+                  <li className="graphLink"><a href="results/angle#monthlyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
+                </ul>
               )
             }
           </div>
           )
         }
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
-          <div className="col-lg-8 offset-lg-2">
+          <div className="col-lg-8 offset-lg-1">
             {this.state.period === 'day'
               ? (
                 <div>

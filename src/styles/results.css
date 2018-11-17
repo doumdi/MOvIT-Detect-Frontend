@@ -15,3 +15,52 @@
   border-color: #E5E5E5;
   height: 65vh;
 }
+.graphLink {
+  border-bottom: solid 1px black;
+  list-style-type: none;
+}
+
+.graphlist li { padding: 0px; }
+.graphlist li a {
+  margin: 0px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: black;
+  padding: 10px;
+}
+
+.graphlist li a:hover {
+  background-color: #cc2033;
+  color: white;
+  text-decoration: none;
+}
+
+.graphlist {
+  padding: 0px;
+  background-color: #FBFBFB;
+}
+
+.col-lg-2{
+  padding: 0px;
+}
+
+.tilted {
+  transform: rotate(-25deg);
+}
+
+@media (min-width: 780px) {
+  .icons {
+    font-size: 15em;
+    cursor: pointer;
+    padding-bottom: 15px;
+  }
+}
+
+@media (max-width: 779px)  {
+  .icons {
+    font-size: 10em;
+    cursor: pointer;
+    padding-bottom: 15px;
+  }
+}

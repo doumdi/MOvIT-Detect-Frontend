@@ -3,7 +3,6 @@
  * @author Anne-Marie Desloges
  * @author Austin Didier Tran
  */
-
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -65,10 +64,6 @@ class ResultsCalendar extends Component {
       marginBottom: '20vh',
       content: {
         textAlign: 'center',
-      },
-      chart: {
-        width: '70%',
-        height: '70%',
       },
     };
 
@@ -137,7 +132,7 @@ class ResultsCalendar extends Component {
           <span>Date: </span>
           {
             this.state.period === 'day'
-              ? <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.onDateChange(e)} />
+              ? <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.onDateChange(e)} dateFormat="yy-mm-dd" />
               : (
                 <Dropdown
                   value={this.state.month}

@@ -4,15 +4,18 @@
  * @author Austin Didier Tran
  */
 
+import '../styles/results.css';
+
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import PropTypes from 'prop-types';
-import { T } from '../utilities/translator';
+import { connect } from 'react-redux';
+import MonthlySittingTime from '../components/results/pressureResults/monthlySittingTime';
 import PressureCenter from '../components/results/pressureResults/pressureCenter';
 import ResultsCalendar from '../components/results/resultsCalendar';
-import MonthlySittingTime from '../components/results/pressureResults/monthlySittingTime';
-import '../styles/style.css';
-import '../styles/results.css';
+import { T } from '../utilities/translator';
+import { IS_TABLET } from '../redux/applicationReducer';
+
 
 class PressureResults extends Component {
   static propTypes = {
@@ -48,32 +51,35 @@ class PressureResults extends Component {
   }
 
   render() {
-    const isMobile = this.state.width <= 500;
     return (
       <div>
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
         <hr />
-        {!isMobile
+        {!IS_TABLET
           && (
           <div className="col-lg-2 leftMenu">
             {this.state.period === 'day'
               ? (
-                <div>
-                  <div><a href="#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a></div>
-                </div>
+                <ul className="graphlist">
+                  <li className="graphLink">
+                    <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
+                  </li>
+                </ul>
               )
               : (
-                <div>
-                  <div><a href="#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a></div>
-                </div>
+                <ul className="graphlist">
+                  <li className="graphLink">
+                    <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
+                  </li>
+                </ul>
               )
             }
           </div>
           )
         }
-        <div className=" col-lg-10 offset-lg-2 results resultsContainer">
-          <div className="col-lg-8 offset-lg-2 graphic">
+        <div className=" col-lg-10 offset-lg-3 results resultsContainer">
+          <div className="col-lg-8 graphic">
             {this.state.period === 'day'
               ? (
                 <div>

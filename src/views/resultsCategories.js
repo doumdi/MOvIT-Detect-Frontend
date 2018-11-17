@@ -4,11 +4,13 @@
  * @author Austin Didier Tran
  */
 
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { ApplicationActions } from '../redux/applicationReducer';
+import CustomCard from '../components/shared/card';
 import { T } from '../utilities/translator';
 
 class ResultsCategories extends Component {
@@ -18,7 +20,7 @@ class ResultsCategories extends Component {
   };
 
   loadResults(category) {
-    this.props.history.push(`/${category}Results`);
+    this.props.history.push(`/results/${category}`);
   }
 
   render() {
@@ -27,48 +29,54 @@ class ResultsCategories extends Component {
         textAlign: 'center',
         height: 'fit-content',
       },
-      icons: {
-        fontSize: '15em',
-        cursor: 'pointer',
-      },
-      angle: {
-        fontSize: '15em',
-        cursor: 'pointer',
-        transform: 'rotate(-25deg)',
-      },
       pageTop: {
         marginBottom: '2em',
       },
       profileButton: {
         backgroundColor: 'transparent',
+        height: '100%',
+        width: '100%',
         border: 0,
         outline: 'none',
+        cursor: 'pointer',
       },
     };
 
     return (
-      <div style={style.content} className="content-section mt-3 mt-md-4 implementation ui-fluid">
+      <div style={style.content} className="content-section mt-3 mt-lg-4 implementation ui-fluid">
         <h2>{T.translate(`results.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`results.categories.${this.props.language}`)}</h3>
         <div>
-          <div className="row col-md-12">
-            <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
-                <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
-                <i className="fa fa-wheelchair" style={style.angle} />
-              </button>
+          <div className="row col-lg-12">
+            <div className="col-12 col-lg-4">
+              <CustomCard
+                element={(
+                  <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
+                    <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
+                    <i className="fa fa-wheelchair icons tilted" />
+                  </button>
+              )}
+              />
             </div>
-            <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
-                <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
-                <i className="fa fa-balance-scale" style={style.icons} />
-              </button>
+            <div className="col-12 col-lg-4">
+              <CustomCard
+                element={(
+                  <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
+                    <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
+                    <i className="fa fa-balance-scale icons" />
+                  </button>
+              )}
+              />
             </div>
-            <div className="col-12 col-md-4">
-              <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>
-                <h2>{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
-                <i className="fa fa-tasks" style={style.icons} />
-              </button>
+            <div className="col-12 col-lg-4">
+              <CustomCard
+                element={(
+                  <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>
+                    <h2>{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
+                    <i className="fa fa-tasks icons" />
+                  </button>
+              )}
+              />
             </div>
           </div>
         </div>

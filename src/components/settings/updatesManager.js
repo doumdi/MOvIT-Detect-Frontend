@@ -30,7 +30,7 @@ class UpdatesManager extends Component {
       isPopupOpened: false,
     };
     this.triggerUpdate = this.triggerUpdate.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -50,10 +50,12 @@ class UpdatesManager extends Component {
     }
   }
 
-  toggleModal() {
-    this.setState({
-      isPopupOpened: !this.state.isPopupOpened,
-    });
+  openModal() {
+    this.setState({ isPopupOpened: true });
+  }
+
+  closeModal() {
+    this.setState({ isPopupOpened: false });
   }
 
   poll() {
@@ -84,7 +86,7 @@ class UpdatesManager extends Component {
     } catch (error) {
       console.log(error);
     }
-    this.toggleModal();
+    this.closeModal();
   }
 
   render() {
@@ -94,7 +96,7 @@ class UpdatesManager extends Component {
           id="updateButton"
           className={`btn ui-button-secondary ${this.state.isAvailable ? 'btn-danger' : 'btn-default'}`}
           disabled={!this.state.isAvailable}
-          onClick={() => this.toggleModal()}
+          onClick={() => this.openModal()}
         >
           <i className="fa fa-2x fa-refresh" />
         </button>
@@ -109,7 +111,7 @@ class UpdatesManager extends Component {
           body={T.translate(`settings.system.update.confirmation.${this.props.language}`)}
           show={this.state.isPopupOpened}
           onConfirm={this.triggerUpdate}
-          onClose={this.toggleModal}
+          onClose={this.closeModal}
         />
       </div>
     );
