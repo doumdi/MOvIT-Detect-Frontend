@@ -126,7 +126,7 @@ class ResultsCalendar extends Component {
     };
 
     return (
-      <div className="mt-3">
+      <div className="mt-4 mb-2">
         <div style={style.content}>
           <h2>{title}</h2>
           <span>Date: </span>

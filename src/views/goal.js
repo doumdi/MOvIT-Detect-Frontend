@@ -160,7 +160,7 @@ class Goal extends Component {
     };
 
     return (
-      <div className="mt-3">
+      <div className="mt-4">
         <legend className="text-center header">
           <h2>
             {T.translate(`goals.${this.props.language}`)}

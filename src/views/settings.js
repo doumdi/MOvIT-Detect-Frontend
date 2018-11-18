@@ -35,7 +35,7 @@ class Settings extends Component {
       </div>
     );
     return (
-      <div className="mt-3">
+      <div className="mt-4">
         <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
         <div className="row">
           <div className="col-12 col-md-8 offset-md-2">

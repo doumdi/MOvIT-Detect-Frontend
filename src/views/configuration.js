@@ -69,9 +69,9 @@ class Configuration extends Component {
   render() {
     return (
       <div>
-        <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3">
+        <h2 className="header text-center mt-4">{T.translate(`configurations.${this.props.language}`)}</h2>
+        <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-2">
           <div className="form-horizontal">
-            <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
             <LogoText
               iconClass="fa fa-user"
               placeHolder={T.translate(`configurations.name.${this.props.language}`)}

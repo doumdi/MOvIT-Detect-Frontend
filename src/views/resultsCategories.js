@@ -43,7 +43,7 @@ class ResultsCategories extends Component {
     };
 
     return (
-      <div style={style.content} className="content-section mt-3 mt-lg-4 implementation ui-fluid">
+      <div style={style.content} className="content-section mt-4 implementation ui-fluid">
         <h2>{T.translate(`results.${this.props.language}`)}</h2>
         <h3 style={style.pageTop}>{T.translate(`results.categories.${this.props.language}`)}</h3>
         <div>

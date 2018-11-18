@@ -184,7 +184,7 @@ class Recommendation extends Component {
 
   render() {
     return (
-      <div className="mt-3">
+      <div className="mt-4">
         <div className="container">
           <center><h2>{T.translate(`recommendations.${this.props.language}`)}</h2></center>
           <legend className="text-center header"><h4>{T.translate(`recommendations.recommendationsText.${this.props.language}`)}</h4></legend>
