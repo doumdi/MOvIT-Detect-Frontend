@@ -48,6 +48,7 @@
     "file-loader": "^2.0.0",
     "i18n-react": "^0.6.3",
     "json-loader": "^0.5.7",
+    "primeicons": "^1.0.0",
     "primereact": "^1.4.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",

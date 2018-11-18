@@ -103,9 +103,6 @@ class Header extends Component {
                   </li>
                 )
               }
-              <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                <Link to="/wifi" className="navLink">{T.translate(`wifi.${this.props.language}`)}</Link>
-              </li>
             </ul>
 
             <li className="nav navbar-nav pl-1">
