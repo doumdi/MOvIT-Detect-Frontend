@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { T } from '../../utilities/translator';
-import { URL } from '../../redux/applicationReducer';
+import '../../styles/components/moduleStatus.css';
 
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { URL } from '../../redux/applicationReducer';
+import { T } from '../../utilities/translator';
 
 class ModuleStatus extends Component {
   static propTypes = {
@@ -26,18 +29,26 @@ class ModuleStatus extends Component {
   }
 
   render() {
-    const moduleList = this.state.moduleStatus.map(module => (
+    const moduleList = this.state.moduleStatus.map((module, index) => (
       <li className="mb-1" key={module.name}>
         {module.name}: &nbsp;
-        <span style={{ color: module.value ? 'green' : 'red' }}>
-          {T.translate(`settings.state.value.${module.value ? 'connected' : 'disconnected'}.${this.props.language}`)}
+        <span id={`sensor${index}`} style={{ color: module.value ? 'green' : 'red', float: 'right' }}>
+          {module.value
+            ? <i className="fa fa-check-circle" />
+            : <i className="fa fa-times-circle" />
+          }
         </span>
-      </li>));
+        <Tooltip
+          for={`#sensor${index}`}
+          title={T.translate(`settings.state.value.${module.value ? 'connected' : 'disconnected'}.${this.props.language}`)}
+        />
+      </li>
+    ));
 
     return (
       <div className="row">
         <div className="col-6">
-          <ul className="list-unstyled">{moduleList}</ul>
+          <ul className="list-unstyled smallWidth">{moduleList}</ul>
         </div>
       </div>
     );
