@@ -8,7 +8,7 @@ exports[`Module Status Tests should match the snapshot 1`] = `
     className="col-6"
   >
     <ul
-      className="list-unstyled"
+      className="list-unstyled smallWidth"
     />
   </div>
 </div>
