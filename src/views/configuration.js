@@ -105,12 +105,10 @@ class Configuration extends Component {
                 value={this.props.userWeight}
                 onChange={this.props.changeUserWeight}
               />
-              <div className="text-center">
-                <SubmitButtons
-                  onSave={this.save.bind(this)}
-                  onCancel={this.cancel}
-                />
-              </div>
+              <SubmitButtons
+                onSave={this.save.bind(this)}
+                onCancel={this.cancel}
+              />
             </div>
           </div>
         )

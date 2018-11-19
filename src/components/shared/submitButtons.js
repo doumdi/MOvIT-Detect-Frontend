@@ -20,7 +20,7 @@ class SumbitButtons extends Component {
 
   render() {
     return (
-      <div className="col-10 offset-1 offset-md-0 py-3">
+      <div className="text-right col-10 offset-1 offset-md-0 py-3">
         <button onClick={() => this.props.onCancel()} id="cancelButton" type="button" className="btn btn-lg mb-2 mb-sm-0">
           {T.translate(
             `cancel.${this.props.language}`,
