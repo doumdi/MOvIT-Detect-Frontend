@@ -4,15 +4,17 @@
  * @author Austin Didier Tran
  */
 
+import '../../../../styles/results.css';
+
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import { Chart } from 'primereact/components/chart/Chart';
-import PropTypes from 'prop-types';
-import axios from 'axios';
 import CustomCard from '../../../shared/card';
+import PropTypes from 'prop-types';
 import { T } from '../../../../utilities/translator';
 import { URL } from '../../../../redux/applicationReducer';
-import '../../../../styles/results.css';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 class MonthlyAngleDistribution extends Component {
   static propTypes = {
@@ -52,33 +54,51 @@ class MonthlyAngleDistribution extends Component {
     this.state.angleLoading = true;
     try {
       const response = await axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header);
-      this.formatAngleChartData(response.data);
+      await this.formatAngleChartData(response.data);
     } catch (error) {
       console.log(error);
+      console.log('==============================');
+      console.log('==============================');
+      console.log('==============================');
+      console.log('==============================');
+      console.log('==============================');
+      console.log('==============================');
+
     }
   }
 
   formatAngleChartData(data) {
-    this.state.angleMonthLabels = [];
-    this.state.angleMonthData = {
-      zero: [],
-      fifteen: [],
-      thirty: [],
-      fortyfive: [],
-      more: [],
-    };
-    Object.keys(data).forEach((key) => {
-      const total = data[key].reduce((a, b) => a + b, 0);
-      const percents = data[key].map(v => (v / total) * 100);
+    console.log('FORMAT ANGLE CHAR DATA');
+    const self = this;
+    return new Promise(
+      ((resolve) => {
+        self.state.angleMonthLabels = [];
+        self.state.angleMonthData = {
+          zero: [],
+          fifteen: [],
+          thirty: [],
+          fortyfive: [],
+          more: [],
+        };
+        Object.keys(data).forEach((key) => {
+          const total = data[key].reduce((a, b) => a + b, 0);
+          const percents = data[key].map(v => (v / total) * 100);
+          console.log(percents);
+          console.log('==============================');
+          console.log('==============================');
+          console.log('==============================');
 
-      this.state.angleMonthLabels.push(key.toString());
-      this.state.angleMonthData.zero.push(percents[0]);
-      this.state.angleMonthData.fifteen.push(percents[1]);
-      this.state.angleMonthData.thirty.push(percents[2]);
-      this.state.angleMonthData.fortyfive.push(percents[3]);
-      this.state.angleMonthData.more.push(percents[4]);
-    });
-    this.loadAngleData();
+          self.state.angleMonthLabels.push(key.toString());
+          self.state.angleMonthData.zero.push(percents[0]);
+          self.state.angleMonthData.fifteen.push(percents[1]);
+          self.state.angleMonthData.thirty.push(percents[2]);
+          self.state.angleMonthData.fortyfive.push(percents[3]);
+          self.state.angleMonthData.more.push(percents[4]);
+        });
+        self.loadAngleData();
+        resolve();
+      }),
+    );
   }
 
   loadAngleData() {
