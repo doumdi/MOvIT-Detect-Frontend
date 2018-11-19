@@ -49,9 +49,6 @@ exports[`DailyAngleDistribution Tests should match the snapshot 1`] = `
         id={null}
         options={
           Object {
-            "legend": Object {
-              "onHover": [Function],
-            },
             "tooltips": Object {
               "callbacks": Object {
                 "label": [Function],
