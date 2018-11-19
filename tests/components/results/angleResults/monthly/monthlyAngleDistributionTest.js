@@ -21,7 +21,6 @@ import MonthlyAngleDistribution from '../../../../../src/components/results/angl
 Enzyme.configure({ adapter: new Adapter() });
 
 const MONTH = '1';
-const DATE = 1517461200000;
 const RESPONSE = {
   1: [
     0,
@@ -41,9 +40,10 @@ const RESPONSE = {
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
+  const date = new Date(new Date().getFullYear(), MONTH, 1);
 
 
-  mock.onGet(`${URL}oneMonth?Day=${+DATE}`).reply(200, RESPONSE);
+  mock.onGet(`${URL}oneMonth?Day=${+date}`).reply(200, RESPONSE);
 }
 
 describe('MonthlyAngleDistribution Tests', () => {

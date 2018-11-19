@@ -21,7 +21,6 @@ import MonthlySittingTime from '../../../../../src/components/results/pressureRe
 Enzyme.configure({ adapter: new Adapter() });
 
 const MONTH = '1';
-const DATE = 1517461200000;
 const RESPONSE = {
   1: 696,
   2: 763,
@@ -30,8 +29,9 @@ const RESPONSE = {
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
+  const date = new Date(new Date().getFullYear(), MONTH, 1);
 
-  mock.onGet(`${URL}sittingTime?Day=${+DATE},Offset=0`).reply(200, RESPONSE);
+  mock.onGet(`${URL}sittingTime?Day=${+date},Offset=0`).reply(200, RESPONSE);
 }
 
 describe('MonthlySittingTime Tests', () => {

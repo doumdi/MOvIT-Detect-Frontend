@@ -21,7 +21,6 @@ import MonthlySuccessTilt from '../../../../../src/components/results/angleResul
 Enzyme.configure({ adapter: new Adapter() });
 
 const MONTH = '1';
-const DATE = 1517461200000;
 const RESPONSE = {
   1: [
     50,
@@ -39,8 +38,9 @@ const RESPONSE = {
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
+  const date = new Date(new Date().getFullYear(), MONTH, 1);
 
-  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+DATE},offset=0`).reply(200, RESPONSE);
+  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`).reply(200, RESPONSE);
 }
 
 describe('MonthlySuccessTilt Tests', () => {
