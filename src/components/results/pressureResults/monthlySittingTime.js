@@ -12,6 +12,7 @@ import axios from 'axios';
 import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 import { URL } from '../../../redux/applicationReducer';
+import { validateToken } from '../../../utilities/validateToken';
 
 class MonthlySittingTime extends Component {
   static propTypes = {
@@ -41,6 +42,7 @@ class MonthlySittingTime extends Component {
   }
 
   getSitMonthData(month) {
+    validateToken();
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ sitLoading: true });
     axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header)

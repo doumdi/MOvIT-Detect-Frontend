@@ -17,6 +17,7 @@ import { URL } from '../redux/applicationReducer';
 import PressureRecPanel from '../components/goal/pressureRecPanel';
 import RecPanel from '../components/goal/recPanel';
 import TiltLabels from '../components/goal/tiltLabels';
+import { validateToken } from '../utilities/validateToken';
 
 
 class Goal extends Component {
@@ -84,12 +85,14 @@ class Goal extends Component {
   }
 
   loadGoals() {
+    validateToken();
     axios.get(`${URL}goal`, this.props.header)
       .then(response => this.mapGoalData(response.data))
       .catch(console.log);
   }
 
   loadRecommendations() {
+    validateToken();
     if (this.props.reduceWeight) { // most important rec, if this is not existing, reload recs
       return;
     }

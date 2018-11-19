@@ -11,13 +11,13 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { Redirect } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
+import { validateToken } from '../utilities/validateToken';
 import {
-  ApplicationActions, IS_DEMO, IS_MOBILE, URL,
+  ApplicationActions, IS_DEMO, IS_MOBILE,
 } from '../redux/applicationReducer';
 
 class Header extends Component {
@@ -45,13 +45,7 @@ class Header extends Component {
   }
 
   isLoggedIn() {
-    axios.post(`${URL}validateToken`, { token: localStorage.getItem('token') })
-      .then((response) => {
-        if (response.status === 401) {
-          this.logout();
-        }
-      })
-      .catch(error => console.log(error));
+    validateToken();
     if (this.props.profile === '' && localStorage.getItem('profile') === '') {
       return <Redirect to="/home" />;
     }

@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import CustomCard from '../shared/card';
 import TiltSliders from '../shared/tiltSliders';
 import { URL } from '../../redux/applicationReducer';
+import { validateToken } from '../../utilities/validateToken';
 
 class TiltSlidersCard extends Component {
   static propTypes = {
@@ -31,6 +32,7 @@ class TiltSlidersCard extends Component {
 
   // TODO: Add feedback when saving
   async save() {
+    validateToken();
     const data = {
       tiltFrequecy: this.props.tiltFrequecy,
       tiltLength: this.props.tiltLength,

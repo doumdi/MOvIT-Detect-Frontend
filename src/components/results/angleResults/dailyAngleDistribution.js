@@ -12,6 +12,7 @@ import { Chart } from 'primereact/components/chart/Chart';
 import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 import { URL } from '../../../redux/applicationReducer';
+import { validateToken } from '../../../utilities/validateToken';
 import '../../../styles/results.css';
 
 class DailyAngleDistribution extends Component {
@@ -44,6 +45,7 @@ class DailyAngleDistribution extends Component {
 
   getDayData(date) {
     this.state.loading = true;
+    validateToken();
     axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
       .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
   }

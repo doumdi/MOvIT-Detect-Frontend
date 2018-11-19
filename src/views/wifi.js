@@ -7,6 +7,7 @@ import { URL } from '../redux/applicationReducer';
 import LogoText from '../components/shared/logoText';
 import LogoPassword from '../components/shared/logoPassword';
 import Loading from '../components/shared/loading';
+import { validateToken } from '../utilities/validateToken';
 
 
 class Wifi extends Component {
@@ -52,12 +53,14 @@ class Wifi extends Component {
   }
 
   save() {
+    validateToken();
     axios.post(`${URL}wifi`, this.state)
       .then(() => this.waitConnection())
       .catch(console.error);
   }
 
   waitConnection() {
+    validateToken();
     this.setState({ connecting: true });
     let tries = 0;
     const connectionValidation = window.setInterval(() => {

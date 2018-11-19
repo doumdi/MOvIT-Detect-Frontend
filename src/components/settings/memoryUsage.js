@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
+import { validateToken } from '../../utilities/validateToken';
 
 class MemoryUsage extends Component {
   static propTypes = {
@@ -29,6 +30,7 @@ class MemoryUsage extends Component {
   }
 
   async getMemoryUsage() {
+    validateToken();
     try {
       const response = await axios.get(`${URL}memory`, this.props.header);
       return response.data;

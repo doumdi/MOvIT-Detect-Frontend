@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
 import { DebugActions } from '../../redux/debugReducer';
+import { validateToken } from '../../utilities/validateToken';
 
 const MINIMUM_SNOOZE_TIME = 0;
 const MAXIMUM_SNOOZE_TIME = 60;
@@ -41,6 +42,7 @@ class NotificationSettings extends Component {
   }
 
   async getSettings() {
+    validateToken();
     try {
       const response = await axios.get(`${URL}notificationSettings`, this.props.header);
       return response.data;
@@ -62,6 +64,7 @@ class NotificationSettings extends Component {
   }
 
   enableLedBlinking() {
+    validateToken();
     this.props.changeIsLedBlinkingEnabled(!this.props.isLedBlinkingEnabled);
     axios.post(`${URL}notificationSettings`, {
       isLedBlinkingEnabled: this.props.isLedBlinkingEnabled,
@@ -71,6 +74,7 @@ class NotificationSettings extends Component {
   }
 
   enableVibration() {
+    validateToken();
     this.props.changeIsVibrationEnabled(!this.props.isVibrationEnabled);
     axios.post(`${URL}notificationSettings`, {
       isVibrationEnabled: this.props.isVibrationEnabled,
@@ -87,6 +91,7 @@ class NotificationSettings extends Component {
   }
 
   saveSnoozeTime() {
+    validateToken();
     axios.post(`${URL}notificationSettings`, {
       snoozeTime: this.props.snoozeTime,
     }, this.props.header)

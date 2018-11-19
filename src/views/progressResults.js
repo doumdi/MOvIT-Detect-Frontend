@@ -18,6 +18,7 @@ import RecGoalProgress from '../components/results/progressResults/recGoalProgre
 import ResultsCalendar from '../components/results/resultsCalendar';
 import { URL, IS_TABLET } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
+import { validateToken } from '../utilities/validateToken';
 
 class ProgressResults extends Component {
   static propTypes = {
@@ -53,12 +54,14 @@ class ProgressResults extends Component {
   }
 
   getDailySlidingProgress(date) {
+    validateToken();
     axios.get(`${URL}dailySlideProgress?Day=${+date},offset=0`, this.props.header)
       .then((response) => { this.loadDailySlidingData(response.data); })
       .catch(console.log);
   }
 
   getMonthlySlidingProgress(month) {
+    validateToken();
     this.state.monthLoading = true;
     const date = new Date(new Date().getFullYear(), month, 1);
     axios.get(`${URL}monthlySlideProgress?Day=${+date},offset=0`, this.props.header)

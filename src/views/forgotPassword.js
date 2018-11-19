@@ -6,6 +6,7 @@ import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import SubmitButtons from '../components/shared/submitButtons';
 import LogoText from '../components/shared/logoText';
+import { validateToken } from '../utilities/validateToken';
 
 
 class ForgotPassword extends Component {
@@ -34,6 +35,7 @@ class ForgotPassword extends Component {
   }
 
   save() {
+    validateToken();
     const params = new URLSearchParams(this.props.location.search);
     const userName = params.get('user');
     const data = {

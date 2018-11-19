@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import ConfirmationPopup from '../popups/confirmationPopup';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
+import { validateToken } from '../../utilities/validateToken';
 
 const POLLING_INTERVAL = 10000;
 
@@ -42,6 +43,7 @@ class UpdatesManager extends Component {
   }
 
   async getUpdateData() {
+    validateToken();
     try {
       const response = await axios.get(`${URL}updates`, this.props.header);
       return response.data;
@@ -81,6 +83,7 @@ class UpdatesManager extends Component {
   }
 
   async triggerUpdate() {
+    validateToken();
     try {
       await axios.post(`${URL}updates`, this.props.header);
     } catch (error) {

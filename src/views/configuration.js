@@ -15,6 +15,7 @@ import LogoText from '../components/shared/logoText';
 import LogoNumber from '../components/shared/logoNumber';
 import SubmitButtons from '../components/shared/submitButtons';
 import { URL } from '../redux/applicationReducer';
+import { validateToken } from '../utilities/validateToken';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
@@ -38,6 +39,7 @@ class Configuration extends Component {
   }
 
   load() {
+    validateToken();
     axios.get(`${URL}configuration`, this.props.header)
       .then(response => this.mapData(response.data))
       .catch(console.log);
@@ -51,6 +53,7 @@ class Configuration extends Component {
   }
 
   save() {
+    validateToken();
     const data = {
       userName: this.props.userName,
       userID: this.props.userID,

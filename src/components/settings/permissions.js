@@ -15,6 +15,7 @@ import { ParameterActions } from '../../redux/parameterReducer';
 import PreventPermission from './preventPermission';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
+import { validateToken } from '../../utilities/validateToken';
 
 class Permissions extends Component {
   static propTypes = {
@@ -30,6 +31,7 @@ class Permissions extends Component {
   }
 
   load() {
+    validateToken();
     axios.get(`${URL}notificationParam`, this.props.header)
       .then(response => this.mapData(response.data))
       .catch(console.log);
@@ -40,6 +42,7 @@ class Permissions extends Component {
   }
 
   save() {
+    validateToken();
     const data = {
       dataAgreement: this.props.dataAgreement,
     };

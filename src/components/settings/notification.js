@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
 import Countdown from '../popups/countdown';
+import { validateToken } from '../../utilities/validateToken';
 
 class Notification extends Component {
   static propTypes = {
@@ -28,16 +29,19 @@ class Notification extends Component {
   }
 
   async turnOnNotification() {
+    validateToken();
     const response = axios.get(`${URL}alert?State=on`, this.props.header);
     console.log(response);
   }
 
   async turnOffNotification() {
+    validateToken();
     const response = await axios.get(`${URL}alert?State=off`, this.props.header);
     console.log(response);
   }
 
   async calibrate() {
+    validateToken();
     await axios.get(`${URL}calibrate`, this.props.header);
     this.setState({ ...this.state, showCountdown: true });
   }

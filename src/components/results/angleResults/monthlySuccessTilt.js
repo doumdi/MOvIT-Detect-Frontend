@@ -6,6 +6,7 @@ import { Chart } from 'primereact/components/chart/Chart';
 import CustomCard from '../../shared/card';
 import { URL } from '../../../redux/applicationReducer';
 import { T } from '../../../utilities/translator';
+import { validateToken } from '../../../utilities/validateToken';
 
 class MonthlySuccessTilt extends Component {
   static propTypes = {
@@ -39,6 +40,7 @@ class MonthlySuccessTilt extends Component {
   }
 
   getMonthData(month) {
+    validateToken();
     const date = new Date(new Date().getFullYear(), month, 1);
     axios.get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
       .then((response) => { this.formatChartData(response.data); })

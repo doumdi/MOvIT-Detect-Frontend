@@ -15,6 +15,7 @@ import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 import TiltSlidersCard from './tiltSlidersCard';
 import TiltLabels from './tiltLabels';
+import { validateToken } from '../../utilities/validateToken';
 
 class PressureRecPanel extends Component {
   static propTypes = {
@@ -49,6 +50,7 @@ class PressureRecPanel extends Component {
   }
 
   toggleEditing() {
+    validateToken();
     if (this.state.modifieGoal) {
       this.setState({ modifieGoal: false });
       // save goals data

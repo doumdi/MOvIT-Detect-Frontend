@@ -12,6 +12,7 @@ import axios from 'axios';
 import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 import { URL } from '../../../redux/applicationReducer';
+import { validateToken } from '../../../utilities/validateToken';
 import '../../../styles/results.css';
 
 class MonthlyAngleDistribution extends Component {
@@ -48,6 +49,7 @@ class MonthlyAngleDistribution extends Component {
   }
 
   getAngleMonthData(month) {
+    validateToken();
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ angleLoading: true });
     axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)

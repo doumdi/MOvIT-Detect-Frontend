@@ -20,6 +20,7 @@ import { T } from '../utilities/translator';
 import TextRecommendation from '../components/recommendation/textRecommendation';
 import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
+import { validateToken } from '../utilities/validateToken';
 
 class Recommendation extends Component {
   static propTypes = {
@@ -89,6 +90,7 @@ class Recommendation extends Component {
   }
 
   load() {
+    validateToken();
     axios.get(`${URL}recommandation`, this.props.header)
       .then(response => this.mapData(response.data))
       .catch(console.log);
@@ -137,6 +139,7 @@ class Recommendation extends Component {
   }
 
   save() {
+    validateToken();
     const data = {
       reduceWeight: {
         tiltFrequency: this.props.tiltFrequencyWeight,

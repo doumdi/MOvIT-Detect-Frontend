@@ -12,6 +12,7 @@ import axios from 'axios';
 import { ApplicationActions, URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
 import Password from '../components/home/password';
+import { validateToken } from '../utilities/validateToken';
 
 class Home extends Component {
   static propTypes = {
@@ -55,6 +56,7 @@ class Home extends Component {
   }
 
   login(passwordString) {
+    validateToken();
     axios.post(`${URL}login`, { username: this.state.user, password: passwordString })
       .then(result => this.setProfile(result.data.token))
       .catch(error => this.loginError(error));

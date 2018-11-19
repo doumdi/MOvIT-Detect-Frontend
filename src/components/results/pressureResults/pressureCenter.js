@@ -14,6 +14,7 @@ import { Slider } from 'primereact/components/slider/Slider';
 import CustomCard from '../../shared/card';
 import { URL } from '../../../redux/applicationReducer';
 import { milliToTimeString } from '../../../utils/timeFormat';
+import { validateToken } from '../../../utilities/validateToken';
 
 class PressureCenter extends Component {
   static propTypes = {
@@ -50,6 +51,7 @@ class PressureCenter extends Component {
   }
 
   async getPressureData(date) {
+    validateToken();
     const response = await axios.get(`${URL}gravityCenter?Day=${+date},offset=0`, this.props.header);
     return response.data;
   }

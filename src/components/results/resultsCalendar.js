@@ -11,6 +11,7 @@ import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
+import { validateToken } from '../../utilities/validateToken';
 
 class ResultsCalendar extends Component {
   static propTypes = {
@@ -48,6 +49,7 @@ class ResultsCalendar extends Component {
   }
 
   setDefaultDate() {
+    validateToken();
     axios.get(`${URL}lastDate`, this.props.header)
       .then((response) => {
         const date = new Date(response.data);

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
+import { validateToken } from '../../utilities/validateToken';
 
 
 class ModuleStatus extends Component {
@@ -20,6 +21,7 @@ class ModuleStatus extends Component {
   }
 
   getStatus() {
+    validateToken();
     axios.get(`${URL}Debug`)
       .then(response => this.setState({ moduleStatus: response.data }))
       .catch(error => console.log(error));
