@@ -61,6 +61,7 @@
   border: none;
   outline: none;
   text-align: left;
+  width: 100%;
 }
 .toggleButton {
   border: none;
