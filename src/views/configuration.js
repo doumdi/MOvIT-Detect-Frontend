@@ -12,6 +12,7 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ConfigurationActions } from '../redux/configurationReducer';
+import ErrorMessage from '../components/shared/errorMessage';
 import Loading from '../components/shared/loading';
 import LogoNumber from '../components/shared/logoNumber';
 import LogoText from '../components/shared/logoText';
@@ -38,6 +39,7 @@ class Configuration extends Component {
     super(props);
     this.state = {
       isLoaded: false,
+      hasErrors: false,
     };
     this.load();
   }
@@ -45,19 +47,25 @@ class Configuration extends Component {
   async load() {
     try {
       const response = await axios.get(`${URL}configuration`, this.props.header);
-      this.mapData(response.data);
+      await this.mapData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
       console.log(error);
-      this.setState({ isLoaded: false });
+      this.setState({ hasErrors: true });
     }
   }
 
   mapData(response) {
-    this.props.changeUserName(response.userName);
-    this.props.changeUserID(response.userID);
-    this.props.changeMaxAngle(response.maxAngle);
-    this.props.changeUserWeight(response.userWeight);
+    const self = this;
+    return new Promise(
+      ((resolve) => {
+        self.props.changeUserName(response.userName);
+        self.props.changeUserID(response.userID);
+        self.props.changeMaxAngle(response.maxAngle);
+        self.props.changeUserWeight(response.userWeight);
+        resolve();
+      }),
+    );
   }
 
   save() {
@@ -75,45 +83,51 @@ class Configuration extends Component {
   cancel() { }
 
   render() {
+    if (!this.state.isLoaded) {
+      return <Loading key="loading" />;
+    }
     return (
-      <div>
-        {this.state.isLoaded ? (
-          <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3">
-            <div className="form-horizontal">
-              <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
-              <LogoText
-                iconClass="fa fa-user"
-                placeHolder={T.translate(`configurations.name.${this.props.language}`)}
-                value={this.props.userName}
-                onChange={this.props.changeUserName}
-              />
-              <LogoText
-                iconClass="fa fa-id-card"
-                placeHolder={T.translate(`configurations.telask.${this.props.language}`)}
-                value={this.props.userID}
-                onChange={this.props.changeUserID}
-              />
-              <LogoNumber
-                iconClass="fa fa-wheelchair"
-                placeHolder={T.translate(`configurations.maxTilt.${this.props.language}`)}
-                value={this.props.maxAngle}
-                onChange={this.props.changeMaxAngle}
-              />
-              <LogoNumber
-                iconClass="fa fa-balance-scale"
-                placeHolder={T.translate(`configurations.weight.${this.props.language}`)}
-                value={this.props.userWeight}
-                onChange={this.props.changeUserWeight}
-              />
-              <SubmitButtons
-                onSave={this.save.bind(this)}
-                onCancel={this.cancel}
-              />
-            </div>
-          </div>
-        )
-          : <Loading key="loading" />
-      }
+      <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3">
+        <div className="form-horizontal">
+          <legend className="text-center header">
+            <h2>{T.translate(`configurations.${this.props.language}`)}</h2>
+          </legend>
+          {this.state.hasErrors
+            ? <ErrorMessage />
+            : (
+              <div>
+                <LogoText
+                  iconClass="fa fa-user"
+                  placeHolder={T.translate(`configurations.name.${this.props.language}`)}
+                  value={this.props.userName}
+                  onChange={this.props.changeUserName}
+                />
+                <LogoText
+                  iconClass="fa fa-id-card"
+                  placeHolder={T.translate(`configurations.telask.${this.props.language}`)}
+                  value={this.props.userID}
+                  onChange={this.props.changeUserID}
+                />
+                <LogoNumber
+                  iconClass="fa fa-wheelchair"
+                  placeHolder={T.translate(`configurations.maxTilt.${this.props.language}`)}
+                  value={this.props.maxAngle}
+                  onChange={this.props.changeMaxAngle}
+                />
+                <LogoNumber
+                  iconClass="fa fa-balance-scale"
+                  placeHolder={T.translate(`configurations.weight.${this.props.language}`)}
+                  value={this.props.userWeight}
+                  onChange={this.props.changeUserWeight}
+                />
+                <SubmitButtons
+                  onSave={this.save.bind(this)}
+                  onCancel={this.cancel}
+                />
+              </div>
+            )
+            }
+        </div>
       </div>
     );
   }
