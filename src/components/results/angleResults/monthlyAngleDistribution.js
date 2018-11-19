@@ -49,7 +49,7 @@ class MonthlyAngleDistribution extends Component {
 
   getAngleMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    this.setState({ angleLoading: true });
+    this.state.angleLoading = true;
     axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
       .then((response) => { this.formatAngleChartData(response.data); })
       .catch(error => console.log(error));
@@ -144,9 +144,6 @@ class MonthlyAngleDistribution extends Component {
             return label;
           },
         },
-      },
-      legend: {
-        onHover: e => this.hover(e),
       },
     };
 

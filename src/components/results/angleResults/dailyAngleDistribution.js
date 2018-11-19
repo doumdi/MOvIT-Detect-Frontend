@@ -95,9 +95,6 @@ class DailyAngleDistribution extends Component {
           },
         },
       },
-      legend: {
-        onHover: e => this.hover(e),
-      },
     };
     return (
       <div className="container graphic" id="dailyAngle">
