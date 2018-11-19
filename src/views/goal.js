@@ -1,23 +1,25 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import axios from 'axios';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { GoalActions } from '../redux/goalReducer';
-import { RecommendationActions } from '../redux/recommendationReducer';
-import { T } from '../utilities/translator';
-import { URL } from '../redux/applicationReducer';
+import Loading from '../components/shared/loading';
 import PressureRecPanel from '../components/goal/pressureRecPanel';
 import RecPanel from '../components/goal/recPanel';
+import { RecommendationActions } from '../redux/recommendationReducer';
+import { T } from '../utilities/translator';
 import TiltLabels from '../components/goal/tiltLabels';
-
+import { URL } from '../redux/applicationReducer';
 
 class Goal extends Component {
   static propTypes = {
@@ -78,24 +80,33 @@ class Goal extends Component {
       restRecommendation: props.restRecommendation,
       transferRecommendation: props.transferRecommendation,
       comfortRecommendation: props.comfortRecommendation,
+      isLoaded: false,
     };
-    this.loadGoals();
-    this.loadRecommendations();
+    this.load();
   }
 
-  loadGoals() {
-    axios.get(`${URL}goal`, this.props.header)
-      .then(response => this.mapGoalData(response.data))
-      .catch(console.log);
+  async load() {
+    try {
+      await this.loadGoals();
+      await this.loadRecommendations();
+      this.setState({ isLoaded: true });
+    } catch (error) {
+      console.log(error);
+      this.setState({ isLoaded: false });
+    }
   }
 
-  loadRecommendations() {
+  async loadGoals() {
+    const response = await axios.get(`${URL}goal`, this.props.header);
+    this.mapGoalData(response.data);
+  }
+
+  async loadRecommendations() {
     if (this.props.reduceWeight) { // most important rec, if this is not existing, reload recs
       return;
     }
-    axios.get(`${URL}recommandation`, this.props.header)
-      .then(response => this.mapRecData(response.data))
-      .catch(console.log);
+    const response = await axios.get(`${URL}recommandation`, this.props.header);
+    this.mapRecData(response.data);
   }
 
   mapGoalData(response) {
@@ -160,119 +171,122 @@ class Goal extends Component {
     };
 
     return (
-      <div className="mt-3">
-        <legend className="text-center header">
-          <h2>
-            {T.translate(`goals.${this.props.language}`)}
-            {' '}
-
-
-&nbsp;
-            <i id="titleInfo" className="fa fa-info-circle" />
-          </h2>
-        </legend>
-        {!this.props.reduceWeight && !this.props.reduceSwelling
-          && !this.props.reduceSlidingMoving && !this.props.reducePain
-          && !this.props.allowRest && !this.props.easeTransfers
-          && !this.props.improveComfort && !this.props.other
-          ? <h3 style={style.chair}>{T.translate(`goals.noRecommendations.${this.props.language}`)}</h3>
-          : (
-            <div className="row" style={style.panelGroup}>
-              <div className="col-12 col-md-8 offset-md-2">
-                <h3 className="ml-2 text-md-left text-center">
-                  {T.translate(`goals.personalGoals.${this.props.language}`)}
-                  {' '}
-                  <i id="personalGoalInfo" className="fa fa-info-circle" />
-                </h3>
-                <PressureRecPanel />
-                <h3 className="ml-2 text-md-left text-center">{T.translate(`goals.ClinicianRecommendations.${this.props.language}`)}</h3>
-                {this.props.reduceWeight
-                && (
-                <TiltLabels
-                  title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
-                  tiltFrequecy={this.props.tiltFrequencyWeight}
-                  tiltLength={this.props.tiltLengthWeight}
-                  tiltAngle={this.props.tiltAngleWeight}
-                />
-                )
-              }
-                <div className="d-flex flex-wrap">
-                  <RecPanel
-                    condition={this.props.reduceSlidingMoving}
-                    title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
-                    value={`${T.translate(`recommendations.angleRecommandation.${this.props.language}`)}
-                  ${this.props.tiltAngleMoving}°
-                  ${T.translate(`goals.reduceSlidingMoving.${this.props.language}`)}`}
-                  />
-                  <RecPanel
-                    condition={this.props.reduceSlidingRest}
-                    title={T.translate(`recommendations.slidingRest.${this.props.language}`)}
-                    value={`${T.translate(`recommendations.angleRecommandation.${this.props.language}`)}
-                  ${this.props.tiltAngleRest}°
-                  ${T.translate(`goals.reduceSlidingRest.${this.props.language}`)}`}
-                  />
-                  <RecPanel
-                    condition={this.props.reduceSwelling}
-                    title={T.translate(`recommendations.reduceSwelling.${this.props.language}`)}
-                    value={this.state.swellingRecommendation === undefined
-                      ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
-                      : this.state.swellingRecommendation}
-                  />
-                  <RecPanel
-                    condition={this.props.reducePain}
-                    title={T.translate(`recommendations.pain.${this.props.language}`)}
-                    value={this.state.painRecommendation === undefined
-                      ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
-                      : this.state.painRecommendation}
-                  />
-                  <RecPanel
-                    condition={this.props.allowRest}
-                    title={T.translate(`recommendations.rest.${this.props.language}`)}
-                    value={this.state.restRecommendation === undefined
-                      ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
-                      : this.state.restRecommendation}
-                  />
-                  <RecPanel
-                    condition={this.props.easeTransfers}
-                    title={T.translate(`recommendations.transfer.${this.props.language}`)}
-                    value={this.state.transferRecommendation === undefined
-                      ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
-                      : this.state.transferRecommendation}
-                  />
-                  <RecPanel
-                    condition={this.props.improveComfort}
-                    title={T.translate(`recommendations.comfort.${this.props.language}`)}
-                    value={this.state.comfortRecommendation === undefined
-                      ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
-                      : this.state.comfortRecommendation}
-                  />
-                  <RecPanel
-                    condition={this.props.other}
-                    title={this.props.otherRecommendationsTitle === undefined
-                      ? T.translate(`recommendations.otherTitle.${this.props.language}`)
-                      : this.props.otherRecommendationsTitle}
-                    value={this.props.otherRecommendations === undefined
-                      ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
-                      : this.props.otherRecommendations}
-                  />
+      <div>
+        {this.state.isLoaded ? (
+          <div className="mt-3">
+            <legend className="text-center header">
+              <h2>
+                {T.translate(`goals.${this.props.language}`)}
+                {' '}&nbsp;
+                <i id="titleInfo" className="fa fa-info-circle" />
+              </h2>
+            </legend>
+            {!this.props.reduceWeight && !this.props.reduceSwelling
+              && !this.props.reduceSlidingMoving && !this.props.reducePain
+              && !this.props.allowRest && !this.props.easeTransfers
+              && !this.props.improveComfort && !this.props.other
+              ? <h3 style={style.chair}>{T.translate(`goals.noRecommendations.${this.props.language}`)}</h3>
+              : (
+                <div className="row" style={style.panelGroup}>
+                  <div className="col-12 col-md-8 offset-md-2">
+                    <h3 className="ml-2 text-md-left text-center">
+                      {T.translate(`goals.personalGoals.${this.props.language}`)}
+                      {' '}
+                      <i id="personalGoalInfo" className="fa fa-info-circle" />
+                    </h3>
+                    <PressureRecPanel />
+                    <h3 className="ml-2 text-md-left text-center">{T.translate(`goals.ClinicianRecommendations.${this.props.language}`)}</h3>
+                    {this.props.reduceWeight
+                    && (
+                    <TiltLabels
+                      title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                      tiltFrequecy={this.props.tiltFrequencyWeight}
+                      tiltLength={this.props.tiltLengthWeight}
+                      tiltAngle={this.props.tiltAngleWeight}
+                    />
+                    )
+                  }
+                    <div className="d-flex flex-wrap">
+                      <RecPanel
+                        condition={this.props.reduceSlidingMoving}
+                        title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
+                        value={`${T.translate(`recommendations.angleRecommandation.${this.props.language}`)}
+                      ${this.props.tiltAngleMoving}°
+                      ${T.translate(`goals.reduceSlidingMoving.${this.props.language}`)}`}
+                      />
+                      <RecPanel
+                        condition={this.props.reduceSlidingRest}
+                        title={T.translate(`recommendations.slidingRest.${this.props.language}`)}
+                        value={`${T.translate(`recommendations.angleRecommandation.${this.props.language}`)}
+                      ${this.props.tiltAngleRest}°
+                      ${T.translate(`goals.reduceSlidingRest.${this.props.language}`)}`}
+                      />
+                      <RecPanel
+                        condition={this.props.reduceSwelling}
+                        title={T.translate(`recommendations.reduceSwelling.${this.props.language}`)}
+                        value={this.state.swellingRecommendation === undefined
+                          ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
+                          : this.state.swellingRecommendation}
+                      />
+                      <RecPanel
+                        condition={this.props.reducePain}
+                        title={T.translate(`recommendations.pain.${this.props.language}`)}
+                        value={this.state.painRecommendation === undefined
+                          ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
+                          : this.state.painRecommendation}
+                      />
+                      <RecPanel
+                        condition={this.props.allowRest}
+                        title={T.translate(`recommendations.rest.${this.props.language}`)}
+                        value={this.state.restRecommendation === undefined
+                          ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
+                          : this.state.restRecommendation}
+                      />
+                      <RecPanel
+                        condition={this.props.easeTransfers}
+                        title={T.translate(`recommendations.transfer.${this.props.language}`)}
+                        value={this.state.transferRecommendation === undefined
+                          ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
+                          : this.state.transferRecommendation}
+                      />
+                      <RecPanel
+                        condition={this.props.improveComfort}
+                        title={T.translate(`recommendations.comfort.${this.props.language}`)}
+                        value={this.state.comfortRecommendation === undefined
+                          ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
+                          : this.state.comfortRecommendation}
+                      />
+                      <RecPanel
+                        condition={this.props.other}
+                        title={this.props.otherRecommendationsTitle === undefined
+                          ? T.translate(`recommendations.otherTitle.${this.props.language}`)
+                          : this.props.otherRecommendationsTitle}
+                        value={this.props.otherRecommendations === undefined
+                          ? T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)
+                          : this.props.otherRecommendations}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-            </div>
-          )
+              )
+            }
+            <Tooltip
+              for="#titleInfo"
+              title={T.translate(`toolTip.goals.${this.props.language}`)}
+            />
+            <Tooltip
+              for="#personalGoalInfo"
+              title={T.translate(`toolTip.personalGoal.${this.props.language}`)}
+            />
+          </div>
+        )
+          : <Loading key="loading" />
         }
-        <Tooltip
-          for="#titleInfo"
-          title={T.translate(`toolTip.goals.${this.props.language}`)}
-        />
-        <Tooltip
-          for="#personalGoalInfo"
-          title={T.translate(`toolTip.personalGoal.${this.props.language}`)}
-        />
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
