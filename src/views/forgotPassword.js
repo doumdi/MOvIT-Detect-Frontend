@@ -11,7 +11,7 @@ import LogoText from '../components/shared/logoText';
 class ForgotPassword extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
+    location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
   };
 

@@ -99,9 +99,9 @@ class Goal extends Component {
   }
 
   mapGoalData(response) {
-    this.props.changeTiltAngleGoal(response.tiltAngleGoal);
-    this.props.changeTiltFrequencyGoal(response.tiltFrequencyGoal);
-    this.props.changeTiltLengthGoal(response.tiltLengthGoal);
+    this.props.changeTiltAngleGoal(response.tiltAngle);
+    this.props.changeTiltFrequencyGoal(response.tiltFrequency);
+    this.props.changeTiltLengthGoal(response.tiltLength);
   }
 
   mapRecData(response) {
