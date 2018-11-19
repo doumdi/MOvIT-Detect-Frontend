@@ -41,7 +41,7 @@ class MonthlySuccessTilt extends Component {
   async getMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     try {
-      const response = await axios.get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
+      const response = await axios.get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`, this.props.header);
       this.formatChartData(response.data);
     } catch (error) {
       console.log(error);
