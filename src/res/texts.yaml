@@ -291,7 +291,7 @@ results:
         FR: "Légende"
         EN: "Legend"
         center:
-          FR: "Centre golbal"
+          FR: "Centre global"
           EN: "Global center"
         quadrant:
           FR: "Centre du quadrant"
