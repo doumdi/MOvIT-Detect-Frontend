@@ -15,8 +15,6 @@ export default class Loading extends Component {
       <div style={style}>
         <img
           src={imagePath}
-          width="250"
-          height="250"
           alt="Loading"
           style={style.image}
         />

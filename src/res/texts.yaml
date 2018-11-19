@@ -284,6 +284,15 @@ results:
     pressure:
       FR: "Pression"
       EN: "Pressure"
+      legend:
+        FR: "Légende"
+        EN: "Legend"
+        center:
+          FR: "Centre golbal"
+          EN: "Global center"
+        quadrant:
+          FR: "Centre du quadrant"
+          EN: "Quadrant center"
     angle:
       FR: "Bascules"
       EN: "Tilts"

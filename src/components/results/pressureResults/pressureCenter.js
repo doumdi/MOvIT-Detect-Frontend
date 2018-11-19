@@ -7,16 +7,20 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { VictoryChart, VictoryScatter, VictoryTheme } from 'victory';
+import {
+  VictoryChart, VictoryScatter, VictoryTheme, VictoryAxis,
+} from 'victory';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
+import { T } from '../../../utilities/translator';
 import CustomCard from '../../shared/card';
 import { URL } from '../../../redux/applicationReducer';
 import { milliToTimeString } from '../../../utils/timeFormat';
 
 class PressureCenter extends Component {
   static propTypes = {
+    language: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
     header: PropTypes.object,
@@ -88,61 +92,98 @@ class PressureCenter extends Component {
       center: {
         textAlign: 'center',
       },
+      centerLegend: {
+        backgroundColor: 'green',
+        borderRadius: '50%',
+      },
+      quadrantsLegend: {
+        backgroundColor: '#c43a31',
+        borderRadius: '50%',
+      },
+      legend: {
+        paddingTop: '7vh',
+        paddingRight: '0px',
+        paddingLeft: '0px',
+      },
+      graphic: {
+        paddingRight: '0px',
+      },
     };
 
-    const element = (
-      <div className="col-lg-6 offset-lg-3">
-        <VictoryChart
-          theme={VictoryTheme.material}
-          domain={{ x: [-4, 4], y: [-7, 7] }}
-        >
-          <VictoryScatter
-            style={{ data: { fill: 'green' } }}
-            size={10}
-            data={[
-              this.state.currentCenter,
-            ]}
-          />
-          <VictoryScatter
-            style={{ data: { fill: '#c43a31' } }}
-            size={7}
-            data={[
-              this.state.currentQuadrants[0],
-            ]}
-          />
-          <VictoryScatter
-            style={{ data: { fill: '#c43a31' } }}
-            size={7}
-            data={[
-              this.state.currentQuadrants[1],
-            ]}
-          />
-          <VictoryScatter
-            style={{ data: { fill: '#c43a31' } }}
-            size={7}
-            data={[
-              this.state.currentQuadrants[2],
-            ]}
-          />
-          <VictoryScatter
-            style={{ data: { fill: '#c43a31' } }}
-            size={7}
-            data={[
-              this.state.currentQuadrants[3],
-            ]}
-          />
-        </VictoryChart>
-        <div className="col-8 offset-2">
-          <Slider
-            min={0}
-            max={this.state.centers.length - 1}
-            style={{ marginTop: '1vh' }}
-            value={this.state.index}
-            onChange={e => this.setIndex(e.value)}
-          />
+    const legend = (
+      <div>
+        <h4>{T.translate(`results.categories.pressure.legend.${this.props.language}`)}</h4>
+        <div>
+          <span style={style.centerLegend}> &nbsp; &nbsp; &nbsp;</span> - {T.translate(`results.categories.pressure.legend.center.${this.props.language}`)}
         </div>
-        <div className="col-6 offset-3 text-center">
-          <h3>{milliToTimeString(this.state.time)}</h3>
+        <div>
+          <span style={style.quadrantsLegend}> &nbsp; &nbsp; &nbsp;</span> - {T.translate(`results.categories.pressure.legend.quadrant.${this.props.language}`)}
+        </div>
+      </div>
+    );
+    const element = (
+      <div className="row">
+        <div className="col-lg-6 offset-lg-3" style={style.graphic}>
+          <svg viewBox="0 00 350 320">
+            <VictoryChart
+              standalone={false}
+              theme={VictoryTheme.material}
+              domain={{ x: [-4, 4], y: [-4, 4] }}
+            >
+              <VictoryAxis crossAxis tickFormat={x => `${Math.abs(x)}'`} />
+              <VictoryAxis dependentAxis crossAxis tickFormat={y => `${Math.abs(y)}'`} />
+              <VictoryScatter
+                style={{ data: { fill: 'green' } }}
+                size={10}
+                data={[
+                  this.state.currentCenter,
+                ]}
+              />
+              <VictoryScatter
+                style={{ data: { fill: '#c43a31' } }}
+                size={7}
+                data={[
+                  this.state.currentQuadrants[0],
+                ]}
+              />
+              <VictoryScatter
+                style={{ data: { fill: '#c43a31' } }}
+                size={7}
+                data={[
+                  this.state.currentQuadrants[1],
+                ]}
+              />
+              <VictoryScatter
+                style={{ data: { fill: '#c43a31' } }}
+                size={7}
+                data={[
+                  this.state.currentQuadrants[2],
+                ]}
+              />
+              <VictoryScatter
+                style={{ data: { fill: '#c43a31' } }}
+                size={7}
+                data={[
+                  this.state.currentQuadrants[3],
+                ]}
+              />
+            </VictoryChart>
+          </svg>
+          <div className="col-8 offset-2">
+            <Slider
+              min={0}
+              max={this.state.centers.length - 1}
+              style={{ marginTop: '1vh' }}
+              value={this.state.index}
+              onChange={e => this.setIndex(e.value)}
+            />
+          </div>
+          <div className="col-6 offset-3 text-center">
+            <h3>{milliToTimeString(this.state.time)}</h3>
+          </div>
+        </div>
+        <div className="col-lg-3" style={style.legend}>
+          {legend}
         </div>
       </div>
     );
@@ -163,6 +204,7 @@ class PressureCenter extends Component {
 
 function mapStateToProps(state) {
   return {
+    language: state.applicationReducer.language,
     header: state.applicationReducer.header,
   };
 }
