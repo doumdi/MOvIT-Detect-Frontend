@@ -19,7 +19,14 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('DailyPressureResults Tests', () => {
   const DATE = 1517720400000;
-  const initialState = { applicationReducer: { language: 'en' }, recommendationReducer: { reduceWeight: true } };
+  const initialState = {
+    applicationReducer: { language: 'FR' },
+    recommendationReducer: {
+      reduceWeight: true,
+      reduceSlidingRest: true,
+      reduceSlidingMoving: true,
+    },
+  };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
@@ -39,6 +46,13 @@ describe('DailyPressureResults Tests', () => {
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
+  });
+
+  it('should update date', () => {
+    const wrapper = shallow(<DailyPressureResults store={store} {...props} />).dive();
+    wrapper.instance().componentWillReceiveProps({ date: 1517720400001 });
+
+    expect(wrapper.state('date')).toEqual(1517720400001);
   });
 
   it('should match the snapshot', () => {

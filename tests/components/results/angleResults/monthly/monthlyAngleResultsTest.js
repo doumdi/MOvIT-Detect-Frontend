@@ -37,6 +37,13 @@ describe('MonthlyAngleResults Tests', () => {
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
+  it('should update month', () => {
+    const wrapper = shallow(<MonthlyAngleResults store={store} {...props} />).dive();
+    wrapper.instance().componentWillReceiveProps({ month: '4' });
+
+    expect(wrapper.state('month')).toEqual('4');
+  });
+
   it('should match the snapshot', () => {
     const wrapper = shallow(<MonthlyAngleResults store={store} {...props} />).dive();
 

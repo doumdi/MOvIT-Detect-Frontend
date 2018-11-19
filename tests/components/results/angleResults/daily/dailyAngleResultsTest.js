@@ -37,6 +37,13 @@ describe('DailyAngleResults Tests', () => {
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
+  it('should update date', () => {
+    const wrapper = shallow(<DailyAngleResults store={store} {...props} />).dive();
+    wrapper.instance().componentWillReceiveProps({ date: 1517720400001 });
+
+    expect(wrapper.state('date')).toEqual(1517720400001);
+  });
+
   it('should match the snapshot', () => {
     const wrapper = shallow(<DailyAngleResults store={store} {...props} />).dive();
 

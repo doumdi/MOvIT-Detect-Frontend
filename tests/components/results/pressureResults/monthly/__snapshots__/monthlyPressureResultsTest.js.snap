@@ -14,7 +14,7 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
         <a
           href="results/pressure#monthlySitting"
         >
-          results.graphicsLink.sittingTime.en
+          results.graphicsLink.sittingTime.FR
         </a>
       </li>
       <li
@@ -23,7 +23,25 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
         <a
           href="results/pressure#reduceWeight"
         >
-          dailyResults.pressure.en
+          dailyResults.pressure.FR
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceSlidingMoving"
+        >
+          dailyResults.travel.FR
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceSlidingRest"
+        >
+          monthlyResults.rest.FR
         </a>
       </li>
     </ul>
@@ -81,7 +99,7 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
                       24,
                     ],
                     "fill": true,
-                    "label": "monthlyResults.pressure.tiltMade.en",
+                    "label": "monthlyResults.pressure.tiltMade.FR",
                     "lineTension": 0,
                   },
                   Object {
@@ -119,7 +137,7 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
                       42,
                     ],
                     "fill": false,
-                    "label": "monthlyResults.pressure.tiltGoal.en",
+                    "label": "monthlyResults.pressure.tiltGoal.FR",
                     "lineTension": 0,
                   },
                 ],
@@ -157,7 +175,7 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
                 ],
               }
             }
-            goalTitle="monthlyResults.pressure.personal.en"
+            goalTitle="monthlyResults.pressure.personal.FR"
             recData={
               Object {
                 "datasets": Array [
@@ -196,7 +214,7 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
                       24,
                     ],
                     "fill": true,
-                    "label": "monthlyResults.pressure.tiltMade.en",
+                    "label": "monthlyResults.pressure.tiltMade.FR",
                     "lineTension": 0,
                   },
                   Object {
@@ -234,7 +252,7 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
                       42,
                     ],
                     "fill": false,
-                    "label": "monthlyResults.pressure.tiltGoal.en",
+                    "label": "monthlyResults.pressure.tiltGoal.FR",
                     "lineTension": 0,
                   },
                 ],
@@ -272,8 +290,8 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
                 ],
               }
             }
-            recTitle="monthlyResults.pressure.recommended.en"
-            title="monthlyResults.pressure.en"
+            recTitle="monthlyResults.pressure.recommended.FR"
+            title="monthlyResults.pressure.FR"
           />
         </div>
       </div>

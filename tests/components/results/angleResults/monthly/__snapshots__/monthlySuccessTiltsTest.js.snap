@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MonthlySuccessTilt Tests should match the snapshot 1`] = `
+<div
+  classame="container"
+  id="monthlyTilt"
+>
+  <CustomCard
+    element={
+      <Chart
+        className={null}
+        data={
+          Object {
+            "datasets": Array [
+              Object {
+                "backgroundColor": "green",
+                "borderColor": "greend",
+                "data": Array [
+                  50,
+                  45,
+                ],
+                "fill": true,
+                "label": "SuccessfulTilt.tiltSucessful.FR",
+                "lineTension": 0,
+              },
+              Object {
+                "backgroundColor": "yellow",
+                "borderColor": "yellow",
+                "data": Array [
+                  20,
+                  25,
+                ],
+                "fill": true,
+                "label": "SuccessfulTilt.tiltBadDuration.FR",
+                "lineTension": 0,
+              },
+              Object {
+                "backgroundColor": "orange",
+                "borderColor": "orange",
+                "data": Array [
+                  25,
+                  15,
+                ],
+                "fill": true,
+                "label": "SuccessfulTilt.tiltBadAngle.FR",
+                "lineTension": 0,
+              },
+              Object {
+                "backgroundColor": "red",
+                "borderColor": "red",
+                "data": Array [
+                  10,
+                  20,
+                ],
+                "fill": true,
+                "label": "SuccessfulTilt.tiltNotMade.FR",
+                "lineTension": 0,
+              },
+            ],
+            "labels": Array [
+              "1",
+              "2",
+            ],
+          }
+        }
+        height={null}
+        id={null}
+        options={
+          Object {
+            "scales": Object {
+              "xAxes": Array [
+                Object {
+                  "stacked": true,
+                },
+              ],
+              "yAxes": Array [
+                Object {
+                  "stacked": true,
+                  "ticks": Object {
+                    "min": 0,
+                  },
+                },
+              ],
+            },
+          }
+        }
+        style={null}
+        type="bar"
+        width={null}
+      />
+    }
+    header={
+      <h4>
+        SuccessfulTilt.tiltMade.FR
+      </h4>
+    }
+  />
+</div>
+`;

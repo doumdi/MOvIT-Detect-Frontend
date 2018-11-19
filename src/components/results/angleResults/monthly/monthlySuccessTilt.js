@@ -33,16 +33,19 @@ class MonthlySuccessTilt extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.month !== this.state.month) {
-      this.setState({ date: nextProps.month });
+      this.setState({ month: nextProps.month });
       this.getMonthData(nextProps.month);
     }
   }
 
-  getMonthData(month) {
+  async getMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    axios.get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
-      .then((response) => { this.formatChartData(response.data); })
-      .catch(console.error);
+    try {
+      const response = await axios.get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
+      this.formatChartData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   formatChartData(data) {

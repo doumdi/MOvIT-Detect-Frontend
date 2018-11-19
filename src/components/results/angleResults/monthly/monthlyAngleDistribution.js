@@ -42,17 +42,20 @@ class MonthlyAngleDistribution extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.month !== this.state.month) {
-      this.setState({ date: nextProps.month });
+      this.setState({ month: nextProps.month });
       this.getAngleMonthData(nextProps.month);
     }
   }
 
-  getAngleMonthData(month) {
+  async getAngleMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.state.angleLoading = true;
-    axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header)
-      .then((response) => { this.formatAngleChartData(response.data); })
-      .catch(error => console.log(error));
+    try {
+      const response = await axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header);
+      this.formatAngleChartData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   formatAngleChartData(data) {
@@ -164,9 +167,6 @@ class MonthlyAngleDistribution extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    reduceWeight: state.recommendationReducer.reduceWeight,
-    reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
-    reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
     header: state.applicationReducer.header,
   };
 }

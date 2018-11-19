@@ -35,17 +35,20 @@ class MonthlySittingTime extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.month !== this.state.month) {
-      this.setState({ date: nextProps.month });
+      this.setState({ month: nextProps.month });
       this.getSitMonthData(nextProps.month);
     }
   }
 
-  getSitMonthData(month) {
+  async getSitMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.state.sitLoading = true;
-    axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header)
-      .then((response) => { this.formatSitChartData(response.data); })
-      .catch(error => console.log(error));
+    try {
+      const response = await axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header);
+      this.formatSitChartData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   formatSitChartData(data) {
@@ -118,9 +121,6 @@ class MonthlySittingTime extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    reduceWeight: state.recommendationReducer.reduceWeight,
-    reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
-    reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
     header: state.applicationReducer.header,
   };
 }

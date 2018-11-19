@@ -19,7 +19,14 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('MonthlyPressureResults Tests', () => {
   const MONTH = '2';
-  const initialState = { applicationReducer: { language: 'en' }, recommendationReducer: { reduceWeight: true } };
+  const initialState = {
+    applicationReducer: { language: 'FR' },
+    recommendationReducer: {
+      reduceWeight: true,
+      reduceSlidingRest: true,
+      reduceSlidingMoving: true,
+    },
+  };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
@@ -39,6 +46,13 @@ describe('MonthlyPressureResults Tests', () => {
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
+  });
+
+  it('should update month', () => {
+    const wrapper = shallow(<MonthlyPressureResults store={store} {...props} />).dive();
+    wrapper.instance().componentWillReceiveProps({ month: '4' });
+
+    expect(wrapper.state('month')).toEqual('4');
   });
 
   it('should match the snapshot', () => {

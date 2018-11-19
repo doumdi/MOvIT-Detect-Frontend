@@ -14,7 +14,7 @@ exports[`DailyPressureResults Tests should match the snapshot 1`] = `
         <a
           href="results/pressure#dailyPressureCenter"
         >
-          results.graphicsLink.pressureCenter.en
+          results.graphicsLink.pressureCenter.FR
         </a>
       </li>
       <li
@@ -23,7 +23,25 @@ exports[`DailyPressureResults Tests should match the snapshot 1`] = `
         <a
           href="results/pressure#reduceWeight"
         >
-          dailyResults.pressure.en
+          dailyResults.pressure.FR
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceSlidingMoving"
+        >
+          dailyResults.travel.FR
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceSlidingRest"
+        >
+          monthlyResults.rest.FR
         </a>
       </li>
     </ul>
@@ -38,7 +56,7 @@ exports[`DailyPressureResults Tests should match the snapshot 1`] = `
         <div>
           <Connect(PressureCenter)
             date={1517720400000}
-            title="results.graphicsLink.pressureCenter.en"
+            title="results.graphicsLink.pressureCenter.FR"
           />
           <div
             id="reduceWeight"
@@ -47,14 +65,15 @@ exports[`DailyPressureResults Tests should match the snapshot 1`] = `
               condition={true}
               goalValue={70}
               recValue={50}
-              title="dailyResults.pressure.en"
+              title="dailyResults.pressure.FR"
             />
           </div>
           <div
             id="reduceSlidingMoving"
           >
             <Connect(GoalProgress)
-              title="dailyResults.travel.en"
+              condition={true}
+              title="dailyResults.travel.FR"
               value={0}
             />
           </div>
@@ -62,7 +81,8 @@ exports[`DailyPressureResults Tests should match the snapshot 1`] = `
             id="reduceSlidingRest"
           >
             <Connect(GoalProgress)
-              title="dailyResults.rest.en"
+              condition={true}
+              title="dailyResults.rest.FR"
               value={0}
             />
           </div>
