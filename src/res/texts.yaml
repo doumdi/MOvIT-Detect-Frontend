@@ -284,6 +284,18 @@ results:
     pressure:
       FR: "Pression"
       EN: "Pressure"
+      units:
+        FR: "Pouces"
+        EN: "Inches"
+      legend:
+        FR: "Légende"
+        EN: "Legend"
+        center:
+          FR: "Centre global"
+          EN: "Global center"
+        quadrant:
+          FR: "Centre du quadrant"
+          EN: "Quadrant center"
     angle:
       FR: "Bascules"
       EN: "Tilts"

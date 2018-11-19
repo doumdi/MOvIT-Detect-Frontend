@@ -1,18 +1,21 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
+import '../../../styles/results.css';
+
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import PropTypes from 'prop-types';
+
 import { Chart } from 'primereact/components/chart/Chart';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import { connect } from 'react-redux';
 import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 import { URL } from '../../../redux/applicationReducer';
-import '../../../styles/results.css';
 
 class DailyAngleDistribution extends Component {
   static propTypes = {
@@ -42,10 +45,15 @@ class DailyAngleDistribution extends Component {
     }
   }
 
-  getDayData(date) {
+  async getDayData(date) {
     this.state.loading = true;
-    axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
-      .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
+    try {
+      const response = await axios.get(`${URL}oneDay?Day=${+date}`, this.props.header);
+      this.state.dayData = response.data.map(v => v / 60000);
+      this.loadData();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   loadData() {
@@ -80,6 +88,21 @@ class DailyAngleDistribution extends Component {
     this.setState({ loading: false });
   }
 
+  formatTime(min) {
+    const hours = Math.floor(min / 60);
+    let minutes = Math.floor((min - ((hours * 3600)) / 60));
+    let seconds = Math.floor((min * 60) - (hours * 3600) - (minutes * 60));
+
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+    if (seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+
+    return `${hours}h ${minutes}m ${seconds}s`;
+  }
+
   render() {
     const minOptions = {
       tooltips: {
@@ -89,8 +112,7 @@ class DailyAngleDistribution extends Component {
             if (label) {
               label += ': ';
             }
-            label += Math.round(labelData.datasets[0].data[tooltipItem.index] * 100) / 100;
-            label += ' min';
+            label += this.formatTime(labelData.datasets[0].data[tooltipItem.index]);
             return label;
           },
         },
