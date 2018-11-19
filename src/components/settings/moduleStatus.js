@@ -14,7 +14,7 @@ class ModuleStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      moduleStatus: [],
+      moduleStatus: {},
     };
     this.getStatus();
   }
@@ -26,13 +26,26 @@ class ModuleStatus extends Component {
   }
 
   render() {
-    const moduleList = this.state.moduleStatus.map(module => (
-      <li className="mb-1" key={module.name}>
-        {module.name}: &nbsp;
-        <span style={{ color: module.value ? 'green' : 'red' }}>
-          {T.translate(`settings.state.value.${module.value ? 'connected' : 'disconnected'}.${this.props.language}`)}
-        </span>
-      </li>));
+    const moduleList = [];
+    const whiteList = [
+      'notificationModule',
+      'fixedAccelerometer',
+      'mobileAccelerometer',
+      'pressureMat',
+    ];
+
+    for (const module in this.state.moduleStatus) {
+      if (whiteList.includes(module)) {
+        moduleList.push((
+          <li className="mb-1" key={module}>
+            {T.translate(`settings.state.value.${module}.${this.props.language}`)}: &nbsp;
+            <span style={{ color: this.state.moduleStatus[module] ? 'green' : 'red' }}>
+              {T.translate(`settings.state.value.${this.state.moduleStatus[module] ? 'connected' : 'disconnected'}.${this.props.language}`)}
+            </span>
+          </li>
+        ));
+      }
+    }
 
     return (
       <div className="row">
