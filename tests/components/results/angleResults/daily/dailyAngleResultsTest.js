@@ -5,45 +5,40 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import configureMockStore from 'redux-mock-store';
 import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import toJson from 'enzyme-to-json';
 
-import RecGoalProgress from '../../../../src/components/results/progressResults/recGoalProgress';
+import Adapter from 'enzyme-adapter-react-16';
+import PropTypes from 'prop-types';
+import React from 'react';
+import toJson from 'enzyme-to-json';
+import configureMockStore from 'redux-mock-store';
+import DailyAngleResults from '../../../../../src/components/results/angleResults/daily/dailyAngleResults';
+
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('RecGoalProgress Tests', () => {
+describe('DailyAngleResults Tests', () => {
+  const DATE = 1517720400000;
   const initialState = { applicationReducer: { language: 'en' } };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
-    language: 'en',
-    condition: true,
-    title: 'This is a title',
-    goalValue: 50,
-    recValue: 30,
+    date: DATE,
   };
 
   it('should have proptypes', () => {
-    const actualValue = RecGoalProgress.WrappedComponent.propTypes;
+    const actualValue = DailyAngleResults.propTypes;
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      condition: PropTypes.bool.isRequired,
-      title: PropTypes.string.isRequired,
-      goalValue: PropTypes.number,
-      recValue: PropTypes.number,
+      date: PropTypes.instanceOf(Date),
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
   it('should match the snapshot', () => {
-    const wrapper = shallow(<RecGoalProgress store={store} {...props} />).dive();
+    const wrapper = shallow(<DailyAngleResults store={store} {...props} />).dive();
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

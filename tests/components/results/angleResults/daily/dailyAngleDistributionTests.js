@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../src/redux/applicationReducer';
-import DailyAngleDistribution from '../../../../src/components/results/angleResults/dailyAngleDistribution';
+import { URL } from '../../../../../src/redux/applicationReducer';
+import DailyAngleDistribution from '../../../../../src/components/results/angleResults/daily/dailyAngleDistribution';
 
 Enzyme.configure({ adapter: new Adapter() });
 

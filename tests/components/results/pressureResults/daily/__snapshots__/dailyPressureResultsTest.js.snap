@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailyPressureResults Tests should match the snapshot 1`] = `
+<div>
+  <div
+    className="col-lg-2 leftMenu"
+  >
+    <ul
+      className="graphlist"
+    >
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#dailyPressureCenter"
+        >
+          results.graphicsLink.pressureCenter.en
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceWeight"
+        >
+          dailyResults.pressure.en
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    className=" col-lg-10 offset-lg-3 results resultsContainer"
+  >
+    <div
+      className="col-lg-8 graphic"
+    >
+      <div>
+        <div>
+          <Connect(PressureCenter)
+            date={1517720400000}
+            title="results.graphicsLink.pressureCenter.en"
+          />
+          <div
+            id="reduceWeight"
+          >
+            <Connect(RecGoalProgress)
+              condition={true}
+              goalValue={70}
+              recValue={50}
+              title="dailyResults.pressure.en"
+            />
+          </div>
+          <div
+            id="reduceSlidingMoving"
+          >
+            <Connect(GoalProgress)
+              title="dailyResults.travel.en"
+              value={0}
+            />
+          </div>
+          <div
+            id="reduceSlidingRest"
+          >
+            <Connect(GoalProgress)
+              title="dailyResults.rest.en"
+              value={0}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

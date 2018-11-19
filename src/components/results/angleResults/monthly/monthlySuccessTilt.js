@@ -3,9 +3,9 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
-import CustomCard from '../../shared/card';
-import { URL } from '../../../redux/applicationReducer';
-import { T } from '../../../utilities/translator';
+import CustomCard from '../../../shared/card';
+import { URL } from '../../../../redux/applicationReducer';
+import { T } from '../../../../utilities/translator';
 
 class MonthlySuccessTilt extends Component {
   static propTypes = {

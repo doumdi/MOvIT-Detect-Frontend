@@ -16,9 +16,9 @@ import toJson from 'enzyme-to-json';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import CustomCard from '../../../../src/components/shared/card';
-import { URL } from '../../../../src/redux/applicationReducer';
-import PressureCenter from '../../../../src/components/results/pressureResults/pressureCenter';
+import CustomCard from '../../../../../src/components/shared/card';
+import { URL } from '../../../../../src/redux/applicationReducer';
+import PressureCenter from '../../../../../src/components/results/pressureResults/daily/pressureCenter';
 
 Enzyme.configure({ adapter: new Adapter() });
 

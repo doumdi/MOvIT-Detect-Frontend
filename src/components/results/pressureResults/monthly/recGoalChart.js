@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
-import CustomCard from '../../shared/card';
+import CustomCard from '../../../shared/card';
 
 
 export default class RecGoalChart extends Component {

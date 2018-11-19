@@ -13,10 +13,10 @@ import {
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
-import { T } from '../../../utilities/translator';
-import CustomCard from '../../shared/card';
-import { URL } from '../../../redux/applicationReducer';
-import { milliToTimeString } from '../../../utils/timeFormat';
+import { T } from '../../../../utilities/translator';
+import CustomCard from '../../../shared/card';
+import { URL } from '../../../../redux/applicationReducer';
+import { milliToTimeString } from '../../../../utils/timeFormat';
 
 class PressureCenter extends Component {
   static propTypes = {

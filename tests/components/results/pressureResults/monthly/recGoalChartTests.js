@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
-import RecGoalChart from '../../../../src/components/results/progressResults/recGoalChart';
+import RecGoalChart from '../../../../../src/components/results/pressureResults/monthly/recGoalChart';
 
 Enzyme.configure({ adapter: new Adapter() });
 

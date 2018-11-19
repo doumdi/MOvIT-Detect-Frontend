@@ -1,0 +1,283 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
+<div>
+  <div
+    className="col-lg-2 leftMenu"
+  >
+    <ul
+      className="graphlist"
+    >
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#monthlySitting"
+        >
+          results.graphicsLink.sittingTime.en
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceWeight"
+        >
+          dailyResults.pressure.en
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    className=" col-lg-10 offset-lg-3 results resultsContainer"
+  >
+    <div
+      className="col-lg-8 graphic"
+    >
+      <div>
+        <Connect(MonthlySittingTime)
+          month="2"
+        />
+        <div
+          id="reduceWeight"
+        >
+          <RecGoalChart
+            condition={true}
+            goalData={
+              Object {
+                "datasets": Array [
+                  Object {
+                    "borderColor": "red",
+                    "data": Array [
+                      36,
+                      40,
+                      27,
+                      38,
+                      42,
+                      55,
+                      40,
+                      28,
+                      32,
+                      26,
+                      25,
+                      28,
+                      31,
+                      22,
+                      25,
+                      34,
+                      36,
+                      30,
+                      21,
+                      24,
+                      26,
+                      28,
+                      31,
+                      32,
+                      8,
+                      0,
+                      26,
+                      30,
+                      21,
+                      24,
+                    ],
+                    "fill": true,
+                    "label": "monthlyResults.pressure.tiltMade.en",
+                    "lineTension": 0,
+                  },
+                  Object {
+                    "borderColor": "blue",
+                    "data": Array [
+                      26,
+                      28,
+                      31,
+                      32,
+                      8,
+                      34,
+                      36,
+                      30,
+                      21,
+                      24,
+                      55,
+                      40,
+                      28,
+                      32,
+                      26,
+                      25,
+                      28,
+                      31,
+                      22,
+                      25,
+                      0,
+                      26,
+                      30,
+                      21,
+                      24,
+                      36,
+                      40,
+                      27,
+                      38,
+                      42,
+                    ],
+                    "fill": false,
+                    "label": "monthlyResults.pressure.tiltGoal.en",
+                    "lineTension": 0,
+                  },
+                ],
+                "labels": Array [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8",
+                  "9",
+                  "10",
+                  "11",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "19",
+                  "20",
+                  "21",
+                  "22",
+                  "23",
+                  "24",
+                  "25",
+                  "26",
+                  "27",
+                  "28",
+                  "29",
+                  "30",
+                ],
+              }
+            }
+            goalTitle="monthlyResults.pressure.personal.en"
+            recData={
+              Object {
+                "datasets": Array [
+                  Object {
+                    "borderColor": "red",
+                    "data": Array [
+                      36,
+                      40,
+                      27,
+                      38,
+                      42,
+                      55,
+                      40,
+                      28,
+                      32,
+                      26,
+                      25,
+                      28,
+                      31,
+                      22,
+                      25,
+                      34,
+                      36,
+                      30,
+                      21,
+                      24,
+                      26,
+                      28,
+                      31,
+                      32,
+                      8,
+                      0,
+                      26,
+                      30,
+                      21,
+                      24,
+                    ],
+                    "fill": true,
+                    "label": "monthlyResults.pressure.tiltMade.en",
+                    "lineTension": 0,
+                  },
+                  Object {
+                    "borderColor": "blue",
+                    "data": Array [
+                      26,
+                      28,
+                      31,
+                      32,
+                      8,
+                      34,
+                      36,
+                      30,
+                      21,
+                      24,
+                      55,
+                      40,
+                      28,
+                      32,
+                      26,
+                      25,
+                      28,
+                      31,
+                      22,
+                      25,
+                      0,
+                      26,
+                      30,
+                      21,
+                      24,
+                      36,
+                      40,
+                      27,
+                      38,
+                      42,
+                    ],
+                    "fill": false,
+                    "label": "monthlyResults.pressure.tiltGoal.en",
+                    "lineTension": 0,
+                  },
+                ],
+                "labels": Array [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8",
+                  "9",
+                  "10",
+                  "11",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "19",
+                  "20",
+                  "21",
+                  "22",
+                  "23",
+                  "24",
+                  "25",
+                  "26",
+                  "27",
+                  "28",
+                  "29",
+                  "30",
+                ],
+              }
+            }
+            recTitle="monthlyResults.pressure.recommended.en"
+            title="monthlyResults.pressure.en"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

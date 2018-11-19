@@ -12,7 +12,7 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 
-import GoalProgress from '../../../../src/components/results/progressResults/goalProgress';
+import GoalProgress from '../../../../../src/components/results/pressureResults/daily/goalProgress';
 
 Enzyme.configure({ adapter: new Adapter() });
 

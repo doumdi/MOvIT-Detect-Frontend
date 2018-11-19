@@ -5,7 +5,7 @@
  * @author Benjamin Roy
  */
 
-import '../../../styles/results.css';
+import '../../../../styles/results.css';
 
 import React, { Component } from 'react';
 
@@ -13,9 +13,9 @@ import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import CustomCard from '../../shared/card';
-import { T } from '../../../utilities/translator';
-import { URL } from '../../../redux/applicationReducer';
+import CustomCard from '../../../shared/card';
+import { T } from '../../../../utilities/translator';
+import { URL } from '../../../../redux/applicationReducer';
 
 class DailyAngleDistribution extends Component {
   static propTypes = {
