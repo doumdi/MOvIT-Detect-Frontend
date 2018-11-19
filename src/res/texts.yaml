@@ -284,6 +284,9 @@ results:
     pressure:
       FR: "Pression"
       EN: "Pressure"
+      units:
+        FR: "Pouces"
+        EN: "Inches"
       legend:
         FR: "Légende"
         EN: "Legend"
