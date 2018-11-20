@@ -26,6 +26,7 @@ class Wifi extends Component {
       password: '',
       connected: false,
       connecting: true,
+      changingNetwork: false,
     };
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.changeWifi = this.changeWifi.bind(this);
@@ -45,7 +46,7 @@ class Wifi extends Component {
   }
 
   enableConnection() {
-    this.setState({ connecting: false, connected: false });
+    this.setState({ connecting: false, connected: false, changingNetwork: true });
   }
 
   changeWifi(wifiName) {
@@ -96,6 +97,8 @@ class Wifi extends Component {
     this.setState({
       wifi: '',
       password: '',
+      connected: true,
+      changingNetwork: false,
     });
   }
 
@@ -133,6 +136,7 @@ class Wifi extends Component {
                   />
                 </div>
                 <SubmitButtons
+                  displayCancel={this.state.changingNetwork}
                   onSave={this.save.bind(this)}
                   onCancel={this.cancel.bind(this)}
                 />
