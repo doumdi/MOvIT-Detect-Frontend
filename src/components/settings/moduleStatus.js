@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import { T } from '../../utilities/translator';
-import { URL } from '../../redux/applicationReducer';
+import '../../styles/components/moduleStatus.css';
 
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { URL } from '../../redux/applicationReducer';
+import { T } from '../../utilities/translator';
 
 class ModuleStatus extends Component {
   static propTypes = {
@@ -36,12 +39,20 @@ class ModuleStatus extends Component {
 
     for (const module in this.state.moduleStatus) {
       if (whiteList.includes(module)) {
+        const moduleValue = this.state.moduleStatus[module];
         moduleList.push((
           <li className="mb-1" key={module}>
             {T.translate(`settings.state.value.${module}.${this.props.language}`)}: &nbsp;
-            <span style={{ color: this.state.moduleStatus[module] ? 'green' : 'red' }}>
-              {T.translate(`settings.state.value.${this.state.moduleStatus[module] ? 'connected' : 'disconnected'}.${this.props.language}`)}
+            <span style={{ color: moduleValue ? 'green' : 'red' }}>
+              {moduleValue
+                ? <i className="fa fa-check-circle" />
+                : <i className="fa fa-times-circle" />
+              }
             </span>
+            <Tooltip
+              for={`#sensor${module}`}
+              title={T.translate(`settings.state.value.${moduleValue ? 'connected' : 'disconnected'}.${this.props.language}`)}
+            />
           </li>
         ));
       }
@@ -50,7 +61,7 @@ class ModuleStatus extends Component {
     return (
       <div className="row">
         <div className="col-6">
-          <ul className="list-unstyled">{moduleList}</ul>
+          <ul className="list-unstyled smallWidth">{moduleList}</ul>
         </div>
       </div>
     );
