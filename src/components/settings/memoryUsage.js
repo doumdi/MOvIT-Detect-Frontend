@@ -9,9 +9,9 @@ import React, { Component } from 'react';
 
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
+import { get } from '../../utilities/secureHTTP';
 
 class MemoryUsage extends Component {
   static propTypes = {
@@ -29,12 +29,8 @@ class MemoryUsage extends Component {
   }
 
   async getMemoryUsage() {
-    try {
-      const response = await axios.get(`${URL}memory`, this.props.header);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await get(`${URL}memory`);
+    return response.data;
   }
 
   async load() {

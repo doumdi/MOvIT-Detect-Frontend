@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AngleRecommendation from '../components/recommendation/angleRecommendation';
@@ -23,6 +22,7 @@ import { T } from '../utilities/translator';
 import TextRecommendation from '../components/recommendation/textRecommendation';
 import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
+import { get, post } from '../utilities/secureHTTP';
 
 class Recommendation extends Component {
   static propTypes = {
@@ -95,8 +95,8 @@ class Recommendation extends Component {
 
   async load() {
     try {
-      const response = await axios.get(`${URL}recommandation`, this.props.header);
-      await this.mapData(response.data);
+      const response = await get(`${URL}recommandation`);
+      this.mapData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
       console.log(error);
@@ -171,12 +171,9 @@ class Recommendation extends Component {
         value: this.props.otherRecommendations,
       },
     };
-    axios.post(`${URL}goal`, data.reduceWeight, this.props.header)
-      .then()
-      .catch(error => console.log(error));
-    axios.post(`${URL}recommandation`, data, this.props.header)
-      .then(() => this.props.history.push('/goals'))
-      .catch(error => console.log(error));
+    post(`${URL}goal`, data.reduceWeight);
+    post(`${URL}recommandation`, data);
+    this.props.history.push('/goals');
   }
 
   cancel() {

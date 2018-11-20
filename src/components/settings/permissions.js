@@ -8,13 +8,13 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ParameterActions } from '../../redux/parameterReducer';
 import PreventPermission from './preventPermission';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
+import { get, post } from '../../utilities/secureHTTP';
 
 class Permissions extends Component {
   static propTypes = {
@@ -29,10 +29,9 @@ class Permissions extends Component {
     this.load();
   }
 
-  load() {
-    axios.get(`${URL}notificationParam`, this.props.header)
-      .then(response => this.mapData(response.data))
-      .catch(console.log);
+  async load() {
+    const response = await get(`${URL}notificationParam`);
+    this.mapData(response.data);
   }
 
   mapData(response) {
@@ -43,9 +42,7 @@ class Permissions extends Component {
     const data = {
       dataAgreement: this.props.dataAgreement,
     };
-    axios.post(`${URL}notificationParam`, data, this.props.header)
-      .then(console.log)
-      .catch(console.log);
+    post(`${URL}notificationParam`, data);
   }
 
   render() {
