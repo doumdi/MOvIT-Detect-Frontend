@@ -12,7 +12,6 @@ const header = `{ headers: { Authorization: ${localStorage.getItem('token')} }`;
 function logout() {
   localStorage.setItem('token', '');
   localStorage.setItem('profile', '');
-  $('.navbar-collapse').collapse('hide');
   document.location.href = '/home';
 }
 

@@ -49,7 +49,7 @@ class MonthlyAngleDistribution extends Component {
 
   async getAngleMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    this.setState({ angleLoading: true });
+    this.state.angleLoading = true;
     const response = await get(`${URL}oneMonth?Day=${+date}`);
     this.formatAngleChartData(response.data);
   }
@@ -113,7 +113,7 @@ class MonthlyAngleDistribution extends Component {
         },
       ],
     };
-    this.setState({ angleLoading: false });
+    this.state.angleLoading = false;
   }
 
   render() {
