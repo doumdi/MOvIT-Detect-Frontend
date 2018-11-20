@@ -5,26 +5,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
-import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
-import { get } from '../../utilities/secureHTTP';
+import ErrorMessage from '../shared/errorMessage';
 
 class ModuleStatus extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      moduleStatus: {},
-    };
-    this.getStatus();
-  }
-
-  async getStatus() {
-    const response = await get(`${URL}Debug`);
-    this.setState({ moduleStatus: response.data });
+    moduleStatus: PropTypes.object.isRequired,
+    hasErrors: PropTypes.bool.isRequired,
   }
 
   render() {
@@ -36,9 +24,9 @@ class ModuleStatus extends Component {
       'pressureMat',
     ];
 
-    for (const module in this.state.moduleStatus) {
+    for (const module in this.props.moduleStatus) {
       if (whiteList.includes(module)) {
-        const moduleValue = this.state.moduleStatus[module];
+        const moduleValue = this.props.moduleStatus[module];
         moduleList.push((
           <li className="mb-1" key={module}>
             {T.translate(`settings.state.value.${module}.${this.props.language}`)}: &nbsp;
@@ -58,10 +46,17 @@ class ModuleStatus extends Component {
     }
 
     return (
-      <div className="row">
-        <div className="col-6">
-          <ul className="list-unstyled smallWidth">{moduleList}</ul>
-        </div>
+      <div>
+        {this.props.hasErrors
+          ? <ErrorMessage />
+          : (
+            <div className="row">
+              <div className="col-6">
+                <ul className="list-unstyled smallWidth">{moduleList}</ul>
+              </div>
+            </div>
+          )
+        }
       </div>
     );
   }
