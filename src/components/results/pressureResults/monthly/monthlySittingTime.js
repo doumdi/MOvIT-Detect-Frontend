@@ -8,10 +8,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
 import { URL } from '../../../../redux/applicationReducer';
+import { get } from '../../../../utilities/secureHTTP';
 
 class MonthlySittingTime extends Component {
   static propTypes = {
@@ -43,12 +43,8 @@ class MonthlySittingTime extends Component {
   async getSitMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.state.sitLoading = true;
-    try {
-      const response = await axios.get(`${URL}sittingTime?Day=${+date},Offset=0`, this.props.header);
-      this.formatSitChartData(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await get(`${URL}sittingTime?Day=${+date},Offset=0`);
+    this.formatSitChartData(response.data);
   }
 
   formatSitChartData(data) {

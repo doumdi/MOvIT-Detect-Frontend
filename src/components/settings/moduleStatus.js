@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
+import { get } from '../../utilities/secureHTTP';
 
 class ModuleStatus extends Component {
   static propTypes = {
@@ -22,10 +22,9 @@ class ModuleStatus extends Component {
     this.getStatus();
   }
 
-  getStatus() {
-    axios.get(`${URL}Debug`)
-      .then(response => this.setState({ moduleStatus: response.data }))
-      .catch(error => console.log(error));
+  async getStatus() {
+    const response = await get(`${URL}Debug`);
+    this.setState({ moduleStatus: response.data });
   }
 
   render() {

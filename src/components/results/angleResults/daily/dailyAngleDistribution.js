@@ -8,14 +8,13 @@
 import '../../../../styles/results.css';
 
 import React, { Component } from 'react';
-
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
 import { URL } from '../../../../redux/applicationReducer';
+import { get } from '../../../../utilities/secureHTTP';
 
 class DailyAngleDistribution extends Component {
   static propTypes = {
@@ -47,13 +46,9 @@ class DailyAngleDistribution extends Component {
 
   async getDayData(date) {
     this.state.loading = true;
-    try {
-      const response = await axios.get(`${URL}oneDay?Day=${+date}`, this.props.header);
-      this.state.dayData = response.data.map(v => v / 60000);
-      this.loadData();
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await get(`${URL}oneDay?Day=${+date}`);
+    this.state.dayData = response.data.map(v => v / 60000);
+    this.loadData();
   }
 
   loadData() {

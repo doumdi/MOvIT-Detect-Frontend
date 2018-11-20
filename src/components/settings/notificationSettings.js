@@ -11,12 +11,12 @@ import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
 import { Spinner } from 'primereact/components/spinner/Spinner';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
 import { DebugActions } from '../../redux/debugReducer';
+import { get, post } from '../../utilities/secureHTTP';
 
 const MINIMUM_SNOOZE_TIME = 0;
 const MAXIMUM_SNOOZE_TIME = 60;
@@ -41,12 +41,8 @@ class NotificationSettings extends Component {
   }
 
   async getSettings() {
-    try {
-      const response = await axios.get(`${URL}notificationSettings`, this.props.header);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await get(`${URL}notificationSettings`);
+    return response.data;
   }
 
   async load() {
@@ -63,20 +59,16 @@ class NotificationSettings extends Component {
 
   enableLedBlinking() {
     this.props.changeIsLedBlinkingEnabled(!this.props.isLedBlinkingEnabled);
-    axios.post(`${URL}notificationSettings`, {
-      isLedBlinkingEnabled: !this.props.isLedBlinkingEnabled,
-    }, this.props.header)
-      .then(console.log)
-      .catch(console.log);
+    post(`${URL}notificationSettings`, {
+      isLedBlinkingEnabled: this.props.isLedBlinkingEnabled,
+    });
   }
 
   enableVibration() {
     this.props.changeIsVibrationEnabled(!this.props.isVibrationEnabled);
-    axios.post(`${URL}notificationSettings`, {
-      isVibrationEnabled: !this.props.isVibrationEnabled,
-    }, this.props.header)
-      .then(console.log)
-      .catch(console.log);
+    post(`${URL}notificationSettings`, {
+      isVibrationEnabled: this.props.isVibrationEnabled,
+    });
   }
 
   changeSnoozeTime(snoozeTime) {
@@ -86,19 +78,15 @@ class NotificationSettings extends Component {
     this.props.changeSnoozeTime(parseInt(snoozeTime, 10));
     // TODO: This shouldn't be done here. However, the onBlur event doesn't seem to trigger
     // and we have to do it here for the snooze notification to be sent.
-    axios.post(`${URL}notificationSettings`, {
+    post(`${URL}notificationSettings`, {
       snoozeTime: this.props.snoozeTime,
-    }, this.props.header)
-      .then(console.log)
-      .catch(console.log);
+    })
   }
 
   saveSnoozeTime() {
-    axios.post(`${URL}notificationSettings`, {
+    post(`${URL}notificationSettings`, {
       snoozeTime: this.props.snoozeTime,
-    }, this.props.header)
-      .then(console.log)
-      .catch(console.log);
+    });
   }
 
   render() {

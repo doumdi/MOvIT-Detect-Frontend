@@ -8,13 +8,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { GoalActions } from '../../redux/goalReducer';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 import TiltSlidersCard from './tiltSlidersCard';
 import TiltLabels from './tiltLabels';
+import { post } from '../../utilities/secureHTTP';
 
 class PressureRecPanel extends Component {
   static propTypes = {
@@ -52,13 +52,11 @@ class PressureRecPanel extends Component {
     if (this.state.modifieGoal) {
       this.setState({ modifieGoal: false });
       // save goals data
-      axios.post(`${URL}goal`, {
-        tiltFrequencyGoal: this.props.tiltFrequencyGoal,
-        tiltLengthGoal: this.props.tiltLengthGoal,
-        tiltAngleGoal: this.props.tiltAngleGoal,
-      }, this.props.header)
-        .then(console.log)
-        .catch(console.log);
+      post(`${URL}goal`, {
+        tiltFrequency: this.props.tiltFrequencyGoal,
+        tiltLength: this.props.tiltLengthGoal,
+        tiltAngle: this.props.tiltAngleGoal,
+      });
     } else {
       this.setState({ modifieGoal: true });
     }
