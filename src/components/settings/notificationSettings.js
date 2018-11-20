@@ -76,6 +76,13 @@ class NotificationSettings extends Component {
       return;
     }
     this.props.changeSnoozeTime(parseInt(snoozeTime, 10));
+    // TODO: This shouldn't be done here. However, the onBlur event doesn't seem to trigger
+    // and we have to do it here for the snooze notification to be sent.
+    axios.post(`${URL}notificationSettings`, {
+      snoozeTime: this.props.snoozeTime,
+    }, this.props.header)
+      .then(console.log)
+      .catch(console.log);
   }
 
   saveSnoozeTime() {
@@ -118,7 +125,7 @@ class NotificationSettings extends Component {
             id="value"
             type="number"
             onChange={event => this.changeSnoozeTime(event.value)}
-            onBlur={() => this.saveSnoozeTime()}
+            onBlur={this.saveSnoozeTime}
             value={this.props.snoozeTime}
             min={this.props.minimumSnoozeTime || MINIMUM_SNOOZE_TIME}
             max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}
