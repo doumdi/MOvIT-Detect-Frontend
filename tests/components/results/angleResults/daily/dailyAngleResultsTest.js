@@ -18,12 +18,12 @@ import DailyAngleResults from '../../../../../src/components/results/angleResult
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('DailyAngleResults Tests', () => {
-  const DATE = 1517720400000;
+  const date = 1517720400000;
   const initialState = { applicationReducer: { language: 'en' } };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
-    date: DATE,
+    date,
   };
 
   it('should have proptypes', () => {

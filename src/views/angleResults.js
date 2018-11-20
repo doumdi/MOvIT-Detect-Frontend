@@ -56,12 +56,8 @@ class AngleResults extends Component {
         <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
         <hr />
         {this.state.period === 'day'
-          ? (
-            <DailyAngleResults date={this.state.date} />
-          )
-          : (
-            <MonthlyAngleResults month={this.state.month} />
-          )
+          ? <DailyAngleResults date={this.state.date} />
+          : <MonthlyAngleResults month={this.state.month} />
         }
       </div>
     );

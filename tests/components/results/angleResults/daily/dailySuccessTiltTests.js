@@ -20,13 +20,13 @@ import DailySuccessTilt from '../../../../../src/components/results/angleResults
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const DATE = 1517720400000;
+const date = 1517720400000;
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const reponse = [25, 10, 12, 5];
 
-  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+DATE},offset=0`).reply(200, reponse);
+  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`).reply(200, reponse);
 }
 
 describe('DailySuccessTilt Tests', () => {
@@ -36,7 +36,7 @@ describe('DailySuccessTilt Tests', () => {
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
-    date: DATE,
+    date,
     header: {},
   };
 
@@ -47,7 +47,7 @@ describe('DailySuccessTilt Tests', () => {
     wrapper.setState({ loading: false });
 
     expect(wrapper.state('dayData')).toEqual([]);
-    expect(wrapper.state('date')).toEqual(DATE);
+    expect(wrapper.state('date')).toEqual(date);
     expect(wrapper.state('data')).toEqual(null);
     expect(wrapper.state('loading')).toEqual(false);
   });
@@ -76,14 +76,14 @@ describe('DailySuccessTilt Tests', () => {
   it('should do nothing when receiving matching props', () => {
     const spy = sinon.spy(wrapper.instance(), 'getData');
 
-    wrapper.setProps({ date: DATE });
+    wrapper.setProps({ date });
 
-    expect(wrapper.state('date')).toEqual(DATE);
+    expect(wrapper.state('date')).toEqual(date);
     expect(spy.calledOnce).toEqual(false);
   });
 
   it('should get the day data', async () => {
-    await wrapper.instance().getData(DATE);
+    await wrapper.instance().getData(date);
 
     expect(wrapper.state('dayData')).toEqual([25, 10, 12, 5]);
   });

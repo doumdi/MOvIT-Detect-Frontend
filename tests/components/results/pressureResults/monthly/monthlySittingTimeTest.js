@@ -20,8 +20,8 @@ import MonthlySittingTime from '../../../../../src/components/results/pressureRe
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const MONTH = '1';
-const RESPONSE = {
+const month = '1';
+const response = {
   1: 696,
   2: 763,
   3: 739,
@@ -29,9 +29,9 @@ const RESPONSE = {
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
-  const date = new Date(new Date().getFullYear(), MONTH, 1);
+  const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}sittingTime?Day=${+date},Offset=0`).reply(200, RESPONSE);
+  mock.onGet(`${URL}sittingTime?Day=${+date},Offset=0`).reply(200, response);
 }
 
 describe('MonthlySittingTime Tests', () => {
@@ -41,7 +41,7 @@ describe('MonthlySittingTime Tests', () => {
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
-    month: MONTH,
+    month,
     header: {},
   };
 
@@ -53,7 +53,7 @@ describe('MonthlySittingTime Tests', () => {
 
     expect(wrapper.state('sitMonthData')).toEqual([]);
     expect(wrapper.state('sitMonthLabels')).toEqual([]);
-    expect(wrapper.state('month')).toEqual(MONTH);
+    expect(wrapper.state('month')).toEqual(month);
     expect(wrapper.state('sitChartData')).toEqual(null);
     expect(wrapper.state('sitLoading')).toEqual(true);
   });
@@ -82,18 +82,18 @@ describe('MonthlySittingTime Tests', () => {
   it('should do nothing when receiving matching props', () => {
     const spy = sinon.spy(wrapper.instance(), 'getSitMonthData');
 
-    wrapper.setProps({ month: MONTH });
+    wrapper.setProps({ month });
 
-    expect(wrapper.state('month')).toEqual(MONTH);
+    expect(wrapper.state('month')).toEqual(month);
     expect(spy.calledOnce).toEqual(false);
   });
 
   it('should get the month data', async () => {
-    await wrapper.instance().getSitMonthData(MONTH);
+    await wrapper.instance().getSitMonthData(month);
 
 
     expect(wrapper.state('sitMonthLabels')).toEqual(['1', '2', '3']);
-    expect(wrapper.state('sitMonthData')).toEqual([(RESPONSE[1] / 60), (RESPONSE[2] / 60), (RESPONSE[3] / 60)]);
+    expect(wrapper.state('sitMonthData')).toEqual([(response[1] / 60), (response[2] / 60), (response[3] / 60)]);
   });
 
   it('should match the snapshot', () => {

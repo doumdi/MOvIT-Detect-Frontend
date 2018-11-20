@@ -47,10 +47,13 @@ class DailyPressureResults extends Component {
     }
   }
 
-  getDailySlidingProgress(date) {
-    axios.get(`${URL}dailySlideProgress?Day=${+date},offset=0`, this.props.header)
-      .then((response) => { this.loadDailySlidingData(response.data); })
-      .catch(console.log);
+  async getDailySlidingProgress(date) {
+    try {
+      const response = await axios.get(`${URL}dailySlideProgress?Day=${+date},offset=0`, this.props.header);
+      this.loadDailySlidingData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   loadDailySlidingData(data) {

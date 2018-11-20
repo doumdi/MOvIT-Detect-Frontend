@@ -20,8 +20,8 @@ import MonthlySuccessTilt from '../../../../../src/components/results/angleResul
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const MONTH = '1';
-const RESPONSE = {
+const month = '1';
+const response = {
   1: [
     50,
     20,
@@ -38,9 +38,9 @@ const RESPONSE = {
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
-  const date = new Date(new Date().getFullYear(), MONTH, 1);
+  const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`).reply(200, RESPONSE);
+  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`).reply(200, response);
 }
 
 describe('MonthlySuccessTilt Tests', () => {
@@ -50,7 +50,7 @@ describe('MonthlySuccessTilt Tests', () => {
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
-    month: MONTH,
+    month,
     header: {},
   };
 
@@ -61,7 +61,7 @@ describe('MonthlySuccessTilt Tests', () => {
     wrapper.setState({ loading: false });
 
     expect(wrapper.state('labels')).toEqual([]);
-    expect(wrapper.state('month')).toEqual(MONTH);
+    expect(wrapper.state('month')).toEqual(month);
     expect(wrapper.state('data')).toEqual(null);
     expect(wrapper.state('loading')).toEqual(false);
   });
@@ -90,16 +90,16 @@ describe('MonthlySuccessTilt Tests', () => {
   it('should do nothing when receiving matching props', () => {
     const spy = sinon.spy(wrapper.instance(), 'getMonthData');
 
-    wrapper.setProps({ month: MONTH });
+    wrapper.setProps({ month });
 
-    expect(wrapper.state('month')).toEqual(MONTH);
+    expect(wrapper.state('month')).toEqual(month);
     expect(spy.calledOnce).toEqual(false);
   });
 
   it('should get the month data', async () => {
-    await wrapper.instance().getMonthData(MONTH);
+    await wrapper.instance().getMonthData(month);
 
-    expect(wrapper.state('tiltMonthData').good).toEqual([RESPONSE[1][0], RESPONSE[2][0]]);
+    expect(wrapper.state('tiltMonthData').good).toEqual([response[1][0], response[2][0]]);
   });
 
   it('should match the snapshot', () => {

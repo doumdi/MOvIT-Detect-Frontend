@@ -20,13 +20,13 @@ import DailyAngleDistribution from '../../../../../src/components/results/angleR
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const DATE = 1517720400000;
+const date = 1517720400000;
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const reponse = [0, 23040000, 35136000, 27648000, 0];
 
-  mock.onGet(`${URL}oneDay?Day=${+DATE}`).reply(200, reponse);
+  mock.onGet(`${URL}oneDay?Day=${+date}`).reply(200, reponse);
 }
 
 describe('DailyAngleDistribution Tests', () => {
@@ -46,7 +46,7 @@ describe('DailyAngleDistribution Tests', () => {
     reduceWeight: true,
     reduceSlidingMoving: true,
     reduceSlidingRest: true,
-    date: DATE,
+    date,
     header: {},
   };
 
@@ -57,7 +57,7 @@ describe('DailyAngleDistribution Tests', () => {
     wrapper.setState({ loading: false });
 
     expect(wrapper.state('dayData')).toEqual([]);
-    expect(wrapper.state('date')).toEqual(DATE);
+    expect(wrapper.state('date')).toEqual(date);
     expect(wrapper.state('data')).toEqual(null);
     expect(wrapper.state('loading')).toEqual(false);
   });
@@ -89,14 +89,14 @@ describe('DailyAngleDistribution Tests', () => {
   it('should do nothing when receiving matching props', () => {
     const spy = sinon.spy(wrapper.instance(), 'getDayData');
 
-    wrapper.setProps({ date: DATE });
+    wrapper.setProps({ date });
 
-    expect(wrapper.state('date')).toEqual(DATE);
+    expect(wrapper.state('date')).toEqual(date);
     expect(spy.calledOnce).toEqual(false);
   });
 
   it('should get the day data', async () => {
-    await wrapper.instance().getDayData(DATE);
+    await wrapper.instance().getDayData(date);
 
     expect(wrapper.state('dayData')).toEqual([0, 384, 585.6, 460.8, 0]);
   });

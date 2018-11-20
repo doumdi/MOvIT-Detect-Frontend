@@ -18,12 +18,12 @@ import MonthlyAngleResults from '../../../../../src/components/results/angleResu
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('MonthlyAngleResults Tests', () => {
-  const MONTH = '2';
+  const month = '2';
   const initialState = { applicationReducer: { language: 'en' } };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
-    month: MONTH,
+    month,
   };
 
   it('should have proptypes', () => {

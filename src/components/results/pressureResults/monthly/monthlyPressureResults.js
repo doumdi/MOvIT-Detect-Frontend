@@ -48,25 +48,33 @@ class MonthlyPressureResults extends Component {
     }
   }
 
-  getMonthlySlidingProgress(month) {
+  async getMonthlySlidingProgress(month) {
     this.state.monthLoading = true;
     const date = new Date(new Date().getFullYear(), month, 1);
-    axios.get(`${URL}monthlySlideProgress?Day=${+date},offset=0`, this.props.header)
-      .then((response) => { this.loadMonthlySlidingData(response.data); })
-      .catch(console.log);
+    try {
+      const response = await axios.get(`${URL}monthlySlideProgress?Day=${+date},offset=0`, this.props.header);
+      this.loadMonthlySlidingData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   loadMonthlySlidingData(data) {
-    this.state.monthSlideLabels = [];
-    this.state.monthSildeRest = [];
-    this.state.monthSlideMoving = [];
+    const newMonthSlideLabels = [];
+    const newMonthSildeRest = [];
+    const newMonthSlideMoving = [];
     Object.keys(data).forEach((key) => {
-      this.state.monthSlideLabels.push(key.toString());
-      this.state.monthSildeRest.push(data[key][0] * 100);
-      this.state.monthSildeMoving.push(data[key][1] * 100);
+      newMonthSlideLabels.push(key.toString());
+      newMonthSildeRest.push(data[key][0] * 100);
+      newMonthSlideMoving.push(data[key][1] * 100);
     });
 
-    this.setState({ monthLoading: false });
+    this.setState({
+      monthSlideLabels: newMonthSlideLabels,
+      monthSildeRest: newMonthSildeRest,
+      monthSildeMoving: newMonthSlideMoving,
+      monthLoading: false,
+    });
   }
 
   render() {
