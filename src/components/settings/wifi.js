@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ErrorMessage from '../shared/errorMessage';
 import Loading from '../shared/loading';
 import LogoPassword from '../shared/logoPassword';
 import LogoText from '../shared/logoText';
@@ -17,6 +18,9 @@ const ENTER_KEY = 'Enter';
 class Wifi extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
+    isConnected: PropTypes.bool.isRequired,
+    changeIsConnected: PropTypes.func.isRequired,
+    hasErrors: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -24,29 +28,17 @@ class Wifi extends Component {
     this.state = {
       wifi: '',
       password: '',
-      connected: false,
       connecting: true,
       changingNetwork: false,
     };
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.changeWifi = this.changeWifi.bind(this);
     this.changePassword = this.changePassword.bind(this);
-    this.getInitialConnection();
-  }
-
-  async getInitialConnection() {
-    try {
-      const response = await get(`${URL}wifi`);
-      if (response.data.connected) {
-        this.setState({ connected: true });
-      }
-    } catch (error) {
-      this.setState({ connecting: false });
-    }
   }
 
   enableConnection() {
-    this.setState({ connecting: false, connected: false, changingNetwork: true });
+    this.setState({ connecting: false, changingNetwork: true });
+    this.props.changeIsConnected(false);
   }
 
   changeWifi(wifiName) {
@@ -68,16 +60,19 @@ class Wifi extends Component {
     const connectionValidation = window.setInterval(async () => {
       if (tries >= NUMBER_OF_RETRIES) {
         window.clearInterval(connectionValidation);
-        this.setState({ ...this.state, connecting: false, connected: false });
+        this.setState({ ...this.state, connecting: false });
+        this.props.changeIsConnected(false);
       } else {
         tries += 1;
         const response = await get(`${URL}wifi`);
         if (response.data.connected) {
           window.clearInterval(connectionValidation);
-          this.setState({ ...this.state, connecting: false, connected: true });
+          this.setState({ ...this.state, connecting: false });
+          this.props.changeIsConnected(true);
         } else {
           window.clearInterval(connectionValidation);
-          this.setState({ ...this.state, connecting: false, connected: false });
+          this.setState({ ...this.state, connecting: false });
+          this.props.changeIsConnected(false);
         }
       }
     }, RETRY_INTERVAL);
@@ -93,15 +88,18 @@ class Wifi extends Component {
     this.setState({
       wifi: '',
       password: '',
-      connected: true,
       changingNetwork: false,
     });
+    this.props.changeIsConnected(true);
   }
 
   render() {
+    if (this.props.hasErrors) {
+      return <ErrorMessage />;
+    }
     return (
       <div>
-        {this.state.connected
+        {this.props.isConnected
           && (
             <h6>
               {T.translate(`settings.wifi.connected.${this.props.language}`)}
@@ -111,7 +109,7 @@ class Wifi extends Component {
             </h6>
           )
         }
-        {!this.state.connected
+        {!this.props.isConnected
           && (this.state.connecting
             ? <Loading key="loading" />
             : (
