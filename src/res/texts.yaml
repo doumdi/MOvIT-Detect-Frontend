@@ -410,6 +410,18 @@ settings:
       disconnected:
         FR: "Déconnecté"
         EN: "Disconnected"
+      notificationModule:
+        FR: "Module de notification"
+        EN: "Notification module"
+      fixedAccelerometer:
+        FR: "Accéléromètre fixe"
+        EN: "Fixed accelerometer"
+      mobileAccelerometer:
+        FR: "Accéléromètre mobile"
+        EN: "Mobile accelerometer"
+      pressureMat:
+        FR: "Tapis de pression"
+        EN: "Pressure Mat"
   modules:
     FR: "Capteurs"
     EN: "Sensors"
@@ -494,3 +506,7 @@ demo:
   message:
     FR: "Tous les données sont falsifiées et ne seront pas sauvegardées"
     EN: "All data is falsified and will not be saved"
+
+error:
+  FR: "Une erreur est survenue. Veuillez contacter votre administrateur."
+  EN: "An error occured. Please contact your administrator."

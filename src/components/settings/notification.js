@@ -40,6 +40,7 @@ class Notification extends Component {
   async calibrate() {
     await get(`${URL}calibrate`);
     this.setState({ ...this.state, showCountdown: true });
+    console.log(this);
   }
 
   calibrationCompleted() {

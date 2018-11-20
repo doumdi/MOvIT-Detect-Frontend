@@ -30,7 +30,7 @@ class Permissions extends Component {
   }
 
   async load() {
-    const response = get(`${URL}notificationParam`);
+    const response = await get(`${URL}notificationParam`);
     this.mapData(response.data);
   }
 

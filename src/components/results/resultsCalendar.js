@@ -51,7 +51,6 @@ class ResultsCalendar extends Component {
 
   async setDefaultDate() {
     const response = await get(`${URL}lastDate`);
-    console.log(new Date(response.data));
     const date = new Date(response.data);
     date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
     const month = date.getMonth();

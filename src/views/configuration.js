@@ -1,18 +1,22 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { ConfigurationActions } from '../redux/configurationReducer';
-import { T } from '../utilities/translator';
-import LogoText from '../components/shared/logoText';
+import ErrorMessage from '../components/shared/errorMessage';
+import Loading from '../components/shared/loading';
 import LogoNumber from '../components/shared/logoNumber';
+import LogoText from '../components/shared/logoText';
 import SubmitButtons from '../components/shared/submitButtons';
+import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import { get, post } from '../utilities/secureHTTP';
 // import { InputText } from 'primereact/components/inputtext/InputText';
@@ -34,20 +38,36 @@ class Configuration extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      isLoaded: false,
+      hasErrors: false,
+    };
     this.load();
     this.save = this.save.bind(this);
   }
 
   async load() {
-    const response = await get(`${URL}configuration`);
-    this.mapData(response.data);
+    try {
+      const response = await get(`${URL}configuration`);
+      this.mapData(response.data);
+      this.setState({ isLoaded: true });
+    } catch (error) {
+      console.log(error);
+      this.setState({ hasErrors: true });
+    }
   }
 
   mapData(response) {
-    this.props.changeUserName(response.userName);
-    this.props.changeUserID(response.userID);
-    this.props.changeMaxAngle(response.maxAngle);
-    this.props.changeUserWeight(response.userWeight);
+    const self = this;
+    return new Promise(
+      ((resolve) => {
+        self.props.changeUserName(response.userName);
+        self.props.changeUserID(response.userID);
+        self.props.changeMaxAngle(response.maxAngle);
+        self.props.changeUserWeight(response.userWeight);
+        resolve();
+      }),
+    );
   }
 
   save() {
@@ -61,52 +81,59 @@ class Configuration extends Component {
     post(`${URL}configuration`, data);
   }
 
-  cancel() {
-    console.log('clear all fields');
-  }
+  cancel() { }
 
   render() {
+    if (!this.state.isLoaded) {
+      return <Loading key="loading" />;
+    }
     return (
-      <div>
-        <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3">
-          <div className="form-horizontal">
-            <legend className="text-center header"><h2>{T.translate(`configurations.${this.props.language}`)}</h2></legend>
-            <LogoText
-              iconClass="fa fa-user"
-              placeHolder={T.translate(`configurations.name.${this.props.language}`)}
-              value={this.props.userName}
-              onChange={this.props.changeUserName}
-            />
-            <LogoText
-              iconClass="fa fa-id-card"
-              placeHolder={T.translate(`configurations.telask.${this.props.language}`)}
-              value={this.props.userID}
-              onChange={this.props.changeUserID}
-            />
-            <LogoNumber
-              iconClass="fa fa-wheelchair"
-              placeHolder={T.translate(`configurations.maxTilt.${this.props.language}`)}
-              value={this.props.maxAngle}
-              onChange={this.props.changeMaxAngle}
-            />
-            <LogoNumber
-              iconClass="fa fa-balance-scale"
-              placeHolder={T.translate(`configurations.weight.${this.props.language}`)}
-              value={this.props.userWeight}
-              onChange={this.props.changeUserWeight}
-            />
-
-          </div>
-
+      <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3">
+        <div className="form-horizontal">
+          <legend className="text-center header">
+            <h2>{T.translate(`configurations.${this.props.language}`)}</h2>
+          </legend>
+          {this.state.hasErrors
+            ? <ErrorMessage />
+            : (
+              <div>
+                <LogoText
+                  iconClass="fa fa-user"
+                  placeHolder={T.translate(`configurations.name.${this.props.language}`)}
+                  value={this.props.userName}
+                  onChange={this.props.changeUserName}
+                />
+                <LogoText
+                  iconClass="fa fa-id-card"
+                  placeHolder={T.translate(`configurations.telask.${this.props.language}`)}
+                  value={this.props.userID}
+                  onChange={this.props.changeUserID}
+                />
+                <LogoNumber
+                  iconClass="fa fa-wheelchair"
+                  placeHolder={T.translate(`configurations.maxTilt.${this.props.language}`)}
+                  value={this.props.maxAngle}
+                  onChange={this.props.changeMaxAngle}
+                />
+                <LogoNumber
+                  iconClass="fa fa-balance-scale"
+                  placeHolder={T.translate(`configurations.weight.${this.props.language}`)}
+                  value={this.props.userWeight}
+                  onChange={this.props.changeUserWeight}
+                />
+                <SubmitButtons
+                  onSave={this.save.bind(this)}
+                  onCancel={this.cancel}
+                />
+              </div>
+            )
+            }
         </div>
-        <SubmitButtons
-          onSave={this.save}
-          onCancel={this.cancel}
-        />
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
@@ -117,6 +144,7 @@ function mapStateToProps(state) {
     maxAngle: state.configurationReducer.maxAngle,
   };
 }
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     changeUserName: ConfigurationActions.changeUserName,
@@ -125,4 +153,5 @@ function mapDispatchToProps(dispatch) {
     changeMaxAngle: ConfigurationActions.changeMaxAngle,
   }, dispatch);
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Configuration);

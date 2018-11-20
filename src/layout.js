@@ -14,7 +14,6 @@ import Header from './views/header';
 import Home from './views/home';
 import { IS_DEMO } from './redux/applicationReducer';
 import PressureResults from './views/pressureResults';
-import ProgressResults from './views/progressResults';
 import Recommendation from './views/recommendation';
 import ResultsCategories from './views/resultsCategories';
 import Settings from './views/settings';
@@ -42,7 +41,6 @@ export default class Layout extends Component {
               <Route exact path="/results" component={ResultsCategories} />
               <Route path="/results/angle" component={AngleResults} />
               <Route path="/results/pressure" component={PressureResults} />
-              <Route path="/results/progress" component={ProgressResults} />
               <Route path="/recommendations" component={Recommendation} />
               <Route path="/goals" component={Goal} />
               <Route path="/configurations" component={Configuration} />
