@@ -30,7 +30,7 @@ class ModuleStatus extends Component {
         moduleList.push((
           <li className="mb-1" key={module}>
             {T.translate(`settings.state.value.${module}.${this.props.language}`)}: &nbsp;
-            <span id={`sensor${module}`} style={{ color: moduleValue ? 'green' : 'red' }}>
+            <span id={`sensor${module}`} className="floatRight" style={{ color: moduleValue ? 'green' : 'red' }}>
               {moduleValue
                 ? <i className="fa fa-check-circle" />
                 : <i className="fa fa-times-circle" />
