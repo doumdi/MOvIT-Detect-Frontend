@@ -41,33 +41,65 @@ class DailySuccessTilt extends Component {
 
   loadData(newData) {
     this.state.data = {
-      labels: [
-        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
-          T.translate(`SuccessfulTilt.rightAngle.${this.props.language}`),
-          T.translate(`SuccessfulTilt.rightDuration.${this.props.language}`)],
-        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
-          T.translate(`SuccessfulTilt.rightAngle.${this.props.language}`),
-          T.translate(`SuccessfulTilt.wrongDuration.${this.props.language}`)],
-        [T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
-          T.translate(`SuccessfulTilt.rightDuration.${this.props.language}`),
-          T.translate(`SuccessfulTilt.wrongAngle.${this.props.language}`)],
-        T.translate(`SuccessfulTilt.tiltNotMade.${this.props.language}`),
-      ],
+      labels: [''],
       datasets: [
         {
-          data: newData,
+          label: T.translate(`SuccessfulTilt.tiltSucessful.${this.props.language}`),
+          data: [newData[0]],
           fill: true,
           backgroundColor: [
             'green',
-            'yellow',
-            'orange',
-            'red',
           ],
           hoverBackgroundColor: [
             'green',
+          ],
+          lineTension: 0,
+        },
+        {
+          label: T.translate(`SuccessfulTilt.tiltBadDuration.${this.props.language}`),
+          data: [newData[1]],
+          fill: true,
+          backgroundColor: [
             'yellow',
+          ],
+          hoverBackgroundColor: [
+            'yellow',
+          ],
+          lineTension: 0,
+        },
+        {
+          label: T.translate(`SuccessfulTilt.tiltBadAngle.${this.props.language}`),
+          data: [newData[2]],
+          fill: true,
+          backgroundColor: [
             'orange',
+          ],
+          hoverBackgroundColor: [
+            'orange',
+          ],
+          lineTension: 0,
+        },
+        {
+          label: T.translate(`SuccessfulTilt.tiltNotMade.${this.props.language}`),
+          data: [newData[3]],
+          fill: true,
+          backgroundColor: [
             'red',
+          ],
+          hoverBackgroundColor: [
+            'red',
+          ],
+          lineTension: 0,
+        },
+        {
+          label: T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`),
+          data: [newData[4]],
+          fill: true,
+          backgroundColor: [
+            'blue',
+          ],
+          hoverBackgroundColor: [
+            'blue',
           ],
           lineTension: 0,
         },
@@ -79,7 +111,7 @@ class DailySuccessTilt extends Component {
   render() {
     const tiltSuccessOptions = {
       legend: {
-        display: false,
+        display: true,
       },
       scales: {
         xAxes: [{

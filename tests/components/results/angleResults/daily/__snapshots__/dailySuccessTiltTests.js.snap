@@ -15,7 +15,7 @@ exports[`DailySuccessTilt Tests should match the snapshot 1`] = `
         options={
           Object {
             "legend": Object {
-              "display": false,
+              "display": true,
             },
             "scales": Object {
               "xAxes": Array [
