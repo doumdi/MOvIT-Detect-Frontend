@@ -393,9 +393,12 @@ alert:
   off:
     FR: "Fermer la notification"
     EN: "Turn off notification"
-calibrate:
-  FR: "Calibrer"
-  EN: "Calibrate"
+calibrateMat:
+  FR: "Calibrer le tapis de pression"
+  EN: "Calibrate the pressure mat"
+calibrateIMU:
+  FR: "Calibrer les accéléromètres"
+  EN: "Calibrate the accelerometers"
 calibrating:
   FR: "En calibration"
   EN: "Calibrating"

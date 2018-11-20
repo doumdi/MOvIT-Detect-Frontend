@@ -42,6 +42,11 @@ class Notification extends Component {
     this.setState({ ...this.state, showCountdown: true });
   }
 
+  async calibrateIMU() {
+    await axios.get(`${URL}calibrateIMU`, this.props.header);
+    this.setState({ ...this.state, showCountdown: true });
+  }
+
   calibrationCompleted() {
     this.setState({ ...this.state, showCountdown: false });
   }
@@ -49,9 +54,9 @@ class Notification extends Component {
   render() {
     return (
       <div className="row ml-2 mt-5">
-        <div className="mb-2 mr-3">
+        <div className="mr-3 mb-2">
           <button id="calibrate-button" type="button" onClick={() => this.calibrate()} className="btn btn-lg">
-            {T.translate(`calibrate.${this.props.language}`)}
+            {T.translate(`calibrateMat.${this.props.language}`)}
           </button>
         </div>
         <div className="mr-3 mb-2">
@@ -66,11 +71,11 @@ class Notification extends Component {
         </div>
         {this.state.showCountdown
           && (
-          <Countdown
-            time={10}
-            title={T.translate(`calibrating.${this.props.language}`)}
-            onComplete={this.calibrationCompleted}
-          />
+            <Countdown
+              time={10}
+              title={T.translate(`calibrating.${this.props.language}`)}
+              onComplete={this.calibrationCompleted}
+            />
           )}
       </div>
     );
