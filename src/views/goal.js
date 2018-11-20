@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import axios from 'axios';
 import { GoalActions } from '../redux/goalReducer';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { T } from '../utilities/translator';
@@ -17,8 +16,7 @@ import { URL } from '../redux/applicationReducer';
 import PressureRecPanel from '../components/goal/pressureRecPanel';
 import RecPanel from '../components/goal/recPanel';
 import TiltLabels from '../components/goal/tiltLabels';
-import { validateToken } from '../utilities/validateToken';
-
+import { get } from '../utilities/secureHTTP';
 
 class Goal extends Component {
   static propTypes = {
@@ -84,27 +82,23 @@ class Goal extends Component {
     this.loadRecommendations();
   }
 
-  loadGoals() {
-    validateToken();
-    axios.get(`${URL}goal`, this.props.header)
-      .then(response => this.mapGoalData(response.data))
-      .catch(console.log);
+  async loadGoals() {
+    const response = await get(`${URL}goal`);
+    this.mapGoalData(response.data);
   }
 
-  loadRecommendations() {
-    validateToken();
+  async loadRecommendations() {
     if (this.props.reduceWeight) { // most important rec, if this is not existing, reload recs
       return;
     }
-    axios.get(`${URL}recommandation`, this.props.header)
-      .then(response => this.mapRecData(response.data))
-      .catch(console.log);
+    const response = await get(`${URL}recommandation`);
+    this.mapRecData(response.data);
   }
 
   mapGoalData(response) {
-    this.props.changeTiltAngleGoal(response.tiltAngleGoal);
-    this.props.changeTiltFrequencyGoal(response.tiltFrequencyGoal);
-    this.props.changeTiltLengthGoal(response.tiltLengthGoal);
+    this.props.changeTiltAngleGoal(response.tiltAngle);
+    this.props.changeTiltFrequencyGoal(response.tiltFrequency);
+    this.props.changeTiltLengthGoal(response.tiltLength);
   }
 
   mapRecData(response) {
@@ -161,7 +155,6 @@ class Goal extends Component {
         overflowY: 'auto',
       },
     };
-
     return (
       <div className="mt-3">
         <legend className="text-center header">

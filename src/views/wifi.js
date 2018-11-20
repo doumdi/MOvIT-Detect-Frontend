@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import LogoText from '../components/shared/logoText';
 import LogoPassword from '../components/shared/logoPassword';
 import Loading from '../components/shared/loading';
-import { validateToken } from '../utilities/validateToken';
-
+import { get, post } from '../utilities/secureHTTP';
 
 class Wifi extends Component {
   static propTypes = {
@@ -28,15 +26,15 @@ class Wifi extends Component {
     this.getInitialConnection();
   }
 
-  getInitialConnection() {
-    axios.get(`${URL}wifi`)
-      .then((response) => {
-        if (response.data.connected) {
-          this.setState({ connected: true });
-        }
-        this.setState({ connecting: false });
-      })
-      .catch((error) => { this.setState({ connecting: false }); console.log(error); });
+  async getInitialConnection() {
+    try {
+      const response = await get(`${URL}wifi`);
+      if (response.data.connected) {
+        this.setState({ connected: true });
+      }
+    } catch (error) {
+      this.setState({ connecting: false });
+    }
   }
 
   enableConnection() {
@@ -53,30 +51,27 @@ class Wifi extends Component {
   }
 
   save() {
-    validateToken();
-    axios.post(`${URL}wifi`, this.state)
-      .then(() => this.waitConnection())
-      .catch(console.error);
+    post(`${URL}wifi`, this.state);
+    this.waitConnection();
   }
 
   waitConnection() {
-    validateToken();
     this.setState({ connecting: true });
     let tries = 0;
-    const connectionValidation = window.setInterval(() => {
+    const connectionValidation = window.setInterval(async () => {
       if (tries >= 15) {
         window.clearInterval(connectionValidation);
         this.setState({ ...this.state, connecting: false, connected: false });
       } else {
         tries += 1;
-        axios.get(`${URL}wifi`)
-          .then((response) => {
-            if (response.data.connected) {
-              window.clearInterval(connectionValidation);
-              this.setState({ ...this.state, connecting: false, connected: true });
-            }
-          })
-          .catch(() => { window.clearInterval(connectionValidation); this.setState({ ...this.state, connecting: false, connected: false }); });
+        const response = await get(`${URL}wifi`);
+        if (response.data.connected) {
+          window.clearInterval(connectionValidation);
+          this.setState({ ...this.state, connecting: false, connected: true });
+        } else {
+          window.clearInterval(connectionValidation);
+          this.setState({ ...this.state, connecting: false, connected: false });
+        }
       }
     }, 1000);
   }

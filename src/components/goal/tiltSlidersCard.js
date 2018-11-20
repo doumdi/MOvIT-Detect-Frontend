@@ -8,12 +8,11 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import CustomCard from '../shared/card';
 import TiltSliders from '../shared/tiltSliders';
 import { URL } from '../../redux/applicationReducer';
-import { validateToken } from '../../utilities/validateToken';
+import { post } from '../../utilities/secureHTTP';
 
 class TiltSlidersCard extends Component {
   static propTypes = {
@@ -32,14 +31,13 @@ class TiltSlidersCard extends Component {
 
   // TODO: Add feedback when saving
   async save() {
-    validateToken();
     const data = {
       tiltFrequecy: this.props.tiltFrequecy,
       tiltLength: this.props.tiltLength,
       tiltAngle: this.props.tiltAngle,
     };
     try {
-      await axios.post(`${URL}goal`, data, this.props.header);
+      await post(`${URL}goal`, data);
       console.log('succesfully updated');
     } catch (error) {
       console.log(error);

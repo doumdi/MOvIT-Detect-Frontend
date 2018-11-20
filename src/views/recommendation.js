@@ -8,7 +8,6 @@ import React, { Component } from 'react';
 
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AngleRecommendation from '../components/recommendation/angleRecommendation';
@@ -20,7 +19,7 @@ import { T } from '../utilities/translator';
 import TextRecommendation from '../components/recommendation/textRecommendation';
 import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
-import { validateToken } from '../utilities/validateToken';
+import { get, post } from '../utilities/secureHTTP';
 
 class Recommendation extends Component {
   static propTypes = {
@@ -89,11 +88,9 @@ class Recommendation extends Component {
     }
   }
 
-  load() {
-    validateToken();
-    axios.get(`${URL}recommandation`, this.props.header)
-      .then(response => this.mapData(response.data))
-      .catch(console.log);
+  async load() {
+    const response = await get(`${URL}recommandation`);
+    this.mapData(response.data);
   }
 
   mapData(response) {
@@ -139,7 +136,6 @@ class Recommendation extends Component {
   }
 
   save() {
-    validateToken();
     const data = {
       reduceWeight: {
         tiltFrequency: this.props.tiltFrequencyWeight,
@@ -158,12 +154,9 @@ class Recommendation extends Component {
         value: this.props.otherRecommendations,
       },
     };
-    axios.post(`${URL}goal`, data.reduceWeight, this.props.header)
-      .then()
-      .catch(error => console.log(error));
-    axios.post(`${URL}recommandation`, data, this.props.header)
-      .then(() => this.props.history.push('/goals'))
-      .catch(error => console.log(error));
+    post(`${URL}goal`, data.reduceWeight);
+    post(`${URL}recommandation`, data);
+    this.props.history.push('/goals');
   }
 
   cancel() {

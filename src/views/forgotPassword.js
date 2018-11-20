@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import SubmitButtons from '../components/shared/submitButtons';
 import LogoText from '../components/shared/logoText';
-import { validateToken } from '../utilities/validateToken';
-
+import { post } from '../utilities/secureHTTP';
 
 class ForgotPassword extends Component {
   static propTypes = {
@@ -35,7 +33,6 @@ class ForgotPassword extends Component {
   }
 
   save() {
-    validateToken();
     const params = new URLSearchParams(this.props.location.search);
     const userName = params.get('user');
     const data = {
@@ -43,9 +40,8 @@ class ForgotPassword extends Component {
       secret: this.state.secret,
       newPassword: this.state.password,
     };
-    axios.post(`${URL}forgotPassword`, data)
-      .then(() => this.props.history.push('/home'))
-      .catch(console.error);
+    post(`${URL}forgotPassword`, data);
+    this.props.history.push('/home');
   }
 
   cancel() {

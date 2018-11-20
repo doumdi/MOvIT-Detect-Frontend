@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import CustomCard from '../../shared/card';
 import { URL } from '../../../redux/applicationReducer';
 import { T } from '../../../utilities/translator';
-import { validateToken } from '../../../utilities/validateToken';
+import { get } from '../../../utilities/secureHTTP';
 import '../../../styles/results.css';
 
 class DailySuccessTilt extends Component {
@@ -34,11 +33,10 @@ class DailySuccessTilt extends Component {
     }
   }
 
-  getData(date) {
-    validateToken();
+  async getData(date) {
     this.state.loading = true;
-    axios.get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`, this.props.header)
-      .then((response) => { this.state.dayData = response.data; this.loadData(response.data); });
+    const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`);
+    this.state.dayData = response.data; this.loadData(response.data);
   }
 
   loadData(newData) {

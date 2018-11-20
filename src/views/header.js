@@ -15,7 +15,6 @@ import { Redirect } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
-import { validateToken } from '../utilities/validateToken';
 import {
   ApplicationActions, IS_DEMO, IS_MOBILE,
 } from '../redux/applicationReducer';
@@ -45,7 +44,6 @@ class Header extends Component {
   }
 
   isLoggedIn() {
-    validateToken();
     if (this.props.profile === '' && localStorage.getItem('profile') === '') {
       return <Redirect to="/home" />;
     }

@@ -8,14 +8,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { ConfigurationActions } from '../redux/configurationReducer';
 import { T } from '../utilities/translator';
 import LogoText from '../components/shared/logoText';
 import LogoNumber from '../components/shared/logoNumber';
 import SubmitButtons from '../components/shared/submitButtons';
 import { URL } from '../redux/applicationReducer';
-import { validateToken } from '../utilities/validateToken';
+import { get, post } from '../utilities/secureHTTP';
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
@@ -36,13 +35,12 @@ class Configuration extends Component {
   constructor(props) {
     super(props);
     this.load();
+    this.save = this.save.bind(this);
   }
 
-  load() {
-    validateToken();
-    axios.get(`${URL}configuration`, this.props.header)
-      .then(response => this.mapData(response.data))
-      .catch(console.log);
+  async load() {
+    const response = await get(`${URL}configuration`);
+    this.mapData(response.data);
   }
 
   mapData(response) {
@@ -53,16 +51,14 @@ class Configuration extends Component {
   }
 
   save() {
-    validateToken();
+    console.log(this);
     const data = {
       userName: this.props.userName,
       userID: this.props.userID,
       maxAngle: this.props.maxAngle,
       userWeight: this.props.userWeight,
     };
-    axios.post(`${URL}configuration`, data, this.props.header)
-      .then(() => this.props.history.push('/recommendations'))
-      .catch(console.log);
+    post(`${URL}configuration`, data);
   }
 
   cancel() {
@@ -104,7 +100,7 @@ class Configuration extends Component {
 
         </div>
         <SubmitButtons
-          onSave={this.save.bind(this)}
+          onSave={this.save}
           onCancel={this.cancel}
         />
       </div>

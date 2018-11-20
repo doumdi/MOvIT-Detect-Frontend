@@ -264,9 +264,9 @@ export const initRecommendation = {
   tiltAngleWeight: 0,
   tiltAngleMoving: 0,
   tiltAngleRest: 0,
-  tiltFrequencyGoal: 0,
-  tiltLengthGoal: 0,
-  tiltAngleGoal: 0,
+  tiltFrequency: 0,
+  tiltLength: 0,
+  tiltAngle: 0,
 };
 export default function applicationReducer(state = initRecommendation, action) {
   const handler = ACTION_HANDLERS[action.type];

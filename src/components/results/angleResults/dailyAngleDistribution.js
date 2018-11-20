@@ -6,13 +6,12 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import CustomCard from '../../shared/card';
 import { T } from '../../../utilities/translator';
 import { URL } from '../../../redux/applicationReducer';
-import { validateToken } from '../../../utilities/validateToken';
+import { get } from '../../../utilities/secureHTTP';
 import '../../../styles/results.css';
 
 class DailyAngleDistribution extends Component {
@@ -43,11 +42,11 @@ class DailyAngleDistribution extends Component {
     }
   }
 
-  getDayData(date) {
+  async getDayData(date) {
     this.state.loading = true;
-    validateToken();
-    axios.get(`${URL}oneDay?Day=${+date}`, this.props.header)
-      .then((response) => { this.state.dayData = response.data.map(v => v / 60000); this.loadData(); });
+    const response = await get(`${URL}oneDay?Day=${+date}`, this.props.header);
+    this.state.dayData = response.data.map(v => v / 60000);
+    this.loadData();
   }
 
   loadData() {

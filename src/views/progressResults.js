@@ -10,7 +10,6 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import GoalChart from '../components/results/progressResults/goalChart';
 import GoalProgress from '../components/results/progressResults/goalProgress';
 import RecGoalChart from '../components/results/progressResults/recGoalChart';
@@ -18,7 +17,7 @@ import RecGoalProgress from '../components/results/progressResults/recGoalProgre
 import ResultsCalendar from '../components/results/resultsCalendar';
 import { URL, IS_TABLET } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
-import { validateToken } from '../utilities/validateToken';
+import { get } from '../utilities/secureHTTP';
 
 class ProgressResults extends Component {
   static propTypes = {
@@ -53,20 +52,16 @@ class ProgressResults extends Component {
     this.changeMonth = this.changeMonth.bind(this);
   }
 
-  getDailySlidingProgress(date) {
-    validateToken();
-    axios.get(`${URL}dailySlideProgress?Day=${+date},offset=0`, this.props.header)
-      .then((response) => { this.loadDailySlidingData(response.data); })
-      .catch(console.log);
+  async getDailySlidingProgress(date) {
+    const response = await get(`${URL}dailySlideProgress?Day=${+date},offset=0`);
+    this.loadDailySlidingData(response.data);
   }
 
-  getMonthlySlidingProgress(month) {
-    validateToken();
+  async getMonthlySlidingProgress(month) {
     this.state.monthLoading = true;
     const date = new Date(new Date().getFullYear(), month, 1);
-    axios.get(`${URL}monthlySlideProgress?Day=${+date},offset=0`, this.props.header)
-      .then((response) => { this.loadMonthlySlidingData(response.data); })
-      .catch(console.log);
+    const response = get(`${URL}monthlySlideProgress?Day=${+date},offset=0`);
+    this.loadMonthlySlidingData(response.data);
   }
 
   loadMonthlySlidingData(data) {

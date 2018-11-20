@@ -8,13 +8,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { VictoryChart, VictoryScatter, VictoryTheme } from 'victory';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
 import CustomCard from '../../shared/card';
 import { URL } from '../../../redux/applicationReducer';
 import { milliToTimeString } from '../../../utils/timeFormat';
-import { validateToken } from '../../../utilities/validateToken';
+import { get } from '../../../utilities/secureHTTP';
 
 class PressureCenter extends Component {
   static propTypes = {
@@ -51,8 +50,7 @@ class PressureCenter extends Component {
   }
 
   async getPressureData(date) {
-    validateToken();
-    const response = await axios.get(`${URL}gravityCenter?Day=${+date},offset=0`, this.props.header);
+    const response = await get(`${URL}gravityCenter?Day=${+date},offset=0`);
     return response.data;
   }
 

@@ -8,12 +8,11 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import ConfirmationPopup from '../popups/confirmationPopup';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
-import { validateToken } from '../../utilities/validateToken';
+import { get } from '../../utilities/secureHTTP';
 
 const POLLING_INTERVAL = 10000;
 
@@ -43,13 +42,8 @@ class UpdatesManager extends Component {
   }
 
   async getUpdateData() {
-    validateToken();
-    try {
-      const response = await axios.get(`${URL}updates`, this.props.header);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await get(`${URL}updates`);
+    return response.data;
   }
 
   openModal() {
@@ -83,9 +77,8 @@ class UpdatesManager extends Component {
   }
 
   async triggerUpdate() {
-    validateToken();
     try {
-      await axios.post(`${URL}updates`, this.props.header);
+      await post(`${URL}updates`);
     } catch (error) {
       console.log(error);
     }

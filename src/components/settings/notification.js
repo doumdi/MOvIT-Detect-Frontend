@@ -6,13 +6,12 @@
  */
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
+import { get } from '../../utilities/secureHTTP';
 import Countdown from '../popups/countdown';
-import { validateToken } from '../../utilities/validateToken';
 
 class Notification extends Component {
   static propTypes = {
@@ -29,20 +28,17 @@ class Notification extends Component {
   }
 
   async turnOnNotification() {
-    validateToken();
-    const response = axios.get(`${URL}alert?State=on`, this.props.header);
+    const response = await get(`${URL}alert?State=on`);
     console.log(response);
   }
 
   async turnOffNotification() {
-    validateToken();
-    const response = await axios.get(`${URL}alert?State=off`, this.props.header);
+    const response = await get(`${URL}alert?State=off`);
     console.log(response);
   }
 
   async calibrate() {
-    validateToken();
-    await axios.get(`${URL}calibrate`, this.props.header);
+    await get(`${URL}calibrate`);
     this.setState({ ...this.state, showCountdown: true });
   }
 
