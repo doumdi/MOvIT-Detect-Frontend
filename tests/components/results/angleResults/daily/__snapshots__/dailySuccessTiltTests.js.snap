@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailySuccessTilt Tests should match the snapshot 1`] = `
+<div
+  className="container graphic"
+  id="dailyTilt"
+>
+  <CustomCard
+    element={
+      <Chart
+        className={null}
+        data={
+          Object {
+            "datasets": Array [
+              Object {
+                "backgroundColor": Array [
+                  "green",
+                  "yellow",
+                  "orange",
+                  "red",
+                ],
+                "data": Array [
+                  25,
+                  10,
+                  12,
+                  5,
+                ],
+                "fill": true,
+                "hoverBackgroundColor": Array [
+                  "green",
+                  "yellow",
+                  "orange",
+                  "red",
+                ],
+                "lineTension": 0,
+              },
+            ],
+            "labels": Array [
+              Array [
+                "SuccessfulTilt.tiltMade.FR",
+                "SuccessfulTilt.rightAngle.FR",
+                "SuccessfulTilt.rightDuration.FR",
+              ],
+              Array [
+                "SuccessfulTilt.tiltMade.FR",
+                "SuccessfulTilt.rightAngle.FR",
+                "SuccessfulTilt.wrongDuration.FR",
+              ],
+              Array [
+                "SuccessfulTilt.tiltMade.FR",
+                "SuccessfulTilt.rightDuration.FR",
+                "SuccessfulTilt.wrongAngle.FR",
+              ],
+              "SuccessfulTilt.tiltNotMade.FR",
+            ],
+          }
+        }
+        height={null}
+        id={null}
+        options={
+          Object {
+            "legend": Object {
+              "display": false,
+            },
+            "scales": Object {
+              "xAxes": Array [
+                Object {
+                  "barPercentage": 1,
+                  "categoryPercentage": 1,
+                },
+              ],
+              "yAxes": Array [
+                Object {
+                  "scaleLabel": Object {
+                    "display": true,
+                    "labelString": "SuccessfulTilt.tiltMade.FR",
+                  },
+                  "ticks": Object {
+                    "min": 0,
+                  },
+                },
+              ],
+            },
+          }
+        }
+        style={null}
+        type="bar"
+        width={null}
+      />
+    }
+    header={
+      <h4>
+        SuccessfulTilt.tiltMade.FR
+      </h4>
+    }
+  />
+</div>
+`;

@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailyPressureResults Tests should match the snapshot 1`] = `
+<div>
+  <div
+    className="col-lg-2 leftMenu"
+  >
+    <ul
+      className="graphlist"
+    >
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#dailyPressureCenter"
+        >
+          results.graphicsLink.pressureCenter.FR
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceWeight"
+        >
+          dailyResults.pressure.FR
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceSlidingMoving"
+        >
+          dailyResults.travel.FR
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/pressure#reduceSlidingRest"
+        >
+          monthlyResults.rest.FR
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    className=" col-lg-10 offset-lg-3 results resultsContainer"
+  >
+    <div
+      className="col-lg-8 graphic"
+    >
+      <div>
+        <div>
+          <Connect(PressureCenter)
+            date={1517720400000}
+            title="results.graphicsLink.pressureCenter.FR"
+          />
+          <div
+            id="reduceWeight"
+          >
+            <Connect(RecGoalProgress)
+              condition={true}
+              goalValue={70}
+              recValue={50}
+              title="dailyResults.pressure.FR"
+            />
+          </div>
+          <div
+            id="reduceSlidingMoving"
+          >
+            <Connect(GoalProgress)
+              condition={true}
+              title="dailyResults.travel.FR"
+              value={0}
+            />
+          </div>
+          <div
+            id="reduceSlidingRest"
+          >
+            <Connect(GoalProgress)
+              condition={true}
+              title="dailyResults.rest.FR"
+              value={0}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

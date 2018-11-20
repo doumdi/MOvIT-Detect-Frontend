@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailyAngleResults Tests should match the snapshot 1`] = `
+<div>
+  <div
+    className="col-lg-2 leftMenu"
+  >
+    <ul
+      className="graphlist"
+    >
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/angle#dailyAngle"
+        >
+          results.graphicsLink.angle.en
+        </a>
+      </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/angle#dailyTilt"
+        >
+          SuccessfulTilt.tiltMade.en
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    className=" col-lg-10 offset-lg-2 results resultsContainer"
+  >
+    <div
+      className="col-lg-8 offset-lg-1"
+    >
+      <div>
+        <div>
+          <Connect(DailyAngleDistribution)
+            date={1517720400000}
+          />
+          <Connect(DailySuccessTilt)
+            date={1517720400000}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
