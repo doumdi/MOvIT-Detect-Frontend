@@ -506,3 +506,7 @@ demo:
   message:
     FR: "Tous les données sont falsifiées et ne seront pas sauvegardées"
     EN: "All data is falsified and will not be saved"
+
+error:
+  FR: "Une erreur est survenue. Veuillez contacter votre administrateur."
+  EN: "An error occured. Please contact your administrator."
