@@ -9,38 +9,14 @@ import React, { Component } from 'react';
 
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { URL } from '../../redux/applicationReducer';
-import { get } from '../../utilities/secureHTTP';
+import ErrorMessage from '../shared/errorMessage';
 
-class MemoryUsage extends Component {
+export default class MemoryUsage extends Component {
   static propTypes = {
-    header: PropTypes.object,
+    total: PropTypes.number.isRequired,
+    used: PropTypes.number.isRequired,
+    hasErrors: PropTypes.bool.isRequired,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      total: 0,
-      used: 0,
-    };
-    this.load();
-  }
-
-  async getMemoryUsage() {
-    const response = await get(`${URL}memory`);
-    return response.data;
-  }
-
-  async load() {
-    const memory = await this.getMemoryUsage();
-
-    this.setState({
-      total: memory.total,
-      used: memory.used,
-    });
-  }
 
   render() {
     const style = {
@@ -48,16 +24,11 @@ class MemoryUsage extends Component {
     };
     return (
       <div>
-        <ProgressBar style={style} value={this.state.used / this.state.total * 100} />
+        {this.props.hasErrors
+          ? <ErrorMessage />
+          : <ProgressBar style={style} value={this.props.used / this.props.total * 100} />
+        }
       </div>
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    header: state.applicationReducer.header,
-  };
-}
-
-export default connect(mapStateToProps)(MemoryUsage);

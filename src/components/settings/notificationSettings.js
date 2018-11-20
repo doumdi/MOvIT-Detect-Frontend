@@ -11,12 +11,11 @@ import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
 import { Spinner } from 'primereact/components/spinner/Spinner';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
-import { DebugActions } from '../../redux/debugReducer';
-import { get, post } from '../../utilities/secureHTTP';
+import { URL } from '../../redux/applicationReducer';
+import ErrorMessage from '../shared/errorMessage';
+import { post } from '../../utilities/secureHTTP';
 
 const MINIMUM_SNOOZE_TIME = 0;
 const MAXIMUM_SNOOZE_TIME = 60;
@@ -25,36 +24,13 @@ class NotificationSettings extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     header: PropTypes.object,
-    snoozeTime: PropTypes.number,
-    minimumSnoozeTime: PropTypes.number,
-    maximumSnoozeTime: PropTypes.number,
-    isLedBlinkingEnabled: PropTypes.bool,
-    isVibrationEnabled: PropTypes.bool,
-    changeSnoozeTime: PropTypes.func,
-    changeIsLedBlinkingEnabled: PropTypes.func,
-    changeIsVibrationEnabled: PropTypes.func,
-  }
-
-  constructor(props) {
-    super(props);
-    this.load();
-  }
-
-  async getSettings() {
-    const response = await get(`${URL}notificationSettings`);
-    return response.data;
-  }
-
-  async load() {
-    const settings = await this.getSettings();
-    this.mapData(settings);
-  }
-
-
-  mapData(settings) {
-    this.props.changeIsLedBlinkingEnabled(settings.isLedBlinkingEnabled);
-    this.props.changeIsVibrationEnabled(settings.isVibrationEnabled);
-    this.props.changeSnoozeTime(settings.snoozeTime);
+    snoozeTime: PropTypes.number.isRequired,
+    isLedBlinkingEnabled: PropTypes.bool.isRequired,
+    isVibrationEnabled: PropTypes.bool.isRequired,
+    changeSnoozeTime: PropTypes.func.isRequired,
+    changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
+    changeIsVibrationEnabled: PropTypes.func.isRequired,
+    hasErrors: PropTypes.bool.isRequired,
   }
 
   enableLedBlinking() {
@@ -80,7 +56,7 @@ class NotificationSettings extends Component {
     // and we have to do it here for the snooze notification to be sent.
     post(`${URL}notificationSettings`, {
       snoozeTime: this.props.snoozeTime,
-    })
+    });
   }
 
   saveSnoozeTime() {
@@ -90,6 +66,9 @@ class NotificationSettings extends Component {
   }
 
   render() {
+    if (this.props.hasErrors) {
+      return <ErrorMessage />;
+    }
     return (
       <div>
         <div>
@@ -98,7 +77,9 @@ class NotificationSettings extends Component {
             onChange={() => this.enableLedBlinking()}
             checked={this.props.isLedBlinkingEnabled}
           />
-          <label htmlFor="enableLedBlinking">{T.translate(`settings.notification.enableLedBlinking.${this.props.language}`)}</label>
+          <label htmlFor="enableLedBlinking">
+            {T.translate(`settings.notification.enableLedBlinking.${this.props.language}`)}
+          </label>
         </div>
         <div>
           <Checkbox
@@ -106,7 +87,9 @@ class NotificationSettings extends Component {
             onChange={() => this.enableVibration()}
             checked={this.props.isVibrationEnabled}
           />
-          <label htmlFor="enableVibration">{T.translate(`settings.notification.enableVibration.${this.props.language}`)}</label>
+          <label htmlFor="enableVibration">
+            {T.translate(`settings.notification.enableVibration.${this.props.language}`)}
+          </label>
         </div>
         <div>
           <span>
@@ -125,8 +108,8 @@ class NotificationSettings extends Component {
             onChange={event => this.changeSnoozeTime(event.value)}
             onBlur={this.saveSnoozeTime}
             value={this.props.snoozeTime}
-            min={this.props.minimumSnoozeTime || MINIMUM_SNOOZE_TIME}
-            max={this.props.maximumSnoozeTime || MAXIMUM_SNOOZE_TIME}
+            min={MINIMUM_SNOOZE_TIME}
+            max={MAXIMUM_SNOOZE_TIME}
             maxlength={2}
             size="3"
           />
@@ -144,18 +127,7 @@ function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
     header: state.applicationReducer.header,
-    snoozeTime: state.debugReducer.snoozeTime,
-    isLedBlinkingEnabled: state.debugReducer.isLedBlinkingEnabled,
-    isVibrationEnabled: state.debugReducer.isVibrationEnabled,
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    changeIsLedBlinkingEnabled: DebugActions.changeIsLedBlinkingEnabled,
-    changeIsVibrationEnabled: DebugActions.changeIsVibrationEnabled,
-    changeSnoozeTime: DebugActions.changeSnoozeTime,
-  }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NotificationSettings);
+export default connect(mapStateToProps)(NotificationSettings);
