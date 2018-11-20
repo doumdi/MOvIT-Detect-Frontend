@@ -410,6 +410,18 @@ settings:
       disconnected:
         FR: "Déconnecté"
         EN: "Disconnected"
+      notificationModule:
+        FR: "Module de notification"
+        EN: "Notification module"
+      fixedAccelerometer:
+        FR: "Accéléromètre fixe"
+        EN: "Fixed accelerometer"
+      mobileAccelerometer:
+        FR: "Accéléromètre mobile"
+        EN: "Mobile accelerometer"
+      pressureMat:
+        FR: "Tapis de pression"
+        EN: "Pressure Mat"
   modules:
     FR: "Capteurs"
     EN: "Sensors"
