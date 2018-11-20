@@ -64,7 +64,7 @@ class NotificationSettings extends Component {
   enableLedBlinking() {
     this.props.changeIsLedBlinkingEnabled(!this.props.isLedBlinkingEnabled);
     axios.post(`${URL}notificationSettings`, {
-      isLedBlinkingEnabled: this.props.isLedBlinkingEnabled,
+      isLedBlinkingEnabled: !this.props.isLedBlinkingEnabled,
     }, this.props.header)
       .then(console.log)
       .catch(console.log);
@@ -73,7 +73,7 @@ class NotificationSettings extends Component {
   enableVibration() {
     this.props.changeIsVibrationEnabled(!this.props.isVibrationEnabled);
     axios.post(`${URL}notificationSettings`, {
-      isVibrationEnabled: this.props.isVibrationEnabled,
+      isVibrationEnabled: !this.props.isVibrationEnabled,
     }, this.props.header)
       .then(console.log)
       .catch(console.log);
