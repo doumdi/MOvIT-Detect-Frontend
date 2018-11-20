@@ -17,7 +17,7 @@ class ModuleStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      moduleStatus: [],
+      moduleStatus: {},
     };
     this.getStatus();
   }
@@ -29,21 +29,34 @@ class ModuleStatus extends Component {
   }
 
   render() {
-    const moduleList = this.state.moduleStatus.map((module, index) => (
-      <li className="mb-1" key={module.name}>
-        {module.name}: &nbsp;
-        <span id={`sensor${index}`} style={{ color: module.value ? 'green' : 'red', float: 'right' }}>
-          {module.value
-            ? <i className="fa fa-check-circle" />
-            : <i className="fa fa-times-circle" />
-          }
-        </span>
-        <Tooltip
-          for={`#sensor${index}`}
-          title={T.translate(`settings.state.value.${module.value ? 'connected' : 'disconnected'}.${this.props.language}`)}
-        />
-      </li>
-    ));
+    const moduleList = [];
+    const whiteList = [
+      'notificationModule',
+      'fixedAccelerometer',
+      'mobileAccelerometer',
+      'pressureMat',
+    ];
+
+    for (const module in this.state.moduleStatus) {
+      if (whiteList.includes(module)) {
+        const moduleValue = this.state.moduleStatus[module];
+        moduleList.push((
+          <li className="mb-1" key={module}>
+            {T.translate(`settings.state.value.${module}.${this.props.language}`)}: &nbsp;
+            <span id={`sensor${module}`} style={{ color: moduleValue ? 'green' : 'red' }}>
+              {moduleValue
+                ? <i className="fa fa-check-circle" />
+                : <i className="fa fa-times-circle" />
+              }
+            </span>
+            <Tooltip
+              for={`#sensor${module}`}
+              title={T.translate(`settings.state.value.${moduleValue ? 'connected' : 'disconnected'}.${this.props.language}`)}
+            />
+          </li>
+        ));
+      }
+    }
 
     return (
       <div className="row">
