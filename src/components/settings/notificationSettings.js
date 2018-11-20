@@ -80,7 +80,7 @@ class NotificationSettings extends Component {
     // and we have to do it here for the snooze notification to be sent.
     post(`${URL}notificationSettings`, {
       snoozeTime: this.props.snoozeTime,
-    })
+    });
   }
 
   saveSnoozeTime() {

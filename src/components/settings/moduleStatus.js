@@ -5,8 +5,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
-import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
+import { URL } from '../../redux/applicationReducer';
 import { get } from '../../utilities/secureHTTP';
 
 class ModuleStatus extends Component {
@@ -42,7 +42,7 @@ class ModuleStatus extends Component {
         moduleList.push((
           <li className="mb-1" key={module}>
             {T.translate(`settings.state.value.${module}.${this.props.language}`)}: &nbsp;
-            <span id={`sensor${module}`} style={{ color: moduleValue ? 'green' : 'red' }}>
+            <span id={`sensor${module}`} className="floatRight" style={{ color: moduleValue ? 'green' : 'red' }}>
               {moduleValue
                 ? <i className="fa fa-check-circle" />
                 : <i className="fa fa-times-circle" />
