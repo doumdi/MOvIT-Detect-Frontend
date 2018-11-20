@@ -46,7 +46,7 @@ class DailyAngleDistribution extends Component {
 
   async getDayData(date) {
     this.state.loading = true;
-    const response = await get(`${URL}oneDay?Day=${+date}`, this.props.header);
+    const response = await get(`${URL}oneDay?Day=${+date}`);
     this.state.dayData = response.data.map(v => v / 60000);
     this.loadData();
   }
