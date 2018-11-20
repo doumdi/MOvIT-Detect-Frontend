@@ -284,6 +284,18 @@ results:
     pressure:
       FR: "Pression"
       EN: "Pressure"
+      units:
+        FR: "Pouces"
+        EN: "Inches"
+      legend:
+        FR: "Légende"
+        EN: "Legend"
+        center:
+          FR: "Centre global"
+          EN: "Global center"
+        quadrant:
+          FR: "Centre du quadrant"
+          EN: "Quadrant center"
     angle:
       FR: "Bascules"
       EN: "Tilts"
@@ -384,18 +396,6 @@ calibrate:
 calibrating:
   FR: "En calibration"
   EN: "Calibrating"
-wifi:
-  FR: "Wifi"
-  EN: "Wifi"
-  name:
-    FR: "Nom du wifi"
-    EN: "Wifi name"
-  connected:
-    FR: "Vous êtes connecté au wifi."
-    EN: "You are connected to the wifi."
-  changeWifi:
-    FR: "Changer de réseau"
-    EN: "Change your network"
 
 settings:
   FR: "Paramètres"
@@ -413,8 +413,18 @@ settings:
   modules:
     FR: "Capteurs"
     EN: "Sensors"
-
-  notificationSettings:
+  wifi:
+    FR: "Connexion au Wi-Fi"
+    EN: "Wi-Fi connection"
+    name:
+      FR: "Nom du Wi-Fi"
+      EN: "Wi-Fi name"
+    connected:
+      FR: "Vous êtes connecté au Wi-Fi."
+      EN: "You are connected to the Wi-Fi."
+    changeWifi:
+      FR: "Changer de réseau"
+      EN: "Change your network"
   notification:
     FR: "Paramètres des notifications"
     EN: "Notifications settings"

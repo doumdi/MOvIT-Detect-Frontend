@@ -36,7 +36,7 @@ export default class LogoNumber extends Component {
             placeholder={this.props.placeHolder}
             className="form-control"
             id="logoNumber"
-            onChange={e => this.props.onChange(e.target.value)}
+            onChange={e => this.props.onChange(Number(e.target.value))}
             value={this.props.value || ''}
           />
         </div>

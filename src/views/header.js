@@ -105,9 +105,6 @@ class Header extends Component {
                   </li>
                 )
               }
-              <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                <Link to="/wifi" className="navLink">{T.translate(`wifi.${this.props.language}`)}</Link>
-              </li>
             </ul>
 
             <li className="nav navbar-nav pl-1">
@@ -119,9 +116,11 @@ class Header extends Component {
               </button>
             </li>
             <li className="nav navbar-nav pl-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-              <button className="btn navBtn" type="button">
-                <Link to="/settings" className="navLink"><i className="fa fa-cog" /></Link>
-              </button>
+              <Link to="/settings">
+                <button className="btn navBtn navLink" type="button">
+                  <i className="fa fa-cog" />
+                </button>
+              </Link>
             </li>
             {this.props.profile
               && (

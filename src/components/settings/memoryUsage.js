@@ -11,7 +11,7 @@ import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
-import { get } from '../../utilities/secureHTTP'; 
+import { get } from '../../utilities/secureHTTP';
 
 class MemoryUsage extends Component {
   static propTypes = {

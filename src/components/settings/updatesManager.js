@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import ConfirmationPopup from '../popups/confirmationPopup';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
-import { get } from '../../utilities/secureHTTP';
+import { get, post } from '../../utilities/secureHTTP';
 
 const POLLING_INTERVAL = 10000;
 

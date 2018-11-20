@@ -30,6 +30,8 @@ class ResultsCalendar extends Component {
     };
     this.setDefaultDate();
     this.onPeriodChange = this.onPeriodChange.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
+    this.onMonthChange = this.onMonthChange.bind(this);
   }
 
   onPeriodChange(e) {
@@ -39,7 +41,7 @@ class ResultsCalendar extends Component {
 
   onDateChange(e) {
     this.props.onDateChange(e.value);
-    this.setState({ date: e.value });
+    this.setState({ date: new Date(e.value) });
   }
 
   onMonthChange(e) {
@@ -48,7 +50,8 @@ class ResultsCalendar extends Component {
   }
 
   async setDefaultDate() {
-    const response = get(`${URL}lastDate`);
+    const response = await get(`${URL}lastDate`);
+    console.log(new Date(response.data));
     const date = new Date(response.data);
     date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
     const month = date.getMonth();

@@ -144,9 +144,6 @@ class MonthlyAngleDistribution extends Component {
           },
         },
       },
-      legend: {
-        onHover: e => this.hover(e),
-      },
     };
 
     return (
