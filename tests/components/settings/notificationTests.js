@@ -70,16 +70,16 @@ describe('Notification Tests', () => {
   });
 
   it('should hide the countdown when the calibration is completed', () => {
-    wrapper.instance().calibrationCompleted();
+    wrapper.instance().matCalibrationCompleted();
 
-    expect(wrapper.state('showCountdown')).toEqual(false);
+    expect(wrapper.state('showCountdownMat')).toEqual(false);
   });
 
   it('should show the countdown when calibrating', async () => {
     wrapper.setState({ showCountdown: false });
     await wrapper.instance().calibrate();
 
-    expect(wrapper.state('showCountdown')).toEqual(true);
+    expect(wrapper.state('showCountdownMat')).toEqual(true);
   });
 
   it('should match the snapshot', () => {
