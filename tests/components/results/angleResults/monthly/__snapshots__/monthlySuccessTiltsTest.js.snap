@@ -56,6 +56,17 @@ exports[`MonthlySuccessTilt Tests should match the snapshot 1`] = `
                 "label": "SuccessfulTilt.tiltNotMade.FR",
                 "lineTension": 0,
               },
+              Object {
+                "backgroundColor": "blue",
+                "borderColor": "blue",
+                "data": Array [
+                  undefined,
+                  undefined,
+                ],
+                "fill": true,
+                "label": "SuccessfulTilt.tiltSnoozed.FR",
+                "lineTension": 0,
+              },
             ],
             "labels": Array [
               "1",

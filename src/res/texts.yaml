@@ -265,6 +265,9 @@ SuccessfulTilt:
   tiltNotMade:
     FR: "Bascules non réalisées"
     EN: "Tilt not made"
+  tiltSnoozed:
+    FR: "Snooze de bascule"
+    EN: "Tilt snoozed"
   tiltSucessful:
     FR: "Bascules réalisées au bon angle et de bonne durée"
     EN: "Tilt made at the right angle and the right duration"

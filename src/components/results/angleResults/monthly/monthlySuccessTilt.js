@@ -55,6 +55,7 @@ class MonthlySuccessTilt extends Component {
       badDuration: [],
       badAngle: [],
       bad: [],
+      snoozed: [],
     };
     Object.keys(data).forEach((key) => {
       this.state.labels.push(key.toString());
@@ -62,6 +63,7 @@ class MonthlySuccessTilt extends Component {
       this.state.tiltMonthData.badDuration.push(data[key][1]);
       this.state.tiltMonthData.badAngle.push(data[key][2]);
       this.state.tiltMonthData.bad.push(data[key][3]);
+      this.state.tiltMonthData.snoozed.push(data[key][4]);
     });
     this.loadData();
   }
@@ -101,6 +103,14 @@ class MonthlySuccessTilt extends Component {
           fill: true,
           borderColor: 'red',
           backgroundColor: 'red',
+        },
+        {
+          label: T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`),
+          lineTension: 0,
+          data: this.state.tiltMonthData.snoozed,
+          fill: true,
+          borderColor: 'blue',
+          backgroundColor: 'blue',
         },
       ],
     };
