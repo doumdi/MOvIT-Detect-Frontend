@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
 import { T } from '../../../../utilities/translator';
 import CustomCard from '../../../shared/card';
-import { URL } from '../../../../redux/applicationReducer';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { milliToTimeString } from '../../../../utils/timeFormat';
 import { get } from '../../../../utilities/secureHTTP';
 
@@ -54,7 +54,7 @@ class PressureCenter extends Component {
   }
 
   async getPressureData(date) {
-    const response = await get(`${URL}gravityCenter?Day=${+date},offset=0`);
+    const response = await get(`${URL}gravityCenter?Day=${+date},offset=${OFFSET}`);
     return response.data;
   }
 

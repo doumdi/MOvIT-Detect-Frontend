@@ -15,7 +15,7 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
+import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import DailyAngleDistribution from '../../../../../src/components/results/angleResults/daily/dailyAngleDistribution';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -26,7 +26,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const reponse = [0, 23040000, 35136000, 27648000, 0];
 
-  mock.onGet(`${URL}oneDay?Day=${+date}`).reply(200, reponse);
+  mock.onGet(`${URL}oneDay?Day=${+date},offset=${OFFSET}`).reply(200, reponse);
 }
 
 describe('DailyAngleDistribution Tests', () => {

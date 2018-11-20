@@ -17,7 +17,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import CustomCard from '../../../../../src/components/shared/card';
-import { URL } from '../../../../../src/redux/applicationReducer';
+import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import PressureCenter from '../../../../../src/components/results/pressureResults/daily/pressureCenter';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -112,7 +112,7 @@ describe('PressureCenter Tests', () => {
       response: true,
     };
 
-    mock.onGet(`${URL}gravityCenter?Day=1517720400000,offset=0`).reply(200, data);
+    mock.onGet(`${URL}gravityCenter?Day=1517720400000,offset=${OFFSET}`).reply(200, data);
 
     const response = await wrapper.instance().getPressureData(props.date);
 

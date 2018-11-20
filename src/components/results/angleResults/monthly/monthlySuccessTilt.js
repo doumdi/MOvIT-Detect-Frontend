@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import CustomCard from '../../../shared/card';
-import { URL } from '../../../../redux/applicationReducer';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { T } from '../../../../utilities/translator';
 import { get } from '../../../../utilities/secureHTTP';
 
@@ -40,7 +40,7 @@ class MonthlySuccessTilt extends Component {
 
   async getMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    const response = await get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`);
+    const response = await get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=${OFFSET}`);
     this.formatChartData(response.data);
   }
 

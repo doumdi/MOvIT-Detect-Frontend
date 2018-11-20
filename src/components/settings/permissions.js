@@ -30,7 +30,7 @@ class Permissions extends Component {
   }
 
   async load() {
-    const response = await get(`${URL}notificationParam`);
+    const response = await get(`${URL}dataAgreement`);
     this.mapData(response.data);
   }
 
@@ -42,7 +42,7 @@ class Permissions extends Component {
     const data = {
       dataAgreement: this.props.dataAgreement,
     };
-    post(`${URL}notificationParam`, data);
+    post(`${URL}dataAgreement`, data);
   }
 
   render() {

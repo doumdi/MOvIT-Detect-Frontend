@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import PressureCenter from './pressureCenter';
 import { T } from '../../../../utilities/translator';
-import { IS_TABLET, URL } from '../../../../redux/applicationReducer';
+import { IS_TABLET, URL, OFFSET } from '../../../../redux/applicationReducer';
 import GoalProgress from './goalProgress';
 import RecGoalProgress from './recGoalProgress';
 
@@ -49,7 +49,7 @@ class DailyPressureResults extends Component {
 
   async getDailySlidingProgress(date) {
     try {
-      const response = await axios.get(`${URL}dailySlideProgress?Day=${+date},offset=0`, this.props.header);
+      const response = await axios.get(`${URL}dailySlideProgress?Day=${+date},offset=${OFFSET}`, this.props.header);
       this.loadDailySlidingData(response.data);
     } catch (error) {
       console.log(error);

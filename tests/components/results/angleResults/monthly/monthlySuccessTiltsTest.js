@@ -15,7 +15,7 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
+import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import MonthlySuccessTilt from '../../../../../src/components/results/angleResults/monthly/monthlySuccessTilt';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -40,7 +40,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`).reply(200, response);
+  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('MonthlySuccessTilt Tests', () => {

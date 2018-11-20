@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Chart } from 'primereact/components/chart/Chart';
 import CustomCard from '../../../shared/card';
-import { URL } from '../../../../redux/applicationReducer';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { T } from '../../../../utilities/translator';
 import { get } from '../../../../utilities/secureHTTP';
 import '../../../../styles/results.css';
@@ -35,7 +35,7 @@ class DailySuccessTilt extends Component {
 
   async getData(date) {
     this.state.loading = true;
-    const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`);
+    const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`);
     this.state.dayData = response.data; this.loadData(response.data);
   }
 

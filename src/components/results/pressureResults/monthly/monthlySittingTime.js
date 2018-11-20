@@ -10,7 +10,7 @@ import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 
 class MonthlySittingTime extends Component {
@@ -43,7 +43,7 @@ class MonthlySittingTime extends Component {
   async getSitMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.state.sitLoading = true;
-    const response = await get(`${URL}sittingTime?Day=${+date},Offset=0`);
+    const response = await get(`${URL}sittingTime?Day=${+date},offset=${OFFSET}`);
     this.formatSitChartData(response.data);
   }
 
