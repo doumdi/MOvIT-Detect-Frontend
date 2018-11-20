@@ -64,4 +64,11 @@ describe('SubmitButtons Tests', () => {
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+
+  it('should match the snapshot with invisible cancel', () => {
+    props.displayCancel = false;
+    const wrapper = shallow(<SubmitButtons store={store} {...props} />).dive();
+
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
