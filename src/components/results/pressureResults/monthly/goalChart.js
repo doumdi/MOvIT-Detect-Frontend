@@ -6,9 +6,11 @@
  */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 import { Chart } from 'primereact/components/chart/Chart';
+import PropTypes from 'prop-types';
 import CustomCard from '../../../shared/card';
+import { getElement } from '../../../../utilities/loader';
 
 export default class GoalChart extends Component {
   static propTypes = {
@@ -18,6 +20,8 @@ export default class GoalChart extends Component {
     data: PropTypes.object,
     options: PropTypes.object.isRequired,
     id: PropTypes.string,
+    isLoaded: PropTypes.bool.isRequired,
+    hasErrors: PropTypes.bool.isRequired,
   }
 
   shouldComponentUpdate() {
@@ -30,24 +34,25 @@ export default class GoalChart extends Component {
         textAlign: 'center',
       },
     };
-
     const header = (
       <div>
         <h2 id={this.props.id || ''} style={style.center}>{this.props.title}</h2>
         <h4>{this.props.successMessage}</h4>
       </div>
     );
+    const chart = <Chart type="line" data={this.props.data} options={this.props.options} />;
+    const element = getElement(this.props.isLoaded, this.props.hasErrors, chart);
 
     return (
       <div>
         {this.props.condition
           && (
-          <div>
-            <CustomCard
-              header={header}
-              element={<Chart type="line" data={this.props.data} options={this.props.options} />}
-            />
-          </div>
+            <div>
+              <CustomCard
+                header={header}
+                element={element}
+              />
+            </div>
           )
         }
       </div>

@@ -7,16 +7,15 @@
 import '../../../../styles/results.css';
 
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import PressureCenter from './pressureCenter';
-import { T } from '../../../../utilities/translator';
 import { IS_TABLET, URL } from '../../../../redux/applicationReducer';
-import GoalProgress from './goalProgress';
-import RecGoalProgress from './recGoalProgress';
 
+import GoalProgress from './goalProgress';
+import PressureCenter from './pressureCenter';
+import RecGoalProgress from './recGoalProgress';
+import { T } from '../../../../utilities/translator';
+import { get } from '../../../../utilities/secureHTTP';
 
 class DailyPressureResults extends Component {
   static propTypes = {
@@ -37,6 +36,8 @@ class DailyPressureResults extends Component {
       value2: 70,
       daySildeRest: 0,
       daySildeMoving: 0,
+      isLoaded: false,
+      hasErrors: false,
     };
   }
 
@@ -49,15 +50,19 @@ class DailyPressureResults extends Component {
 
   async getDailySlidingProgress(date) {
     try {
-      const response = await axios.get(`${URL}dailySlideProgress?Day=${+date},offset=0`, this.props.header);
+      const response = await get(`${URL}dailySlideProgress?Day=${+date},offset=0`);
       this.loadDailySlidingData(response.data);
     } catch (error) {
-      console.log(error);
+      this.setState({ hasErrors: true });
     }
   }
 
   loadDailySlidingData(data) {
-    this.setState({ daySildeRest: data[0] * 100, daySildeMoving: data[1] * 100, loadingDay: false });
+    this.setState({
+      daySildeRest: data[0] * 100,
+      daySildeMoving: data[1] * 100,
+      isLoaded: true,
+    });
   }
 
   render() {
@@ -115,6 +120,8 @@ class DailyPressureResults extends Component {
                       condition={this.props.reduceSlidingMoving}
                       title={T.translate(`dailyResults.travel.${this.props.language}`)}
                       value={this.state.daySildeMoving}
+                      isLoaded={this.state.isLoaded}
+                      hasErrors={this.state.hasErrors}
                     />
                   </div>
                   <div id="reduceSlidingRest">
@@ -122,6 +129,8 @@ class DailyPressureResults extends Component {
                       condition={this.props.reduceSlidingRest}
                       title={T.translate(`dailyResults.rest.${this.props.language}`)}
                       value={this.state.daySildeRest}
+                      isLoaded={this.state.isLoaded}
+                      hasErrors={this.state.hasErrors}
                     />
                   </div>
                 </div>
