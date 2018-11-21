@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CustomCard from '../components/shared/card';
+import DbActions from '../components/settings/dbActions';
 import Loading from '../components/shared/loading';
 import MemoryUsage from '../components/settings/memoryUsage';
 import ModuleStatus from '../components/settings/moduleStatus';
@@ -146,12 +147,14 @@ class Settings extends Component {
         <div className="row">
           <div className="col-12 col-md-8 offset-md-2">
             <Notification />
+            <DbActions />
             <CustomCard
               header={<span className="ui-card-title">{T.translate(`settings.modules.${this.props.language}`)}</span>}
               element={(
                 <ModuleStatus
                   moduleStatus={this.props.modulesStatus}
                   hasErrors={this.state.hasModulesStatusErrors}
+                  changeModulesStatus={this.props.changeModulesStatus}
                 />
               )}
             />

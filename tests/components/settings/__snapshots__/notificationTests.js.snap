@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports['Notification Tests should match the snapshot 1'] = `
+exports[`Notification Tests should match the snapshot 1`] = `
 <div
   className="row ml-2 mt-5"
 >
   <div
-    className="mb-2 mr-3"
+    className="mr-3 mb-2"
   >
     <button
       className="btn btn-lg"
@@ -13,7 +13,19 @@ exports['Notification Tests should match the snapshot 1'] = `
       onClick={[Function]}
       type="button"
     >
-      calibrate.en
+      calibrateMat.en
+    </button>
+  </div>
+  <div
+    className="mr-3 mb-2"
+  >
+    <button
+      className="btn btn-lg"
+      id="calibrateIMU-button"
+      onClick={[Function]}
+      type="button"
+    >
+      calibrateIMU.en
     </button>
   </div>
   <div
@@ -42,8 +54,14 @@ exports['Notification Tests should match the snapshot 1'] = `
   </div>
   <Countdown
     onComplete={[Function]}
-    time={10}
+    time={120}
     title="calibrating.en"
+  />
+  <Connect(ConfirmationPopup)
+    body="calibrateIMU.confirmation.en"
+    onClose={[Function]}
+    onConfirm={[Function]}
+    title="calibrateIMU.title.en"
   />
 </div>
 `;

@@ -6,14 +6,14 @@
  */
 
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { get, post } from '../../utilities/secureHTTP';
+
 import ConfirmationPopup from '../popups/confirmationPopup';
 import ErrorMessage from '../shared/errorMessage';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
-import { get, post } from '../../utilities/secureHTTP';
 
 const POLLING_INTERVAL = 10000;
 
@@ -46,12 +46,8 @@ class UpdatesManager extends Component {
   }
 
   async getUpdates() {
-    try {
-      const response = await get(`${URL}updates`);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await get(`${URL}updates`);
+    return response.data;
   }
 
   async triggerUpdatesChange() {

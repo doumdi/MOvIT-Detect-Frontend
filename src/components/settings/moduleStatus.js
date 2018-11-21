@@ -5,14 +5,43 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
-import { T } from '../../utilities/translator';
 import ErrorMessage from '../shared/errorMessage';
+import { T } from '../../utilities/translator';
+import { URL } from '../../redux/applicationReducer';
+import { get } from '../../utilities/secureHTTP';
+
+const POLLING_INTERVAL = 5000;
 
 class ModuleStatus extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     moduleStatus: PropTypes.object.isRequired,
     hasErrors: PropTypes.bool.isRequired,
+    changeModulesStatus: PropTypes.func.isRequired,
+  }
+
+  componentDidMount() {
+    this.poll();
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timer);
+  }
+
+  async getModulesStatus() {
+    const response = await get(`${URL}Debug`);
+    return response.data;
+  }
+
+  async updateModulesStatus() {
+    const modulesStatus = await this.getModulesStatus();
+    this.props.changeModulesStatus(modulesStatus);
+  }
+
+  poll() {
+    this.timer = setInterval(async () => {
+      this.updateModulesStatus();
+    }, POLLING_INTERVAL);
   }
 
   render() {
