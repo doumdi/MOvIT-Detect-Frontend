@@ -8,10 +8,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
 import { URL } from '../../../../redux/applicationReducer';
+import { get } from '../../../../utilities/secureHTTP';
 import '../../../../styles/results.css';
 
 class MonthlyAngleDistribution extends Component {
@@ -50,12 +50,8 @@ class MonthlyAngleDistribution extends Component {
   async getAngleMonthData(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.state.angleLoading = true;
-    try {
-      const response = await axios.get(`${URL}oneMonth?Day=${+date}`, this.props.header);
-      this.formatAngleChartData(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await get(`${URL}oneMonth?Day=${+date}`);
+    this.formatAngleChartData(response.data);
   }
 
   formatAngleChartData(data) {
@@ -117,7 +113,7 @@ class MonthlyAngleDistribution extends Component {
         },
       ],
     };
-    this.setState({ angleLoading: false });
+    this.state.angleLoading = false;
   }
 
   render() {

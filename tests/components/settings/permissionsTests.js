@@ -15,8 +15,9 @@ describe('Permissions Tests', () => {
     const expectedValue = {
       language: PropTypes.string.isRequired,
       header: PropTypes.object,
-      changeDataAgreement: PropTypes.func,
-      dataAgreement: PropTypes.bool,
+      changeDataAgreement: PropTypes.func.isRequired,
+      dataAgreement: PropTypes.bool.isRequired,
+      hasErrors: PropTypes.bool.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

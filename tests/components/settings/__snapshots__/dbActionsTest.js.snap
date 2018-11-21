@@ -13,7 +13,7 @@ exports[`DbActions Tests should match the snapshot 1`] = `
       onClick={[Function]}
       type="button"
     >
-      database.simulate.en
+      settings.database.simulate.en
     </button>
   </div>
   <div
@@ -25,22 +25,22 @@ exports[`DbActions Tests should match the snapshot 1`] = `
       onClick={[Function]}
       type="button"
     >
-      database.reset.en
+      settings.database.reset.en
     </button>
   </div>
   <Connect(ConfirmationPopup)
-    body="database.warning.message.en"
+    body="settings.database.warning.message.en"
     onClose={[Function]}
     onConfirm={[Function]}
     show={false}
-    title="database.warning.title.en"
+    title="settings.database.warning.title.en"
   />
   <Connect(ConfirmationPopup)
-    body="database.warning.message.en"
+    body="settings.database.warning.message.en"
     onClose={[Function]}
     onConfirm={[Function]}
     show={false}
-    title="database.warning.title.en"
+    title="settings.database.warning.title.en"
   />
 </div>
 `;
