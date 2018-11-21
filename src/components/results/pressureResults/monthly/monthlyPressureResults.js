@@ -10,12 +10,12 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import MonthlySittingTime from './monthlySittingTime';
 import { T } from '../../../../utilities/translator';
 import { IS_TABLET, URL, OFFSET } from '../../../../redux/applicationReducer';
 import GoalChart from './goalChart';
 import RecGoalChart from './recGoalChart';
+import { get } from '../../../../utilities/secureHTTP';
 
 
 class MonthlyPressureResults extends Component {
@@ -52,7 +52,7 @@ class MonthlyPressureResults extends Component {
     this.state.monthLoading = true;
     const date = new Date(new Date().getFullYear(), month, 1);
     try {
-      const response = await axios.get(`${URL}monthlySlideProgress?Day=${+date},offset=${OFFSET}`, this.props.header);
+      const response = await get(`${URL}monthlySlideProgress?Day=${+date},offset=${OFFSET}`, this.props.header);
       this.loadMonthlySlidingData(response.data);
     } catch (error) {
       console.log(error);
