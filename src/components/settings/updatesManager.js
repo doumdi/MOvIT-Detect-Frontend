@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Button } from 'primereact/components/button/Button';
 import ConfirmationPopup from '../popups/confirmationPopup';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
@@ -92,14 +93,13 @@ class UpdatesManager extends Component {
   render() {
     return (
       <div>
-        <button
+        <Button
           id="updateButton"
-          className={`btn ui-button-secondary ${this.state.isAvailable ? 'btn-danger' : 'btn-default'}`}
+          className={`${this.state.isAvailable ? 'p-button-danger' : 'p-button-secondary'}`}
           disabled={!this.state.isAvailable}
           onClick={() => this.openModal()}
-        >
-          <i className="fa fa-2x fa-refresh" />
-        </button>
+          icon="fa fa-2x fa-refresh"
+        />
         <div>
           {T.translate(`settings.system.update.last.${this.props.language}`)}
 

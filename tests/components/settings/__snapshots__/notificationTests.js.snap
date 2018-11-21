@@ -1,44 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports['Notification Tests should match the snapshot 1'] = `
+exports[`Notification Tests should match the snapshot 1`] = `
 <div
   className="row ml-2 mt-5"
 >
   <div
     className="mb-2 mr-3"
   >
-    <button
-      className="btn btn-lg"
+    <Button
+      className="p-button-secondary"
+      cornerStyleClass="ui-corner-all"
+      icon={null}
+      iconPos="left"
       id="calibrate-button"
+      label="calibrate.en"
       onClick={[Function]}
       type="button"
-    >
-      calibrate.en
-    </button>
+    />
   </div>
   <div
     className="mr-3 mb-2"
   >
-    <button
-      className="btn btn-lg"
+    <Button
+      className="p-button-secondary"
+      cornerStyleClass="ui-corner-all"
+      icon={null}
+      iconPos="left"
       id="turn-on-button"
+      label="alert.on.en"
       onClick={[Function]}
       type="button"
-    >
-      alert.on.en
-    </button>
+    />
   </div>
   <div
     className="mr-3 mb-2"
   >
-    <button
-      className="btn btn-lg"
+    <Button
+      className="p-button-secondary"
+      cornerStyleClass="ui-corner-all"
+      icon={null}
+      iconPos="left"
       id="turn-off-button"
+      label="alert.off.en"
       onClick={[Function]}
       type="button"
-    >
-      alert.off.en
-    </button>
+    />
   </div>
   <Countdown
     onComplete={[Function]}
