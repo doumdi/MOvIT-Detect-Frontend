@@ -393,9 +393,18 @@ alert:
   off:
     FR: "Fermer la notification"
     EN: "Turn off notification"
-calibrate:
-  FR: "Calibrer"
-  EN: "Calibrate"
+calibrateMat:
+  FR: "Calibrer le tapis de pression"
+  EN: "Calibrate the pressure mat"
+calibrateIMU:
+  FR: "Calibrer les accéléromètres"
+  EN: "Calibrate the accelerometers"
+  title:
+    FR: "Confirmation de la calibration"
+    EN: "Confirmation of the calibration"
+  confirmation:
+    FR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, autant que les accéléromètres, demeurent immobiles. À noter également que la calibration dure 2 minutes."
+    EN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Also, know that the calibration lasts 2 minutes."
 calibrating:
   FR: "En calibration"
   EN: "Calibrating"
