@@ -19,11 +19,7 @@ import { get } from '../../../../utilities/secureHTTP';
 class DailyAngleDistribution extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    reduceWeight: PropTypes.bool.isRequired,
-    reduceSlidingMoving: PropTypes.bool.isRequired,
-    reduceSlidingRest: PropTypes.bool.isRequired,
     date: PropTypes.instanceOf(Date).isRequired,
-    header: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -117,10 +113,10 @@ class DailyAngleDistribution extends Component {
       <div className="container graphic" id="dailyAngle">
         {!this.state.loading
           && (
-          <CustomCard
-            header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>}
-            element={<Chart type="pie" data={this.state.data} options={minOptions} />}
-          />
+            <CustomCard
+              header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>}
+              element={<Chart type="pie" data={this.state.data} options={minOptions} />}
+            />
           )
         }
       </div>

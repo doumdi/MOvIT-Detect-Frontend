@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailyLastTilts Tests should match the snapshot 1`] = `
+<div
+  className="container graphic"
+  id="dailyTilt"
+>
+  <CustomCard
+    element={<div />}
+    header={
+      <h4>
+        lastTilts.title.FR
+      </h4>
+    }
+  />
+</div>
+`;

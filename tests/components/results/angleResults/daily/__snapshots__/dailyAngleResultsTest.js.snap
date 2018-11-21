@@ -42,6 +42,9 @@ exports[`DailyAngleResults Tests should match the snapshot 1`] = `
           <Connect(DailySuccessTilt)
             date={1517720400000}
           />
+          <Connect(DailyLastTilts)
+            date={1517720400000}
+          />
         </div>
       </div>
     </div>
