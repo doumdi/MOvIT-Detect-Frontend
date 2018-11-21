@@ -41,12 +41,12 @@ class Notification extends Component {
   }
 
   async calibrate() {
-    await axios.get(`${URL}calibrate`, this.props.header);
+    await get(`${URL}calibrate`);
     this.setState({ ...this.state, showCountdownMat: true });
   }
 
   async calibrateIMU() {
-    await axios.get(`${URL}calibrateIMU`, this.props.header);
+    await get(`${URL}calibrateIMU`);
     this.setState({ ...this.state, showCountdownIMU: true });
   }
 
