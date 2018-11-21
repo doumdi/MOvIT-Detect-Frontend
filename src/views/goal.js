@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ErrorMessage from '../components/shared/errorMessage';
@@ -20,6 +19,7 @@ import RecPanel from '../components/goal/recPanel';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { T } from '../utilities/translator';
 import TiltLabels from '../components/goal/tiltLabels';
+import { get } from '../utilities/secureHTTP';
 import { URL } from '../redux/applicationReducer';
 
 class Goal extends Component {
@@ -99,16 +99,16 @@ class Goal extends Component {
   }
 
   async loadGoals() {
-    const response = await axios.get(`${URL}goal`, this.props.header);
-    await this.mapGoalData(response.data);
+    const response = await get(`${URL}goal`);
+    this.mapGoalData(response.data);
   }
 
   async loadRecommendations() {
     if (this.props.reduceWeight) { // most important rec, if this is not existing, reload recs
       return;
     }
-    const response = await axios.get(`${URL}recommandation`, this.props.header);
-    await this.mapRecData(response.data);
+    const response = await get(`${URL}recommandation`);
+    this.mapRecData(response.data);
   }
 
   mapGoalData(response) {

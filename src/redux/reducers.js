@@ -1,22 +1,21 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import { combineReducers } from 'redux';
 import applicationReducer from './applicationReducer';
-import recommendationReducer from './recommendationReducer';
-import goalReducer from './goalReducer';
-import parameterReducer from './parameterReducer';
 import configurationReducer from './configurationReducer';
-import debugReducer from './debugReducer';
+import goalReducer from './goalReducer';
+import recommendationReducer from './recommendationReducer';
+import settingsReducer from './settingsReducer';
 
 export default combineReducers({
   applicationReducer,
-  debugReducer,
+  settingsReducer,
   recommendationReducer,
   goalReducer,
-  parameterReducer,
   configurationReducer,
 });

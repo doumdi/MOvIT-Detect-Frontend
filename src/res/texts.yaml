@@ -503,11 +503,27 @@ settings:
     doNotReceive:
       FR: "Ne pas recevoir pendant"
       EN: "Do not receive for"
+  database:
+    FR: "base de données"
+    EN: "database"
+    simulate:
+      FR: "Simuler des données"
+      EN: "Simulate data"
+    reset:
+      FR: "Réinitialiser la base de données"
+      EN: "Reset the database"
+    warning:
+      message:
+        FR: "Cette action va supprimer les données de la base de données. Pour garder les données enregistrées, faites un import de la base de données."
+        EN: "This action will delete all the data in the database. To keep the current data, import the database."
+      title:
+        FR: "Changer la base de données"
+        EN: "Change the database"
 
 confirmation:
-  close:
-    FR: "Fermer"
-    EN: "Close"
+  cancel:
+    FR: "Annuler"
+    EN: "Cancel"
   confirm:
     FR: "Continuer"
     EN: "Continue"

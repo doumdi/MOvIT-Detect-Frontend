@@ -15,7 +15,9 @@ import { Redirect } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
-import { ApplicationActions, IS_DEMO, IS_MOBILE } from '../redux/applicationReducer';
+import {
+  ApplicationActions, IS_DEMO, IS_MOBILE,
+} from '../redux/applicationReducer';
 
 class Header extends Component {
   static propTypes = {

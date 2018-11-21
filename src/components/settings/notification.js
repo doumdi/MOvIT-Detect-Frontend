@@ -6,11 +6,11 @@
  */
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
+import { get } from '../../utilities/secureHTTP';
 import Countdown from '../popups/countdown';
 import ConfirmationPopup from '../popups/confirmationPopup';
 
@@ -31,12 +31,12 @@ class Notification extends Component {
   }
 
   async turnOnNotification() {
-    const response = axios.get(`${URL}alert?State=on`, this.props.header);
+    const response = await get(`${URL}alert?State=on`);
     console.log(response);
   }
 
   async turnOffNotification() {
-    const response = await axios.get(`${URL}alert?State=off`, this.props.header);
+    const response = await get(`${URL}alert?State=off`);
     console.log(response);
   }
 
