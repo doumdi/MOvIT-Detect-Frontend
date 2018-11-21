@@ -118,7 +118,6 @@ describe('PressureCenter Tests', () => {
 
     const response = await wrapper.instance().getPressureData(props.date);
 
-    expect(wrapper.state('isLoaded')).toEqual(true);
     expect(wrapper.state('hasErrors')).toEqual(false);
     expect(response).toEqual(data);
   });
@@ -160,6 +159,7 @@ describe('PressureCenter Tests', () => {
 
     expect(spy.calledOnce).toEqual(true);
     expect(spy.getCalls()[0].args[0]).toEqual(0);
+    expect(wrapper.state('isLoaded')).toEqual(true);
     expect(wrapper.state('hours')).toEqual(['10800000']);
     expect(wrapper.state('centers')).toEqual([{ x: -0.2, y: 0.3 }]);
     expect(wrapper.state('quadrants')).toEqual([[

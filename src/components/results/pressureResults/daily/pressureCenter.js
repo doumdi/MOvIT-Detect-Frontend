@@ -63,9 +63,9 @@ class PressureCenter extends Component {
   }
 
   async getPressureData(date) {
+    this.setState({ isLoaded: false });
     try {
       const response = await get(`${URL}gravityCenter?Day=${+date},offset=0`);
-      this.setState({ isLoaded: true });
       return response.data;
     } catch (error) {
       this.setState({ hasErrors: true });
@@ -161,9 +161,11 @@ class PressureCenter extends Component {
   }
 
   loadPressureData(data) {
-    this.setState({ quadrants: [] });
-    this.setState({ centers: [] });
-    this.setState({ hours: [] });
+    this.setState({
+      quadrants: [],
+      centers: [],
+      hours: [],
+    });
     for (const property in data) {
       if (data.hasOwnProperty(property)) {
         this.state.hours.push(property);
@@ -172,6 +174,7 @@ class PressureCenter extends Component {
       }
     }
     this.setIndex(0);
+    this.setState({ isLoaded: true });
   }
 
   render() {

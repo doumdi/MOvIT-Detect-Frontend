@@ -24,10 +24,6 @@ export default class GoalChart extends Component {
     hasErrors: PropTypes.bool.isRequired,
   }
 
-  shouldComponentUpdate() {
-    return false;
-  }
-
   render() {
     const style = {
       center: {
@@ -41,7 +37,6 @@ export default class GoalChart extends Component {
       </div>
     );
     const chart = <Chart type="line" data={this.props.data} options={this.props.options} />;
-    const element = getElement(this.props.isLoaded, this.props.hasErrors, chart);
 
     return (
       <div>
@@ -50,7 +45,7 @@ export default class GoalChart extends Component {
             <div>
               <CustomCard
                 header={header}
-                element={element}
+                element={getElement(this.props.isLoaded, this.props.hasErrors, chart)}
               />
             </div>
           )

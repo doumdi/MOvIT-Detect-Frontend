@@ -24,7 +24,7 @@ class MonthlyPressureResults extends Component {
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
-    month: PropTypes.string,
+    month: PropTypes.number,
   }
 
   constructor(props) {
@@ -50,6 +50,7 @@ class MonthlyPressureResults extends Component {
 
   async getMonthlySlidingProgress(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
+    this.setState({ isLoaded: false });
     try {
       const response = await get(`${URL}monthlySlideProgress?Day=${+date},offset=0`);
       this.loadMonthlySlidingData(response.data);
@@ -207,11 +208,7 @@ class MonthlyPressureResults extends Component {
           <div className="col-lg-8 graphic">
             <div>
               {this.state.month
-                && (
-                <MonthlySittingTime
-                  month={this.state.month}
-                />
-                )
+                && (<MonthlySittingTime month={this.state.month} />)
               }
               <div id="reduceWeight">
                 <RecGoalChart
