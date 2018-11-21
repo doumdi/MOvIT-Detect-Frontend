@@ -30,9 +30,6 @@ class ResultsCategories extends Component {
         textAlign: 'center',
         height: 'fit-content',
       },
-      pageTop: {
-        marginBottom: '2em',
-      },
       profileButton: {
         backgroundColor: 'transparent',
         height: '100%',
@@ -45,9 +42,9 @@ class ResultsCategories extends Component {
     };
 
     return (
-      <div style={style.content} className="content-section mt-4 implementation ui-fluid">
+      <div style={style.content} className="content-section mt-5 implementation ui-fluid">
         <h2>{T.translate(`results.${this.props.language}`)}</h2>
-        <h3 style={style.pageTop}>{T.translate(`results.categories.${this.props.language}`)}</h3>
+        <h3 className="mb-4">{T.translate(`results.categories.${this.props.language}`)}</h3>
         <div>
           <div className="row col-lg-12">
             <div className="col-12 col-lg-6">
