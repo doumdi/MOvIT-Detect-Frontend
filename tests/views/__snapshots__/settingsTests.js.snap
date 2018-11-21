@@ -16,6 +16,7 @@ exports[`Settings Tests should match the snapshot 1`] = `
       className="col-12 col-md-8 offset-md-2"
     >
       <Connect(Notification) />
+      <Connect(DbActions) />
       <CustomCard
         element={
           <Connect(ModuleStatus)
