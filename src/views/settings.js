@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CustomCard from '../components/shared/card';
+import DbActions from '../components/settings/dbActions';
 import Loading from '../components/shared/loading';
 import MemoryUsage from '../components/settings/memoryUsage';
 import ModuleStatus from '../components/settings/moduleStatus';
@@ -22,7 +23,6 @@ import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import UpdatesManager from '../components/settings/updatesManager';
 import Wifi from '../components/settings/wifi';
-import DbActions from '../components/settings/dbActions';
 import { get } from '../utilities/secureHTTP';
 
 class Settings extends Component {
@@ -154,6 +154,7 @@ class Settings extends Component {
                 <ModuleStatus
                   moduleStatus={this.props.modulesStatus}
                   hasErrors={this.state.hasModulesStatusErrors}
+                  changeModulesStatus={this.props.changeModulesStatus}
                 />
               )}
             />

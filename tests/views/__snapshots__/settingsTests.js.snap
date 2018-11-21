@@ -20,6 +20,7 @@ exports[`Settings Tests should match the snapshot 1`] = `
       <CustomCard
         element={
           <Connect(ModuleStatus)
+            changeModulesStatus={[Function]}
             hasErrors={false}
           />
         }
