@@ -38,6 +38,11 @@ class ConfirmationPopup extends Component {
     const footer = (
       <div>
         <Button
+          id="cancelButton"
+          label={T.translate(`confirmation.cancel.${this.props.language}`)}
+          onClick={this.props.onClose}
+        />
+        <Button
           id="confirmButton"
           label={T.translate(`confirmation.confirm.${this.props.language}`)}
           onClick={this.props.onConfirm}

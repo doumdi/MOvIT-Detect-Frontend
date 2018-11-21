@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DbActions Tests should match the snapshot 1`] = `
+<div
+  className="row ml-2"
+>
+  <div
+    className="mr-3 mb-2"
+  >
+    <button
+      className="btn btn-lg"
+      id="simulate-data-button"
+      onClick={[Function]}
+      type="button"
+    >
+      settings.database.simulate.en
+    </button>
+  </div>
+  <div
+    className="mr-3 mb-2"
+  >
+    <button
+      className="btn btn-lg"
+      id="reset-data-button"
+      onClick={[Function]}
+      type="button"
+    >
+      settings.database.reset.en
+    </button>
+  </div>
+  <Connect(ConfirmationPopup)
+    body="settings.database.warning.message.en"
+    onClose={[Function]}
+    onConfirm={[Function]}
+    show={false}
+    title="settings.database.warning.title.en"
+  />
+  <Connect(ConfirmationPopup)
+    body="settings.database.warning.message.en"
+    onClose={[Function]}
+    onConfirm={[Function]}
+    show={false}
+    title="settings.database.warning.title.en"
+  />
+</div>
+`;
