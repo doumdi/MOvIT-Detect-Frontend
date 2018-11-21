@@ -42,7 +42,6 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-
   mock.onGet(`${URL}oneMonth?Day=${+date}`).reply(200, response);
 }
 
@@ -61,11 +60,11 @@ describe('MonthlyAngleDistribution Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<MonthlyAngleDistribution store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('angleMonthLabels')).toEqual([]);
     expect(wrapper.state('month')).toEqual(month);
-    expect(wrapper.state('angleLoading')).toEqual(true);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
@@ -100,16 +99,21 @@ describe('MonthlyAngleDistribution Tests', () => {
 
   it('should get the month data', async () => {
     await wrapper.instance().getAngleMonthData(month);
+
     const total1 = response[1].reduce((a, b) => a + b, 0);
     const percents1 = response[1].map(v => (v / total1) * 100);
     const total2 = response[2].reduce((a, b) => a + b, 0);
     const percents2 = response[2].map(v => (v / total2) * 100);
     const expected = [percents1[1], percents2[1]];
 
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('angleMonthData').fifteen).toEqual(expected);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

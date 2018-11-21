@@ -16,6 +16,7 @@ import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
 import { URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
+import { getElement } from '../../../../utilities/loader';
 
 class DailyAngleDistribution extends Component {
   static propTypes = {
@@ -28,7 +29,8 @@ class DailyAngleDistribution extends Component {
     this.state = {
       dayData: [],
       date: props.date,
-      loading: true,
+      isLoaded: false,
+      hasErrors: false,
     };
     this.getDayData(this.state.date);
   }
@@ -41,10 +43,14 @@ class DailyAngleDistribution extends Component {
   }
 
   async getDayData(date) {
-    this.state.loading = true;
-    const response = await get(`${URL}oneDay?Day=${+date}`);
-    this.state.dayData = response.data.map(v => v / 60000);
-    this.setState({ loading: false });
+    this.setState({ hasErrors: false, isLoaded: false });
+    try {
+      const response = await get(`${URL}oneDay?Day=${+date}`);
+      this.state.dayData = response.data.map(v => v / 60000);
+      this.setState({ isLoaded: true });
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
   }
 
   getChartData() {
@@ -109,17 +115,14 @@ class DailyAngleDistribution extends Component {
       },
     };
     const data = this.getChartData();
+    const chart = <Chart type="pie" data={data} options={minOptions} />;
 
     return (
       <div className="container graphic" id="dailyAngle">
-        {!this.state.loading
-          && (
-            <CustomCard
-              header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>}
-              element={<Chart type="pie" data={data} options={minOptions} />}
-            />
-          )
-        }
+        <CustomCard
+          header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>}
+          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
+        />
       </div>
     );
   }
