@@ -65,7 +65,6 @@ describe('MonthlyAngleDistribution Tests', () => {
 
     expect(wrapper.state('angleMonthLabels')).toEqual([]);
     expect(wrapper.state('month')).toEqual(month);
-    expect(wrapper.state('angleChartData')).toEqual(null);
     expect(wrapper.state('angleLoading')).toEqual(true);
   });
 
