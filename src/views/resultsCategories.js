@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Button } from 'primereact/components/button/Button';
 import { ApplicationActions } from '../redux/applicationReducer';
 import CustomCard from '../components/shared/card';
 import { T } from '../utilities/translator';
@@ -39,6 +40,7 @@ class ResultsCategories extends Component {
         border: 0,
         outline: 'none',
         cursor: 'pointer',
+        minHeight: '275px',
       },
     };
 
@@ -50,21 +52,27 @@ class ResultsCategories extends Component {
           <div className="row col-lg-12">
             <div className="col-12 col-lg-6">
               <CustomCard
+                header={<h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>}
                 element={(
-                  <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
-                    <h2>{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
-                    <i className="fa fa-wheelchair icons tilted" />
-                  </button>
-              )}
+                  <Button
+                    onClick={() => this.loadResults('angle')}
+                    type="button"
+                    style={style.profileButton}
+                    icon="fa fa-wheelchair icons tilted"
+                  />
+                )}
               />
             </div>
             <div className="col-12 col-lg-6">
               <CustomCard
+                header={<h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>}
                 element={(
-                  <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
-                    <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
-                    <i className="fa fa-balance-scale icons" />
-                  </button>
+                  <Button
+                    onClick={() => this.loadResults('pressure')}
+                    type="button"
+                    style={style.profileButton}
+                    icon="fa fa-balance-scale icons"
+                  />
               )}
               />
             </div>

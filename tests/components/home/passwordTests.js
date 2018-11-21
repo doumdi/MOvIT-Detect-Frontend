@@ -47,7 +47,7 @@ describe('Password Tests', () => {
   it('should call onSumbit on login button pressed', () => {
     wrapper.setState({ password: 'test' });
 
-    wrapper.find('#loginBtn').simulate('click');
+    wrapper.find('#loginBtn').last().simulate('click');
 
     expect(submitSpy.calledOnce).toEqual(true);
   });

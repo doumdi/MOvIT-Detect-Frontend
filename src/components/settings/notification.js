@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button } from 'primereact/components/button/Button';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
 import { get } from '../../utilities/secureHTTP';
@@ -51,19 +52,31 @@ class Notification extends Component {
     return (
       <div className="row ml-2 mt-5">
         <div className="mb-2 mr-3">
-          <button id="calibrate-button" type="button" onClick={() => this.calibrate()} className="btn btn-lg">
-            {T.translate(`calibrate.${this.props.language}`)}
-          </button>
+          <Button
+            id="calibrate-button"
+            type="button"
+            onClick={() => this.calibrate()}
+            className="p-button-secondary"
+            label={T.translate(`calibrate.${this.props.language}`)}
+          />
         </div>
         <div className="mr-3 mb-2">
-          <button id="turn-on-button" type="button" onClick={() => this.turnOnNotification()} className="btn btn-lg">
-            {T.translate(`alert.on.${this.props.language}`)}
-          </button>
+          <Button
+            id="turn-on-button"
+            type="button"
+            onClick={() => this.turnOnNotification()}
+            className="p-button-secondary"
+            label={T.translate(`alert.on.${this.props.language}`)}
+          />
         </div>
         <div className="mr-3 mb-2">
-          <button id="turn-off-button" type="button" onClick={() => this.turnOffNotification()} className="btn btn-lg">
-            {T.translate(`alert.off.${this.props.language}`)}
-          </button>
+          <Button
+            id="turn-off-button"
+            type="button"
+            onClick={() => this.turnOffNotification()}
+            className="p-button-secondary"
+            label={T.translate(`alert.off.${this.props.language}`)}
+          />
         </div>
         {this.state.showCountdown
           && (

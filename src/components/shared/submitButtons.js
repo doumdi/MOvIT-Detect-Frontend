@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button } from 'primereact/components/button/Button';
 import { T } from '../../utilities/translator';
 
 class SumbitButtons extends Component {
@@ -31,19 +32,23 @@ class SumbitButtons extends Component {
       <div className="text-right col-10 offset-1 offset-md-0 py-3">
         {this.state.displayCancel
         && (
-        <button onClick={() => this.props.onCancel()} id="cancelButton" type="button" className="btn btn-lg mb-2 mb-sm-0">
-          {T.translate(
-            `cancel.${this.props.language}`,
-          )}
-        </button>
+        <Button
+          onClick={() => this.props.onCancel()}
+          id="cancelButton"
+          type="button"
+          className="p-button-secondary mb-2 mb-sm-0"
+          label={T.translate(`cancel.${this.props.language}`)}
+        />
         )}
 
         &nbsp;
-        <button onClick={() => this.props.onSave()} type="button" id="saveButton" className="btn btn-lg mb-2 mb-sm-0">
-          {T.translate(
-            `save.${this.props.language}`,
-          )}
-        </button>
+        <Button
+          onClick={() => this.props.onSave()}
+          type="button"
+          id="saveButton"
+          className="p-button-secondary mb-2 mb-sm-0"
+          label={T.translate(`save.${this.props.language}`)}
+        />
       </div>
     );
   }

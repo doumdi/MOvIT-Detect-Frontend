@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 
 import { Message } from 'primereact/components/message/Message';
+import { Button } from 'primereact/components/button/Button';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { T } from '../../utilities/translator';
@@ -59,14 +60,13 @@ class Password extends Component {
             onKeyPress={e => this.onKeyPress(e)}
             style={this.state.failed ? { borderColor: 'red' } : {}}
           />
-          <button
+          <Button
             id="loginBtn"
             onClick={() => this.props.onSubmit(this.state.password)}
             type="submit"
             className="ui-button-secondary"
-          >
-            <i className="fa fa-sign-in" />
-          </button>
+            icon="fa fa-sign-in"
+          />
         </div>
         <div className="ui-inputgroup col-8 offset-2">
           <button type="button" id="forgotPasswordBtn" className="btn btn-link pl-0" onClick={() => this.props.onForgotPassword()}>
