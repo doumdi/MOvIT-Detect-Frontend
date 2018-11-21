@@ -7,16 +7,15 @@
 import '../../../../styles/results.css';
 
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import MonthlySittingTime from './monthlySittingTime';
-import { T } from '../../../../utilities/translator';
 import { IS_TABLET, URL } from '../../../../redux/applicationReducer';
-import GoalChart from './goalChart';
-import RecGoalChart from './recGoalChart';
 
+import GoalChart from './goalChart';
+import MonthlySittingTime from './monthlySittingTime';
+import RecGoalChart from './recGoalChart';
+import { T } from '../../../../utilities/translator';
+import { get } from '../../../../utilities/secureHTTP';
 
 class MonthlyPressureResults extends Component {
   static propTypes = {
@@ -25,7 +24,7 @@ class MonthlyPressureResults extends Component {
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
-    month: PropTypes.string,
+    month: PropTypes.number,
   }
 
   constructor(props) {
@@ -36,7 +35,8 @@ class MonthlyPressureResults extends Component {
       monthSildeRest: [],
       monthSildeMoving: [],
       monthSlideLabels: [],
-      monthLoading: true,
+      isLoaded: false,
+      hasErrors: false,
     };
     this.getMonthlySlidingProgress(props.month);
   }
@@ -49,13 +49,14 @@ class MonthlyPressureResults extends Component {
   }
 
   async getMonthlySlidingProgress(month) {
-    this.state.monthLoading = true;
     const date = new Date(new Date().getFullYear(), month, 1);
+    this.setState({ isLoaded: false });
     try {
-      const response = await axios.get(`${URL}monthlySlideProgress?Day=${+date},offset=0`, this.props.header);
+      const response = await get(`${URL}monthlySlideProgress?Day=${+date},offset=0`);
       this.loadMonthlySlidingData(response.data);
+      this.setState({ isLoaded: true });
     } catch (error) {
-      console.log(error);
+      this.setState({ hasErrors: true });
     }
   }
 
@@ -73,7 +74,6 @@ class MonthlyPressureResults extends Component {
       monthSlideLabels: newMonthSlideLabels,
       monthSildeRest: newMonthSildeRest,
       monthSildeMoving: newMonthSlideMoving,
-      monthLoading: false,
     });
   }
 
@@ -208,8 +208,8 @@ class MonthlyPressureResults extends Component {
           <div className="col-lg-8 graphic">
             <div>
               {this.state.month
-              && <MonthlySittingTime month={this.state.month} />
-            }
+                && (<MonthlySittingTime month={this.state.month} />)
+              }
               <div id="reduceWeight">
                 <RecGoalChart
                   condition={this.props.reduceWeight}
@@ -220,29 +220,30 @@ class MonthlyPressureResults extends Component {
                   recData={personalTiltData}
                 />
               </div>
-              {!this.state.monthLoading
-              && (
-                <div>
-                  <div id="reduceSlidingMoving">
-                    <GoalChart
-                      condition={this.props.reduceSlidingMoving}
-                      title={T.translate(`monthlyResults.travel.${this.props.language}`)}
-                      successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
-                      data={travelData}
-                      options={percentOptions}
-                    />
-                  </div>
-                  <div id="reduceSlidingRest">
-                    <GoalChart
-                      condition={this.props.reduceSlidingRest}
-                      title={T.translate(`monthlyResults.rest.${this.props.language}`)}
-                      successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
-                      data={restData}
-                      options={percentOptions}
-                    />
-                  </div>
+              <div>
+                <div id="reduceSlidingMoving">
+                  <GoalChart
+                    condition={this.props.reduceSlidingMoving}
+                    title={T.translate(`monthlyResults.travel.${this.props.language}`)}
+                    successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
+                    data={travelData}
+                    options={percentOptions}
+                    isLoaded={this.state.isLoaded}
+                    hasErrors={this.state.hasErrors}
+                  />
                 </div>
-              )}
+                <div id="reduceSlidingRest">
+                  <GoalChart
+                    condition={this.props.reduceSlidingRest}
+                    title={T.translate(`monthlyResults.rest.${this.props.language}`)}
+                    successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
+                    data={restData}
+                    options={percentOptions}
+                    isLoaded={this.state.isLoaded}
+                    hasErrors={this.state.hasErrors}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

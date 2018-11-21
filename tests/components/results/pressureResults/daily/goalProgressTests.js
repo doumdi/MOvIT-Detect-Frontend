@@ -5,13 +5,13 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import configureMockStore from 'redux-mock-store';
 import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import toJson from 'enzyme-to-json';
 
+import Adapter from 'enzyme-adapter-react-16';
+import PropTypes from 'prop-types';
+import React from 'react';
+import configureMockStore from 'redux-mock-store';
+import toJson from 'enzyme-to-json';
 import GoalProgress from '../../../../../src/components/results/pressureResults/daily/goalProgress';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -25,6 +25,8 @@ describe('GoalProgress Tests', () => {
     condition: true,
     title: 'This is a test',
     value: 10,
+    isLoaded: true,
+    hasErrors: false,
   };
 
   it('should have proptypes', () => {
@@ -35,6 +37,8 @@ describe('GoalProgress Tests', () => {
       condition: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
       value: PropTypes.number,
+      isLoaded: PropTypes.bool.isRequired,
+      hasErrors: PropTypes.bool.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
