@@ -2,7 +2,7 @@
 
 exports[`SubmitButtons Tests should match the snapshot 1`] = `
 <div
-  className="col-10 offset-1 offset-md-0 py-3"
+  className="text-right col-10 offset-1 offset-md-0 py-3"
 >
   <button
     className="btn btn-lg mb-2 mb-sm-0"
@@ -12,6 +12,22 @@ exports[`SubmitButtons Tests should match the snapshot 1`] = `
   >
     cancel.en
   </button>
+   
+  <button
+    className="btn btn-lg mb-2 mb-sm-0"
+    id="saveButton"
+    onClick={[Function]}
+    type="button"
+  >
+    save.en
+  </button>
+</div>
+`;
+
+exports[`SubmitButtons Tests should match the snapshot with invisible cancel 1`] = `
+<div
+  className="text-right col-10 offset-1 offset-md-0 py-3"
+>
    
   <button
     className="btn btn-lg mb-2 mb-sm-0"

@@ -265,6 +265,9 @@ SuccessfulTilt:
   tiltNotMade:
     FR: "Bascules non réalisées"
     EN: "Tilt not made"
+  tiltSnoozed:
+    FR: "Snooze de bascule"
+    EN: "Tilt snoozed"
   tiltSucessful:
     FR: "Bascules réalisées au bon angle et de bonne durée"
     EN: "Tilt made at the right angle and the right duration"
@@ -284,6 +287,18 @@ results:
     pressure:
       FR: "Pression"
       EN: "Pressure"
+      units:
+        FR: "Pouces"
+        EN: "Inches"
+      legend:
+        FR: "Légende"
+        EN: "Legend"
+        center:
+          FR: "Centre global"
+          EN: "Global center"
+        quadrant:
+          FR: "Centre du quadrant"
+          EN: "Quadrant center"
     angle:
       FR: "Bascules"
       EN: "Tilts"
@@ -398,6 +413,18 @@ settings:
       disconnected:
         FR: "Déconnecté"
         EN: "Disconnected"
+      notificationModule:
+        FR: "Module de notification"
+        EN: "Notification module"
+      fixedAccelerometer:
+        FR: "Accéléromètre fixe"
+        EN: "Fixed accelerometer"
+      mobileAccelerometer:
+        FR: "Accéléromètre mobile"
+        EN: "Mobile accelerometer"
+      pressureMat:
+        FR: "Tapis de pression"
+        EN: "Pressure Mat"
   modules:
     FR: "Capteurs"
     EN: "Sensors"
@@ -482,3 +509,7 @@ demo:
   message:
     FR: "Tous les données sont falsifiées et ne seront pas sauvegardées"
     EN: "All data is falsified and will not be saved"
+
+error:
+  FR: "Une erreur est survenue. Veuillez contacter votre administrateur."
+  EN: "An error occured. Please contact your administrator."

@@ -6,9 +6,10 @@
  */
 
 import React, { Component } from 'react';
+
+import { Message } from 'primereact/components/message/Message';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Message } from 'primereact/components/message/Message';
 import { T } from '../../utilities/translator';
 
 class Password extends Component {
@@ -25,6 +26,10 @@ class Password extends Component {
       password: '',
       failed: this.props.failed,
     };
+  }
+
+  componentDidMount() {
+    this.password.focus();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,6 +49,7 @@ class Password extends Component {
       <div className="row">
         <div className="ui-inputgroup col-8 offset-2">
           <input
+            ref={(input) => { this.password = input; }}
             className="form-control"
             type="password"
             id="password"
@@ -57,7 +63,7 @@ class Password extends Component {
             id="loginBtn"
             onClick={() => this.props.onSubmit(this.state.password)}
             type="submit"
-            cornerStyleClass="ui-button-secondary"
+            className="ui-button-secondary"
           >
             <i className="fa fa-sign-in" />
           </button>

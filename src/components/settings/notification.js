@@ -6,11 +6,11 @@
  */
 
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { URL } from '../../redux/applicationReducer';
 import { T } from '../../utilities/translator';
+import { get } from '../../utilities/secureHTTP';
 import Countdown from '../popups/countdown';
 
 class Notification extends Component {
@@ -28,18 +28,19 @@ class Notification extends Component {
   }
 
   async turnOnNotification() {
-    const response = axios.get(`${URL}alert?State=on`, this.props.header);
+    const response = await get(`${URL}alert?State=on`);
     console.log(response);
   }
 
   async turnOffNotification() {
-    const response = await axios.get(`${URL}alert?State=off`, this.props.header);
+    const response = await get(`${URL}alert?State=off`);
     console.log(response);
   }
 
   async calibrate() {
-    await axios.get(`${URL}calibrate`, this.props.header);
+    await get(`${URL}calibrate`);
     this.setState({ ...this.state, showCountdown: true });
+    console.log(this);
   }
 
   calibrationCompleted() {

@@ -48,7 +48,7 @@ class ResultsCategories extends Component {
         <h3 style={style.pageTop}>{T.translate(`results.categories.${this.props.language}`)}</h3>
         <div>
           <div className="row col-lg-12">
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-6">
               <CustomCard
                 element={(
                   <button onClick={() => this.loadResults('angle')} type="button" style={style.profileButton}>
@@ -58,22 +58,12 @@ class ResultsCategories extends Component {
               )}
               />
             </div>
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-6">
               <CustomCard
                 element={(
                   <button onClick={() => this.loadResults('pressure')} type="button" style={style.profileButton}>
                     <h2>{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
                     <i className="fa fa-balance-scale icons" />
-                  </button>
-              )}
-              />
-            </div>
-            <div className="col-12 col-lg-4">
-              <CustomCard
-                element={(
-                  <button onClick={() => this.loadResults('progress')} type="button" style={style.profileButton}>
-                    <h2>{T.translate(`results.categories.progress.${this.props.language}`)}</h2>
-                    <i className="fa fa-tasks icons" />
                   </button>
               )}
               />

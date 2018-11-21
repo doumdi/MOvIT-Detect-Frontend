@@ -8,10 +8,10 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import axios from 'axios';
 import { ApplicationActions, URL } from '../redux/applicationReducer';
 import { T } from '../utilities/translator';
 import Password from '../components/home/password';
+import { post } from '../utilities/secureHTTP';
 
 class Home extends Component {
   static propTypes = {
@@ -54,10 +54,13 @@ class Home extends Component {
     }
   }
 
-  login(passwordString) {
-    axios.post(`${URL}login`, { username: this.state.user, password: passwordString })
-      .then(result => this.setProfile(result.data.token))
-      .catch(error => this.loginError(error));
+  async login(passwordString) {
+    try {
+      const response = await post(`${URL}login`, { username: this.state.user, password: passwordString });
+      this.setProfile(response.data.token);
+    } catch (error) {
+      this.loginError(error);
+    }
   }
 
   loginError() {
@@ -94,13 +97,22 @@ class Home extends Component {
     return (
       <div style={style.content} className="content-section mt-4 implementation ui-fluid">
         <h2>{T.translate(`welcome.${this.props.language}`)}</h2>
-        <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>
+        {!this.props.profile && <h3 style={style.pageTop}>{T.translate(`welcome.chooseProfile.${this.props.language}`)}</h3>}
         <div>
           {this.props.profile
             && (
-              <h4>
-                {T.translate(`welcome.loginMessage.${this.props.language}`, { userType: T.translate(`${this.props.profile}.${this.props.language}`) })}
-              </h4>
+              <div>
+                <h4>
+                  {T.translate(`welcome.loginMessage.${this.props.language}`, { userType: T.translate(`${this.props.profile}.${this.props.language}`) })}
+                </h4>
+                <div>
+                  {
+                    this.props.profile === 'user'
+                      ? <i className="fa fa-user" style={style.icons} />
+                      : <i className="fa fa-user-md" style={style.icons} />
+                  }
+                </div>
+              </div>
             )
           }
           {!this.props.profile

@@ -1,18 +1,20 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
 import React, { Component } from 'react';
 
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AngleRecommendation from '../components/recommendation/angleRecommendation';
+import ErrorMessage from '../components/shared/errorMessage';
 import { GoalActions } from '../redux/goalReducer';
+import Loading from '../components/shared/loading';
 import OtherRecommendation from '../components/recommendation/otherRecommendation';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import SubmitButtons from '../components/shared/submitButtons';
@@ -20,6 +22,7 @@ import { T } from '../utilities/translator';
 import TextRecommendation from '../components/recommendation/textRecommendation';
 import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
+import { get, post } from '../utilities/secureHTTP';
 
 class Recommendation extends Component {
   static propTypes = {
@@ -76,6 +79,8 @@ class Recommendation extends Component {
     super(props, context);
     this.state = {
       maxSliderAngle: 90,
+      isLoaded: false,
+      hasErrors: false,
     };
 
     this.load();
@@ -88,52 +93,63 @@ class Recommendation extends Component {
     }
   }
 
-  load() {
-    axios.get(`${URL}recommandation`, this.props.header)
-      .then(response => this.mapData(response.data))
-      .catch(console.log);
+  async load() {
+    try {
+      const response = await get(`${URL}recommandation`);
+      this.mapData(response.data);
+      this.setState({ isLoaded: true });
+    } catch (error) {
+      console.log(error);
+      this.setState({ hasErrors: true });
+    }
   }
 
   mapData(response) {
-    if (response.reduceWeight) {
-      this.props.changeReduceWeight(true);
-      this.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency);
-      this.props.changeTiltLengthWeight(response.reduceWeight.tiltLength);
-      this.props.changeTiltAngleWeight(response.reduceWeight.tiltAngle);
-    }
-    if (response.reduceSlidingMoving) {
-      this.props.changeReduceSlidingMoving(true);
-      this.props.changeTiltAngleMoving(response.reduceSlidingMoving);
-    }
-    if (response.reduceSlidingRest) {
-      this.props.changeReduceSlidingRest(true);
-      this.props.changeTiltAngleRest(response.reduceSlidingRest);
-    }
-    if (response.reduceSwelling) {
-      this.props.changeReduceSwelling(true);
-      this.props.reduceSwellingRecommendation(response.reduceSwelling);
-    }
-    if (response.reducePain) {
-      this.props.changeReducePain(true);
-      this.props.reducePainRecommendation(response.reducePain);
-    }
-    if (response.allowRest) {
-      this.props.changeAllowRest(true);
-      this.props.allowRestRecommendation(response.allowRest);
-    }
-    if (response.easeTransfers) {
-      this.props.changeEaseTransfers(true);
-      this.props.easeTransfersRecommendation(response.easeTransfers);
-    }
-    if (response.improveComfort) {
-      this.props.changeImproveComfort(true);
-      this.props.improveComfortRecommendation(response.improveComfort);
-    }
-    if (response.other) {
-      this.props.changeOther(true);
-      this.props.otherRecommendationTitle(response.other.title);
-      this.props.otherRecommendation(response.other.value);
-    }
+    const self = this;
+    return new Promise(
+      ((resolve) => {
+        if (response.reduceWeight) {
+          self.props.changeReduceWeight(true);
+          self.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency);
+          self.props.changeTiltLengthWeight(response.reduceWeight.tiltLength);
+          self.props.changeTiltAngleWeight(response.reduceWeight.tiltAngle);
+        }
+        if (response.reduceSlidingMoving) {
+          self.props.changeReduceSlidingMoving(true);
+          self.props.changeTiltAngleMoving(response.reduceSlidingMoving);
+        }
+        if (response.reduceSlidingRest) {
+          self.props.changeReduceSlidingRest(true);
+          self.props.changeTiltAngleRest(response.reduceSlidingRest);
+        }
+        if (response.reduceSwelling) {
+          self.props.changeReduceSwelling(true);
+          self.props.reduceSwellingRecommendation(response.reduceSwelling);
+        }
+        if (response.reducePain) {
+          self.props.changeReducePain(true);
+          self.props.reducePainRecommendation(response.reducePain);
+        }
+        if (response.allowRest) {
+          self.props.changeAllowRest(true);
+          self.props.allowRestRecommendation(response.allowRest);
+        }
+        if (response.easeTransfers) {
+          self.props.changeEaseTransfers(true);
+          self.props.easeTransfersRecommendation(response.easeTransfers);
+        }
+        if (response.improveComfort) {
+          self.props.changeImproveComfort(true);
+          self.props.improveComfortRecommendation(response.improveComfort);
+        }
+        if (response.other) {
+          self.props.changeOther(true);
+          self.props.otherRecommendationTitle(response.other.title);
+          self.props.otherRecommendation(response.other.value);
+        }
+        resolve();
+      }),
+    );
   }
 
   save() {
@@ -155,12 +171,9 @@ class Recommendation extends Component {
         value: this.props.otherRecommendations,
       },
     };
-    axios.post(`${URL}goal`, data.reduceWeight, this.props.header)
-      .then()
-      .catch(error => console.log(error));
-    axios.post(`${URL}recommandation`, data, this.props.header)
-      .then(() => this.props.history.push('/goals'))
-      .catch(error => console.log(error));
+    post(`${URL}goal`, data.reduceWeight);
+    post(`${URL}recommandation`, data);
+    this.props.history.push('/goals');
   }
 
   cancel() {
@@ -183,90 +196,105 @@ class Recommendation extends Component {
   }
 
   render() {
+    if (!this.state.isLoaded) {
+      return <Loading key="loading" />;
+    }
     return (
       <div className="mt-4">
         <div className="container">
-          <center><h2>{T.translate(`recommendations.${this.props.language}`)}</h2></center>
-          <legend className="text-center header"><h4>{T.translate(`recommendations.recommendationsText.${this.props.language}`)}</h4></legend>
-          <div className="row pl-3">
-            <div className="col-11 pl-0">
-              <Checkbox
-                inputId="reduceWeightCheck"
-                label="Reduce weight"
-                onChange={e => this.props.changeReduceWeight(e.checked)}
-                checked={this.props.reduceWeight}
-              />
-              <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
-
-              {this.props.reduceWeight
-                ? (
-                  <TiltSliders
-                    tiltFrequecy={this.props.tiltFrequencyWeight}
-                    tiltLength={this.props.tiltLengthWeight}
-                    tiltAngle={this.props.tiltAngleWeight}
-                    maxAngle={this.state.maxSliderAngle}
-                    onFrequencyChange={this.changeTitlFrequency.bind(this)}
-                    onLengthChange={this.changeTiltLength.bind(this)}
-                    onAngleChange={this.changeTiltAngle.bind(this)}
-                  />
-                )
-                : null}
-            </div>
-          </div>
-          <AngleRecommendation
-            recActive={this.props.reduceSlidingMoving}
-            title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
-            maxAngle={this.state.maxSliderAngle}
-            value={this.props.tiltAngleMoving}
-            onChangeActive={this.props.changeReduceSlidingMoving}
-            onChangeValue={this.props.changeTiltAngleMoving}
-          />
-          <AngleRecommendation
-            recActive={this.props.reduceSlidingRest}
-            title={T.translate(`recommendations.slidingRest.${this.props.language}`)}
-            maxAngle={this.state.maxSliderAngle}
-            onChangeActive={this.props.changeReduceSlidingRest}
-            onChangeValue={this.props.changeTiltAngleRest}
-          />
-          <TextRecommendation
-            onChangeActive={this.props.changeAllowRest}
-            recActive={this.props.allowRest}
-            title={T.translate(`recommendations.rest.${this.props.language}`)}
-            value={this.props.restRecommendation}
-            onChangeValue={this.props.allowRestRecommendation}
-          />
-          <TextRecommendation
-            onChangeActive={this.props.changeEaseTransfers}
-            recActive={this.props.easeTransfers}
-            title={T.translate(`recommendations.transfer.${this.props.language}`)}
-            value={this.props.transferRecommendation}
-            onChangeValue={this.props.easeTransfersRecommendation}
-          />
-          <TextRecommendation
-            onChangeActive={this.props.changeImproveComfort}
-            recActive={this.props.improveComfort}
-            title={T.translate(`recommendations.comfort.${this.props.language}`)}
-            value={this.props.comfortRecommendation}
-            onChangeValue={this.props.improveComfortRecommendation}
-          />
-          <OtherRecommendation
-            onChangeActive={this.props.changeOther}
-            recActive={this.props.other}
-            title={T.translate(`recommendations.other.${this.props.language}`)}
-            recTitle={this.props.otherRecommendationsTitle}
-            value={this.props.otherRecommendations}
-            onChangeValue={this.props.otherRecommendation}
-            onChangeRecTitle={this.props.otherRecommendationTitle}
-          />
+          <center>
+            <h2>{T.translate(`recommendations.${this.props.language}`)}</h2>
+          </center>
+          <legend className="text-center header">
+            <h4>{T.translate(`recommendations.recommendationsText.${this.props.language}`)}</h4>
+          </legend>
+          {this.state.hasErrors
+            ? <ErrorMessage />
+            : (
+              <div>
+                <div className="row pl-3">
+                  <div className="col-11 pl-0">
+                    <Checkbox
+                      inputId="reduceWeightCheck"
+                      label="Reduce weight"
+                      onChange={e => this.props.changeReduceWeight(e.checked)}
+                      checked={this.props.reduceWeight}
+                    />
+                    <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
+                    {this.props.reduceWeight
+                      ? (
+                        <TiltSliders
+                          tiltFrequecy={this.props.tiltFrequencyWeight}
+                          tiltLength={this.props.tiltLengthWeight}
+                          tiltAngle={this.props.tiltAngleWeight}
+                          maxAngle={this.state.maxSliderAngle}
+                          onFrequencyChange={this.changeTitlFrequency.bind(this)}
+                          onLengthChange={this.changeTiltLength.bind(this)}
+                          onAngleChange={this.changeTiltAngle.bind(this)}
+                        />
+                      )
+                      : null}
+                  </div>
+                </div>
+                <AngleRecommendation
+                  recActive={this.props.reduceSlidingMoving}
+                  title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
+                  maxAngle={this.state.maxSliderAngle}
+                  value={this.props.tiltAngleMoving}
+                  onChangeActive={this.props.changeReduceSlidingMoving}
+                  onChangeValue={this.props.changeTiltAngleMoving}
+                />
+                <AngleRecommendation
+                  recActive={this.props.reduceSlidingRest}
+                  title={T.translate(`recommendations.slidingRest.${this.props.language}`)}
+                  maxAngle={this.state.maxSliderAngle}
+                  value={this.props.tiltAngleRest}
+                  onChangeActive={this.props.changeReduceSlidingRest}
+                  onChangeValue={this.props.changeTiltAngleRest}
+                />
+                <TextRecommendation
+                  onChangeActive={this.props.changeAllowRest}
+                  recActive={this.props.allowRest}
+                  title={T.translate(`recommendations.rest.${this.props.language}`)}
+                  value={this.props.restRecommendation}
+                  onChangeValue={this.props.allowRestRecommendation}
+                />
+                <TextRecommendation
+                  onChangeActive={this.props.changeEaseTransfers}
+                  recActive={this.props.easeTransfers}
+                  title={T.translate(`recommendations.transfer.${this.props.language}`)}
+                  value={this.props.transferRecommendation}
+                  onChangeValue={this.props.easeTransfersRecommendation}
+                />
+                <TextRecommendation
+                  onChangeActive={this.props.changeImproveComfort}
+                  recActive={this.props.improveComfort}
+                  title={T.translate(`recommendations.comfort.${this.props.language}`)}
+                  value={this.props.comfortRecommendation}
+                  onChangeValue={this.props.improveComfortRecommendation}
+                />
+                <OtherRecommendation
+                  onChangeActive={this.props.changeOther}
+                  recActive={this.props.other}
+                  title={T.translate(`recommendations.other.${this.props.language}`)}
+                  recTitle={this.props.otherRecommendationsTitle}
+                  value={this.props.otherRecommendations}
+                  onChangeValue={this.props.otherRecommendation}
+                  onChangeRecTitle={this.props.otherRecommendationTitle}
+                />
+                <SubmitButtons
+                  onSave={this.save.bind(this)}
+                  onCancel={this.cancel}
+                />
+              </div>
+            )
+            }
         </div>
-        <SubmitButtons
-          onSave={this.save.bind(this)}
-          onCancel={this.cancel}
-        />
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
@@ -295,6 +323,7 @@ function mapStateToProps(state) {
     maxAngle: state.configurationReducer.maxAngle,
   };
 }
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     changeReduceWeight: RecommendationActions.changeReduceWeight,
@@ -323,4 +352,5 @@ function mapDispatchToProps(dispatch) {
     changeTiltAngleGoal: GoalActions.changeTiltAngleGoal,
   }, dispatch);
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Recommendation);

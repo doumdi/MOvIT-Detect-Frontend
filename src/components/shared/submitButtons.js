@@ -16,16 +16,28 @@ class SumbitButtons extends Component {
     language: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
+    displayCancel: PropTypes.bool,
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayCancel: this.props.displayCancel === undefined ? true : this.props.displayCancel,
+    };
+  }
 
   render() {
     return (
-      <div className="col-10 offset-1 offset-md-0 py-3">
+      <div className="text-right col-10 offset-1 offset-md-0 py-3">
+        {this.state.displayCancel
+        && (
         <button onClick={() => this.props.onCancel()} id="cancelButton" type="button" className="btn btn-lg mb-2 mb-sm-0">
           {T.translate(
             `cancel.${this.props.language}`,
           )}
         </button>
+        )}
+
         &nbsp;
         <button onClick={() => this.props.onSave()} type="button" id="saveButton" className="btn btn-lg mb-2 mb-sm-0">
           {T.translate(

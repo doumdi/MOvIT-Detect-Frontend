@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 class PreventPermission extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    permission: PropTypes.bool.isRequired,
+    permission: PropTypes.bool,
     permissionTitle: PropTypes.string.isRequired,
     onPermissionChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,

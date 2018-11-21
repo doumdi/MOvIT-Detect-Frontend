@@ -6,11 +6,11 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
+import { get } from '../../utilities/secureHTTP';
 
 class ResultsCalendar extends Component {
   static propTypes = {
@@ -30,6 +30,8 @@ class ResultsCalendar extends Component {
     };
     this.setDefaultDate();
     this.onPeriodChange = this.onPeriodChange.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
+    this.onMonthChange = this.onMonthChange.bind(this);
   }
 
   onPeriodChange(e) {
@@ -39,7 +41,7 @@ class ResultsCalendar extends Component {
 
   onDateChange(e) {
     this.props.onDateChange(e.value);
-    this.setState({ date: e.value });
+    this.setState({ date: new Date(e.value) });
   }
 
   onMonthChange(e) {
@@ -47,16 +49,14 @@ class ResultsCalendar extends Component {
     this.setState({ month: e.value });
   }
 
-  setDefaultDate() {
-    axios.get(`${URL}lastDate`, this.props.header)
-      .then((response) => {
-        const date = new Date(response.data);
-        date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
-        const month = date.getMonth();
-        this.setState({ date, month });
-        this.props.onDateChange(date);
-        this.props.onMonthChange(month);
-      });
+  async setDefaultDate() {
+    const response = await get(`${URL}lastDate`);
+    const date = new Date(response.data);
+    date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
+    const month = date.getMonth();
+    this.setState({ date, month });
+    this.props.onDateChange(date);
+    this.props.onMonthChange(month);
   }
 
   render() {

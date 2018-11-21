@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailyAngleDistribution Tests should match the snapshot 1`] = `
+<div
+  className="container graphic"
+  id="dailyAngle"
+>
+  <CustomCard
+    element={
+      <Chart
+        className={null}
+        data={null}
+        height={null}
+        id={null}
+        options={
+          Object {
+            "tooltips": Object {
+              "callbacks": Object {
+                "label": [Function],
+              },
+            },
+          }
+        }
+        style={null}
+        type="pie"
+        width={null}
+      />
+    }
+    header={
+      <h4>
+        dailyResults.angleDistribution.undefined
+      </h4>
+    }
+  />
+</div>
+`;

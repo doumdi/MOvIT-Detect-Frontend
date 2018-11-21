@@ -10,11 +10,10 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MonthlySittingTime from '../components/results/pressureResults/monthlySittingTime';
-import PressureCenter from '../components/results/pressureResults/pressureCenter';
 import ResultsCalendar from '../components/results/resultsCalendar';
 import { T } from '../utilities/translator';
-import { IS_TABLET } from '../redux/applicationReducer';
+import DailyPressureResults from '../components/results/pressureResults/daily/dailyPressureResults';
+import MonthlyPressureResults from '../components/results/pressureResults/monthly/monthlyPressureResults';
 
 
 class PressureResults extends Component {
@@ -28,7 +27,6 @@ class PressureResults extends Component {
     super(props);
     this.state = {
       period: 'day',
-      width: window.innerWidth,
       date: props.date,
       month: props.month,
     };
@@ -56,53 +54,10 @@ class PressureResults extends Component {
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
         <hr />
-        {!IS_TABLET
-          && (
-          <div className="col-lg-2 leftMenu">
-            {this.state.period === 'day'
-              ? (
-                <ul className="graphlist">
-                  <li className="graphLink">
-                    <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
-                  </li>
-                </ul>
-              )
-              : (
-                <ul className="graphlist">
-                  <li className="graphLink">
-                    <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
-                  </li>
-                </ul>
-              )
-            }
-          </div>
-          )
+        {this.state.period === 'day'
+          ? <DailyPressureResults date={this.state.date} />
+          : <MonthlyPressureResults month={this.state.month} />
         }
-        <div className=" col-lg-10 offset-lg-3 results resultsContainer">
-          <div className="col-lg-8 graphic">
-            {this.state.period === 'day'
-              ? (
-                <div>
-                  {this.state.date
-                  && (
-                  <PressureCenter
-                    title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
-                    date={this.state.date}
-                  />
-                  )
-                }
-                </div>
-              )
-              : (
-                <div>
-                  {this.state.month
-                  && <MonthlySittingTime month={this.state.month} />
-                }
-                </div>
-              )
-            }
-          </div>
-        </div>
       </div>
     );
   }

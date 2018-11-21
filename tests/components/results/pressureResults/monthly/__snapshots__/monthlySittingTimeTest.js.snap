@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MonthlySittingTime Tests should match the snapshot 1`] = `
+<div
+  className="container"
+  id="monthlySitting"
+/>
+`;
