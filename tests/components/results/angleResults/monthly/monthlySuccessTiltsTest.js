@@ -62,7 +62,6 @@ describe('MonthlySuccessTilt Tests', () => {
 
     expect(wrapper.state('labels')).toEqual([]);
     expect(wrapper.state('month')).toEqual(month);
-    expect(wrapper.state('data')).toEqual(null);
     expect(wrapper.state('loading')).toEqual(false);
   });
 
