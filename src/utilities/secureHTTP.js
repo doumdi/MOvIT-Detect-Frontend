@@ -7,7 +7,7 @@
 
 import axios from 'axios';
 
-const header = { headers: { Authorization: localStorage.getItem('token') } };
+const header = { headers: { Authorization: localStorage.getItem('token')} };
 
 function logout() {
   localStorage.setItem('token', '');

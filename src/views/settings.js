@@ -179,7 +179,7 @@ class Settings extends Component {
                 />
               )}
             />
-            <CustomCard
+            {/*<CustomCard
               header={<span className="ui-card-title">{T.translate(`settings.permissions.${this.props.language}`)}</span>}
               element={(
                 <Permissions
@@ -188,7 +188,7 @@ class Settings extends Component {
                   hasErrors={this.state.hasPermissionsErrors}
                 />
               )}
-            />
+            />*/}
             <CustomCard
               header={<span className="ui-card-title">{T.translate(`settings.system.${this.props.language}`)}</span>}
               element={(
