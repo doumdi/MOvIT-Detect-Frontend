@@ -21,9 +21,7 @@ class UpdatesManager extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     header: PropTypes.object,
-    lastUpdateDate: PropTypes.string.isRequired,
     isUpdateAvailable: PropTypes.bool.isRequired,
-    changeLastUpdateDate: PropTypes.func.isRequired,
     changeIsUpdateAvailable: PropTypes.func.isRequired,
     hasErrors: PropTypes.bool.isRequired,
   }
@@ -53,7 +51,6 @@ class UpdatesManager extends Component {
   async triggerUpdatesChange() {
     const response = await this.getUpdates();
     this.props.changeIsUpdateAvailable(response.isAvailable);
-    this.props.changeLastUpdateDate(response.date);
   }
 
   openModal() {
@@ -93,11 +90,6 @@ class UpdatesManager extends Component {
         >
           <i className="fa fa-2x fa-refresh" />
         </button>
-        <div>
-          {T.translate(`settings.system.update.last.${this.props.language}`)}
-          : &nbsp;
-          {this.props.lastUpdateDate}
-        </div>
         <ConfirmationPopup
           title={T.translate(`settings.system.update.${this.props.language}`)}
           body={T.translate(`settings.system.update.confirmation.${this.props.language}`)}
@@ -113,7 +105,6 @@ class UpdatesManager extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 
