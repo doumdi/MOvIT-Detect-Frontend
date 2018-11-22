@@ -63,7 +63,7 @@ class PressureCenter extends Component {
   }
 
   async getPressureData(date) {
-    this.setState({ isLoaded: false });
+    this.setState({ hasErrors: false, isLoaded: false });
     try {
       const response = await get(`${URL}gravityCenter?Day=${+date},offset=0`);
       return response.data;

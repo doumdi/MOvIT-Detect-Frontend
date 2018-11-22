@@ -44,11 +44,11 @@ describe('DailySuccessTilt Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<DailySuccessTilt store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('dayData')).toEqual([]);
     expect(wrapper.state('date')).toEqual(date);
-    expect(wrapper.state('loading')).toEqual(false);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
@@ -84,10 +84,14 @@ describe('DailySuccessTilt Tests', () => {
   it('should get the day data', async () => {
     await wrapper.instance().getData(date);
 
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('dayData')).toEqual([25, 10, 12, 5]);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

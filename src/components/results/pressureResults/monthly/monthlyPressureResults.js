@@ -50,7 +50,7 @@ class MonthlyPressureResults extends Component {
 
   async getMonthlySlidingProgress(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    this.setState({ isLoaded: false });
+    this.setState({ hasErrors: false, isLoaded: false });
     try {
       const response = await get(`${URL}monthlySlideProgress?Day=${+date},offset=0`);
       this.loadMonthlySlidingData(response.data);

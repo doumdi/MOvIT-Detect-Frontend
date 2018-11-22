@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import CustomCard from '../../../shared/card';
-import { URL } from '../../../../redux/applicationReducer';
-import { T } from '../../../../utilities/translator';
-import { get } from '../../../../utilities/secureHTTP';
 import '../../../../styles/results.css';
 
-const tiltCount = 5;
-const timeOffset = -5;
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import CustomCard from '../../../shared/card';
+import { T } from '../../../../utilities/translator';
+import { URL } from '../../../../redux/applicationReducer';
+import { get } from '../../../../utilities/secureHTTP';
+import { getElement } from '../../../../utilities/loader';
+
+const TILT_COUNT = 5;
+const TIME_OFFSET = -5;
 
 class DailyLastTilts extends Component {
   static propTypes = {
@@ -19,10 +22,10 @@ class DailyLastTilts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dayData: [],
       date: props.date,
       data: null,
-      loading: true,
+      isLoaded: false,
+      hasErrors: false,
     };
     this.getData(this.state.date);
   }
@@ -35,13 +38,18 @@ class DailyLastTilts extends Component {
   }
 
   async getData(date) {
-    this.state.loading = true;
-    const response = await get(`${URL}lastTilts?Day=${+date},offset=${timeOffset},count=${tiltCount}`);
-    this.state.dayData = response.data; this.loadData(response.data);
+    this.setState({ isLoaded: false, hasErrors: false });
+    try {
+      const response = await get(`${URL}lastTilts?Day=${+date},offset=${TIME_OFFSET},count=${TILT_COUNT}`);
+      this.setState({ data: response.data, isLoaded: true });
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
   }
 
   getResult(index) {
-    // Indexes: 0 success
+    // Indexes:
+    // 0 success
     // 1 trop court
     // 2 fail
     // 3 snooze
@@ -59,15 +67,11 @@ class DailyLastTilts extends Component {
 
   getTime(timestamp) {
     const date = new Date(timestamp);
-    const hours = date.getHours() + timeOffset;
+    const hours = date.getHours() + TIME_OFFSET;
     const minutes = date.getMinutes() < 10
       ? `0${date.getMinutes()}`
       : date.getMinutes();
     return `${hours}:${minutes}`;
-  }
-
-  loadData(data) {
-    this.setState({ data, loading: false });
   }
 
   render() {
@@ -88,16 +92,15 @@ class DailyLastTilts extends Component {
 
     return (
       <div className="container graphic" id="dailyLastTilt">
-        {!this.state.loading && (
-          <CustomCard
-            header={<h4>{T.translate(`lastTilts.title.${this.props.language}`)}</h4>}
-            element={element}
-          />
-        )}
+        <CustomCard
+          header={<h4>{T.translate(`lastTilts.title.${this.props.language}`)}</h4>}
+          element={getElement(this.state.isLoaded, this.state.hasErrors, element)}
+        />
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
