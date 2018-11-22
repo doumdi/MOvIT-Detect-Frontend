@@ -26,8 +26,8 @@ describe('MemoryUsage Tests', () => {
     const actualValue = MemoryUsage.propTypes;
 
     const expectedValue = {
-      total: PropTypes.number.isRequired,
-      used: PropTypes.number.isRequired,
+      total: PropTypes.string.isRequired,
+      used: PropTypes.string.isRequired,
       hasErrors: PropTypes.bool.isRequired,
     };
 
