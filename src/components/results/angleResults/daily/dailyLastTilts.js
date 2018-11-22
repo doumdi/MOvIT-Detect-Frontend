@@ -7,6 +7,9 @@ import { T } from '../../../../utilities/translator';
 import { get } from '../../../../utilities/secureHTTP';
 import '../../../../styles/results.css';
 
+const tiltCount = 5;
+const timeOffset = -5;
+
 class DailyLastTilts extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
@@ -33,7 +36,7 @@ class DailyLastTilts extends Component {
 
   async getData(date) {
     this.state.loading = true;
-    const response = await get(`${URL}lastTilts?Day=${+date},offset=-5,count=5`);
+    const response = await get(`${URL}lastTilts?Day=${+date},offset=-${timeOffset},count=${tiltCount}`);
     this.state.dayData = response.data; this.loadData(response.data);
   }
 
@@ -56,7 +59,7 @@ class DailyLastTilts extends Component {
 
   getTime(timestamp) {
     const date = new Date(timestamp);
-    const hours = date.getHours() - 5;
+    const hours = date.getHours() + timeOffset;
     const minutes = date.getMinutes() < 10
       ? `0${date.getMinutes()}`
       : date.getMinutes();
@@ -68,24 +71,27 @@ class DailyLastTilts extends Component {
   }
 
   render() {
+    const element = (
+      <div>
+        {this.state.data && this.state.data.map((tilt, index) => (
+          <div className="row" key={`lastTilts${tilt.timestamp}`}>
+            <div className="col-6">
+              {index + 1}. {T.translate(`lastTilts.result.${this.props.language}`)}: {this.getResult(tilt.index)}
+            </div>
+            <div className="col-6">
+              {T.translate(`lastTilts.time.${this.props.language}`)}: {this.getTime(tilt.timestamp)}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+
     return (
-      <div className="container graphic" id="dailyTilt">
+      <div className="container graphic" id="dailyLastTilt">
         {!this.state.loading && (
           <CustomCard
             header={<h4>{T.translate(`lastTilts.title.${this.props.language}`)}</h4>}
-            element={(
-              <div>
-                {this.state.data && this.state.data.map((tilt, index) => (
-                  <div className="row" key={`lastTilts${tilt.timestamp}`}>
-                    <div className="col-6">
-                      {index + 1}. {T.translate(`lastTilts.result.${this.props.language}`)}: {this.getResult(tilt.index)}
-                    </div>
-                    <div className="col-6">
-                      {T.translate(`lastTilts.time.${this.props.language}`)}: {this.getTime(tilt.timestamp)}
-                    </div>
-                  </div>
-                ))}
-              </div>)}
+            element={element}
           />
         )}
       </div>

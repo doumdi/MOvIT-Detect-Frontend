@@ -21,16 +21,16 @@ import DailyLastTilts from '../../../../../src/components/results/angleResults/d
 Enzyme.configure({ adapter: new Adapter() });
 
 const date = 1517720400000;
+const reponse = [
+  { index: 0, timestamp: 1542819600000 },
+  { index: 1, timestamp: 1542823200000 },
+  { index: 2, timestamp: 1542826800000 },
+  { index: 3, timestamp: 1542830400000 },
+  { index: 4, timestamp: 1542834000000 },
+];
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
-  const reponse = [
-    { index: 0, timestamp: 1542819600000 },
-    { index: 1, timestamp: 1542823200000 },
-    { index: 2, timestamp: 1542826800000 },
-    { index: 3, timestamp: 1542830400000 },
-    { index: 4, timestamp: 1542834000000 },
-  ];
 
   mock.onGet(`${URL}lastTilts?Day=${+date},offset=-5,count=5`).reply(200, reponse);
 }
@@ -91,13 +91,7 @@ describe('DailyLastTilts Tests', () => {
   it('should get the day data', async () => {
     await wrapper.instance().getData(date);
 
-    expect(wrapper.state('dayData')).toEqual([
-      { index: 0, timestamp: 1542819600000 },
-      { index: 1, timestamp: 1542823200000 },
-      { index: 2, timestamp: 1542826800000 },
-      { index: 3, timestamp: 1542830400000 },
-      { index: 4, timestamp: 1542834000000 },
-    ]);
+    expect(wrapper.state('dayData')).toEqual(response);
   });
 
   it('should match the snapshot', () => {
