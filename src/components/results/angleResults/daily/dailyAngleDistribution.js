@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
@@ -45,7 +45,7 @@ class DailyAngleDistribution extends Component {
   async getDayData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}oneDay?Day=${+date}`);
+      const response = await get(`${URL}oneDay?Day=${+date},offset=${OFFSET}`);
       this.state.dayData = response.data.map(v => v / 60000);
       this.setState({ isLoaded: true });
     } catch (error) {

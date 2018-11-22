@@ -20,7 +20,7 @@ import { Slider } from 'primereact/components/slider/Slider';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 import { milliToTimeString } from '../../../../utils/timeFormat';
@@ -65,7 +65,7 @@ class PressureCenter extends Component {
   async getPressureData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}gravityCenter?Day=${+date},offset=0`);
+      const response = await get(`${URL}gravityCenter?Day=${+date},offset=${OFFSET}`);
       return response.data;
     } catch (error) {
       this.setState({ hasErrors: true });
