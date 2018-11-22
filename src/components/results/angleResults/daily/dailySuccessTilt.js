@@ -14,7 +14,6 @@ class DailySuccessTilt extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object,
   }
 
   constructor(props) {
