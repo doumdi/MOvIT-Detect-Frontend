@@ -64,13 +64,15 @@ class Wifi extends Component {
         this.props.changeIsConnected(false);
       } else {
         tries += 1;
-        const response = await get(`${URL}wifi`);
-        if (response.data.connected) {
-          window.clearInterval(connectionValidation);
-          this.setState({ ...this.state, connecting: false });
-          this.props.changeIsConnected(true);
-        } else {
-          window.clearInterval(connectionValidation);
+        try {
+          const response = await get(`${URL}wifi`);
+          if (response.data.connected) {
+            window.clearInterval(connectionValidation);
+            this.setState({ ...this.state, connecting: false });
+            this.props.changeIsConnected(true);
+          }
+        } catch {
+          // window.clearInterval(connectionValidation);
           this.setState({ ...this.state, connecting: false });
           this.props.changeIsConnected(false);
         }

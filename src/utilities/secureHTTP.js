@@ -7,12 +7,12 @@
 
 import axios from 'axios';
 
-const header = `{ headers: { Authorization: ${localStorage.getItem('token')} }`;
+const header = { headers: { Authorization: localStorage.getItem('token') } };
 
 function logout() {
   localStorage.setItem('token', '');
   localStorage.setItem('profile', '');
-  // document.location.href = '/home';
+  document.location.href = '/home';
 }
 
 export async function get(url) {
