@@ -18,6 +18,10 @@ export default class MemoryUsage extends Component {
     hasErrors: PropTypes.bool.isRequired,
   };
 
+  getUsedPercentage() {
+    return Math.round(this.props.used / this.props.total * 100);
+  }
+
   render() {
     const style = {
       maxWidth: '400px',
@@ -26,7 +30,7 @@ export default class MemoryUsage extends Component {
       <div>
         {this.props.hasErrors
           ? <ErrorMessage />
-          : <ProgressBar style={style} value={this.props.used / this.props.total * 100} />
+          : <ProgressBar style={style} value={this.getUsedPercentage()} />
         }
       </div>
     );
