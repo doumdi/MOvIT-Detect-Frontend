@@ -5,12 +5,12 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import toJson from 'enzyme-to-json';
 
+import Adapter from 'enzyme-adapter-react-16';
+import PropTypes from 'prop-types';
+import React from 'react';
+import toJson from 'enzyme-to-json';
 import GoalChart from '../../../../../src/components/results/pressureResults/monthly/goalChart';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -22,6 +22,8 @@ describe('GoalChart Tests', () => {
     successMessage: 'Success',
     data: {},
     options: {},
+    isLoaded: true,
+    hasErrors: false,
   };
 
   it('should have proptypes', () => {
@@ -33,6 +35,9 @@ describe('GoalChart Tests', () => {
       successMessage: PropTypes.string.isRequired,
       data: PropTypes.object,
       options: PropTypes.object.isRequired,
+      id: PropTypes.string,
+      isLoaded: PropTypes.bool.isRequired,
+      hasErrors: PropTypes.bool.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
 import { Chart } from 'primereact/components/chart/Chart';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
-import { URL } from '../../../../redux/applicationReducer';
 import { T } from '../../../../utilities/translator';
+import { URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 
 class MonthlySuccessTilt extends Component {
@@ -24,7 +25,6 @@ class MonthlySuccessTilt extends Component {
         bad: [],
       },
       labels: [],
-      data: null,
       loading: true,
       month: props.month,
     };
@@ -44,28 +44,8 @@ class MonthlySuccessTilt extends Component {
     this.formatChartData(response.data);
   }
 
-  formatChartData(data) {
-    this.state.labels = [];
-    this.state.tiltMonthData = {
-      good: [],
-      badDuration: [],
-      badAngle: [],
-      bad: [],
-      snoozed: [],
-    };
-    Object.keys(data).forEach((key) => {
-      this.state.labels.push(key.toString());
-      this.state.tiltMonthData.good.push(data[key][0]);
-      this.state.tiltMonthData.badDuration.push(data[key][1]);
-      this.state.tiltMonthData.badAngle.push(data[key][2]);
-      this.state.tiltMonthData.bad.push(data[key][3]);
-      this.state.tiltMonthData.snoozed.push(data[key][4]);
-    });
-    this.loadData();
-  }
-
-  loadData() {
-    this.state.data = {
+  getChartData() {
+    return {
       labels: this.state.labels,
       datasets: [
         {
@@ -110,6 +90,25 @@ class MonthlySuccessTilt extends Component {
         },
       ],
     };
+  }
+
+  formatChartData(data) {
+    this.state.labels = [];
+    this.state.tiltMonthData = {
+      good: [],
+      badDuration: [],
+      badAngle: [],
+      bad: [],
+      snoozed: [],
+    };
+    Object.keys(data).forEach((key) => {
+      this.state.labels.push(key.toString());
+      this.state.tiltMonthData.good.push(data[key][0]);
+      this.state.tiltMonthData.badDuration.push(data[key][1]);
+      this.state.tiltMonthData.badAngle.push(data[key][2]);
+      this.state.tiltMonthData.bad.push(data[key][3]);
+      this.state.tiltMonthData.snoozed.push(data[key][4]);
+    });
     this.setState({ loading: false });
   }
 
@@ -127,17 +126,19 @@ class MonthlySuccessTilt extends Component {
         }],
       },
     };
+    const data = this.getChartData();
 
     return (
       <div classame="container" id="monthlyTilt">
         <CustomCard
           header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
-          element={<Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />}
+          element={<Chart type="bar" data={data} options={tiltSuccessOptions} />}
         />
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,

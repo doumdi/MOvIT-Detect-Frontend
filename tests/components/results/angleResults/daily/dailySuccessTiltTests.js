@@ -48,7 +48,6 @@ describe('DailySuccessTilt Tests', () => {
 
     expect(wrapper.state('dayData')).toEqual([]);
     expect(wrapper.state('date')).toEqual(date);
-    expect(wrapper.state('data')).toEqual(null);
     expect(wrapper.state('loading')).toEqual(false);
   });
 

@@ -46,7 +46,7 @@ class DailyAngleResults extends Component {
               <ul className="graphlist">
                 <li className="graphLink"><a href="results/angle#dailyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
                 <li className="graphLink"><a href="results/angle#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
-                <li className="graphLink"><a href="results/angle#dailyLastTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
+                <li className="graphLink"><a href="results/angle#dailyLastTilt">{T.translate(`lastTilts.title.${this.props.language}`)}</a></li>
               </ul>
             </div>
           )

@@ -8,6 +8,7 @@
 import '../../../../styles/results.css';
 
 import React, { Component } from 'react';
+
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -27,7 +28,6 @@ class DailyAngleDistribution extends Component {
     this.state = {
       dayData: [],
       date: props.date,
-      data: null,
       loading: true,
     };
     this.getDayData(this.state.date);
@@ -44,11 +44,11 @@ class DailyAngleDistribution extends Component {
     this.state.loading = true;
     const response = await get(`${URL}oneDay?Day=${+date}`);
     this.state.dayData = response.data.map(v => v / 60000);
-    this.loadData();
+    this.setState({ loading: false });
   }
 
-  loadData() {
-    this.state.data = {
+  getChartData() {
+    return {
       labels: [
         T.translate(`dailyResults.angleDistribution.zero.${this.props.language}`),
         T.translate(`dailyResults.angleDistribution.fifteen.${this.props.language}`),
@@ -76,7 +76,6 @@ class DailyAngleDistribution extends Component {
         },
       ],
     };
-    this.setState({ loading: false });
   }
 
   formatTime(min) {
@@ -109,13 +108,15 @@ class DailyAngleDistribution extends Component {
         },
       },
     };
+    const data = this.getChartData();
+
     return (
       <div className="container graphic" id="dailyAngle">
         {!this.state.loading
           && (
             <CustomCard
               header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>}
-              element={<Chart type="pie" data={this.state.data} options={minOptions} />}
+              element={<Chart type="pie" data={data} options={minOptions} />}
             />
           )
         }

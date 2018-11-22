@@ -9,7 +9,36 @@ exports[`DailyAngleDistribution Tests should match the snapshot 1`] = `
     element={
       <Chart
         className={null}
-        data={null}
+        data={
+          Object {
+            "datasets": Array [
+              Object {
+                "backgroundColor": Array [
+                  "red",
+                  "green",
+                  "blue",
+                  "orange",
+                  "purple",
+                ],
+                "data": Array [],
+                "hoverBackgroundColor": Array [
+                  "red",
+                  "green",
+                  "blue",
+                  "orange",
+                  "purple",
+                ],
+              },
+            ],
+            "labels": Array [
+              "dailyResults.angleDistribution.zero.undefined",
+              "dailyResults.angleDistribution.fifteen.undefined",
+              "dailyResults.angleDistribution.thirty.undefined",
+              "dailyResults.angleDistribution.fortyfive.undefined",
+              "dailyResults.angleDistribution.more.undefined",
+            ],
+          }
+        }
         height={null}
         id={null}
         options={

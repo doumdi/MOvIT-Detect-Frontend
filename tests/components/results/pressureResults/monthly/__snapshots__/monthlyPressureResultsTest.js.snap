@@ -305,21 +305,17 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
                   "datasets": Array [
                     Object {
                       "borderColor": "red",
-                      "data": Array [
-                        20,
-                        25,
-                      ],
+                      "data": Array [],
                       "fill": true,
                       "label": "monthlyResults.travel.successRate.FR",
                       "lineTension": 0,
                     },
                   ],
-                  "labels": Array [
-                    "1",
-                    "2",
-                  ],
+                  "labels": Array [],
                 }
               }
+              hasErrors={false}
+              isLoaded={true}
               options={
                 Object {
                   "legend": Object {
@@ -357,21 +353,17 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
                   "datasets": Array [
                     Object {
                       "borderColor": "red",
-                      "data": Array [
-                        70,
-                        45,
-                      ],
+                      "data": Array [],
                       "fill": true,
                       "label": "monthlyResults.travel.successRate.FR",
                       "lineTension": 0,
                     },
                   ],
-                  "labels": Array [
-                    "1",
-                    "2",
-                  ],
+                  "labels": Array [],
                 }
               }
+              hasErrors={false}
+              isLoaded={true}
               options={
                 Object {
                   "legend": Object {
