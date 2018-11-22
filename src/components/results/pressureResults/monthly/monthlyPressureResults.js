@@ -13,7 +13,6 @@ import MonthlySittingTime from './monthlySittingTime';
 import { T } from '../../../../utilities/translator';
 import { IS_TABLET, URL, OFFSET } from '../../../../redux/applicationReducer';
 import GoalChart from './goalChart';
-import MonthlySittingTime from './monthlySittingTime';
 import RecGoalChart from './recGoalChart';
 import { get } from '../../../../utilities/secureHTTP';
 

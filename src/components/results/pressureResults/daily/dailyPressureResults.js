@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import PressureCenter from './pressureCenter';
 import { IS_TABLET, URL, OFFSET } from '../../../../redux/applicationReducer';
 import GoalProgress from './goalProgress';
-import PressureCenter from './pressureCenter';
 import RecGoalProgress from './recGoalProgress';
 import { T } from '../../../../utilities/translator';
 import { get } from '../../../../utilities/secureHTTP';
