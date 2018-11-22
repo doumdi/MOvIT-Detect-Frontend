@@ -13,7 +13,7 @@ exports[`MemoryUsage Tests should match the snapshot 1`] = `
       }
     }
     unit="%"
-    value="20.00"
+    value={20}
   />
 </div>
 `;
