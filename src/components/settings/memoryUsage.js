@@ -13,15 +13,10 @@ import ErrorMessage from '../shared/errorMessage';
 
 export default class MemoryUsage extends Component {
   static propTypes = {
-    total: PropTypes.string.isRequired,
-    used: PropTypes.string.isRequired,
+    total: PropTypes.number.isRequired,
+    used: PropTypes.number.isRequired,
     hasErrors: PropTypes.bool.isRequired,
   };
-
-  getUsedPercentage() {
-    const percentage = parseFloat(this.props.used) / parseFloat(this.props.total) * 100;
-    return percentage.toFixed(2);
-  }
 
   render() {
     const style = {
@@ -31,7 +26,7 @@ export default class MemoryUsage extends Component {
       <div>
         {this.props.hasErrors
           ? <ErrorMessage />
-          : <ProgressBar style={style} value={this.getUsedPercentage()} />
+          : <ProgressBar style={style} value={this.props.used / this.props.total * 100} />
         }
       </div>
     );
