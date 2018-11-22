@@ -49,7 +49,7 @@ class DailyPressureResults extends Component {
 
   async getDailySlidingProgress(date) {
     try {
-      const response = await get(`${URL}dailySlideProgress?Day=${+date},offset=${OFFSET}`, this.props.header);
+      const response = await get(`${URL}dailySlideProgress?Day=${+date},offset=${OFFSET}`);
       this.loadDailySlidingData(response.data);
     } catch (error) {
       console.log(error);
