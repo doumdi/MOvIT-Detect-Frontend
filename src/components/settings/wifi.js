@@ -28,7 +28,7 @@ class Wifi extends Component {
     this.state = {
       wifi: '',
       password: '',
-      connecting: true,
+      connecting: false,
       changingNetwork: false,
     };
     this.handleKeyPress = this.handleKeyPress.bind(this);

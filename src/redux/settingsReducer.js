@@ -78,7 +78,8 @@ function changeLastUpdateDate(date) {
 
   return {
     type: LAST_UPDATE_DATE,
-    lastUpdateDate: lastUpdateDate.toISOString().split('T')[0],
+    //lastUpdateDate: lastUpdateDate.toISOString().split('T')[0],
+    lastUpdateDate: '22-10',
   };
 }
 
@@ -153,7 +154,7 @@ export const initParameter = {
   totalMemory: 0,
   usedMemory: 0,
   modulesStatus: {},
-  lastUpdateDate: '',
+  lastUpdateDate: '22-11',
 };
 
 export default function applicationReducer(state = initParameter, action) {
