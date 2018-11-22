@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { get, post } from '../../utilities/secureHTTP';
+
 import ErrorMessage from '../shared/errorMessage';
 import Loading from '../shared/loading';
 import LogoPassword from '../shared/logoPassword';
@@ -9,7 +10,6 @@ import LogoText from '../shared/logoText';
 import SubmitButtons from '../shared/submitButtons';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
-import { get, post } from '../../utilities/secureHTTP';
 
 const NUMBER_OF_RETRIES = 15;
 const RETRY_INTERVAL = 1000;
@@ -28,7 +28,7 @@ class Wifi extends Component {
     this.state = {
       wifi: '',
       password: '',
-      connecting: true,
+      connecting: false,
       changingNetwork: false,
     };
     this.handleKeyPress = this.handleKeyPress.bind(this);
