@@ -66,6 +66,21 @@ exports[`Settings Tests should match the snapshot 1`] = `
       />
       <CustomCard
         element={
+          <Connect(Permissions)
+            changeDataAgreement={[Function]}
+            hasErrors={false}
+          />
+        }
+        header={
+          <span
+            className="ui-card-title"
+          >
+            settings.permissions.en
+          </span>
+        }
+      />
+      <CustomCard
+        element={
           <div>
             <h6>
               settings.system.memory.en

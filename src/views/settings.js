@@ -17,6 +17,7 @@ import MemoryUsage from '../components/settings/memoryUsage';
 import ModuleStatus from '../components/settings/moduleStatus';
 import Notification from '../components/settings/notification';
 import NotificationSettings from '../components/settings/notificationSettings';
+import Permissions from '../components/settings/permissions';
 import { SettingsActions } from '../redux/settingsReducer';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
@@ -178,7 +179,7 @@ class Settings extends Component {
                 />
               )}
             />
-            {/* <CustomCard
+            <CustomCard
               header={<span className="ui-card-title">{T.translate(`settings.permissions.${this.props.language}`)}</span>}
               element={(
                 <Permissions
@@ -187,7 +188,7 @@ class Settings extends Component {
                   hasErrors={this.state.hasPermissionsErrors}
                 />
               )}
-            /> */}
+            />
             <CustomCard
               header={<span className="ui-card-title">{T.translate(`settings.system.${this.props.language}`)}</span>}
               element={(
