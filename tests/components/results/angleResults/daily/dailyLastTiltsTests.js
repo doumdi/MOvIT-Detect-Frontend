@@ -50,12 +50,11 @@ describe('DailyLastTilts Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<DailyLastTilts store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
-    expect(wrapper.state('dayData')).toEqual([]);
     expect(wrapper.state('date')).toEqual(date);
     expect(wrapper.state('data')).toEqual(null);
-    expect(wrapper.state('loading')).toEqual(false);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
@@ -63,8 +62,7 @@ describe('DailyLastTilts Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date).isRequired,
-      header: PropTypes.object.isRequired,
+      date: PropTypes.instanceOf(Date),
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
@@ -91,10 +89,14 @@ describe('DailyLastTilts Tests', () => {
   it('should get the day data', async () => {
     await wrapper.instance().getData(date);
 
-    expect(wrapper.state('dayData')).toEqual(response);
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
+    expect(wrapper.state('data')).toEqual(response);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
