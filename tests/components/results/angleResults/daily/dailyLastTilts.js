@@ -21,7 +21,7 @@ import DailyLastTilts from '../../../../../src/components/results/angleResults/d
 Enzyme.configure({ adapter: new Adapter() });
 
 const date = 1517720400000;
-const reponse = [
+const response = [
   { index: 0, timestamp: 1542819600000 },
   { index: 1, timestamp: 1542823200000 },
   { index: 2, timestamp: 1542826800000 },
@@ -32,7 +32,7 @@ const reponse = [
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
 
-  mock.onGet(`${URL}lastTilts?Day=${+date},offset=-5,count=5`).reply(200, reponse);
+  mock.onGet(`${URL}lastTilts?Day=${+date},offset=-5,count=5`).reply(200, response);
 }
 
 describe('DailyLastTilts Tests', () => {

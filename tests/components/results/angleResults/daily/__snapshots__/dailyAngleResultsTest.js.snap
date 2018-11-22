@@ -26,6 +26,15 @@ exports[`DailyAngleResults Tests should match the snapshot 1`] = `
           SuccessfulTilt.tiltMade.en
         </a>
       </li>
+      <li
+        className="graphLink"
+      >
+        <a
+          href="results/angle#dailyLastTilt"
+        >
+          lastTilts.title.en
+        </a>
+      </li>
     </ul>
   </div>
   <div
