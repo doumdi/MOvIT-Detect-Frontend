@@ -9,18 +9,18 @@ import axios from 'axios';
 
 const header = `{ headers: { Authorization: ${localStorage.getItem('token')} }`;
 
-function logout() {
+/* function logout() {
   localStorage.setItem('token', '');
   localStorage.setItem('profile', '');
   document.location.href = '/home';
-}
+} */
 
 export async function get(url) {
   try {
     return await axios.get(url, header);
   } catch (error) {
     if (error.toString().includes('401')) {
-      logout();
+      // logout();
     }
   }
 }
@@ -30,7 +30,7 @@ export async function post(url, param) {
     return await axios.post(url, param, header);
   } catch (error) {
     if (error.toString().includes('401')) {
-      logout();
+      // logout();
     }
   }
 }
