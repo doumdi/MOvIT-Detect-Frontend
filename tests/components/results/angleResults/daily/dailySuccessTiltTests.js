@@ -15,7 +15,7 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
+import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import DailySuccessTilt from '../../../../../src/components/results/angleResults/daily/dailySuccessTilt';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -26,7 +26,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const reponse = [25, 10, 12, 5];
 
-  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`).reply(200, reponse);
+  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, reponse);
 }
 
 describe('DailySuccessTilt Tests', () => {

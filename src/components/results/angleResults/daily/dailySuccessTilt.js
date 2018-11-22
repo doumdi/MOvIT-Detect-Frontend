@@ -6,8 +6,8 @@ import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
@@ -38,7 +38,7 @@ class DailySuccessTilt extends Component {
   async getData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`);
+      const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`);
       this.setState({
         dayData: response.data,
         isLoaded: true,

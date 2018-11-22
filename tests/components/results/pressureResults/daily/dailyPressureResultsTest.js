@@ -15,7 +15,7 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
+import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import DailyPressureResults from '../../../../../src/components/results/pressureResults/daily/dailyPressureResults';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -25,7 +25,7 @@ const response = [0.34, 0.56];
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
 
-  mock.onGet(`${URL}dailySlideProgress?Day=${+date},offset=0`).reply(200, response);
+  mock.onGet(`${URL}dailySlideProgress?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('DailyPressureResults Tests', () => {
