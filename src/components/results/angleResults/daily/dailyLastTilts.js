@@ -1,17 +1,16 @@
 import '../../../../styles/results.css';
 
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
+
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
 const TILT_COUNT = 5;
-const TIME_OFFSET = -5;
 
 class DailyLastTilts extends Component {
   static propTypes = {
@@ -40,7 +39,7 @@ class DailyLastTilts extends Component {
   async getData(date) {
     this.setState({ isLoaded: false, hasErrors: false });
     try {
-      const response = await get(`${URL}lastTilts?Day=${+date},offset=${TIME_OFFSET},count=${TILT_COUNT}`);
+      const response = await get(`${URL}lastTilts?Day=${+date},offset=${OFFSET},count=${TILT_COUNT}`);
       this.setState({ data: response.data, isLoaded: true });
     } catch (error) {
       this.setState({ hasErrors: true });
