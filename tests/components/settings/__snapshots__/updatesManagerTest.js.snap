@@ -12,10 +12,6 @@ exports[`UpdatesManager Tests should match the snapshot 1`] = `
       className="fa fa-2x fa-refresh"
     />
   </button>
-  <div>
-    settings.system.update.last.en
-    :  
-  </div>
   <Connect(ConfirmationPopup)
     body="settings.system.update.confirmation.en"
     onClose={[Function]}

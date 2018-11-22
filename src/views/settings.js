@@ -36,7 +36,6 @@ class Settings extends Component {
     isLedBlinkingEnabled: PropTypes.bool.isRequired,
     isVibrationEnabled: PropTypes.bool.isRequired,
     modulesStatus: PropTypes.object.isRequired,
-    lastUpdateDate: PropTypes.string.isRequired,
     isUpdateAvailable: PropTypes.bool.isRequired,
     isWifiConnected: PropTypes.bool.isRequired,
     changeDataAgreement: PropTypes.func.isRequired,
@@ -46,7 +45,6 @@ class Settings extends Component {
     changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
     changeIsVibrationEnabled: PropTypes.func.isRequired,
     changeModulesStatus: PropTypes.func.isRequired,
-    changeLastUpdateDate: PropTypes.func.isRequired,
     changeIsUpdateAvailable: PropTypes.func.isRequired,
     changeIsWifiConnected: PropTypes.func.isRequired,
   };
@@ -91,7 +89,6 @@ class Settings extends Component {
   async loadUpdateInfo() {
     try {
       const response = await get(`${URL}updates`);
-      this.props.changeLastUpdateDate(response.data.date);
       this.props.changeIsUpdateAvailable(response.data.isAvailable);
     } catch (error) {
       this.setState({ hasUpdateInfoErrors: true });
@@ -205,9 +202,7 @@ class Settings extends Component {
                   <br />
                   <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
                   <UpdatesManager
-                    lastUpdateDate={this.props.lastUpdateDate}
                     isUpdateAvailable={this.props.isUpdateAvailable}
-                    changeLastUpdateDate={this.props.changeLastUpdateDate}
                     changeIsUpdateAvailable={this.props.changeIsUpdateAvailable}
                     hasErrors={this.state.hasUpdateInfoErrors}
                   />
@@ -232,7 +227,6 @@ function mapStateToProps(state) {
     isLedBlinkingEnabled: state.settingsReducer.isLedBlinkingEnabled,
     isVibrationEnabled: state.settingsReducer.isVibrationEnabled,
     modulesStatus: state.settingsReducer.modulesStatus,
-    lastUpdateDate: state.settingsReducer.lastUpdateDate,
     isUpdateAvailable: state.settingsReducer.isUpdateAvailable,
     isWifiConnected: state.settingsReducer.isWifiConnected,
   };
@@ -247,7 +241,6 @@ function mapDispatchToProps(dispatch) {
     changeIsVibrationEnabled: SettingsActions.changeIsVibrationEnabled,
     changeSnoozeTime: SettingsActions.changeSnoozeTime,
     changeModulesStatus: SettingsActions.changeModulesStatus,
-    changeLastUpdateDate: SettingsActions.changeLastUpdateDate,
     changeIsUpdateAvailable: SettingsActions.changeIsUpdateAvailable,
     changeIsWifiConnected: SettingsActions.changeIsWifiConnected,
   }, dispatch);

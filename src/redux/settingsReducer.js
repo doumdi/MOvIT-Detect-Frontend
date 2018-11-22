@@ -71,18 +71,6 @@ function changeModulesStatus(modulesStatus) {
   };
 }
 
-// -------------- UPDATES MANAGER --------------
-function changeLastUpdateDate(date) {
-  const lastUpdateDate = new Date(date);
-  lastUpdateDate.setUTCHours(0, lastUpdateDate.getTimezoneOffset(), 0, 0);
-
-  return {
-    type: LAST_UPDATE_DATE,
-    //lastUpdateDate: lastUpdateDate.toISOString().split('T')[0],
-    lastUpdateDate: '22-10',
-  };
-}
-
 function changeIsUpdateAvailable(isAvailable) {
   return {
     type: IS_UPDATE_AVAILABLE,
@@ -106,7 +94,6 @@ export const SettingsActions = {
   changeUsedMemory,
   changeDataAgreement,
   changeModulesStatus,
-  changeLastUpdateDate,
   changeIsUpdateAvailable,
   changeIsWifiConnected,
 };
@@ -136,9 +123,6 @@ const ACTION_HANDLERS = {
   [IS_UPDATE_AVAILABLE]: (state, action) => (
     { ...state, isUpdateAvailable: action.isUpdateAvailable }
   ),
-  [LAST_UPDATE_DATE]: (state, action) => (
-    { ...state, lastUpdateDate: action.lastUpdateDate }
-  ),
   [WIFI_CONNECTION]: (state, action) => (
     { ...state, isWifiConnected: action.isWifiConnected }
   ),
@@ -154,7 +138,6 @@ export const initParameter = {
   totalMemory: 0,
   usedMemory: 0,
   modulesStatus: {},
-  lastUpdateDate: '22-11',
 };
 
 export default function applicationReducer(state = initParameter, action) {
