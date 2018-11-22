@@ -4,5 +4,46 @@ exports[`MonthlySittingTime Tests should match the snapshot 1`] = `
 <div
   className="container"
   id="monthlySitting"
-/>
+>
+  <CustomCard
+    element={
+      <Chart
+        className={null}
+        data={null}
+        height={null}
+        id={null}
+        options={
+          Object {
+            "legend": Object {
+              "onClick": null,
+            },
+            "scales": Object {
+              "yAxes": Array [
+                Object {
+                  "ticks": Object {
+                    "callback": [Function],
+                    "min": 0,
+                  },
+                },
+              ],
+            },
+            "tooltips": Object {
+              "callbacks": Object {
+                "label": [Function],
+              },
+            },
+          }
+        }
+        style={null}
+        type="bar"
+        width={null}
+      />
+    }
+    header={
+      <h4>
+        monthlyResults.wheelChair.FR
+      </h4>
+    }
+  />
+</div>
 `;

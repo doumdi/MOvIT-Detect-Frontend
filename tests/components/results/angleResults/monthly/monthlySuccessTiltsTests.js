@@ -58,12 +58,11 @@ describe('MonthlySuccessTilt Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<MonthlySuccessTilt store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('labels')).toEqual([]);
     expect(wrapper.state('month')).toEqual(month);
-    expect(wrapper.state('data')).toEqual(null);
-    expect(wrapper.state('loading')).toEqual(false);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
@@ -99,10 +98,14 @@ describe('MonthlySuccessTilt Tests', () => {
   it('should get the month data', async () => {
     await wrapper.instance().getMonthData(month);
 
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('tiltMonthData').good).toEqual([response[1][0], response[2][0]]);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

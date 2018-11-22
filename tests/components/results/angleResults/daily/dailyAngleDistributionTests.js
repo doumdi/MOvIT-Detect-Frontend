@@ -54,12 +54,11 @@ describe('DailyAngleDistribution Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<DailyAngleDistribution store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('dayData')).toEqual([]);
     expect(wrapper.state('date')).toEqual(date);
-    expect(wrapper.state('data')).toEqual(null);
-    expect(wrapper.state('loading')).toEqual(false);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
@@ -98,6 +97,8 @@ describe('DailyAngleDistribution Tests', () => {
   it('should get the day data', async () => {
     await wrapper.instance().getDayData(date);
 
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('dayData')).toEqual([0, 384, 585.6, 460.8, 0]);
   });
 
@@ -113,6 +114,8 @@ describe('DailyAngleDistribution Tests', () => {
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

@@ -246,6 +246,7 @@ dailyResults:
       FR: "Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!"
       EN: "You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!"
 
+
 SuccessfulTilt:
   tiltMade:
     FR: "Bascules réalisées"
@@ -277,6 +278,33 @@ SuccessfulTilt:
   tiltBadDuration:
     FR: "Bascules réalisées au bon angle mais de durée insuffisante"
     EN: "Tilt made at the right angle but for an insufficient duration"
+
+lastTilts:
+  title:
+    FR: "Dernières bascules réalisées"
+    EN: "Last tilts made"
+  result:
+    FR: "Résultat"
+    EN: "Result"
+  time:
+    FR: "Heure"
+    EN: "Hour"
+  successful:
+    FR: "Réalisée"
+    EN: "Made"
+  tooShort:
+    FR: "Durée insuffisante"
+    EN: "Insufficient duration"
+  tooSmallAngle:
+    FR: "Angle insuffisant"
+    EN: "Insufficient angle"
+  unsuccessful:
+    FR: "Non réalisée"
+    EN: "Not made"
+  snooze:
+    FR: "Snooze"
+    EN: "Snooze"
+
 
 results:
   FR: "Résultats"
@@ -393,9 +421,18 @@ alert:
   off:
     FR: "Fermer la notification"
     EN: "Turn off notification"
-calibrate:
-  FR: "Calibrer"
-  EN: "Calibrate"
+calibrateMat:
+  FR: "Calibrer le tapis de pression"
+  EN: "Calibrate the pressure mat"
+calibrateIMU:
+  FR: "Calibrer les accéléromètres"
+  EN: "Calibrate the accelerometers"
+  title:
+    FR: "Confirmation de la calibration"
+    EN: "Confirmation of the calibration"
+  confirmation:
+    FR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, autant que les accéléromètres, demeurent immobiles. À noter également que la calibration dure 2 minutes."
+    EN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Also, know that the calibration lasts 2 minutes."
 calibrating:
   FR: "En calibration"
   EN: "Calibrating"
@@ -494,11 +531,27 @@ settings:
     doNotReceive:
       FR: "Ne pas recevoir pendant"
       EN: "Do not receive for"
+  database:
+    FR: "base de données"
+    EN: "database"
+    simulate:
+      FR: "Simuler des données"
+      EN: "Simulate data"
+    reset:
+      FR: "Réinitialiser la base de données"
+      EN: "Reset the database"
+    warning:
+      message:
+        FR: "Cette action va supprimer les données de la base de données. Pour garder les données enregistrées, faites un import de la base de données."
+        EN: "This action will delete all the data in the database. To keep the current data, import the database."
+      title:
+        FR: "Changer la base de données"
+        EN: "Change the database"
 
 confirmation:
-  close:
-    FR: "Fermer"
-    EN: "Close"
+  cancel:
+    FR: "Annuler"
+    EN: "Cancel"
   confirm:
     FR: "Continuer"
     EN: "Continue"

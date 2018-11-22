@@ -15,21 +15,27 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
-import DailySuccessTilt from '../../../../../src/components/results/angleResults/daily/dailySuccessTilt';
+import { URL } from '../../../../../src/redux/applicationReducer';
+import DailyLastTilts from '../../../../../src/components/results/angleResults/daily/dailyLastTilts';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 const date = 1517720400000;
+const response = [
+  { index: 0, timestamp: 1542819600000 },
+  { index: 1, timestamp: 1542823200000 },
+  { index: 2, timestamp: 1542826800000 },
+  { index: 3, timestamp: 1542830400000 },
+  { index: 4, timestamp: 1542834000000 },
+];
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
-  const reponse = [25, 10, 12, 5];
 
-  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, reponse);
+  mock.onGet(`${URL}lastTilts?Day=${+date},offset=-5,count=5`).reply(200, response);
 }
 
-describe('DailySuccessTilt Tests', () => {
+describe('DailyLastTilts Tests', () => {
   let wrapper;
 
   const initialState = { applicationReducer: { header: '', language: 'FR' } };
@@ -43,21 +49,20 @@ describe('DailySuccessTilt Tests', () => {
   initializeMockAdapter();
 
   beforeEach(() => {
-    wrapper = shallow(<DailySuccessTilt store={store} {...props} />).dive();
+    wrapper = shallow(<DailyLastTilts store={store} {...props} />).dive();
 
-    expect(wrapper.state('dayData')).toEqual([]);
     expect(wrapper.state('date')).toEqual(date);
+    expect(wrapper.state('data')).toEqual(null);
     expect(wrapper.state('isLoaded')).toEqual(false);
     expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
-    const actualValue = DailySuccessTilt.propTypes;
+    const actualValue = DailyLastTilts.propTypes;
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date).isRequired,
-      header: PropTypes.object.isRequired,
+      date: PropTypes.instanceOf(Date),
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
@@ -86,7 +91,7 @@ describe('DailySuccessTilt Tests', () => {
 
     expect(wrapper.state('isLoaded')).toEqual(true);
     expect(wrapper.state('hasErrors')).toEqual(false);
-    expect(wrapper.state('dayData')).toEqual([25, 10, 12, 5]);
+    expect(wrapper.state('data')).toEqual(response);
   });
 
   it('should match the snapshot', () => {

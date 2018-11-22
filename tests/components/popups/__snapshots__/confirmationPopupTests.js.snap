@@ -18,6 +18,14 @@ exports[`ConfirmationPopup Tests should match the snapshot 1`] = `
         cornerStyleClass="ui-corner-all"
         icon={null}
         iconPos="left"
+        id="cancelButton"
+        label="confirmation.cancel.en"
+        onClick={[Function]}
+      />
+      <Button
+        cornerStyleClass="ui-corner-all"
+        icon={null}
+        iconPos="left"
         id="confirmButton"
         label="confirmation.confirm.en"
         onClick={[Function]}

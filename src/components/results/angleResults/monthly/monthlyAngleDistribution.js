@@ -4,15 +4,18 @@
  * @author Austin Didier Tran
  */
 
+import '../../../../styles/results.css';
+
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import { Chart } from 'primereact/components/chart/Chart';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
 import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
-import '../../../../styles/results.css';
+import { getElement } from '../../../../utilities/loader';
 
 class MonthlyAngleDistribution extends Component {
   static propTypes = {
@@ -32,9 +35,9 @@ class MonthlyAngleDistribution extends Component {
         more: [],
       },
       angleMonthLabels: [],
-      angleChartData: null,
-      angleLoading: true,
       month: props.month,
+      isLoaded: false,
+      hasErrors: false,
     };
 
     this.getAngleMonthData(props.month);
@@ -48,37 +51,19 @@ class MonthlyAngleDistribution extends Component {
   }
 
   async getAngleMonthData(month) {
-    const date = new Date(new Date().getFullYear(), month, 1);
-    this.state.angleLoading = true;
-    const response = await get(`${URL}oneMonth?Day=${+date},offset=${OFFSET}`);
-    this.formatAngleChartData(response.data);
+    this.setState({ hasErrors: false, isLoaded: false });
+    try {
+      const date = new Date(new Date().getFullYear(), month, 1);
+      const response = await get(`${URL}oneMonth?Day=${+date},offset=${OFFSET}`);
+      this.formatAngleChartData(response.data);
+      this.setState({ isLoaded: true });
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
   }
 
-  formatAngleChartData(data) {
-    this.state.angleMonthLabels = [];
-    this.state.angleMonthData = {
-      zero: [],
-      fifteen: [],
-      thirty: [],
-      fortyfive: [],
-      more: [],
-    };
-    Object.keys(data).forEach((key) => {
-      const total = data[key].reduce((a, b) => a + b, 0);
-      const percents = data[key].map(v => (v / total) * 100);
-
-      this.state.angleMonthLabels.push(key.toString());
-      this.state.angleMonthData.zero.push(percents[0]);
-      this.state.angleMonthData.fifteen.push(percents[1]);
-      this.state.angleMonthData.thirty.push(percents[2]);
-      this.state.angleMonthData.fortyfive.push(percents[3]);
-      this.state.angleMonthData.more.push(percents[4]);
-    });
-    this.loadAngleData();
-  }
-
-  loadAngleData() {
-    this.state.angleChartData = {
+  getAngleChartData() {
+    return {
       labels: this.state.angleMonthLabels,
       datasets: [
         {
@@ -113,7 +98,28 @@ class MonthlyAngleDistribution extends Component {
         },
       ],
     };
-    this.state.angleLoading = false;
+  }
+
+  formatAngleChartData(data) {
+    this.state.angleMonthLabels = [];
+    this.state.angleMonthData = {
+      zero: [],
+      fifteen: [],
+      thirty: [],
+      fortyfive: [],
+      more: [],
+    };
+    Object.keys(data).forEach((key) => {
+      const total = data[key].reduce((a, b) => a + b, 0);
+      const percents = data[key].map(v => (v / total) * 100);
+
+      this.state.angleMonthLabels.push(key.toString());
+      this.state.angleMonthData.zero.push(percents[0]);
+      this.state.angleMonthData.fifteen.push(percents[1]);
+      this.state.angleMonthData.thirty.push(percents[2]);
+      this.state.angleMonthData.fortyfive.push(percents[3]);
+      this.state.angleMonthData.more.push(percents[4]);
+    });
   }
 
   render() {
@@ -145,16 +151,15 @@ class MonthlyAngleDistribution extends Component {
         },
       },
     };
+    const angleChartData = this.getAngleChartData();
+    const chart = <Chart type="bar" data={angleChartData} options={percentOptions2} />;
 
     return (
       <div className="container graphic" id="monthlyAngle">
-        {!this.state.angleLoading
-          && (<CustomCard
-            header={<h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>}
-            element={<Chart type="bar" data={this.state.angleChartData} options={percentOptions2} />}
-          />
-          )
-        }
+        <CustomCard
+          header={<h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>}
+          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
+        />
       </div>
     );
   }

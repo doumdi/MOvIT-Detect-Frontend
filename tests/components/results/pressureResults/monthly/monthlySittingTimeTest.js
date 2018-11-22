@@ -49,13 +49,11 @@ describe('MonthlySittingTime Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<MonthlySittingTime store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('sitMonthData')).toEqual([]);
     expect(wrapper.state('sitMonthLabels')).toEqual([]);
     expect(wrapper.state('month')).toEqual(month);
     expect(wrapper.state('sitChartData')).toEqual(null);
-    expect(wrapper.state('sitLoading')).toEqual(true);
   });
 
   it('should have proptypes', () => {
@@ -75,8 +73,9 @@ describe('MonthlySittingTime Tests', () => {
 
     wrapper.setProps({ month: '2' });
 
-    expect(wrapper.state('month')).toEqual('2');
     expect(spy.calledOnce).toEqual(true);
+    expect(spy.getCalls()[0].args[0]).toEqual('2');
+    expect(wrapper.state('month')).toEqual('2');
   });
 
   it('should do nothing when receiving matching props', () => {
@@ -91,12 +90,18 @@ describe('MonthlySittingTime Tests', () => {
   it('should get the month data', async () => {
     await wrapper.instance().getSitMonthData(month);
 
-
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('sitMonthLabels')).toEqual(['1', '2', '3']);
     expect(wrapper.state('sitMonthData')).toEqual([(response[1] / 60), (response[2] / 60), (response[3] / 60)]);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({
+      isLoaded: true,
+      hasErrors: false,
+    });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

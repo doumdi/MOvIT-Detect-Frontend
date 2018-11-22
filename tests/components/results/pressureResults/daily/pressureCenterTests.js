@@ -5,34 +5,35 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
+import Enzyme, { shallow } from 'enzyme';
+
+import Adapter from 'enzyme-adapter-react-16';
+import MockAdapter from 'axios-mock-adapter';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Slider } from 'primereact/components/slider/Slider';
+import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
-import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 
-import CustomCard from '../../../../../src/components/shared/card';
 import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import PressureCenter from '../../../../../src/components/results/pressureResults/daily/pressureCenter';
+import CustomCard from '../../../../../src/components/shared/card';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 function setFakeState(wrapper) {
-  wrapper.setState({ time: 10800000 });
-  wrapper.setState({ index: 0 });
   wrapper.setState({
+    time: 10800000,
+    hasErrors: false,
+    isLoaded: true,
+    index: 0,
     centers: [
       { x: 0.2, y: 0.3 },
       { x: 0.1, y: 0.2 },
       { x: 0.5, y: 0.7 },
     ],
-  });
-  wrapper.setState({
     quadrants: [
       [
         { 0: { x: -1.2, y: 3.2 } },
@@ -53,10 +54,8 @@ function setFakeState(wrapper) {
         { 3: { x: -2.2, y: -5.2 } },
       ],
     ],
-  });
-  wrapper.setState({ hours: [10800000, 10800001, 10800002] });
-  wrapper.setState({ currentCenter: { x: 0, y: 0 } });
-  wrapper.setState({
+    hours: [10800000, 10800001, 10800002],
+    currentCenter: { x: 0, y: 0 },
     currentQuadrants: [
       { x: 0, y: 0 },
       { x: 0, y: 0 },
@@ -84,14 +83,18 @@ describe('PressureCenter Tests', () => {
     const actualValue = PressureCenter.propTypes;
 
     const expectedValue = {
+      language: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       date: PropTypes.instanceOf(Date),
+      header: PropTypes.object,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
-  it('should initialize state', () => {
+  it('should initialize the states', () => {
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('time')).toEqual(0);
     expect(wrapper.state('index')).toEqual(0);
     expect(wrapper.state('currentCenter')).toEqual({ x: 0, y: 0 });
@@ -116,6 +119,7 @@ describe('PressureCenter Tests', () => {
 
     const response = await wrapper.instance().getPressureData(props.date);
 
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(response).toEqual(data);
   });
 
@@ -156,6 +160,7 @@ describe('PressureCenter Tests', () => {
 
     expect(spy.calledOnce).toEqual(true);
     expect(spy.getCalls()[0].args[0]).toEqual(0);
+    expect(wrapper.state('isLoaded')).toEqual(true);
     expect(wrapper.state('hours')).toEqual(['10800000']);
     expect(wrapper.state('centers')).toEqual([{ x: -0.2, y: 0.3 }]);
     expect(wrapper.state('quadrants')).toEqual([[
@@ -167,9 +172,9 @@ describe('PressureCenter Tests', () => {
   });
 
   it('should trigger setIndex when simulating a change event on the Slider', () => {
-    const spy = sinon.spy(wrapper.instance(), 'setIndex');
-
     setFakeState(wrapper);
+
+    const spy = sinon.spy(wrapper.instance(), 'setIndex');
 
     wrapper.find(CustomCard).dive().find(Slider).simulate('change', { value: 1 });
 
@@ -179,6 +184,7 @@ describe('PressureCenter Tests', () => {
 
   it('should match the snapshot', () => {
     setFakeState(wrapper);
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
