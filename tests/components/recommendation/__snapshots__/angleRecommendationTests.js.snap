@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports['AngleRecommandation Tests should match the snapshot when the recommendation is active 1'] = `
+exports[`AngleRecommandation Tests should match the snapshot when the recommendation is active 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -40,10 +40,24 @@ exports['AngleRecommandation Tests should match the snapshot when the recommenda
       />
     </div>
   </div>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#angleRecInfoundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
 </div>
 `;
 
-exports['AngleRecommandation Tests should match the snapshot when the recommendation is inactive 1'] = `
+exports[`AngleRecommandation Tests should match the snapshot when the recommendation is inactive 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -71,5 +85,19 @@ exports['AngleRecommandation Tests should match the snapshot when the recommenda
       Test
     </label>
   </div>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#angleRecInfoundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
 </div>
 `;

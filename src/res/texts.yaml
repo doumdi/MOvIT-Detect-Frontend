@@ -36,7 +36,7 @@ recommendations:
   FR: "Recommandations"
   EN: "Recommendations"
   tiltAsNeeded:
-    FR: "Basculez au besoin"
+    FR: "Basculer au besoin"
     EN: "Tilt as needed"
   otherTitle:
     FR: "Indiquez ici le titre de la cible que vous voulez transmettre à l’usager"
@@ -45,11 +45,23 @@ recommendations:
     FR: "Veuillez sélectionner la ou les cibles d’usage de la bascule destinée(s) à l’usager. Veuillez également personnaliser chacune des cibles sélectionnées aux besoins de l’usager en y saisissant vos recommandations."
     EN: "Please select the goal(s) for the recommend use of the tilt. Please personalise every selected goal for the user's need by entering you recommendations"
   reduceWeight:
-    FR: "Réduire la pression sous le siège"
-    EN: "Reduce pressure"
+    FR: "Réduire la pression sur le siège"
+    EN: "Reduce pressure on the buttocks"
+    tooltip:
+      FR: "Pour profiter des bénéfices de la bascule en matière de réduction de la pression, il est recommandé de basculer à une fréquence de 30 minutes, pendant une à deux minutes et à un angle de 45°"
+      EN: "Pour profiter des bénéfices de la bascule en matière de réduction de la pression, il est recommandé de basculer à une fréquence de 30 minutes, pendant une à deux minutes et à un angle de 45°"
   reduceSwelling:
-    FR: "Réduire l'enflure aux membres inférieurs"
-    EN: "Reduce swelling"
+    FR: "Reduire l’œdème aux membres inférieurs"
+    EN: "Reduce swelling of the legs"
+    tooltip:
+      FR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+      EN: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+  reducePain:
+    FR: "Réduire la douleur"
+    EN: "Reduce pain"
+    tooltip:
+      FR: "Pour diminuer ou bien gérer la douleur, il est recommandé de basculer selon les préférences de l’usager."
+      EN: "Pour diminuer ou bien gérer la douleur, il est recommandé de basculer selon les préférences de l’usager."
   frequency:
     FR: "Fréquence de bascule"
     EN: "Tilt frequency"
@@ -62,9 +74,15 @@ recommendations:
   slidingMoving:
     FR: "Réduire le glissement lors des déplacements"
     EN: "Reduce sliding while moving"
+    tooltip:
+      FR: "Pour augmenter la stabilité au fauteuil lors de la conduite, il est recommandé de basculer à un angle de 5 - 25°. De plus, pour éviter de glisser vers l’avant dans d’une pente descendante, il est recommandé de basculer à un angle de 5 - 30°."
+      EN: "Pour augmenter la stabilité au fauteuil lors de la conduite, il est recommandé de basculer à un angle de 5 - 25°. De plus, pour éviter de glisser vers l’avant dans d’une pente descendante, il est recommandé de basculer à un angle de 5 - 30°."
   slidingRest:
     FR: "Réduire le glissement au repos"
     EN: "Reduce sliding while at rest"
+    tooltip:
+      FR: "Pour augmenter la stabilité au fauteuil en position stationnaire, il est recommandé de basculer à un angle de 5 - 25°."
+      EN: "Pour augmenter la stabilité au fauteuil en position stationnaire, il est recommandé de basculer à un angle de 5 - 25°."
   pain:
     FR: "Réduire la douleur"
     EN: "Reduce pain"
@@ -74,24 +92,36 @@ recommendations:
   rest:
     FR: "Permettre le repos"
     EN: "Permit a time of rest in the wheelchair "
+    tooltip:
+      FR: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour se reposer ou bien pour faire une sieste."
+      EN: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour se reposer ou bien pour faire une sieste."
     recommendation:
       FR: "Recommandations pour le repos"
       EN: "Recommendations to permit a time of rest in the wheelchair "
   transfer:
     FR: "Faciliter les transferts"
     EN: "Ease transfers"
+    tooltip:
+      FR: "Lors d’un transfert avec un lève-personne, la bascule arrière permet un meilleur alignement avec la toile, en plus d’offrir un meilleur positionnement avec le fauteuil. Lors d’un transfert assis-debout et pivot, la bascule avant peut faciliter l’impulsion de l’usager."
+      EN: "Lors d’un transfert avec un lève-personne, la bascule arrière permet un meilleur alignement avec la toile, en plus d’offrir un meilleur positionnement avec le fauteuil. Lors d’un transfert assis-debout et pivot, la bascule avant peut faciliter l’impulsion de l’usager."
     recommendation:
       FR: "Recommandations pour faciliter le transport"
       EN: "Recommendations to ease transfers"
   comfort:
     FR: "Améliorer le confort"
     EN: "Improve comfort"
+    tooltip:
+      FR: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour augmenter leur confort et diminuer leur inconfort."
+      EN: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour augmenter leur confort et diminuer leur inconfort."
     recommendation:
       FR: "Recommandations pour améliorer le confort"
       EN: "Recommendations to improve comfort"
   other:
     FR: "Autre"
     EN: "Other"
+    tooltip:
+      FR: "Afin de compléter vos recommandations, il vous est également possible de créer une ou des cibles de bascule personnalisée(s)."
+      EN: "Afin de compléter vos recommandations, il vous est également possible de créer une ou des cibles de bascule personnalisée(s)."
     recommendation:
       FR: "Autres recommandations"
       EN: "Other recommendations"
@@ -113,13 +143,13 @@ goals:
     FR: "Objectif recommandé"
     EN: "Recommended goal"
   tiltFrequency:
-    FR: "Fréquence de bascule"
+    FR: "Basculez à toutes les"
     EN: "Tilt frequency"
   tiltLength:
-    FR: "Durée de bascule"
+    FR: "Pendant une durée de"
     EN: "Tilt duration"
   tiltAngle:
-    FR: "Angle de bascule"
+    FR: "À un angle de"
     EN: "Tilt angle"
   reduceSlidingMoving:
     FR: "pendant vos déplacements pour éviter de glisser"
@@ -384,7 +414,7 @@ toolTip:
     FR: "Sur cette page se retrouve l’ensemble des objectifs que vous pouvez atteindre en vous servant de la bascule de votre fauteuil roulant. Ils ont tous été sélectionnés et personnalisés par votre ergothérapeute en fonction de votre condition de santé. Afin d’atteindre vos objectifs, n’oubliez pas de porter attention aux consignes en bas de chaque objectif."
     EN: "On this page, you will find all your wheelchair tilt goals. They have all been selected and personalized by your occupational therapist according to your health condition. In order to achieve your goals, be sure to pay attention to the instructions at the bottom of each goal."
   personalGoal:
-    FR: "Peut-être trouvez-vous l’objectif recommandé trop difficile ou facile à atteindre ? Dans ce cas, créez votre propre objectif selon vos préférences! Tout comme votre objectif recommandé, vous aurez accès à des résultats qui tiennent compte de votre objectif personnel. De plus, la lumière installée sur votre fauteuil roulant s’allumera en fonction de votre objectif personnel pour vous rappeler de basculer dans le cas où vous auriez oublié de le faire."
+    FR: "Peut-être trouvez-vous l’objectif recommandé trop difficile ou facile à atteindre ? Dans ce cas, créez votre propre objectif selon vos préférences! Tout comme votre objectif recommandé, vous aurez accès à des résultats qui tiennent compte de votre objectif personnel. De plus, le boitier d’alerte installé sur votre fauteuil roulant s’activera en fonction de votre objectif personnel pour vous rappeler de basculer dans le cas où vous auriez oublié de le faire."
     EN: "Perhaps you find the recommended goal too difficult or easy to achieve. In this case, create your own goal according to your preferences! Just like your recommended goal, you will have access to your personal goal results. Additionally, the light installed on your wheelchair will light up according to your personal goal to remind you to tilt in case you have forgotten to do so."
 alert:
   on:
