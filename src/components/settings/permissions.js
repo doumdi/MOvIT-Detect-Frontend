@@ -28,7 +28,7 @@ class Permissions extends Component {
     const data = {
       dataAgreement: this.props.dataAgreement,
     };
-    post(`${URL}dataAgreement`, data);
+    post(`${URL}notificationParam`, data);
   }
 
   render() {
