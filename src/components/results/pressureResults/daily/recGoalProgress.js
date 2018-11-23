@@ -41,13 +41,13 @@ class RecGoalProgress extends Component {
         <ProgressBar value={this.props.goalValue} />
         <p style={style.center}>
           {T.translate(`dailyResults.personal.description.${this.props.language}`,
-            { percent: this.props.goalValue })}
+            { percent: Math.round(this.props.goalValue) })}
         </p>
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
         <ProgressBar value={this.props.recValue} />
         <p style={style.center}>
           {T.translate(`dailyResults.recommended.description.${this.props.language}`,
-            { percent: this.props.recValue })}
+            { percent: Math.round(this.props.recValue) })}
         </p>
       </div>
     );

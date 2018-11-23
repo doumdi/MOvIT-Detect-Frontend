@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { T } from '../../utilities/translator';
 
-class ErrorMessage extends Component {
+class NoDataMessage extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
   };
@@ -15,9 +15,9 @@ class ErrorMessage extends Component {
     return (
       <div className="mt-2">
         <center>
-          <h6 className="error">
-            <i className="fa fa-times-circle" />&nbsp;
-            {T.translate(`error.${this.props.language}`)}
+          <h6 className="warning">
+            <i className="fa fa-exclamation-circle" />&nbsp;
+            {T.translate(`noData.${this.props.language}`)}
           </h6>
         </center>
       </div>
@@ -31,4 +31,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ErrorMessage);
+export default connect(mapStateToProps)(NoDataMessage);
