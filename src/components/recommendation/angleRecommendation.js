@@ -7,12 +7,11 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import PropTypes from 'prop-types';
 import SliderValue from '../shared/sliderValue';
 import { T } from '../../utilities/translator';
-
 
 class AngleRecommendation extends Component {
   static propTypes = {

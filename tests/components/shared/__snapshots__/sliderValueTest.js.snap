@@ -34,20 +34,15 @@ exports[`SliderValue Tests should match the snapshot 1`] = `
         className="pb-2 col-12 col-md-3"
       >
         <input
+          className="inputStyle"
           id="value"
           max={20}
           min={10}
           onChange={[Function]}
-          style={
-            Object {
-              "background": "rgba(0,0,0,0)",
-              "border": 0,
-              "width": "60px",
-            }
-          }
           type="number"
           value={12}
         />
+         
         <span>
           m
         </span>

@@ -5,7 +5,10 @@
  * @author Benjamin Roy
  */
 
+import '../../styles/components/sliderValue.css';
+
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
 
@@ -19,13 +22,25 @@ export default class SliderValue extends Component {
     unit: PropTypes.string,
   };
 
-  render() {
-    const style = {
-      border: 0,
-      width: '60px',
-      background: 'rgba(0,0,0,0)',
-    };
+  constructor(props) {
+    super(props);
+    this.onValueChange = this.onValueChange.bind(this);
+  }
 
+  onValueChange(value) {
+    if (!Number.isNaN(value)) {
+      let newValue = value;
+      if (this.props.max !== null && value > this.props.max) {
+        newValue = this.props.max;
+      }
+      if (this.props.min !== null && value < this.props.min) {
+        newValue = this.props.min;
+      }
+      this.props.onChange(newValue);
+    }
+  }
+
+  render() {
     return (
       <div className="row">
         <div className="col-12">
@@ -44,12 +59,13 @@ export default class SliderValue extends Component {
               <input
                 id="value"
                 type="number"
-                style={style}
-                value={this.props.value}
-                onChange={e => this.props.onChange(e.target.value)}
+                className="inputStyle"
                 min={this.props.min || 0}
                 max={this.props.max}
+                onChange={e => this.onValueChange(e.target.value)}
+                value={this.props.value}
               />
+              &nbsp;
               <span>{this.props.unit}</span>
             </div>
           </div>
