@@ -8,15 +8,13 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import CustomCard from '../shared/card';
 import TiltSliders from '../shared/tiltSliders';
 import { URL } from '../../redux/applicationReducer';
 import { post } from '../../utilities/secureHTTP';
 
-class TiltSlidersCard extends Component {
+export default class TiltSlidersCard extends Component {
   static propTypes = {
-    header: PropTypes.object,
     tiltFrequecy: PropTypes.number,
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,
@@ -88,10 +86,3 @@ class TiltSlidersCard extends Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    header: state.applicationReducer.header,
-  };
-}
-export default connect(mapStateToProps)(TiltSlidersCard);

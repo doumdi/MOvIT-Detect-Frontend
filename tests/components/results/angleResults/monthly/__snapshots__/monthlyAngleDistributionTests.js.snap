@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MonthlyAngleDistribution Tests should match the snapshot 1`] = `
+<div
+  className="container graphic"
+  id="monthlyAngle"
+>
+  <CustomCard
+    element={
+      <Chart
+        className={null}
+        data={
+          Object {
+            "datasets": Array [
+              Object {
+                "backgroundColor": "red",
+                "borderColor": "red",
+                "data": Array [],
+                "label": "monthlyResults.tiltDistribution.zero.FR",
+              },
+              Object {
+                "backgroundColor": "green",
+                "borderColor": "green",
+                "data": Array [],
+                "label": "monthlyResults.tiltDistribution.fifteen.FR",
+              },
+              Object {
+                "backgroundColor": "blue",
+                "borderColor": "blue",
+                "data": Array [],
+                "label": "monthlyResults.tiltDistribution.thirty.FR",
+              },
+              Object {
+                "backgroundColor": "orange",
+                "borderColor": "orange",
+                "data": Array [],
+                "label": "monthlyResults.tiltDistribution.fortyfive.FR",
+              },
+              Object {
+                "backgroundColor": "purple",
+                "borderColor": "purple",
+                "data": Array [],
+                "label": "monthlyResults.tiltDistribution.more.FR",
+              },
+            ],
+            "labels": Array [],
+          }
+        }
+        height={null}
+        id={null}
+        options={
+          Object {
+            "scales": Object {
+              "xAxes": Array [
+                Object {
+                  "stacked": true,
+                },
+              ],
+              "yAxes": Array [
+                Object {
+                  "stacked": true,
+                  "ticks": Object {
+                    "callback": [Function],
+                    "max": 100,
+                    "min": 0,
+                  },
+                },
+              ],
+            },
+            "tooltips": Object {
+              "callbacks": Object {
+                "label": [Function],
+              },
+            },
+          }
+        }
+        style={null}
+        type="bar"
+        width={null}
+      />
+    }
+    header={
+      <h4>
+        monthlyResults.tiltDistribution.FR
+      </h4>
+    }
+  />
+</div>
+`;

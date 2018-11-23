@@ -19,13 +19,12 @@ import RecPanel from '../components/goal/recPanel';
 import { RecommendationActions } from '../redux/recommendationReducer';
 import { T } from '../utilities/translator';
 import TiltLabels from '../components/goal/tiltLabels';
-import { get } from '../utilities/secureHTTP';
 import { URL } from '../redux/applicationReducer';
+import { get } from '../utilities/secureHTTP';
 
 class Goal extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     tiltFrequencyWeight: PropTypes.number.isRequired,
     tiltLengthWeight: PropTypes.number.isRequired,
     tiltAngleWeight: PropTypes.number.isRequired,
@@ -308,7 +307,6 @@ class Goal extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     tiltFrequencyWeight: state.recommendationReducer.tiltFrequencyWeight,
     tiltLengthWeight: state.recommendationReducer.tiltLengthWeight,
     tiltAngleWeight: state.recommendationReducer.tiltAngleWeight,

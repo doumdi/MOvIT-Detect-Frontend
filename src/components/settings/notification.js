@@ -6,19 +6,20 @@
  */
 
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'primereact/components/button/Button';
 import { URL } from '../../redux/applicationReducer';
+import CustomCard from '../shared/card';
+import ConfirmationPopup from '../popups/confirmationPopup';
+import Countdown from '../popups/countdown';
 import { T } from '../../utilities/translator';
 import { get } from '../../utilities/secureHTTP';
-import Countdown from '../popups/countdown';
-import ConfirmationPopup from '../popups/confirmationPopup';
 
 class Notification extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
   }
 
   constructor(props) {
@@ -68,26 +69,30 @@ class Notification extends Component {
   }
 
   render() {
-    return (
-      <div className="row ml-2 mt-5">
-        <div className="mb-2 mr-3">
-          <Button
-            id="calibrate-button"
-            type="button"
-            onClick={() => this.calibrate()}
-            className="p-button-secondary"
-            label={T.translate(`calibrate.${this.props.language}`)}
-          />
-          <div className="mr-3 mb-2">
+    const buttons = (
+      <div>
+        <div className="row mb-3">
+          <div className="col-12 col-sm-6 col-md-4 mb-2">
+            <Button
+              id="calibrate-button"
+              type="button"
+              onClick={() => this.calibrate()}
+              className="p-button-secondary"
+              label={T.translate(`calibrateMat.${this.props.language}`)}
+            />
+          </div>
+          <div className="col-12 col-sm-6 col-md-4 mb-2">
             <Button
               id="calibrateIMU-button"
               type="button"
               onClick={() => this.openModal()}
-              className="btn btn-lg"
+              className="p-button-secondary"
               label={T.translate(`calibrateIMU.${this.props.language}`)}
             />
           </div>
-          <div className="mr-3 mb-2">
+        </div>
+        <div className="row">
+          <div className="col-12 col-sm-6 col-md-4 mb-2">
             <Button
               id="turn-on-button"
               type="button"
@@ -96,7 +101,7 @@ class Notification extends Component {
               label={T.translate(`alert.on.${this.props.language}`)}
             />
           </div>
-          <div className="mr-3 mb-2">
+          <div className="col-12 col-sm-6 col-md-4 mb-2">
             <Button
               id="turn-off-button"
               type="button"
@@ -105,7 +110,22 @@ class Notification extends Component {
               label={T.translate(`alert.off.${this.props.language}`)}
             />
           </div>
-          {this.state.showCountdownMat
+        </div>
+      </div>
+    );
+    const header = (
+      <div className="ui-card-title">
+        <h2>{T.translate(`calibNotif.${this.props.language}`)}</h2>
+      </div>
+    );
+    return (
+      <div className="mt-5">
+
+        <CustomCard
+          header={header}
+          element={buttons}
+        />
+        {this.state.showCountdownMat
           && (
             <Countdown
               time={10}
@@ -113,7 +133,7 @@ class Notification extends Component {
               onComplete={this.matCalibrationCompleted}
             />
           )}
-          {this.state.showCountdownIMU
+        {this.state.showCountdownIMU
           && (
             <Countdown
               time={120}
@@ -121,14 +141,13 @@ class Notification extends Component {
               onComplete={this.IMUCalibrationCompleted}
             />
           )}
-          <ConfirmationPopup
-            title={T.translate(`calibrateIMU.title.${this.props.language}`)}
-            body={T.translate(`calibrateIMU.confirmation.${this.props.language}`)}
-            show={this.state.isPopupOpened}
-            onConfirm={() => this.calibrateIMU()}
-            onClose={() => this.closeModal()}
-          />
-        </div>
+        <ConfirmationPopup
+          title={T.translate(`calibrateIMU.title.${this.props.language}`)}
+          body={T.translate(`calibrateIMU.confirmation.${this.props.language}`)}
+          show={this.state.isPopupOpened}
+          onConfirm={() => this.calibrateIMU()}
+          onClose={() => this.closeModal()}
+        />
       </div>
     );
   }
@@ -137,7 +156,6 @@ class Notification extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

@@ -3,11 +3,13 @@
  * @author Anne-Marie Desloges
  * @author Austin Didier Tran
  */
-import { connect } from 'react-redux';
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 import { get } from '../../utilities/secureHTTP';
@@ -15,7 +17,6 @@ import { get } from '../../utilities/secureHTTP';
 class ResultsCalendar extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     onPeriodChange: PropTypes.func.isRequired,
     onDateChange: PropTypes.func.isRequired,
     onMonthChange: PropTypes.func.isRequired,
@@ -159,7 +160,7 @@ class ResultsCalendar extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
+
 export default connect(mapStateToProps)(ResultsCalendar);

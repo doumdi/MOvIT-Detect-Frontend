@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
 import DailyAngleDistribution from '../../../../../src/components/results/angleResults/daily/dailyAngleDistribution';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -26,7 +26,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const reponse = [0, 23040000, 35136000, 27648000, 0];
 
-  mock.onGet(`${URL}oneDay?Day=${+date}`).reply(200, reponse);
+  mock.onGet(`${URL}oneDay?Day=${+date},offset=${OFFSET}`).reply(200, reponse);
 }
 
 describe('DailyAngleDistribution Tests', () => {
@@ -54,12 +54,11 @@ describe('DailyAngleDistribution Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<DailyAngleDistribution store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('dayData')).toEqual([]);
     expect(wrapper.state('date')).toEqual(date);
-    expect(wrapper.state('data')).toEqual(null);
-    expect(wrapper.state('loading')).toEqual(false);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
@@ -71,7 +70,6 @@ describe('DailyAngleDistribution Tests', () => {
       reduceSlidingMoving: PropTypes.bool.isRequired,
       reduceSlidingRest: PropTypes.bool.isRequired,
       date: PropTypes.instanceOf(Date).isRequired,
-      header: PropTypes.object.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
@@ -98,6 +96,8 @@ describe('DailyAngleDistribution Tests', () => {
   it('should get the day data', async () => {
     await wrapper.instance().getDayData(date);
 
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('dayData')).toEqual([0, 384, 585.6, 460.8, 0]);
   });
 
@@ -113,6 +113,8 @@ describe('DailyAngleDistribution Tests', () => {
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

@@ -6,10 +6,11 @@
  */
 
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { get, post } from '../utilities/secureHTTP';
+
 import { ConfigurationActions } from '../redux/configurationReducer';
 import ErrorMessage from '../components/shared/errorMessage';
 import Loading from '../components/shared/loading';
@@ -18,13 +19,12 @@ import LogoText from '../components/shared/logoText';
 import SubmitButtons from '../components/shared/submitButtons';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import { get, post } from '../utilities/secureHTTP';
+
 // import { InputText } from 'primereact/components/inputtext/InputText';
 
 class Configuration extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
-    header: PropTypes.object,
     userName: PropTypes.string.isRequired,
     changeUserName: PropTypes.func.isRequired,
     language: PropTypes.string.isRequired,
@@ -135,7 +135,6 @@ class Configuration extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     userName: state.configurationReducer.userName,
     userID: state.configurationReducer.userID,
     userWeight: state.configurationReducer.userWeight,

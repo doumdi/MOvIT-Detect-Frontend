@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Chart } from 'primereact/components/chart/Chart';
-import CustomCard from '../../../shared/card';
-import { URL } from '../../../../redux/applicationReducer';
-import { T } from '../../../../utilities/translator';
-import { get } from '../../../../utilities/secureHTTP';
 import '../../../../styles/results.css';
+
+import React, { Component } from 'react';
+
+import { Chart } from 'primereact/components/chart/Chart';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import CustomCard from '../../../shared/card';
+import { T } from '../../../../utilities/translator';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
+import { get } from '../../../../utilities/secureHTTP';
+import { getElement } from '../../../../utilities/loader';
 
 class DailySuccessTilt extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object,
   }
 
   constructor(props) {
@@ -20,8 +22,8 @@ class DailySuccessTilt extends Component {
     this.state = {
       dayData: [],
       date: props.date,
-      data: null,
-      loading: true,
+      isLoaded: false,
+      hasErrors: false,
     };
     this.getData(this.state.date);
   }
@@ -34,13 +36,20 @@ class DailySuccessTilt extends Component {
   }
 
   async getData(date) {
-    this.state.loading = true;
-    const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`);
-    this.state.dayData = response.data; this.loadData(response.data);
+    this.setState({ hasErrors: false, isLoaded: false });
+    try {
+      const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`);
+      this.setState({
+        dayData: response.data,
+        isLoaded: true,
+      });
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
   }
 
-  loadData(newData) {
-    this.state.data = {
+  getChartData(newData) {
+    return {
       labels: [''],
       datasets: [
         {
@@ -105,7 +114,6 @@ class DailySuccessTilt extends Component {
         },
       ],
     };
-    this.setState({ loading: false });
   }
 
   render() {
@@ -129,24 +137,23 @@ class DailySuccessTilt extends Component {
         }],
       },
     };
+    const data = this.getChartData(this.state.dayData);
+    const chart = <Chart type="bar" data={data} options={tiltSuccessOptions} />;
 
     return (
-
       <div className="container graphic" id="dailyTilt">
-        {!this.state.loading && (
-          <CustomCard
-            header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
-            element={<Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />}
-          />
-        )}
+        <CustomCard
+          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
+          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
+        />
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 
