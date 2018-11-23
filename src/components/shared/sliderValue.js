@@ -29,7 +29,7 @@ export default class SliderValue extends Component {
 
   onValueChange(value) {
     if (!Number.isNaN(value)) {
-      let newValue;
+      let newValue = value;
       if (this.props.max !== null && value > this.props.max) {
         newValue = this.props.max;
       }
@@ -51,7 +51,7 @@ export default class SliderValue extends Component {
                 className=" mt-2"
                 min={this.props.min || 0}
                 max={this.props.max}
-                onChange={e => this.onValueChange(e.value)}
+                onChange={e => this.props.onChange(e.value)}
                 value={this.props.value}
               />
             </div>

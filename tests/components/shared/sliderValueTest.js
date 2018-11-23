@@ -17,23 +17,25 @@ import SliderValue from '../../../src/components/shared/sliderValue';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('SliderValue Tests', () => {
+  const onChangeSpy = sinon.spy();
   const props = {
     value: 12,
     min: 10,
     max: 20,
     title: 'This is a test',
     unit: 'm',
-    onChange: () => { },
+    onChange: (value) => { onChangeSpy(value); },
   };
 
   it('should trigger onChange when simulating a change event on the Slider', () => {
+    onChangeSpy.resetHistory();
+
     const wrapper = shallow(<SliderValue {...props} />);
-    const spy = sinon.spy(wrapper.instance(), 'onValueChange');
 
     wrapper.find(Slider).simulate('change', { value: 10 });
 
-    expect(spy.calledOnce).toEqual(true);
-    expect(spy.getCalls()[0].args[0]).toEqual(10);
+    expect(onChangeSpy.calledOnce).toEqual(true);
+    expect(onChangeSpy.getCalls()[0].args[0]).toEqual(10);
   });
 
   it('should trigger onChange when simulating a change event on the input field', () => {
