@@ -11,7 +11,6 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
-import { Spinner } from 'primereact/components/spinner/Spinner';
 
 export default class SliderValue extends Component {
   static propTypes = {
@@ -22,6 +21,24 @@ export default class SliderValue extends Component {
     title: PropTypes.string.isRequired,
     unit: PropTypes.string,
   };
+
+  constructor(props) {
+    super(props);
+    this.onValueChange = this.onValueChange.bind(this);
+  }
+
+  onValueChange(value) {
+    if (!Number.isNaN(value)) {
+      let newValue;
+      if (this.props.max !== null && value > this.props.max) {
+        newValue = this.props.max;
+      }
+      if (this.props.min !== null && value < this.props.min) {
+        newValue = this.props.min;
+      }
+      this.props.onChange(newValue);
+    }
+  }
 
   render() {
     return (
@@ -34,16 +51,18 @@ export default class SliderValue extends Component {
                 className=" mt-2"
                 min={this.props.min || 0}
                 max={this.props.max}
-                onChange={e => this.props.onChange(e.value)}
+                onChange={e => this.onValueChange(e.value)}
                 value={this.props.value}
               />
             </div>
             <div className="pb-2 col-12 col-md-3">
-              <Spinner
+              <input
                 id="value"
+                type="number"
+                className="inputStyle"
                 min={this.props.min || 0}
                 max={this.props.max}
-                onChange={e => this.props.onChange(e.value)}
+                onChange={e => this.onValueChange(e.target.value)}
                 value={this.props.value}
               />
               &nbsp;

@@ -1,3 +1,5 @@
-.ui-spinner > .ui-inputtext {
+.inputStyle {
+  border: 0;
   width: 60px;
+  background: rgba(0,0,0,0);
 }

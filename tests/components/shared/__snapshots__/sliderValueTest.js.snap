@@ -33,20 +33,13 @@ exports[`SliderValue Tests should match the snapshot 1`] = `
       <div
         className="pb-2 col-12 col-md-3"
       >
-        <Spinner
-          className={null}
-          decimalSeparator="."
-          disabled={false}
+        <input
+          className="inputStyle"
           id="value"
           max={20}
-          maxlength={null}
           min={10}
           onChange={[Function]}
-          readonly={false}
-          size={null}
-          step={1}
-          style={null}
-          thousandSeparator=","
+          type="number"
           value={12}
         />
          
