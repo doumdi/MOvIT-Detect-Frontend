@@ -9,41 +9,17 @@ import React, { Component } from 'react';
 
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { URL } from '../../redux/applicationReducer';
+import ErrorMessage from '../shared/errorMessage';
 
-class MemoryUsage extends Component {
+export default class MemoryUsage extends Component {
   static propTypes = {
-    header: PropTypes.object,
+    total: PropTypes.number.isRequired,
+    used: PropTypes.number.isRequired,
+    hasErrors: PropTypes.bool.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      total: 0,
-      used: 0,
-    };
-    this.load();
-  }
-
-  async getMemoryUsage() {
-    try {
-      const response = await axios.get(`${URL}memory`, this.props.header);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async load() {
-    const memory = await this.getMemoryUsage();
-
-    this.setState({
-      total: memory.total,
-      used: memory.used,
-    });
+  getUsedPercentage() {
+    return Math.round(this.props.used / this.props.total * 100);
   }
 
   render() {
@@ -52,16 +28,11 @@ class MemoryUsage extends Component {
     };
     return (
       <div>
-        <ProgressBar style={style} value={this.state.used / this.state.total * 100} />
+        {this.props.hasErrors
+          ? <ErrorMessage />
+          : <ProgressBar style={style} value={this.getUsedPercentage()} />
+        }
       </div>
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    header: state.applicationReducer.header,
-  };
-}
-
-export default connect(mapStateToProps)(MemoryUsage);

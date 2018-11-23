@@ -15,10 +15,7 @@ exports[`MonthlySuccessTilt Tests should match the snapshot 1`] = `
               Object {
                 "backgroundColor": "green",
                 "borderColor": "greend",
-                "data": Array [
-                  50,
-                  45,
-                ],
+                "data": Array [],
                 "fill": true,
                 "label": "SuccessfulTilt.tiltSucessful.FR",
                 "lineTension": 0,
@@ -26,10 +23,7 @@ exports[`MonthlySuccessTilt Tests should match the snapshot 1`] = `
               Object {
                 "backgroundColor": "yellow",
                 "borderColor": "yellow",
-                "data": Array [
-                  20,
-                  25,
-                ],
+                "data": Array [],
                 "fill": true,
                 "label": "SuccessfulTilt.tiltBadDuration.FR",
                 "lineTension": 0,
@@ -37,10 +31,7 @@ exports[`MonthlySuccessTilt Tests should match the snapshot 1`] = `
               Object {
                 "backgroundColor": "orange",
                 "borderColor": "orange",
-                "data": Array [
-                  25,
-                  15,
-                ],
+                "data": Array [],
                 "fill": true,
                 "label": "SuccessfulTilt.tiltBadAngle.FR",
                 "lineTension": 0,
@@ -48,10 +39,7 @@ exports[`MonthlySuccessTilt Tests should match the snapshot 1`] = `
               Object {
                 "backgroundColor": "red",
                 "borderColor": "red",
-                "data": Array [
-                  10,
-                  20,
-                ],
+                "data": Array [],
                 "fill": true,
                 "label": "SuccessfulTilt.tiltNotMade.FR",
                 "lineTension": 0,
@@ -59,19 +47,13 @@ exports[`MonthlySuccessTilt Tests should match the snapshot 1`] = `
               Object {
                 "backgroundColor": "blue",
                 "borderColor": "blue",
-                "data": Array [
-                  undefined,
-                  undefined,
-                ],
+                "data": undefined,
                 "fill": true,
                 "label": "SuccessfulTilt.tiltSnoozed.FR",
                 "lineTension": 0,
               },
             ],
-            "labels": Array [
-              "1",
-              "2",
-            ],
+            "labels": Array [],
           }
         }
         height={null}

@@ -13,40 +13,43 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
+import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../src/redux/applicationReducer';
 import NotificationSettings from '../../../src/components/settings/notificationSettings';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
-  const data = {
-    response: true,
-  };
 
-  mock.onPost().reply(200);
-  mock.onGet(`${URL}notificationSettings`).reply(200, data);
+  mock.onPost(`${URL}notificationSettings`).reply(200);
 }
 
 describe('NotificationTests Tests', () => {
   let wrapper;
   let store;
-  const initialState = {
-    applicationReducer: { language: 'en' },
-    debugReducer: {
-      isLedBlinkingEnabled: true,
-      isVibrationEnabled: true,
-    },
-  };
+  const snoozeTimeSpy = sinon.spy();
+  const isLedBlinkingEnabledSpy = sinon.spy();
+  const isVibrationEnabledSpy = sinon.spy();
+  const initialState = { applicationReducer: { language: 'en' } };
   const mockStore = configureMockStore();
   const props = {
+    snoozeTime: 15,
     isLedBlinkingEnabled: true,
     isVibrationEnabled: true,
+    changeSnoozeTime: (value) => { snoozeTimeSpy(value); },
+    changeIsLedBlinkingEnabled: (value) => { isLedBlinkingEnabledSpy(value); },
+    changeIsVibrationEnabled: (value) => { isVibrationEnabledSpy(value); },
+    hasErrors: false,
   };
+
   initializeMockAdapter();
 
   beforeEach(() => {
+    snoozeTimeSpy.resetHistory();
+    isLedBlinkingEnabledSpy.resetHistory();
+    isVibrationEnabledSpy.resetHistory();
+
     store = mockStore(initialState);
     wrapper = shallow(<NotificationSettings store={store} {...props} />).dive();
   });
@@ -56,74 +59,41 @@ describe('NotificationTests Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
-      snoozeTime: PropTypes.number,
-      minimumSnoozeTime: PropTypes.number,
-      maximumSnoozeTime: PropTypes.number,
-      isLedBlinkingEnabled: PropTypes.bool,
-      isVibrationEnabled: PropTypes.bool,
-      changeSnoozeTime: PropTypes.func,
-      changeIsLedBlinkingEnabled: PropTypes.func,
-      changeIsVibrationEnabled: PropTypes.func,
+      snoozeTime: PropTypes.number.isRequired,
+      isLedBlinkingEnabled: PropTypes.bool.isRequired,
+      isVibrationEnabled: PropTypes.bool.isRequired,
+      changeSnoozeTime: PropTypes.func.isRequired,
+      changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
+      changeIsVibrationEnabled: PropTypes.func.isRequired,
+      hasErrors: PropTypes.bool.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
-  it('should get the notification settings', async () => {
-    const response = await wrapper.instance().getSettings();
-
-    expect(response).toEqual({ response: true });
-  });
-
-  it('should enable the led blinking when checking the led blinking checkbox', () => {
+  it('should trigger changeIsLedBlinkingEnabled when simulating a change on the led checkbox', () => {
     wrapper.setProps({ isLedBlinkingEnabled: false });
+
     wrapper.instance().enableLedBlinking();
 
-    const actions = store.getActions();
-
-    expect(actions[0].isLedBlinkingEnabled).toEqual(true);
-    expect(actions[0].type).toEqual('IS_LED_BLINKING_ENABLED');
+    expect(isLedBlinkingEnabledSpy.calledOnce).toEqual(true);
+    expect(isLedBlinkingEnabledSpy.getCalls()[0].args[0]).toEqual(true);
   });
 
-  it('should disable the led blinking when unchecking the led blinking checkbox', () => {
-    wrapper.setProps({ isLedBlinkingEnabled: true });
-    wrapper.instance().enableLedBlinking();
-
-    const actions = store.getActions();
-
-    expect(actions[0].isLedBlinkingEnabled).toEqual(false);
-    expect(actions[0].type).toEqual('IS_LED_BLINKING_ENABLED');
-  });
-
-  it('should enable the vibration when checking the vibration checkbox', () => {
+  it('should triggger changeIsVibrationEnabled when simulating a change on the vibration checkbox', () => {
     wrapper.setProps({ isVibrationEnabled: false });
+
     wrapper.instance().enableVibration();
 
-    const actions = store.getActions();
-
-    expect(actions[0].isVibrationEnabled).toEqual(true);
-    expect(actions[0].type).toEqual('IS_VIBRATION_ENABLED');
+    expect(isVibrationEnabledSpy.calledOnce).toEqual(true);
+    expect(isVibrationEnabledSpy.getCalls()[0].args[0]).toEqual(true);
   });
 
-  it('should set the snooze time when changing the input value', () => {
-    wrapper.setProps({ snoozeTime: 10 });
-    wrapper.instance().changeSnoozeTime(15);
+  it('should trigger changeSnoozeTime when changing the input value', () => {
+    wrapper.instance().changeSnoozeTime(10);
 
-    const actions = store.getActions();
-
-    expect(actions[0].snoozeTime).toEqual(15);
-    expect(actions[0].type).toEqual('SNOOZE_TIME');
-  });
-
-  it('should disable the vibration when unchecking the vibration checkbox', () => {
-    wrapper.setProps({ isVibrationEnabled: true });
-    wrapper.instance().enableVibration();
-
-    const actions = store.getActions();
-
-    expect(actions[0].isVibrationEnabled).toEqual(false);
-    expect(actions[0].type).toEqual('IS_VIBRATION_ENABLED');
+    expect(snoozeTimeSpy.calledOnce).toEqual(true);
+    expect(snoozeTimeSpy.getCalls()[0].args[0]).toEqual(10);
   });
 
   it('should match the snapshot', () => {

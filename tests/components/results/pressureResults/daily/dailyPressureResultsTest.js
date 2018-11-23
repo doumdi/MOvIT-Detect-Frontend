@@ -9,15 +9,14 @@ import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
 import MockAdapter from 'axios-mock-adapter';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import React from 'react';
-import toJson from 'enzyme-to-json';
-import sinon from 'sinon';
+import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
-import { URL } from '../../../../../src/redux/applicationReducer';
+import sinon from 'sinon';
+import toJson from 'enzyme-to-json';
 import DailyPressureResults from '../../../../../src/components/results/pressureResults/daily/dailyPressureResults';
-
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 const date = 1517720400000;
@@ -26,7 +25,7 @@ const response = [0.34, 0.56];
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
 
-  mock.onGet(`${URL}dailySlideProgress?Day=${+date},offset=0`).reply(200, response);
+  mock.onGet(`${URL}dailySlideProgress?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('DailyPressureResults Tests', () => {
@@ -58,7 +57,6 @@ describe('DailyPressureResults Tests', () => {
     const expectedValue = {
       language: PropTypes.string.isRequired,
       date: PropTypes.instanceOf(Date),
-      header: PropTypes.object,
       reduceWeight: PropTypes.bool,
       reduceSlidingMoving: PropTypes.bool,
       reduceSlidingRest: PropTypes.bool,
@@ -88,6 +86,8 @@ describe('DailyPressureResults Tests', () => {
   it('should get the day data', async () => {
     await wrapper.instance().getDailySlidingProgress(date);
 
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('daySildeRest')).toEqual(response[0] * 100);
     expect(wrapper.state('daySildeMoving')).toEqual(response[1] * 100);
   });

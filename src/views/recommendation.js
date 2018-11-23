@@ -6,13 +6,12 @@
  */
 
 import React, { Component } from 'react';
-
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import { get, post } from '../utilities/secureHTTP';
 import AngleRecommendation from '../components/recommendation/angleRecommendation';
 import ErrorMessage from '../components/shared/errorMessage';
 import { GoalActions } from '../redux/goalReducer';
@@ -29,7 +28,6 @@ class Recommendation extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     swellingRecommendation: PropTypes.string,
     painRecommendation: PropTypes.string,
     restRecommendation: PropTypes.string,
@@ -98,8 +96,8 @@ class Recommendation extends Component {
 
   async load() {
     try {
-      const response = await axios.get(`${URL}recommandation`, this.props.header);
-      await this.mapData(response.data);
+      const response = await get(`${URL}recommandation`);
+      this.mapData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
       console.log(error);
@@ -174,12 +172,9 @@ class Recommendation extends Component {
         value: this.props.otherRecommendations,
       },
     };
-    axios.post(`${URL}goal`, data.reduceWeight, this.props.header)
-      .then()
-      .catch(error => console.log(error));
-    axios.post(`${URL}recommandation`, data, this.props.header)
-      .then(() => this.props.history.push('/goals'))
-      .catch(error => console.log(error));
+    post(`${URL}goal`, data.reduceWeight);
+    post(`${URL}recommandation`, data);
+    this.props.history.push('/goals');
   }
 
   cancel() {
@@ -339,7 +334,6 @@ class Recommendation extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSwelling: state.recommendationReducer.reduceSwelling,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,

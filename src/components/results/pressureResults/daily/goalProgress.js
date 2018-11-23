@@ -6,11 +6,13 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
-import CustomCard from '../../../shared/card';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { T } from '../../../../utilities/translator';
+import CustomCard from '../../../shared/card';
+import { getElement } from '../../../../utilities/loader';
 
 class GoalProgress extends Component {
   static propTypes = {
@@ -18,6 +20,8 @@ class GoalProgress extends Component {
     condition: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     value: PropTypes.number,
+    isLoaded: PropTypes.bool.isRequired,
+    hasErrors: PropTypes.bool.isRequired,
   }
 
   render() {
@@ -33,8 +37,7 @@ class GoalProgress extends Component {
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
       </div>
     );
-
-    const element = (
+    const progressBar = (
       <div>
         <ProgressBar value={this.props.value} />
         <p style={style.center}>
@@ -48,12 +51,12 @@ class GoalProgress extends Component {
       <div>
         {this.props.condition
           && (
-          <div>
-            <CustomCard
-              header={header}
-              element={element}
-            />
-          </div>
+            <div>
+              <CustomCard
+                header={header}
+                element={getElement(this.props.isLoaded, this.props.hasErrors, progressBar)}
+              />
+            </div>
           )
         }
       </div>

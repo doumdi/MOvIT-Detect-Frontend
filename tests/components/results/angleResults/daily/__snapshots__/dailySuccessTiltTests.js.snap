@@ -17,7 +17,7 @@ exports[`DailySuccessTilt Tests should match the snapshot 1`] = `
                   "green",
                 ],
                 "data": Array [
-                  25,
+                  undefined,
                 ],
                 "fill": true,
                 "hoverBackgroundColor": Array [
@@ -31,7 +31,7 @@ exports[`DailySuccessTilt Tests should match the snapshot 1`] = `
                   "yellow",
                 ],
                 "data": Array [
-                  10,
+                  undefined,
                 ],
                 "fill": true,
                 "hoverBackgroundColor": Array [
@@ -45,7 +45,7 @@ exports[`DailySuccessTilt Tests should match the snapshot 1`] = `
                   "orange",
                 ],
                 "data": Array [
-                  12,
+                  undefined,
                 ],
                 "fill": true,
                 "hoverBackgroundColor": Array [
@@ -59,7 +59,7 @@ exports[`DailySuccessTilt Tests should match the snapshot 1`] = `
                   "red",
                 ],
                 "data": Array [
-                  5,
+                  undefined,
                 ],
                 "fill": true,
                 "hoverBackgroundColor": Array [

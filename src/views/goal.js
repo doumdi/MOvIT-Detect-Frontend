@@ -9,7 +9,6 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ErrorMessage from '../components/shared/errorMessage';
@@ -21,11 +20,11 @@ import { RecommendationActions } from '../redux/recommendationReducer';
 import { T } from '../utilities/translator';
 import TiltLabels from '../components/goal/tiltLabels';
 import { URL } from '../redux/applicationReducer';
+import { get } from '../utilities/secureHTTP';
 
 class Goal extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     tiltFrequencyWeight: PropTypes.number.isRequired,
     tiltLengthWeight: PropTypes.number.isRequired,
     tiltAngleWeight: PropTypes.number.isRequired,
@@ -99,16 +98,16 @@ class Goal extends Component {
   }
 
   async loadGoals() {
-    const response = await axios.get(`${URL}goal`, this.props.header);
-    await this.mapGoalData(response.data);
+    const response = await get(`${URL}goal`);
+    this.mapGoalData(response.data);
   }
 
   async loadRecommendations() {
     if (this.props.reduceWeight) { // most important rec, if this is not existing, reload recs
       return;
     }
-    const response = await axios.get(`${URL}recommandation`, this.props.header);
-    await this.mapRecData(response.data);
+    const response = await get(`${URL}recommandation`);
+    this.mapRecData(response.data);
   }
 
   mapGoalData(response) {
@@ -322,7 +321,6 @@ class Goal extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     tiltFrequencyWeight: state.recommendationReducer.tiltFrequencyWeight,
     tiltLengthWeight: state.recommendationReducer.tiltLengthWeight,
     tiltAngleWeight: state.recommendationReducer.tiltAngleWeight,

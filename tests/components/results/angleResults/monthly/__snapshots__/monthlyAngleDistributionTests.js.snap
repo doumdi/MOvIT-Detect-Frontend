@@ -15,53 +15,35 @@ exports[`MonthlyAngleDistribution Tests should match the snapshot 1`] = `
               Object {
                 "backgroundColor": "red",
                 "borderColor": "red",
-                "data": Array [
-                  0,
-                  0,
-                ],
+                "data": Array [],
                 "label": "monthlyResults.tiltDistribution.zero.FR",
               },
               Object {
                 "backgroundColor": "green",
                 "borderColor": "green",
-                "data": Array [
-                  33.47975512602739,
-                  29.218695382714817,
-                ],
+                "data": Array [],
                 "label": "monthlyResults.tiltDistribution.fifteen.FR",
               },
               Object {
                 "backgroundColor": "blue",
                 "borderColor": "blue",
-                "data": Array [
-                  26.4794426905853,
-                  26.4794426905853,
-                ],
+                "data": Array [],
                 "label": "monthlyResults.tiltDistribution.thirty.FR",
               },
               Object {
                 "backgroundColor": "orange",
                 "borderColor": "orange",
-                "data": Array [
-                  31.04486384413449,
-                  35.30592358744707,
-                ],
+                "data": Array [],
                 "label": "monthlyResults.tiltDistribution.fortyfive.FR",
               },
               Object {
                 "backgroundColor": "purple",
                 "borderColor": "purple",
-                "data": Array [
-                  8.995938339252811,
-                  8.995938339252811,
-                ],
+                "data": Array [],
                 "label": "monthlyResults.tiltDistribution.more.FR",
               },
             ],
-            "labels": Array [
-              "1",
-              "2",
-            ],
+            "labels": Array [],
           }
         }
         height={null}

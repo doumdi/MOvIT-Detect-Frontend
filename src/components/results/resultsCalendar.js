@@ -3,19 +3,20 @@
  * @author Anne-Marie Desloges
  * @author Austin Didier Tran
  */
-import { connect } from 'react-redux';
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
+
 import { Calendar } from 'primereact/components/calendar/Calendar';
 import { Dropdown } from 'primereact/components/dropdown/Dropdown';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
+import { get } from '../../utilities/secureHTTP';
 
 class ResultsCalendar extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     onPeriodChange: PropTypes.func.isRequired,
     onDateChange: PropTypes.func.isRequired,
     onMonthChange: PropTypes.func.isRequired,
@@ -30,6 +31,8 @@ class ResultsCalendar extends Component {
     };
     this.setDefaultDate();
     this.onPeriodChange = this.onPeriodChange.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
+    this.onMonthChange = this.onMonthChange.bind(this);
   }
 
   onPeriodChange(e) {
@@ -39,7 +42,7 @@ class ResultsCalendar extends Component {
 
   onDateChange(e) {
     this.props.onDateChange(e.value);
-    this.setState({ date: e.value });
+    this.setState({ date: new Date(e.value) });
   }
 
   onMonthChange(e) {
@@ -47,16 +50,14 @@ class ResultsCalendar extends Component {
     this.setState({ month: e.value });
   }
 
-  setDefaultDate() {
-    axios.get(`${URL}lastDate`, this.props.header)
-      .then((response) => {
-        const date = new Date(response.data);
-        date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
-        const month = date.getMonth();
-        this.setState({ date, month });
-        this.props.onDateChange(date);
-        this.props.onMonthChange(month);
-      });
+  async setDefaultDate() {
+    const response = await get(`${URL}lastDate`);
+    const date = new Date(response.data);
+    date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
+    const month = date.getMonth();
+    this.setState({ date, month });
+    this.props.onDateChange(date);
+    this.props.onMonthChange(month);
   }
 
   render() {
@@ -159,7 +160,7 @@ class ResultsCalendar extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
+
 export default connect(mapStateToProps)(ResultsCalendar);

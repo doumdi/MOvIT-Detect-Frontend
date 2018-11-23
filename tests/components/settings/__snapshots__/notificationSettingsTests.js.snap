@@ -84,11 +84,11 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
       style={null}
       thousandSeparator=","
       type="number"
-      value={null}
+      value={15}
     />
     <span>
         
-      time.minutes.en
+      time.min.en
     </span>
   </div>
 </div>

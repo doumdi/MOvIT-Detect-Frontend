@@ -15,26 +15,24 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
-import MonthlyAngleDistribution from '../../../../../src/components/results/angleResults/monthly/monthlyAngleDistribution';
+import MonthlySuccessTilt from '../../../../../src/components/results/angleResults/monthly/monthlySuccessTilt';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 const month = '1';
 const response = {
   1: [
-    0,
-    31680000,
-    25056000,
-    29376000,
-    8512348,
+    50,
+    20,
+    25,
+    10,
   ],
   2: [
-    0,
-    27648000,
-    25056000,
-    33408000,
-    8512348,
+    45,
+    25,
+    15,
+    20,
   ],
 };
 
@@ -42,11 +40,10 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-
-  mock.onGet(`${URL}oneMonth?Day=${+date}`).reply(200, response);
+  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
-describe('MonthlyAngleDistribution Tests', () => {
+describe('MonthlySuccessTilt Tests', () => {
   let wrapper;
 
   const initialState = { applicationReducer: { header: '', language: 'FR' } };
@@ -60,21 +57,19 @@ describe('MonthlyAngleDistribution Tests', () => {
   initializeMockAdapter();
 
   beforeEach(() => {
-    wrapper = shallow(<MonthlyAngleDistribution store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
+    wrapper = shallow(<MonthlySuccessTilt store={store} {...props} />).dive();
 
-    expect(wrapper.state('angleMonthLabels')).toEqual([]);
+    expect(wrapper.state('labels')).toEqual([]);
     expect(wrapper.state('month')).toEqual(month);
-    expect(wrapper.state('angleChartData')).toEqual(null);
-    expect(wrapper.state('angleLoading')).toEqual(true);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
-    const actualValue = MonthlyAngleDistribution.propTypes;
+    const actualValue = MonthlySuccessTilt.propTypes;
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       month: PropTypes.number,
     };
 
@@ -82,16 +77,16 @@ describe('MonthlyAngleDistribution Tests', () => {
   });
 
   it('should get the month data when receiving new props', () => {
-    const spy = sinon.spy(wrapper.instance(), 'getAngleMonthData');
+    const spy = sinon.spy(wrapper.instance(), 'getMonthData');
 
-    wrapper.setProps({ month: '3' });
+    wrapper.setProps({ month: '2' });
 
-    expect(wrapper.state('month')).toEqual('3');
+    expect(wrapper.state('month')).toEqual('2');
     expect(spy.calledOnce).toEqual(true);
   });
 
   it('should do nothing when receiving matching props', () => {
-    const spy = sinon.spy(wrapper.instance(), 'getAngleMonthData');
+    const spy = sinon.spy(wrapper.instance(), 'getMonthData');
 
     wrapper.setProps({ month });
 
@@ -100,17 +95,16 @@ describe('MonthlyAngleDistribution Tests', () => {
   });
 
   it('should get the month data', async () => {
-    await wrapper.instance().getAngleMonthData(month);
-    const total1 = response[1].reduce((a, b) => a + b, 0);
-    const percents1 = response[1].map(v => (v / total1) * 100);
-    const total2 = response[2].reduce((a, b) => a + b, 0);
-    const percents2 = response[2].map(v => (v / total2) * 100);
-    const expected = [percents1[1], percents2[1]];
+    await wrapper.instance().getMonthData(month);
 
-    expect(wrapper.state('angleMonthData').fifteen).toEqual(expected);
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
+    expect(wrapper.state('tiltMonthData').good).toEqual([response[1][0], response[2][0]]);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

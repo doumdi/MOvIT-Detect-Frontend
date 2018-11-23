@@ -1,4 +1,4 @@
-import '../../styles/components/errorMessage.css';
+import '../../styles/components/message.css';
 
 import React, { Component } from 'react';
 
@@ -13,12 +13,12 @@ class ErrorMessage extends Component {
 
   render() {
     return (
-      <div className="mt-4">
+      <div className="mt-2">
         <center>
-          <h4 className="error">
+          <h6 className="error">
             <i className="fa fa-times-circle" />&nbsp;
             {T.translate(`error.${this.props.language}`)}
-          </h4>
+          </h6>
         </center>
       </div>
     );

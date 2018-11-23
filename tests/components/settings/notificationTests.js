@@ -31,7 +31,7 @@ describe('Notification Tests', () => {
     jest.setTimeout(10000);
 
     wrapper = shallow(<Notification store={store} {...props} />).dive();
-    wrapper.setState({ showCountdown: true });
+    wrapper.setState({ showCountdownIMU: true });
   });
 
   it('should have proptypes', () => {
@@ -39,7 +39,6 @@ describe('Notification Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
@@ -69,17 +68,30 @@ describe('Notification Tests', () => {
     expect(spy.calledOnce).toEqual(true);
   });
 
-  it('should hide the countdown when the calibration is completed', () => {
-    wrapper.instance().calibrationCompleted();
+  it('should hide the countdown when the mat calibration is completed', () => {
+    wrapper.instance().matCalibrationCompleted();
 
-    expect(wrapper.state('showCountdown')).toEqual(false);
+    expect(wrapper.state('showCountdownMat')).toEqual(false);
   });
 
-  it('should show the countdown when calibrating', async () => {
-    wrapper.setState({ showCountdown: false });
+  it('should show the countdown when calibrating the mat', async () => {
+    wrapper.setState({ showCountdownMat: false });
     await wrapper.instance().calibrate();
 
-    expect(wrapper.state('showCountdown')).toEqual(true);
+    expect(wrapper.state('showCountdownMat')).toEqual(true);
+  });
+
+  it('should hide the countdown when the IMU calibration is completed', () => {
+    wrapper.instance().IMUCalibrationCompleted();
+
+    expect(wrapper.state('showCountdownIMU')).toEqual(false);
+  });
+
+  it('should show the countdown when calibrating the IMU', async () => {
+    wrapper.setState({ showCountdownIMU: false });
+    await wrapper.instance().calibrateIMU();
+
+    expect(wrapper.state('showCountdownIMU')).toEqual(true);
   });
 
   it('should match the snapshot', () => {

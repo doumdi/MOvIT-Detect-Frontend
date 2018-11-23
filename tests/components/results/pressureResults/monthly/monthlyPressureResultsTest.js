@@ -9,17 +9,17 @@ import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
 import MockAdapter from 'axios-mock-adapter';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import React from 'react';
-import toJson from 'enzyme-to-json';
+import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
-import { URL } from '../../../../../src/redux/applicationReducer';
+import toJson from 'enzyme-to-json';
 import MonthlyPressureResults from '../../../../../src/components/results/pressureResults/monthly/monthlyPressureResults';
-
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
+
 const month = '1';
 const response = {
   1: [
@@ -36,7 +36,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}monthlySlideProgress?Day=${+date},offset=0`).reply(200, response);
+  mock.onGet(`${URL}monthlySlideProgress?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('MonthlyPressureResults Tests', () => {
@@ -68,7 +68,6 @@ describe('MonthlyPressureResults Tests', () => {
     const expectedValue = {
       language: PropTypes.string.isRequired,
       month: PropTypes.string.isRequired,
-      header: PropTypes.object,
       reduceWeight: PropTypes.bool,
       reduceSlidingMoving: PropTypes.bool,
       reduceSlidingRest: PropTypes.bool,
@@ -97,16 +96,23 @@ describe('MonthlyPressureResults Tests', () => {
 
   it('should get the month data', async () => {
     const spy = sinon.spy(wrapper.instance(), 'loadMonthlySlidingData');
+
     await wrapper.instance().getMonthlySlidingProgress(month);
+
     expect(spy.getCalls()[0].args[0]).toEqual(response);
-
-
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('monthSlideLabels')).toEqual(['1', '2']);
     expect(wrapper.state('monthSildeRest')).toEqual([response[1][0] * 100, response[2][0] * 100]);
     expect(wrapper.state('monthSildeMoving')).toEqual([response[1][1] * 100, response[2][1] * 100]);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({
+      isLoaded: true,
+      hasErrors: false,
+    });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

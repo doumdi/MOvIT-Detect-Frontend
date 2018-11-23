@@ -9,27 +9,7 @@ exports[`MonthlySittingTime Tests should match the snapshot 1`] = `
     element={
       <Chart
         className={null}
-        data={
-          Object {
-            "datasets": Array [
-              Object {
-                "backgroundColor": "red",
-                "borderColor": "red",
-                "data": Array [
-                  11.6,
-                  12.716666666666667,
-                  12.316666666666666,
-                ],
-                "label": "monthlyResults.hours.FR",
-              },
-            ],
-            "labels": Array [
-              "1",
-              "2",
-              "3",
-            ],
-          }
-        }
+        data={null}
         height={null}
         id={null}
         options={

@@ -10,6 +10,7 @@
 
 let url;
 let isDemo = false;
+const offset = Math.ceil(new Date().getTimezoneOffset() / 60) * -1;
 
 const port = process.env.PORT || 1880;
 
@@ -32,6 +33,7 @@ switch (process.env.NODE_ENV) {
 }
 
 export const URL = url;
+export const OFFSET = offset;
 export const IS_DEMO = isDemo;
 export const IS_MOBILE = window.innerWidth <= 500;
 export const IS_TABLET = window.innerWidth <= 780;

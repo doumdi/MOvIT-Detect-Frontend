@@ -31,17 +31,23 @@ function initializeMockAdapter() {
 
 describe('UpdatesManager Tests', () => {
   let wrapper;
-  const initialState = { applicationReducer: { language: 'en' } };
+  const initialState = {
+    applicationReducer: {
+      language: 'en',
+      header: '',
+    },
+  };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
-  const props = {};
+  const props = {
+    hasErrors: false,
+  };
+
   initializeMockAdapter();
 
   beforeEach(() => {
     wrapper = shallow(<UpdatesManager store={store} {...props} />).dive();
     wrapper.setState({
-      isAvailable: false,
-      date: null,
       isPopupOpened: true,
     });
   });
@@ -51,23 +57,28 @@ describe('UpdatesManager Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
+      isUpdateAvailable: PropTypes.bool.isRequired,
+      changeIsUpdateAvailable: PropTypes.func.isRequired,
+      hasErrors: PropTypes.bool.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
   it('should get the update availability', async () => {
-    const response = await wrapper.instance().getUpdateData();
+    const response = await wrapper.instance().getUpdates();
 
     expect(response).toEqual({ response: true });
   });
 
   it('should poll the server at the polling interval', () => {
     const clock = sinon.useFakeTimers();
-    const spy = sinon.spy(wrapper.instance(), 'getUpdateData');
+    const spy = sinon.spy(wrapper.instance(), 'triggerUpdatesChange');
 
     wrapper.instance().poll();
+    expect(spy.callCount).toEqual(0);
+
+    clock.tick(10000);
     expect(spy.callCount).toEqual(1);
 
     clock.tick(10000);
@@ -78,21 +89,6 @@ describe('UpdatesManager Tests', () => {
 
     clock.tick(10000);
     expect(spy.callCount).toEqual(4);
-
-    clock.tick(10000);
-    expect(spy.callCount).toEqual(5);
-  });
-
-  it('should set the component state when mapping the server response', () => {
-    const response = {
-      isAvailable: true,
-      date: 1517767200000,
-    };
-
-    wrapper.instance().mapData(response);
-
-    expect(wrapper.state('isAvailable')).toEqual(true);
-    expect(wrapper.state('date')).toEqual('2018-02-04');
   });
 
   it('should show/hide the confirmation popup', () => {

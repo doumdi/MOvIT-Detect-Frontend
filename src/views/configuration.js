@@ -6,11 +6,11 @@
  */
 
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { get, post } from '../utilities/secureHTTP';
+
 import { ConfigurationActions } from '../redux/configurationReducer';
 import ErrorMessage from '../components/shared/errorMessage';
 import Loading from '../components/shared/loading';
@@ -20,10 +20,11 @@ import SubmitButtons from '../components/shared/submitButtons';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 
+// import { InputText } from 'primereact/components/inputtext/InputText';
+
 class Configuration extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
-    header: PropTypes.object,
     userName: PropTypes.string.isRequired,
     changeUserName: PropTypes.func.isRequired,
     language: PropTypes.string.isRequired,
@@ -42,12 +43,13 @@ class Configuration extends Component {
       hasErrors: false,
     };
     this.load();
+    this.save = this.save.bind(this);
   }
 
   async load() {
     try {
-      const response = await axios.get(`${URL}configuration`, this.props.header);
-      await this.mapData(response.data);
+      const response = await get(`${URL}configuration`);
+      this.mapData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
       console.log(error);
@@ -69,15 +71,14 @@ class Configuration extends Component {
   }
 
   save() {
+    console.log(this);
     const data = {
       userName: this.props.userName,
       userID: this.props.userID,
       maxAngle: this.props.maxAngle,
       userWeight: this.props.userWeight,
     };
-    axios.post(`${URL}configuration`, data, this.props.header)
-      .then(() => this.props.history.push('/recommendations'))
-      .catch(console.log);
+    post(`${URL}configuration`, data);
   }
 
   cancel() { }
@@ -136,7 +137,6 @@ class Configuration extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     userName: state.configurationReducer.userName,
     userID: state.configurationReducer.userID,
     userWeight: state.configurationReducer.userWeight,

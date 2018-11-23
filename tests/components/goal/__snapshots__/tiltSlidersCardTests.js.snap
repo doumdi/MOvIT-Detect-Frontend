@@ -1,9 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TiltSlidersCard Tests should match the snapshot 1`] = `
-<CustomCard
-  className="col-md-6"
-  element={
+<div
+  className="cardContainer"
+>
+  <Card
+    className="card"
+    footer={null}
+    header={
+      <div
+        className="ui-card-title"
+      >
+        This is a title
+        <i
+          className="fa fa-check"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        />
+      </div>
+    }
+    id={null}
+    style={null}
+    subtitle={null}
+    title={null}
+  >
     <div
       className="row"
     >
@@ -51,22 +75,6 @@ exports[`TiltSlidersCard Tests should match the snapshot 1`] = `
         tooltipStyleClass={null}
       />
     </div>
-  }
-  header={
-    <div
-      className="ui-card-title"
-    >
-      This is a title
-      <i
-        className="fa fa-check"
-        onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
-        }
-      />
-    </div>
-  }
-/>
+  </Card>
+</div>
 `;

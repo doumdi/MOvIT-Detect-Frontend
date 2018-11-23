@@ -17,7 +17,13 @@ import Settings from '../../src/views/settings';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Settings Tests', () => {
-  const initialState = { applicationReducer: { language: 'en' } };
+  const initialState = {
+    applicationReducer: { language: 'en' },
+    settingsReducer: {
+      totalMemory: 5,
+      usedMemory: 10,
+    },
+  };
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {};
@@ -27,6 +33,18 @@ describe('Settings Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
+      dataAgreement: PropTypes.bool.isRequired,
+      totalMemory: PropTypes.number.isRequired,
+      usedMemory: PropTypes.number.isRequired,
+      snoozeTime: PropTypes.number.isRequired,
+      isLedBlinkingEnabled: PropTypes.bool.isRequired,
+      isVibrationEnabled: PropTypes.bool.isRequired,
+      changeDataAgreement: PropTypes.bool.isRequired,
+      changeTotalMemory: PropTypes.func.isRequired,
+      changeUsedMemory: PropTypes.func.isRequired,
+      changeSnoozeTime: PropTypes.func.isRequired,
+      changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
+      changeIsVibrationEnabled: PropTypes.func.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
@@ -34,6 +52,7 @@ describe('Settings Tests', () => {
 
   it('should match the snapshot', () => {
     const wrapper = shallow(<Settings store={store} {...props} />).dive();
+    wrapper.setState({ isLoaded: true });
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
 import MonthlySittingTime from '../../../../../src/components/results/pressureResults/monthly/monthlySittingTime';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -31,7 +31,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}sittingTime?Day=${+date},Offset=0`).reply(200, response);
+  mock.onGet(`${URL}sittingTime?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('MonthlySittingTime Tests', () => {
@@ -49,13 +49,11 @@ describe('MonthlySittingTime Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<MonthlySittingTime store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('sitMonthData')).toEqual([]);
     expect(wrapper.state('sitMonthLabels')).toEqual([]);
     expect(wrapper.state('month')).toEqual(month);
     expect(wrapper.state('sitChartData')).toEqual(null);
-    expect(wrapper.state('sitLoading')).toEqual(true);
   });
 
   it('should have proptypes', () => {
@@ -63,7 +61,6 @@ describe('MonthlySittingTime Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       month: PropTypes.number,
     };
 
@@ -75,8 +72,9 @@ describe('MonthlySittingTime Tests', () => {
 
     wrapper.setProps({ month: '2' });
 
-    expect(wrapper.state('month')).toEqual('2');
     expect(spy.calledOnce).toEqual(true);
+    expect(spy.getCalls()[0].args[0]).toEqual('2');
+    expect(wrapper.state('month')).toEqual('2');
   });
 
   it('should do nothing when receiving matching props', () => {
@@ -91,12 +89,18 @@ describe('MonthlySittingTime Tests', () => {
   it('should get the month data', async () => {
     await wrapper.instance().getSitMonthData(month);
 
-
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('sitMonthLabels')).toEqual(['1', '2', '3']);
     expect(wrapper.state('sitMonthData')).toEqual([(response[1] / 60), (response[2] / 60), (response[3] / 60)]);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({
+      isLoaded: true,
+      hasErrors: false,
+    });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

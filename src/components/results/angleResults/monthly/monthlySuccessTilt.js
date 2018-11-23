@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
 import { Chart } from 'primereact/components/chart/Chart';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
-import { URL } from '../../../../redux/applicationReducer';
 import { T } from '../../../../utilities/translator';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
+import { get } from '../../../../utilities/secureHTTP';
+import { getElement } from '../../../../utilities/loader';
 
 class MonthlySuccessTilt extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     month: PropTypes.number,
   }
 
@@ -24,9 +25,9 @@ class MonthlySuccessTilt extends Component {
         bad: [],
       },
       labels: [],
-      data: null,
-      loading: true,
       month: props.month,
+      isLoaded: false,
+      hasErrors: false,
     };
     this.getMonthData(props.month);
   }
@@ -39,37 +40,19 @@ class MonthlySuccessTilt extends Component {
   }
 
   async getMonthData(month) {
-    const date = new Date(new Date().getFullYear(), month, 1);
+    this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await axios.get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`, this.props.header);
+      const date = new Date(new Date().getFullYear(), month, 1);
+      const response = await get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=${OFFSET}`);
       this.formatChartData(response.data);
+      this.setState({ isLoaded: true });
     } catch (error) {
-      console.log(error);
+      this.setState({ hasErrors: true });
     }
   }
 
-  formatChartData(data) {
-    this.state.labels = [];
-    this.state.tiltMonthData = {
-      good: [],
-      badDuration: [],
-      badAngle: [],
-      bad: [],
-      snoozed: [],
-    };
-    Object.keys(data).forEach((key) => {
-      this.state.labels.push(key.toString());
-      this.state.tiltMonthData.good.push(data[key][0]);
-      this.state.tiltMonthData.badDuration.push(data[key][1]);
-      this.state.tiltMonthData.badAngle.push(data[key][2]);
-      this.state.tiltMonthData.bad.push(data[key][3]);
-      this.state.tiltMonthData.snoozed.push(data[key][4]);
-    });
-    this.loadData();
-  }
-
-  loadData() {
-    this.state.data = {
+  getChartData() {
+    return {
       labels: this.state.labels,
       datasets: [
         {
@@ -114,6 +97,25 @@ class MonthlySuccessTilt extends Component {
         },
       ],
     };
+  }
+
+  formatChartData(data) {
+    this.state.labels = [];
+    this.state.tiltMonthData = {
+      good: [],
+      badDuration: [],
+      badAngle: [],
+      bad: [],
+      snoozed: [],
+    };
+    Object.keys(data).forEach((key) => {
+      this.state.labels.push(key.toString());
+      this.state.tiltMonthData.good.push(data[key][0]);
+      this.state.tiltMonthData.badDuration.push(data[key][1]);
+      this.state.tiltMonthData.badAngle.push(data[key][2]);
+      this.state.tiltMonthData.bad.push(data[key][3]);
+      this.state.tiltMonthData.snoozed.push(data[key][4]);
+    });
     this.setState({ loading: false });
   }
 
@@ -131,21 +133,23 @@ class MonthlySuccessTilt extends Component {
         }],
       },
     };
+    const data = this.getChartData();
+    const chart = <Chart type="bar" data={data} options={tiltSuccessOptions} />;
 
     return (
       <div classame="container" id="monthlyTilt">
         <CustomCard
           header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
-          element={<Chart type="bar" data={this.state.data} options={tiltSuccessOptions} />}
+          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

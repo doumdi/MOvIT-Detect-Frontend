@@ -6,9 +6,10 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { T } from '../../../../utilities/translator';
 import CustomCard from '../../../shared/card';
 
@@ -55,12 +56,12 @@ class RecGoalProgress extends Component {
       <div>
         {this.props.condition
           && (
-          <div>
-            <CustomCard
-              header={header}
-              element={element}
-            />
-          </div>
+            <div>
+              <CustomCard
+                header={header}
+                element={element}
+              />
+            </div>
           )
         }
       </div>

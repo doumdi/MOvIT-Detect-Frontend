@@ -6,11 +6,12 @@
  */
 
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import { get, post } from '../../utilities/secureHTTP';
+
 import ConfirmationPopup from '../popups/confirmationPopup';
+import ErrorMessage from '../shared/errorMessage';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 
@@ -19,14 +20,14 @@ const POLLING_INTERVAL = 10000;
 class UpdatesManager extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
+    isUpdateAvailable: PropTypes.bool.isRequired,
+    changeIsUpdateAvailable: PropTypes.func.isRequired,
+    hasErrors: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      isAvailable: true,
-      date: null,
       isPopupOpened: false,
     };
     this.triggerUpdate = this.triggerUpdate.bind(this);
@@ -41,13 +42,14 @@ class UpdatesManager extends Component {
     window.clearInterval(this.timer);
   }
 
-  async getUpdateData() {
-    try {
-      const response = await axios.get(`${URL}updates`, this.props.header);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+  async getUpdates() {
+    const response = await get(`${URL}updates`);
+    return response.data;
+  }
+
+  async triggerUpdatesChange() {
+    const response = await this.getUpdates();
+    this.props.changeIsUpdateAvailable(response.isAvailable);
   }
 
   openModal() {
@@ -59,30 +61,14 @@ class UpdatesManager extends Component {
   }
 
   poll() {
-    this.updateData();
     this.timer = setInterval(async () => {
-      this.updateData();
+      this.triggerUpdatesChange();
     }, POLLING_INTERVAL);
-  }
-
-  mapData(response) {
-    const date = new Date(response.date);
-    date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
-
-    this.setState({
-      isAvailable: response.isAvailable,
-      date: date.toISOString().split('T')[0],
-    });
-  }
-
-  async updateData() {
-    const status = await this.getUpdateData();
-    this.mapData(status);
   }
 
   async triggerUpdate() {
     try {
-      await axios.post(`${URL}updates`, this.props.header);
+      await post(`${URL}updates`);
     } catch (error) {
       console.log(error);
     }
@@ -90,22 +76,19 @@ class UpdatesManager extends Component {
   }
 
   render() {
+    if (this.props.hasErrors) {
+      return <ErrorMessage />;
+    }
     return (
       <div>
         <button
           id="updateButton"
-          className={`btn ui-button-secondary ${this.state.isAvailable ? 'btn-danger' : 'btn-default'}`}
-          disabled={!this.state.isAvailable}
+          className={`btn ui-button-secondary ${this.props.isUpdateAvailable ? 'btn-danger' : 'btn-default'}`}
+          disabled={!this.props.isUpdateAvailable}
           onClick={() => this.openModal()}
         >
           <i className="fa fa-2x fa-refresh" />
         </button>
-        <div>
-          {T.translate(`settings.system.update.last.${this.props.language}`)}
-
-          : &nbsp;
-          {this.state.date}
-        </div>
         <ConfirmationPopup
           title={T.translate(`settings.system.update.${this.props.language}`)}
           body={T.translate(`settings.system.update.confirmation.${this.props.language}`)}
@@ -121,7 +104,6 @@ class UpdatesManager extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

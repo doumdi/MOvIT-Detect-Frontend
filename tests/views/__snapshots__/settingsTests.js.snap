@@ -16,8 +16,14 @@ exports[`Settings Tests should match the snapshot 1`] = `
       className="col-12 col-md-8 offset-md-2"
     >
       <Connect(Notification) />
+      <Connect(DbActions) />
       <CustomCard
-        element={<Connect(ModuleStatus) />}
+        element={
+          <Connect(ModuleStatus)
+            changeModulesStatus={[Function]}
+            hasErrors={false}
+          />
+        }
         header={
           <span
             className="ui-card-title"
@@ -27,7 +33,14 @@ exports[`Settings Tests should match the snapshot 1`] = `
         }
       />
       <CustomCard
-        element={<Connect(NotificationSettings) />}
+        element={
+          <Connect(NotificationSettings)
+            changeIsLedBlinkingEnabled={[Function]}
+            changeIsVibrationEnabled={[Function]}
+            changeSnoozeTime={[Function]}
+            hasErrors={false}
+          />
+        }
         header={
           <span
             className="ui-card-title"
@@ -37,7 +50,12 @@ exports[`Settings Tests should match the snapshot 1`] = `
         }
       />
       <CustomCard
-        element={<Connect(Wifi) />}
+        element={
+          <Connect(Wifi)
+            changeIsConnected={[Function]}
+            hasErrors={false}
+          />
+        }
         header={
           <span
             className="ui-card-title"
@@ -47,7 +65,12 @@ exports[`Settings Tests should match the snapshot 1`] = `
         }
       />
       <CustomCard
-        element={<Connect(Permissions) />}
+        element={
+          <Connect(Permissions)
+            changeDataAgreement={[Function]}
+            hasErrors={false}
+          />
+        }
         header={
           <span
             className="ui-card-title"
@@ -62,12 +85,19 @@ exports[`Settings Tests should match the snapshot 1`] = `
             <h6>
               settings.system.memory.en
             </h6>
-            <Connect(MemoryUsage) />
+            <MemoryUsage
+              hasErrors={false}
+              total={5}
+              used={10}
+            />
             <br />
             <h6>
               settings.system.update.en
             </h6>
-            <Connect(UpdatesManager) />
+            <Connect(UpdatesManager)
+              changeIsUpdateAvailable={[Function]}
+              hasErrors={false}
+            />
           </div>
         }
         header={
