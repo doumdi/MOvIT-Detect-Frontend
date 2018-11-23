@@ -23,7 +23,6 @@ const MAXIMUM_SNOOZE_TIME = 60;
 class NotificationSettings extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     snoozeTime: PropTypes.number.isRequired,
     isLedBlinkingEnabled: PropTypes.bool.isRequired,
     isVibrationEnabled: PropTypes.bool.isRequired,
@@ -126,7 +125,6 @@ class NotificationSettings extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

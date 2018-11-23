@@ -3,14 +3,11 @@ import Recommendation from '../../src/views/recommendation';
 
 describe('Recommendation Tests', () => {
   it('should have proptypes', () => {
-    // Actual value
     const actualValue = Recommendation.WrappedComponent.propTypes;
 
-    // Expected value
     const expectedValue = {
       history: PropTypes.object.isRequired,
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       swellingRecommendation: PropTypes.string,
       painRecommendation: PropTypes.string,
       restRecommendation: PropTypes.string,
@@ -59,7 +56,6 @@ describe('Recommendation Tests', () => {
       allowRestRecommendation: PropTypes.func,
     };
 
-    // Test
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 });

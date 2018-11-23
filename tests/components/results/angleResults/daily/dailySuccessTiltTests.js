@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import DailySuccessTilt from '../../../../../src/components/results/angleResults/daily/dailySuccessTilt';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -57,7 +57,6 @@ describe('DailySuccessTilt Tests', () => {
     const expectedValue = {
       language: PropTypes.string.isRequired,
       date: PropTypes.instanceOf(Date).isRequired,
-      header: PropTypes.object.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

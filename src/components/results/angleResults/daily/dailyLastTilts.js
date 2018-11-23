@@ -103,7 +103,6 @@ class DailyLastTilts extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

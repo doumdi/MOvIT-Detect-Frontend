@@ -9,17 +9,17 @@ import '../../../../styles/results.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MonthlySittingTime from './monthlySittingTime';
-import { T } from '../../../../utilities/translator';
-import { IS_TABLET, URL, OFFSET } from '../../../../redux/applicationReducer';
+import { IS_TABLET, OFFSET, URL } from '../../../../redux/applicationReducer';
+
 import GoalChart from './goalChart';
+import MonthlySittingTime from './monthlySittingTime';
 import RecGoalChart from './recGoalChart';
+import { T } from '../../../../utilities/translator';
 import { get } from '../../../../utilities/secureHTTP';
 
 class MonthlyPressureResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
@@ -254,7 +254,6 @@ class MonthlyPressureResults extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,

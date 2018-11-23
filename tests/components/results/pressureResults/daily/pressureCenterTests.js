@@ -16,10 +16,9 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-
-import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import PressureCenter from '../../../../../src/components/results/pressureResults/daily/pressureCenter';
 import CustomCard from '../../../../../src/components/shared/card';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -86,7 +85,6 @@ describe('PressureCenter Tests', () => {
       language: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       date: PropTypes.instanceOf(Date),
-      header: PropTypes.object,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

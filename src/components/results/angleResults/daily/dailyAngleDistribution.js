@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL, OFFSET } from '../../../../redux/applicationReducer';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
@@ -134,7 +134,6 @@ function mapStateToProps(state) {
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
-    header: state.applicationReducer.header,
   };
 }
 

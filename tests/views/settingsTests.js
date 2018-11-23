@@ -33,7 +33,6 @@ describe('Settings Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       dataAgreement: PropTypes.bool.isRequired,
       totalMemory: PropTypes.number.isRequired,
       usedMemory: PropTypes.number.isRequired,

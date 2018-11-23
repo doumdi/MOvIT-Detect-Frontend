@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import DailyPressureResults from '../../../../../src/components/results/pressureResults/daily/dailyPressureResults';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 const date = 1517720400000;
@@ -57,7 +57,6 @@ describe('DailyPressureResults Tests', () => {
     const expectedValue = {
       language: PropTypes.string.isRequired,
       date: PropTypes.instanceOf(Date),
-      header: PropTypes.object,
       reduceWeight: PropTypes.bool,
       reduceSlidingMoving: PropTypes.bool,
       reduceSlidingRest: PropTypes.bool,

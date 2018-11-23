@@ -57,7 +57,6 @@ describe('UpdatesManager Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       isUpdateAvailable: PropTypes.bool.isRequired,
       changeIsUpdateAvailable: PropTypes.func.isRequired,
       hasErrors: PropTypes.bool.isRequired,

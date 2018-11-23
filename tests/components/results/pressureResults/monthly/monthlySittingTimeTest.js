@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import MonthlySittingTime from '../../../../../src/components/results/pressureResults/monthly/monthlySittingTime';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -61,7 +61,6 @@ describe('MonthlySittingTime Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       month: PropTypes.number,
     };
 

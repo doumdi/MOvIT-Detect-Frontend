@@ -5,20 +5,20 @@
  */
 
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { GoalActions } from '../../redux/goalReducer';
 import { T } from '../../utilities/translator';
-import { URL } from '../../redux/applicationReducer';
-import TiltSlidersCard from './tiltSlidersCard';
 import TiltLabels from './tiltLabels';
+import TiltSlidersCard from './tiltSlidersCard';
+import { URL } from '../../redux/applicationReducer';
 import { post } from '../../utilities/secureHTTP';
 
 class PressureRecPanel extends Component {
   static propTypes = {
-    header: PropTypes.object,
     language: PropTypes.string.isRequired,
     profile: PropTypes.string.isRequired,
     maxAngle: PropTypes.number,
@@ -108,7 +108,6 @@ class PressureRecPanel extends Component {
 }
 function mapStateToProps(state) {
   return {
-    header: state.applicationReducer.header,
     language: state.applicationReducer.language,
     profile: state.applicationReducer.profile,
     reduceWeight: state.recommendationReducer.reduceWeight,

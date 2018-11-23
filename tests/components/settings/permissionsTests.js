@@ -14,7 +14,6 @@ describe('Permissions Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       changeDataAgreement: PropTypes.func.isRequired,
       dataAgreement: PropTypes.bool.isRequired,
       hasErrors: PropTypes.bool.isRequired,

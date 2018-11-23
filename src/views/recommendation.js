@@ -6,11 +6,12 @@
  */
 
 import React, { Component } from 'react';
-
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { get, post } from '../utilities/secureHTTP';
+
 import AngleRecommendation from '../components/recommendation/angleRecommendation';
 import ErrorMessage from '../components/shared/errorMessage';
 import { GoalActions } from '../redux/goalReducer';
@@ -22,13 +23,11 @@ import { T } from '../utilities/translator';
 import TextRecommendation from '../components/recommendation/textRecommendation';
 import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
-import { get, post } from '../utilities/secureHTTP';
 
 class Recommendation extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     swellingRecommendation: PropTypes.string,
     painRecommendation: PropTypes.string,
     restRecommendation: PropTypes.string,
@@ -298,7 +297,6 @@ class Recommendation extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSwelling: state.recommendationReducer.reduceSwelling,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
