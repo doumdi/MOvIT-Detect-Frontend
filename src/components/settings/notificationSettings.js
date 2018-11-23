@@ -19,6 +19,7 @@ import { post } from '../../utilities/secureHTTP';
 
 const MINIMUM_SNOOZE_TIME = 0;
 const MAXIMUM_SNOOZE_TIME = 60;
+let snoozeTimeout;
 
 class NotificationSettings extends Component {
   static propTypes = {
@@ -50,11 +51,13 @@ class NotificationSettings extends Component {
 
   changeSnoozeTime(snoozeTime) {
     this.props.changeSnoozeTime(parseInt(snoozeTime, 10));
-    // TODO: This shouldn't be done here. However, the onBlur event doesn't seem to trigger
-    // and we have to do it here for the snooze notification to be sent.
-    post(`${URL}notificationSettings`, {
-      snoozeTime: parseInt(snoozeTime, 10),
-    });
+
+    clearTimeout(snoozeTimeout);
+    snoozeTimeout = setTimeout(() => {
+      post(`${URL}notificationSettings`, {
+        snoozeTime: parseInt(snoozeTime, 10),
+      });
+    }, 3000);
   }
 
   render() {
