@@ -76,7 +76,6 @@ exports[`NotificationTests Tests should match the snapshot 1`] = `
       max={60}
       maxlength={2}
       min={0}
-      onBlur={[Function]}
       onChange={[Function]}
       readonly={false}
       size="3"

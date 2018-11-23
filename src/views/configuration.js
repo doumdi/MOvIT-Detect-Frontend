@@ -20,8 +20,6 @@ import SubmitButtons from '../components/shared/submitButtons';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 
-// import { InputText } from 'primereact/components/inputtext/InputText';
-
 class Configuration extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -49,10 +47,9 @@ class Configuration extends Component {
   async load() {
     try {
       const response = await get(`${URL}configuration`);
-      this.mapData(response.data);
+      await this.mapData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
-      console.log(error);
       this.setState({ hasErrors: true });
     }
   }
@@ -71,7 +68,6 @@ class Configuration extends Component {
   }
 
   save() {
-    console.log(this);
     const data = {
       userName: this.props.userName,
       userID: this.props.userID,

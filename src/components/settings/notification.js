@@ -49,7 +49,11 @@ class Notification extends Component {
 
   async calibrateIMU() {
     await get(`${URL}calibrateIMU`);
-    this.setState({ ...this.state, showCountdownIMU: true });
+    this.setState({
+      ...this.state,
+      showCountdownIMU: true,
+      isPopupOpened: false,
+    });
   }
 
   matCalibrationCompleted() {

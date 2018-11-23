@@ -6,12 +6,12 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import SliderValue from '../shared/sliderValue';
 import { T } from '../../utilities/translator';
-
 
 class AngleRecommendation extends Component {
   static propTypes = {

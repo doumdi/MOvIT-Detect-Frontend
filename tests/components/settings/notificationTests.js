@@ -89,8 +89,10 @@ describe('Notification Tests', () => {
 
   it('should show the countdown when calibrating the IMU', async () => {
     wrapper.setState({ showCountdownIMU: false });
+
     await wrapper.instance().calibrateIMU();
 
+    expect(wrapper.state('isPopupOpened')).toEqual(false);
     expect(wrapper.state('showCountdownIMU')).toEqual(true);
   });
 

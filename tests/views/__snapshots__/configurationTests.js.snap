@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Configuration Tests should match the snapshot 1`] = `
+<div
+  className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3"
+>
+  <div
+    className="form-horizontal"
+  >
+    <legend
+      className="text-center header"
+    >
+      <h2>
+        configurations.FR
+      </h2>
+    </legend>
+    <div>
+      <LogoText
+        iconClass="fa fa-user"
+        onChange={[Function]}
+        placeHolder="configurations.name.FR"
+        value="Benjamin"
+      />
+      <LogoText
+        iconClass="fa fa-id-card"
+        onChange={[Function]}
+        placeHolder="configurations.telask.FR"
+        value={0}
+      />
+      <LogoNumber
+        iconClass="fa fa-wheelchair"
+        onChange={[Function]}
+        placeHolder="configurations.maxTilt.FR"
+        value={45}
+      />
+      <LogoNumber
+        iconClass="fa fa-balance-scale"
+        onChange={[Function]}
+        placeHolder="configurations.weight.FR"
+        value={10}
+      />
+      <Connect(SumbitButtons)
+        onCancel={[Function]}
+        onSave={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;

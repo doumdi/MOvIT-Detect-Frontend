@@ -5,43 +5,42 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
-import sinon from 'sinon';
 import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import toJson from 'enzyme-to-json';
-import { Slider } from 'primereact/components/slider/Slider';
 
+import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { Slider } from 'primereact/components/slider/Slider';
+import sinon from 'sinon';
+import toJson from 'enzyme-to-json';
 import SliderValue from '../../../src/components/shared/sliderValue';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('SliderValue Tests', () => {
-  const spy = sinon.spy();
+  const onChangeSpy = sinon.spy();
   const props = {
     value: 12,
     min: 10,
     max: 20,
-    onChange: (value) => { spy(value); },
     title: 'This is a test',
     unit: 'm',
+    onChange: (value) => { onChangeSpy(value); },
   };
 
-  beforeEach(() => {
-    spy.resetHistory();
-  });
-
   it('should trigger onChange when simulating a change event on the Slider', () => {
+    onChangeSpy.resetHistory();
+
     const wrapper = shallow(<SliderValue {...props} />);
 
     wrapper.find(Slider).simulate('change', { value: 10 });
 
-    expect(spy.calledOnce).toEqual(true);
-    expect(spy.getCalls()[0].args[0]).toEqual(10);
+    expect(onChangeSpy.calledOnce).toEqual(true);
+    expect(onChangeSpy.getCalls()[0].args[0]).toEqual(10);
   });
 
   it('should trigger onChange when simulating a change event on the input field', () => {
     const wrapper = shallow(<SliderValue {...props} />);
+    const spy = sinon.spy(wrapper.instance(), 'onValueChange');
 
     wrapper.find('#value').simulate('change', { target: { value: 10 } });
 
