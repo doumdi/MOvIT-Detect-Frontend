@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
 import DailyLastTilts from '../../../../../src/components/results/angleResults/daily/dailyLastTilts';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -32,7 +32,7 @@ const response = [
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
 
-  mock.onGet(`${URL}lastTilts?Day=${+date},offset=-5,count=5`).reply(200, response);
+  mock.onGet(`${URL}lastTilts?Day=${+date},offset=${OFFSET},count=5`).reply(200, response);
 }
 
 describe('DailyLastTilts Tests', () => {
