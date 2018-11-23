@@ -114,7 +114,7 @@ class NotificationSettings extends Component {
           />
           <span>
             &nbsp;&nbsp;
-            {T.translate(`time.minutes.${this.props.language}`)}
+            {T.translate(`time.min.${this.props.language}`)}
           </span>
         </div>
       </div>

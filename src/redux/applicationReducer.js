@@ -10,7 +10,7 @@
 
 let url;
 let isDemo = false;
-const offset = Math.ceil(new Date().getTimezoneOffset() / 60);
+const offset = Math.ceil(new Date().getTimezoneOffset() / 60) * -1;
 
 const port = process.env.PORT || 1880;
 
