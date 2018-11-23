@@ -80,7 +80,7 @@ class PressureCenter extends Component {
   }
 
   getChart() {
-    if (this.state.quadrants.length === 0 || !this.state.centers.length === 0) {
+    if (this.state.quadrants.length === 0 || this.state.centers.length === 0) {
       return <NoDataMessage />;
     }
     return (
