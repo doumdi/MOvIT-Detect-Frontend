@@ -24,9 +24,9 @@ const date = 1517720400000;
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
-  const reponse = [0, 23040000, 35136000, 27648000, 0];
+  const response = [0, 23040000, 35136000, 27648000, 0];
 
-  mock.onGet(`${URL}oneDay?Day=${+date},offset=${OFFSET}`).reply(200, reponse);
+  mock.onGet(`${URL}oneDay?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('DailyAngleDistribution Tests', () => {

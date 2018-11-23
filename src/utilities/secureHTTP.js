@@ -7,7 +7,9 @@
 
 import axios from 'axios';
 
-const header = { headers: { Authorization: localStorage.getItem('token') } };
+function getHeader() {
+  return { headers: { Authorization: localStorage.getItem('token') } };
+}
 
 /* function logout() {
   localStorage.setItem('token', '');
@@ -17,7 +19,7 @@ const header = { headers: { Authorization: localStorage.getItem('token') } };
 
 export async function get(url) {
   try {
-    return await axios.get(url, header);
+    return await axios.get(url, getHeader());
   } catch (error) {
     if (error.toString().includes('401')) {
       // logout();
@@ -27,7 +29,7 @@ export async function get(url) {
 
 export async function post(url, param) {
   try {
-    return await axios.post(url, param, header);
+    return await axios.post(url, param, getHeader());
   } catch (error) {
     if (error.toString().includes('401')) {
       // logout();

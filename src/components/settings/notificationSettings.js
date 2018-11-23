@@ -33,34 +33,27 @@ class NotificationSettings extends Component {
   }
 
   enableLedBlinking() {
-    this.props.changeIsLedBlinkingEnabled(!this.props.isLedBlinkingEnabled);
+    const isLedBlinkingEnabled = !this.props.isLedBlinkingEnabled;
+    this.props.changeIsLedBlinkingEnabled(isLedBlinkingEnabled);
     post(`${URL}notificationSettings`, {
-      isLedBlinkingEnabled: this.props.isLedBlinkingEnabled,
+      isLedBlinkingEnabled,
     });
   }
 
   enableVibration() {
-    this.props.changeIsVibrationEnabled(!this.props.isVibrationEnabled);
+    const isVibrationEnabled = !this.props.isVibrationEnabled;
+    this.props.changeIsVibrationEnabled(isVibrationEnabled);
     post(`${URL}notificationSettings`, {
-      isVibrationEnabled: this.props.isVibrationEnabled,
+      isVibrationEnabled,
     });
   }
 
   changeSnoozeTime(snoozeTime) {
-    if (!snoozeTime || !parseInt(snoozeTime)) {
-      return;
-    }
     this.props.changeSnoozeTime(parseInt(snoozeTime, 10));
     // TODO: This shouldn't be done here. However, the onBlur event doesn't seem to trigger
     // and we have to do it here for the snooze notification to be sent.
     post(`${URL}notificationSettings`, {
-      snoozeTime: this.props.snoozeTime,
-    });
-  }
-
-  saveSnoozeTime() {
-    post(`${URL}notificationSettings`, {
-      snoozeTime: this.props.snoozeTime,
+      snoozeTime: parseInt(snoozeTime, 10),
     });
   }
 
@@ -105,7 +98,6 @@ class NotificationSettings extends Component {
             id="value"
             type="number"
             onChange={event => this.changeSnoozeTime(event.value)}
-            onBlur={this.saveSnoozeTime}
             value={this.props.snoozeTime}
             min={MINIMUM_SNOOZE_TIME}
             max={MAXIMUM_SNOOZE_TIME}
