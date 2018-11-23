@@ -11,14 +11,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
 class MonthlySittingTime extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     month: PropTypes.number,
   }
 
@@ -47,7 +46,7 @@ class MonthlySittingTime extends Component {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ isLoaded: false });
     try {
-      const response = await get(`${URL}sittingTime?Day=${+date},Offset=0`);
+      const response = await get(`${URL}sittingTime?Day=${+date},offset=${OFFSET}`);
       this.formatSitChartData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
@@ -122,7 +121,6 @@ class MonthlySittingTime extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

@@ -16,9 +16,9 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
 import PressureCenter from '../../../../../src/components/results/pressureResults/daily/pressureCenter';
 import CustomCard from '../../../../../src/components/shared/card';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -85,7 +85,6 @@ describe('PressureCenter Tests', () => {
       language: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       date: PropTypes.instanceOf(Date),
-      header: PropTypes.object,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
@@ -114,7 +113,7 @@ describe('PressureCenter Tests', () => {
       response: true,
     };
 
-    mock.onGet(`${URL}gravityCenter?Day=1517720400000,offset=0`).reply(200, data);
+    mock.onGet(`${URL}gravityCenter?Day=1517720400000,offset=${OFFSET}`).reply(200, data);
 
     const response = await wrapper.instance().getPressureData(props.date);
 

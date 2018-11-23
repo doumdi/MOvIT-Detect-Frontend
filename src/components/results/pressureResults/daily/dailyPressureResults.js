@@ -9,7 +9,7 @@ import '../../../../styles/results.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { IS_TABLET, URL } from '../../../../redux/applicationReducer';
+import { IS_TABLET, OFFSET, URL } from '../../../../redux/applicationReducer';
 
 import GoalProgress from './goalProgress';
 import PressureCenter from './pressureCenter';
@@ -21,7 +21,6 @@ class DailyPressureResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object,
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
@@ -49,9 +48,9 @@ class DailyPressureResults extends Component {
   }
 
   async getDailySlidingProgress(date) {
-    this.setState({ isLoaded: false });
+    this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}dailySlideProgress?Day=${+date},offset=0`);
+      const response = await get(`${URL}dailySlideProgress?Day=${+date},offset=${OFFSET}`);
       this.loadDailySlidingData(response.data);
     } catch (error) {
       this.setState({ hasErrors: true });
@@ -71,72 +70,72 @@ class DailyPressureResults extends Component {
       <div>
         {!IS_TABLET
           && (
-          <div className="col-lg-2 leftMenu">
-            <ul className="graphlist">
-              <li className="graphLink">
-                <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
-              </li>
-              {this.props.reduceWeight
-              && (
-              <li className="graphLink">
-                <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
-              </li>
-              )}
-              {this.props.reduceSlidingMoving
-                && (
-                  <li className="graphLink">
-                    <a href="results/pressure#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
-                  </li>
-                )}
-              {this.props.reduceSlidingRest
-                && (
-                  <li className="graphLink">
-                    <a href="results/pressure#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
-                  </li>
-                )}
-            </ul>
-          </div>
+            <div className="col-lg-2 leftMenu">
+              <ul className="graphlist">
+                <li className="graphLink">
+                  <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
+                </li>
+                {this.props.reduceWeight
+                  && (
+                    <li className="graphLink">
+                      <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
+                    </li>
+                  )}
+                {this.props.reduceSlidingMoving
+                  && (
+                    <li className="graphLink">
+                      <a href="results/pressure#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
+                    </li>
+                  )}
+                {this.props.reduceSlidingRest
+                  && (
+                    <li className="graphLink">
+                      <a href="results/pressure#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
+                    </li>
+                  )}
+              </ul>
+            </div>
           )
         }
         <div className=" col-lg-10 offset-lg-3 results resultsContainer">
           <div className="col-lg-8 graphic">
             <div>
               {this.state.date
-              && (
-                <div>
-                  <PressureCenter
-                    title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
-                    date={this.state.date}
-                  />
-                  <div id="reduceWeight">
-                    <RecGoalProgress
-                      condition={this.props.reduceWeight}
-                      title={T.translate(`dailyResults.pressure.${this.props.language}`)}
-                      goalValue={this.state.value2}
-                      recValue={this.state.value1}
+                && (
+                  <div>
+                    <PressureCenter
+                      title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
+                      date={this.state.date}
                     />
+                    <div id="reduceWeight">
+                      <RecGoalProgress
+                        condition={this.props.reduceWeight}
+                        title={T.translate(`dailyResults.pressure.${this.props.language}`)}
+                        goalValue={this.state.value2}
+                        recValue={this.state.value1}
+                      />
+                    </div>
+                    <div id="reduceSlidingMoving">
+                      <GoalProgress
+                        condition={this.props.reduceSlidingMoving}
+                        title={T.translate(`dailyResults.travel.${this.props.language}`)}
+                        value={this.state.daySildeMoving}
+                        isLoaded={this.state.isLoaded}
+                        hasErrors={this.state.hasErrors}
+                      />
+                    </div>
+                    <div id="reduceSlidingRest">
+                      <GoalProgress
+                        condition={this.props.reduceSlidingRest}
+                        title={T.translate(`dailyResults.rest.${this.props.language}`)}
+                        value={this.state.daySildeRest}
+                        isLoaded={this.state.isLoaded}
+                        hasErrors={this.state.hasErrors}
+                      />
+                    </div>
                   </div>
-                  <div id="reduceSlidingMoving">
-                    <GoalProgress
-                      condition={this.props.reduceSlidingMoving}
-                      title={T.translate(`dailyResults.travel.${this.props.language}`)}
-                      value={this.state.daySildeMoving}
-                      isLoaded={this.state.isLoaded}
-                      hasErrors={this.state.hasErrors}
-                    />
-                  </div>
-                  <div id="reduceSlidingRest">
-                    <GoalProgress
-                      condition={this.props.reduceSlidingRest}
-                      title={T.translate(`dailyResults.rest.${this.props.language}`)}
-                      value={this.state.daySildeRest}
-                      isLoaded={this.state.isLoaded}
-                      hasErrors={this.state.hasErrors}
-                    />
-                  </div>
-                </div>
-              )
-            }
+                )
+              }
             </div>
           </div>
         </div>
@@ -148,7 +147,6 @@ class DailyPressureResults extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,

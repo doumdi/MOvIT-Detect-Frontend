@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
 import DailySuccessTilt from '../../../../../src/components/results/angleResults/daily/dailySuccessTilt';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -26,7 +26,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const reponse = [25, 10, 12, 5];
 
-  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`).reply(200, reponse);
+  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, reponse);
 }
 
 describe('DailySuccessTilt Tests', () => {
@@ -44,11 +44,11 @@ describe('DailySuccessTilt Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<DailySuccessTilt store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('dayData')).toEqual([]);
     expect(wrapper.state('date')).toEqual(date);
-    expect(wrapper.state('loading')).toEqual(false);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
@@ -57,7 +57,6 @@ describe('DailySuccessTilt Tests', () => {
     const expectedValue = {
       language: PropTypes.string.isRequired,
       date: PropTypes.instanceOf(Date).isRequired,
-      header: PropTypes.object.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
@@ -84,10 +83,14 @@ describe('DailySuccessTilt Tests', () => {
   it('should get the day data', async () => {
     await wrapper.instance().getData(date);
 
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('dayData')).toEqual([25, 10, 12, 5]);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

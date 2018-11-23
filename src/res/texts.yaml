@@ -246,6 +246,7 @@ dailyResults:
       FR: "Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!"
       EN: "You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!"
 
+
 SuccessfulTilt:
   tiltMade:
     FR: "Bascules réalisées"
@@ -277,6 +278,33 @@ SuccessfulTilt:
   tiltBadDuration:
     FR: "Bascules réalisées au bon angle mais de durée insuffisante"
     EN: "Tilt made at the right angle but for an insufficient duration"
+
+lastTilts:
+  title:
+    FR: "Dernières bascules réalisées"
+    EN: "Last tilts made"
+  result:
+    FR: "Résultat"
+    EN: "Result"
+  time:
+    FR: "Heure"
+    EN: "Hour"
+  successful:
+    FR: "Réalisée"
+    EN: "Made"
+  tooShort:
+    FR: "Durée insuffisante"
+    EN: "Insufficient duration"
+  tooSmallAngle:
+    FR: "Angle insuffisant"
+    EN: "Insufficient angle"
+  unsuccessful:
+    FR: "Non réalisée"
+    EN: "Not made"
+  snooze:
+    FR: "Snooze"
+    EN: "Snooze"
+
 
 results:
   FR: "Résultats"
@@ -538,3 +566,6 @@ demo:
 error:
   FR: "Une erreur est survenue. Veuillez contacter votre administrateur."
   EN: "An error occured. Please contact your administrator."
+noData:
+  FR: "Il n'y a pas de données pour cette période."
+  EN: "There is no data for this period."

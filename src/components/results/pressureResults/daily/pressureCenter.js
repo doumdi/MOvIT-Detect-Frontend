@@ -18,19 +18,19 @@ import {
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
 import { connect } from 'react-redux';
-import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
+import CustomCard from '../../../shared/card';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 import { milliToTimeString } from '../../../../utils/timeFormat';
+import NoDataMessage from '../../../shared/noDataMessage';
 
 class PressureCenter extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object,
   };
 
   constructor(props, context) {
@@ -63,9 +63,9 @@ class PressureCenter extends Component {
   }
 
   async getPressureData(date) {
-    this.setState({ isLoaded: false });
+    this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}gravityCenter?Day=${+date},offset=0`);
+      const response = await get(`${URL}gravityCenter?Day=${+date},offset=${OFFSET}`);
       return response.data;
     } catch (error) {
       this.setState({ hasErrors: true });
@@ -80,6 +80,9 @@ class PressureCenter extends Component {
   }
 
   getChart() {
+    if (this.state.quadrants.length === 0 || this.state.centers.length === 0) {
+      return <NoDataMessage />;
+    }
     return (
       <div className="col-lg-6 offset-lg-3">
         <svg viewBox="0 00 350 320">
@@ -201,7 +204,6 @@ class PressureCenter extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

@@ -7,14 +7,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
+import { getElement } from '../../../../utilities/loader';
 
 class DailySuccessTilt extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object,
   }
 
   constructor(props) {
@@ -22,7 +22,8 @@ class DailySuccessTilt extends Component {
     this.state = {
       dayData: [],
       date: props.date,
-      loading: true,
+      isLoaded: false,
+      hasErrors: false,
     };
     this.getData(this.state.date);
   }
@@ -35,12 +36,16 @@ class DailySuccessTilt extends Component {
   }
 
   async getData(date) {
-    this.state.loading = true;
-    const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=0`);
-    this.setState({
-      dayData: response.data,
-      loading: false,
-    });
+    this.setState({ hasErrors: false, isLoaded: false });
+    try {
+      const response = await get(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`);
+      this.setState({
+        dayData: response.data,
+        isLoaded: true,
+      });
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
   }
 
   getChartData(newData) {
@@ -133,15 +138,14 @@ class DailySuccessTilt extends Component {
       },
     };
     const data = this.getChartData(this.state.dayData);
+    const chart = <Chart type="bar" data={data} options={tiltSuccessOptions} />;
 
     return (
       <div className="container graphic" id="dailyTilt">
-        {!this.state.loading && (
-          <CustomCard
-            header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
-            element={<Chart type="bar" data={data} options={tiltSuccessOptions} />}
-          />
-        )}
+        <CustomCard
+          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
+          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
+        />
       </div>
     );
   }
@@ -150,7 +154,6 @@ class DailySuccessTilt extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

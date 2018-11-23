@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
 import MonthlyPressureResults from '../../../../../src/components/results/pressureResults/monthly/monthlyPressureResults';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -36,7 +36,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}monthlySlideProgress?Day=${+date},offset=0`).reply(200, response);
+  mock.onGet(`${URL}monthlySlideProgress?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('MonthlyPressureResults Tests', () => {
@@ -68,7 +68,6 @@ describe('MonthlyPressureResults Tests', () => {
     const expectedValue = {
       language: PropTypes.string.isRequired,
       month: PropTypes.string.isRequired,
-      header: PropTypes.object,
       reduceWeight: PropTypes.bool,
       reduceSlidingMoving: PropTypes.bool,
       reduceSlidingRest: PropTypes.bool,

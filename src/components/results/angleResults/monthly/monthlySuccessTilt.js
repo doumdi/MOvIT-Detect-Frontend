@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL } from '../../../../redux/applicationReducer';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
+import { getElement } from '../../../../utilities/loader';
 
 class MonthlySuccessTilt extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     month: PropTypes.number,
   }
 
@@ -25,8 +25,9 @@ class MonthlySuccessTilt extends Component {
         bad: [],
       },
       labels: [],
-      loading: true,
       month: props.month,
+      isLoaded: false,
+      hasErrors: false,
     };
     this.getMonthData(props.month);
   }
@@ -39,9 +40,15 @@ class MonthlySuccessTilt extends Component {
   }
 
   async getMonthData(month) {
-    const date = new Date(new Date().getFullYear(), month, 1);
-    const response = await get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`);
-    this.formatChartData(response.data);
+    this.setState({ hasErrors: false, isLoaded: false });
+    try {
+      const date = new Date(new Date().getFullYear(), month, 1);
+      const response = await get(`${URL}monthlySuccessfulTilts?Day=${+date},offset=${OFFSET}`);
+      this.formatChartData(response.data);
+      this.setState({ isLoaded: true });
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
   }
 
   getChartData() {
@@ -127,12 +134,13 @@ class MonthlySuccessTilt extends Component {
       },
     };
     const data = this.getChartData();
+    const chart = <Chart type="bar" data={data} options={tiltSuccessOptions} />;
 
     return (
       <div classame="container" id="monthlyTilt">
         <CustomCard
           header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
-          element={<Chart type="bar" data={data} options={tiltSuccessOptions} />}
+          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>
     );
@@ -142,7 +150,6 @@ class MonthlySuccessTilt extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

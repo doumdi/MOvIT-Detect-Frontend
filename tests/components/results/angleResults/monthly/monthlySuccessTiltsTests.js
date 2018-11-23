@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL } from '../../../../../src/redux/applicationReducer';
 import MonthlySuccessTilt from '../../../../../src/components/results/angleResults/monthly/monthlySuccessTilt';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -40,7 +40,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=0`).reply(200, response);
+  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('MonthlySuccessTilt Tests', () => {
@@ -58,11 +58,11 @@ describe('MonthlySuccessTilt Tests', () => {
 
   beforeEach(() => {
     wrapper = shallow(<MonthlySuccessTilt store={store} {...props} />).dive();
-    wrapper.setState({ loading: false });
 
     expect(wrapper.state('labels')).toEqual([]);
     expect(wrapper.state('month')).toEqual(month);
-    expect(wrapper.state('loading')).toEqual(false);
+    expect(wrapper.state('isLoaded')).toEqual(false);
+    expect(wrapper.state('hasErrors')).toEqual(false);
   });
 
   it('should have proptypes', () => {
@@ -70,7 +70,6 @@ describe('MonthlySuccessTilt Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       month: PropTypes.number,
     };
 
@@ -98,10 +97,14 @@ describe('MonthlySuccessTilt Tests', () => {
   it('should get the month data', async () => {
     await wrapper.instance().getMonthData(month);
 
+    expect(wrapper.state('isLoaded')).toEqual(true);
+    expect(wrapper.state('hasErrors')).toEqual(false);
     expect(wrapper.state('tiltMonthData').good).toEqual([response[1][0], response[2][0]]);
   });
 
   it('should match the snapshot', () => {
+    wrapper.setState({ isLoaded: true, hasErrors: false });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

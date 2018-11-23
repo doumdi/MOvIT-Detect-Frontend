@@ -59,7 +59,6 @@ describe('NotificationTests Tests', () => {
 
     const expectedValue = {
       language: PropTypes.string.isRequired,
-      header: PropTypes.object,
       snoozeTime: PropTypes.number.isRequired,
       isLedBlinkingEnabled: PropTypes.bool.isRequired,
       isVibrationEnabled: PropTypes.bool.isRequired,

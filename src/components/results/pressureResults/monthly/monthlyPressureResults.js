@@ -9,7 +9,7 @@ import '../../../../styles/results.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { IS_TABLET, URL } from '../../../../redux/applicationReducer';
+import { IS_TABLET, OFFSET, URL } from '../../../../redux/applicationReducer';
 
 import GoalChart from './goalChart';
 import MonthlySittingTime from './monthlySittingTime';
@@ -20,7 +20,6 @@ import { get } from '../../../../utilities/secureHTTP';
 class MonthlyPressureResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     reduceWeight: PropTypes.bool,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
@@ -50,9 +49,9 @@ class MonthlyPressureResults extends Component {
 
   async getMonthlySlidingProgress(month) {
     const date = new Date(new Date().getFullYear(), month, 1);
-    this.setState({ isLoaded: false });
+    this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}monthlySlideProgress?Day=${+date},offset=0`);
+      const response = await get(`${URL}monthlySlideProgress?Day=${+date},offset=${OFFSET}`);
       this.loadMonthlySlidingData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
@@ -177,31 +176,31 @@ class MonthlyPressureResults extends Component {
       <div>
         {!IS_TABLET
           && (
-          <div className="col-lg-2 leftMenu">
-            <ul className="graphlist">
-              <li className="graphLink">
-                <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
-              </li>
-              {this.props.reduceWeight
-                && (
+            <div className="col-lg-2 leftMenu">
+              <ul className="graphlist">
                 <li className="graphLink">
-                  <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
+                  <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
                 </li>
-                )}
-              {this.props.reduceSlidingMoving
-                && (
-                  <li className="graphLink">
-                    <a href="results/pressure#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
-                  </li>
-                )}
-              {this.props.reduceSlidingRest
-                && (
-                  <li className="graphLink">
-                    <a href="results/pressure#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
-                  </li>
-                )}
-            </ul>
-          </div>
+                {this.props.reduceWeight
+                  && (
+                    <li className="graphLink">
+                      <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
+                    </li>
+                  )}
+                {this.props.reduceSlidingMoving
+                  && (
+                    <li className="graphLink">
+                      <a href="results/pressure#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
+                    </li>
+                  )}
+                {this.props.reduceSlidingRest
+                  && (
+                    <li className="graphLink">
+                      <a href="results/pressure#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
+                    </li>
+                  )}
+              </ul>
+            </div>
           )
         }
         <div className=" col-lg-10 offset-lg-3 results resultsContainer">
@@ -255,7 +254,6 @@ class MonthlyPressureResults extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     reduceWeight: state.recommendationReducer.reduceWeight,
     reduceSlidingRest: state.recommendationReducer.reduceSlidingRest,
     reduceSlidingMoving: state.recommendationReducer.reduceSlidingMoving,
