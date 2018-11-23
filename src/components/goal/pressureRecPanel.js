@@ -29,8 +29,6 @@ class PressureRecPanel extends Component {
     changeTiltFrequencyGoal: PropTypes.func.isRequired,
     changeTiltLengthGoal: PropTypes.func.isRequired,
     changeTiltAngleGoal: PropTypes.func.isRequired,
-    id: PropTypes.string,
-    tooltip: PropTypes.string,
   };
 
   constructor(props, context) {
