@@ -24,9 +24,9 @@ const date = 1517720400000;
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
-  const reponse = [25, 10, 12, 5];
+  const response = [25, 10, 12, 5];
 
-  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, reponse);
+  mock.onGet(`${URL}dailySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, response);
 }
 
 describe('DailySuccessTilt Tests', () => {

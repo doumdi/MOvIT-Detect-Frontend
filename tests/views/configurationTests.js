@@ -21,14 +21,14 @@ Enzyme.configure({ adapter: new Adapter() });
 
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
-  const reponse = {
+  const response = {
     userName: 'Benjamin Roy',
     userID: 1,
     maxAngle: 90,
     userWeight: 10,
   };
 
-  mock.onGet(`${URL}configuration`).reply(200, reponse);
+  mock.onGet(`${URL}configuration`).reply(200, response);
 }
 
 describe('Configuration Tests', () => {
