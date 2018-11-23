@@ -66,7 +66,7 @@ class DailyLastTilts extends Component {
 
   getTime(timestamp) {
     const date = new Date(timestamp);
-    const hours = date.getHours() + TIME_OFFSET;
+    const hours = date.getHours() + OFFSET;
     const minutes = date.getMinutes() < 10
       ? `0${date.getMinutes()}`
       : date.getMinutes();
