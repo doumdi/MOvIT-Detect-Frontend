@@ -49,9 +49,6 @@ class NotificationSettings extends Component {
   }
 
   changeSnoozeTime(snoozeTime) {
-    if (!snoozeTime || !parseInt(snoozeTime)) {
-      return;
-    }
     this.props.changeSnoozeTime(parseInt(snoozeTime, 10));
     // TODO: This shouldn't be done here. However, the onBlur event doesn't seem to trigger
     // and we have to do it here for the snooze notification to be sent.
