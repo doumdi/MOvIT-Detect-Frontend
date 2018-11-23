@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import CustomCard from '../shared/card';
 import TiltSliders from '../shared/tiltSliders';
 import { URL } from '../../redux/applicationReducer';
@@ -27,6 +28,8 @@ class TiltSlidersCard extends Component {
     onAngleChange: PropTypes.func.isRequired,
     modifiable: PropTypes.bool,
     onModifie: PropTypes.func,
+    tooltip: PropTypes.string,
+    id: PropTypes.string,
   };
 
   // TODO: Add feedback when saving
@@ -49,7 +52,9 @@ class TiltSlidersCard extends Component {
     const header = (
       <div className="ui-card-title">
         {this.props.title}
-        &nbsp;
+        {this.props.tooltip
+          && <i id={`tiltSliderCard${this.props.id}`} className="fa fa-info-circle px-2" />
+        }
         {this.props.modifiable
           && <i className="fa fa-check" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
         }
@@ -77,6 +82,10 @@ class TiltSlidersCard extends Component {
             style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
           />
         </div>
+        <Tooltip
+          for={`#tiltSliderCard${this.props.id}`}
+          title={this.props.tooltip}
+        />
       </div>
     );
     return (

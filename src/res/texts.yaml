@@ -50,18 +50,30 @@ recommendations:
     tooltip:
       FR: "Pour profiter des bénéfices de la bascule en matière de réduction de la pression, il est recommandé de basculer à une fréquence de 30 minutes, pendant une à deux minutes et à un angle de 45°"
       EN: "Pour profiter des bénéfices de la bascule en matière de réduction de la pression, il est recommandé de basculer à une fréquence de 30 minutes, pendant une à deux minutes et à un angle de 45°"
+    recPanel:
+      tooltip:
+        FR: "La bascule de votre fauteuil est un moyen efficace pour réduire la pression sous vos fesses afin d’éviter de développer des plaies de pression. Pour réduire la pression sous vos fesses de manière efficace, il est recommandé de basculer au maximum le plus souvent et le plus longtemps possible."
+        EN: "La bascule de votre fauteuil est un moyen efficace pour réduire la pression sous vos fesses afin d’éviter de développer des plaies de pression. Pour réduire la pression sous vos fesses de manière efficace, il est recommandé de basculer au maximum le plus souvent et le plus longtemps possible. "
   reduceSwelling:
     FR: "Reduire l’œdème aux membres inférieurs"
     EN: "Reduce swelling of the legs"
     tooltip:
       FR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
       EN: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+    recPanel:
+      tooltip:
+        FR: "L’utilisation combinée de la bascule et du repose-jambes de votre fauteuil est un moyen efficace pour diminuer l’enflure aux jambes. "
+        EN: "L’utilisation combinée de la bascule et du repose-jambes de votre fauteuil est un moyen efficace pour diminuer l’enflure aux jambes. "
   reducePain:
     FR: "Réduire la douleur"
     EN: "Reduce pain"
     tooltip:
       FR: "Pour diminuer ou bien gérer la douleur, il est recommandé de basculer selon les préférences de l’usager."
       EN: "Pour diminuer ou bien gérer la douleur, il est recommandé de basculer selon les préférences de l’usager."
+    recPanel:
+      tooltip:
+        FR: "La bascule de votre fauteuil peut vous aider à mieux gérer vos douleurs."
+        EN: "La bascule de votre fauteuil peut vous aider à mieux gérer vos douleurs."
   frequency:
     FR: "Fréquence de bascule"
     EN: "Tilt frequency"
@@ -77,12 +89,20 @@ recommendations:
     tooltip:
       FR: "Pour augmenter la stabilité au fauteuil lors de la conduite, il est recommandé de basculer à un angle de 5 - 25°. De plus, pour éviter de glisser vers l’avant dans d’une pente descendante, il est recommandé de basculer à un angle de 5 - 30°."
       EN: "Pour augmenter la stabilité au fauteuil lors de la conduite, il est recommandé de basculer à un angle de 5 - 25°. De plus, pour éviter de glisser vers l’avant dans d’une pente descendante, il est recommandé de basculer à un angle de 5 - 30°."
+    recPanel:
+      tooltip:
+        FR: "Lors de vos déplacements quotidiens et lorsque vous descendez une pente, il est possible que vous glissiez de votre fauteuil. En basculant vers l’arrière, vous diminuerez vos risques de glisser vers l’avant."
+        EN: "Lors de vos déplacements quotidiens et lorsque vous descendez une pente, il est possible que vous glissiez de votre fauteuil. En basculant vers l’arrière, vous diminuerez vos risques de glisser vers l’avant."
   slidingRest:
     FR: "Réduire le glissement au repos"
     EN: "Reduce sliding while at rest"
     tooltip:
       FR: "Pour augmenter la stabilité au fauteuil en position stationnaire, il est recommandé de basculer à un angle de 5 - 25°."
       EN: "Pour augmenter la stabilité au fauteuil en position stationnaire, il est recommandé de basculer à un angle de 5 - 25°."
+    recPanel:
+      tooltip:
+        FR: "Lorsque vous êtes immobile, il est possible que vous glissiez de votre fauteuil. En basculant vers l’arrière, vous diminuerez vos risques de glisser vers l’avant."
+        EN: "Lorsque vous êtes immobile, il est possible que vous glissiez de votre fauteuil. En basculant vers l’arrière, vous diminuerez vos risques de glisser vers l’avant."
   pain:
     FR: "Réduire la douleur"
     EN: "Reduce pain"
@@ -95,6 +115,10 @@ recommendations:
     tooltip:
       FR: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour se reposer ou bien pour faire une sieste."
       EN: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour se reposer ou bien pour faire une sieste."
+    recPanel:
+      tooltip:
+        FR: "Avez-vous déjà pensé à utiliser votre bascule pour vous reposer quelques minutes ou bien pour faire une sieste? "
+        EN: "Avez-vous déjà pensé à utiliser votre bascule pour vous reposer quelques minutes ou bien pour faire une sieste? "
     recommendation:
       FR: "Recommandations pour le repos"
       EN: "Recommendations to permit a time of rest in the wheelchair "
@@ -107,6 +131,10 @@ recommendations:
     recommendation:
       FR: "Recommandations pour faciliter le transport"
       EN: "Recommendations to ease transfers"
+    recPanel:
+      tooltip:
+        FR: "La bascule arrière de votre fauteuil facilite les transferts avec le lève-personne. De plus, la bascule avant de votre fauteuil peut vous aider à vous lever plus facilement de votre siège lors de vos transferts (ex. au lit, à la toilette, sur une chaise)."
+        EN: "La bascule arrière de votre fauteuil facilite les transferts avec le lève-personne. De plus, la bascule avant de votre fauteuil peut vous aider à vous lever plus facilement de votre siège lors de vos transferts (ex. au lit, à la toilette, sur une chaise)."
   comfort:
     FR: "Améliorer le confort"
     EN: "Improve comfort"
@@ -116,6 +144,10 @@ recommendations:
     recommendation:
       FR: "Recommandations pour améliorer le confort"
       EN: "Recommendations to improve comfort"
+    recPanel:
+      tooltip:
+        FR: "La bascule de votre fauteuil est un moyen efficace pour améliorer votre confort au fauteuil."
+        EN: "La bascule de votre fauteuil est un moyen efficace pour améliorer votre confort au fauteuil."
   other:
     FR: "Autre"
     EN: "Other"
@@ -132,14 +164,11 @@ recommendations:
 
 goals:
   FR: "Objectifs de bascule"
-  EN: "My tilt goals"
+  EN: "Tilt goals"
   personalGoals:
-    FR: "Objectifs personnel"
-    EN: "My goals"
-  ClinicianRecommendations:
-    FR: "Recommandations du clinicien"
-    EN: "Clinician recommendations"
-  RecommendedGoals:
+    FR: "Objectif personnel"
+    EN: "Personal goal"
+  recommendedGoals:
     FR: "Objectif recommandé"
     EN: "Recommended goal"
   tiltFrequency:
