@@ -18,7 +18,6 @@ import { post } from '../../utilities/secureHTTP';
 class Permissions extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     changeDataAgreement: PropTypes.func.isRequired,
     dataAgreement: PropTypes.bool.isRequired,
     hasErrors: PropTypes.bool.isRequired,
@@ -53,7 +52,6 @@ class Permissions extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

@@ -5,13 +5,13 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import configureMockStore from 'redux-mock-store';
 import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import toJson from 'enzyme-to-json';
 
+import Adapter from 'enzyme-adapter-react-16';
+import PropTypes from 'prop-types';
+import React from 'react';
+import configureMockStore from 'redux-mock-store';
+import toJson from 'enzyme-to-json';
 import TiltSlidersCard from '../../../src/components/goal/tiltSlidersCard';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -30,7 +30,7 @@ describe('TiltSlidersCard Tests', () => {
   };
 
   it('should have proptypes', () => {
-    const actualValue = TiltSlidersCard.WrappedComponent.propTypes;
+    const actualValue = TiltSlidersCard.propTypes;
 
     const expectedValue = {
       language: PropTypes.string.isRequired,

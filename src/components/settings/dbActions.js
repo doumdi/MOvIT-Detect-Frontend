@@ -6,17 +6,17 @@
  */
 
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { URL } from '../../redux/applicationReducer';
-import { T } from '../../utilities/translator';
 import ConfirmationPopup from '../popups/confirmationPopup';
+import { T } from '../../utilities/translator';
+import { URL } from '../../redux/applicationReducer';
 import { post } from '../../utilities/secureHTTP';
 
 class DbActions extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
   }
 
   constructor(props) {
@@ -90,7 +90,6 @@ class DbActions extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 

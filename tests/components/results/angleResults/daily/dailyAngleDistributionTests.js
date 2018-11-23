@@ -15,8 +15,8 @@ import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
-import { URL, OFFSET } from '../../../../../src/redux/applicationReducer';
 import DailyAngleDistribution from '../../../../../src/components/results/angleResults/daily/dailyAngleDistribution';
+import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -70,7 +70,6 @@ describe('DailyAngleDistribution Tests', () => {
       reduceSlidingMoving: PropTypes.bool.isRequired,
       reduceSlidingRest: PropTypes.bool.isRequired,
       date: PropTypes.instanceOf(Date).isRequired,
-      header: PropTypes.object.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

@@ -28,7 +28,6 @@ import { get } from '../utilities/secureHTTP';
 class Settings extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     dataAgreement: PropTypes.bool.isRequired,
     totalMemory: PropTypes.number.isRequired,
     usedMemory: PropTypes.number.isRequired,
@@ -219,7 +218,6 @@ class Settings extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
     dataAgreement: state.settingsReducer.dataAgreement,
     totalMemory: state.settingsReducer.totalMemory,
     usedMemory: state.settingsReducer.usedMemory,

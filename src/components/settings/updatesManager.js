@@ -20,7 +20,6 @@ const POLLING_INTERVAL = 10000;
 class UpdatesManager extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    header: PropTypes.object,
     isUpdateAvailable: PropTypes.bool.isRequired,
     changeIsUpdateAvailable: PropTypes.func.isRequired,
     hasErrors: PropTypes.bool.isRequired,

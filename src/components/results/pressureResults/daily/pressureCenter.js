@@ -18,9 +18,9 @@ import {
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
 import { connect } from 'react-redux';
-import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { URL, OFFSET } from '../../../../redux/applicationReducer';
+import CustomCard from '../../../shared/card';
+import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 import { milliToTimeString } from '../../../../utils/timeFormat';
@@ -30,7 +30,6 @@ class PressureCenter extends Component {
     language: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    header: PropTypes.object,
   };
 
   constructor(props, context) {
@@ -201,7 +200,6 @@ class PressureCenter extends Component {
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
-    header: state.applicationReducer.header,
   };
 }
 
