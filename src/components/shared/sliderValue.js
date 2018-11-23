@@ -5,9 +5,13 @@
  * @author Benjamin Roy
  */
 
+import '../../styles/components/sliderValue.css';
+
 import React, { Component } from 'react';
+
 import PropTypes from 'prop-types';
 import { Slider } from 'primereact/components/slider/Slider';
+import { Spinner } from 'primereact/components/spinner/Spinner';
 
 export default class SliderValue extends Component {
   static propTypes = {
@@ -20,12 +24,6 @@ export default class SliderValue extends Component {
   };
 
   render() {
-    const style = {
-      border: 0,
-      width: '60px',
-      background: 'rgba(0,0,0,0)',
-    };
-
     return (
       <div className="row">
         <div className="col-12">
@@ -41,15 +39,14 @@ export default class SliderValue extends Component {
               />
             </div>
             <div className="pb-2 col-12 col-md-3">
-              <input
+              <Spinner
                 id="value"
-                type="number"
-                style={style}
-                value={this.props.value}
-                onChange={e => this.props.onChange(e.target.value)}
                 min={this.props.min || 0}
                 max={this.props.max}
+                onChange={e => this.props.onChange(e.value)}
+                value={this.props.value}
               />
+              &nbsp;
               <span>{this.props.unit}</span>
             </div>
           </div>

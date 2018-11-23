@@ -5,14 +5,15 @@
  * @author Benjamin Roy
  */
 
-import React from 'react';
-import sinon from 'sinon';
 import Enzyme, { shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import toJson from 'enzyme-to-json';
-import { Slider } from 'primereact/components/slider/Slider';
 
+import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { Slider } from 'primereact/components/slider/Slider';
 import SliderValue from '../../../src/components/shared/sliderValue';
+import { Spinner } from 'primereact/components/spinner/Spinner';
+import sinon from 'sinon';
+import toJson from 'enzyme-to-json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -43,7 +44,7 @@ describe('SliderValue Tests', () => {
   it('should trigger onChange when simulating a change event on the input field', () => {
     const wrapper = shallow(<SliderValue {...props} />);
 
-    wrapper.find('#value').simulate('change', { target: { value: 10 } });
+    wrapper.find(Spinner).simulate('change', { value: 10 });
 
     expect(spy.calledOnce).toEqual(true);
     expect(spy.getCalls()[0].args[0]).toEqual(10);
