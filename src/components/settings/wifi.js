@@ -72,7 +72,7 @@ class Wifi extends Component {
             this.props.changeIsConnected(true);
           }
         } catch {
-          // window.clearInterval(connectionValidation);
+          window.clearInterval(connectionValidation);
           this.setState({ ...this.state, connecting: false });
           this.props.changeIsConnected(false);
         }

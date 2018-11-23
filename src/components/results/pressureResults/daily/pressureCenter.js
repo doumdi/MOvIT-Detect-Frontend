@@ -24,6 +24,7 @@ import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 import { milliToTimeString } from '../../../../utils/timeFormat';
+import NoDataMessage from '../../../shared/noDataMessage';
 
 class PressureCenter extends Component {
   static propTypes = {
@@ -79,6 +80,9 @@ class PressureCenter extends Component {
   }
 
   getChart() {
+    if (this.state.quadrants.length === 0 || !this.state.centers.length === 0) {
+      return <NoDataMessage />;
+    }
     return (
       <div className="col-lg-6 offset-lg-3">
         <svg viewBox="0 00 350 320">

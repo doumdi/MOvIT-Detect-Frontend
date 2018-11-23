@@ -566,3 +566,6 @@ demo:
 error:
   FR: "Une erreur est survenue. Veuillez contacter votre administrateur."
   EN: "An error occured. Please contact your administrator."
+noData:
+  FR: "Il n'y a pas de données pour cette période."
+  EN: "There is no data for this period."
