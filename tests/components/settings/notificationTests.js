@@ -11,7 +11,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import PropTypes from 'prop-types';
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
-import sinon from 'sinon';
+// import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
 import Notification from '../../../src/components/settings/notification';
 
@@ -66,7 +66,7 @@ describe('Notification Tests', () => {
     wrapper.find('#turn-off-button').simulate('click');
 
     expect(spy.calledOnce).toEqual(true);
-  });*/
+  }); */
 
   it('should hide the countdown when the mat calibration is completed', () => {
     wrapper.instance().matCalibrationCompleted();

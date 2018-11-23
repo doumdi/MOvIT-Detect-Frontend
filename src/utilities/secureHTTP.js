@@ -13,7 +13,7 @@ function logout() {
   localStorage.setItem('token', '');
   localStorage.setItem('profile', '');
   document.location.href = '/home';
-} 
+}
 
 export async function get(url) {
   try {
