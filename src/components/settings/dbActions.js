@@ -9,9 +9,10 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button } from 'primereact/components/button/Button';
+import CustomCard from '../shared/card';
 import ConfirmationPopup from '../popups/confirmationPopup';
 import { T } from '../../utilities/translator';
-import { URL } from '../../redux/applicationReducer';
 import { post } from '../../utilities/secureHTTP';
 
 class DbActions extends Component {
@@ -56,18 +57,39 @@ class DbActions extends Component {
   }
 
   render() {
+    const databaseButtons = (
+      <div className="row">
+        <div className="ml-3 mb-2">
+          <Button
+            id="simulate-data-button"
+            type="button"
+            onClick={() => this.confirmDataSimulation()}
+            className="btn btn-lg"
+            label={T.translate(`settings.database.simulate.${this.props.language}`)}
+          />
+        </div>
+        <div className="ml-3 mb-2">
+          <Button
+            id="reset-data-button"
+            type="button"
+            onClick={() => this.confirmDatabaseReset()}
+            className="btn btn-lg"
+            label={T.translate(`settings.database.reset.${this.props.language}`)}
+          />
+        </div>
+      </div>
+    );
+    const header = (
+      <div className="ui-card-title">
+        <h2>{T.translate(`database.${this.props.language}`)}</h2>
+      </div>
+    );
     return (
-      <div className="row ml-2">
-        <div className="mr-3 mb-2">
-          <button id="simulate-data-button" type="button" onClick={() => this.confirmDataSimulation()} className="btn btn-lg">
-            {T.translate(`settings.database.simulate.${this.props.language}`)}
-          </button>
-        </div>
-        <div className="mr-3 mb-2">
-          <button id="reset-data-button" type="button" onClick={() => this.confirmDatabaseReset()} className="btn btn-lg">
-            {T.translate(`settings.database.reset.${this.props.language}`)}
-          </button>
-        </div>
+      <div className="">
+        <CustomCard
+          header={header}
+          element={databaseButtons}
+        />
         <ConfirmationPopup
           title={T.translate(`settings.database.warning.title.${this.props.language}`)}
           body={T.translate(`settings.database.warning.message.${this.props.language}`)}

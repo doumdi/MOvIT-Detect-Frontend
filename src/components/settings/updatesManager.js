@@ -8,8 +8,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button } from 'primereact/components/button/Button';
 import { get, post } from '../../utilities/secureHTTP';
-
 import ConfirmationPopup from '../popups/confirmationPopup';
 import ErrorMessage from '../shared/errorMessage';
 import { T } from '../../utilities/translator';
@@ -81,14 +81,14 @@ class UpdatesManager extends Component {
     }
     return (
       <div>
-        <button
+        <Button
           id="updateButton"
-          className={`btn ui-button-secondary ${this.props.isUpdateAvailable ? 'btn-danger' : 'btn-default'}`}
+          style={{ backgroundColor: this.props.isUpdateAvailable ? '#dc3545' : '#fafafa' }}
+          className="p-button-secondary"
           disabled={!this.props.isUpdateAvailable}
           onClick={() => this.openModal()}
-        >
-          <i className="fa fa-2x fa-refresh" />
-        </button>
+          icon="fa fa-2x fa-refresh"
+        />
         <ConfirmationPopup
           title={T.translate(`settings.system.update.${this.props.language}`)}
           body={T.translate(`settings.system.update.confirmation.${this.props.language}`)}

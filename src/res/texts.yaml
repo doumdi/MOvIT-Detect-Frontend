@@ -628,3 +628,11 @@ error:
 noData:
   FR: "Il n'y a pas de données pour cette période."
   EN: "There is no data for this period."
+
+calibNotif:
+  FR: "Calibration et notification"
+  EN: "Calibration and notification"
+
+database:
+  FR: "Base de données"
+  EN: "Database"

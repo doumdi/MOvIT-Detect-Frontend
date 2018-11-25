@@ -2,7 +2,7 @@
 
 exports[`Settings Tests should match the snapshot 1`] = `
 <div
-  className="mt-3"
+  className="mt-4"
 >
   <h2
     className="header text-center"

@@ -217,7 +217,7 @@ class Recommendation extends Component {
       return <Loading key="loading" />;
     }
     return (
-      <div className="mt-3">
+      <div className="mt-5">
         <div className="container">
           <center>
             <h2>{T.translate(`recommendations.${this.props.language}`)}</h2>
