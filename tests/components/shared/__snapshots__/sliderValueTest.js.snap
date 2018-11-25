@@ -1,52 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SliderValue Tests should match the snapshot 1`] = `
-<div
-  className="row"
->
+<div>
   <div
-    className="col-12"
+    className="row"
   >
     <span>
       This is a test
     </span>
+  </div>
+  <div
+    className="row"
+  >
     <div
-      className="row"
+      className="col-12 col-md-10"
     >
-      <div
-        className="col-12 col-md-6"
-      >
-        <Slider
-          animate={false}
-          className=" mt-2"
-          id={null}
-          max={20}
-          min={10}
-          onChange={[Function]}
-          orientation="horizontal"
-          range={false}
-          step={null}
-          style={null}
-          value={12}
-        />
-      </div>
-      <div
-        className="pb-2 col-12 col-md-3"
-      >
-        <input
-          className="inputStyle"
-          id="value"
-          max={20}
-          min={10}
-          onChange={[Function]}
-          type="number"
-          value={12}
-        />
-         
-        <span>
-          m
-        </span>
-      </div>
+      <Slider
+        animate={false}
+        className=" mt-2"
+        id={null}
+        max={20}
+        min={10}
+        onChange={[Function]}
+        orientation="horizontal"
+        range={false}
+        step={null}
+        style={null}
+        value={12}
+      />
+    </div>
+    <div
+      className="pb-2 col-12 col-md-2"
+    >
+      <input
+        className="inputStyle"
+        id="value"
+        max={20}
+        min={10}
+        onChange={[Function]}
+        type="number"
+        value={12}
+      />
+       
+      <span>
+        m
+      </span>
     </div>
   </div>
 </div>

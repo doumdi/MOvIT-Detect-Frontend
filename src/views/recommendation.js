@@ -229,34 +229,32 @@ class Recommendation extends Component {
             ? <ErrorMessage />
             : (
               <div>
-                <div className="row pl-3">
-                  <div className="col-11 pl-0">
-                    <Checkbox
-                      inputId="reduceWeightCheck"
-                      label="Reduce weight"
-                      onChange={e => this.props.changeReduceWeight(e.checked)}
-                      checked={this.props.reduceWeight}
-                    />
-                    <label htmlFor="reduceWeightCheck" id="test">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
-                    <i id="reduceWeightInfo" className="fa fa-info-circle pl-2" />
-                    <Tooltip
-                      for="#reduceWeightInfo"
-                      title={T.translate(`recommendations.reduceWeight.tooltip.${this.props.language}`)}
-                    />
-                    {this.props.reduceWeight
-                      ? (
-                        <TiltSliders
-                          tiltFrequecy={this.props.tiltFrequencyWeight}
-                          tiltLength={this.props.tiltLengthWeight}
-                          tiltAngle={this.props.tiltAngleWeight}
-                          maxAngle={this.state.maxSliderAngle}
-                          onFrequencyChange={this.changeTitlFrequency.bind(this)}
-                          onLengthChange={this.changeTiltLength.bind(this)}
-                          onAngleChange={this.changeTiltAngle.bind(this)}
-                        />
-                      )
-                      : null}
-                  </div>
+                <div className="pt-2 pl-3 mt-1">
+                  <Checkbox
+                    inputId="reduceWeightCheck"
+                    label="Reduce weight"
+                    onChange={e => this.props.changeReduceWeight(e.checked)}
+                    checked={this.props.reduceWeight}
+                  />
+                  <label htmlFor="reduceWeightCheck" id="test">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
+                  <i id="reduceWeightInfo" className="fa fa-info-circle pl-2" />
+                  <Tooltip
+                    for="#reduceWeightInfo"
+                    title={T.translate(`recommendations.reduceWeight.tooltip.${this.props.language}`)}
+                  />
+                  {this.props.reduceWeight
+                    ? (
+                      <TiltSliders
+                        tiltFrequecy={this.props.tiltFrequencyWeight}
+                        tiltLength={this.props.tiltLengthWeight}
+                        tiltAngle={this.props.tiltAngleWeight}
+                        maxAngle={this.state.maxSliderAngle}
+                        onFrequencyChange={this.changeTitlFrequency.bind(this)}
+                        onLengthChange={this.changeTiltLength.bind(this)}
+                        onAngleChange={this.changeTiltAngle.bind(this)}
+                      />
+                    )
+                    : null}
                 </div>
                 <AngleRecommendation
                   id="slidingMoving"
@@ -287,6 +285,7 @@ class Recommendation extends Component {
                   onChangeValue={this.props.reduceSwellingRecommendation}
                   tooltip={T.translate(`recommendations.reduceSwelling.tooltip.${this.props.language}`)}
                 />
+
                 <TextRecommendation
                   id="reducePain"
                   onChangeActive={this.props.changeReducePain}
