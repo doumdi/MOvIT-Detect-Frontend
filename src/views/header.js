@@ -108,32 +108,19 @@ class Header extends Component {
             </ul>
 
             <li className="nav navbar-nav pl-1">
-              <button className="btn navBtn" type="button" onClick={this.props.changeLanguage}>
-                {this.props.language === 'FR'
-                  ? <a className="small-font navLink">EN</a>
-                  : <a className="small-font navLink">FR</a>
-                }
-              </button>
+              <a className="small-font navLink" onClick={this.props.changeLanguage}>{this.props.language === 'FR' ? 'EN' : 'FR'}</a>
             </li>
             <li className="nav navbar-nav pl-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-              <Link to="/settings">
-                <button className="btn navBtn navLink" type="button">
-                  <i className="fa fa-cog" />
-                </button>
-              </Link>
+              <Link to="/settings" className="navLink px-2"><i className="fa fa-cog" /></Link>
             </li>
             {this.props.profile
               && (
-                <li className="nav navbar-nav pl-1">
-                  <button className="btn navBtn" onClick={() => this.logout()} type="button">
-                    <Link to="/home" className="navLink">
-                      {T.translate(`welcome.logout.${this.props.language}`)}
-                      {' '}
-                      &nbsp;
-                      <i className="fa fa-sign-out" />
-                    </Link>
-                  </button>
-                </li>
+              <li className="nav navbar-nav pl-1">
+                <Link to="/home" className="navLink" onClick={() => this.logout()}>
+                  {T.translate(`welcome.logout.${this.props.language}`)}
+                  <i className="fa fa-sign-out pl-2" />
+                </Link>
+              </li>
               )
             }
           </div>

@@ -127,9 +127,9 @@ class ResultsCalendar extends Component {
     };
 
     return (
-      <div className="mt-3">
+      <div className="mt-5">
         <div style={style.content}>
-          <h2>{title}</h2>
+          <h2 className="mb-4">{title}</h2>
           <span>Date: </span>
           {
             this.state.period === 'day'

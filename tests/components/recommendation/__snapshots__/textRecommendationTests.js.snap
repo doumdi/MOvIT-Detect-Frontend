@@ -41,6 +41,20 @@ exports[`TextRecommandation Tests should match the snapshot when the recommendat
       value=""
     />
   </div>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#textRecInfoundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
 </div>
 `;
 
@@ -69,5 +83,19 @@ exports[`TextRecommandation Tests should match the snapshot when the recommendat
   >
     Test
   </label>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#textRecInfoundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
 </div>
 `;

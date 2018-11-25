@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button } from 'primereact/components/button/Button';
 import { get, post } from '../../utilities/secureHTTP';
-
 import ErrorMessage from '../shared/errorMessage';
 import Loading from '../shared/loading';
 import LogoPassword from '../shared/logoPassword';
@@ -103,12 +103,15 @@ class Wifi extends Component {
       <div>
         {this.props.isConnected
           && (
-            <h6>
-              {T.translate(`settings.wifi.connected.${this.props.language}`)}
-              <button type="button" className="btn btn-link" onClick={() => this.enableConnection()}>
-                <h6>{T.translate(`settings.wifi.changeWifi.${this.props.language}`)}</h6>
-              </button>
-            </h6>
+            <div>
+              <h6>{T.translate(`settings.wifi.connected.${this.props.language}`)}</h6>
+              <Button
+                type="button"
+                className="btn btn-link"
+                onClick={() => this.enableConnection()}
+                label={T.translate(`settings.wifi.changeWifi.${this.props.language}`)}
+              />
+            </div>
           )
         }
         {!this.props.isConnected

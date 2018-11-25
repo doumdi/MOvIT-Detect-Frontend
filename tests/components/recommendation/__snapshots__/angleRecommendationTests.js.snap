@@ -36,6 +36,20 @@ exports[`AngleRecommandation Tests should match the snapshot when the recommenda
       value={0}
     />
   </div>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#angleRecInfoundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
 </div>
 `;
 
@@ -63,5 +77,19 @@ exports[`AngleRecommandation Tests should match the snapshot when the recommenda
   >
     Test
   </label>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#angleRecInfoundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
 </div>
 `;
