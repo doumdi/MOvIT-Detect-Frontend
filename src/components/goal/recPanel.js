@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import CustomCard from '../shared/card';
 
 export default class RecPanel extends Component {
@@ -15,6 +16,8 @@ export default class RecPanel extends Component {
     condition: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    tooltip: PropTypes.string,
   };
 
   render() {
@@ -24,17 +27,29 @@ export default class RecPanel extends Component {
         height: '100%',
       },
     };
+    const header = (
+      <div className="ui-card-title">
+        {this.props.title}
+        {this.props.tooltip
+          && <i id={`recPanel${this.props.id}`} className="fa fa-info-circle px-2" />
+        }
+      </div>
+    );
     return (
       <div className="col-12 col-sm-6 col-md-4" style={style}>
         {this.props.condition
           && (
             <CustomCard
-              header={<span className="ui-card-title">{this.props.title}</span>}
+              header={header}
               element={<span>{this.props.value}</span>}
               style={style.card}
             />
           )
         }
+        <Tooltip
+          for={`#recPanel${this.props.id}`}
+          title={this.props.tooltip}
+        />
       </div>
     );
   }

@@ -72,6 +72,7 @@ class PressureRecPanel extends Component {
               {this.state.modifieGoal
                 ? (
                   <TiltSlidersCard
+                    id="reduceWeight"
                     title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
                     tiltFrequecy={this.props.tiltFrequencyGoal}
                     tiltLength={this.props.tiltLengthGoal}
@@ -82,16 +83,19 @@ class PressureRecPanel extends Component {
                     onAngleChange={this.props.changeTiltAngleGoal}
                     modifiable={this.props.profile === 'user'}
                     onModifie={this.toggleEditing}
+                    tooltip={T.translate(`recommendations.reduceWeight.recPanel.tooltip.${this.props.language}`)}
                   />
                 )
                 : (
                   <TiltLabels
+                    id="reduceWeight"
                     title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
                     tiltFrequecy={this.props.tiltFrequencyGoal}
                     tiltLength={this.props.tiltLengthGoal}
                     tiltAngle={this.props.tiltAngleGoal}
                     modifiable={this.props.profile === 'user'}
                     onModifie={this.toggleEditing}
+                    tooltip={T.translate(`recommendations.reduceWeight.recPanel.tooltip.${this.props.language}`)}
                   />
                 )}
             </div>

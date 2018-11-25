@@ -6,10 +6,10 @@
  */
 
 import React, { Component } from 'react';
-
-import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Checkbox } from 'primereact/components/checkbox/Checkbox';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import PropTypes from 'prop-types';
 import SliderValue from '../shared/sliderValue';
 import { T } from '../../utilities/translator';
 
@@ -22,6 +22,8 @@ class AngleRecommendation extends Component {
     value: PropTypes.number,
     onChangeActive: PropTypes.func.isRequired,
     onChangeValue: PropTypes.func.isRequired,
+    tooltip: PropTypes.string,
+    id: PropTypes.string,
   }
 
   render() {
@@ -35,6 +37,10 @@ class AngleRecommendation extends Component {
             checked={this.props.recActive || false}
           />
           <label htmlFor="activeRecCheck">{this.props.title}</label>
+          {this.props.tooltip
+            && (
+            <i id={`angleRecInfo${this.props.id}`} className="fa fa-info-circle pl-2" />
+            )}
           {this.props.recActive
             && (
               <div className="col-12 col-md-10 ml-3">
@@ -50,6 +56,10 @@ class AngleRecommendation extends Component {
             )
           }
         </div>
+        <Tooltip
+          for={`#angleRecInfo${this.props.id}`}
+          title={this.props.tooltip}
+        />
       </div>
     );
   }

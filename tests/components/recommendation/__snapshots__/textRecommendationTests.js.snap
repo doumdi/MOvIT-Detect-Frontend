@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports['TextRecommandation Tests should match the snapshot when the recommendation is active 1'] = `
+exports[`TextRecommandation Tests should match the snapshot when the recommendation is active 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -49,10 +49,24 @@ exports['TextRecommandation Tests should match the snapshot when the recommendat
       </div>
     </div>
   </div>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#textRecInfoundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
 </div>
 `;
 
-exports['TextRecommandation Tests should match the snapshot when the recommendation is inactive 1'] = `
+exports[`TextRecommandation Tests should match the snapshot when the recommendation is inactive 1`] = `
 <div
   className="pt-2 pl-3 row"
 >
@@ -81,5 +95,19 @@ exports['TextRecommandation Tests should match the snapshot when the recommendat
       Test
     </label>
   </div>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#textRecInfoundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
 </div>
 `;

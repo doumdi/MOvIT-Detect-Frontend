@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import { InputText } from 'primereact/components/inputtext/InputText';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { T } from '../../utilities/translator';
 
 
@@ -21,6 +22,8 @@ class TextRecommendation extends Component {
     value: PropTypes.string,
     onChangeActive: PropTypes.func.isRequired,
     onChangeValue: PropTypes.func.isRequired,
+    id: PropTypes.string,
+    tooltip: PropTypes.string,
   };
 
   affectDefaultValue(checked) {
@@ -43,7 +46,10 @@ class TextRecommendation extends Component {
             checked={this.props.recActive || false}
           />
           <label htmlFor="activeRecCheck" className="mt-1">{this.props.title}</label>
-
+          {this.props.tooltip
+            && (
+              <i id={`textRecInfo${this.props.id}`} className="fa fa-info-circle pl-2" />
+            )}
           {this.props.recActive
             && (
             <div className="row">
@@ -61,6 +67,10 @@ class TextRecommendation extends Component {
             )
           }
         </div>
+        <Tooltip
+          for={`#textRecInfo${this.props.id}`}
+          title={this.props.tooltip}
+        />
       </div>
     );
   }

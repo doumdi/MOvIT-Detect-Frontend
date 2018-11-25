@@ -19,17 +19,31 @@ exports[`RecPanel Tests should match the snapshot 1`] = `
       </span>
     }
     header={
-      <span
+      <div
         className="ui-card-title"
       >
         This is a test
-      </span>
+      </div>
     }
     style={
       Object {
         "height": "100%",
       }
     }
+  />
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#recPanelundefined"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title={null}
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
   />
 </div>
 `;
