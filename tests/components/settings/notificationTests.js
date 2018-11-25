@@ -11,9 +11,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import PropTypes from 'prop-types';
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
-// import sinon from 'sinon';
+import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
 import Notification from '../../../src/components/settings/notification';
+import CustomCard from '../../../src/components/shared/card';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -44,29 +45,32 @@ describe('Notification Tests', () => {
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
   });
 
-  /* it('should trigger calibrate when clicking on button', () => {
+  it('should trigger calibrate when clicking on button', () => {
     const spy = sinon.spy(wrapper.instance(), 'calibrate');
+    const element = shallow(wrapper.find(CustomCard).props().element);
 
-    wrapper.find('#calibrate-button').simulate('click');
+    element.find('#calibrate-button').simulate('click');
 
     expect(spy.calledOnce).toEqual(true);
   });
 
   it('should trigger turnOnNotification when clicking on button', () => {
     const spy = sinon.spy(wrapper.instance(), 'turnOnNotification');
+    const element = shallow(wrapper.find(CustomCard).props().element);
 
-    wrapper.find('#turn-on-button').simulate('click');
+    element.find('#turn-on-button').simulate('click');
 
     expect(spy.calledOnce).toEqual(true);
   });
 
   it('should trigger turnOffNotification when clicking on button', () => {
     const spy = sinon.spy(wrapper.instance(), 'turnOffNotification');
+    const element = shallow(wrapper.find(CustomCard).props().element);
 
-    wrapper.find('#turn-off-button').simulate('click');
+    element.find('#turn-off-button').simulate('click');
 
     expect(spy.calledOnce).toEqual(true);
-  }); */
+  });
 
   it('should hide the countdown when the mat calibration is completed', () => {
     wrapper.instance().matCalibrationCompleted();

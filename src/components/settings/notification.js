@@ -7,14 +7,14 @@
 
 import React, { Component } from 'react';
 
+import { Button } from 'primereact/components/button/Button';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'primereact/components/button/Button';
-import { URL } from '../../redux/applicationReducer';
-import CustomCard from '../shared/card';
 import ConfirmationPopup from '../popups/confirmationPopup';
 import Countdown from '../popups/countdown';
+import CustomCard from '../shared/card';
 import { T } from '../../utilities/translator';
+import { URL } from '../../redux/applicationReducer';
 import { get } from '../../utilities/secureHTTP';
 
 class Notification extends Component {
@@ -124,7 +124,6 @@ class Notification extends Component {
     );
     return (
       <div className="mt-5">
-
         <CustomCard
           header={header}
           element={buttons}
