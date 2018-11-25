@@ -10,8 +10,8 @@ import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { get, post } from '../utilities/secureHTTP';
-
 import AngleRecommendation from '../components/recommendation/angleRecommendation';
 import ErrorMessage from '../components/shared/errorMessage';
 import { GoalActions } from '../redux/goalReducer';
@@ -42,6 +42,8 @@ class Recommendation extends Component {
     reduceSlidingMoving: PropTypes.bool.isRequired,
     tiltAngleMoving: PropTypes.number.isRequired,
     tiltAngleRest: PropTypes.number.isRequired,
+    reduceSwelling: PropTypes.bool.isRequired,
+    reducePain: PropTypes.bool.isRequired,
     allowRest: PropTypes.bool.isRequired,
     easeTransfers: PropTypes.bool.isRequired,
     improveComfort: PropTypes.bool.isRequired,
@@ -153,23 +155,39 @@ class Recommendation extends Component {
 
   save() {
     const data = {
-      reduceWeight: {
+      reduceSwelling: this.props.swellingRecommendation,
+      reducePain: this.props.painRecommendation,
+    };
+
+    if (this.props.reduceWeight) {
+      data.reduceWeight = {
         tiltFrequency: this.props.tiltFrequencyWeight,
         tiltLength: this.props.tiltLengthWeight,
         tiltAngle: this.props.tiltAngleWeight,
-      },
-      reduceSlidingMoving: this.props.tiltAngleMoving,
-      reduceSlidingRest: this.props.tiltAngleRest,
-      reduceSwelling: this.props.swellingRecommendation,
-      reducePain: this.props.painRecommendation,
-      allowRest: this.props.restRecommendation,
-      easeTransfers: this.props.transferRecommendation,
-      improveComfort: this.props.comfortRecommendation,
-      other: {
+      };
+    }
+    if (this.props.reduceSlidingMoving) {
+      data.reduceSlidingMoving = this.props.tiltAngleMoving;
+    }
+    if (this.props.reduceSlidingRest) {
+      data.reduceSlidingRest = this.props.tiltAngleRest;
+    }
+    if (this.props.allowRest) {
+      data.allowRest = this.props.restRecommendation;
+    }
+    if (this.props.easeTransfers) {
+      data.easeTransfers = this.props.transferRecommendation;
+    }
+    if (this.props.improveComfort) {
+      data.improveComfort = this.props.comfortRecommendation;
+    }
+    if (this.props.other) {
+      data.other = {
         title: this.props.otherRecommendationsTitle,
         value: this.props.otherRecommendations,
-      },
-    };
+      };
+    }
+
     post(`${URL}goal`, data.reduceWeight);
     post(`${URL}recommandation`, data);
     this.props.history.push('/goals');
@@ -219,7 +237,12 @@ class Recommendation extends Component {
                       onChange={e => this.props.changeReduceWeight(e.checked)}
                       checked={this.props.reduceWeight}
                     />
-                    <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
+                    <label htmlFor="reduceWeightCheck" id="test">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
+                    <i id="reduceWeightInfo" className="fa fa-info-circle pl-2" />
+                    <Tooltip
+                      for="#reduceWeightInfo"
+                      title={T.translate(`recommendations.reduceWeight.tooltip.${this.props.language}`)}
+                    />
                     {this.props.reduceWeight
                       ? (
                         <TiltSliders
@@ -236,43 +259,72 @@ class Recommendation extends Component {
                   </div>
                 </div>
                 <AngleRecommendation
+                  id="slidingMoving"
                   recActive={this.props.reduceSlidingMoving}
                   title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
                   maxAngle={this.state.maxSliderAngle}
                   value={this.props.tiltAngleMoving}
                   onChangeActive={this.props.changeReduceSlidingMoving}
                   onChangeValue={this.props.changeTiltAngleMoving}
+                  tooltip={T.translate(`recommendations.slidingMoving.tooltip.${this.props.language}`)}
                 />
                 <AngleRecommendation
+                  id="slidingRest"
                   recActive={this.props.reduceSlidingRest}
                   title={T.translate(`recommendations.slidingRest.${this.props.language}`)}
                   maxAngle={this.state.maxSliderAngle}
                   value={this.props.tiltAngleRest}
                   onChangeActive={this.props.changeReduceSlidingRest}
                   onChangeValue={this.props.changeTiltAngleRest}
+                  tooltip={T.translate(`recommendations.slidingRest.tooltip.${this.props.language}`)}
                 />
                 <TextRecommendation
+                  id="reduceSwelling"
+                  onChangeActive={this.props.changeReduceSwelling}
+                  recActive={this.props.reduceSwelling}
+                  title={T.translate(`recommendations.reduceSwelling.${this.props.language}`)}
+                  value={this.props.swellingRecommendation}
+                  onChangeValue={this.props.reduceSwellingRecommendation}
+                  tooltip={T.translate(`recommendations.reduceSwelling.tooltip.${this.props.language}`)}
+                />
+                <TextRecommendation
+                  id="reducePain"
+                  onChangeActive={this.props.changeReducePain}
+                  recActive={this.props.reducePain}
+                  title={T.translate(`recommendations.reducePain.${this.props.language}`)}
+                  value={this.props.restRecommendation}
+                  onChangeValue={this.props.allowRestRecommendation}
+                  tooltip={T.translate(`recommendations.reducePain.tooltip.${this.props.language}`)}
+                />
+                <TextRecommendation
+                  id="allowRest"
                   onChangeActive={this.props.changeAllowRest}
                   recActive={this.props.allowRest}
                   title={T.translate(`recommendations.rest.${this.props.language}`)}
-                  value={this.props.restRecommendation}
-                  onChangeValue={this.props.allowRestRecommendation}
+                  value={this.props.painRecommendation}
+                  onChangeValue={this.props.reducePainRecommendation}
+                  tooltip={T.translate(`recommendations.rest.tooltip.${this.props.language}`)}
                 />
                 <TextRecommendation
+                  id="easeTransfer"
                   onChangeActive={this.props.changeEaseTransfers}
                   recActive={this.props.easeTransfers}
                   title={T.translate(`recommendations.transfer.${this.props.language}`)}
                   value={this.props.transferRecommendation}
                   onChangeValue={this.props.easeTransfersRecommendation}
+                  tooltip={T.translate(`recommendations.transfer.tooltip.${this.props.language}`)}
                 />
                 <TextRecommendation
+                  id="improveComfort"
                   onChangeActive={this.props.changeImproveComfort}
                   recActive={this.props.improveComfort}
                   title={T.translate(`recommendations.comfort.${this.props.language}`)}
                   value={this.props.comfortRecommendation}
                   onChangeValue={this.props.improveComfortRecommendation}
+                  tooltip={T.translate(`recommendations.comfort.tooltip.${this.props.language}`)}
                 />
                 <OtherRecommendation
+                  id="other"
                   onChangeActive={this.props.changeOther}
                   recActive={this.props.other}
                   title={T.translate(`recommendations.other.${this.props.language}`)}
@@ -280,6 +332,7 @@ class Recommendation extends Component {
                   value={this.props.otherRecommendations}
                   onChangeValue={this.props.otherRecommendation}
                   onChangeRecTitle={this.props.otherRecommendationTitle}
+                  tooltip={T.translate(`recommendations.other.tooltip.${this.props.language}`)}
                 />
                 <SubmitButtons
                   onSave={this.save.bind(this)}

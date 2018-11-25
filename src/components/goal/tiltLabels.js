@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import CustomCard from '../shared/card';
 import { T } from '../../utilities/translator';
 
@@ -21,6 +22,8 @@ class TiltLabels extends Component {
     tiltAngle: PropTypes.number,
     modifiable: PropTypes.bool,
     onModifie: PropTypes.func,
+    id: PropTypes.string,
+    tooltip: PropTypes.string,
   };
 
   render() {
@@ -33,7 +36,9 @@ class TiltLabels extends Component {
     const header = (
       <div className="ui-card-title">
         {this.props.title}
-        &nbsp;
+        {this.props.tooltip
+          && <i id={`tiltLabel${this.props.id}`} className="fa fa-info-circle px-2" />
+        }
         {this.props.modifiable
           && <i className="fa fa-pencil" onClick={() => this.props.onModifie()} style={{ cursor: 'pointer' }} />
         }
@@ -44,7 +49,7 @@ class TiltLabels extends Component {
         <div className=" col-12 col-md-4 ml-md-4">
           <div className="row">
             <span className="ml-3" style={style.bold}>
-              {T.translate(`goals.tiltFrequency.${this.props.language}`)}
+              {`${T.translate(`goals.tiltFrequency.${this.props.language}`)} :`}
             </span>
             <span className="ml-3" style={style.bold}>
               {this.props.tiltFrequecy}
@@ -54,7 +59,7 @@ class TiltLabels extends Component {
           </div>
           <div className="row">
             <span className="ml-3" style={style.bold}>
-              {T.translate(`goals.tiltLength.${this.props.language}`)}
+              {`${T.translate(`goals.tiltLength.${this.props.language}`)} :`}
             </span>
             <span className="ml-3" style={style.bold}>
               {this.props.tiltLength}
@@ -64,7 +69,7 @@ class TiltLabels extends Component {
           </div>
           <div className="row">
             <span className="ml-3" style={style.bold}>
-              {T.translate(`goals.tiltAngle.${this.props.language}`)}
+              {`${T.translate(`goals.tiltAngle.${this.props.language}`)} :`}
             </span>
             <span className="ml-3" style={style.bold}>
               {this.props.tiltAngle}
@@ -82,6 +87,10 @@ class TiltLabels extends Component {
             style={{ transform: `rotate(-${this.props.tiltAngle}deg)` }}
           />
         </div>
+        <Tooltip
+          for={`#tiltLabel${this.props.id}`}
+          title={this.props.tooltip}
+        />
       </div>
     );
     return (
