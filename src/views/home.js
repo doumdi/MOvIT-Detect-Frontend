@@ -92,6 +92,9 @@ class Home extends Component {
         fontSize: '20em',
         maxHeight: '430px',
       },
+      icons: {
+        fontSize: '20em',
+      }
     };
 
     return (
