@@ -37,36 +37,32 @@ class TextRecommendation extends Component {
 
   render() {
     return (
-      <div className="pt-2 pl-3 row">
-        <div className="col-11 pl-0 mt-1">
-          <Checkbox
-            inputId="activeRecCheck"
-            label={this.props.title}
-            onChange={e => this.affectDefaultValue(e.checked)}
-            checked={this.props.recActive || false}
-          />
-          <label htmlFor="activeRecCheck" className="mt-1">{this.props.title}</label>
-          {this.props.tooltip
+      <div className="pt-2 pl-3">
+        <Checkbox
+          inputId="activeRecCheck"
+          label={this.props.title}
+          onChange={e => this.affectDefaultValue(e.checked)}
+          checked={this.props.recActive || false}
+        />
+        <label htmlFor="activeRecCheck" className="mt-1">{this.props.title}</label>
+        {this.props.tooltip
             && (
               <i id={`textRecInfo${this.props.id}`} className="fa fa-info-circle pl-2" />
             )}
-          {this.props.recActive
+        {this.props.recActive
             && (
-            <div className="row">
-              <div className="col-12 col-md-6 ml-4 mb-1">
-                <InputText
-                  id="textRec"
-                  type="text"
-                  className="form-control"
-                  onChange={e => this.props.onChangeValue(e.target.value)}
-                  value={this.props.value || ''}
-                  placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
-                />
-              </div>
+            <div className="col-12 col-md-9 mb-2 ml-3">
+              <InputText
+                id="textRec"
+                type="text"
+                className="form-control"
+                onChange={e => this.props.onChangeValue(e.target.value)}
+                value={this.props.value || ''}
+                placeholder={T.translate(`recommendations.tiltAsNeeded.${this.props.language}`)}
+              />
             </div>
             )
           }
-        </div>
         <Tooltip
           for={`#textRecInfo${this.props.id}`}
           title={this.props.tooltip}

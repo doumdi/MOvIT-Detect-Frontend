@@ -29,8 +29,9 @@ class SumbitButtons extends Component {
 
   render() {
     return (
-      <div className="text-right col-10 offset-1 offset-md-0 py-3">
-        {this.state.displayCancel
+      <div className="row">
+        <div className="text-right col-12 col-md-9 py-3 pr-0">
+          {this.state.displayCancel
         && (
         <Button
           onClick={() => this.props.onCancel()}
@@ -42,13 +43,14 @@ class SumbitButtons extends Component {
         )}
 
         &nbsp;
-        <Button
-          onClick={() => this.props.onSave()}
-          type="button"
-          id="saveButton"
-          className="p-button-secondary mb-2 mb-sm-0"
-          label={T.translate(`save.${this.props.language}`)}
-        />
+          <Button
+            onClick={() => this.props.onSave()}
+            type="button"
+            id="saveButton"
+            className="p-button-secondary mb-2 mb-sm-0"
+            label={T.translate(`save.${this.props.language}`)}
+          />
+        </div>
       </div>
     );
   }

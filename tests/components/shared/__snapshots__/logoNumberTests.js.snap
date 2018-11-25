@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports['LogoNumber Tests should match the snapshot 1'] = `
+exports[`LogoNumber Tests should match the snapshot 1`] = `
 <div
   className="form-horizontal row mb-3"
 >
@@ -23,7 +23,7 @@ exports['LogoNumber Tests should match the snapshot 1'] = `
     </span>
   </div>
   <div
-    className="col-10 col-lg-8 d-inline-block"
+    className="col-11 col-lg-8 d-inline-block pr-1"
   >
     <input
       className="form-control"

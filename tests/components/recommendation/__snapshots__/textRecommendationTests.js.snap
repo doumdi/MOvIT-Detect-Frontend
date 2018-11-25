@@ -2,52 +2,44 @@
 
 exports[`TextRecommandation Tests should match the snapshot when the recommendation is active 1`] = `
 <div
-  className="pt-2 pl-3 row"
+  className="pt-2 pl-3"
 >
-  <div
-    className="col-11 pl-0 mt-1"
+  <Checkbox
+    checked={true}
+    className={null}
+    disabled={false}
+    id={null}
+    inputId="activeRecCheck"
+    label="Test"
+    name={null}
+    onChange={[Function]}
+    onContextMenu={null}
+    onMouseDown={null}
+    readOnly={false}
+    style={null}
+    value={null}
+  />
+  <label
+    className="mt-1"
+    htmlFor="activeRecCheck"
   >
-    <Checkbox
-      checked={true}
-      className={null}
-      disabled={false}
-      id={null}
-      inputId="activeRecCheck"
-      label="Test"
-      name={null}
+    Test
+  </label>
+  <div
+    className="col-12 col-md-9 mb-2 ml-3"
+  >
+    <InputText
+      className="form-control"
+      id="textRec"
+      keyfilter={null}
       onChange={[Function]}
-      onContextMenu={null}
-      onMouseDown={null}
-      readOnly={false}
-      style={null}
-      value={null}
+      onInput={null}
+      onKeyPress={null}
+      placeholder="recommendations.tiltAsNeeded.en"
+      type="text"
+      validateOnly={false}
+      value=""
     />
-    <label
-      className="mt-1"
-      htmlFor="activeRecCheck"
-    >
-      Test
-    </label>
-    <div
-      className="row"
-    >
-      <div
-        className="col-12 col-md-6 ml-4 mb-1"
-      >
-        <InputText
-          className="form-control"
-          id="textRec"
-          keyfilter={null}
-          onChange={[Function]}
-          onInput={null}
-          onKeyPress={null}
-          placeholder="recommendations.tiltAsNeeded.en"
-          type="text"
-          validateOnly={false}
-          value=""
-        />
-      </div>
-    </div>
   </div>
   <Tooltip
     appendTo="body"
@@ -68,33 +60,29 @@ exports[`TextRecommandation Tests should match the snapshot when the recommendat
 
 exports[`TextRecommandation Tests should match the snapshot when the recommendation is inactive 1`] = `
 <div
-  className="pt-2 pl-3 row"
+  className="pt-2 pl-3"
 >
-  <div
-    className="col-11 pl-0 mt-1"
+  <Checkbox
+    checked={false}
+    className={null}
+    disabled={false}
+    id={null}
+    inputId="activeRecCheck"
+    label="Test"
+    name={null}
+    onChange={[Function]}
+    onContextMenu={null}
+    onMouseDown={null}
+    readOnly={false}
+    style={null}
+    value={null}
+  />
+  <label
+    className="mt-1"
+    htmlFor="activeRecCheck"
   >
-    <Checkbox
-      checked={false}
-      className={null}
-      disabled={false}
-      id={null}
-      inputId="activeRecCheck"
-      label="Test"
-      name={null}
-      onChange={[Function]}
-      onContextMenu={null}
-      onMouseDown={null}
-      readOnly={false}
-      style={null}
-      value={null}
-    />
-    <label
-      className="mt-1"
-      htmlFor="activeRecCheck"
-    >
-      Test
-    </label>
-  </div>
+    Test
+  </label>
   <Tooltip
     appendTo="body"
     escape={true}

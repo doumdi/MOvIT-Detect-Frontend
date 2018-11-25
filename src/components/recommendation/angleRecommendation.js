@@ -28,34 +28,34 @@ class AngleRecommendation extends Component {
 
   render() {
     return (
-      <div className="pt-2 pl-3 row">
-        <div className="col-11 pl-0 mt-1">
-          <Checkbox
-            inputId="activeRecCheck"
-            label={this.props.title}
-            onChange={e => this.props.onChangeActive(e.checked)}
-            checked={this.props.recActive || false}
-          />
-          <label htmlFor="activeRecCheck">{this.props.title}</label>
-          {this.props.tooltip
+      <div className="pt-2 pl-3 mt-1">
+        <Checkbox
+          inputId="activeRecCheck"
+          label={this.props.title}
+          onChange={e => this.props.onChangeActive(e.checked)}
+          checked={this.props.recActive || false}
+        />
+        <label htmlFor="activeRecCheck">{this.props.title}</label>
+        {this.props.tooltip
             && (
             <i id={`angleRecInfo${this.props.id}`} className="fa fa-info-circle pl-2" />
             )}
-          {this.props.recActive
+        {this.props.recActive
             && (
-              <div className="col-12 col-md-10 ml-3">
-                <SliderValue
-                  min={0}
-                  max={this.props.maxAngle}
-                  onChange={this.props.onChangeValue}
-                  value={this.props.value}
-                  unit="°"
-                  title={T.translate(`recommendations.angle.${this.props.language}`)}
-                />
-              </div>
+
+            <div className="col-12 col-md-10 mb-2 ml-3">
+              <SliderValue
+                min={0}
+                max={this.props.maxAngle}
+                onChange={this.props.onChangeValue}
+                value={this.props.value}
+                unit="°"
+                title={T.translate(`recommendations.angle.${this.props.language}`)}
+              />
+
+            </div>
             )
           }
-        </div>
         <Tooltip
           for={`#angleRecInfo${this.props.id}`}
           title={this.props.tooltip}
