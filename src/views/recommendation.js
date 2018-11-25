@@ -155,23 +155,39 @@ class Recommendation extends Component {
 
   save() {
     const data = {
-      reduceWeight: {
+      reduceSwelling: this.props.swellingRecommendation,
+      reducePain: this.props.painRecommendation,
+    };
+
+    if (this.props.reduceWeight) {
+      data.reduceWeight = {
         tiltFrequency: this.props.tiltFrequencyWeight,
         tiltLength: this.props.tiltLengthWeight,
         tiltAngle: this.props.tiltAngleWeight,
-      },
-      reduceSlidingMoving: this.props.tiltAngleMoving,
-      reduceSlidingRest: this.props.tiltAngleRest,
-      reduceSwelling: this.props.swellingRecommendation,
-      reducePain: this.props.painRecommendation,
-      allowRest: this.props.restRecommendation,
-      easeTransfers: this.props.transferRecommendation,
-      improveComfort: this.props.comfortRecommendation,
-      other: {
+      };
+    }
+    if (this.props.reduceSlidingMoving) {
+      data.reduceSlidingMoving = this.props.tiltAngleMoving;
+    }
+    if (this.props.reduceSlidingRest) {
+      data.reduceSlidingRest = this.props.tiltAngleRest;
+    }
+    if (this.props.allowRest) {
+      data.allowRest = this.props.restRecommendation;
+    }
+    if (this.props.easeTransfers) {
+      data.easeTransfers = this.props.transferRecommendation;
+    }
+    if (this.props.improveComfort) {
+      data.improveComfort = this.props.comfortRecommendation;
+    }
+    if (this.props.other) {
+      data.other = {
         title: this.props.otherRecommendationsTitle,
         value: this.props.otherRecommendations,
-      },
-    };
+      };
+    }
+
     post(`${URL}goal`, data.reduceWeight);
     post(`${URL}recommandation`, data);
     this.props.history.push('/goals');
