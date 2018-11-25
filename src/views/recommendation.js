@@ -211,30 +211,29 @@ class Recommendation extends Component {
             ? <ErrorMessage />
             : (
               <div>
-                <div className="row pl-3">
-                  <div className="col-11 pl-0">
-                    <Checkbox
-                      inputId="reduceWeightCheck"
-                      label="Reduce weight"
-                      onChange={e => this.props.changeReduceWeight(e.checked)}
-                      checked={this.props.reduceWeight}
-                    />
-                    <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
-                    {this.props.reduceWeight
-                      ? (
-                        <TiltSliders
-                          tiltFrequecy={this.props.tiltFrequencyWeight}
-                          tiltLength={this.props.tiltLengthWeight}
-                          tiltAngle={this.props.tiltAngleWeight}
-                          maxAngle={this.state.maxSliderAngle}
-                          onFrequencyChange={this.changeTitlFrequency.bind(this)}
-                          onLengthChange={this.changeTiltLength.bind(this)}
-                          onAngleChange={this.changeTiltAngle.bind(this)}
-                        />
-                      )
-                      : null}
-                  </div>
+                <div className="pt-2 pl-3 mt-1">
+                  <Checkbox
+                    inputId="reduceWeightCheck"
+                    label="Reduce weight"
+                    onChange={e => this.props.changeReduceWeight(e.checked)}
+                    checked={this.props.reduceWeight}
+                  />
+                  <label htmlFor="reduceWeightCheck">{T.translate(`recommendations.reduceWeight.${this.props.language}`)}</label>
+                  {this.props.reduceWeight
+                    ? (
+                      <TiltSliders
+                        tiltFrequecy={this.props.tiltFrequencyWeight}
+                        tiltLength={this.props.tiltLengthWeight}
+                        tiltAngle={this.props.tiltAngleWeight}
+                        maxAngle={this.state.maxSliderAngle}
+                        onFrequencyChange={this.changeTitlFrequency.bind(this)}
+                        onLengthChange={this.changeTiltLength.bind(this)}
+                        onAngleChange={this.changeTiltAngle.bind(this)}
+                      />
+                    )
+                    : null}
                 </div>
+
                 <AngleRecommendation
                   recActive={this.props.reduceSlidingMoving}
                   title={T.translate(`recommendations.slidingMoving.${this.props.language}`)}
@@ -251,6 +250,7 @@ class Recommendation extends Component {
                   onChangeActive={this.props.changeReduceSlidingRest}
                   onChangeValue={this.props.changeTiltAngleRest}
                 />
+
                 <TextRecommendation
                   onChangeActive={this.props.changeAllowRest}
                   recActive={this.props.allowRest}

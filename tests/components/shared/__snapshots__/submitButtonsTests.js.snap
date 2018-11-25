@@ -2,40 +2,48 @@
 
 exports[`SubmitButtons Tests should match the snapshot 1`] = `
 <div
-  className="text-right col-10 offset-1 offset-md-0 py-3"
+  className="row"
 >
-  <button
-    className="btn btn-lg mb-2 mb-sm-0"
-    id="cancelButton"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="text-right col-12 col-md-9 py-3 pr-1"
   >
-    cancel.en
-  </button>
-   
-  <button
-    className="btn btn-lg mb-2 mb-sm-0"
-    id="saveButton"
-    onClick={[Function]}
-    type="button"
-  >
-    save.en
-  </button>
+    <button
+      className="btn btn-lg mb-2 mb-sm-0"
+      id="cancelButton"
+      onClick={[Function]}
+      type="button"
+    >
+      cancel.en
+    </button>
+     
+    <button
+      className="btn btn-lg mb-2 mb-sm-0"
+      id="saveButton"
+      onClick={[Function]}
+      type="button"
+    >
+      save.en
+    </button>
+  </div>
 </div>
 `;
 
 exports[`SubmitButtons Tests should match the snapshot with invisible cancel 1`] = `
 <div
-  className="text-right col-10 offset-1 offset-md-0 py-3"
+  className="row"
 >
-   
-  <button
-    className="btn btn-lg mb-2 mb-sm-0"
-    id="saveButton"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="text-right col-12 col-md-9 py-3 pr-1"
   >
-    save.en
-  </button>
+     
+    <button
+      className="btn btn-lg mb-2 mb-sm-0"
+      id="saveButton"
+      onClick={[Function]}
+      type="button"
+    >
+      save.en
+    </button>
+  </div>
 </div>
 `;
