@@ -161,8 +161,8 @@ class Recommendation extends Component {
 
     if (this.props.reduceWeight) {
       data.reduceWeight = {
-        tiltFrequency: this.props.tiltFrequencyWeight,
-        tiltLength: this.props.tiltLengthWeight,
+        tiltFrequency: this.props.tiltFrequencyWeight * 60,
+        tiltLength: this.props.tiltLengthWeight * 60,
         tiltAngle: this.props.tiltAngleWeight,
       };
     }

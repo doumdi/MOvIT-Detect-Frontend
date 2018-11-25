@@ -55,7 +55,7 @@ class NotificationSettings extends Component {
     clearTimeout(snoozeTimeout);
     snoozeTimeout = setTimeout(() => {
       post(`${URL}notificationSettings`, {
-        snoozeTime: parseInt(snoozeTime, 10),
+        snoozeTime: parseInt(snoozeTime, 10) * 60,
       });
     }, 3000);
   }

@@ -53,8 +53,8 @@ class PressureRecPanel extends Component {
       this.setState({ modifieGoal: false });
       // save goals data
       post(`${URL}goal`, {
-        tiltFrequency: this.props.tiltFrequencyGoal,
-        tiltLength: this.props.tiltLengthGoal,
+        tiltFrequency: this.props.tiltFrequencyGoal * 60,
+        tiltLength: this.props.tiltLengthGoal * 60,
         tiltAngle: this.props.tiltAngleGoal,
       });
     } else {
