@@ -92,14 +92,13 @@ class Goal extends Component {
       await this.loadRecommendations();
       this.setState({ isLoaded: true });
     } catch (error) {
-      console.log(error);
       this.setState({ hasErrors: true });
     }
   }
 
   async loadGoals() {
     const response = await get(`${URL}goal`);
-    this.mapGoalData(response.data);
+    await this.mapGoalData(response.data);
   }
 
   async loadRecommendations() {
@@ -107,7 +106,7 @@ class Goal extends Component {
       return;
     }
     const response = await get(`${URL}recommandation`);
-    this.mapRecData(response.data);
+    await this.mapRecData(response.data);
   }
 
   mapGoalData(response) {
