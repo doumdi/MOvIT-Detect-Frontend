@@ -10,7 +10,7 @@ export default class Footer extends Component {
   render() {
     const style = {
       footer: {
-        background: '#cc2033',
+        background: '#1e50a2',
         padding: '3vh',
         textAlign: 'center',
         color: 'white',
