@@ -24,6 +24,7 @@ import { URL } from '../redux/applicationReducer';
 import UpdatesManager from '../components/settings/updatesManager';
 import Wifi from '../components/settings/wifi';
 import { get } from '../utilities/secureHTTP';
+import { SEC_IN_MIN } from '../utilities/constants';
 
 class Settings extends Component {
   static propTypes = {
@@ -118,7 +119,7 @@ class Settings extends Component {
       const response = await get(`${URL}notificationSettings`);
       this.props.changeIsLedBlinkingEnabled(response.data.isLedBlinkingEnabled);
       this.props.changeIsVibrationEnabled(response.data.isVibrationEnabled);
-      this.props.changeSnoozeTime(response.data.snoozeTime);
+      this.props.changeSnoozeTime(response.data.snoozeTime / SEC_IN_MIN);
     } catch (error) {
       this.setState({ hasNotificationSettingsErrors: true });
     }
