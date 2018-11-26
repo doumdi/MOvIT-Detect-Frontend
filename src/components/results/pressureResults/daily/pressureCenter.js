@@ -23,7 +23,7 @@ import CustomCard from '../../../shared/card';
 import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
-import { milliToTimeString } from '../../../../utils/timeFormat';
+import { getTime } from '../../../../utils/timeFormat';
 import NoDataMessage from '../../../shared/noDataMessage';
 
 class PressureCenter extends Component {
@@ -152,7 +152,7 @@ class PressureCenter extends Component {
           />
         </div>
         <div className="col-6 offset-3 text-center">
-          <h3>{milliToTimeString(this.state.time)}</h3>
+          <h3>{getTime(this.state.time)}</h3>
         </div>
       </div>
     );
