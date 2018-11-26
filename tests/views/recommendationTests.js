@@ -1,3 +1,10 @@
+/**
+ * @author Gabriel Boucher
+ * @author Anne-Marie Desloges
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
+ */
+
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
