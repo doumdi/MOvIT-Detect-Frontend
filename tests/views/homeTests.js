@@ -119,9 +119,10 @@ describe('Home Tests', () => {
 
     expect(actions[0].type).toEqual('PROFILE');
     expect(actions[1].type).toEqual('TOKEN');
-
     expect(actions[0].profile).toEqual('user');
     expect(actions[1].token).toEqual('123456');
+    expect(localStorage.getItem('profile')).toEqual('user');
+    expect(localStorage.getItem('token')).toEqual('123456');
   });
 
   it('should match the snapshot', () => {

@@ -17,6 +17,7 @@ import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
 import { URL } from '../../src/redux/applicationReducer';
 import Goal from '../../src/views/goal';
+import { SEC_IN_MIN } from '../../src/utilities/constants';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -134,8 +135,8 @@ describe('Goal Tests', () => {
   it('should map the goal data', () => {
     const response = {
       tiltAngle: 10,
-      tiltFrequency: 20,
-      tiltLength: 100,
+      tiltFrequency: 20 * SEC_IN_MIN,
+      tiltLength: 100 * SEC_IN_MIN,
     };
 
     store.clearActions();
@@ -155,8 +156,8 @@ describe('Goal Tests', () => {
   it('should map the rec data', () => {
     const response = {
       reduceWeight: {
-        tiltFrequency: 10,
-        tiltLength: 11,
+        tiltFrequency: 10 * SEC_IN_MIN,
+        tiltLength: 11 * SEC_IN_MIN,
         tiltAngle: 45,
       },
       reduceSlidingMoving: 30,

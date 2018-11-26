@@ -21,6 +21,7 @@ import { T } from '../utilities/translator';
 import TiltLabels from '../components/goal/tiltLabels';
 import { URL } from '../redux/applicationReducer';
 import { get } from '../utilities/secureHTTP';
+import { SEC_IN_MIN } from '../utilities/constants';
 
 class Goal extends Component {
   static propTypes = {
@@ -114,8 +115,8 @@ class Goal extends Component {
     return new Promise(
       ((resolve) => {
         self.props.changeTiltAngleGoal(response.tiltAngle);
-        self.props.changeTiltFrequencyGoal(response.tiltFrequency);
-        self.props.changeTiltLengthGoal(response.tiltLength);
+        self.props.changeTiltFrequencyGoal(response.tiltFrequency / SEC_IN_MIN);
+        self.props.changeTiltLengthGoal(response.tiltLength / SEC_IN_MIN);
         resolve();
       }),
     );
@@ -127,8 +128,8 @@ class Goal extends Component {
       ((resolve) => {
         if (response.reduceWeight) {
           self.props.changeReduceWeight(true);
-          self.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency);
-          self.props.changeTiltLengthWeight(response.reduceWeight.tiltLength);
+          self.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency / SEC_IN_MIN);
+          self.props.changeTiltLengthWeight(response.reduceWeight.tiltLength / SEC_IN_MIN);
           self.props.changeTiltAngleWeight(response.reduceWeight.tiltAngle);
         }
         if (response.reduceSlidingMoving) {

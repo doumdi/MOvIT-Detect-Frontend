@@ -66,3 +66,7 @@
 .toggleButton {
   border: none;
 }
+
+.ui-progressbar {
+  min-height: 1.6em;
+}
