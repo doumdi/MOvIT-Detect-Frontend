@@ -186,8 +186,8 @@ class Goal extends Component {
       return <Loading key="loading" />;
     }
     return (
-      <div className="mt-3">
-        <legend className="text-center header">
+      <div>
+        <legend className="text-center header mt-5 mb-4">
           <h2>
             {T.translate(`goals.${this.props.language}`)}
               &nbsp;

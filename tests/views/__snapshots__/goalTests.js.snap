@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Goal Tests should match the snapshot 1`] = `
-<div
-  className="mt-3"
->
+<div>
   <legend
-    className="text-center header"
+    className="text-center header mt-5 mb-4"
   >
     <h2>
       goals.FR

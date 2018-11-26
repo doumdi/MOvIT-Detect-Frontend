@@ -30,7 +30,7 @@ export default class LogoNumber extends Component {
         <div className="col-1 d-inline-block text-right">
           <span className="text-center" style={style.icon}><i className={this.props.iconClass} /></span>
         </div>
-        <div className="col-10 col-lg-8 d-inline-block">
+        <div className="col-11 col-lg-8 d-inline-block pr-1">
           <input
             type="number"
             placeholder={this.props.placeHolder}

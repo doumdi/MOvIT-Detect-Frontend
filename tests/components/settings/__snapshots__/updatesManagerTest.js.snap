@@ -2,16 +2,21 @@
 
 exports[`UpdatesManager Tests should match the snapshot 1`] = `
 <div>
-  <button
-    className="btn ui-button-secondary btn-default"
+  <Button
+    className="p-button-secondary"
+    cornerStyleClass="ui-corner-all"
     disabled={true}
+    icon="fa fa-2x fa-refresh"
+    iconPos="left"
     id="updateButton"
+    label={null}
     onClick={[Function]}
-  >
-    <i
-      className="fa fa-2x fa-refresh"
-    />
-  </button>
+    style={
+      Object {
+        "backgroundColor": "#fafafa",
+      }
+    }
+  />
   <Connect(ConfirmationPopup)
     body="settings.system.update.confirmation.en"
     onClose={[Function]}

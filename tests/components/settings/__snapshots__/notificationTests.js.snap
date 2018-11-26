@@ -2,56 +2,87 @@
 
 exports[`Notification Tests should match the snapshot 1`] = `
 <div
-  className="row ml-2 mt-5"
+  className="mt-5"
 >
-  <div
-    className="mr-3 mb-2"
-  >
-    <button
-      className="btn btn-lg"
-      id="calibrate-button"
-      onClick={[Function]}
-      type="button"
-    >
-      calibrateMat.en
-    </button>
-  </div>
-  <div
-    className="mr-3 mb-2"
-  >
-    <button
-      className="btn btn-lg"
-      id="calibrateIMU-button"
-      onClick={[Function]}
-      type="button"
-    >
-      calibrateIMU.en
-    </button>
-  </div>
-  <div
-    className="mr-3 mb-2"
-  >
-    <button
-      className="btn btn-lg"
-      id="turn-on-button"
-      onClick={[Function]}
-      type="button"
-    >
-      alert.on.en
-    </button>
-  </div>
-  <div
-    className="mr-3 mb-2"
-  >
-    <button
-      className="btn btn-lg"
-      id="turn-off-button"
-      onClick={[Function]}
-      type="button"
-    >
-      alert.off.en
-    </button>
-  </div>
+  <CustomCard
+    element={
+      <div>
+        <div
+          className="row mb-3"
+        >
+          <div
+            className="col-12 col-sm-6 col-md-4 mb-2"
+          >
+            <Button
+              className="p-button-secondary"
+              cornerStyleClass="ui-corner-all"
+              icon={null}
+              iconPos="left"
+              id="calibrate-button"
+              label="calibrateMat.en"
+              onClick={[Function]}
+              type="button"
+            />
+          </div>
+          <div
+            className="col-12 col-sm-6 col-md-4 mb-2"
+          >
+            <Button
+              className="p-button-secondary"
+              cornerStyleClass="ui-corner-all"
+              icon={null}
+              iconPos="left"
+              id="calibrateIMU-button"
+              label="calibrateIMU.en"
+              onClick={[Function]}
+              type="button"
+            />
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="col-12 col-sm-6 col-md-4 mb-2"
+          >
+            <Button
+              className="p-button-secondary"
+              cornerStyleClass="ui-corner-all"
+              icon={null}
+              iconPos="left"
+              id="turn-on-button"
+              label="alert.on.en"
+              onClick={[Function]}
+              type="button"
+            />
+          </div>
+          <div
+            className="col-12 col-sm-6 col-md-4 mb-2"
+          >
+            <Button
+              className="p-button-secondary"
+              cornerStyleClass="ui-corner-all"
+              icon={null}
+              iconPos="left"
+              id="turn-off-button"
+              label="alert.off.en"
+              onClick={[Function]}
+              type="button"
+            />
+          </div>
+        </div>
+      </div>
+    }
+    header={
+      <div
+        className="ui-card-title"
+      >
+        <h2>
+          calibNotif.en
+        </h2>
+      </div>
+    }
+  />
   <Countdown
     onComplete={[Function]}
     time={120}

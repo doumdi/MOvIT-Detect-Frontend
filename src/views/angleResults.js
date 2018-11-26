@@ -51,7 +51,7 @@ class AngleResults extends Component {
 
   render() {
     return (
-      <div>
+      <div className="mt-5">
         <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
         <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
         <hr />
