@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Tests should match the snapshot 1`] = `
+<div
+  className="content-section mt-5 implementation ui-fluid"
+  style={
+    Object {
+      "height": "fit-content",
+      "textAlign": "center",
+    }
+  }
+>
+  <h2>
+    welcome.FR
+  </h2>
+  <div>
+    <div>
+      <h4>
+        welcome.loginMessage.FR
+      </h4>
+      <div>
+        <i
+          className="fa fa-user"
+          style={
+            Object {
+              "fontSize": "20em",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
