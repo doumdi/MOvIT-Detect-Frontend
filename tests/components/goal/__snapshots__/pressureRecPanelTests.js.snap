@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PressureRecPanel Tests should display labels and not save anything when we're not modifying 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-12"
+    >
+      <TiltSlidersCard
+        id="reduceWeight"
+        maxAngle={90}
+        modifiable={false}
+        onAngleChange={[Function]}
+        onFrequencyChange={[Function]}
+        onLengthChange={[Function]}
+        onModifie={[Function]}
+        tiltAngle={40}
+        tiltFrequecy={900}
+        tiltLength={60}
+        title="recommendations.reduceWeight.en"
+        tooltip="recommendations.reduceWeight.recPanel.tooltip.en"
+      />
+    </div>
+  </div>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#personalGoalInfo"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title="toolTip.personalGoal.en"
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
+</div>
+`;
+
+exports[`PressureRecPanel Tests should match the snapshot 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-12"
+    >
+      <Connect(TiltLabels)
+        id="reduceWeight"
+        modifiable={false}
+        onModifie={[Function]}
+        tiltAngle={40}
+        tiltFrequecy={900}
+        tiltLength={60}
+        title="recommendations.reduceWeight.en"
+        tooltip="recommendations.reduceWeight.recPanel.tooltip.en"
+      />
+    </div>
+  </div>
+  <Tooltip
+    appendTo="body"
+    escape={true}
+    for="#personalGoalInfo"
+    hideDelay={null}
+    onBeforeShow={null}
+    positionStyle={null}
+    showDelay={null}
+    title="toolTip.personalGoal.en"
+    tooltipDisabled={false}
+    tooltipEvent="hover"
+    tooltipPosition="right"
+    tooltipStyleClass={null}
+  />
+</div>
+`;
