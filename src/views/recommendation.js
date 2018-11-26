@@ -8,10 +8,11 @@
 import React, { Component } from 'react';
 import { Checkbox } from 'primereact/components/checkbox/Checkbox';
 import PropTypes from 'prop-types';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { get, post } from '../utilities/secureHTTP';
+
 import AngleRecommendation from '../components/recommendation/angleRecommendation';
 import ErrorMessage from '../components/shared/errorMessage';
 import { GoalActions } from '../redux/goalReducer';
@@ -80,19 +81,12 @@ class Recommendation extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      maxSliderAngle: 90,
+      maxSliderAngle: this.props.maxAngle || 90,
       isLoaded: false,
       hasErrors: false,
     };
 
     this.load();
-    this.setMaxAngle();
-  }
-
-  setMaxAngle() {
-    if (this.props.maxAngle) {
-      this.state.maxSliderAngle = this.props.maxAngle;
-    }
   }
 
   async load() {
@@ -101,7 +95,6 @@ class Recommendation extends Component {
       this.mapData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
-      console.log(error);
       this.setState({ hasErrors: true });
     }
   }
@@ -155,10 +148,7 @@ class Recommendation extends Component {
   }
 
   save() {
-    const data = {
-      reduceSwelling: this.props.swellingRecommendation,
-      reducePain: this.props.painRecommendation,
-    };
+    const data = {};
 
     if (this.props.reduceWeight) {
       data.reduceWeight = {
@@ -182,6 +172,12 @@ class Recommendation extends Component {
     if (this.props.improveComfort) {
       data.improveComfort = this.props.comfortRecommendation;
     }
+    if (this.props.reducePain) {
+      data.reducePain = this.props.painRecommendation;
+    }
+    if (this.props.reduceSwelling) {
+      data.reduceSwelling = this.props.swellingRecommendation;
+    }
     if (this.props.other) {
       data.other = {
         title: this.props.otherRecommendationsTitle,
@@ -198,7 +194,7 @@ class Recommendation extends Component {
     console.log('clear all fields');
   }
 
-  changeTitlFrequency(value) {
+  changeTiltFrequency(value) {
     this.props.changeTiltFrequencyWeight(value);
     this.props.changeTiltFrequencyGoal(value);
   }
@@ -250,7 +246,7 @@ class Recommendation extends Component {
                         tiltLength={this.props.tiltLengthWeight}
                         tiltAngle={this.props.tiltAngleWeight}
                         maxAngle={this.state.maxSliderAngle}
-                        onFrequencyChange={this.changeTitlFrequency.bind(this)}
+                        onFrequencyChange={this.changeTiltFrequency.bind(this)}
                         onLengthChange={this.changeTiltLength.bind(this)}
                         onAngleChange={this.changeTiltAngle.bind(this)}
                       />

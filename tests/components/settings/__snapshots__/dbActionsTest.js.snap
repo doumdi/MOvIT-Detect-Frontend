@@ -43,9 +43,7 @@ exports[`DbActions Tests should match the snapshot 1`] = `
       <div
         className="ui-card-title"
       >
-        <h2>
-          database.en
-        </h2>
+        database.en
       </div>
     }
   />
