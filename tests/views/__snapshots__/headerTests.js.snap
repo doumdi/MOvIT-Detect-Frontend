@@ -71,38 +71,36 @@ exports[`Header Tests should match the snapshot 1`] = `
           EN
         </a>
       </li>
-      <span>
-        <li
-          className="nav navbar-nav pl-1"
-          data-target=".navbar-collapse.show"
-          data-toggle="collapse"
+      <li
+        className="nav navbar-nav pl-1"
+        data-target=".navbar-collapse.show"
+        data-toggle="collapse"
+      >
+        <Link
+          className="navLink px-2"
+          replace={false}
+          to="/settings"
         >
-          <Link
-            className="navLink px-2"
-            replace={false}
-            to="/settings"
-          >
-            <i
-              className="fa fa-cog"
-            />
-          </Link>
-        </li>
-        <li
-          className="nav navbar-nav pl-1"
+          <i
+            className="fa fa-cog"
+          />
+        </Link>
+      </li>
+      <li
+        className="nav navbar-nav pl-1"
+      >
+        <Link
+          className="navLink"
+          onClick={[Function]}
+          replace={false}
+          to="/home"
         >
-          <Link
-            className="navLink"
-            onClick={[Function]}
-            replace={false}
-            to="/home"
-          >
-            welcome.logout.FR
-            <i
-              className="fa fa-sign-out pl-2"
-            />
-          </Link>
-        </li>
-      </span>
+          welcome.logout.FR
+          <i
+            className="fa fa-sign-out pl-2"
+          />
+        </Link>
+      </li>
     </div>
   </nav>
 </div>
