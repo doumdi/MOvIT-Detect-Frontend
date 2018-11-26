@@ -17,6 +17,7 @@ import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
 import { URL } from '../../src/redux/applicationReducer';
 import Recommendation from '../../src/views/recommendation';
+import { SEC_IN_MIN } from '../../src/utilities/constants';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -62,7 +63,6 @@ describe('Recommendation Tests', () => {
       maxAngle: 60,
     },
   };
-  const secToMin = 60;
   const mockStore = configureMockStore();
   const store = mockStore(initialState);
   const props = {
@@ -201,8 +201,8 @@ describe('Recommendation Tests', () => {
     expect(actions[20].type).toEqual('OTHER_RECOMMENDATION');
 
     expect(actions[0].reduceWeight).toEqual(true);
-    expect(actions[1].tiltFrequencyWeight).toEqual(100/secToMin);
-    expect(actions[2].tiltLengthWeight).toEqual(6/secToMin);
+    expect(actions[1].tiltFrequencyWeight).toEqual(100 / SEC_IN_MIN);
+    expect(actions[2].tiltLengthWeight).toEqual(6 / SEC_IN_MIN);
     expect(actions[3].tiltAngleWeight).toEqual(40);
     expect(actions[4].reduceSlidingMoving).toEqual(true);
     expect(actions[5].tiltAngleMoving).toEqual(30);
