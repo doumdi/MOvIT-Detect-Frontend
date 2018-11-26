@@ -16,6 +16,7 @@ import TiltLabels from './tiltLabels';
 import TiltSlidersCard from './tiltSlidersCard';
 import { URL } from '../../redux/applicationReducer';
 import { post } from '../../utilities/secureHTTP';
+import { SEC_IN_MIN } from '../../utilities/constants';
 
 class PressureRecPanel extends Component {
   static propTypes = {
@@ -52,8 +53,8 @@ class PressureRecPanel extends Component {
 
   save() {
     post(`${URL}goal`, {
-      tiltFrequency: this.props.tiltFrequencyGoal,
-      tiltLength: this.props.tiltLengthGoal,
+      tiltFrequency: this.props.tiltFrequencyGoal * SEC_IN_MIN,
+      tiltLength: this.props.tiltLengthGoal * SEC_IN_MIN,
       tiltAngle: this.props.tiltAngleGoal,
     });
   }

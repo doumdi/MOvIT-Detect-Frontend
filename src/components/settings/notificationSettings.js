@@ -16,6 +16,7 @@ import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 import ErrorMessage from '../shared/errorMessage';
 import { post } from '../../utilities/secureHTTP';
+import { SEC_IN_MIN } from '../../utilities/constants';
 
 const MINIMUM_SNOOZE_TIME = 0;
 const MAXIMUM_SNOOZE_TIME = 60;
@@ -55,7 +56,7 @@ class NotificationSettings extends Component {
     clearTimeout(snoozeTimeout);
     snoozeTimeout = setTimeout(() => {
       post(`${URL}notificationSettings`, {
-        snoozeTime: parseInt(snoozeTime, 10),
+        snoozeTime: parseInt(snoozeTime, 10) * SEC_IN_MIN,
       });
     }, 3000);
   }

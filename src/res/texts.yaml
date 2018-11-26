@@ -7,8 +7,8 @@ preferences:
 
 time:
   min:
-    FR: "sec"
-    EN: "sec"
+    FR: "min"
+    EN: "min"
   minutes:
     FR: "minutes"
     EN: "minutes"
