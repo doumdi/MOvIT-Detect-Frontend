@@ -14,6 +14,7 @@ import ConfirmationPopup from '../popups/confirmationPopup';
 import CustomCard from '../shared/card';
 import { T } from '../../utilities/translator';
 import { post } from '../../utilities/secureHTTP';
+import { URL } from '../../redux/applicationReducer';
 
 class DbActions extends Component {
   static propTypes = {
