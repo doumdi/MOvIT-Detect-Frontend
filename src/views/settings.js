@@ -18,13 +18,13 @@ import ModuleStatus from '../components/settings/moduleStatus';
 import Notification from '../components/settings/notification';
 import NotificationSettings from '../components/settings/notificationSettings';
 import Permissions from '../components/settings/permissions';
+import { SEC_IN_MIN } from '../utilities/constants';
 import { SettingsActions } from '../redux/settingsReducer';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import UpdatesManager from '../components/settings/updatesManager';
 import Wifi from '../components/settings/wifi';
 import { get } from '../utilities/secureHTTP';
-import { SEC_IN_MIN } from '../utilities/constants';
 
 class Settings extends Component {
   static propTypes = {
