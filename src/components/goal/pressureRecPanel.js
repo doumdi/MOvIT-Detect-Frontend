@@ -35,31 +35,27 @@ class PressureRecPanel extends Component {
     super(props, context);
     this.state = {
       modifieGoal: false,
-      maxSliderAngle: 90,
+      maxSliderAngle: props.maxAngle || 90,
     };
 
     this.toggleEditing = this.toggleEditing.bind(this);
-    this.setMaxAngle();
-  }
-
-  setMaxAngle() {
-    if (this.props.maxAngle) {
-      this.state.maxSliderAngle = this.props.maxAngle;
-    }
   }
 
   toggleEditing() {
     if (this.state.modifieGoal) {
       this.setState({ modifieGoal: false });
-      // save goals data
-      post(`${URL}goal`, {
-        tiltFrequency: this.props.tiltFrequencyGoal,
-        tiltLength: this.props.tiltLengthGoal,
-        tiltAngle: this.props.tiltAngleGoal,
-      });
+      this.save();
     } else {
       this.setState({ modifieGoal: true });
     }
+  }
+
+  save() {
+    post(`${URL}goal`, {
+      tiltFrequency: this.props.tiltFrequencyGoal,
+      tiltLength: this.props.tiltLengthGoal,
+      tiltAngle: this.props.tiltAngleGoal,
+    });
   }
 
   render() {

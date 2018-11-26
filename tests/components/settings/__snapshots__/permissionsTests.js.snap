@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Permissions Tests should match the snapshot with errors 1`] = `
+<div>
+  <Connect(ErrorMessage) />
+</div>
+`;
+
+exports[`Permissions Tests should match the snapshot with no error 1`] = `
+<div>
+  <Connect(PreventPermission)
+    onSave={[Function]}
+    permissionTitle="settings.permissions.dataAgreement.en"
+  />
+</div>
+`;
