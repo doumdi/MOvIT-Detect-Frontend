@@ -94,7 +94,7 @@ class Home extends Component {
       },
       icons: {
         fontSize: '20em',
-      }
+      },
     };
 
     return (

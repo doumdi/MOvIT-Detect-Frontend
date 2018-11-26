@@ -7,11 +7,11 @@
 
 import React, { Component } from 'react';
 
+import { Button } from 'primereact/components/button/Button';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'primereact/components/button/Button';
-import CustomCard from '../shared/card';
 import ConfirmationPopup from '../popups/confirmationPopup';
+import CustomCard from '../shared/card';
 import { T } from '../../utilities/translator';
 import { post } from '../../utilities/secureHTTP';
 
@@ -81,7 +81,7 @@ class DbActions extends Component {
     );
     const header = (
       <div className="ui-card-title">
-        <h2>{T.translate(`database.${this.props.language}`)}</h2>
+        {T.translate(`database.${this.props.language}`)}
       </div>
     );
     return (
