@@ -14,7 +14,7 @@ import SliderValue from './sliderValue';
 class TiltSliders extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    tiltFrequecy: PropTypes.number,
+    tiltFrequency: PropTypes.number,
     tiltLength: PropTypes.number,
     tiltAngle: PropTypes.number,
     maxAngle: PropTypes.number,
@@ -28,7 +28,7 @@ class TiltSliders extends Component {
       <div className="col-12 col-md-10 ml-3">
         <SliderValue
           id="frequency-slider" min={0} max={180} onChange={this.props.onFrequencyChange}
-          value={this.props.tiltFrequecy} unit="min" title={T.translate(`recommendations.frequency.${this.props.language}`)}
+          value={this.props.tiltFrequency} unit="min" title={T.translate(`recommendations.frequency.${this.props.language}`)}
         />
         <SliderValue
           id="duration-slider" min={0} max={30} onChange={this.props.onLengthChange}

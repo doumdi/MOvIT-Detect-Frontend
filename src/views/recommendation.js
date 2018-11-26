@@ -105,8 +105,8 @@ class Recommendation extends Component {
       ((resolve) => {
         if (response.reduceWeight) {
           self.props.changeReduceWeight(true);
-          self.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency);
-          self.props.changeTiltLengthWeight(response.reduceWeight.tiltLength);
+          self.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency / SEC_IN_MIN);
+          self.props.changeTiltLengthWeight(response.reduceWeight.tiltLength / SEC_IN_MIN);
           self.props.changeTiltAngleWeight(response.reduceWeight.tiltAngle);
         }
         if (response.reduceSlidingMoving) {
@@ -242,7 +242,7 @@ class Recommendation extends Component {
                   {this.props.reduceWeight
                     ? (
                       <TiltSliders
-                        tiltFrequecy={this.props.tiltFrequencyWeight}
+                        tiltFrequency={this.props.tiltFrequencyWeight}
                         tiltLength={this.props.tiltLengthWeight}
                         tiltAngle={this.props.tiltAngleWeight}
                         maxAngle={this.state.maxSliderAngle}
@@ -336,7 +336,7 @@ class Recommendation extends Component {
                 />
               </div>
             )
-            }
+          }
         </div>
       </div>
     );

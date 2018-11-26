@@ -68,7 +68,7 @@ exports[`Recommendation Tests should match the snapshot 1`] = `
           onFrequencyChange={[Function]}
           onLengthChange={[Function]}
           tiltAngle={20}
-          tiltFrequecy={10}
+          tiltFrequency={10}
           tiltLength={12}
         />
       </div>
