@@ -119,7 +119,7 @@ class Notification extends Component {
     );
     const header = (
       <div className="ui-card-title">
-        <h2>{T.translate(`calibNotif.${this.props.language}`)}</h2>
+        {T.translate(`calibNotif.${this.props.language}`)}
       </div>
     );
     return (
