@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Goal Tests should match the snapshot 1`] = `
+<div>
+  <legend
+    className="text-center header mt-5 mb-4"
+  >
+    <h2>
+      goals.FR
+       
+      <i
+        className="fa fa-info-circle"
+        id="titleInfo"
+      />
+    </h2>
+  </legend>
+  <div>
+    <div
+      className="row"
+      style={
+        Object {
+          "height": "80em",
+          "maxHeight": "150em",
+          "overflowY": "auto",
+        }
+      }
+    >
+      <div
+        className="col-12 col-md-8 offset-md-2"
+      >
+        <h3
+          className="ml-2 text-md-left text-center"
+        >
+          goals.personalGoals.FR
+           
+          <i
+            className="fa fa-info-circle"
+            id="personalGoalInfo"
+          />
+        </h3>
+        <Connect(PressureRecPanel) />
+        <h3
+          className="ml-2 text-md-left text-center"
+        >
+          goals.recommendedGoals.FR
+        </h3>
+        <div
+          className="d-flex flex-wrap"
+        >
+          <RecPanel
+            condition={true}
+            id="slidingMovingRecPanel"
+            title="recommendations.slidingMoving.FR"
+            tooltip="recommendations.slidingMoving.recPanel.tooltip.FR"
+            value="recommendations.angleRecommandation.FR
+                        0°
+                        goals.reduceSlidingMoving.FR"
+          />
+          <RecPanel
+            condition={true}
+            id="slidingRestRecPanel"
+            title="recommendations.slidingRest.FR"
+            tooltip="recommendations.slidingRest.recPanel.tooltip.FR"
+            value="recommendations.angleRecommandation.FR
+                        0°
+                        goals.reduceSlidingRest.FR"
+          />
+          <RecPanel
+            condition={true}
+            id="reduceSwelling"
+            title="recommendations.reduceSwelling.FR"
+            tooltip="recommendations.reduceSwelling.recPanel.tooltip.FR"
+            value="recommendations.tiltAsNeeded.FR"
+          />
+          <RecPanel
+            condition={true}
+            id="reducePain"
+            title="recommendations.pain.FR"
+            tooltip="recommendations.reducePain.recPanel.tooltip.FR"
+            value="recommendations.tiltAsNeeded.FR"
+          />
+          <RecPanel
+            condition={true}
+            id="allowRest"
+            title="recommendations.rest.FR"
+            tooltip="recommendations.rest.recPanel.tooltip.FR"
+            value="recommendations.tiltAsNeeded.FR"
+          />
+          <RecPanel
+            id="easeTransfer"
+            title="recommendations.transfer.FR"
+            tooltip="recommendations.transfer.recPanel.tooltip.FR"
+            value="recommendations.tiltAsNeeded.FR"
+          />
+          <RecPanel
+            condition={true}
+            id="improveComfort"
+            title="recommendations.comfort.FR"
+            tooltip="recommendations.comfort.recPanel.tooltip.FR"
+            value="recommendations.tiltAsNeeded.FR"
+          />
+          <RecPanel
+            condition={true}
+            title="recommendations.otherTitle.FR"
+            value="recommendations.tiltAsNeeded.FR"
+          />
+        </div>
+      </div>
+    </div>
+    <Tooltip
+      appendTo="body"
+      escape={true}
+      for="#titleInfo"
+      hideDelay={null}
+      onBeforeShow={null}
+      positionStyle={null}
+      showDelay={null}
+      title="toolTip.goals.FR"
+      tooltipDisabled={false}
+      tooltipEvent="hover"
+      tooltipPosition="right"
+      tooltipStyleClass={null}
+    />
+    <Tooltip
+      appendTo="body"
+      escape={true}
+      for="#personalGoalInfo"
+      hideDelay={null}
+      onBeforeShow={null}
+      positionStyle={null}
+      showDelay={null}
+      title="toolTip.personalGoal.FR"
+      tooltipDisabled={false}
+      tooltipEvent="hover"
+      tooltipPosition="right"
+      tooltipStyleClass={null}
+    />
+  </div>
+</div>
+`;
