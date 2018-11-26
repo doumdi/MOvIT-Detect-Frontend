@@ -1,17 +1,19 @@
 /**
  * @author Gabriel Boucher
  * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Austin-Didier Tran
+ * @author Benjamin Roy
  */
 
-import { connect } from 'react-redux';
 import React, { Component } from 'react';
+
+import { Button } from 'primereact/components/button/Button';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { Button } from 'primereact/components/button/Button';
-import { ApplicationActions, URL } from '../redux/applicationReducer';
+import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
 import Password from '../components/home/password';
+import { ApplicationActions, URL } from '../redux/applicationReducer';
 import { post } from '../utilities/secureHTTP';
 
 class Home extends Component {
@@ -57,7 +59,10 @@ class Home extends Component {
 
   async login(passwordString) {
     try {
-      const response = await post(`${URL}login`, { username: this.state.user, password: passwordString });
+      const response = await post(`${URL}login`, {
+        username: this.state.user,
+        password: passwordString,
+      });
       this.setProfile(response.data.token);
     } catch (error) {
       this.loginError(error);
@@ -124,6 +129,7 @@ class Home extends Component {
                 <div className="col-12 col-md-4 offset-md-2">
                   <h2>{T.translate(`user.${this.props.language}`)}</h2>
                   <Button
+                    id="userButton"
                     onClick={() => this.setLoginProfile('user')}
                     className="p-button-secondary"
                     type="button"
@@ -143,6 +149,7 @@ class Home extends Component {
                 <div className="col-12 col-md-4">
                   <h2>{T.translate(`clinician.${this.props.language}`)}</h2>
                   <Button
+                    id="clinicianButton"
                     onClick={() => this.setLoginProfile('clinician')}
                     type="button"
                     style={style.profileButton}
@@ -168,6 +175,7 @@ class Home extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
