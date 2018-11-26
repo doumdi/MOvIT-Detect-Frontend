@@ -6,7 +6,7 @@ exports[`DailyLastTilts Tests should match the snapshot 1`] = `
   id="dailyLastTilt"
 >
   <CustomCard
-    element={<div />}
+    element={<Connect(NoDataMessage) />}
     header={
       <h4>
         lastTilts.title.FR

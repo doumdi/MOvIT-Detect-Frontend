@@ -22,6 +22,7 @@ exports[`Settings Tests should match the snapshot 1`] = `
           <Connect(ModuleStatus)
             changeModulesStatus={[Function]}
             hasErrors={false}
+            moduleStatus={Object {}}
           />
         }
         header={
@@ -39,6 +40,9 @@ exports[`Settings Tests should match the snapshot 1`] = `
             changeIsVibrationEnabled={[Function]}
             changeSnoozeTime={[Function]}
             hasErrors={false}
+            isLedBlinkingEnabled={true}
+            isVibrationEnabled={true}
+            snoozeTime={60}
           />
         }
         header={
@@ -54,6 +58,7 @@ exports[`Settings Tests should match the snapshot 1`] = `
           <Connect(Wifi)
             changeIsConnected={[Function]}
             hasErrors={false}
+            isConnected={true}
           />
         }
         header={
@@ -68,6 +73,7 @@ exports[`Settings Tests should match the snapshot 1`] = `
         element={
           <Connect(Permissions)
             changeDataAgreement={[Function]}
+            dataAgreement={true}
             hasErrors={false}
           />
         }
@@ -97,6 +103,7 @@ exports[`Settings Tests should match the snapshot 1`] = `
             <Connect(UpdatesManager)
               changeIsUpdateAvailable={[Function]}
               hasErrors={false}
+              isUpdateAvailable={false}
             />
           </div>
         }
