@@ -23,6 +23,7 @@ import { T } from '../utilities/translator';
 import TextRecommendation from '../components/recommendation/textRecommendation';
 import TiltSliders from '../components/shared/tiltSliders';
 import { URL } from '../redux/applicationReducer';
+import { SEC_IN_MIN } from '../utilities/constants';
 
 class Recommendation extends Component {
   static propTypes = {
@@ -161,8 +162,8 @@ class Recommendation extends Component {
 
     if (this.props.reduceWeight) {
       data.reduceWeight = {
-        tiltFrequency: this.props.tiltFrequencyWeight * 60,
-        tiltLength: this.props.tiltLengthWeight * 60,
+        tiltFrequency: this.props.tiltFrequencyWeight * SEC_IN_MIN,
+        tiltLength: this.props.tiltLengthWeight * SEC_IN_MIN,
         tiltAngle: this.props.tiltAngleWeight,
       };
     }
