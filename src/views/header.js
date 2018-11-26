@@ -16,7 +16,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { T } from '../utilities/translator';
 import {
-  ApplicationActions, IS_DEMO, IS_MOBILE,
+  ApplicationActions,
+  IS_DEMO,
+  IS_MOBILE,
 } from '../redux/applicationReducer';
 
 class Header extends Component {
@@ -110,17 +112,20 @@ class Header extends Component {
             <li className="nav navbar-nav pl-1">
               <a className="small-font navLink" onClick={this.props.changeLanguage}>{this.props.language === 'FR' ? 'EN' : 'FR'}</a>
             </li>
-            <li className="nav navbar-nav pl-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-              <Link to="/settings" className="navLink px-2"><i className="fa fa-cog" /></Link>
-            </li>
+
             {this.props.profile
               && (
-              <li className="nav navbar-nav pl-1">
-                <Link to="/home" className="navLink" onClick={() => this.logout()}>
-                  {T.translate(`welcome.logout.${this.props.language}`)}
-                  <i className="fa fa-sign-out pl-2" />
-                </Link>
-              </li>
+              <span>
+                <li className="nav navbar-nav pl-1" data-toggle="collapse" data-target=".navbar-collapse.show">
+                  <Link to="/settings" className="navLink px-2"><i className="fa fa-cog" /></Link>
+                </li>
+                <li className="nav navbar-nav pl-1">
+                  <Link to="/home" className="navLink" onClick={() => this.logout()}>
+                    {T.translate(`welcome.logout.${this.props.language}`)}
+                    <i className="fa fa-sign-out pl-2" />
+                  </Link>
+                </li>
+              </span>
               )
             }
           </div>
