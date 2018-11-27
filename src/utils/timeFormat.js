@@ -1,3 +1,8 @@
-export function milliToTimeString(value) {
-  return `${Math.floor(value / 3600000)}:${(`0${Math.floor((value % 3600000) / 60000)}`).slice(-2)}`;
+export function getTime(timestamp) {
+  const date = new Date(timestamp);
+  const hours = date.getHours();
+  const minutes = date.getMinutes() < 10
+    ? `0${date.getMinutes()}`
+    : date.getMinutes();
+  return `${hours}:${minutes}`;
 }

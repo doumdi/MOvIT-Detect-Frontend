@@ -181,8 +181,6 @@ describe('PressureCenter Tests', () => {
   });
 
   it('should match the snapshot', () => {
-    setFakeState(wrapper);
-
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

@@ -10,6 +10,8 @@ import NoDataMessage from '../../../shared/noDataMessage';
 import { T } from '../../../../utilities/translator';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
+import { getTime } from '../../../../utils/timeFormat';
+
 
 const TILT_COUNT = 5;
 
@@ -65,15 +67,6 @@ class DailyLastTilts extends Component {
     }
   }
 
-  getTime(timestamp) {
-    const date = new Date(timestamp);
-    const hours = date.getHours();
-    const minutes = date.getMinutes() < 10
-      ? `0${date.getMinutes()}`
-      : date.getMinutes();
-    return `${hours}:${minutes}`;
-  }
-
   render() {
     let element;
     if (this.state.data && this.state.data.length) {
@@ -85,7 +78,7 @@ class DailyLastTilts extends Component {
                 {index + 1}. {T.translate(`lastTilts.result.${this.props.language}`)}: {this.getResult(tilt.index)}
               </div>
               <div className="col-6">
-                {T.translate(`lastTilts.time.${this.props.language}`)}: {this.getTime(tilt.timestamp)}
+                {T.translate(`lastTilts.time.${this.props.language}`)}: {getTime(tilt.timestamp)}
               </div>
             </div>
           ))}
