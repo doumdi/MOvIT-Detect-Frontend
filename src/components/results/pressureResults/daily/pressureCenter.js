@@ -116,28 +116,28 @@ class PressureCenter extends Component {
               style={{ data: { fill: '#c43a31' } }}
               size={7}
               data={[
-                this.state.currentQuadrants[0],
+                this.state.currentQuadrants && this.state.currentQuadrants[0],
               ]}
             />
             <VictoryScatter
               style={{ data: { fill: '#c43a31' } }}
               size={7}
               data={[
-                this.state.currentQuadrants[1],
+                this.state.currentQuadrants && this.state.currentQuadrants[1],
               ]}
             />
             <VictoryScatter
               style={{ data: { fill: '#c43a31' } }}
               size={7}
               data={[
-                this.state.currentQuadrants[2],
+                this.state.currentQuadrants && this.state.currentQuadrants[2],
               ]}
             />
             <VictoryScatter
               style={{ data: { fill: '#c43a31' } }}
               size={7}
               data={[
-                this.state.currentQuadrants[3],
+                this.state.currentQuadrants && this.state.currentQuadrants[3],
               ]}
             />
           </VictoryChart>
