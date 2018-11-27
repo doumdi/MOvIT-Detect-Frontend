@@ -24,7 +24,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 function setFakeState(wrapper) {
   wrapper.setState({
-    time: 10800000,
+    time: new Date().getMilliseconds(),
     hasErrors: false,
     isLoaded: true,
     index: 0,
@@ -182,7 +182,6 @@ describe('PressureCenter Tests', () => {
 
   it('should match the snapshot', () => {
     setFakeState(wrapper);
-
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
