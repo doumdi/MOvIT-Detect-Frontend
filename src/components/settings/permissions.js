@@ -21,13 +21,20 @@ class Permissions extends Component {
     changeDataAgreement: PropTypes.func.isRequired,
     dataAgreement: PropTypes.bool.isRequired,
     hasErrors: PropTypes.bool.isRequired,
+    showSuccess: PropTypes.func.isRequired,
+    showError: PropTypes.func.isRequired,
   };
 
   save() {
     const data = {
       dataAgreement: this.props.dataAgreement,
     };
-    post(`${URL}dataAgreement`, data);
+    try {
+      post(`${URL}dataAgreement`, data);
+      this.props.showSuccess();
+    } catch (error) {
+      this.props.showError();
+    }
   }
 
   render() {
