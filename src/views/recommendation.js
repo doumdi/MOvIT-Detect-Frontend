@@ -162,7 +162,7 @@ class Recommendation extends Component {
     });
   }
 
-  save() {
+  async save() {
     const data = {};
 
     if (this.props.reduceWeight) {
@@ -201,11 +201,11 @@ class Recommendation extends Component {
     }
 
     try {
-      post(`${URL}goal`, data.reduceWeight);
-      post(`${URL}recommandation`, data);
+      await post(`${URL}goal`, data.reduceWeight);
+      await post(`${URL}recommandation`, data);
       this.showSuccess();
       this.props.history.push('/goals');
-    } catch (error) {
+    } catch {
       this.showError();
     }
   }

@@ -36,24 +36,24 @@ class NotificationSettings extends Component {
     showError: PropTypes.func.isRequired,
   }
 
-  enableLedBlinking() {
+  async enableLedBlinking() {
     const isLedBlinkingEnabled = !this.props.isLedBlinkingEnabled;
     this.props.changeIsLedBlinkingEnabled(isLedBlinkingEnabled);
     try {
-      post(`${URL}notificationSettings`, { isLedBlinkingEnabled });
+      await post(`${URL}notificationSettings`, { isLedBlinkingEnabled });
       this.props.showSuccess();
-    } catch (error) {
+    } catch {
       this.props.showError();
     }
   }
 
-  enableVibration() {
+  async enableVibration() {
     const isVibrationEnabled = !this.props.isVibrationEnabled;
     this.props.changeIsVibrationEnabled(isVibrationEnabled);
     try {
-      post(`${URL}notificationSettings`, { isVibrationEnabled });
+      await post(`${URL}notificationSettings`, { isVibrationEnabled });
       this.props.showSuccess();
-    } catch (error) {
+    } catch {
       this.props.showError();
     }
   }
@@ -62,11 +62,11 @@ class NotificationSettings extends Component {
     this.props.changeSnoozeTime(parseInt(snoozeTime, 10));
 
     clearTimeout(snoozeTimeout);
-    snoozeTimeout = setTimeout(() => {
+    snoozeTimeout = setTimeout(async () => {
       try {
-        post(`${URL}notificationSettings`, { snoozeTime: parseInt(snoozeTime, 10) * SEC_IN_MIN });
+        await post(`${URL}notificationSettings`, { snoozeTime: parseInt(snoozeTime, 10) * SEC_IN_MIN });
         this.props.showSuccess();
-      } catch (error) {
+      } catch {
         this.props.showError();
       }
     }, 3000);

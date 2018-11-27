@@ -22,8 +22,6 @@ class Wifi extends Component {
     isConnected: PropTypes.bool.isRequired,
     changeIsConnected: PropTypes.func.isRequired,
     hasErrors: PropTypes.bool.isRequired,
-    showSuccess: PropTypes.func.isRequired,
-    showError: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -53,12 +51,7 @@ class Wifi extends Component {
   }
 
   save() {
-    try {
-      post(`${URL}wifi`, this.state);
-      this.props.showSuccess();
-    } catch (error) {
-      this.props.showError();
-    }
+    post(`${URL}wifi`, this.state);
     this.waitConnection();
   }
 

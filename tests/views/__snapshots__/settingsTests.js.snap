@@ -71,8 +71,6 @@ exports[`Settings Tests should match the snapshot 1`] = `
               changeIsConnected={[Function]}
               hasErrors={false}
               isConnected={true}
-              showError={[Function]}
-              showSuccess={[Function]}
             />
           }
           header={

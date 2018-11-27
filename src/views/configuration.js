@@ -82,7 +82,7 @@ class Configuration extends Component {
     });
   }
 
-  save() {
+  async save() {
     const data = {
       userName: this.props.userName,
       userID: this.props.userID,
@@ -90,9 +90,9 @@ class Configuration extends Component {
       userWeight: this.props.userWeight,
     };
     try {
-      post(`${URL}configuration`, data);
+      await post(`${URL}configuration`, data);
       this.showSuccess();
-    } catch (error) {
+    } catch {
       this.showError();
     }
   }

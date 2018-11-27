@@ -25,14 +25,14 @@ class Permissions extends Component {
     showError: PropTypes.func.isRequired,
   };
 
-  save() {
+  async save() {
     const data = {
       dataAgreement: this.props.dataAgreement,
     };
     try {
-      post(`${URL}dataAgreement`, data);
+      await post(`${URL}dataAgreement`, data);
       this.props.showSuccess();
-    } catch (error) {
+    } catch {
       this.props.showError();
     }
   }

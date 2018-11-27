@@ -195,8 +195,6 @@ class Settings extends Component {
                     isConnected={this.props.isWifiConnected}
                     changeIsConnected={this.props.changeIsWifiConnected}
                     hasErrors={this.state.hasWifiConnectionErrors}
-                    showSuccess={this.showSuccess.bind(this)}
-                    showError={this.showSuccess.bind(this)}
                   />
                 )}
               />
