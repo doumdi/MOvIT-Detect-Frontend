@@ -152,7 +152,7 @@ class PressureCenter extends Component {
           />
         </div>
         <div className="col-6 offset-3 text-center">
-          <h3>{getTime(this.state.time)}</h3>
+          <h3>{getTime(parseInt(this.state.time))}</h3>
         </div>
       </div>
     );
