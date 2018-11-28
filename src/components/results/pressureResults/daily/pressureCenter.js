@@ -116,28 +116,40 @@ class PressureCenter extends Component {
               style={{ data: { fill: '#c43a31' } }}
               size={7}
               data={[
-                this.state.currentQuadrants[0],
+                this.state.currentQuadrants && {
+                  x: this.state.currentQuadrants[0].x - 2,
+                  y: this.state.currentQuadrants[0].y + 2,
+                },
               ]}
             />
             <VictoryScatter
               style={{ data: { fill: '#c43a31' } }}
               size={7}
               data={[
-                this.state.currentQuadrants[1],
+                this.state.currentQuadrants && {
+                  x: this.state.currentQuadrants[1].x + 2,
+                  y: this.state.currentQuadrants[1].y + 2,
+                },
               ]}
             />
             <VictoryScatter
               style={{ data: { fill: '#c43a31' } }}
               size={7}
               data={[
-                this.state.currentQuadrants[2],
+                this.state.currentQuadrants && {
+                  x: this.state.currentQuadrants[2].x + 2,
+                  y: this.state.currentQuadrants[2].y - 2,
+                },
               ]}
             />
             <VictoryScatter
               style={{ data: { fill: '#c43a31' } }}
               size={7}
               data={[
-                this.state.currentQuadrants[3],
+                this.state.currentQuadrants && {
+                  x: this.state.currentQuadrants[3].x - 2,
+                  y: this.state.currentQuadrants[3].y - 2,
+                },
               ]}
             />
           </VictoryChart>
