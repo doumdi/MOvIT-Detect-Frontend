@@ -40,7 +40,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date},offset=${OFFSET}`).reply(200, response);
+  mock.onGet(`${URL}monthlySuccessfulTilts?Day=${+date}&offset=${OFFSET}`).reply(200, response);
 }
 
 describe('MonthlySuccessTilt Tests', () => {

@@ -32,7 +32,7 @@ const response = [
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
 
-  mock.onGet(`${URL}lastTilts?Day=${+date},offset=${OFFSET},count=5`).reply(200, response);
+  mock.onGet(`${URL}lastTilts?Day=${+date}&offset=${OFFSET},count=5`).reply(200, response);
 }
 
 describe('DailyLastTilts Tests', () => {

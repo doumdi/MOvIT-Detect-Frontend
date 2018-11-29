@@ -25,7 +25,7 @@ const response = [0.34, 0.56];
 function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
 
-  mock.onGet(`${URL}dailySlideProgress?Day=${+date},offset=${OFFSET}`).reply(200, response);
+  mock.onGet(`${URL}dailySlideProgress?Day=${+date}&offset=${OFFSET}`).reply(200, response);
 }
 
 describe('DailyPressureResults Tests', () => {

@@ -43,7 +43,7 @@ function initializeMockAdapter() {
   const date = new Date(new Date().getFullYear(), month, 1);
 
 
-  mock.onGet(`${URL}oneMonth?Day=${+date},offset=${OFFSET}`).reply(200, response);
+  mock.onGet(`${URL}oneMonth?Day=${+date}&offset=${OFFSET}`).reply(200, response);
 }
 
 describe('MonthlyAngleDistribution Tests', () => {
