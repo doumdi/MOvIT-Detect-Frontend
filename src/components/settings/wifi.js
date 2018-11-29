@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Button } from 'primereact/components/button/Button';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'primereact/components/button/Button';
 import { get, post } from '../../utilities/secureHTTP';
+
 import ErrorMessage from '../shared/errorMessage';
 import Loading from '../shared/loading';
 import LogoPassword from '../shared/logoPassword';

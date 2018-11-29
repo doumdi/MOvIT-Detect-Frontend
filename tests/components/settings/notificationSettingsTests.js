@@ -40,6 +40,8 @@ describe('NotificationTests Tests', () => {
     changeSnoozeTime: (value) => { snoozeTimeSpy(value); },
     changeIsLedBlinkingEnabled: (value) => { isLedBlinkingEnabledSpy(value); },
     changeIsVibrationEnabled: (value) => { isVibrationEnabledSpy(value); },
+    showSuccess: () => {},
+    showError: () => {},
     hasErrors: false,
   };
 
@@ -66,6 +68,8 @@ describe('NotificationTests Tests', () => {
       changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
       changeIsVibrationEnabled: PropTypes.func.isRequired,
       hasErrors: PropTypes.bool.isRequired,
+      showSuccess: PropTypes.func.isRequired,
+      showError: PropTypes.func.isRequired,
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));

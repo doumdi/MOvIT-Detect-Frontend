@@ -2,6 +2,15 @@
 
 exports[`Configuration Tests should match the snapshot 1`] = `
 <div>
+  <Growl
+    baseZIndex={0}
+    className={null}
+    id={null}
+    onClick={null}
+    onRemove={null}
+    position="topright"
+    style={null}
+  />
   <h2
     className="header text-center mt-5 mb-4"
   >

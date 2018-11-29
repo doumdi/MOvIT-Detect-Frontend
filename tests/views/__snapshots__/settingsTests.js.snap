@@ -1,120 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Settings Tests should match the snapshot 1`] = `
-<div
-  className="mt-4"
->
-  <h2
-    className="header text-center"
-  >
-    settings.en
-  </h2>
+<div>
+  <Growl
+    baseZIndex={0}
+    className={null}
+    id={null}
+    onClick={null}
+    onRemove={null}
+    position="topright"
+    style={null}
+  />
   <div
-    className="row"
+    className="mt-4"
   >
-    <div
-      className="col-12 col-md-8 offset-md-2"
+    <h2
+      className="header text-center"
     >
-      <Connect(Notification) />
-      <Connect(DbActions) />
-      <CustomCard
-        element={
-          <Connect(ModuleStatus)
-            changeModulesStatus={[Function]}
-            hasErrors={false}
-            moduleStatus={Object {}}
-          />
-        }
-        header={
-          <span
-            className="ui-card-title"
-          >
-            settings.modules.en
-          </span>
-        }
-      />
-      <CustomCard
-        element={
-          <Connect(NotificationSettings)
-            changeIsLedBlinkingEnabled={[Function]}
-            changeIsVibrationEnabled={[Function]}
-            changeSnoozeTime={[Function]}
-            hasErrors={false}
-            isLedBlinkingEnabled={true}
-            isVibrationEnabled={true}
-            snoozeTime={60}
-          />
-        }
-        header={
-          <span
-            className="ui-card-title"
-          >
-            settings.notification.en
-          </span>
-        }
-      />
-      <CustomCard
-        element={
-          <Connect(Wifi)
-            changeIsConnected={[Function]}
-            hasErrors={false}
-            isConnected={true}
-          />
-        }
-        header={
-          <span
-            className="ui-card-title"
-          >
-            settings.wifi.en
-          </span>
-        }
-      />
-      <CustomCard
-        element={
-          <Connect(Permissions)
-            changeDataAgreement={[Function]}
-            dataAgreement={true}
-            hasErrors={false}
-          />
-        }
-        header={
-          <span
-            className="ui-card-title"
-          >
-            settings.permissions.en
-          </span>
-        }
-      />
-      <CustomCard
-        element={
-          <div>
-            <h6>
-              settings.system.memory.en
-            </h6>
-            <MemoryUsage
+      settings.en
+    </h2>
+    <div
+      className="row"
+    >
+      <div
+        className="col-12 col-md-8 offset-md-2"
+      >
+        <Connect(Notification) />
+        <Connect(DbActions) />
+        <CustomCard
+          element={
+            <Connect(ModuleStatus)
+              changeModulesStatus={[Function]}
               hasErrors={false}
-              total={5}
-              used={10}
+              moduleStatus={Object {}}
             />
-            <br />
-            <h6>
-              settings.system.update.en
-            </h6>
-            <Connect(UpdatesManager)
-              changeIsUpdateAvailable={[Function]}
+          }
+          header={
+            <span
+              className="ui-card-title"
+            >
+              settings.modules.en
+            </span>
+          }
+        />
+        <CustomCard
+          element={
+            <Connect(NotificationSettings)
+              changeIsLedBlinkingEnabled={[Function]}
+              changeIsVibrationEnabled={[Function]}
+              changeSnoozeTime={[Function]}
               hasErrors={false}
-              isUpdateAvailable={false}
+              isLedBlinkingEnabled={true}
+              isVibrationEnabled={true}
+              showError={[Function]}
+              showSuccess={[Function]}
+              snoozeTime={60}
             />
-          </div>
-        }
-        header={
-          <span
-            className="ui-card-title"
-          >
-            settings.system.en
-          </span>
-        }
-      />
+          }
+          header={
+            <span
+              className="ui-card-title"
+            >
+              settings.notification.en
+            </span>
+          }
+        />
+        <CustomCard
+          element={
+            <Connect(Wifi)
+              changeIsConnected={[Function]}
+              hasErrors={false}
+              isConnected={true}
+            />
+          }
+          header={
+            <span
+              className="ui-card-title"
+            >
+              settings.wifi.en
+            </span>
+          }
+        />
+        <CustomCard
+          element={
+            <Connect(Permissions)
+              changeDataAgreement={[Function]}
+              dataAgreement={true}
+              hasErrors={false}
+              showError={[Function]}
+              showSuccess={[Function]}
+            />
+          }
+          header={
+            <span
+              className="ui-card-title"
+            >
+              settings.permissions.en
+            </span>
+          }
+        />
+        <CustomCard
+          element={
+            <div>
+              <h6>
+                settings.system.memory.en
+              </h6>
+              <MemoryUsage
+                hasErrors={false}
+                total={5}
+                used={10}
+              />
+              <br />
+              <h6>
+                settings.system.update.en
+              </h6>
+              <Connect(UpdatesManager)
+                changeIsUpdateAvailable={[Function]}
+                hasErrors={false}
+                isUpdateAvailable={false}
+              />
+            </div>
+          }
+          header={
+            <span
+              className="ui-card-title"
+            >
+              settings.system.en
+            </span>
+          }
+        />
+      </div>
     </div>
   </div>
 </div>

@@ -12,11 +12,11 @@ import PropTypes from 'prop-types';
 import { Spinner } from 'primereact/components/spinner/Spinner';
 import { Tooltip } from 'primereact/components/tooltip/Tooltip';
 import { connect } from 'react-redux';
+import ErrorMessage from '../shared/errorMessage';
+import { SEC_IN_MIN } from '../../utilities/constants';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
-import ErrorMessage from '../shared/errorMessage';
 import { post } from '../../utilities/secureHTTP';
-import { SEC_IN_MIN } from '../../utilities/constants';
 
 const MINIMUM_SNOOZE_TIME = 0;
 const MAXIMUM_SNOOZE_TIME = 60;
@@ -32,32 +32,43 @@ class NotificationSettings extends Component {
     changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
     changeIsVibrationEnabled: PropTypes.func.isRequired,
     hasErrors: PropTypes.bool.isRequired,
+    showSuccess: PropTypes.func.isRequired,
+    showError: PropTypes.func.isRequired,
   }
 
-  enableLedBlinking() {
+  async enableLedBlinking() {
     const isLedBlinkingEnabled = !this.props.isLedBlinkingEnabled;
     this.props.changeIsLedBlinkingEnabled(isLedBlinkingEnabled);
-    post(`${URL}notificationSettings`, {
-      isLedBlinkingEnabled,
-    });
+    try {
+      await post(`${URL}notificationSettings`, { isLedBlinkingEnabled });
+      this.props.showSuccess();
+    } catch {
+      this.props.showError();
+    }
   }
 
-  enableVibration() {
+  async enableVibration() {
     const isVibrationEnabled = !this.props.isVibrationEnabled;
     this.props.changeIsVibrationEnabled(isVibrationEnabled);
-    post(`${URL}notificationSettings`, {
-      isVibrationEnabled,
-    });
+    try {
+      await post(`${URL}notificationSettings`, { isVibrationEnabled });
+      this.props.showSuccess();
+    } catch {
+      this.props.showError();
+    }
   }
 
   changeSnoozeTime(snoozeTime) {
     this.props.changeSnoozeTime(parseInt(snoozeTime, 10));
 
     clearTimeout(snoozeTimeout);
-    snoozeTimeout = setTimeout(() => {
-      post(`${URL}notificationSettings`, {
-        snoozeTime: parseInt(snoozeTime, 10) * SEC_IN_MIN,
-      });
+    snoozeTimeout = setTimeout(async () => {
+      try {
+        await post(`${URL}notificationSettings`, { snoozeTime: parseInt(snoozeTime, 10) * SEC_IN_MIN });
+        this.props.showSuccess();
+      } catch {
+        this.props.showError();
+      }
     }, 3000);
   }
 

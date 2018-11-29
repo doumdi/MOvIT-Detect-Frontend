@@ -6,6 +6,7 @@
  */
 
 import React, { Component } from 'react';
+import { Growl } from 'primereact/components/growl/Growl';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -67,14 +68,33 @@ class Configuration extends Component {
     );
   }
 
-  save() {
+  showSuccess() {
+    this.growl.show({
+      severity: 'success',
+      summary: T.translate(`saveMessage.success.${this.props.language}`),
+    });
+  }
+
+  showError() {
+    this.growl.show({
+      severity: 'error',
+      summary: T.translate(`saveMessage.error.${this.props.language}`),
+    });
+  }
+
+  async save() {
     const data = {
       userName: this.props.userName,
       userID: this.props.userID,
       maxAngle: this.props.maxAngle,
       userWeight: this.props.userWeight,
     };
-    post(`${URL}configuration`, data);
+    try {
+      await post(`${URL}configuration`, data);
+      this.showSuccess();
+    } catch {
+      this.showError();
+    }
   }
 
   cancel() { }
@@ -85,6 +105,7 @@ class Configuration extends Component {
     }
     return (
       <div>
+        <Growl ref={(growl) => { this.growl = growl; }} position="topright" />
         <h2 className="header text-center mt-5 mb-4">{T.translate(`configurations.${this.props.language}`)}</h2>
         <div className="col-12 col-lg-10 offset-lg-2 mb-4 mt-3">
           {this.state.hasErrors
