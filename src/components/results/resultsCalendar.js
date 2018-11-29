@@ -11,7 +11,7 @@ import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { T } from '../../utilities/translator';
-import { URL } from '../../redux/applicationReducer';
+import { URL, OFFSET } from '../../redux/applicationReducer';
 import { get } from '../../utilities/secureHTTP';
 
 class ResultsCalendar extends Component {
@@ -51,7 +51,7 @@ class ResultsCalendar extends Component {
   }
 
   async setDefaultDate() {
-    const response = await get(`${URL}lastDate`);
+    const response = await get(`${URL}lastDate?offset=${OFFSET}`);
     const date = new Date(response.data);
     date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
     const month = date.getMonth();
@@ -87,18 +87,18 @@ class ResultsCalendar extends Component {
       { label: 'Novembre', value: 10 },
       { label: 'Décembre', value: 11 },
     ] : [
-      { label: 'January', value: 0 },
-      { label: 'February', value: 1 },
-      { label: 'March', value: 2 },
-      { label: 'April', value: 3 },
-      { label: 'May', value: 4 },
-      { label: 'June', value: 5 },
-      { label: 'July', value: 6 },
-      { label: 'August', value: 7 },
-      { label: 'September', value: 8 },
-      { label: 'October', value: 9 },
-      { label: 'November', value: 10 },
-      { label: 'December', value: 11 }];
+        { label: 'January', value: 0 },
+        { label: 'February', value: 1 },
+        { label: 'March', value: 2 },
+        { label: 'April', value: 3 },
+        { label: 'May', value: 4 },
+        { label: 'June', value: 5 },
+        { label: 'July', value: 6 },
+        { label: 'August', value: 7 },
+        { label: 'September', value: 8 },
+        { label: 'October', value: 9 },
+        { label: 'November', value: 10 },
+        { label: 'December', value: 11 }];
 
     const title = this.state.period === 'day'
       ? T.translate(`dailyResults.${this.props.language}`)
