@@ -38,7 +38,7 @@ class DailySuccessTilt extends Component {
   async getData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}dailySuccessfulTilts?Day=${+date}&offset=${OFFSET}`);
+      const response = await get(`${URL}dailySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
       this.setState({
         dayData: response.data,
         isLoaded: true,

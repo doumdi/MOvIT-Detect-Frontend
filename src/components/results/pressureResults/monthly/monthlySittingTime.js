@@ -46,7 +46,7 @@ class MonthlySittingTime extends Component {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ isLoaded: false });
     try {
-      const response = await get(`${URL}sittingTime?Day=${+date}&offset=${OFFSET}`);
+      const response = await get(`${URL}sittingTime?Day=${+date}&Offset=${OFFSET}`);
       this.formatSitChartData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {

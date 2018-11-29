@@ -42,7 +42,7 @@ class DailyLastTilts extends Component {
   async getData(date) {
     this.setState({ isLoaded: false, hasErrors: false });
     try {
-      const response = await get(`${URL}lastTilts?Day=${+date}&offset=${OFFSET},count=${TILT_COUNT}`);
+      const response = await get(`${URL}lastTilts?Day=${+date}&Offset=${OFFSET}&count=${TILT_COUNT}`);
       this.setState({ data: response.data, isLoaded: true });
     } catch (error) {
       this.setState({ hasErrors: true });

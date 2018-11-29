@@ -53,7 +53,7 @@ class MonthlyAngleDistribution extends Component {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
       const date = new Date(new Date().getFullYear(), month, 1);
-      const response = await get(`${URL}oneMonth?Day=${+date}&offset=${OFFSET}`);
+      const response = await get(`${URL}oneMonth?Day=${+date}&Offset=${OFFSET}`);
       this.formatAngleChartData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {

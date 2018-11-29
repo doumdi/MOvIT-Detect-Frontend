@@ -31,7 +31,7 @@ function initializeMockAdapter() {
   const mock = new MockAdapter(axios);
   const date = new Date(new Date().getFullYear(), month, 1);
 
-  mock.onGet(`${URL}sittingTime?Day=${+date}&offset=${OFFSET}`).reply(200, response);
+  mock.onGet(`${URL}sittingTime?Day=${+date}&Offset=${OFFSET}`).reply(200, response);
 }
 
 describe('MonthlySittingTime Tests', () => {
