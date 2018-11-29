@@ -7,6 +7,7 @@
 
 import React, { Component } from 'react';
 
+import { Growl } from 'primereact/components/growl/Growl';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -134,81 +135,102 @@ class Settings extends Component {
     }
   }
 
+  showSuccess() {
+    this.growl.show({
+      severity: 'success',
+      summary: T.translate(`saveMessage.success.${this.props.language}`),
+    });
+  }
+
+  showError() {
+    this.growl.show({
+      severity: 'error',
+      summary: T.translate(`saveMessage.error.${this.props.language}`),
+    });
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return <Loading key="loading" />;
     }
     return (
-      <div className="mt-4">
-        <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
-        <div className="row">
-          <div className="col-12 col-md-8 offset-md-2">
-            <Notification />
-            <DbActions />
-            <CustomCard
-              header={<span className="ui-card-title">{T.translate(`settings.modules.${this.props.language}`)}</span>}
-              element={(
-                <ModuleStatus
-                  moduleStatus={this.props.modulesStatus}
-                  hasErrors={this.state.hasModulesStatusErrors}
-                  changeModulesStatus={this.props.changeModulesStatus}
-                />
-              )}
-            />
-            <CustomCard
-              header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
-              element={(
-                <NotificationSettings
-                  snoozeTime={this.props.snoozeTime}
-                  isLedBlinkingEnabled={this.props.isLedBlinkingEnabled}
-                  isVibrationEnabled={this.props.isVibrationEnabled}
-                  changeSnoozeTime={this.props.changeSnoozeTime}
-                  changeIsLedBlinkingEnabled={this.props.changeIsLedBlinkingEnabled}
-                  changeIsVibrationEnabled={this.props.changeIsVibrationEnabled}
-                  hasErrors={this.state.hasNotificationSettingsErrors}
-                />
-              )}
-            />
-            <CustomCard
-              header={<span className="ui-card-title">{T.translate(`settings.wifi.${this.props.language}`)}</span>}
-              element={(
-                <Wifi
-                  isConnected={this.props.isWifiConnected}
-                  changeIsConnected={this.props.changeIsWifiConnected}
-                  hasErrors={this.state.hasWifiConnectionErrors}
-                />
-              )}
-            />
-            <CustomCard
-              header={<span className="ui-card-title">{T.translate(`settings.permissions.${this.props.language}`)}</span>}
-              element={(
-                <Permissions
-                  dataAgreement={this.props.dataAgreement}
-                  changeDataAgreement={this.props.changeDataAgreement}
-                  hasErrors={this.state.hasPermissionsErrors}
-                />
-              )}
-            />
-            <CustomCard
-              header={<span className="ui-card-title">{T.translate(`settings.system.${this.props.language}`)}</span>}
-              element={(
-                <div>
-                  <h6>{T.translate(`settings.system.memory.${this.props.language}`)}</h6>
-                  <MemoryUsage
-                    total={this.props.totalMemory}
-                    used={this.props.usedMemory}
-                    hasErrors={this.state.hasMemoryUsageErrors}
+      <div>
+        <Growl ref={(growl) => { this.growl = growl; }} position="topright" />
+        <div className="mt-4">
+          <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
+          <div className="row">
+            <div className="col-12 col-md-8 offset-md-2">
+              <Notification />
+              <DbActions />
+              <CustomCard
+                header={<span className="ui-card-title">{T.translate(`settings.modules.${this.props.language}`)}</span>}
+                element={(
+                  <ModuleStatus
+                    moduleStatus={this.props.modulesStatus}
+                    hasErrors={this.state.hasModulesStatusErrors}
+                    changeModulesStatus={this.props.changeModulesStatus}
                   />
-                  <br />
-                  <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
-                  <UpdatesManager
-                    isUpdateAvailable={this.props.isUpdateAvailable}
-                    changeIsUpdateAvailable={this.props.changeIsUpdateAvailable}
-                    hasErrors={this.state.hasUpdateInfoErrors}
+                )}
+              />
+              <CustomCard
+                header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
+                element={(
+                  <NotificationSettings
+                    snoozeTime={this.props.snoozeTime}
+                    isLedBlinkingEnabled={this.props.isLedBlinkingEnabled}
+                    isVibrationEnabled={this.props.isVibrationEnabled}
+                    changeSnoozeTime={this.props.changeSnoozeTime}
+                    changeIsLedBlinkingEnabled={this.props.changeIsLedBlinkingEnabled}
+                    changeIsVibrationEnabled={this.props.changeIsVibrationEnabled}
+                    hasErrors={this.state.hasNotificationSettingsErrors}
+                    showSuccess={this.showSuccess.bind(this)}
+                    showError={this.showSuccess.bind(this)}
                   />
-                </div>
-              )}
-            />
+                )}
+              />
+              <CustomCard
+                header={<span className="ui-card-title">{T.translate(`settings.wifi.${this.props.language}`)}</span>}
+                element={(
+                  <Wifi
+                    isConnected={this.props.isWifiConnected}
+                    changeIsConnected={this.props.changeIsWifiConnected}
+                    hasErrors={this.state.hasWifiConnectionErrors}
+                  />
+                )}
+              />
+              <CustomCard
+                header={<span className="ui-card-title">{T.translate(`settings.permissions.${this.props.language}`)}</span>}
+                element={(
+                  <Permissions
+                    dataAgreement={this.props.dataAgreement}
+                    changeDataAgreement={this.props.changeDataAgreement}
+                    hasErrors={this.state.hasPermissionsErrors}
+                    showSuccess={this.showSuccess.bind(this)}
+                    showError={this.showSuccess.bind(this)}
+                  />
+                )}
+              />
+              <CustomCard
+                header={<span className="ui-card-title">{T.translate(`settings.system.${this.props.language}`)}</span>}
+                element={(
+                  <div>
+                    <h6>{T.translate(`settings.system.memory.${this.props.language}`)}</h6>
+                    <MemoryUsage
+                      total={this.props.totalMemory}
+                      used={this.props.usedMemory}
+                      hasErrors={this.state.hasMemoryUsageErrors}
+                    />
+                    <br />
+                    <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
+                    <UpdatesManager
+                      isUpdateAvailable={this.props.isUpdateAvailable}
+                      changeIsUpdateAvailable={this.props.changeIsUpdateAvailable}
+                      hasErrors={this.state.hasUpdateInfoErrors}
+                    />
+                  </div>
+                )}
+              />
+            </div>
           </div>
         </div>
       </div>

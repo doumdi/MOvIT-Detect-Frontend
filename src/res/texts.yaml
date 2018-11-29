@@ -636,3 +636,11 @@ calibNotif:
 database:
   FR: "Base de données"
   EN: "Database"
+
+saveMessage:
+  success:
+    FR: "Sauvegarde réussie!"
+    EN: "Saved successfully!"
+  error:
+    FR: "Erreur lors de la sauvegarde."
+    EN: "An error occured while saving."

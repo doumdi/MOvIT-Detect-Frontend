@@ -21,3 +21,8 @@
 .ui-dialog .ui-dialog-content {
   overflow: hidden;
 }
+
+.ui-growl {
+  margin-top: 60px;
+  width: 250px;
+}
