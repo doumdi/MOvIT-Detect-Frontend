@@ -5,7 +5,9 @@
  */
 
 import React, { Component } from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import {
+  Redirect, Route, BrowserRouter as Router, Switch,
+} from 'react-router-dom';
 
 import AngleResults from './views/angleResults';
 import Configuration from './views/configuration';
@@ -46,6 +48,7 @@ export default class Layout extends Component {
               <Route path="/configurations" component={Configuration} />
               <Route path="/forgotpassword" component={forgotPassword} />
               <Route path="/settings" component={Settings} />
+              <Redirect to="/home" />
             </Switch>
           </div>
         </div>
