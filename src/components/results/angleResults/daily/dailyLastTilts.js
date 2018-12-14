@@ -12,7 +12,6 @@ import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 import { getTime } from '../../../../utils/timeFormat';
 
-
 const TILT_COUNT = 5;
 
 class DailyLastTilts extends Component {

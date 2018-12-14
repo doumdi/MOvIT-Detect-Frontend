@@ -8,27 +8,17 @@
 import Enzyme, { shallow } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
-import MockAdapter from 'axios-mock-adapter';
 import PropTypes from 'prop-types';
 import React from 'react';
-import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
-import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
 import DailyPressureResults from '../../../../../src/components/results/pressureResults/daily/dailyPressureResults';
-import { OFFSET, URL } from '../../../../../src/redux/applicationReducer';
 
 Enzyme.configure({ adapter: new Adapter() });
-const date = 1517720400000;
-const response = [0.34, 0.56];
 
-function initializeMockAdapter() {
-  const mock = new MockAdapter(axios);
-
-  mock.onGet(`${URL}dailySlideProgress?Day=${+date}&Offset=${OFFSET}`).reply(200, response);
-}
 
 describe('DailyPressureResults Tests', () => {
+  const date = 1517720400000;
   let wrapper;
 
   const initialState = {
@@ -44,8 +34,6 @@ describe('DailyPressureResults Tests', () => {
   const props = {
     date,
   };
-
-  initializeMockAdapter();
 
   beforeEach(() => {
     wrapper = shallow(<DailyPressureResults store={store} {...props} />).dive();
@@ -63,33 +51,6 @@ describe('DailyPressureResults Tests', () => {
     };
 
     expect(JSON.stringify(actualValue)).toEqual(JSON.stringify(expectedValue));
-  });
-
-  it('should get the day data when receiving new props', () => {
-    const spy = sinon.spy(wrapper.instance(), 'getDailySlidingProgress');
-
-    wrapper.setProps({ date: 123456 });
-
-    expect(wrapper.state('date')).toEqual(123456);
-    expect(spy.calledOnce).toEqual(true);
-  });
-
-  it('should do nothing when receiving matching props', () => {
-    const spy = sinon.spy(wrapper.instance(), 'getDailySlidingProgress');
-
-    wrapper.setProps({ date });
-
-    expect(wrapper.state('date')).toEqual(date);
-    expect(spy.calledOnce).toEqual(false);
-  });
-
-  it('should get the day data', async () => {
-    await wrapper.instance().getDailySlidingProgress(date);
-
-    expect(wrapper.state('isLoaded')).toEqual(true);
-    expect(wrapper.state('hasErrors')).toEqual(false);
-    expect(wrapper.state('daySildeRest')).toEqual(response[0] * 100);
-    expect(wrapper.state('daySildeMoving')).toEqual(response[1] * 100);
   });
 
   it('should match the snapshot', () => {

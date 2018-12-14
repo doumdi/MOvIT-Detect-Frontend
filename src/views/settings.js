@@ -48,6 +48,7 @@ class Settings extends Component {
     changeModulesStatus: PropTypes.func.isRequired,
     changeIsUpdateAvailable: PropTypes.func.isRequired,
     changeIsWifiConnected: PropTypes.func.isRequired,
+    profile: PropTypes.string.isRequired,
   };
 
   constructor(props, context) {
@@ -160,18 +161,26 @@ class Settings extends Component {
           <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
           <div className="row">
             <div className="col-12 col-md-8 offset-md-2">
-              <Notification />
-              <DbActions />
-              <CustomCard
-                header={<span className="ui-card-title">{T.translate(`settings.modules.${this.props.language}`)}</span>}
-                element={(
-                  <ModuleStatus
-                    moduleStatus={this.props.modulesStatus}
-                    hasErrors={this.state.hasModulesStatusErrors}
-                    changeModulesStatus={this.props.changeModulesStatus}
+              {
+                this.props.profile !== 'user' && <Notification />
+              }
+              {
+                this.props.profile !== 'user' && <DbActions />
+              }
+              {
+                this.props.profile !== 'user' && (
+                  <CustomCard
+                    header={<span className="ui-card-title">{T.translate(`settings.modules.${this.props.language}`)}</span>}
+                    element={(
+                      <ModuleStatus
+                        moduleStatus={this.props.modulesStatus}
+                        hasErrors={this.state.hasModulesStatusErrors}
+                        changeModulesStatus={this.props.changeModulesStatus}
+                      />
+                    )}
                   />
-                )}
-              />
+                )
+              }
               <CustomCard
                 header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
                 element={(
@@ -188,16 +197,20 @@ class Settings extends Component {
                   />
                 )}
               />
-              <CustomCard
-                header={<span className="ui-card-title">{T.translate(`settings.wifi.${this.props.language}`)}</span>}
-                element={(
-                  <Wifi
-                    isConnected={this.props.isWifiConnected}
-                    changeIsConnected={this.props.changeIsWifiConnected}
-                    hasErrors={this.state.hasWifiConnectionErrors}
+              {
+                this.props.profile !== 'user' && (
+                  <CustomCard
+                    header={<span className="ui-card-title">{T.translate(`settings.wifi.${this.props.language}`)}</span>}
+                    element={(
+                      <Wifi
+                        isConnected={this.props.isWifiConnected}
+                        changeIsConnected={this.props.changeIsWifiConnected}
+                        hasErrors={this.state.hasWifiConnectionErrors}
+                      />
+                    )}
                   />
-                )}
-              />
+                )
+              }
               <CustomCard
                 header={<span className="ui-card-title">{T.translate(`settings.permissions.${this.props.language}`)}</span>}
                 element={(
@@ -210,26 +223,28 @@ class Settings extends Component {
                   />
                 )}
               />
-              <CustomCard
-                header={<span className="ui-card-title">{T.translate(`settings.system.${this.props.language}`)}</span>}
-                element={(
-                  <div>
-                    <h6>{T.translate(`settings.system.memory.${this.props.language}`)}</h6>
-                    <MemoryUsage
-                      total={this.props.totalMemory}
-                      used={this.props.usedMemory}
-                      hasErrors={this.state.hasMemoryUsageErrors}
-                    />
-                    <br />
-                    <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
-                    <UpdatesManager
-                      isUpdateAvailable={this.props.isUpdateAvailable}
-                      changeIsUpdateAvailable={this.props.changeIsUpdateAvailable}
-                      hasErrors={this.state.hasUpdateInfoErrors}
-                    />
-                  </div>
-                )}
-              />
+              {this.props.profile !== 'user' && (
+                <CustomCard
+                  header={<span className="ui-card-title">{T.translate(`settings.system.${this.props.language}`)}</span>}
+                  element={(
+                    <div>
+                      <h6>{T.translate(`settings.system.memory.${this.props.language}`)}</h6>
+                      <MemoryUsage
+                        total={this.props.totalMemory}
+                        used={this.props.usedMemory}
+                        hasErrors={this.state.hasMemoryUsageErrors}
+                      />
+                      <br />
+                      <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
+                      <UpdatesManager
+                        isUpdateAvailable={this.props.isUpdateAvailable}
+                        changeIsUpdateAvailable={this.props.changeIsUpdateAvailable}
+                        hasErrors={this.state.hasUpdateInfoErrors}
+                      />
+                    </div>
+                  )}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -240,6 +255,7 @@ class Settings extends Component {
 
 function mapStateToProps(state) {
   return {
+    profile: state.applicationReducer.profile,
     language: state.applicationReducer.language,
     dataAgreement: state.settingsReducer.dataAgreement,
     totalMemory: state.settingsReducer.totalMemory,

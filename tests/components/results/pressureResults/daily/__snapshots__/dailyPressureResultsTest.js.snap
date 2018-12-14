@@ -26,24 +26,6 @@ exports[`DailyPressureResults Tests should match the snapshot 1`] = `
           dailyResults.pressure.FR
         </a>
       </li>
-      <li
-        className="graphLink"
-      >
-        <a
-          href="results/pressure#reduceSlidingMoving"
-        >
-          dailyResults.travel.FR
-        </a>
-      </li>
-      <li
-        className="graphLink"
-      >
-        <a
-          href="results/pressure#reduceSlidingRest"
-        >
-          monthlyResults.rest.FR
-        </a>
-      </li>
     </ul>
   </div>
   <div
@@ -66,28 +48,6 @@ exports[`DailyPressureResults Tests should match the snapshot 1`] = `
               goalValue={70}
               recValue={50}
               title="dailyResults.pressure.FR"
-            />
-          </div>
-          <div
-            id="reduceSlidingMoving"
-          >
-            <Connect(GoalProgress)
-              condition={true}
-              hasErrors={false}
-              isLoaded={false}
-              title="dailyResults.travel.FR"
-              value={0}
-            />
-          </div>
-          <div
-            id="reduceSlidingRest"
-          >
-            <Connect(GoalProgress)
-              condition={true}
-              hasErrors={false}
-              isLoaded={false}
-              title="dailyResults.rest.FR"
-              value={0}
             />
           </div>
         </div>

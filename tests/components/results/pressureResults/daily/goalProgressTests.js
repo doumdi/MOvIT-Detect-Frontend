@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import toJson from 'enzyme-to-json';
-import GoalProgress from '../../../../../src/components/results/pressureResults/daily/goalProgress';
+import GoalProgress from '../../../../../src/components/results/angleResults/daily/goalProgress';
 
 Enzyme.configure({ adapter: new Adapter() });
 

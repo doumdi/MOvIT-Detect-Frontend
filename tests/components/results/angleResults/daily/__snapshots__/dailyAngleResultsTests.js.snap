@@ -26,15 +26,6 @@ exports[`DailyAngleResults Tests should match the snapshot 1`] = `
           SuccessfulTilt.tiltMade.en
         </a>
       </li>
-      <li
-        className="graphLink"
-      >
-        <a
-          href="results/angle#dailyLastTilt"
-        >
-          lastTilts.title.en
-        </a>
-      </li>
     </ul>
   </div>
   <div
@@ -51,9 +42,22 @@ exports[`DailyAngleResults Tests should match the snapshot 1`] = `
           <Connect(DailySuccessTilt)
             date={1517720400000}
           />
-          <Connect(DailyLastTilts)
-            date={1517720400000}
-          />
+          <div
+            id="reduceSlidingMoving"
+          >
+            <Connect(GoalProgress)
+              title="dailyResults.travel.en"
+              value={0}
+            />
+          </div>
+          <div
+            id="reduceSlidingRest"
+          >
+            <Connect(GoalProgress)
+              title="dailyResults.rest.en"
+              value={0}
+            />
+          </div>
         </div>
       </div>
     </div>
