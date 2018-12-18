@@ -26,24 +26,6 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
           dailyResults.pressure.FR
         </a>
       </li>
-      <li
-        className="graphLink"
-      >
-        <a
-          href="results/pressure#reduceSlidingMoving"
-        >
-          dailyResults.travel.FR
-        </a>
-      </li>
-      <li
-        className="graphLink"
-      >
-        <a
-          href="results/pressure#reduceSlidingRest"
-        >
-          monthlyResults.rest.FR
-        </a>
-      </li>
     </ul>
   </div>
   <div
@@ -293,104 +275,6 @@ exports[`MonthlyPressureResults Tests should match the snapshot 1`] = `
             recTitle="monthlyResults.pressure.recommended.FR"
             title="monthlyResults.pressure.FR"
           />
-        </div>
-        <div>
-          <div
-            id="reduceSlidingMoving"
-          >
-            <GoalChart
-              condition={true}
-              data={
-                Object {
-                  "datasets": Array [
-                    Object {
-                      "borderColor": "red",
-                      "data": Array [],
-                      "fill": true,
-                      "label": "monthlyResults.travel.successRate.FR",
-                      "lineTension": 0,
-                    },
-                  ],
-                  "labels": Array [],
-                }
-              }
-              hasErrors={false}
-              isLoaded={true}
-              options={
-                Object {
-                  "legend": Object {
-                    "onClick": null,
-                  },
-                  "scales": Object {
-                    "yAxes": Array [
-                      Object {
-                        "ticks": Object {
-                          "callback": [Function],
-                          "max": 100,
-                          "min": 0,
-                        },
-                      },
-                    ],
-                  },
-                  "tooltips": Object {
-                    "callbacks": Object {
-                      "label": [Function],
-                    },
-                  },
-                }
-              }
-              successMessage="monthlyResults.travel.success.FR"
-              title="monthlyResults.travel.FR"
-            />
-          </div>
-          <div
-            id="reduceSlidingRest"
-          >
-            <GoalChart
-              condition={true}
-              data={
-                Object {
-                  "datasets": Array [
-                    Object {
-                      "borderColor": "red",
-                      "data": Array [],
-                      "fill": true,
-                      "label": "monthlyResults.travel.successRate.FR",
-                      "lineTension": 0,
-                    },
-                  ],
-                  "labels": Array [],
-                }
-              }
-              hasErrors={false}
-              isLoaded={true}
-              options={
-                Object {
-                  "legend": Object {
-                    "onClick": null,
-                  },
-                  "scales": Object {
-                    "yAxes": Array [
-                      Object {
-                        "ticks": Object {
-                          "callback": [Function],
-                          "max": 100,
-                          "min": 0,
-                        },
-                      },
-                    ],
-                  },
-                  "tooltips": Object {
-                    "callbacks": Object {
-                      "label": [Function],
-                    },
-                  },
-                }
-              }
-              successMessage="monthlyResults.rest.success.FR"
-              title="monthlyResults.rest.FR"
-            />
-          </div>
         </div>
       </div>
     </div>

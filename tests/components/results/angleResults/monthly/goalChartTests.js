@@ -11,7 +11,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import PropTypes from 'prop-types';
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import GoalChart from '../../../../../src/components/results/pressureResults/monthly/goalChart';
+import GoalChart from '../../../../../src/components/results/angleResults/monthly/goalChart';
 
 Enzyme.configure({ adapter: new Adapter() });
 
